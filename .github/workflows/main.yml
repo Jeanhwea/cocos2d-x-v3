@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         os: [ macos-15 ]
-        arch: [ x64 ]
+        arch: [ x64 arm64 ]
     runs-on: ${{ matrix.os }}
 
     steps:
