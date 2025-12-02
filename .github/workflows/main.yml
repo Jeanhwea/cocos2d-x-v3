@@ -16,6 +16,7 @@ jobs:
     steps:
       - name: Initial Project
         run: |
+          ls -ahl
           cmake -B b -S . -GXcode
 
       - name: Build tests
