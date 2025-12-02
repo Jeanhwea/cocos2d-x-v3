@@ -1,4 +1,4 @@
-name: Build macOS Application
+name: Test cocos2d-x Source Code
 
 on:
   push:
