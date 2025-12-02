@@ -2,7 +2,7 @@
  Copyright (c) 2013      Zynga Inc.
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -44,7 +44,7 @@ const int FontAtlas::CacheTextureHeight = 512;
 const char* FontAtlas::CMD_PURGE_FONTATLAS = "__cc_PURGE_FONTATLAS";
 const char* FontAtlas::CMD_RESET_FONTATLAS = "__cc_RESET_FONTATLAS";
 
-FontAtlas::FontAtlas(Font &theFont) 
+FontAtlas::FontAtlas(Font &theFont)
 : _font(&theFont)
 , _fontFreeType(nullptr)
 , _iconv(nullptr)
@@ -69,7 +69,7 @@ FontAtlas::FontAtlas(Font &theFont)
 
         if (_fontFreeType->isDistanceFieldEnabled())
         {
-            _letterPadding += 2 * FontFreeType::DistanceMapSpread;    
+            _letterPadding += 2 * FontFreeType::DistanceMapSpread;
         }
 
         auto outlineSize = _fontFreeType->getOutlineSize();
@@ -94,24 +94,24 @@ void FontAtlas::reinit()
         delete []_currentPageData;
         _currentPageData = nullptr;
     }
-    
+
     auto texture = new (std::nothrow) Texture2D;
-    
+
     _currentPageDataSize = CacheTextureWidth * CacheTextureHeight;
-    
+
     auto outlineSize = _fontFreeType->getOutlineSize();
     if(outlineSize > 0)
     {
         _currentPageDataSize *= 2;
     }
-    
+
     _currentPageData = new (std::nothrow) unsigned char[_currentPageDataSize];
     memset(_currentPageData, 0, _currentPageDataSize);
-    
+
     auto  pixelFormat = outlineSize > 0 ? Texture2D::PixelFormat::AI88 : Texture2D::PixelFormat::A8;
     texture->initWithData(_currentPageData, _currentPageDataSize,
                           pixelFormat, CacheTextureWidth, CacheTextureHeight, Size(CacheTextureWidth,CacheTextureHeight) );
-    
+
     addTexture(texture,0);
     texture->release();
 }
@@ -135,7 +135,7 @@ FontAtlas::~FontAtlas()
 #if CC_TARGET_PLATFORM != CC_PLATFORM_WIN32 && CC_TARGET_PLATFORM != CC_PLATFORM_WINRT && CC_TARGET_PLATFORM != CC_PLATFORM_ANDROID
     if (_iconv)
     {
-        iconv_close(_iconv);
+        iconv_close((iconv_t)_iconv);
         _iconv = nullptr;
     }
 #endif
@@ -144,13 +144,13 @@ FontAtlas::~FontAtlas()
 void FontAtlas::reset()
 {
     releaseTextures();
-    
+
     _currLineHeight = 0;
     _currentPage = 0;
     _currentPageOrigX = 0;
     _currentPageOrigY = 0;
     _letterDefinitions.clear();
-    
+
     reinit();
 }
 
@@ -245,7 +245,7 @@ void FontAtlas::conversionU32TOGB2312(const std::u32string& u32Text, std::unorde
             size_t inLen = strLen * 2;
             size_t outLen = gb2312StrSize;
 
-            iconv(_iconv, (char**)&pin, &inLen, &pout, &outLen);
+            iconv((iconv_t)_iconv, (char**)&pin, &inLen, &pout, &outLen);
         }
 #endif
     }
@@ -295,9 +295,9 @@ void FontAtlas::findNewCharacters(const std::u32string& u32Text, std::unordered_
         // as `Label::_utf32Text` holds. If doing a `memset` or other memory operations, the orignal `Label::_utf32Text`
         // will be in an unknown state. Meanwhile, a bunch lots of logic which depends on `Label::_utf32Text`
         // will be broken.
-        
+
         // newChars = u32Text;
-        
+
         // Using `append` method is a workaround for this issue. So please be carefuly while using the assignment operator
         // of `std::u32string`.
         newChars.append(u32Text);
@@ -345,11 +345,11 @@ bool FontAtlas::prepareLetterDefinitions(const std::u32string& utf32Text)
     if (_fontFreeType == nullptr)
     {
         return false;
-    } 
- 
+    }
+
     if (!_currentPageData)
-        reinit();     
- 
+        reinit();
+
     std::unordered_map<unsigned int, unsigned int> codeMapOfNewChar;
     findNewCharacters(utf32Text, codeMapOfNewChar);
     if (codeMapOfNewChar.empty())
