@@ -14,8 +14,9 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - uses: actions/checkout@v4
+
       - name: Initial Project
-        uses: actions/checkout@v4
         run: |
           cmake -B b -S . -GXcode
 
