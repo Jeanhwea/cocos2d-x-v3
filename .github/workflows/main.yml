@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  test-macos:
     strategy:
       matrix:
         os: [ macos-15 ]
@@ -19,6 +19,24 @@ jobs:
       - name: Initial Project
         run: |
           cmake -B b -S . -GXcode
+
+      - name: Build tests
+        run: |
+          cmake --build b --target cpp-tests
+
+  test-windows:
+    strategy:
+      matrix:
+        os: [ windows-2022 ]
+        arch: [ x64 ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Initial Project
+        run: |
+          cmake -B b -S . -G "Visual Studio 17 2022" -A win32
 
       - name: Build tests
         run: |
