@@ -13,12 +13,12 @@
 
 * 快速开始
 ** 环境配置
-1. 原始脚本依赖 python2 的环境， *python3 会报错*
+1. 原始脚本依赖 Python2 的环境， *Python3 会报错*
 2. 需要安装 cmake 来生成配置项
 3. 开发环境比较随意，根据直接喜好来就行
-   - windows 使用 visual studio 2022
-   - macos 使用 xcode
-   - 直接使用 cmake 管理项目，使用编辑器开发也是 ok 的
+   - Windows 使用 Visual Studio 2022
+   - MacOS 使用 Xcode
+   - 直接使用 cmake 管理项目，使用编辑器开发也是可以的
 4. 使用命令安装
    #+BEGIN_SRC sh
      # 克隆代码仓库
@@ -31,26 +31,26 @@
 
 ** 创建项目
 默认使用命令行创建项目，一些常用参数包括
-- ~new <projectname>~ 创建项目的子命令，需要提供一个项目名 projectname
+- ~new <ProjectName>~ 创建项目的子命令，需要提供一个项目名 ProjectName
 - ~-p~ 包名
 - ~-l~ 编程语言，支持 ~cpp~, ~js~, ~lua~
 - ~-d~ 创建目录，如果没有默认当前目录
-#+begin_src sh
+#+BEGIN_SRC sh
   cocos new HelloGame -p io.github.jeanhwea.hellogame -l cpp
-#+end_src
+#+END_SRC
 
-** windows
-生成项目 sln
-#+begin_src sh
-  cmake -b build -g"visual studio 17 2022" -a win32
-#+end_src
+** Windows 开发
+生成项目解决方案文件 *.sln
+#+BEGIN_SRC sh
+  cmake -B build -G"Visual Studio 17 2022" -A win32
+#+END_SRC
 
-构建项目, --config 可以是 release 或 debug
-#+begin_src sh
-  cmake --build build --config release
-#+end_src
+构建项目, --config 可以是 Release 或 Debug
+#+BEGIN_SRC sh
+  cmake --build build --config Release
+#+END_SRC
 
-** macOS
+** MacOS 开发
 #+BEGIN_SRC sh
   cmake -B build -G"Xcode"
 #+END_SRC
