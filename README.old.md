@@ -1,6 +1,3 @@
-<img src="http://www.cocos2d-x.org/attachments/801/cocos2dx_portrait.png" width=200>
-
-
 cocos2d-x
 =========
 
@@ -65,7 +62,7 @@ You can also create a JS project or Lua project with `-l js` or `-l lua`.
 ### Build and run a new project for Android ###
 
 Cocos2d-x supports Android Studio. Simple open the `proj.android` directory from within the Android Studio environment. More information can be found in our [documentation](https://docs.cocos2d-x.org/cocos2d-x/v3/en/installation/Android-Studio.html).
-   
+
 ### Build and run a new project for iOS ###
 
     $ cocos run -p ios
