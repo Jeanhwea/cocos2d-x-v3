@@ -1,0 +1,61 @@
+#+TITLE: cocos2d-x v3 branch
+#+AUTHOR: Jinghui Hu
+#+EMAIL: hujinghui@buaa.edu.cn
+#+DATE: <2025-12-03 Wed>
+#+STARTUP: overview num indent
+#+OPTIONS: ^:nil
+
+
+* 项目介绍
+1. 本项目是 [[https://github.com/cocos2d/cocos2d-x.git][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]]
+2. 移除了 git 子模块的配置，提供开箱即用的 cocos2d-x 的开发工具
+3. 修复了项目的一些问题
+
+* 快速开始
+** 环境配置
+1. 原始脚本依赖 python2 的环境，python 3 会报错
+2. 需要安装 cmake 来生成配置项
+3. 推荐开发环境
+   - windows 使用 visual studio 2022
+   - macos 使用 xcode
+   - 直接使用 cmake 管理项目，使用编辑器开发也是 ok 的
+4. 使用命令安装
+   #+BEGIN_SRC sh
+     # 克隆代码仓库
+     git clone https://github.com/Jeanhwea/cocos2d-x-v3.git
+
+     # 使用 Python2 设置环境变量
+     cd cocos2d-x-v3
+     python setup.py
+   #+END_SRC
+
+** 创建项目
+默认使用命令行创建项目，一些常用参数包括
+- ~new <projectname>~ 创建项目的子命令，需要提供一个项目名 projectname
+- ~-p~ 包名
+- ~-l~ 编程语言，支持 ~cpp~, ~js~, ~lua~
+- ~-d~ 创建目录，如果没有默认当前目录
+#+begin_src sh
+  cocos new HelloGame -p io.github.jeanhwea.hellogame -l cpp
+#+end_src
+
+** windows
+生成项目 sln
+#+begin_src sh
+  cmake -b build -g"visual studio 17 2022" -a win32
+#+end_src
+
+构建项目, --config 可以是 release 或 debug
+#+begin_src sh
+  cmake --build build --config release
+#+end_src
+
+** macOS
+#+BEGIN_SRC sh
+  cmake -B build -G"Xcode"
+#+END_SRC
+
+构建项目
+#+BEGIN_SRC sh
+  cmake --build build --config Release
+#+END_SRC
