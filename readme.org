@@ -5,6 +5,7 @@
 #+STARTUP: overview num indent
 #+OPTIONS: ^:nil
 
+[[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml/badge.svg?branch=master]]
 
 * 项目介绍
 1. 本项目是 [[https://github.com/cocos2d/cocos2d-x.git][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]] | [[https://docs.cocos.com/cocos2d-x/manual/zh/][man]]
