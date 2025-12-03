@@ -18,8 +18,7 @@ jobs:
 
       - name: Initial Project
         run: |
-          # cmake -B b -S . -GXcode
-          cmake -B b -S .
+          cmake -B b -S . -GXcode
 
       - name: Build tests
         run: |
