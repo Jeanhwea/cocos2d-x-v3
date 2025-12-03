@@ -7,15 +7,15 @@
 
 
 * 项目介绍
-1. 本项目是 [[https://github.com/cocos2d/cocos2d-x.git][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]]
+1. 本项目是 [[https://github.com/cocos2d/cocos2d-x.git][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]] | [[https://docs.cocos.com/cocos2d-x/manual/zh/][man]]
 2. 移除了 git 子模块的配置，提供开箱即用的 cocos2d-x 的开发工具
 3. 修复了项目的一些问题
 
 * 快速开始
 ** 环境配置
-1. 原始脚本依赖 python2 的环境，python 3 会报错
+1. 原始脚本依赖 python2 的环境， *python3 会报错*
 2. 需要安装 cmake 来生成配置项
-3. 推荐开发环境
+3. 开发环境比较随意，根据直接喜好来就行
    - windows 使用 visual studio 2022
    - macos 使用 xcode
    - 直接使用 cmake 管理项目，使用编辑器开发也是 ok 的
