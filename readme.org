@@ -8,7 +8,7 @@
 [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml/badge.svg?branch=master]]
 
 * 项目介绍
-1. 本项目是 [[https://github.com/cocos2d/cocos2d-x.git][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]] | [[https://docs.cocos.com/cocos2d-x/manual/zh/][man]]
+1. 本项目是 [[https://github.com/cocos2d/cocos2d-x/tree/v3][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]] | [[https://docs.cocos.com/cocos2d-x/manual/zh/][man]]
 2. 移除了 git 子模块的配置，提供开箱即用的 cocos2d-x 的开发工具
 3. 修复了项目的一些问题
 
