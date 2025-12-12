@@ -46,9 +46,9 @@
   cmake -B build -G"Visual Studio 17 2022" -A win32
 #+END_SRC
 
-构建项目, --config 可以是 Release 或 Debug
+构建项目
 #+BEGIN_SRC sh
-  cmake --build build --config Release
+  cmake --build build
 #+END_SRC
 
 ** MacOS 开发
