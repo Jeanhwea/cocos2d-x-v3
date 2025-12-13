@@ -17,6 +17,7 @@
          "project_replace_project_name":{
             "src_project_name":"HelloCpp",
             "files":[
+               "readme.org",
                "Classes/AppDelegate.cpp",
                "proj.win32/PROJECT_NAME.vcxproj",
                "proj.win32/PROJECT_NAME.vcxproj.filters",
@@ -28,13 +29,13 @@
                "proj.ios_mac/ios/main.m",
                "proj.ios_mac/ios/Prefix.pch",
                "proj.ios_mac/PROJECT_NAME.xcodeproj/project.pbxproj",
-               "readme.org",
                "CMakeLists.txt"
             ]
          },
          "project_replace_package_name":{
             "src_package_name":"org.cocos2dx.hellocpp",
             "files":[
+               "readme.org",
                "proj.android/app/build.gradle",
                "proj.android/app/AndroidManifest.xml"
             ]
