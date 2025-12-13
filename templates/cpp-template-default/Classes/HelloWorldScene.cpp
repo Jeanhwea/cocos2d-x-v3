@@ -87,5 +87,5 @@ void HelloWorld::menuCloseCallback(Ref *pSender) {
    * RootViewController.mm as below */
 
   // EventCustom customEndEvent("game_scene_close_event");
-  //_eventDispatcher->dispatchEvent(&customEndEvent);
+  // _eventDispatcher->dispatchEvent(&customEndEvent);
 }
