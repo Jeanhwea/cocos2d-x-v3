@@ -113,17 +113,17 @@ namespace ui {
         if (!_hwndEdit)
         {
             _hwndEdit = ::CreateWindowExW(
-                WS_EX_CLIENTEDGE, L"EDIT",   // predefined class 
-                NULL,         // no window title 
+                WS_EX_CLIENTEDGE, L"EDIT",   // predefined class
+                NULL,         // no window title
                 WS_CHILD | ES_LEFT | WS_BORDER | WS_EX_TRANSPARENT | WS_TABSTOP | ES_AUTOHSCROLL | (singleLine ? 0 : ES_MULTILINE),
                 0,
                 0,
                 0,
-                0,   // set size in WM_SIZE message 
-                s_hwndCocos,         // parent window 
-                (HMENU)s_editboxChildID,   // edit control ID 
+                0,   // set size in WM_SIZE message
+                s_hwndCocos,         // parent window
+                (HMENU)s_editboxChildID,   // edit control ID
                 s_hInstance,
-                this);        // pointer not needed 
+                this);        // pointer not needed
 
             SetWindowLongPtrW(_hwndEdit, GWL_USERDATA, (LONG_PTR)this);
             _prevWndProc = (WNDPROC)SetWindowLongPtrW(_hwndEdit, GWL_WNDPROC, (LONG_PTR)WindowProc);
