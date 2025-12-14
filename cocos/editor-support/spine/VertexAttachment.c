@@ -112,3 +112,4 @@ void spVertexAttachment_computeWorldVertices (spVertexAttachment* self, spSlot* 
 		}
 	}
 }
+

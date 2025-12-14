@@ -123,7 +123,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     return [self initWithFrame:frame pixelFormat:kEAGLColorFormatRGB565 depthFormat:0 preserveBackbuffer:NO sharegroup:nil multiSampling:NO numberOfSamples:0];
 }
 
-- (id) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format 
+- (id) initWithFrame:(CGRect)frame pixelFormat:(NSString*)format
 {
     return [self initWithFrame:frame pixelFormat:format depthFormat:0 preserveBackbuffer:NO sharegroup:nil multiSampling:NO numberOfSamples:0];
 }
@@ -150,7 +150,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
             self.contentScaleFactor = [[UIScreen mainScreen] scale];
         }
     }
-    
+
     return self;
 }
 
@@ -159,19 +159,19 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     if( (self = [super initWithCoder:aDecoder]) ) {
         self.textInputView = [[CCInputView alloc] initWithCoder:aDecoder];
         CAEAGLLayer* eaglLayer = (CAEAGLLayer*)[self layer];
-        
+
         pixelformat_ = kEAGLColorFormatRGB565;
         depthFormat_ = 0; // GL_DEPTH_COMPONENT24_OES;
         multiSampling_= NO;
         requestedSamples_ = 0;
         size_ = [eaglLayer bounds].size;
-        
+
         if( ! [self setupSurfaceWithSharegroup:nil] ) {
             [self release];
             return nil;
         }
     }
-    
+
     return self;
 }
 
@@ -192,33 +192,33 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 -(BOOL) setupSurfaceWithSharegroup:(EAGLSharegroup*)sharegroup
 {
     CAEAGLLayer *eaglLayer = (CAEAGLLayer *)self.layer;
-    
+
     eaglLayer.opaque = YES;
     eaglLayer.drawableProperties = [NSDictionary dictionaryWithObjectsAndKeys:
                                     [NSNumber numberWithBool:preserveBackbuffer_], kEAGLDrawablePropertyRetainedBacking,
                                     pixelformat_, kEAGLDrawablePropertyColorFormat, nil];
-    
-    
+
+
     renderer_ = [[CCES2Renderer alloc] initWithDepthFormat:depthFormat_
                                          withPixelFormat:[self convertPixelFormat:pixelformat_]
                                           withSharegroup:sharegroup
                                        withMultiSampling:multiSampling_
                                      withNumberOfSamples:requestedSamples_];
-    
+
     NSAssert(renderer_, @"OpenGL ES 2.O is required.");
     if (!renderer_)
         return NO;
-    
+
     context_ = [renderer_ context];
-    
+
     #if GL_EXT_discard_framebuffer == 1
         discardFramebufferSupported_ = YES;
     #else
         discardFramebufferSupported_ = NO;
     #endif
-    
+
     CHECK_GL_ERROR();
-    
+
     return YES;
 }
 
@@ -236,7 +236,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     {
         return;
     }
-    
+
     [renderer_ resizeFromLayer:(CAEAGLLayer*)self.layer];
     size_ = [renderer_ backingSize];
 
@@ -264,18 +264,18 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     //    -> renderbuffer_ must be the RENDER BUFFER
 
 #ifdef __IPHONE_4_0
-    
+
     if (multiSampling_)
     {
         /* Resolve from msaaFramebuffer to resolveFramebuffer */
-        //glDisable(GL_SCISSOR_TEST);     
+        //glDisable(GL_SCISSOR_TEST);
         glBindFramebuffer(GL_READ_FRAMEBUFFER_APPLE, [renderer_ msaaFrameBuffer]);
         glBindFramebuffer(GL_DRAW_FRAMEBUFFER_APPLE, [renderer_ defaultFrameBuffer]);
         glResolveMultisampleFramebufferAPPLE();
     }
-    
+
     if(discardFramebufferSupported_)
-    {    
+    {
         if (multiSampling_)
         {
             if (depthFormat_)
@@ -288,20 +288,20 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
                 GLenum attachments[] = {GL_COLOR_ATTACHMENT0};
                 glDiscardFramebufferEXT(GL_READ_FRAMEBUFFER_APPLE, 1, attachments);
             }
-            
+
             glBindRenderbuffer(GL_RENDERBUFFER, [renderer_ colorRenderBuffer]);
-    
-        }    
-        
+
+        }
+
         // not MSAA
         else if (depthFormat_ ) {
             GLenum attachments[] = { GL_DEPTH_ATTACHMENT};
             glDiscardFramebufferEXT(GL_FRAMEBUFFER, 1, attachments);
         }
     }
-    
+
 #endif // __IPHONE_4_0
-    
+
      if(![context_ presentRenderbuffer:GL_RENDERBUFFER])
         {
 //         CCLOG(@"cocos2d: Failed to swap renderbuffer in %s\n", __FUNCTION__);
@@ -310,24 +310,24 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 #if COCOS2D_DEBUG
     CHECK_GL_ERROR();
 #endif
-    
+
     // We can safely re-bind the framebuffer here, since this will be the
     // 1st instruction of the new main loop
     if( multiSampling_ )
-        glBindFramebuffer(GL_FRAMEBUFFER, [renderer_ msaaFrameBuffer]);    
+        glBindFramebuffer(GL_FRAMEBUFFER, [renderer_ msaaFrameBuffer]);
 }
 
 - (unsigned int) convertPixelFormat:(NSString*) pixelFormat
 {
     // define the pixel format
     GLenum pFormat;
-    
-    
-    if([pixelFormat isEqualToString:@"EAGLColorFormat565"]) 
+
+
+    if([pixelFormat isEqualToString:@"EAGLColorFormat565"])
         pFormat = GL_RGB565;
-    else 
+    else
         pFormat = GL_RGBA8_OES;
-    
+
     return pFormat;
 }
 
@@ -336,24 +336,24 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 - (CGPoint) convertPointFromViewToSurface:(CGPoint)point
 {
     CGRect bounds = [self bounds];
-    
+
     CGPoint ret;
     ret.x = (point.x - bounds.origin.x) / bounds.size.width * size_.width;
     ret.y =  (point.y - bounds.origin.y) / bounds.size.height * size_.height;
-    
+
     return ret;
 }
 
 - (CGRect) convertRectFromViewToSurface:(CGRect)rect
 {
     CGRect bounds = [self bounds];
-    
+
     CGRect ret;
     ret.origin.x = (rect.origin.x - bounds.origin.x) / bounds.size.width * size_.width;
     ret.origin.y = (rect.origin.y - bounds.origin.y) / bounds.size.height * size_.height;
     ret.size.width = rect.size.width / bounds.size.width * size_.width;
     ret.size.height = rect.size.height / bounds.size.height * size_.height;
-    
+
     return ret;
 }
 
@@ -363,11 +363,11 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
 {
     if (self.isKeyboardShown)
         [self closeKeyboardOpenedByEditBox];
-    
+
     UITouch* ids[IOS_MAX_TOUCHES_COUNT] = {0};
     float xs[IOS_MAX_TOUCHES_COUNT] = {0.0f};
     float ys[IOS_MAX_TOUCHES_COUNT] = {0.0f};
-    
+
     int i = 0;
     for (UITouch *touch in touches) {
         if (i >= IOS_MAX_TOUCHES_COUNT) {
@@ -392,7 +392,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     float ys[IOS_MAX_TOUCHES_COUNT] = {0.0f};
     float fs[IOS_MAX_TOUCHES_COUNT] = {0.0f};
     float ms[IOS_MAX_TOUCHES_COUNT] = {0.0f};
-    
+
     int i = 0;
     for (UITouch *touch in touches) {
         if (i >= IOS_MAX_TOUCHES_COUNT) {
@@ -422,7 +422,7 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     UITouch* ids[IOS_MAX_TOUCHES_COUNT] = {0};
     float xs[IOS_MAX_TOUCHES_COUNT] = {0.0f};
     float ys[IOS_MAX_TOUCHES_COUNT] = {0.0f};
-    
+
     int i = 0;
     for (UITouch *touch in touches) {
         if (i >= IOS_MAX_TOUCHES_COUNT) {
@@ -439,20 +439,20 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
     glview->handleTouchesEnd(i, (intptr_t*)ids, xs, ys);
 }
-    
+
 - (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
 {
     UITouch* ids[IOS_MAX_TOUCHES_COUNT] = {0};
     float xs[IOS_MAX_TOUCHES_COUNT] = {0.0f};
     float ys[IOS_MAX_TOUCHES_COUNT] = {0.0f};
-    
+
     int i = 0;
     for (UITouch *touch in touches) {
         if (i >= IOS_MAX_TOUCHES_COUNT) {
             CCLOG("warning: touches more than 10, should adjust IOS_MAX_TOUCHES_COUNT");
             break;
         }
-        
+
         ids[i] = touch;
         xs[i] = [touch locationInView: [touch view]].x * self.contentScaleFactor;
         ys[i] = [touch locationInView: [touch view]].y * self.contentScaleFactor;
@@ -481,14 +481,14 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
         [UIView setAnimationDelegate:self];
         [UIView setAnimationDuration:duration];
         [UIView setAnimationBeginsFromCurrentState:YES];
-        
+
         //NSLog(@"[animation] dis = %f, scale = %f \n", dis, cocos2d::GLView::getInstance()->getScaleY());
-        
+
         if (dis < 0.0f) dis = 0.0f;
 
         auto glview = cocos2d::Director::getInstance()->getOpenGLView();
         dis *= glview->getScaleY();
-        
+
         dis /= self.contentScaleFactor;
 
     #if defined(CC_TARGET_OS_TVOS)
@@ -499,24 +499,24 @@ Copyright (C) 2008 Apple Inc. All Rights Reserved.
             case UIInterfaceOrientationPortrait:
                 self.frame = CGRectMake(originalRect_.origin.x, originalRect_.origin.y - dis, originalRect_.size.width, originalRect_.size.height);
                 break;
-                
+
             case UIInterfaceOrientationPortraitUpsideDown:
                 self.frame = CGRectMake(originalRect_.origin.x, originalRect_.origin.y + dis, originalRect_.size.width, originalRect_.size.height);
                 break;
-                
+
             case UIInterfaceOrientationLandscapeLeft:
                 self.frame = CGRectMake(originalRect_.origin.x - dis, originalRect_.origin.y , originalRect_.size.width, originalRect_.size.height);
                 break;
-                
+
             case UIInterfaceOrientationLandscapeRight:
                 self.frame = CGRectMake(originalRect_.origin.x + dis, originalRect_.origin.y , originalRect_.size.width, originalRect_.size.height);
                 break;
-                
+
             default:
                 break;
         }
     #endif
-        
+
         [UIView commitAnimations];
 }
 
@@ -566,7 +566,7 @@ namespace {
 - (void)onUIKeyboardNotification:(NSNotification *)notif
 {
     NSString * type = notif.name;
-    
+
     NSDictionary* info = [notif userInfo];
     CGRect begin = [self convertRect:
                     [[info objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue]
@@ -575,7 +575,7 @@ namespace {
                   [[info objectForKey:UIKeyboardFrameEndUserInfoKey] CGRectValue]
                           fromView:self];
     double aniDuration = [[info objectForKey:UIKeyboardAnimationDurationUserInfoKey] doubleValue];
-    
+
     CGSize viewSize = self.frame.size;
 
     CGFloat tmp;
@@ -585,17 +585,17 @@ namespace {
             begin.origin.y = viewSize.height - begin.origin.y - begin.size.height;
             end.origin.y = viewSize.height - end.origin.y - end.size.height;
             break;
-            
+
         case UIInterfaceOrientationPortraitUpsideDown:
             begin.origin.x = viewSize.width - (begin.origin.x + begin.size.width);
             end.origin.x = viewSize.width - (end.origin.x + end.size.width);
             break;
-            
+
         case UIInterfaceOrientationLandscapeLeft:
             std::swap(begin.size.width, begin.size.height);
             std::swap(end.size.width, end.size.height);
             std::swap(viewSize.width, viewSize.height);
-            
+
             tmp = begin.origin.x;
             begin.origin.x = begin.origin.y;
             begin.origin.y = viewSize.height - tmp - begin.size.height;
@@ -603,12 +603,12 @@ namespace {
             end.origin.x = end.origin.y;
             end.origin.y = viewSize.height - tmp - end.size.height;
             break;
-            
+
         case UIInterfaceOrientationLandscapeRight:
             std::swap(begin.size.width, begin.size.height);
             std::swap(end.size.width, end.size.height);
             std::swap(viewSize.width, viewSize.height);
-            
+
             tmp = begin.origin.x;
             begin.origin.x = begin.origin.y;
             begin.origin.y = tmp;
@@ -616,7 +616,7 @@ namespace {
             end.origin.x = end.origin.y;
             end.origin.y = tmp;
             break;
-            
+
         default:
             break;
     }
@@ -624,11 +624,11 @@ namespace {
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
     float scaleX = glview->getScaleX();
     float scaleY = glview->getScaleY();
-    
+
     // Convert to pixel coordinate
     begin = CGRectApplyAffineTransform(begin, CGAffineTransformScale(CGAffineTransformIdentity, self.contentScaleFactor, self.contentScaleFactor));
     end = CGRectApplyAffineTransform(end, CGAffineTransformScale(CGAffineTransformIdentity, self.contentScaleFactor, self.contentScaleFactor));
-    
+
     float offestY = glview->getViewPortRect().origin.y;
     if (offestY < 0.0f)
     {
@@ -636,12 +636,12 @@ namespace {
         begin.size.height -= offestY;
         end.size.height -= offestY;
     }
-    
+
     // Convert to design coordinate
     begin = CGRectApplyAffineTransform(begin, CGAffineTransformScale(CGAffineTransformIdentity, 1.0f/scaleX, 1.0f/scaleY));
     end = CGRectApplyAffineTransform(end, CGAffineTransformScale(CGAffineTransformIdentity, 1.0f/scaleX, 1.0f/scaleY));
 
-    
+
     cocos2d::IMEKeyboardNotificationInfo notiInfo;
     notiInfo.begin = cocos2d::Rect(begin.origin.x,
                                      begin.origin.y,
@@ -652,7 +652,7 @@ namespace {
                                    end.size.width,
                                    end.size.height);
     notiInfo.duration = (float)aniDuration;
-    
+
     cocos2d::IMEDispatcher* dispatcher = cocos2d::IMEDispatcher::sharedDispatcher();
     if (UIKeyboardWillShowNotification == type)
     {
@@ -678,7 +678,7 @@ namespace {
 -(void) closeKeyboardOpenedByEditBox
 {
     NSArray *subviews = self.subviews;
-    
+
     for(UIView* view in subviews)
     {
         if([view isKindOfClass:NSClassFromString(@"UITextView")] ||
@@ -694,3 +694,4 @@ namespace {
 }
 
 @end
+

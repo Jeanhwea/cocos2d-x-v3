@@ -225,3 +225,4 @@ void VRGenericRenderer::setupGLProgram()
 }
 
 NS_CC_END
+

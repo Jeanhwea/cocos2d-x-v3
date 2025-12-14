@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,12 +39,12 @@ static void cloneEventListenerControllerHandler(const cocos2d::EventListenerCont
 {
     if (nullptr == src || nullptr == dst)
         return;
-    
+
     LUA_FUNCTION handler = ScriptHandlerMgr::getInstance()->getObjectHandler((void*)src, type);
     if (0 != handler)
     {
         int newscriptHandler = ScriptEngineManager::getInstance()->getScriptEngine()->reallocateScriptHandler(handler);
-        
+
         ScriptHandlerMgr::getInstance()->addObjectHandler((void*)dst, newscriptHandler, type);
         switch (type)
         {
@@ -98,14 +98,14 @@ static int tolua_cocos2dx_EventListenerController_clone(lua_State* tolua_S)
 {
     if (nullptr == tolua_S)
         return 0;
-    
+
     int argc = 0;
     cocos2d::EventListenerController* self = nullptr;
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(tolua_S, 1, "cc.EventListenerController", 0, &tolua_err))  goto tolua_lerror;
 #endif
-    
+
     self = static_cast<cocos2d::EventListenerController*>(tolua_tousertype(tolua_S,1,0));
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self) {
@@ -113,32 +113,32 @@ static int tolua_cocos2dx_EventListenerController_clone(lua_State* tolua_S)
 		return 0;
 	}
 #endif
-    
+
     argc = lua_gettop(tolua_S) - 1;
-    
+
     if (argc == 0)
     {
         cocos2d::EventListenerController* tolua_ret = cocos2d::EventListenerController::create();
         if(nullptr == tolua_ret)
             return 0;
-        
+
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_CONNECTED);
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_DISCONNECTED);
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYDOWN);
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYUP);
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYREPEAT);
         cloneEventListenerControllerHandler(self, tolua_ret, ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_AXIS);
-        
+
         int ID = (tolua_ret) ? (int)tolua_ret->_ID : -1;
         int* luaID = (tolua_ret) ? &tolua_ret->_luaID : NULL;
         toluafix_pushusertype_ccobject(tolua_S, ID, luaID, (void*)tolua_ret,"cc.EventListenerController");
-        
+
         return 1;
     }
-    
+
     CCLOG("'clone' has wrong number of arguments: %d, was expecting %d\n", argc, 0);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'clone'.",&tolua_err);
@@ -150,14 +150,14 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
 {
     if (nullptr == tolua_S)
         return 0;
-    
+
     int argc = 0;
     cocos2d::EventListenerController* self = nullptr;
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(tolua_S, 1, "cc.EventListenerController", 0, &tolua_err))  goto tolua_lerror;
 #endif
-    
+
     self = static_cast<cocos2d::EventListenerController*>(tolua_tousertype(tolua_S,1,0));
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self) {
@@ -166,7 +166,7 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
 	}
 #endif
     argc = lua_gettop(tolua_S) - 1;
-    
+
     if (argc == 2)
     {
 #if COCOS2D_DEBUG >= 1
@@ -178,13 +178,13 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
 #endif
         LUA_FUNCTION handler = toluafix_ref_function(tolua_S,2,0);
         ScriptHandlerMgr::HandlerType type        = static_cast<ScriptHandlerMgr::HandlerType>((int)tolua_tonumber(tolua_S, 3, 0));
-        
+
         switch (type)
         {
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_CONNECTED:
                 {
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onConnected = [=](cocos2d::Controller* controller, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         int ID = (event) ? (int)event->_ID : -1;
@@ -197,7 +197,7 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_DISCONNECTED:
                 {
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onDisconnected = [=](cocos2d::Controller* controller, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         int ID = (event) ? (int)event->_ID : -1;
@@ -209,9 +209,9 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
                 break;
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYDOWN:
                 {
-                    
+
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onKeyDown = [=](cocos2d::Controller* controller, int keyCode, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         tolua_pushnumber(tolua_S, (lua_Number) keyCode);
@@ -225,7 +225,7 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYUP:
                 {
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onKeyUp = [=](cocos2d::Controller* controller, int keyCode, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         tolua_pushnumber(tolua_S, (lua_Number) keyCode);
@@ -239,7 +239,7 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_KEYREPEAT:
                 {
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onKeyRepeat = [=](cocos2d::Controller* controller, int keyCode, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         tolua_pushnumber(tolua_S, (lua_Number) keyCode);
@@ -253,7 +253,7 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
             case ScriptHandlerMgr::HandlerType::EVENT_CONTROLLER_AXIS:
                 {
                     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, type);
-                    
+
                     self->onAxisEvent = [=](cocos2d::Controller* controller, int keyCode, Event* event){
                         tolua_pushusertype(tolua_S, (void*)controller, "cc.Controller");
                         tolua_pushnumber(tolua_S, (lua_Number) keyCode);
@@ -269,10 +269,10 @@ static int tolua_cocos2dx_EventListenerController_registerScriptHandler(lua_Stat
         }
         return 0;
     }
-    
+
     CCLOG("'registerScriptHandler' has wrong number of arguments: %d, was expecting %d\n", argc, 2);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'registerScriptHandler'.",&tolua_err);
@@ -297,14 +297,14 @@ static int tolua_cocos2dx_Controller_getKeyStatus(lua_State* tolua_S)
 {
     if (nullptr == tolua_S)
         return 0;
-    
+
     int argc = 0;
     cocos2d::Controller* self = nullptr;
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(tolua_S, 1, "cc.Controller", 0, &tolua_err))  goto tolua_lerror;
 #endif
-    
+
     self = static_cast<cocos2d::Controller*>(tolua_tousertype(tolua_S,1,0));
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self) {
@@ -312,9 +312,9 @@ static int tolua_cocos2dx_Controller_getKeyStatus(lua_State* tolua_S)
 		return 0;
 	}
 #endif
-    
+
     argc = lua_gettop(tolua_S) - 1;
-    
+
     if (argc == 1)
     {
 #if COCOS2D_DEBUG >= 1
@@ -323,7 +323,7 @@ static int tolua_cocos2dx_Controller_getKeyStatus(lua_State* tolua_S)
 #endif
         int keyCode = (int)tolua_tonumber(tolua_S, 2, 0);
         cocos2d::Controller::KeyStatus keyStatus = self->getKeyStatus(keyCode);
-        
+
         lua_newtable(tolua_S);                                    /* L: table */
         lua_pushstring(tolua_S, "isPressed");                     /* L: table key */
         lua_pushboolean(tolua_S, (int)keyStatus.isPressed);            /* L: table key value*/
@@ -337,10 +337,10 @@ static int tolua_cocos2dx_Controller_getKeyStatus(lua_State* tolua_S)
 
         return 1;
     }
-    
+
     CCLOG("'clone' has wrong number of arguments: %d, was expecting %d\n", argc, 0);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'getKeyStatus'.",&tolua_err);
@@ -364,11 +364,12 @@ int register_all_cocos2dx_controller_manual(lua_State* L)
 {
     if (nullptr == L)
         return 0;
-    
+
     extendEventListenerController(L);
     extendController(L);
-    
+
     return 0;
 }
 
 #endif //#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+

@@ -48,7 +48,7 @@ typedef struct _TrackEntryListeners {
     CompleteListener completeListener;
     EventListener eventListener;
 } _TrackEntryListeners;
-    
+
 void animationCallback (spAnimationState* state, spEventType type, spTrackEntry* entry, spEvent* event) {
 	((SkeletonAnimation*)state->rendererObject)->onAnimationStateEvent(entry, type, event);
 }
@@ -66,7 +66,7 @@ static _TrackEntryListeners* getListeners (spTrackEntry* entry) {
 	}
 	return (_TrackEntryListeners*)entry->rendererObject;
 }
-    
+
 //
 
 SkeletonAnimation* SkeletonAnimation::createWithData (spSkeletonData* skeletonData, bool ownsSkeletonData) {
@@ -167,7 +167,7 @@ spTrackEntry* SkeletonAnimation::addAnimation (int trackIndex, const std::string
 	}
 	return spAnimationState_addAnimation(_state, trackIndex, animation, loop, delay);
 }
-	
+
 spTrackEntry* SkeletonAnimation::setEmptyAnimation (int trackIndex, float mixDuration) {
 	return spAnimationState_setEmptyAnimation(_state, trackIndex, mixDuration);
 }
@@ -184,7 +184,7 @@ spAnimation* SkeletonAnimation::findAnimation(const std::string& name) const {
 	return spSkeletonData_findAnimation(_skeleton->data, name.c_str());
 }
 
-spTrackEntry* SkeletonAnimation::getCurrent (int trackIndex) { 
+spTrackEntry* SkeletonAnimation::getCurrent (int trackIndex) {
 	return spAnimationState_getCurrent(_state, trackIndex);
 }
 
@@ -247,15 +247,15 @@ void SkeletonAnimation::onTrackEntryEvent (spTrackEntry* entry, spEventType type
 void SkeletonAnimation::setStartListener (const StartListener& listener) {
 	_startListener = listener;
 }
-    
+
 void SkeletonAnimation::setInterruptListener (const InterruptListener& listener) {
     _interruptListener = listener;
 }
-    
+
 void SkeletonAnimation::setEndListener (const EndListener& listener) {
 	_endListener = listener;
 }
-    
+
 void SkeletonAnimation::setDisposeListener (const DisposeListener& listener) {
     _disposeListener = listener;
 }
@@ -271,7 +271,7 @@ void SkeletonAnimation::setEventListener (const EventListener& listener) {
 void SkeletonAnimation::setTrackStartListener (spTrackEntry* entry, const StartListener& listener) {
 	getListeners(entry)->startListener = listener;
 }
-    
+
 void SkeletonAnimation::setTrackInterruptListener (spTrackEntry* entry, const InterruptListener& listener) {
     getListeners(entry)->interruptListener = listener;
 }
@@ -279,7 +279,7 @@ void SkeletonAnimation::setTrackInterruptListener (spTrackEntry* entry, const In
 void SkeletonAnimation::setTrackEndListener (spTrackEntry* entry, const EndListener& listener) {
 	getListeners(entry)->endListener = listener;
 }
-    
+
 void SkeletonAnimation::setTrackDisposeListener (spTrackEntry* entry, const DisposeListener& listener) {
     getListeners(entry)->disposeListener = listener;
 }
@@ -297,3 +297,4 @@ spAnimationState* SkeletonAnimation::getState() const {
 }
 
 }
+

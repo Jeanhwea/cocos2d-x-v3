@@ -2,19 +2,19 @@
  Copyright (c) 2012 cocos2d-x.org
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,7 +53,7 @@ void NavMeshDisabled::onEnter()
 {
     TTFConfig ttfConfig("fonts/arial.ttf", 16);
     auto label = Label::createWithTTF(ttfConfig, "Should define CC_USE_NAVMESH\n to run this test case");
-    
+
     auto size = Director::getInstance()->getWinSize();
     label->setPosition(Vec2(size.width / 2, size.height / 2));
 
@@ -329,7 +329,7 @@ bool NavMeshBasicTestDemo::init()
 void NavMeshBasicTestDemo::onEnter()
 {
     NavMeshBaseTestDemo::onEnter();
-    
+
     Physics3DWorld::HitResult result;
     getPhysics3DWorld()->rayCast(Vec3(0.0f, 50.0f, 0.0f), Vec3(0.0f, -50.0f, 0.0f), &result);
     createAgent(result.hitPosition);
@@ -393,14 +393,14 @@ bool NavMeshAdvanceTestDemo::init()
     auto menu = Menu::create(menuItem0, menuItem1, menuItem2, nullptr);
     menu->setPosition(Vec2::ZERO);
     addChild(menu);
-    
+
     return true;
 }
 
 void NavMeshAdvanceTestDemo::onEnter()
 {
     NavMeshBaseTestDemo::onEnter();
-    
+
     Physics3DWorld::HitResult result;
     getPhysics3DWorld()->rayCast(Vec3(0.0f, 50.0f, 0.0f), Vec3(0.0f, -50.0f, 0.0f), &result);
     createAgent(result.hitPosition);
@@ -435,3 +435,4 @@ void NavMeshAdvanceTestDemo::touchesEnded(const std::vector<cocos2d::Touch*>& to
 }
 
 #endif
+

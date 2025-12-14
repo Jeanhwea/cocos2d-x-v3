@@ -109,25 +109,25 @@ void BillBoard::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t 
     {
         return;
     }
-    
+
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
-    
+
     //Add 3D flag so all the children will be rendered as 3D object
     flags |= FLAGS_RENDER_AS_3D;
-    
+
     //Update Billboard transform
     bool dirty = calculateBillboardTransform();
     if(dirty)
     {
         flags |= FLAGS_TRANSFORM_DIRTY;
     }
-    
+
     Director* director = Director::getInstance();
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
-    
+
     int i = 0;
-    
+
     if(!_children.empty())
     {
         sortAllChildren();
@@ -135,7 +135,7 @@ void BillBoard::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t 
         for(auto size = _children.size(); i < size; ++i)
         {
             auto node = _children.at(i);
-            
+
             if (node && node->getLocalZOrder() < 0)
                 node->visit(renderer, _modelViewTransform, flags);
             else
@@ -152,7 +152,7 @@ void BillBoard::visit(Renderer *renderer, const Mat4& parentTransform, uint32_t 
     {
         this->draw(renderer, _modelViewTransform, flags);
     }
-    
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
@@ -161,7 +161,7 @@ bool BillBoard::calculateBillboardTransform()
     //Get camera world position
     auto camera = Camera::getVisitingCamera();
     const Mat4& camWorldMat = camera->getNodeToWorldTransform();
-    
+
     //TODO: use math lib to calculate math lib Make it easier to read and maintain
     if (memcmp(_camWorldMat.m, camWorldMat.m, sizeof(float) * 16) != 0 || memcmp(_mvTransform.m, _modelViewTransform.m, sizeof(float) * 16) != 0 || _modeDirty || true)
     {
@@ -169,7 +169,7 @@ bool BillBoard::calculateBillboardTransform()
         Vec3 anchorPoint(_anchorPointInPoints.x , _anchorPointInPoints.y , 0.0f);
         Mat4 localToWorld = _modelViewTransform;
         localToWorld.translate(anchorPoint);
-        
+
         //Decide billboard mode
         Vec3 camDir;
         switch (_mode)
@@ -185,7 +185,7 @@ bool BillBoard::calculateBillboardTransform()
                 break;
         }
         _modeDirty = false;
-        
+
         if (camDir.length() < MATH_TOLERANCE)
         {
             camDir.set(camWorldMat.m[8], camWorldMat.m[9], camWorldMat.m[10]);
@@ -202,26 +202,26 @@ bool BillBoard::calculateBillboardTransform()
         x.normalize();
         Vec3::cross(x, camDir, &y);
         y.normalize();
-        
+
         float xlen = sqrtf(localToWorld.m[0] * localToWorld.m[0] + localToWorld.m[1] * localToWorld.m[1] + localToWorld.m[2] * localToWorld.m[2]);
         float ylen = sqrtf(localToWorld.m[4] * localToWorld.m[4] + localToWorld.m[5] * localToWorld.m[5] + localToWorld.m[6] * localToWorld.m[6]);
         float zlen = sqrtf(localToWorld.m[8] * localToWorld.m[8] + localToWorld.m[9] * localToWorld.m[9] + localToWorld.m[10] * localToWorld.m[10]);
-        
+
         Mat4 billboardTransform;
-        
+
         billboardTransform.m[0] = x.x * xlen; billboardTransform.m[1] = x.y * xlen; billboardTransform.m[2] = x.z * xlen;
         billboardTransform.m[4] = y.x * ylen; billboardTransform.m[5] = y.y * ylen; billboardTransform.m[6] = y.z * ylen;
         billboardTransform.m[8] = -camDir.x * zlen; billboardTransform.m[9] = -camDir.y * zlen; billboardTransform.m[10] = -camDir.z * zlen;
         billboardTransform.m[12] = localToWorld.m[12]; billboardTransform.m[13] = localToWorld.m[13]; billboardTransform.m[14] = localToWorld.m[14];
-        
+
         billboardTransform.translate(-anchorPoint);
         _mvTransform = _modelViewTransform = billboardTransform;
-        
+
         _camWorldMat = camWorldMat;
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -252,3 +252,4 @@ BillBoard::Mode BillBoard::getMode() const
 }
 
 NS_CC_END
+

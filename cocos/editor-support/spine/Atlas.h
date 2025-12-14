@@ -172,3 +172,4 @@ typedef spAtlas Atlas;
 #endif
 
 #endif /* SPINE_ATLAS_H_ */
+

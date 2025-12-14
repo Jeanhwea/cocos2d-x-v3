@@ -19,3 +19,4 @@ bool js_cocos2dx_network_Downloader_setOnFileTaskSuccess(JSContext *cx, uint32_t
 bool js_cocos2dx_network_Downloader_Downloader(JSContext *cx, uint32_t argc, jsval *vp);
 
 #endif // __cocos2dx_network_h__
+

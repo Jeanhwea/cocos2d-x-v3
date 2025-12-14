@@ -132,7 +132,7 @@ bool GLProgramCache::init()
     DataManager::onShaderLoaderBegin();
 #endif
     loadDefaultGLPrograms();
-    
+
     auto listener = EventListenerCustom::create(Configuration::CONFIG_FILE_LOADED, [this](EventCustom* /*event*/){
         reloadDefaultGLProgramsRelativeToLights();
     });
@@ -140,7 +140,7 @@ bool GLProgramCache::init()
     DataManager::onShaderLoaderEnd();
 #endif
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(listener, -1);
-    
+
     return true;
 }
 
@@ -286,7 +286,7 @@ void GLProgramCache::loadDefaultGLPrograms()
     p = new (std::nothrow) GLProgram();
     loadDefaultGLProgram(p, kShaderType_3DTerrain);
     _programs.emplace(GLProgram::SHADER_3D_TERRAIN, p);
-    
+
     p = new (std::nothrow) GLProgram();
     loadDefaultGLProgram(p, kShaderType_CameraClear);
     _programs.emplace(GLProgram::SHADER_CAMERA_CLEAR, p);
@@ -308,7 +308,7 @@ void GLProgramCache::loadDefaultGLPrograms()
     p = new(std::nothrow) GLProgram();
     loadDefaultGLProgram(p, kShaderType_ETC1ASPositionTextureGray_noMVP);
     _programs.emplace(GLProgram::SHADER_NAME_ETC1AS_POSITION_TEXTURE_GRAY_NO_MVP, p);
-    
+
     p = new(std::nothrow) GLProgram();
     loadDefaultGLProgram(p, kShaderType_LayerRadialGradient);
     _programs.emplace(GLProgram::SHADER_LAYER_RADIAL_GRADIENT, p);
@@ -457,7 +457,7 @@ void GLProgramCache::reloadDefaultGLPrograms()
     p = getGLProgram(GLProgram::SHADER_3D_TERRAIN);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_3DTerrain);
-    
+
     p = getGLProgram(GLProgram::SHADER_CAMERA_CLEAR);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_CameraClear);
@@ -479,7 +479,7 @@ void GLProgramCache::reloadDefaultGLPrograms()
     p = getGLProgram(GLProgram::SHADER_NAME_ETC1AS_POSITION_TEXTURE_GRAY_NO_MVP);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_ETC1ASPositionTextureGray_noMVP);
-    
+
     p = getGLProgram(GLProgram::SHADER_LAYER_RADIAL_GRADIENT);
     loadDefaultGLProgram(p, kShaderType_LayerRadialGradient);
     _programs.emplace(GLProgram::SHADER_LAYER_RADIAL_GRADIENT, p);
@@ -490,11 +490,11 @@ void GLProgramCache::reloadDefaultGLProgramsRelativeToLights()
     GLProgram *p = getGLProgram(GLProgram::SHADER_3D_POSITION_NORMAL);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_3DPositionNormal);
-    
+
     p = getGLProgram(GLProgram::SHADER_3D_POSITION_NORMAL_TEXTURE);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_3DPositionNormalTex);
-    
+
     p = getGLProgram(GLProgram::SHADER_3D_SKINPOSITION_NORMAL_TEXTURE);
     p->reset();
     loadDefaultGLProgram(p, kShaderType_3DSkinPositionNormalTex);
@@ -688,3 +688,4 @@ std::string GLProgramCache::getShaderMacrosForLight() const
 }
 
 NS_CC_END
+

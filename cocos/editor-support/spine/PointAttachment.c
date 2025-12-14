@@ -59,3 +59,4 @@ float spPointAttachment_computeWorldRotation (spPointAttachment* self, spBone* b
 	y = cosine * bone->c + sine * bone->d;
 	return ATAN2(y, x) * RAD_DEG;
 }
+

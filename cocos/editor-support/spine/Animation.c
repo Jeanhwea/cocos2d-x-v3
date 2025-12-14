@@ -1527,3 +1527,4 @@ void spPathConstraintMixTimeline_setFrame (spPathConstraintMixTimeline* self, in
 	self->frames[frameIndex + PATHCONSTRAINTMIX_ROTATE] = rotateMix;
 	self->frames[frameIndex + PATHCONSTRAINTMIX_TRANSLATE] = translateMix;
 }
+

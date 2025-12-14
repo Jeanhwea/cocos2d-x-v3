@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -42,7 +42,7 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     static TextFieldReader* instanceTextFieldReader = nullptr;
-    
+
     static const char* P_PlaceHolder = "placeHolder";
     static const char* P_Text = "text";
     static const char* P_FontSize = "fontSize";
@@ -53,19 +53,19 @@ namespace cocostudio
     static const char* P_MaxLength = "maxLength";
     static const char* P_PasswordEnable = "passwordEnable";
     static const char* P_PasswordStyleText = "passwordStyleText";
-    
+
     IMPLEMENT_CLASS_NODE_READER_INFO(TextFieldReader)
-    
+
     TextFieldReader::TextFieldReader()
     {
-        
+
     }
-    
+
     TextFieldReader::~TextFieldReader()
     {
-        
+
     }
-    
+
     TextFieldReader* TextFieldReader::getInstance()
     {
         if (!instanceTextFieldReader)
@@ -74,29 +74,29 @@ namespace cocostudio
         }
         return instanceTextFieldReader;
     }
-    
+
     void TextFieldReader::destroyInstance()
     {
         CC_SAFE_DELETE(instanceTextFieldReader);
     }
-    
+
     void TextFieldReader::setPropsFromBinary(cocos2d::ui::Widget *widget, CocoLoader *cocoLoader, stExpCocoNode* cocoNode)
     {
         this->beginSetBasicProperties(widget);
-        
+
         TextField* textField = static_cast<TextField*>(widget);
-        
+
         stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
-        
+
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
             std::string value = stChildArray[i].GetValue(cocoLoader);
-            
+
             //read all basic properties of widget
             CC_BASIC_PROPERTY_BINARY_READER
             //read all color related properties of widget
             CC_COLOR_PROPERTY_BINARY_READER
-            
+
             else if(key == P_PlaceHolder){
                 textField->setPlaceHolder(value);
             }else if(key == P_Text){
@@ -121,12 +121,12 @@ namespace cocostudio
         } //end of for loop
         this->endSetBasicProperties(widget);
     }
-    
+
     void TextFieldReader::setPropsFromJsonDictionary(Widget *widget, const rapidjson::Value &options)
     {
         WidgetReader::setPropsFromJsonDictionary(widget, options);
-        
-        
+
+
         TextField* textField = static_cast<TextField*>(widget);
         bool ph = DICTOOL->checkObjectExist_json(options, P_PlaceHolder);
         if (ph)
@@ -134,9 +134,9 @@ namespace cocostudio
             textField->setPlaceHolder(DICTOOL->getStringValue_json(options, P_PlaceHolder,"input words here"));
         }
         textField->setString(DICTOOL->getStringValue_json(options, P_Text,"Text Tield"));
-       
+
         textField->setFontSize(DICTOOL->getIntValue_json(options, P_FontSize,20));
-    
+
         std::string jsonPath = GUIReader::getInstance()->getFilePath();
         std::string fontName = DICTOOL->getStringValue_json(options, P_FontName, "");
         std::string fontFilePath = jsonPath.append(fontName);
@@ -144,14 +144,14 @@ namespace cocostudio
             textField->setFontName(fontFilePath);
         else
             textField->setFontName(fontName);
-        
+
         bool tsw = DICTOOL->checkObjectExist_json(options, P_TouchSizeWidth);
         bool tsh = DICTOOL->checkObjectExist_json(options, P_TouchSizeHeight);
         if (tsw && tsh)
         {
             textField->setTouchSize(Size(DICTOOL->getFloatValue_json(options, P_TouchSizeWidth), DICTOOL->getFloatValue_json(options,P_TouchSizeHeight)));
         }
-        
+
 //        float dw = DICTOOL->getFloatValue_json(options, "width");
 //        float dh = DICTOOL->getFloatValue_json(options, "height");
 //        if (dw > 0.0f || dh > 0.0f)
@@ -160,7 +160,7 @@ namespace cocostudio
 //        }
         bool maxLengthEnable = DICTOOL->getBooleanValue_json(options, P_MaxLengthEnable);
         textField->setMaxLengthEnabled(maxLengthEnable);
-        
+
         if (maxLengthEnable)
         {
             int maxLength = DICTOOL->getIntValue_json(options, P_MaxLength,10);
@@ -172,21 +172,21 @@ namespace cocostudio
         {
             textField->setPasswordStyleText(DICTOOL->getStringValue_json(options, P_PasswordStyleText,"*"));
         }
-        
-        
+
+
         WidgetReader::setColorPropsFromJsonDictionary(widget, options);
-    }        
-    
+    }
+
     Offset<Table> TextFieldReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                                 flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = WidgetReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto widgetOptions = *(Offset<WidgetOptions>*)(&temp);
-        
+
         std::string path = "";
         std::string plistFile = "";
         int resourceType = 0;
-        
+
         std::string fontName = "";
         int fontSize = 20;
         std::string text = "";
@@ -199,15 +199,15 @@ namespace cocostudio
         int areaWidth = 0;
         int areaHeight = 0;
         bool isCustomSize = false;
-        
-        
+
+
         // attributes
         const tinyxml2::XMLAttribute* attribute = objectData->FirstAttribute();
         while (attribute)
         {
             std::string name = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (name == "PlaceHolderText")
             {
                 placeHolder = value;
@@ -248,26 +248,26 @@ namespace cocostudio
             {
                 isCustomSize = (value == "True") ? true : false;
             }
-            
-            
+
+
             attribute = attribute->Next();
         }
-        
+
         // child elements
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
             std::string name = child->Name();
-            
+
             if (name == "FontResource")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     name = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (name == "Path")
                     {
                         path = value;
@@ -280,14 +280,14 @@ namespace cocostudio
                     {
                         plistFile = value;
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         auto options = CreateTextFieldOptions(*builder,
                                               widgetOptions,
                                               CreateResourceData(*builder,
@@ -306,18 +306,18 @@ namespace cocostudio
                                               areaHeight,
                                               isCustomSize,
                                               isLocalized);
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void TextFieldReader::setPropsWithFlatBuffers(cocos2d::Node *node, const flatbuffers::Table *textFieldOptions)
     {
         TextField* textField = static_cast<TextField*>(node);
         auto options = (TextFieldOptions*)textFieldOptions;
-        
+
         std::string placeholder = options->placeHolder()->c_str();
         textField->setPlaceHolder(placeholder);
-        
+
         std::string text = options->text()->c_str();
         bool isLocalized = options->isLocalized() != 0;
         if (isLocalized)
@@ -333,16 +333,16 @@ namespace cocostudio
         {
             textField->setString(text);
         }
-        
+
         int fontSize = options->fontSize();
         textField->setFontSize(fontSize);
-        
+
         std::string fontName = options->fontName()->c_str();
         textField->setFontName(fontName);
-        
+
         bool maxLengthEnabled = options->maxLengthEnabled() != 0;
         textField->setMaxLengthEnabled(maxLengthEnabled);
-        
+
         if (maxLengthEnabled)
         {
             int maxLength = options->maxLength();
@@ -355,8 +355,8 @@ namespace cocostudio
             std::string passwordStyleText = options->passwordStyleText()->c_str();
             textField->setPasswordStyleText(passwordStyleText.c_str());
         }
-        
-        
+
+
         bool fileExist = false;
         std::string errorFilePath = "";
         auto resourceData = options->fontResource();
@@ -377,13 +377,13 @@ namespace cocostudio
                 textField->setFontName(path);
             }
         }
-        
+
         auto widgetReader = WidgetReader::getInstance();
         widgetReader->setPropsWithFlatBuffers(node, (Table*)options->widgetOptions());
-        
+
         textField->setUnifySizeEnabled(false);
         textField->ignoreContentAdaptWithSize(false);
-        
+
         auto widgetOptions = options->widgetOptions();
         if (!textField->isIgnoreContentAdaptWithSize())
         {
@@ -391,17 +391,18 @@ namespace cocostudio
             Size contentSize(widgetOptions->size()->width(), widgetOptions->size()->height());
             textField->setContentSize(contentSize);
         }
-        
-        
+
+
     }
-    
+
     Node* TextFieldReader::createNodeWithFlatBuffers(const flatbuffers::Table *textFieldOptions)
     {
         TextField* textField = TextField::create();
-        
+
         setPropsWithFlatBuffers(textField, (Table*)textFieldOptions);
-        
+
         return textField;
     }
-    
+
 }
+

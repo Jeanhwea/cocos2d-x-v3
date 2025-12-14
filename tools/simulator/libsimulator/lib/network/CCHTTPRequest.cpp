@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -91,7 +91,7 @@ bool HTTPRequest::initWithUrl(const char *url, int method)
         curl_easy_setopt(_curl, CURLOPT_POST, 1L);
         curl_easy_setopt(_curl, CURLOPT_COPYPOSTFIELDS, "");
     }
-    
+
     ++s_id;
     // CCLOG("HTTPRequest[0x%04x] - create request with url: %s", s_id, url);
     return true;
@@ -183,11 +183,11 @@ void HTTPRequest::setAcceptEncoding(int acceptEncoding)
         case kCCHTTPRequestAcceptEncodingGzip:
             curl_easy_setopt(_curl, CURLOPT_ACCEPT_ENCODING, "gzip");
             break;
-            
+
         case kCCHTTPRequestAcceptEncodingDeflate:
             curl_easy_setopt(_curl, CURLOPT_ACCEPT_ENCODING, "deflate");
             break;
-            
+
         default:
             curl_easy_setopt(_curl, CURLOPT_ACCEPT_ENCODING, "identity");
     }
@@ -313,10 +313,10 @@ int HTTPRequest::getResponseDataLength(void)
 size_t HTTPRequest::saveResponseData(const char *filename)
 {
     CCAssert(_state == kCCHTTPRequestStateCompleted, "HTTPRequest::saveResponseData() - request not completed");
-    
+
     FILE *fp = fopen(filename, "wb");
     CCAssert(fp, "HTTPRequest::saveResponseData() - open file failure");
-    
+
     size_t writedBytes = _responseDataLength;
     if (writedBytes > 0)
     {
@@ -359,12 +359,12 @@ void HTTPRequest::update(float dt)
         if (_listener)
         {
             LuaValueDict dict;
-            
+
             dict["name"] = LuaValue::stringValue("progress");
             dict["total"] = LuaValue::intValue((int)_dltotal);
             dict["dltotal"] = LuaValue::intValue((int)_dlnow);
             dict["request"] = LuaValue::ccobjectValue(this, "HTTPRequest");
-            
+
             LuaStack *stack = LuaEngine::getInstance()->getLuaStack();
             stack->clean();
             stack->pushLuaValueDict(dict);
@@ -373,7 +373,7 @@ void HTTPRequest::update(float dt)
 #endif
         return;
     }
-    
+
     Director::getInstance()->getScheduler()->unscheduleAllForTarget(this);
     if (_curlState != kCCHTTPRequestCURLStateIdle)
     {
@@ -401,15 +401,15 @@ void HTTPRequest::update(float dt)
             case kCCHTTPRequestStateCompleted:
                 dict["name"] = LuaValue::stringValue("completed");
                 break;
-                
+
             case kCCHTTPRequestStateCancelled:
                 dict["name"] = LuaValue::stringValue("cancelled");
                 break;
-                
+
             case kCCHTTPRequestStateFailed:
                 dict["name"] = LuaValue::stringValue("failed");
                 break;
-                
+
             default:
                 dict["name"] = LuaValue::stringValue("unknown");
         }
@@ -436,11 +436,11 @@ void HTTPRequest::onRequest(void)
             buf.sputn(part, strlen(part));
             buf.sputc('=');
             curl_free(part);
-            
+
             part = curl_easy_escape(_curl, it->second.c_str(), 0);
             buf.sputn(part, strlen(part));
             curl_free(part);
-            
+
             buf.sputc('&');
         }
         curl_easy_setopt(_curl, CURLOPT_COPYPOSTFIELDS, buf.str().c_str());
@@ -486,7 +486,7 @@ void HTTPRequest::onRequest(void)
 		_formPost = NULL;
 	}
     curl_slist_free_all(chunk);
-    
+
     _errorCode = code;
     _errorMessage = (code == CURLE_OK) ? "" : curl_easy_strerror(code);
     _state = (code == CURLE_OK) ? kCCHTTPRequestStateCompleted : kCCHTTPRequestStateFailed;
@@ -511,7 +511,7 @@ size_t HTTPRequest::onWriteHeader(void *buffer, size_t bytes)
 {
     char *headerBuffer = new char[bytes + 1];
     headerBuffer[bytes] = 0;
-    memcpy(headerBuffer, buffer, bytes);    
+    memcpy(headerBuffer, buffer, bytes);
     _responseHeaders.push_back(string(headerBuffer));
     delete []headerBuffer;
     return bytes;
@@ -523,7 +523,7 @@ int HTTPRequest::onProgress(double dltotal, double dlnow, double ultotal, double
     _dlnow = dlnow;
     _ultotal = ultotal;
     _ulnow = ulnow;
-    
+
     return _state == kCCHTTPRequestStateCancelled ? 1: 0;
 }
 
@@ -576,3 +576,4 @@ int HTTPRequest::progressCURL(void *userdata, double dltotal, double dlnow, doub
 }
 
 NS_CC_EXTRA_END
+

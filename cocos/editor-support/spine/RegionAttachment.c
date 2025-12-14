@@ -128,3 +128,4 @@ void spRegionAttachment_computeWorldVertices (spRegionAttachment* self, spBone* 
 	vertices[offset] = offsetX * bone->a + offsetY * bone->b + x; /* ur */
 	vertices[offset + 1] = offsetX * bone->c + offsetY * bone->d + y;
 }
+

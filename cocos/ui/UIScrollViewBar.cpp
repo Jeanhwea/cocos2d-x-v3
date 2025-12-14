@@ -31,7 +31,7 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 namespace ui {
-    
+
 static const char* HALF_CIRCLE_IMAGE = "iVBORw0KGgoAAAANSUhEUgAAAAwAAAAGCAMAAADAMI+zAAAAJ1BMVEX///////////////////////////////////////////////////9Ruv0SAAAADHRSTlMABgcbbW7Hz9Dz+PmlcJP5AAAAMElEQVR4AUXHwQ2AQAhFwYcLH1H6r1djzDK3ASxUpTBeK/uTCyz7dx54b44m4p5cD1MwAooEJyk3AAAAAElFTkSuQmCC";
 static const char* BODY_IMAGE_1_PIXEL_HEIGHT = "iVBORw0KGgoAAAANSUhEUgAAAAwAAAABCAMAAADdNb8LAAAAA1BMVEX///+nxBvIAAAACklEQVR4AWNABgAADQABYc2cpAAAAABJRU5ErkJggg==";
 
@@ -85,20 +85,20 @@ bool ScrollViewBar::init()
     {
         return false;
     }
-    
+
     _upperHalfCircle = utils::createSpriteFromBase64Cached(HALF_CIRCLE_IMAGE, HALF_CIRCLE_IMAGE_KEY);
     _upperHalfCircle->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
     addProtectedChild(_upperHalfCircle);
-    
+
     _lowerHalfCircle = Sprite::createWithTexture(_upperHalfCircle->getTexture(), _upperHalfCircle->getTextureRect(), _upperHalfCircle->isTextureRectRotated());
     _lowerHalfCircle->setScaleY(-1);
     _lowerHalfCircle->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
     addProtectedChild(_lowerHalfCircle);
-    
+
     _body = utils::createSpriteFromBase64Cached(BODY_IMAGE_1_PIXEL_HEIGHT, BODY_IMAGE_1_PIXEL_HEIGHT_KEY);
     _body->setAnchorPoint(Vec2::ANCHOR_MIDDLE_BOTTOM);
     addProtectedChild(_body);
-    
+
     setColor(DEFAULT_COLOR);
     onScrolled(Vec2::ZERO);
     ProtectedNode::setOpacity(0);
@@ -110,7 +110,7 @@ bool ScrollViewBar::init()
     }
     return true;
 }
-    
+
 void ScrollViewBar::setPositionFromCorner(const Vec2& positionFromCorner)
 {
     if(_direction == ScrollView::Direction::VERTICAL)
@@ -177,7 +177,7 @@ void ScrollViewBar::onEnter()
             return;
     }
 #endif
-    
+
     ProtectedNode::onEnter();
     scheduleUpdate();
 }
@@ -186,7 +186,7 @@ void ScrollViewBar::update(float deltaTime)
 {
     processAutoHide(deltaTime);
 }
-    
+
 void ScrollViewBar::processAutoHide(float deltaTime)
 {
    if(!_autoHideEnabled || _autoHideRemainingTime <= 0)
@@ -198,7 +198,7 @@ void ScrollViewBar::processAutoHide(float deltaTime)
         // If it is touching, don't auto hide.
         return;
     }
-        
+
     _autoHideRemainingTime -= deltaTime;
     if(_autoHideRemainingTime <= _autoHideTime)
     {
@@ -223,7 +223,7 @@ void ScrollViewBar::onTouchEnded()
         return;
     }
     _touching = false;
-    
+
     if(_autoHideRemainingTime <= 0)
     {
         // If the remaining time is 0, it means that it didn't moved after touch started so scroll bar is not showing.
@@ -239,9 +239,9 @@ void ScrollViewBar::onScrolled(const Vec2& outOfBoundary)
         _autoHideRemainingTime = _autoHideTime;
         ProtectedNode::setOpacity(_opacity);
     }
-    
+
     Layout* innerContainer = _parent->getInnerContainer();
-    
+
     float innerContainerMeasure = 0;
     float scrollViewMeasure = 0;
     float outOfBoundaryValue = 0;
@@ -260,7 +260,7 @@ void ScrollViewBar::onScrolled(const Vec2& outOfBoundary)
         outOfBoundaryValue = outOfBoundary.x;
         innerContainerPosition = -innerContainer->getPositionX();
     }
-    
+
     float length = calculateLength(innerContainerMeasure, scrollViewMeasure, outOfBoundaryValue);
     Vec2 position = calculatePosition(innerContainerMeasure, scrollViewMeasure, innerContainerPosition, outOfBoundaryValue, length);
     updateLength(length);
@@ -276,7 +276,7 @@ float ScrollViewBar::calculateLength(float innerContainerMeasure, float scrollVi
         static const float GETTING_SHORTER_FACTOR = 20;
         denominatorValue += (outOfBoundaryValue > 0 ? outOfBoundaryValue : -outOfBoundaryValue) * GETTING_SHORTER_FACTOR;
     }
-    
+
     float lengthRatio = scrollViewMeasure / denominatorValue;
     return fabsf(scrollViewMeasure - 2 * _marginForLength) * lengthRatio;
 }
@@ -288,7 +288,7 @@ Vec2 ScrollViewBar::calculatePosition(float innerContainerMeasure, float scrollV
     {
         denominatorValue += std::abs(outOfBoundaryValue);
     }
-    
+
     float positionRatio = 0;
     if(denominatorValue != 0)
     {
@@ -309,3 +309,4 @@ Vec2 ScrollViewBar::calculatePosition(float innerContainerMeasure, float scrollV
 }
 
 NS_CC_END
+

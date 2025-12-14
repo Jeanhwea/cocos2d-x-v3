@@ -828,48 +828,48 @@ void DrawNode::drawPolygon(const Vec2 *verts, int count, const Color4F &fillColo
     V2F_C4B_T2F_Triangle *cursor = triangles;
 
     cursor = Triangulate::processTriangles(verts,cursor,count,fillColor);
-    
+
     if(outline)
     {
         struct ExtrudeVerts {Vec2 offset, n;};
         ExtrudeVerts* extrude = (ExtrudeVerts *)malloc(sizeof(ExtrudeVerts) * count);
-        
+
         for (int i = 0; i < count; i++)
         {
             Vec2 v0 = verts[(i-1+count)%count];
             Vec2 v1 = verts[i];
             Vec2 v2 = verts[(i+1)%count];
-            
+
             Vec2 n1 = ((v1 - v0).getPerp()).getNormalized();
             Vec2 n2 = ((v2 - v1).getPerp()).getNormalized();
-            
+
             Vec2 offset = (n1 + n2) * (1.0f / (Vec2::dot(n1, n2) + 1.0f));
             extrude[i] = {offset, n2};
         }
-        
+
         for(int i = 0; i < count; i++)
         {
             int j = (i+1)%count;
             Vec2 v0 = verts[i];
             Vec2 v1 = verts[j];
-            
+
             Vec2 n0 = extrude[i].n;
-            
+
             Vec2 offset0 = extrude[i].offset;
             Vec2 offset1 = extrude[j].offset;
-            
+
             Vec2 inner0 = v0 - offset0 * borderWidth;
             Vec2 inner1 = v1 - offset1 * borderWidth;
             Vec2 outer0 = v0 + offset0 * borderWidth;
             Vec2 outer1 = v1 + offset1 * borderWidth;
-            
+
             V2F_C4B_T2F_Triangle tmp1 = {
                 {inner0, Color4B(borderColor), v2ToTex2F(-n0)},
                 {inner1, Color4B(borderColor), v2ToTex2F(-n0)},
                 {outer1, Color4B(borderColor), v2ToTex2F(n0)}
             };
             *cursor++ = tmp1;
-            
+
             V2F_C4B_T2F_Triangle tmp2 = {
                 {inner0, Color4B(borderColor), v2ToTex2F(-n0)},
                 {outer0, Color4B(borderColor), v2ToTex2F(n0)},
@@ -877,12 +877,12 @@ void DrawNode::drawPolygon(const Vec2 *verts, int count, const Color4F &fillColo
             };
             *cursor++ = tmp2;
         }
-        
+
         free(extrude);
     }
-    
+
     _bufferCount += vertex_count;
-    
+
     _dirty = true;
 }
 
@@ -894,7 +894,7 @@ void DrawNode::drawSolidRect(const Vec2 &origin, const Vec2 &destination, const 
         destination,
         Vec2(origin.x, destination.y)
     };
-    
+
     drawSolidPoly(vertices, 4, color);
 }
 
@@ -906,23 +906,23 @@ void DrawNode::drawSolidPoly(const Vec2 *poli, unsigned int numberOfPoints, cons
 void DrawNode::drawSolidCircle(const Vec2& center, float radius, float angle, unsigned int segments, float scaleX, float scaleY, const Color4F &color)
 {
     const float coef = 2.0f * (float)M_PI/segments;
-    
+
     Vec2 *vertices = new (std::nothrow) Vec2[segments];
     if( ! vertices )
         return;
-    
+
     for(unsigned int i = 0;i < segments; i++)
     {
         float rads = i*coef;
         GLfloat j = radius * cosf(rads + angle) * scaleX + center.x;
         GLfloat k = radius * sinf(rads + angle) * scaleY + center.y;
-        
+
         vertices[i].x = j;
         vertices[i].y = k;
     }
-    
+
     drawSolidPoly(vertices, segments, color);
-    
+
     CC_SAFE_DELETE_ARRAY(vertices);
 }
 
@@ -999,3 +999,4 @@ void DrawNode::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t p
 }
 
 NS_CC_END
+

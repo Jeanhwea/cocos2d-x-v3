@@ -680,7 +680,7 @@ bool js_cocos2dx_spine_SkeletonRenderer_createWithFile(JSContext *cx, uint32_t a
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -724,7 +724,7 @@ bool js_cocos2dx_spine_SkeletonRenderer_createWithFile(JSContext *cx, uint32_t a
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             spine::SkeletonRenderer* ret = spine::SkeletonRenderer::create();
@@ -738,7 +738,7 @@ bool js_cocos2dx_spine_SkeletonRenderer_createWithFile(JSContext *cx, uint32_t a
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -1777,7 +1777,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(JSContext *cx, uin
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -1819,7 +1819,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_createWithBinaryFile(JSContext *cx, uin
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -1885,7 +1885,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(JSContext *cx, uint3
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -1927,7 +1927,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_createWithJsonFile(JSContext *cx, uint3
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -2006,7 +2006,7 @@ static bool js_cocos2dx_spine_SkeletonAnimation_ctor(JSContext *cx, uint32_t arg
 
 extern JSObject *jsb_spine_SkeletonRenderer_prototype;
 
-    
+
 void js_register_cocos2dx_spine_SkeletonAnimation(JSContext *cx, JS::HandleObject global) {
     jsb_spine_SkeletonAnimation_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_spine_SkeletonAnimation_class->name = "SkeletonAnimation";

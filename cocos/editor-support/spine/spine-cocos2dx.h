@@ -39,3 +39,4 @@
 #include "spine/SkeletonBatch.h"
 
 #endif /* SPINE_COCOS2DX_H_ */
+

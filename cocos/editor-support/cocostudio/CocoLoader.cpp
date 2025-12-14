@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,7 +29,7 @@ using namespace std;
 using namespace rapidjson;
 
 namespace cocostudio{
-    
+
 
 char	cTypeName[] = {'N','F','T','O','A','S','V'};
 const	char* kTypeNames[] = { "Null", "False", "True", "Object", "Array", "String", "Number" };
@@ -55,10 +55,10 @@ stExpCocoAttribDesc* stExpCocoObjectDesc::GetAttribDescArray(CocoLoader* pCoco)
 {
     return (stExpCocoAttribDesc*)( pCoco->GetMemoryAddr_AttribDesc() + m_pAttribDescArray );
 }
-    
+
 Type stExpCocoNode::GetType(CocoLoader*	pCoco)
 {
-    
+
     Type	tType = kObjectType;
     if(m_ObjIndex >= 0)
     {
@@ -67,7 +67,7 @@ Type stExpCocoNode::GetType(CocoLoader*	pCoco)
         {
             stExpCocoAttribDesc* tpAttribDescArray = (stExpCocoAttribDesc*) tpCocoObjectDesc[m_ObjIndex].GetAttribDescArray(pCoco);
             tType = Type(tpAttribDescArray[m_AttribIndex].m_cTypeName - 'N' + kNullType);
-            
+
             if(kFalseType == tType || kTrueType == tType)
             {
                 char* szValue = (char*)GetValue(pCoco);
@@ -80,7 +80,7 @@ Type stExpCocoNode::GetType(CocoLoader*	pCoco)
                     return kTrueType;
                 }
             }
-            
+
         }
         else
         {
@@ -92,7 +92,7 @@ Type stExpCocoNode::GetType(CocoLoader*	pCoco)
         if(m_AttribIndex >= 0)
         {
             tType   = (Type)m_ChildNum;
-            
+
             if(kFalseType == tType || kTrueType == tType)
             {
                 char* szValue = (char*)GetValue(pCoco);
@@ -143,7 +143,7 @@ char*	stExpCocoNode::GetName(CocoLoader*		pCoco)
         if(m_AttribIndex >= 0)
         {
             char*   pStringAddr = (char*)pCoco->GetCocoObjectDescArray() + pCoco->GetFileHeader()->m_lStringMemAddr ;
-            szName  = m_ChildArray + pStringAddr;	
+            szName  = m_ChildArray + pStringAddr;
         }
         else
         {
@@ -151,13 +151,13 @@ char*	stExpCocoNode::GetName(CocoLoader*		pCoco)
         }
     }
     return szName ;
-    
+
 }
 
 char* stExpCocoNode::GetValue(CocoLoader* pCoco)
 {
 	char* szValue = ( pCoco->GetMemoryAddr_String() + m_szValue );
-	if( 0==strcmp(szValue,"null") && GetType(pCoco) == kStringType ) 
+	if( 0==strcmp(szValue,"null") && GetType(pCoco) == kStringType )
 	{
 		strcpy(szValue,"");
 	}
@@ -189,18 +189,18 @@ CocoLoader::~CocoLoader()
         delete[] m_pMemoryBuff;
         m_pMemoryBuff = nullptr;
     }
-    
+
 }
 
 bool	CocoLoader::ReadCocoBinBuff(char* pBinBuff)
 {
     if(m_pMemoryBuff)return true;
 	char*	pTempBuff = pBinBuff;
-    
+
 	m_pFileHeader = (stCocoFileHeader*)pTempBuff;
 	pTempBuff += sizeof(stCocoFileHeader);
 	char*   pStartAddr = m_pMemoryBuff = pTempBuff;
-    
+
 	char*	pDestBuff = new (std::nothrow) char[m_pFileHeader->m_nDataSize];
 	if (m_pFileHeader->m_nCompressSize > 0)
 	{
@@ -213,13 +213,13 @@ bool	CocoLoader::ReadCocoBinBuff(char* pBinBuff)
 		memcpy(pDestBuff, m_pMemoryBuff, m_pFileHeader->m_nDataSize);
 	}
 	pStartAddr = m_pMemoryBuff = pDestBuff;
-    
+
 	m_pObjectDescArray = (stExpCocoObjectDesc*)pStartAddr;
-    
+
 	char*	pCocoMemAddr = pStartAddr + m_pFileHeader->m_CocoNodeMemAddr;
-    
+
 	m_pRootNode = (stExpCocoNode*)pCocoMemAddr;
-    
+
 	return true;
 }
 
@@ -236,6 +236,7 @@ char*	CocoLoader::GetMemoryAddr_CocoNode()
 char*	CocoLoader::GetMemoryAddr_String()
 {
     return m_pMemoryBuff + m_pFileHeader->m_lStringMemAddr ;
-    
+
 }
 }
+

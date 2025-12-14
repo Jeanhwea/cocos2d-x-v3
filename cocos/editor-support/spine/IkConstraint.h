@@ -85,3 +85,4 @@ typedef spIkConstraint IkConstraint;
 #endif
 
 #endif /* SPINE_IKCONSTRAINT_H_ */
+

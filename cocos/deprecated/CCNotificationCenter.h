@@ -56,7 +56,7 @@ public:
      * @lua NA
      */
     ~__NotificationCenter();
-    
+
     /** Gets the single instance of __NotificationCenter. */
     static __NotificationCenter *getInstance();
 
@@ -76,17 +76,17 @@ public:
      *  @param name The name of this notification.
      *  @param sender The object whose notifications the target wants to receive. Only notifications sent by this sender are delivered to the target. nullptr means that the sender is not used to decide whether to deliver the notification to target.
      */
-    void addObserver(Ref *target, 
+    void addObserver(Ref *target,
                      SEL_CallFuncO selector,
                      const std::string& name,
                      Ref *sender);
 
     /** @brief Removes the observer by the specified target and name.
      *  @param target The target of this notification.
-     *  @param name The name of this notification. 
+     *  @param name The name of this notification.
      */
     void removeObserver(Ref *target,const std::string& name);
-    
+
     /** @brief Removes all notifications registered by this target
      *  @param target The target of this notification.
      *  @returns the number of observers removed
@@ -101,7 +101,7 @@ public:
 
     /** Unregisters script observer */
     void unregisterScriptObserver(Ref *target,const std::string& name);
-    
+
     /** @brief Posts one notification event by name.
      *  @param name The name of this notification.
      */
@@ -112,13 +112,13 @@ public:
      *  @param sender The object posting the notification. Can be nullptr
      */
     void postNotification(const std::string& name, Ref *sender);
-    
+
     /** @brief Gets script handler.
      *  @note Only supports Lua Binding now.
      *  @return The script handle.
      */
     int getScriptHandler() const { return _scriptHandler; }
-    
+
     /** @brief Gets observer script handler.
      *  @param name The name of this notification.
      *  @return The observer script handle.
@@ -129,7 +129,7 @@ private:
 
     // Check whether the observer exists by the specified target and name.
     bool observerExisted(Ref *target,const std::string& name, Ref *sender);
-    
+
     // variables
     //
     __Array *_observers;
@@ -147,23 +147,23 @@ public:
      * @js NA
      * @lua NA
      */
-    NotificationObserver(Ref *target, 
+    NotificationObserver(Ref *target,
                            SEL_CallFuncO selector,
                            const std::string& name,
                            Ref *sender);
 
-    /** NotificationObserver destructor function 
+    /** NotificationObserver destructor function
      * @js NA
      * @lua NA
      */
-    ~NotificationObserver();      
-    
-    /** Invokes the callback function of this observer 
+    ~NotificationObserver();
+
+    /** Invokes the callback function of this observer
      * @js NA
      * @lua NA
      */
     void performSelector(Ref *sender);
-    
+
     // Getters / Setters
     /**
      * @js NA
@@ -212,3 +212,4 @@ NS_CC_END
 
 /// @endcond
 #endif//__CCNOTIFICATIONCENTER_H__
+

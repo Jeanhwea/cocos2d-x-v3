@@ -66,3 +66,4 @@ typedef spVertexAttachment VertexAttachment;
 #endif
 
 #endif /* SPINE_VERTEXATTACHMENT_H_ */
+

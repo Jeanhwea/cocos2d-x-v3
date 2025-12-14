@@ -95,9 +95,9 @@ static void saveCallback(lua_State *L, void *addr, const char *callbackName)
     lua_pushlightuserdata(L, (void*)addr);          //stack fn, ud
     lua_gettable(L, LUA_REGISTRYINDEX);             //stack fn, callbacks_tb
     lua_pushstring(L, callbackName);                //stack fn, callbacks_tb, callbackName
-    lua_pushvalue(L, -3);                           //stack fn, callbacks_tb, callbackName, fn 
+    lua_pushvalue(L, -3);                           //stack fn, callbacks_tb, callbackName, fn
     lua_settable(L, -3);                            //stack fn, callbacks_tb
-    lua_pop(L, 2);                                  //stack 
+    lua_pop(L, 2);                                  //stack
 }
 
 static int getCallback(lua_State *L, void *addr, const char *callbackName)
@@ -315,12 +315,12 @@ static int lua_downloader_tostring(lua_State *L)
 }
 
 static const struct luaL_Reg downloaderStaticFns[] = {
-    { "new", lua_downloader_new }, 
-    /* 
-     * cocos2d::Downloader is not a subclass of cocos2d::Ref, 
+    { "new", lua_downloader_new },
+    /*
+     * cocos2d::Downloader is not a subclass of cocos2d::Ref,
      * `create()` is not provided.
      */
-    //{ "create", lua_downloader_new },  
+    //{ "create", lua_downloader_new },
     { nullptr, nullptr }
     };
 

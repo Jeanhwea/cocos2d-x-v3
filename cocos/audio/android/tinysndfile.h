@@ -72,3 +72,4 @@ sf_count_t sf_readf_int(SNDFILE *handle, int *ptr, sf_count_t desired);
 */
 
 __END_DECLS
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,7 +55,7 @@ ParticleSystem3D::ParticleSystem3D()
 , _keepLocal(false)
 , _isEnabled(true)
 {
-    
+
 }
 ParticleSystem3D::~ParticleSystem3D()
 {
@@ -71,7 +71,7 @@ void ParticleSystem3D::startParticleSystem()
     {
         if (_render)
             _render->notifyStart();
-        
+
         scheduleUpdate();
         _state = State::RUNNING;
     }
@@ -83,7 +83,7 @@ void ParticleSystem3D::stopParticleSystem()
     {
         if (_render)
             _render->notifyStop();
-        
+
         unscheduleUpdate();
         _state = State::STOP;
     }
@@ -161,7 +161,7 @@ void ParticleSystem3D::update(float delta)
 {
     if (_state != State::RUNNING)
         return;
-    
+
     Particle3D *particle = _particlePool.getFirst();
     while (particle)
     {
@@ -217,3 +217,4 @@ void ParticleSystem3D::setEnabled( bool enabled )
 }
 
 NS_CC_END
+

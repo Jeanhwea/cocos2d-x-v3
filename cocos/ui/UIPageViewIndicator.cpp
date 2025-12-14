@@ -159,12 +159,12 @@ void PageViewIndicator::setSpaceBetweenIndexNodes(float spaceBetweenIndexNodes)
 void PageViewIndicator::setIndexNodesColor(const Color3B& indexNodesColor)
 {
     _indexNodesColor = indexNodesColor;
-    
+
     for(auto& indexNode : _indexNodes) {
         indexNode->setColor(indexNodesColor);
     }
 }
-    
+
 void PageViewIndicator::setIndexNodesOpacity(GLubyte opacity) {
     _indexNodesOpacity = opacity;
     for ( auto& indexNode : _indexNodes )
@@ -178,12 +178,12 @@ void PageViewIndicator::setIndexNodesScale(float indexNodesScale)
         return;
     }
     _indexNodesScale = indexNodesScale;
-    
+
     _currentIndexNode->setScale(indexNodesScale);
     for(auto& indexNode : _indexNodes) {
         indexNode->setScale(_indexNodesScale);
     }
-    
+
     rearrange();
 }
 
@@ -192,7 +192,7 @@ void PageViewIndicator::setIndexNodesTexture(const std::string& texName, Widget:
     _useDefaultTexture = false;
     _indexNodesTextureFile = texName;
     _indexNodesTexType = texType;
-    
+
     switch (texType)
     {
         case Widget::TextureResType::LOCAL:
@@ -210,10 +210,10 @@ void PageViewIndicator::setIndexNodesTexture(const std::string& texName, Widget:
         default:
             break;
     }
-    
+
     rearrange();
 }
-    
+
 void PageViewIndicator::increaseNumberOfPages()
 {
     if ( _currentOverlappingIndexNode ) {
@@ -221,7 +221,7 @@ void PageViewIndicator::increaseNumberOfPages()
         _currentOverlappingIndexNode = nullptr;
     }
     Sprite* indexNode;
-    
+
     if(_useDefaultTexture)
     {
         indexNode = utils::createSpriteFromBase64(CIRCLE_IMAGE);
@@ -240,7 +240,7 @@ void PageViewIndicator::increaseNumberOfPages()
                 break;
         }
     }
-    
+
     indexNode->setColor(_indexNodesColor);
     indexNode->setScale(_indexNodesScale);
     indexNode->setOpacity(_indexNodesOpacity);
@@ -279,3 +279,4 @@ void PageViewIndicator::clear()
 }
 
 NS_CC_END
+

@@ -57,7 +57,7 @@ ValueMap TMXObjectGroup::getObject(const std::string& objectName) const
             }
         }
     }
-    
+
     // object not found
     return ValueMap();
 }
@@ -71,3 +71,4 @@ Value TMXObjectGroup::getProperty(const std::string& propertyName) const
 }
 
 NS_CC_END
+

@@ -125,3 +125,4 @@ typedef spBone Bone;
 #endif
 
 #endif /* SPINE_BONE_H_ */
+

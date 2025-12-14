@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -71,7 +71,7 @@ public:
 
     /**
      * Add a reference count for the Lua functionId,and save this reference in the Lua table named luaj_function_id_retain.
-     * 
+     *
      * @param functionId the id of Lua function.
      * @return the reference count of the functionId if luaj_function_id_retain table exists and the corresponding value for functionId exists, otherwise return 0.
      *
@@ -82,8 +82,8 @@ public:
 
     /**
      * Release a reference count for the Lua functionId, If the reference count is still greater than 0,save this reference in the Lua table named luaj_function_id_retain.
-     * Otherwise, remove the reference about this functionId in the luaj_function_id table and the luaj_function_id_retain table by set the corresponding value nil. 
-     * 
+     * Otherwise, remove the reference about this functionId in the luaj_function_id table and the luaj_function_id_retain table by set the corresponding value nil.
+     *
      * @param functionId the id of Lua function.
      * @return the reference count of the functionId if the luaj_function_id table, the luaj_function_id_retain table and the corresponding value for functionId exists a reference count for the Lua functionId is still greater than 0, and otherwise return 0.
      *
@@ -94,7 +94,7 @@ public:
 
     /**
      * Call the Lua function corresponding to the functionId with the string pointer arg.
-     * 
+     *
      * @param functionId the values corresponding to the Lua function.
      * @param arg the string pointer point to the argument.
      * @return a number value returned from the Lua function when call successfully, otherwise return -1 or the opposite number for one of the three numbers LUA_ERRRUN, LUA_ERRMEM and LUA_ERRERR.
@@ -106,7 +106,7 @@ public:
 
     /**
      * Call a global Lua function named functionName with the string pointer arg.
-     * 
+     *
      * @param functionName the name of global function.
      * @param arg the string pointer point to the argument.
      * @return a number value returned from the Lua function when call successfully, otherwise return -1 or the opposite number for one of the three numbers LUA_ERRRUN, LUA_ERRMEM and LUA_ERRERR.
@@ -217,3 +217,4 @@ private:
 // end group
 /// @}
 #endif //COCOS2DX_SCRIPT_LUA_COCOS2DX_SUPPORT_PLATFORM_ANDROID_LUA_JAVA_BRIDGE_H
+

@@ -212,7 +212,7 @@ bool MP3Reader::initialize(const std::string& filePath)
         if (FAILED(hr = MFCreateSourceReaderFromURL(StringUtf8ToWideChar(_filePath).c_str(), NULL, &pReader))) {
             break;
         }
-        
+
         hr = configureSourceReader(pReader.Get(), &ppDecomprsdAudioType);
 
         if (FAILED(hr)) {
@@ -606,7 +606,7 @@ void OGGReader::produceChunk()
         int retSize = 0;
         AudioDataChunk chunk = { 0 };
         chunk._data = std::make_shared<PCMBuffer>(chunkSize);
-        
+
         auto newPos = (1.0f * _bytesRead / _audioSize) * ov_time_total(_vorbisFd.get(), -1);
         if (ov_time_seek(_vorbisFd.get(), newPos)){
             break;
@@ -637,3 +637,4 @@ void OGGReader::seekTo(const float ratio)
 }
 
 #endif
+

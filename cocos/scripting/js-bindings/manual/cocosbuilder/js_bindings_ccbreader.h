@@ -32,7 +32,7 @@
 class CCBScriptCallbackProxy:  public cocos2d::Layer
 , public cocosbuilder::CCBSelectorResolver
 , public cocosbuilder::CCBMemberVariableAssigner {
-    
+
     std::string callBackProp;
     jsval owner;
 
@@ -52,7 +52,7 @@ public:
                                            cocos2d::Node * pNode);
     virtual void onNodeLoaded(cocos2d::Node * pNode,
                               cocosbuilder::NodeLoader * pNodeLoader);
-        
+
     virtual CCBSelectorResolver * createNew();
     void menuItemCallback(Ref *pSender);
     void controlCallback(Ref *pSender, cocos2d::extension::Control::EventType event);
@@ -65,7 +65,7 @@ public:
 class JSLayerLoader : public cocosbuilder::LayerLoader {
 public:
     CCB_STATIC_NEW_AUTORELEASE_OBJECT_METHOD(JSLayerLoader, loader);
-    
+
 protected:
     CCB_VIRTUAL_NEW_AUTORELEASE_CREATECCNODE_METHOD(CCBScriptCallbackProxy);
 };

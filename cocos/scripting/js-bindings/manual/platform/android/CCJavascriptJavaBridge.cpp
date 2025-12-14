@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
+
 #include <android/log.h>
 #include "scripting/js-bindings/manual/platform/android/CCJavascriptJavaBridge.h"
 
@@ -91,7 +91,7 @@ bool JavascriptJavaBridge::CallInfo::execute()
             jstring retjstring = (jstring)m_env->CallStaticObjectMethod(m_classID, m_methodID);
             std::string strValue = cocos2d::StringUtils::getStringUTFCharsJNI(m_env, retjstring);
             m_env->DeleteLocalRef(retjstring);
-            
+
             m_ret.stringValue = new string(strValue);
             break;
         }
@@ -323,11 +323,11 @@ JS_BINDED_CONSTRUCTOR_IMPL(JavascriptJavaBridge)
 
     js_proxy_t *p;
     jsval out;
-    
+
     JS::RootedObject proto(cx, JavascriptJavaBridge::js_proto);
     JS::RootedObject parentProto(cx, JavascriptJavaBridge::js_parent);
     JS::RootedObject obj(cx, JS_NewObject(cx, &JavascriptJavaBridge::js_class, proto, parentProto));
-    
+
     if (obj) {
         JS_SetPrivate(obj, jsj);
         out = OBJECT_TO_JSVAL(obj);
@@ -335,7 +335,7 @@ JS_BINDED_CONSTRUCTOR_IMPL(JavascriptJavaBridge)
 
     args.rval().set(out);
     p = jsb_new_proxy(jsj, obj);
-    
+
     JS::AddNamedObjectRoot(cx, &p->obj, "JavascriptJavaBridge");
     return true;
 }
@@ -372,14 +372,14 @@ JS_BINDED_FUNC_IMPL(JavascriptJavaBridge, callStaticMethod)
             if(errorCode < 0)
                 JS_ReportError(cx, "js_cocos2dx_JSJavaBridge : call result code: %d", errorCode);
             argv.rval().set(convertReturnValue(cx, call.getReturnValue(), call.getReturnValueType()));
-            return success;	
+            return success;
         }
     }
     else if(argc > 3){
         JSStringWrapper arg0(argv[0]);
         JSStringWrapper arg1(argv[1]);
         JSStringWrapper arg2(argv[2]);
-        
+
         CallInfo call(arg0.get(), arg1.get(), arg2.get());
         if(call.isValid() && call.getArgumentsCount() == (argc - 3)){
             int count = argc - 3;
@@ -419,11 +419,11 @@ JS_BINDED_FUNC_IMPL(JavascriptJavaBridge, callStaticMethod)
             argv.rval().set(convertReturnValue(cx, call.getReturnValue(), call.getReturnValueType()));
             return success;
         }
-                
+
     }else{
-    	JS_ReportError(cx, "js_cocos2dx_JSJavaBridge : wrong number of arguments: %d, was expecting more than 3", argc);	
+    	JS_ReportError(cx, "js_cocos2dx_JSJavaBridge : wrong number of arguments: %d, was expecting more than 3", argc);
     }
-    
+
     return false;
 }
 
@@ -431,7 +431,7 @@ static bool js_is_native_obj(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     args.rval().setBoolean(true);
-    return true;    
+    return true;
 }
 
 /**
@@ -443,18 +443,19 @@ void JavascriptJavaBridge::_js_register(JSContext *cx, JS::HandleObject global)
     JSClass jsclass = {
         "JavascriptJavaBridge", JSCLASS_HAS_PRIVATE, JS_PropertyStub, JS_DeletePropertyStub, JS_PropertyStub, JS_StrictPropertyStub, JS_EnumerateStub, JS_ResolveStub, JS_ConvertStub,basic_object_finalize
     };
-    
+
     JavascriptJavaBridge::js_class = jsclass;
     static JSPropertySpec props[] = {
         JS_PSG("__nativeObj", js_is_native_obj, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_PS_END
     };
-    
+
     static JSFunctionSpec funcs[] = {
         JS_BINDED_FUNC_FOR_DEF(JavascriptJavaBridge, callStaticMethod),
         JS_FS_END
     };
-    
+
     JavascriptJavaBridge::js_parent = NULL;
     JavascriptJavaBridge::js_proto = JS_InitClass(cx, global, JS::NullPtr(), &JavascriptJavaBridge::js_class , JavascriptJavaBridge::_js_constructor, 0, props, funcs, NULL, NULL);
 }
+

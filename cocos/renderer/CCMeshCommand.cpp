@@ -84,7 +84,7 @@ void MeshCommand::init(float globalZOrder,
 
     _globalOrder = globalZOrder;
     _material = material;
-    
+
     _vertexBuffer = vertexBuffer;
     _indexBuffer = indexBuffer;
     _primitive = primitive;
@@ -112,21 +112,21 @@ void MeshCommand::init(float globalZOrder,
     CCASSERT(!_material, "cannot init with GLProgramState if previously inited without GLProgramState");
 
     RenderCommand::init(globalZOrder, mv, flags);
-    
+
     _globalOrder = globalZOrder;
     _textureID = textureID;
 
     // weak ref
     _glProgramState = glProgramState;
     _stateBlock = stateBlock;
-    
+
     _vertexBuffer = vertexBuffer;
     _indexBuffer = indexBuffer;
     _primitive = primitive;
     _indexFormat = indexFormat;
     _indexCount = indexCount;
     _mv.set(mv);
-    
+
     _is3D = true;
 
 }
@@ -288,7 +288,7 @@ void MeshCommand::execute()
 
         // Draw
         glDrawElements(_primitive, (GLsizei)_indexCount, _indexFormat, 0);
-        
+
         CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, _indexCount);
     }
 
@@ -315,9 +315,9 @@ void MeshCommand::buildVAO()
         flags &= ~flag;
     }
     programState->applyAttributes(false);
-    
+
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _indexBuffer);
-    
+
     GL::bindVAO(0);
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
@@ -341,3 +341,4 @@ void MeshCommand::listenRendererRecreated(EventCustom* event)
 #endif
 
 NS_CC_END
+

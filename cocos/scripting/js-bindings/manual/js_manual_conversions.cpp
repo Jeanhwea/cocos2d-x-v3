@@ -2937,3 +2937,4 @@ jsval asset_to_jsval(JSContext* cx, const cocos2d::extension::ManifestAsset& v)
     }
     return JSVAL_NULL;
 }
+

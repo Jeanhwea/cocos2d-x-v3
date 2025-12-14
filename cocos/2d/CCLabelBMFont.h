@@ -112,8 +112,8 @@ public:
     virtual void setAlignment(TextHAlignment alignment);
     virtual void setWidth(float width);
     virtual void setLineBreakWithoutSpace(bool breakWithoutSpace);
-    
-    // RGBAProtocol 
+
+    // RGBAProtocol
     virtual bool isOpacityModifyRGB() const override;
     virtual void setOpacityModifyRGB(bool isOpacityModifyRGB) override;
 
@@ -142,7 +142,7 @@ private:
 #if CC_LABELBMFONT_DEBUG_DRAW
     DrawNode *_debugDrawNode;
 #endif
-    
+
     // name of fntFile
     std::string _fntFile;
 
@@ -163,3 +163,4 @@ NS_CC_END
 
 /// @endcond
 #endif //__CCBITMAP_FONT_ATLAS_H__
+

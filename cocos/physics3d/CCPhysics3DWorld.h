@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -77,60 +77,60 @@ class CC_DLL Physics3DWorld : public Ref
 {
     friend class Physics3DComponent;
 public:
-    
+
     struct HitResult
     {
         cocos2d::Vec3 hitPosition;
         cocos2d::Vec3 hitNormal;
         Physics3DObject* hitObj;
     };
-    
+
     /**
-     * Creates a Physics3DWorld with Physics3DWorldDes. 
+     * Creates a Physics3DWorld with Physics3DWorldDes.
      *
      * @return An autoreleased Physics3DWorld object.
      */
     static Physics3DWorld* create(Physics3DWorldDes* info);
-    
+
     /** set gravity for the physics world */
     void setGravity(const Vec3& gravity);
-    
+
     /** get current gravity */
     Vec3 getGravity() const;
-    
+
     /** Add a Physics3DObject. */
     void addPhysics3DObject(Physics3DObject* physicsObj);
-    
+
     /** Remove a Physics3DObject. */
     void removePhysics3DObject(Physics3DObject* physicsObj);
-    
+
     /** Remove all Physics3DObjects. */
     void removeAllPhysics3DObjects();
-    
+
     /** Add a Physics3DConstraint. */
     void addPhysics3DConstraint(Physics3DConstraint* constraint, bool disableCollisionsBetweenLinkedObjs = true);
-    
+
     /** Remove a Physics3DConstraint. */
     void removePhysics3DConstraint(Physics3DConstraint* constraint);
-    
+
     /** Remove all Physics3DConstraint. */
     void removeAllPhysics3DConstraints();
-    
+
     /** Simulate one frame. */
     void stepSimulate(float dt);
-    
+
     /** Enable or disable debug drawing. */
     void setDebugDrawEnable(bool enableDebugDraw);
-    
+
     /** Check debug drawing is enabled. */
     bool isDebugDrawEnabled() const;
-    
+
     /** Internal method, the updater of debug drawing, need called each frame. */
     void debugDraw(cocos2d::Renderer* renderer);
-    
+
     /** Get the list of Physics3DObjects. */
     const std::vector<Physics3DObject*>& getPhysicsObjects() const { return _objects; }
-    
+
     /**
      * Ray cast method
      * @param startPos The start position of ray.
@@ -138,30 +138,30 @@ public:
      * @param result the result of ray cast.
      */
     bool rayCast(const cocos2d::Vec3& startPos, const cocos2d::Vec3& endPos, HitResult* result);
-    
+
     /** Performs a swept shape cast on all objects in the Physics3DWorld. */
     bool sweepShape(Physics3DShape* shape, const cocos2d::Mat4& startTransform, const cocos2d::Mat4& endTransform, HitResult* result);
-    
+
 CC_CONSTRUCTOR_ACCESS:
-    
+
     Physics3DWorld();
     virtual ~Physics3DWorld();
-    
+
     bool init(Physics3DWorldDes* info);
-    
+
     Physics3DObject* getPhysicsObject(const btCollisionObject* btObj);
 
     void collisionChecking();
     bool needCollisionChecking();
     void setGhostPairCallback();
-    
+
 protected:
     std::vector<Physics3DObject*>      _objects;
     std::vector<Physics3DComponent*>   _physicsComponents; //physics3d components
     bool _needCollisionChecking;
     bool _collisionCheckingFlag;
     bool _needGhostPairCallbackChecking;
-    
+
 #if (CC_ENABLE_BULLET_INTEGRATION)
     btDynamicsWorld* _btPhyiscsWorld;
     btDefaultCollisionConfiguration* _collisionConfiguration;
@@ -182,3 +182,4 @@ NS_CC_END
 #endif //CC_USE_3D_PHYSICS
 
 #endif // __PHYSICS_3D_WORLD_H__
+

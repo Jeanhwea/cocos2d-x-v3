@@ -77,7 +77,7 @@ static AppDelegate s_sharedApplication;
         // use this method on ios6
         [window setRootViewController:viewController];
     }
-    
+
     [window makeKeyAndVisible];
 
 #if !defined(CC_TARGET_OS_TVOS)

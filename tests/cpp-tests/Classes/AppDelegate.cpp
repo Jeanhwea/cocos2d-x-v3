@@ -77,7 +77,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> searchPaths;
-    
+
     if (screenSize.height > 320)
     {
         auto resourceSize = Size(960, 640);
@@ -92,10 +92,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     else
     {
         searchPaths.emplace_back("ccs-res");
-        
+
         searchPaths.emplace_back("ActionTimeline");
     }
-    
+
     fileUtils->setSearchPaths(searchPaths);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
@@ -125,7 +125,7 @@ void AppDelegate::applicationDidEnterBackground()
     {
         _testController->onEnterBackground();
     }
-    
+
     Director::getInstance()->stopAnimation();
 }
 
@@ -136,6 +136,7 @@ void AppDelegate::applicationWillEnterForeground()
     {
         _testController->onEnterForeground();
     }
-    
+
     Director::getInstance()->startAnimation();
 }
+

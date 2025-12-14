@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -51,13 +51,13 @@ public:
     CREATE_FUNC(Physics3DTestDemo);
     Physics3DTestDemo(void);
     virtual ~Physics3DTestDemo(void);
-    
+
     // overrides
     virtual bool init() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     virtual void update(float delta) override;
-    
+
     virtual void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
     virtual void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
     virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
@@ -89,19 +89,19 @@ public:
 class Physics3DConstraintDemo : public Physics3DTestDemo
 {
 public:
-    
+
     CREATE_FUNC(Physics3DConstraintDemo);
     Physics3DConstraintDemo():_constraint(nullptr), _pickingDistance(0.f){};
     virtual ~Physics3DConstraintDemo(){};
-    
+
     virtual std::string subtitle() const override;
-    
+
     virtual bool init() override;
-    
+
     virtual void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
     virtual void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
     virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
-    
+
 protected:
     cocos2d::Physics3DConstraint*     _constraint; //for picking
     float                             _pickingDistance; //picking distance
@@ -166,3 +166,4 @@ private:
 #endif
 
 #endif
+

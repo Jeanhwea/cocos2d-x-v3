@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,7 +57,7 @@ public:
         PHYSICS_TO_NODE = 2, // align physics transform to the node
         NODE_AND_NODE = NODE_TO_PHYSICS | PHYSICS_TO_NODE, //pre simulation, align the physics object to the node and align the node transform according to physics object after simulation
     };
-    
+
     CREATE_FUNC(Physics3DComponent);
     virtual ~Physics3DComponent();
     virtual bool init() override;
@@ -70,67 +70,67 @@ public:
      * @return created Physics3DComponent
      */
     static Physics3DComponent* create(Physics3DObject* physicsObj, const cocos2d::Vec3& translateInPhysics = cocos2d::Vec3::ZERO, const cocos2d::Quaternion& rotInPhsyics = cocos2d::Quaternion::ZERO);
-    
+
     /**
      * set Physics object to the component
      */
     void setPhysics3DObject(Physics3DObject* physicsObj);
-    
+
     /**
      * get physics object
      */
     Physics3DObject* getPhysics3DObject() const { return _physics3DObj; }
-    
+
     /**
      * get the component name, it is used to find whether it is Physics3DComponent
      */
     static std::string& getPhysics3DComponentName();
-    
+
     /**
      * set it enable or not
      */
     virtual void setEnabled(bool b) override;
-    
-    
+
+
     virtual void onEnter() override;
     virtual void onExit() override;
-    
+
     /**
      * add this component to physics world, called by scene
      */
     void addToPhysicsWorld(Physics3DWorld* world);
-    
+
     /**
      * The node's transform in physics object space
      */
     void setTransformInPhysics(const cocos2d::Vec3& translateInPhysics, const cocos2d::Quaternion& rotInPhsyics);
-    
+
     /**
      * synchronization between node and physics is time consuming, you can skip some synchronization using this function
      */
     void setSyncFlag(PhysicsSyncFlag syncFlag);
-    
+
     /**
      * synchronize node transformation to physics
      */
     void syncNodeToPhysics();
-    
+
     /**
      * synchronize physics transformation to node
      */
     void syncPhysicsToNode();
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DComponent();
-    
+
 protected:
     void preSimulate();
-    
+
     void postSimulate();
-    
+
     cocos2d::Mat4             _transformInPhysics; //transform in physics space
     cocos2d::Mat4             _invTransformInPhysics;
-    
+
     Physics3DObject*          _physics3DObj;
     PhysicsSyncFlag           _syncFlag;
 };
@@ -144,3 +144,4 @@ NS_CC_END
 #endif //CC_USE_3D_PHYSICS
 
 #endif // __PHYSICS_3D_COMPONENT_H__
+

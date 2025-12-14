@@ -363,12 +363,12 @@ void Armature::setAnimation(ArmatureAnimation *animation)
     _animation = animation;
 }
 
-ArmatureAnimation *Armature::getAnimation() const 
+ArmatureAnimation *Armature::getAnimation() const
 {
     return _animation;
 }
 
-bool Armature::getArmatureTransformDirty() const 
+bool Armature::getArmatureTransformDirty() const
 {
     return _armatureTransformDirty;
 }
@@ -407,9 +407,9 @@ void Armature::draw(cocos2d::Renderer *renderer, const Mat4 &transform, uint32_t
             {
                 Skin *skin = static_cast<Skin *>(node);
                 skin->updateTransform();
-                
+
                 BlendFunc func = bone->getBlendFunc();
-                
+
                 if (func.src != BlendFunc::ALPHA_PREMULTIPLIED.src || func.dst != BlendFunc::ALPHA_PREMULTIPLIED.dst)
                 {
                     skin->setBlendFunc(bone->getBlendFunc());
@@ -458,7 +458,7 @@ void Armature::onEnter()
             return;
     }
 #endif
-    
+
     Node::onEnter();
     scheduleUpdate();
 }
@@ -472,7 +472,7 @@ void Armature::onExit()
             return;
     }
 #endif
-    
+
     Node::onExit();
     unscheduleUpdate();
 }
@@ -497,15 +497,15 @@ void Armature::visit(cocos2d::Renderer *renderer, const Mat4 &parentTransform, u
         CCASSERT(nullptr != director, "Director is null when setting matrix stack");
         director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
         director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
-        
-        
+
+
         sortAllChildren();
         draw(renderer, _modelViewTransform, flags);
-        
+
         // FIX ME: Why need to set _orderOfArrival to 0??
         // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
         // setOrderOfArrival(0);
-        
+
         director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     }
 }
@@ -523,7 +523,7 @@ Rect Armature::getBoundingBox() const
         if (Bone *bone = dynamic_cast<Bone *>(object))
         {
             Rect r = bone->getDisplayManager()->getBoundingBox();
-            if (r.equals(Rect::ZERO)) 
+            if (r.equals(Rect::ZERO))
                 continue;
 
             if(first)
@@ -551,7 +551,7 @@ Rect Armature::getBoundingBox() const
     return RectApplyTransform(boundingBox, getNodeToParentTransform());
 }
 
-Bone *Armature::getBoneAtPoint(float x, float y) const 
+Bone *Armature::getBoneAtPoint(float x, float y) const
 {
     long length = _children.size();
     Bone *bs;
@@ -619,14 +619,14 @@ void Armature::drawContour()
                 points[i].x = p.x;
                 points[i].y = p.y;
             }
-            
+
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (push)
 #pragma warning (disable: 4996)
 #endif
-            
+
             DrawPrimitives::drawPoly( points, (unsigned int)length, true );
 
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
@@ -634,7 +634,7 @@ void Armature::drawContour()
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
 #endif
-            
+
             delete []points;
         }
     }
@@ -737,3 +737,4 @@ cpShape *Armature::getShapeList()
 
 
 }
+

@@ -98,3 +98,4 @@ spAtlasAttachmentLoader* spAtlasAttachmentLoader_create (spAtlas* atlas) {
 	self->atlas = atlas;
 	return self;
 }
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,12 +52,12 @@ Viewport::Viewport()
 
 RenderTargetBase::RenderTargetBase()
 {
-    
+
 }
 
 RenderTargetBase::~RenderTargetBase()
 {
-    
+
 }
 
 bool RenderTargetBase::init(unsigned int width, unsigned int height)
@@ -88,14 +88,14 @@ bool RenderTarget::init(unsigned int width, unsigned int height, Texture2D::Pixe
     {
         return false;
     }
-    
+
     _texture = new (std::nothrow) Texture2D();
     if(nullptr == _texture) return false;
     //TODO: FIX me, get the correct bit depth for pixelformat
     auto dataLen = width * height * 4;
     auto data = malloc(dataLen);
     if( nullptr == data) return false;
-    
+
     memset(data, 0, dataLen);
     if(_texture->initWithData(data, dataLen, format, width, height, Size(width, height)))
     {
@@ -117,7 +117,7 @@ bool RenderTarget::init(unsigned int width, unsigned int height, Texture2D::Pixe
         free(data);
         CCLOG("RenderTarget Texture recreated is %d", _texture->getName());
     });
-    
+
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_rebuildTextureListener, -1);
 #endif
     return true;
@@ -167,20 +167,20 @@ bool RenderTargetRenderBuffer::init(unsigned int width, unsigned int height)
     if(!RenderTargetBase::init(width, height)) return false;
     GLint oldRenderBuffer(0);
     glGetIntegerv(GL_RENDERBUFFER_BINDING, &oldRenderBuffer);
-    
+
     //generate depthStencil
     glGenRenderbuffers(1, &_colorBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _colorBuffer);
     //todo: this could have a param
     glRenderbufferStorage(GL_RENDERBUFFER, _format, width, height);
     glBindRenderbuffer(GL_RENDERBUFFER, oldRenderBuffer);
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     _reBuildRenderBufferListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [this](EventCustom* event){
         /** listen the event that renderer was recreated on Android/WP8 */
         GLint oldRenderBuffer(0);
         glGetIntegerv(GL_RENDERBUFFER_BINDING, &oldRenderBuffer);
-        
+
         glGenRenderbuffers(1, &_colorBuffer);
         //generate depthStencil
         glBindRenderbuffer(GL_RENDERBUFFER, _colorBuffer);
@@ -188,10 +188,10 @@ bool RenderTargetRenderBuffer::init(unsigned int width, unsigned int height)
         glBindRenderbuffer(GL_RENDERBUFFER, oldRenderBuffer);
         CCLOG("RenderTargetRenderBuffer recreated, _colorBuffer is %d", _colorBuffer);
     });
-    
+
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_reBuildRenderBufferListener, -1);
 #endif
-    
+
     return true;
 }
 
@@ -199,7 +199,7 @@ bool RenderTargetRenderBuffer::init(unsigned int width, unsigned int height)
 RenderTargetRenderBuffer* RenderTargetRenderBuffer::create(unsigned int width, unsigned int height)
 {
     auto result = new (std::nothrow) RenderTargetRenderBuffer();
-    
+
     if(result && result->init(width, height))
     {
         result->autorelease();
@@ -238,19 +238,19 @@ bool RenderTargetDepthStencil::init(unsigned int width, unsigned int height)
     if(!RenderTargetBase::init(width, height)) return false;
     GLint oldRenderBuffer(0);
     glGetIntegerv(GL_RENDERBUFFER_BINDING, &oldRenderBuffer);
-    
+
     //generate depthStencil
     glGenRenderbuffers(1, &_depthStencilBuffer);
     glBindRenderbuffer(GL_RENDERBUFFER, _depthStencilBuffer);
     glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH24_STENCIL8, width, height);
     glBindRenderbuffer(GL_RENDERBUFFER, oldRenderBuffer);
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     _reBuildDepthStencilListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [this](EventCustom* event){
         /** listen the event that renderer was recreated on Android/WP8 */
         GLint oldRenderBuffer(0);
         glGetIntegerv(GL_RENDERBUFFER_BINDING, &oldRenderBuffer);
-        
+
         glGenRenderbuffers(1, &_depthStencilBuffer);
         //generate depthStencil
         glBindRenderbuffer(GL_RENDERBUFFER, _depthStencilBuffer);
@@ -258,10 +258,10 @@ bool RenderTargetDepthStencil::init(unsigned int width, unsigned int height)
         glBindRenderbuffer(GL_RENDERBUFFER, oldRenderBuffer);
         CCLOG("RenderTargetDepthStencil recreated, _depthStencilBuffer is %d", _depthStencilBuffer);
     });
-    
+
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_reBuildDepthStencilListener, -1);
 #endif
-    
+
     return true;
 }
 
@@ -269,7 +269,7 @@ bool RenderTargetDepthStencil::init(unsigned int width, unsigned int height)
 RenderTargetDepthStencil* RenderTargetDepthStencil::create(unsigned int width, unsigned int height)
 {
     auto result = new (std::nothrow) RenderTargetDepthStencil();
-    
+
     if(result && result->init(width, height))
     {
         result->autorelease();
@@ -299,7 +299,7 @@ FrameBuffer* FrameBuffer::getOrCreateDefaultFBO(GLView* view)
     if(nullptr == _defaultFBO)
     {
         auto result = new (std::nothrow) FrameBuffer();
-        
+
         if(result && result->initWithGLView(view))
         {
             result->autorelease();
@@ -309,14 +309,14 @@ FrameBuffer* FrameBuffer::getOrCreateDefaultFBO(GLView* view)
         {
             CC_SAFE_DELETE(result);
         }
-        
+
         _defaultFBO = result;
     }
-    
+
     return _defaultFBO;
 }
 
-    
+
 void FrameBuffer::applyDefaultFBO()
 {
     if(_defaultFBO)
@@ -353,17 +353,17 @@ bool FrameBuffer::init(uint8_t fid, unsigned int width, unsigned int height)
     _fid = fid;
     _width = width;
     _height = height;
-    
+
     GLint oldfbo;
     glGetIntegerv(GL_FRAMEBUFFER_BINDING, &oldfbo);
 
     glGenFramebuffers(1, &_fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, _fbo);
     glBindFramebuffer(GL_FRAMEBUFFER, oldfbo);
-    
+
 //    _rt = RenderTarget::create(width, height);
 //    if(nullptr == _rt) return false;
-    
+
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     _dirtyFBOListener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [this](EventCustom* event){
         if(isDefaultFBO()) return;
@@ -376,7 +376,7 @@ bool FrameBuffer::init(uint8_t fid, unsigned int width, unsigned int height)
         CCLOG("Recreate FrameBufferObject _fbo is %d", _fbo);
         _fboBindingDirty = true;
     });
-    
+
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_dirtyFBOListener, -1);
 #endif
     return true;
@@ -485,7 +485,7 @@ void FrameBuffer::attachDepthStencilTarget(RenderTargetDepthStencil* rt)
         CCLOG("Can not apply depth stencil target to default FBO");
         return;
     }
-    
+
     if(nullptr != rt && (rt->getWidth() != _width || rt->getHeight() != _height))
     {
         CCLOG("Error, attach a render target Depth stencil with different size, Skip.");
@@ -498,3 +498,4 @@ void FrameBuffer::attachDepthStencilTarget(RenderTargetDepthStencil* rt)
 }
 } //end of namespace experimental
 NS_CC_END
+

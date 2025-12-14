@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -83,7 +83,7 @@ std::vector<std::string> genStrVector(const char* str1, ...)
         str = va_arg(arg_ptr, const char*);
     }
     va_end(arg_ptr);
-    
+
     return ret;
 }
 
@@ -118,19 +118,19 @@ rapidjson::Value convertToJsonValue(cocos2d::Value & value, rapidjson::Document:
         default:
             break;
     }
-    
+
     return theJsonValue;
 }
 
 rapidjson::Value valueMapToJson(cocos2d::ValueMap & theMap, rapidjson::Document::AllocatorType& allocator)
 {
     rapidjson::Value ret(rapidjson::kObjectType);
-    
+
     for (ValueMap::iterator iter = theMap.begin(); iter != theMap.end(); ++iter) {
         auto key = iter->first;
         rapidjson::Value theJsonKey(rapidjson::kStringType);
         theJsonKey.SetString(key.c_str(), allocator);
-        
+
         cocos2d::Value value = iter->second;
         rapidjson::Value theJsonValue = convertToJsonValue(value, allocator);
         ret.AddMember(theJsonKey, theJsonValue, allocator);
@@ -141,14 +141,14 @@ rapidjson::Value valueMapToJson(cocos2d::ValueMap & theMap, rapidjson::Document:
 rapidjson::Value valueVectorToJson(cocos2d::ValueVector & theVector, rapidjson::Document::AllocatorType& allocator)
 {
     rapidjson::Value ret(rapidjson::kArrayType);
-    
+
     auto vectorSize = theVector.size();
     for (int i = 0; i < vectorSize; i++) {
         cocos2d::Value value = theVector[i];
         rapidjson::Value theJsonValue = convertToJsonValue(value, allocator);
         ret.PushBack(theJsonValue, allocator);
     }
-    
+
     return ret;
 }
 
@@ -158,7 +158,7 @@ Profile* Profile::getInstance()
     {
         s_profile = new Profile();
     }
-    
+
     return s_profile;
 }
 
@@ -169,12 +169,12 @@ void Profile::destroyInstance()
 
 Profile::Profile()
 {
-    
+
 }
 
 Profile::~Profile()
 {
-    
+
 }
 
 void Profile::testCaseBegin(std::string testName, std::vector<std::string> condHeaders, std::vector<std::string> retHeaders)
@@ -185,12 +185,12 @@ void Profile::testCaseBegin(std::string testName, std::vector<std::string> condH
     for (int i = 0; i < condHeaders.size(); i++) {
         conds.push_back(Value(condHeaders[i]));
     }
-    
+
     ValueVector rets;
     for (int j = 0; j < retHeaders.size(); j++) {
         rets.push_back(Value(retHeaders[j]));
     }
-    
+
     auto findValue = testData.find(curTestName);
     if (findValue != testData.end())
     {
@@ -220,7 +220,7 @@ void Profile::addTestResult(std::vector<std::string> conditions, std::vector<std
     for (int i = 0; i < conditions.size(); i++) {
         curRet.push_back(Value(conditions[i]));
     }
-    
+
     for (int j = 0; j < results.size(); j++) {
         curRet.push_back(Value(results[j]));
     }
@@ -269,7 +269,7 @@ void Profile::flush()
     rapidjson::Document document;
     rapidjson::Document::AllocatorType& allocator = document.GetAllocator();
     rapidjson::Value theData = valueMapToJson(testData, allocator);
-    
+
     rapidjson::StringBuffer buffer;
 
 #if USE_PRETTY_OUTPUT_FORMAT
@@ -282,7 +282,7 @@ void Profile::flush()
 
     theData.Accept(writer);
     auto out = buffer.GetString();
-    
+
     FILE *fp = fopen(fullPath.c_str(), "w");
     fputs(out, fp);
     fclose(fp);
@@ -292,3 +292,4 @@ void Profile::flush()
     cocos2d::FileUtils::getInstance()->writeValueMapToFile(testData, plistFullPath);
 #endif // #endif USE_JSON_FORMAT
 }
+

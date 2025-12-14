@@ -2,19 +2,19 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Author: Justin Graham (https://github.com/mannewalis)
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -67,10 +67,10 @@ class AllocatorStrategyFixedBlock
     , public lock_traits
 {
 public:
-    
+
 	static const size_t block_size = _block_size;
 	static const size_t alignment = _alignment;
-    
+
     AllocatorStrategyFixedBlock(const char* tag = nullptr, size_t pageSize = 100)
         : _list(nullptr)
         , _pages(nullptr)
@@ -83,7 +83,7 @@ public:
         AllocatorBase::setTag(tag ? tag : typeid(AllocatorStrategyFixedBlock).name());
 #endif
     }
-    
+
     virtual ~AllocatorStrategyFixedBlock()
     {
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
@@ -98,7 +98,7 @@ public:
             _pages = (void*)next;
         }
     }
-    
+
     // @brief
     // allocate a block of memory by returning the first item in the list or if empty
     // then allocate a new page of blocks, and return the first element and store the rest.
@@ -115,7 +115,7 @@ public:
         return r;
 #endif
     }
-    
+
     // @brief Deallocate a block by pushing it on the head of a linked list of free blocks.
     CC_ALLOCATOR_INLINE void deallocate(void* address, size_t size = 0)
     {
@@ -128,7 +128,7 @@ public:
         lock_traits::unlock();
 #endif
     }
-    
+
     // @brief Checks allocated pages to determine whether or not a block
     // is owned by this allocator. This should be reasonably fast
     // for properly configured allocators with few large pages.
@@ -138,7 +138,7 @@ public:
         return true; // since everything uses the global allocator, we can just lie and say we own this address.
 #else
         lock_traits::lock();
-        
+
         const uint8_t* const a = (const uint8_t* const)address;
         const uint8_t* p = (uint8_t*)_pages;
         const size_t pSize = pageSize();
@@ -155,7 +155,7 @@ public:
         return false;
 #endif
     }
-    
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
     std::string diagnostics() const
     {
@@ -165,9 +165,9 @@ public:
     }
     size_t _highestCount;
 #endif
-    
+
 protected:
-    
+
     // @brief Method to push an allocated block onto the free list.
     // No check is made that the block hasn't been already added to this allocator.
     CC_ALLOCATOR_INLINE void push_front(void* block)
@@ -179,7 +179,7 @@ protected:
         // additional debug build checks
         CC_ASSERT(true == owns(block));
 #endif
-        
+
         if (nullptr == _list)
         {
             _list = block;
@@ -194,7 +194,7 @@ protected:
         CC_ASSERT(_allocated > 0);
         --_allocated;
     }
-    
+
     // @brief Method to pop a block off the free list.
     // If no blocks are available, then the list is grown by _page_size
     // Tuning of the page size is critical to getting good performance.
@@ -218,15 +218,15 @@ protected:
         CC_ASSERT(block_size < AllocatorBase::kDefaultAlignment || 0 == ((intptr_t)block & (AllocatorBase::kDefaultAlignment - 1)));
         return block;
     }
-    
+
 protected:
-        
+
     // @brief Returns the size of a page in bytes + overhead.
     size_t pageSize() const
     {
         return AllocatorBase::kDefaultAlignment + AllocatorBase::nextPow2BlockSize(block_size) * _pageSize;
     }
-    
+
     // @brief Allocates a new page from the global allocator,
     // and adds all the blocks to the free list.
     CC_ALLOCATOR_INLINE void allocatePage()
@@ -243,9 +243,9 @@ protected:
             *page = (intptr_t)_pages;
             _pages = page;
         }
-        
+
         p += AllocatorBase::kDefaultAlignment; // step past the linked list node
-        
+
         _allocated += _pageSize;
         size_t aligned_size = AllocatorBase::nextPow2BlockSize(block_size);
         uint8_t* block = (uint8_t*)p;
@@ -254,18 +254,18 @@ protected:
             push_front(block);
         }
     }
-    
+
 protected:
-    
+
     // @brief Linked list of free blocks.
     void* _list;
-    
+
     // @brief Linked list of allocated pages.
     void* _pages;
-    
+
     // @brief number of blocks per page.
     size_t _pageSize;
-    
+
     // @brief Number of blocks that are currently allocated.
     size_t _allocated;
 };
@@ -275,3 +275,4 @@ NS_CC_END
 
 /// @endcond
 #endif//CC_ALLOCATOR_STRATEGY_FIXED_BLOCK_H
+

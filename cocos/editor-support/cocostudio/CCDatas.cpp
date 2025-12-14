@@ -127,7 +127,7 @@ void BaseData::subtract(BaseData *from, BaseData *to, bool limit)
         skewX += to->tweenRotate * M_PI * 2;
         skewY -= to->tweenRotate * M_PI * 2;
     }
-	
+
 }
 
 void BaseData::setColor(const Color4B &color)
@@ -272,15 +272,15 @@ FrameData::~FrameData()
 void FrameData::copy(const BaseData *baseData)
 {
     BaseData::copy(baseData);
-    
+
     if (const FrameData *frameData = dynamic_cast<const FrameData*>(baseData))
     {
         duration = frameData->duration;
         displayIndex = frameData->displayIndex;
-        
+
         tweenEasing = frameData->tweenEasing;
         easingParamNumber = frameData->easingParamNumber;
-        
+
         CC_SAFE_DELETE_ARRAY(easingParams);
         if (easingParamNumber != 0)
         {
@@ -426,3 +426,4 @@ ContourData *TextureData::getContourData(int index)
 
 
 }
+

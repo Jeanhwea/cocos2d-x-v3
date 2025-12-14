@@ -39,7 +39,7 @@ struct SoundEffectData
 class Audio;
 class AudioEngineCallbacks: public IXAudio2EngineCallback
 {
-private: 
+private:
     Audio *m_audio;
 
 public :
@@ -86,7 +86,7 @@ struct StreamingVoiceContext : public IXAudio2VoiceCallback
     }
 };
 
-class Audio 
+class Audio
 {
 private:
 	IXAudio2*					m_musicEngine;
@@ -98,10 +98,10 @@ private:
 
     typedef std::map<unsigned int, SoundEffectData> EffectList;
     typedef std::pair<unsigned int, SoundEffectData> Effect;
-	EffectList				    m_soundEffects;         
+	EffectList				    m_soundEffects;
 
-    unsigned int                m_backgroundID;       
-    std::string                 m_backgroundFile;       
+    unsigned int                m_backgroundID;
+    std::string                 m_backgroundFile;
     bool                        m_backgroundLoop;
 
     float                       m_soundEffctVolume;
@@ -167,3 +167,4 @@ public:
 private:
     void RemoveFromList(unsigned int sound);
 };
+

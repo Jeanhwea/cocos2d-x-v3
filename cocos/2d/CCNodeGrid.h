@@ -50,10 +50,10 @@ public:
      * @return An autorelease Grid Node.
      */
     static NodeGrid* create();
-    
+
     static NodeGrid* create(const Rect& rect);
-    
-    /** Get a Grid Node. 
+
+    /** Get a Grid Node.
      *
      * @return Return a GridBase.
      */
@@ -69,13 +69,13 @@ public:
      * @param grid  A Grid object that is used when applying effects.
      */
     void setGrid(GridBase *grid);
-    
-    /** Set the Grid Target. 
+
+    /** Set the Grid Target.
      *
      * @param target A Node is used to set the Grid Target.
      */
     void setTarget(Node *target);
-    
+
     /**
      * @brief Set the effect grid rect.
      * @param gridRect The effect grid rect.
@@ -103,7 +103,7 @@ protected:
     GroupCommand _groupCommand;
     CustomCommand _gridBeginCommand;
     CustomCommand _gridEndCommand;
-    
+
     Rect _gridRect;
 
 private:
@@ -113,3 +113,4 @@ private:
 NS_CC_END
 
 #endif
+

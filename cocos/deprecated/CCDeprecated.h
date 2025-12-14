@@ -1218,3 +1218,4 @@ NS_CC_END
 
 /// @endcond
 #endif // __COCOS2D_CCDEPRECATED_H__
+

@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
- 
+
 #ifndef __CC_JAVASCRIPT_JAVA_BRIDGE__
 #define __CC_JAVASCRIPT_JAVA_BRIDGE__
 
@@ -144,7 +144,7 @@ private:
 
     JS::Value convertReturnValue(JSContext *cx, ReturnValue retValue, ValueType type);
 public:
-    
+
     JS_BINDED_CLASS_GLUE(JavascriptJavaBridge);
     JS_BINDED_CONSTRUCTOR(JavascriptJavaBridge);
     JS_BINDED_FUNC(JavascriptJavaBridge, callStaticMethod);
@@ -152,3 +152,4 @@ public:
 };
 
 #endif
+

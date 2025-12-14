@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,12 +52,12 @@ void MotionStreakTest1::onEnter()
     MotionStreakTest::onEnter();
 
     auto s = Director::getInstance()->getWinSize();
-  
+
     // the root object just rotates around
     _root = Sprite::create(s_pathR1);
     addChild(_root, 1);
     _root->setPosition(Vec2(s.width/2, s.height/2));
-  
+
     // the target object is offset from root, and the streak is moved to follow it
     _target = Sprite::create(s_pathR1);
     _root->addChild(_target);
@@ -68,7 +68,7 @@ void MotionStreakTest1::onEnter()
     addChild(_streak);
     // schedule an update on each frame so we can synchronize the streak with the target
     schedule(CC_SCHEDULE_SELECTOR(MotionStreakTest1::onUpdate));
-  
+
     auto a1 = RotateBy::create(2, 360);
 
     auto action1 = RepeatForever::create(a1);
@@ -112,20 +112,20 @@ void MotionStreakTest2::onEnter()
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesMoved = CC_CALLBACK_2(MotionStreakTest2::onTouchesMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     auto s = Director::getInstance()->getWinSize();
-        
+
     // create the streak object and add it to the scene
     _streak = MotionStreak::create(3, 3, 64, Color3B::WHITE, s_streak );
     addChild(_streak);
-    
+
     _streak->setPosition( Vec2(s.width/2, s.height/2) );
 }
 
 void MotionStreakTest2::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     auto touchLocation = touches[0]->getLocation();
-    
+
     _streak->setPosition( touchLocation );
 }
 
@@ -143,18 +143,18 @@ std::string MotionStreakTest2::title() const
 void Issue1358::onEnter()
 {
     MotionStreakTest::onEnter();
-    
+
     // ask director the the window size
     auto size = Director::getInstance()->getWinSize();
-    
+
     _streak = MotionStreak::create(2.0f, 1.0f, 50.0f, Color3B(255, 255, 0), "Images/Icon.png");
     addChild(_streak);
-    
-    
+
+
     _center  = Vec2(size.width/2, size.height/2);
     _radius = size.width/3;
     _angle = 0.0f;
-    
+
     schedule(CC_SCHEDULE_SELECTOR(Issue1358::update), 0);
 }
 
@@ -277,3 +277,4 @@ void MotionStreakTest::modeCallback(Ref *pSender)
     bool fastMode = _streak->isFastMode();
     _streak->setFastMode(! fastMode);
 }
+

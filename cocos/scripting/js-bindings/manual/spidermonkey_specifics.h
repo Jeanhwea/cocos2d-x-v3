@@ -51,22 +51,22 @@ public:
     {
         set(ptr);
     }
-    
+
     void set(JS::PersistentRootedObject* k)
     {
         p = k;
     }
-    
+
     JSObject* ref()
     {
         return *p;
     }
-    
+
     JS::PersistentRootedObject* ptr()
     {
         return p;
     }
-    
+
 private:
     JS::PersistentRootedObject* p;
 };
@@ -100,3 +100,4 @@ if (!native_obj) { \
 }
 
 #endif
+

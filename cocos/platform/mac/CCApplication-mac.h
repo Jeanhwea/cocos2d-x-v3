@@ -48,7 +48,7 @@ public:
      * @lua NA
      */
     virtual ~Application();
-    
+
     /**
     @brief  Callback by Director for limit FPS.
     @param interval The time, which expressed in second in second, between current frame and next.
@@ -61,7 +61,7 @@ public:
     * @lua NA
     */
     int run();
-    
+
     /**
     @brief  Get current application instance.
     @return Current application instance pointer.
@@ -70,24 +70,24 @@ public:
 
     /** @deprecated Use getInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
-    
+
     /**
     @brief Get current language config
     @return Current language config
     */
     virtual LanguageType getCurrentLanguage() override;
-    
+
     /**
     @brief Get current language iso 639-1 code
     @return Current language iso 639-1 code
     */
     virtual const char * getCurrentLanguageCode() override;
-    
+
     /**
      @brief Get target platform
      */
     virtual Platform getTargetPlatform() override;
-    
+
     /**
      @brief Get application version.
      */
@@ -105,20 +105,20 @@ public:
      *  @deprecated Please use FileUtils::getInstance()->setSearchPaths() instead.
      */
     CC_DEPRECATED_ATTRIBUTE void setResourceRootPath(const std::string& rootResDir);
-    
-    /** 
+
+    /**
      *  Gets the Resource root path.
-     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead. 
+     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead.
      */
     CC_DEPRECATED_ATTRIBUTE const std::string& getResourceRootPath();
-    
+
     void setStartupScriptFilename(const std::string& startupScriptFile);
-    
+
     const std::string& getStartupScriptFilename();
-    
+
 protected:
     static Application * sm_pSharedApplication;
-    
+
     long _animationInterval;  //micro second
     std::string _resourceRootPath;
     std::string _startupScriptFilename;
@@ -129,3 +129,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 #endif  // end of __CC_APPLICATION_MAC_H__;
+

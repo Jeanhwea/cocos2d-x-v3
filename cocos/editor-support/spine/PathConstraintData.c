@@ -42,3 +42,4 @@ void spPathConstraintData_dispose (spPathConstraintData* self) {
 	FREE(self->bones);
 	FREE(self);
 }
+

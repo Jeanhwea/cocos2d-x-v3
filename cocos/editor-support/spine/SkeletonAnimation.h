@@ -124,3 +124,4 @@ private:
 }
 
 #endif /* SPINE_SKELETONANIMATION_H_ */
+

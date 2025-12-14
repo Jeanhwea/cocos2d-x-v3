@@ -4,19 +4,19 @@
  *
  * Copyright 2011 Yannick Loriot.
  * http://yannickloriot.com
- * 
+ *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,11 +54,11 @@ class Invocation;
 
 /*
  * @class
- * Control is inspired by the UIControl API class from the UIKit library of 
- * CocoaTouch. It provides a base class for control Sprites such as Button 
+ * Control is inspired by the UIControl API class from the UIKit library of
+ * CocoaTouch. It provides a base class for control Sprites such as Button
  * or Slider that convey user intent to the application.
  *
- * The goal of Control is to define an interface and base implementation for 
+ * The goal of Control is to define an interface and base implementation for
  * preparing action messages and initially dispatching them to their targets when
  * certain events occur.
  *
@@ -80,9 +80,9 @@ public:
         TOUCH_CANCEL         = 1 << 7,    // A system event canceling the current touches for the control.
         VALUE_CHANGED        = 1 << 8      // A touch dragging or otherwise manipulating a control, causing it to emit a series of different values.
     };
-    
+
     typedef void (Ref::*Handler)(Ref*, EventType);
-    
+
     /** The possible state for a control.  */
     enum class State
     {
@@ -161,7 +161,7 @@ public:
     virtual void onTouchMoved(Touch* touch, Event* event) override;
     virtual void onTouchEnded(Touch* touch, Event* event) override;
     virtual void onTouchCancelled(Touch* touch, Event* event) override;
-    
+
     /**
      * Returns a boolean value that indicates whether a touch is inside the bounds
      * of the receiver. The given touch must be relative to the world.
@@ -175,7 +175,7 @@ public:
     // Overrides
     virtual bool isOpacityModifyRGB() const override;
     virtual void setOpacityModifyRGB(bool bOpacityModifyRGB) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -191,7 +191,7 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
     /**
-     * Returns an Invocation object able to construct messages using a given 
+     * Returns an Invocation object able to construct messages using a given
      * target-action pair. (The invocation may optionally include the sender and
      * the event as parameters, in that order)
      *
@@ -200,7 +200,7 @@ protected:
      * @param controlEvent A control events for which the action message is sent.
      * See "CCControlEvent" for constants.
      *
-     * @return an Invocation object able to construct messages using a given 
+     * @return an Invocation object able to construct messages using a given
      * target-action pair.
      */
     Invocation* invocationWithTargetAndActionForControlEvent(Ref* target, Handler action, EventType controlEvent);
@@ -217,9 +217,9 @@ protected:
     Vector<Invocation*>& dispatchListforControlEvent(EventType controlEvent);
 
     /**
-     * Adds a target and action for a particular event to an internal dispatch 
+     * Adds a target and action for a particular event to an internal dispatch
      * table.
-     * The action message may optionally include the sender and the event as 
+     * The action message may optionally include the sender and the event as
      * parameters, in that order.
      * When you call this method, target is not retained.
      *
@@ -230,7 +230,7 @@ protected:
      * See "CCControlEvent" for constants.
      */
     void addTargetWithActionForControlEvent(Ref* target, Handler action, EventType controlEvent);
-    
+
     /**
      * Removes a target and action for a particular event from an internal dispatch
      * table.
@@ -278,3 +278,4 @@ CC_EX_DLL Control::EventType operator|(Control::EventType a, Control::EventType 
 NS_CC_EXT_END
 
 #endif
+

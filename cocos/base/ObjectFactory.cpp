@@ -77,3 +77,4 @@ void ObjectFactory::registerType(const TInfo &t)
 }
 
 NS_CC_END
+

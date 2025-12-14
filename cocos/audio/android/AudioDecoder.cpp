@@ -100,7 +100,7 @@ bool AudioDecoder::start()
     do
     {
         ret = decodeToPcm();
-        if (!ret) 
+        if (!ret)
         {
             ALOGE("decodeToPcm (%s) failed!", _url.c_str());
             break;
@@ -111,7 +111,7 @@ bool AudioDecoder::start()
         oldTime = nowTime;
 
         ret = resample();
-        if (!ret) 
+        if (!ret)
         {
             ALOGE("resample (%s) failed!", _url.c_str());
             break;
@@ -122,12 +122,12 @@ bool AudioDecoder::start()
         oldTime = nowTime;
 
         ret = interleave();
-        if (!ret) 
+        if (!ret)
         {
             ALOGE("interleave (%s) failed!", _url.c_str());
             break;
         }
-        
+
         nowTime = clockNow();
         ALOGD("Interleave (%s) wasted %fms", _url.c_str(), intervalInMS(oldTime, nowTime));
 
@@ -292,3 +292,4 @@ bool AudioDecoder::interleave()
 }
 
 }} // namespace cocos2d { namespace experimental {
+

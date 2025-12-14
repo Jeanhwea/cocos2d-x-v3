@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,16 +29,16 @@
 
 USING_NS_CC;
 
-enum tagPlayer 
+enum tagPlayer
 {
     kHighPlayer,
     kLowPlayer
-} PlayerTouches;    
+} PlayerTouches;
 
 #define kStatusBarHeight 0.0f //20.0f
 //#define k1UpperLimit (480.0f - kStatusBarHeight)
 
-enum 
+enum
 {
     kSpriteTag
 };
@@ -73,34 +73,34 @@ bool PongScene::init()
 PongLayer::PongLayer()
 {
     _ballStartingVelocity = Vec2(20.0f, -100.0f);
-    
+
     _ball = Ball::ballWithTexture( Director::getInstance()->getTextureCache()->addImage(s_Ball) );
     _ball->setPosition( VisibleRect::center() );
     _ball->setVelocity( _ballStartingVelocity );
     addChild( _ball );
-    
+
     auto paddleTexture = Director::getInstance()->getTextureCache()->addImage(s_Paddle);
-    
+
     Vector<Paddle*> paddlesM(4);
-    
+
     Paddle* paddle = Paddle::createWithTexture(paddleTexture);
     paddle->setPosition( Vec2(VisibleRect::center().x, VisibleRect::bottom().y + 15) );
 	paddlesM.pushBack( paddle );
-    
+
     paddle = Paddle::createWithTexture( paddleTexture );
     paddle->setPosition( Vec2(VisibleRect::center().x, VisibleRect::top().y - kStatusBarHeight - 15) );
     paddlesM.pushBack( paddle );
-    
+
     paddle = Paddle::createWithTexture( paddleTexture );
     paddle->setPosition( Vec2(VisibleRect::center().x, VisibleRect::bottom().y + 100) );
     paddlesM.pushBack( paddle );
-    
+
     paddle = Paddle::createWithTexture( paddleTexture );
     paddle->setPosition( Vec2(VisibleRect::center().x, VisibleRect::top().y - kStatusBarHeight - 100) );
     paddlesM.pushBack( paddle );
-    
+
     _paddles = paddlesM;
-    
+
     for (auto& paddle : _paddles)
     {
         addChild(paddle);
@@ -118,7 +118,7 @@ void PongLayer::resetAndScoreBallForPlayer(int player)
     _ballStartingVelocity = _ballStartingVelocity * -1.1f;
     _ball->setVelocity( _ballStartingVelocity );
     _ball->setPosition( VisibleRect::center() );
-    
+
     // TODO -- scoring
 }
 
@@ -168,7 +168,7 @@ std::string ForceTouchTest::subtitle() const
 {
     return std::string("Touch with force to see info label changes\n work on iPhone6s+");
 }
-    
+
 void ForceTouchTest::onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event)
 {
 }
@@ -189,3 +189,4 @@ void ForceTouchTest::onTouchesEnded(const std::vector<cocos2d::Touch*>& touches,
     sprintf(formatBuffer, _Info_Formatter, 0.0f, 0.0f);
     _infoLabel->setString(std::string(formatBuffer));
 }
+

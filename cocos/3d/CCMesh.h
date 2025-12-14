@@ -53,7 +53,7 @@ class Renderer;
 class Scene;
 class Pass;
 
-/** 
+/**
  * @brief Mesh: contains ref to index buffer, GLProgramState, texture, skin, blend function, aabb and so on
  */
 class CC_DLL Mesh : public Ref
@@ -65,21 +65,21 @@ public:
     static Mesh* create(const std::vector<float>& positions, const std::vector<float>& normals, const std::vector<float>& texs, const IndexArray& indices);
     /**create mesh with vertex attributes*/
     CC_DEPRECATED_ATTRIBUTE static Mesh* create(const std::vector<float>& vertices, int perVertexSizeInFloat, const IndexArray& indices, int /*numIndex*/, const std::vector<MeshVertexAttrib>& attribs, int /*attribCount*/){ return create(vertices, perVertexSizeInFloat, indices, attribs); }
-    
+
     /**
      * @lua NA
      */
     static Mesh* create(const std::vector<float>& vertices, int perVertexSizeInFloat, const IndexArray& indices, const std::vector<MeshVertexAttrib>& attribs);
-    
-    /** 
+
+    /**
      * create mesh
      * @lua NA
      */
     static Mesh* create(const std::string& name, MeshIndexData* indexData, MeshSkin* skin = nullptr);
-    
+
     /**
      * get vertex buffer
-     * 
+     *
      * @lua NA
      */
     GLuint getVertexBuffer() const;
@@ -130,39 +130,39 @@ public:
      * @return The texture of this usage, return the texture of first mesh if multiple meshes exist
      */
     Texture2D* getTexture(NTextureData::Usage usage);
-    
+
     /**visible getter and setter*/
     void setVisible(bool visible);
     bool isVisible() const;
-    
+
     /**
      * skin getter
      *
      * @lua NA
      */
     MeshSkin* getSkin() const { return _skin; }
-    
+
     /**
      * mesh index data getter
      *
      * @lua NA
      */
     MeshIndexData* getMeshIndexData() const { return _meshIndexData; }
-    
+
     /**
      * get GLProgramState
-     * 
+     *
      * @lua NA
      */
     GLProgramState* getGLProgramState() const;
-    
+
     /**name getter */
     const std::string& getName() const { return _name; }
-    
+
     void setBlendFunc(const BlendFunc &blendFunc);
     const BlendFunc &getBlendFunc() const;
-    
-    /** 
+
+    /**
      * get primitive type
      *
      * @lua NA
@@ -186,7 +186,7 @@ public:
      * @lua NA
      */
     GLuint getIndexBuffer() const;
-    
+
     /**get AABB*/
     const AABB& getAABB() const { return _aabb; }
 
@@ -203,7 +203,7 @@ public:
 
     void draw(Renderer* renderer, float globalZ, const Mat4& transform, uint32_t flags, unsigned int lightMask, const Vec4& color, bool forceDepthWrite);
 
-    /** 
+    /**
      * Get the MeshCommand.
      */
     MeshCommand& getMeshCommand() { return _meshCommand; }
@@ -214,13 +214,13 @@ public:
     void setMeshIndexData(MeshIndexData* indexdata);
     /**name setter*/
     void setName(const std::string& name) { _name = name; }
- 
-    /** 
+
+    /**
      * calculate the AABB of the mesh
      * @note the AABB is in the local space, not the world space
      */
     void calculateAABB();
-    
+
     /**
      * force set this Sprite3D to 2D render queue
      */
@@ -243,7 +243,7 @@ protected:
     bool                _visible; // is the submesh visible
     bool                _isTransparent; // is this mesh transparent, it is a property of material in fact
     bool                _force2DQueue; // add this mesh to 2D render queue
-    
+
     std::string         _name;
     MeshCommand         _meshCommand;
     MeshIndexData*      _meshIndexData;
@@ -253,15 +253,15 @@ protected:
     Material*           _material;
     AABB                _aabb;
     std::function<void()> _visibleChanged;
-    
+
     ///light parameters
     std::vector<Vec3> _dirLightUniformColorValues;
     std::vector<Vec3> _dirLightUniformDirValues;
-    
+
     std::vector<Vec3> _pointLightUniformColorValues;
     std::vector<Vec3> _pointLightUniformPositionValues;
     std::vector<float> _pointLightUniformRangeInverseValues;
-    
+
     std::vector<Vec3> _spotLightUniformColorValues;
     std::vector<Vec3> _spotLightUniformPositionValues;
     std::vector<Vec3> _spotLightUniformDirValues;
@@ -282,3 +282,4 @@ extern std::string CC_DLL s_uniformSamplerName[];//uniform sampler names array
 NS_CC_END
 
 #endif // __CCMESH_H__
+

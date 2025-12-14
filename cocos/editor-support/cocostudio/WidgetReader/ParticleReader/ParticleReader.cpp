@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,66 +40,66 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(ParticleReader)
-    
+
     ParticleReader::ParticleReader()
     {
-        
+
     }
-    
+
     ParticleReader::~ParticleReader()
     {
-        
+
     }
-    
+
     static ParticleReader* _instanceParticleReader = nullptr;
-    
+
     ParticleReader* ParticleReader::getInstance()
     {
         if (!_instanceParticleReader)
         {
             _instanceParticleReader = new (std::nothrow) ParticleReader();
         }
-        
+
         return _instanceParticleReader;
     }
-    
+
     void ParticleReader::purge()
     {
         CC_SAFE_DELETE(_instanceParticleReader);
     }
-    
+
     void ParticleReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceParticleReader);
     }
-    
+
     Offset<Table> ParticleReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                                flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = NodeReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto nodeOptions = *(Offset<WidgetOptions>*)(&temp);
-        
+
         std::string path = "";
         std::string plistFile = "";
         int resourceType = 0;
-        
+
         cocos2d::BlendFunc blendFunc = cocos2d::BlendFunc::ALPHA_PREMULTIPLIED;
-        
+
         // child elements
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
             std::string name = child->Name();
-            
+
             if (name == "FileData")
             {
                 const tinyxml2::XMLAttribute* attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     name = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (name == "Path")
                     {
                         path = value;
@@ -112,19 +112,19 @@ namespace cocostudio
                     {
                         plistFile = value;
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (name == "BlendFunc")
             {
                 const tinyxml2::XMLAttribute* attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     name = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (name == "Src")
                     {
                         blendFunc.src = atoi(value.c_str());
@@ -133,16 +133,16 @@ namespace cocostudio
                     {
                         blendFunc.dst = atoi(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         flatbuffers::BlendFunc f_blendFunc(blendFunc.src, blendFunc.dst);
-        
+
         auto options = CreateParticleSystemOptions(*builder,
                                                    nodeOptions,
                                                    CreateResourceData(*builder,
@@ -150,16 +150,16 @@ namespace cocostudio
                                                                       builder->CreateString(plistFile),
                                                                       resourceType),
                                                    &f_blendFunc);
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void ParticleReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                  const flatbuffers::Table *particleOptions)
     {
         auto particle = dynamic_cast<ParticleSystemQuad*>(node);
         auto options = (ParticleSystemOptions*)particleOptions;
-        
+
         auto f_blendFunc = options->blendFunc();
         if (particle && f_blendFunc)
         {
@@ -168,18 +168,18 @@ namespace cocostudio
             blendFunc.dst = f_blendFunc->dst();
             particle->setBlendFunc(blendFunc);
         }
-        
+
         auto nodeReader = NodeReader::getInstance();
         nodeReader->setPropsWithFlatBuffers(node, (Table*)options->nodeOptions());
     }
-    
+
     Node* ParticleReader::createNodeWithFlatBuffers(const flatbuffers::Table *particleOptions)
     {
         ParticleSystemQuad* particle = nullptr;
-        
+
         auto options = (ParticleSystemOptions*)particleOptions;
         auto fileNameData = options->fileNameData();
-        
+
         bool fileExist = false;
         std::string errorFilePath = "";
         std::string path = fileNameData->path()->c_str();
@@ -199,7 +199,7 @@ namespace cocostudio
                 }
                 break;
             }
-                
+
             default:
                 break;
         }
@@ -218,8 +218,9 @@ namespace cocostudio
             setPropsWithFlatBuffers(node, (Table*)particleOptions);
             return node;
         }
-        
+
         return particle;
     }
-    
+
 }
+

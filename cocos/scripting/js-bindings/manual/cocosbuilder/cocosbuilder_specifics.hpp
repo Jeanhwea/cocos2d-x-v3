@@ -27,11 +27,11 @@
 
 #include "scripting/js-bindings/manual/cocos2d_specifics.hpp"
 
-class JSCCBAnimationWrapper: public JSCallbackWrapper 
+class JSCCBAnimationWrapper: public JSCallbackWrapper
 {
 public:
     JSCCBAnimationWrapper() {}
-    
+
     void animationCompleteCallback()
     {
         JSContext *cx = ScriptingCore::getInstance()->getGlobalContext();
@@ -43,13 +43,14 @@ public:
             JS::RootedValue retval(cx);
 
             JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-            
+
             JS::RootedObject jsThis(cx, thisObj.toObjectOrNull());
             JS::RootedValue jsCallback(cx, callback);
             JS_CallFunctionValue(cx, jsThis, jsCallback, JS::HandleValueArray::empty(), &retval);
         }
     }
-    
+
 };
 
 #endif
+

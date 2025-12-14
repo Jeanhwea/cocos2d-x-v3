@@ -115,3 +115,4 @@ typedef spSkeletonData SkeletonData;
 #endif
 
 #endif /* SPINE_SKELETONDATA_H_ */
+

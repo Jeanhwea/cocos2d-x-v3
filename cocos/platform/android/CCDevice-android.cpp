@@ -120,12 +120,12 @@ public:
            jstring jstrFont = methodInfo.env->NewStringUTF(fullPathOrFontName.c_str());
 
            if(!methodInfo.env->CallStaticBooleanMethod(methodInfo.classID, methodInfo.methodID, strArray,
-               jstrFont, textDefinition._fontSize, textDefinition._fontFillColor.r, textDefinition._fontFillColor.g, 
+               jstrFont, textDefinition._fontSize, textDefinition._fontFillColor.r, textDefinition._fontFillColor.g,
                textDefinition._fontFillColor.b, textDefinition._fontAlpha,
                eAlignMask, nWidth, nHeight, textDefinition._lineSpacing,
-               textDefinition._shadow._shadowEnabled, textDefinition._shadow._shadowOffset.width, -textDefinition._shadow._shadowOffset.height, 
-               textDefinition._shadow._shadowBlur, textDefinition._shadow._shadowOpacity, 
-               textDefinition._stroke._strokeEnabled, textDefinition._stroke._strokeColor.r, textDefinition._stroke._strokeColor.g, 
+               textDefinition._shadow._shadowEnabled, textDefinition._shadow._shadowOffset.width, -textDefinition._shadow._shadowOffset.height,
+               textDefinition._shadow._shadowBlur, textDefinition._shadow._shadowOpacity,
+               textDefinition._stroke._strokeEnabled, textDefinition._stroke._strokeColor.r, textDefinition._stroke._strokeColor.g,
                                                        textDefinition._stroke._strokeColor.b, textDefinition._stroke._strokeAlpha, textDefinition._stroke._strokeSize,
                                                        textDefinition._enableWrap, textDefinition._overflow))
            {
@@ -154,13 +154,13 @@ static BitmapDC& sharedBitmapDC()
 Data Device::getTextureDataForText(const char * text, const FontDefinition& textDefinition, TextAlign align, int &width, int &height, bool& hasPremultipliedAlpha)
 {
     Data ret;
-    do 
+    do
     {
         BitmapDC &dc = sharedBitmapDC();
 
-        if(! dc.getBitmapFromJavaShadowStroke(text, 
-            (int)textDefinition._dimensions.width, 
-            (int)textDefinition._dimensions.height, 
+        if(! dc.getBitmapFromJavaShadowStroke(text,
+            (int)textDefinition._dimensions.width,
+            (int)textDefinition._dimensions.height,
             align, textDefinition )) { break;};
 
         width = dc._width;
@@ -202,3 +202,4 @@ extern "C"
         env->GetByteArrayRegion(pixels, 0, size, (jbyte*)bitmapDC._data);
     }
 };
+

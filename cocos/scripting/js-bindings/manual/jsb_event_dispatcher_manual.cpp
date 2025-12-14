@@ -200,7 +200,7 @@ bool js_EventListenerAcceleration_create(JSContext *cx, uint32_t argc, jsval *vp
             }
         } while(0);
         JSB_PRECONDITION2(ok, cx, false, "js_cocos2dx_EventListenerAcceleration_create : Error processing arguments");
-        
+
         auto ret = EventListenerAcceleration::create(arg0);
         JS::RootedValue jsret(cx, OBJECT_TO_JSVAL(js_get_or_create_jsobject<EventListenerAcceleration>(cx, ret)));
         args.rval().set(jsret);
@@ -330,7 +330,8 @@ bool js_EventDispatcher_addCustomEventListener(JSContext *cx, uint32_t argc, jsv
         args.rval().set(jsret);
         return true;
     }
-    
+
     JS_ReportError(cx, "js_cocos2dx_EventDispatcher_addCustomEventListener : wrong number of arguments: %d, was expecting %d", argc, 2);
     return false;
 }
+

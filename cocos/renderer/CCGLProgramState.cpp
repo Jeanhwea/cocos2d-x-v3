@@ -7,7 +7,7 @@ Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
 http://www.cocos2d-x.org
- 
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -429,10 +429,10 @@ GLProgramState::GLProgramState()
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     /** listen the event that renderer was recreated on Android/WP8 */
     CCLOG("create rendererRecreatedListener for GLProgramState");
-    _backToForegroundlistener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, 
-        [this](EventCustom*) 
+    _backToForegroundlistener = EventListenerCustom::create(EVENT_RENDERER_RECREATED,
+        [this](EventCustom*)
         {
-            CCLOG("Dirty Uniform and Attributes of GLProgramState"); 
+            CCLOG("Dirty Uniform and Attributes of GLProgramState");
             _uniformAttributeValueDirty = true;
         });
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_backToForegroundlistener, -1);
@@ -540,7 +540,7 @@ void GLProgramState::updateUniformsAndAttributes()
         {
             _uniforms[uniformLocation.second]._uniform = _glprogram->getUniform(uniformLocation.first);
         }
-        
+
         _vertexAttribsFlags = 0;
         for(auto& attributeValue : _attributes)
         {
@@ -548,9 +548,9 @@ void GLProgramState::updateUniformsAndAttributes()
             if(attributeValue.second._enabled)
                 _vertexAttribsFlags |= 1 << attributeValue.second._vertexAttrib->index;
         }
-        
+
         _uniformAttributeValueDirty = false;
-        
+
     }
 }
 
@@ -1023,3 +1023,4 @@ GLProgramState::AutoBindingResolver::~AutoBindingResolver()
 }
 
 NS_CC_END
+

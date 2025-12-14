@@ -233,7 +233,7 @@ void Widget::onEnter()
             return;
     }
 #endif
-    
+
     if (!_usingLayoutComponent)
         updateSizeAndPosition();
     ProtectedNode::onEnter();
@@ -248,7 +248,7 @@ void Widget::onExit()
             return;
     }
 #endif
-    
+
     unscheduleUpdate();
     ProtectedNode::onExit();
 }
@@ -871,7 +871,7 @@ void Widget::onTouchCancelled(Touch* touch, Event* /*unusedEvent*/)
     {
         this->propagateTouchEvent(TouchEventType::CANCELED, this, touch);
     }
-    
+
     setHighlighted(false);
     cancelUpEvent();
 }
@@ -1473,7 +1473,7 @@ void Widget::onFocusChange(Widget* widgetLostFocus, Widget* widgetGetFocus)
         widgetGetFocus->setFocused(true);
     }
 }
-    
+
 Widget* Widget::getCurrentFocusedWidget(bool /*isWidget*/){
     return getCurrentFocusedWidget();
 }
@@ -1533,3 +1533,4 @@ bool Widget::isLayoutComponentEnabled()const
 
 }
 NS_CC_END
+

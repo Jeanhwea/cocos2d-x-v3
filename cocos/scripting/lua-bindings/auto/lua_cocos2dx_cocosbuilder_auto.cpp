@@ -21,7 +21,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_moveAnimationsFromNode(lua_Sta
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_moveAnimationsFromNode'", nullptr);
         return 0;
@@ -29,7 +29,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_moveAnimationsFromNode(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::Node* arg0;
         cocos2d::Node* arg1;
@@ -74,7 +74,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setAutoPlaySequenceId(lua_Stat
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setAutoPlaySequenceId'", nullptr);
         return 0;
@@ -82,7 +82,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setAutoPlaySequenceId(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -124,7 +124,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNames(lua_S
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNames'", nullptr);
         return 0;
@@ -132,7 +132,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNames(lua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -171,7 +171,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForSoundChannel(lua_Stat
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForSoundChannel'", nullptr);
         return 0;
@@ -179,7 +179,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForSoundChannel(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocosbuilder::CCBSequenceProperty* arg0;
 
@@ -221,7 +221,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setBaseValue(lua_State* tolua_
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setBaseValue'", nullptr);
         return 0;
@@ -229,7 +229,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setBaseValue(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 3) 
+    if (argc == 3)
     {
         cocos2d::Value arg0;
         cocos2d::Node* arg1;
@@ -277,7 +277,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNodes(lua_Sta
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNodes'", nullptr);
         return 0;
@@ -285,7 +285,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNodes(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -324,7 +324,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getLastCompletedSequenceName(l
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getLastCompletedSequenceName'", nullptr);
         return 0;
@@ -332,7 +332,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getLastCompletedSequenceName(l
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -371,7 +371,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootNode(lua_State* tolua_S
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootNode'", nullptr);
         return 0;
@@ -379,7 +379,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootNode(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Node* arg0;
 
@@ -421,7 +421,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamedT
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamedTweenDuration'", nullptr);
         return 0;
@@ -429,7 +429,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamedT
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         const char* arg0;
         double arg1;
@@ -474,7 +474,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletName(lua_Stat
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletName'", nullptr);
         return 0;
@@ -482,7 +482,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletName(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::string arg0;
 
@@ -524,7 +524,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequences(lua_State* tolua_
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequences'", nullptr);
         return 0;
@@ -532,7 +532,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequences(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -571,7 +571,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootContainerSize(lua_State
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootContainerSize'", nullptr);
         return 0;
@@ -579,7 +579,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootContainerSize(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -618,7 +618,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setDocumentControllerName(lua_
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setDocumentControllerName'", nullptr);
         return 0;
@@ -626,7 +626,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setDocumentControllerName(lua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::string arg0;
 
@@ -668,7 +668,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setObject(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setObject'", nullptr);
         return 0;
@@ -676,7 +676,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setObject(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 3) 
+    if (argc == 3)
     {
         cocos2d::Ref* arg0;
         cocos2d::Node* arg1;
@@ -724,7 +724,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getContainerSize(lua_State* to
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getContainerSize'", nullptr);
         return 0;
@@ -732,7 +732,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getContainerSize(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Node* arg0;
 
@@ -774,7 +774,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForCallbackChannel(lua_S
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForCallbackChannel'", nullptr);
         return 0;
@@ -782,7 +782,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_actionForCallbackChannel(lua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocosbuilder::CCBSequenceProperty* arg0;
 
@@ -824,7 +824,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNames(lua_Sta
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNames'", nullptr);
         return 0;
@@ -832,7 +832,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentOutletNames(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -871,7 +871,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackControlEven
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackControlEvents'", nullptr);
         return 0;
@@ -879,7 +879,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackControlEven
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::extension::Control::EventType arg0;
 
@@ -921,7 +921,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_init(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_init'", nullptr);
         return 0;
@@ -929,7 +929,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_init(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -968,7 +968,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getKeyframeCallbacks(lua_State
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getKeyframeCallbacks'", nullptr);
         return 0;
@@ -976,7 +976,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getKeyframeCallbacks(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1015,7 +1015,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackControlEven
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackControlEvents'", nullptr);
         return 0;
@@ -1023,7 +1023,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackControlEven
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1062,7 +1062,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootContainerSize(lua_State
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootContainerSize'", nullptr);
         return 0;
@@ -1070,7 +1070,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setRootContainerSize(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Size arg0;
 
@@ -1112,7 +1112,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceIdTwee
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceIdTweenDuration'", nullptr);
         return 0;
@@ -1120,7 +1120,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceIdTwee
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         int arg0;
         double arg1;
@@ -1165,7 +1165,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRunningSequenceName(lua_Sta
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRunningSequenceName'", nullptr);
         return 0;
@@ -1173,7 +1173,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRunningSequenceName(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1212,7 +1212,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getAutoPlaySequenceId(lua_Stat
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getAutoPlaySequenceId'", nullptr);
         return 0;
@@ -1220,7 +1220,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getAutoPlaySequenceId(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1259,7 +1259,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackName(lua_St
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackName'", nullptr);
         return 0;
@@ -1267,7 +1267,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackName(lua_St
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::string arg0;
 
@@ -1309,7 +1309,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootNode(lua_State* tolua_S
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootNode'", nullptr);
         return 0;
@@ -1317,7 +1317,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getRootNode(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1356,7 +1356,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletNode(lua_Stat
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletNode'", nullptr);
         return 0;
@@ -1364,7 +1364,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentOutletNode(lua_Stat
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Node* arg0;
 
@@ -1406,7 +1406,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceDuration(lua_State*
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceDuration'", nullptr);
         return 0;
@@ -1414,7 +1414,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceDuration(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         const char* arg0;
 
@@ -1456,7 +1456,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackNode(lua_St
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackNode'", nullptr);
         return 0;
@@ -1464,7 +1464,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_addDocumentCallbackNode(lua_St
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Node* arg0;
 
@@ -1506,7 +1506,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamed(
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamed'", nullptr);
         return 0;
@@ -1514,7 +1514,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_runAnimationsForSequenceNamed(
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         const char* arg0;
 
@@ -1556,7 +1556,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceId(lua_State* tolua
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceId'", nullptr);
         return 0;
@@ -1564,7 +1564,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getSequenceId(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         const char* arg0;
 
@@ -1606,7 +1606,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNodes(lua_S
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNodes'", nullptr);
         return 0;
@@ -1614,7 +1614,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentCallbackNodes(lua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1653,7 +1653,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setSequences(lua_State* tolua_
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_setSequences'", nullptr);
         return 0;
@@ -1661,7 +1661,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_setSequences(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vector<cocosbuilder::CCBSequence *> arg0;
 
@@ -1703,7 +1703,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_debug(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_debug'", nullptr);
         return 0;
@@ -1711,7 +1711,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_debug(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1750,7 +1750,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentControllerName(lua_
     cobj = (cocosbuilder::CCBAnimationManager*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentControllerName'", nullptr);
         return 0;
@@ -1758,7 +1758,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_getDocumentControllerName(lua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1792,7 +1792,7 @@ int lua_cocos2dx_cocosbuilder_CCBAnimationManager_constructor(lua_State* tolua_S
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1890,7 +1890,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletName(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletName'", nullptr);
         return 0;
@@ -1898,7 +1898,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletName(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::string arg0;
 
@@ -1940,7 +1940,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNames(lua_State* tolua_S
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNames'", nullptr);
         return 0;
@@ -1948,7 +1948,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNames(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1987,7 +1987,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addDocumentCallbackControlEvents(lua_Sta
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_addDocumentCallbackControlEvents'", nullptr);
         return 0;
@@ -1995,7 +1995,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addDocumentCallbackControlEvents(lua_Sta
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::extension::Control::EventType arg0;
 
@@ -2037,7 +2037,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_setCCBRootPath(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_setCCBRootPath'", nullptr);
         return 0;
@@ -2045,7 +2045,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_setCCBRootPath(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         const char* arg0;
 
@@ -2087,7 +2087,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletNode(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletNode'", nullptr);
         return 0;
@@ -2095,7 +2095,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerOutletNode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Node* arg0;
 
@@ -2137,7 +2137,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNodes(lua_State* tolua_S
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNodes'", nullptr);
         return 0;
@@ -2145,7 +2145,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackNodes(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2184,7 +2184,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readSoundKeyframesForSeq(lua_State* tolu
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_readSoundKeyframesForSeq'", nullptr);
         return 0;
@@ -2192,7 +2192,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readSoundKeyframesForSeq(lua_State* tolu
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocosbuilder::CCBSequence* arg0;
 
@@ -2234,7 +2234,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getCCBRootPath(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getCCBRootPath'", nullptr);
         return 0;
@@ -2242,7 +2242,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getCCBRootPath(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2281,7 +2281,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackControlEvents(lua_State*
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackControlEvents'", nullptr);
         return 0;
@@ -2289,7 +2289,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerCallbackControlEvents(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2328,7 +2328,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNodes(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNodes'", nullptr);
         return 0;
@@ -2336,7 +2336,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNodes(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2375,7 +2375,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readUTF8(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_readUTF8'", nullptr);
         return 0;
@@ -2383,7 +2383,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readUTF8(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2422,7 +2422,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerCallbackControlEvents(lua_State*
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_addOwnerCallbackControlEvents'", nullptr);
         return 0;
@@ -2430,7 +2430,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_addOwnerCallbackControlEvents(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::extension::Control::EventType arg0;
 
@@ -2472,7 +2472,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNames(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNames'", nullptr);
         return 0;
@@ -2480,7 +2480,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getOwnerOutletNames(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2519,7 +2519,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_setAnimationManager(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_setAnimationManager'", nullptr);
         return 0;
@@ -2527,7 +2527,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_setAnimationManager(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocosbuilder::CCBAnimationManager* arg0;
 
@@ -2569,7 +2569,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readCallbackKeyframesForSeq(lua_State* t
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_readCallbackKeyframesForSeq'", nullptr);
         return 0;
@@ -2577,7 +2577,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_readCallbackKeyframesForSeq(lua_State* t
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocosbuilder::CCBSequence* arg0;
 
@@ -2619,7 +2619,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManagersForNodes(lua_State* 
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManagersForNodes'", nullptr);
         return 0;
@@ -2627,7 +2627,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManagersForNodes(lua_State* 
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2666,7 +2666,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getNodesWithAnimationManagers(lua_State*
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getNodesWithAnimationManagers'", nullptr);
         return 0;
@@ -2674,7 +2674,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getNodesWithAnimationManagers(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2713,7 +2713,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManager(lua_State* tolua_S)
     cobj = (cocosbuilder::CCBReader*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManager'", nullptr);
         return 0;
@@ -2721,7 +2721,7 @@ int lua_cocos2dx_cocosbuilder_CCBReader_getAnimationManager(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2949,7 +2949,7 @@ int lua_register_cocos2dx_cocosbuilder_CCBReader(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_cocosbuilder(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"cc",0);
 	tolua_beginmodule(tolua_S,"cc");
 

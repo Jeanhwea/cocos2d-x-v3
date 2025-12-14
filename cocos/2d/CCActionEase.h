@@ -65,7 +65,7 @@ CC_CONSTRUCTOR_ACCESS:
     ActionEase()
     : _inner(nullptr)
     {}
-    
+
     virtual ~ActionEase();
     /**
      @brief Initializes the action.
@@ -556,3 +556,4 @@ private:
 NS_CC_END
 
 #endif // __ACTION_CCEASE_ACTION_H__
+

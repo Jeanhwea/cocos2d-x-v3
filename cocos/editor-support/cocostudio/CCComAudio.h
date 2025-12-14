@@ -48,7 +48,7 @@ public:
      * @lua NA
      */
     virtual ~ComAudio();
-    
+
 public:
     static ComAudio* create();
 
@@ -110,7 +110,7 @@ public:
     const char* getFile();
     void setLoop(bool bLoop);
     bool isLoop();
-    
+
     /// @{
     /// @name implement Playable Protocol
     // play the effect sound path in _filePath
@@ -129,3 +129,4 @@ private:
 }
 
 #endif  // __CC_EXTENTIONS_CCCOMAUDIO_H__
+

@@ -266,12 +266,12 @@ public:
      Built in shader for terrain
      */
     static const char* SHADER_3D_TERRAIN;
-    
+
     /**
      Built in shader for LayerRadialGradient
      */
     static const char* SHADER_LAYER_RADIAL_GRADIENT;
-    
+
     /**
      Built in shader for camera clear
      */
@@ -370,7 +370,7 @@ public:
     /**
     @}
     */
-    
+
     /** @{
      Create or Initializes the GLProgram with a vertex and fragment with bytes array, with shader headers definition(eg. #version ... or #extension ...), with compileTimeDefines(eg. #define ...).
      * @js initWithString.
@@ -601,3 +601,4 @@ NS_CC_END
  @}
  */
 #endif /* __CCGLPROGRAM_H__ */
+

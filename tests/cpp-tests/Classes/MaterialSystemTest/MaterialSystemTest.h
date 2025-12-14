@@ -141,4 +141,3 @@ public:
     cocos2d::CustomCommand _customCommand;
 };
 
-

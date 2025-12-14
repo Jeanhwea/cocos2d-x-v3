@@ -73,18 +73,18 @@ public:
     @return Current language config
     */
     virtual LanguageType getCurrentLanguage() override;
-    
+
     /**
     @brief Get current language iso 639-1 code
     @return Current language iso 639-1 code
     */
     virtual const char * getCurrentLanguageCode() override;
-    
+
     /**
      @brief Get target platform
      */
     virtual Platform getTargetPlatform() override;
-    
+
     /**
      @brief Get application version.
      */
@@ -113,3 +113,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #endif // __CC_APPLICATION_ANDROID_H__
+

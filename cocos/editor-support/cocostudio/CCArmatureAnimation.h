@@ -141,7 +141,7 @@ public:
     /**
      * Go to specified frame and play current movement.
      * You need first switch to the movement you want to play, then call this function.
-     * 
+     *
      * example : playByIndex(0);
      *           gotoAndPlay(0);
      *           playByIndex(1);
@@ -193,25 +193,25 @@ public:
      * To disconnect this event, just setFrameEventCallFunc(nullptr, nullptr);
      */
     CC_DEPRECATED_ATTRIBUTE void setFrameEventCallFunc(cocos2d::Ref *target, SEL_FrameEventCallFunc callFunc);
-    
+
     void setMovementEventCallFunc(const std::function<void(Armature *armature, MovementEventType movementType, const std::string& movementID)>& listener);
     void setFrameEventCallFunc(const std::function<void(Bone *bone, const std::string& frameEventName, int originFrameIndex, int currentFrameIndex)>& listener);
 
-    virtual void setAnimationData(AnimationData *data) 
+    virtual void setAnimationData(AnimationData *data)
     {
         if (_animationData != data)
         {
             CC_SAFE_RETAIN(data);
             CC_SAFE_RELEASE(_animationData);
-            _animationData = data; 
+            _animationData = data;
         }
     }
     virtual AnimationData *getAnimationData() const { return _animationData; }
 
 
-    /** 
+    /**
      * Returns a user assigned Object
-     * 
+     *
      * Similar to userData, but instead of holding a void* it holds an object
      *
      * @return A user assigned Object
@@ -219,7 +219,7 @@ public:
      * @lua NA
      */
     virtual Ref* getUserObject() { return _userObject; }
-    /** 
+    /**
     * @js NA
     * @lua NA
     */
@@ -287,12 +287,12 @@ protected:
     std::vector<Tween*> _tweenList;
 
     bool _ignoreFrameEvent;
-    
+
     std::queue<FrameEvent*> _frameEventQueue;
     std::queue<MovementEvent*> _movementEventQueue;
 
     std::vector<std::string> _movementList;
-    
+
     bool _onMovementList;
     bool _movementListLoop;
     unsigned int _movementIndex;
@@ -320,8 +320,8 @@ protected:
 
     cocos2d::Ref *_movementEventTarget;
     cocos2d::Ref *_frameEventTarget;
-    
-    
+
+
     std::function<void(Armature *armature, MovementEventType movementType, const std::string& movementID)> _movementEventListener;
     std::function<void(Bone *bone, const std::string& frameEventName, int originFrameIndex, int currentFrameIndex)> _frameEventListener;
 };
@@ -329,3 +329,4 @@ protected:
 }
 
 #endif /*__CCANIMATION_H__*/
+

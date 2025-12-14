@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,7 @@ UICheckBoxTests::UICheckBoxTests()
 UICheckBoxTest::UICheckBoxTest()
 : _displayValueLabel(nullptr)
 {
-    
+
 }
 
 UICheckBoxTest::~UICheckBoxTest()
@@ -50,19 +50,19 @@ bool UICheckBoxTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add a label in which the checkbox events will be displayed
         _displayValueLabel = Text::create("No Event", "fonts/Marker Felt.ttf", 32);
         _displayValueLabel->setAnchorPoint(Vec2(0.5f, -1));
         _displayValueLabel->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
         _uiLayer->addChild(_displayValueLabel);
-        
+
         // Add the alert
         Text* alert = Text::create("CheckBox","fonts/Marker Felt.ttf",30 );
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
-        _uiLayer->addChild(alert);        
-        
+        _uiLayer->addChild(alert);
+
         // Create the checkbox
         _checkBox = CheckBox::create("cocosui/check_box_normal.png",
                                               "cocosui/check_box_normal_press.png",
@@ -70,7 +70,7 @@ bool UICheckBoxTest::init()
                                               "cocosui/check_box_normal_disable.png",
                                               "cocosui/check_box_active_disable.png");
         _checkBox->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
-        
+
         _checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
         _uiLayer->addChild(_checkBox);
 
@@ -81,7 +81,7 @@ bool UICheckBoxTest::init()
         auto pMenu1 = Menu::create(item1, nullptr);
         pMenu1->setPosition(Vec2(0, 0));
         this->addChild(pMenu1, 10);
-        
+
         return true;
     }
     return false;
@@ -94,15 +94,15 @@ void UICheckBoxTest::selectedEvent(Ref* pSender,CheckBox::EventType type)
         case CheckBox::EventType::SELECTED:
             _displayValueLabel->setString(StringUtils::format("Selected"));
             break;
-            
+
         case CheckBox::EventType::UNSELECTED:
             _displayValueLabel->setString(StringUtils::format("Unselected"));
             break;
-            
+
         default:
             break;
     }
-    
+
 }
 
 void UICheckBoxTest::printWidgetResources(cocos2d::Ref* sender)
@@ -124,7 +124,7 @@ void UICheckBoxTest::printWidgetResources(cocos2d::Ref* sender)
 UICheckBoxDefaultBehaviorTest::UICheckBoxDefaultBehaviorTest()
 : _displayValueLabel(nullptr)
 {
-    
+
 }
 
 UICheckBoxDefaultBehaviorTest::~UICheckBoxDefaultBehaviorTest()
@@ -136,28 +136,28 @@ bool UICheckBoxDefaultBehaviorTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add a label in which the checkbox events will be displayed
         _displayValueLabel = Text::create("No Event", "fonts/Marker Felt.ttf", 32);
         _displayValueLabel->setAnchorPoint(Vec2(0.5f, -1));
         _displayValueLabel->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
         _uiLayer->addChild(_displayValueLabel);
-        
+
         // Add the alert
         Text* alert = Text::create("Only left two and the last checkbox can be clicked!","fonts/Marker Felt.ttf",20 );
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the checkbox
         CheckBox* checkBox = CheckBox::create("cocosui/check_box_normal.png",
                                               "cocosui/check_box_active.png");
         checkBox->setPosition(Vec2(widgetSize.width / 2.0f - 50, widgetSize.height / 2.0f));
-        
+
         _uiLayer->addChild(checkBox);
-        
-        
+
+
         // Create the checkbox
         CheckBox* checkBox2 = CheckBox::create("cocosui/check_box_normal.png",
                                               "cocosui/check_box_active.png");
@@ -167,8 +167,8 @@ bool UICheckBoxDefaultBehaviorTest::init()
         checkBox2->setContentSize(Size(80,80));
         checkBox2->setName("bigCheckBox");
         _uiLayer->addChild(checkBox2);
-        
-        
+
+
         // Create the checkbox
         CheckBox* checkBoxDisabled = CheckBox::create("cocosui/check_box_normal.png",
                                               "cocosui/check_box_active.png");
@@ -176,7 +176,7 @@ bool UICheckBoxDefaultBehaviorTest::init()
         checkBoxDisabled->setEnabled(false);
         checkBoxDisabled->setBright(false);
         _uiLayer->addChild(checkBoxDisabled);
-        
+
         CheckBox* checkBoxDisabled2 = CheckBox::create("cocosui/check_box_normal.png",
                                               "cocosui/check_box_active.png");
         checkBoxDisabled2->setPosition(Vec2(widgetSize.width / 2.0f + 70, widgetSize.height / 2.0f));
@@ -235,3 +235,4 @@ bool UICheckBoxCopyTest::init()
     }
     return false;
 }
+

@@ -82,13 +82,13 @@ static AppDelegate s_sharedApplication;
         // use this method on ios6
         [window setRootViewController:viewController];
     }
-    
+
     [window makeKeyAndVisible];
 
 #if !defined(CC_TARGET_OS_TVOS)
     [[UIApplication sharedApplication] setStatusBarHidden:true];
 #endif
-    
+
     // IMPORTANT: Setting the GLView should be done after creating the RootViewController
     cocos2d::GLView *glview = cocos2d::GLViewImpl::createWithEAGLView(eaglView);
     cocos2d::Director::getInstance()->setOpenGLView(glview);
@@ -118,7 +118,7 @@ static AppDelegate s_sharedApplication;
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
     /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
      If your application supports background execution, called instead of applicationWillTerminate: when the user quits.
      */
     cocos2d::Application::getInstance()->applicationDidEnterBackground();
@@ -156,3 +156,4 @@ static AppDelegate s_sharedApplication;
 
 
 @end
+

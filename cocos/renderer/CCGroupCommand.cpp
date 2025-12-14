@@ -37,7 +37,7 @@ GroupCommandManager::GroupCommandManager()
 
 GroupCommandManager::~GroupCommandManager()
 {
-    
+
 }
 
 bool GroupCommandManager::init()
@@ -92,3 +92,4 @@ GroupCommand::~GroupCommand()
 }
 
 NS_CC_END
+

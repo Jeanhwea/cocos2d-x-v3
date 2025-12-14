@@ -4,19 +4,19 @@
  *
  * Copyright 2012 Yannick Loriot. All rights reserved.
  * http://yannickloriot.com
- * 
+ *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -85,17 +85,17 @@ public:
     float _sliderXPosition;
     CC_SYNTHESIZE(float, _onPosition, OnPosition)
     CC_SYNTHESIZE(float, _offPosition, OffPosition)
-    
+
     CC_SYNTHESIZE_RETAIN(Texture2D*, _maskTexture, MaskTexture)
     CC_SYNTHESIZE(GLuint, _textureLocation, TextureLocation)
     CC_SYNTHESIZE(GLuint, _maskLocation, MaskLocation)
-    
+
     CC_SYNTHESIZE_RETAIN(Sprite*, _onSprite, OnSprite)
     CC_SYNTHESIZE_RETAIN(Sprite*, _offSprite, OffSprite)
     CC_SYNTHESIZE_RETAIN(Sprite*, _thumbSprite, ThumbSprite)
     CC_SYNTHESIZE_RETAIN(Label*, _onLabel, OnLabel)
     CC_SYNTHESIZE_RETAIN(Label*, _offLabel, OffLabel)
-    
+
     Sprite* _clipperStencil;
 
 protected:
@@ -118,7 +118,7 @@ protected:
                             Sprite *onSprite,
                             Sprite *offSprite,
                             Sprite *thumbSprite,
-                            Label* onLabel, 
+                            Label* onLabel,
                             Label* offLabel);
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(ControlSwitchSprite);
@@ -166,11 +166,11 @@ ControlSwitchSprite::~ControlSwitchSprite()
 }
 
 bool ControlSwitchSprite::initWithMaskSprite(
-    Sprite *maskSprite, 
-    Sprite *onSprite, 
+    Sprite *maskSprite,
+    Sprite *onSprite,
     Sprite *offSprite,
     Sprite *thumbSprite,
-    Label* onLabel, 
+    Label* onLabel,
     Label* offLabel)
 {
     if (Sprite::initWithTexture(maskSprite->getTexture()))
@@ -178,7 +178,7 @@ bool ControlSwitchSprite::initWithMaskSprite(
         // Sets the default values
         _onPosition             = 0;
         _offPosition            = -onSprite->getContentSize().width + thumbSprite->getContentSize().width / 2;
-        _sliderXPosition        = _onPosition; 
+        _sliderXPosition        = _onPosition;
 
         setOnSprite(onSprite);
         setOffSprite(offSprite);
@@ -190,9 +190,9 @@ bool ControlSwitchSprite::initWithMaskSprite(
         _clipperStencil = Sprite::createWithTexture(maskSprite->getTexture());
         _clipperStencil->retain();
         clipper->setAlphaThreshold(0.1f);
-        
+
         clipper->setStencil(_clipperStencil);
-        
+
         clipper->addChild(onSprite);
         clipper->addChild(offSprite);
         if (onLabel) {
@@ -202,7 +202,7 @@ bool ControlSwitchSprite::initWithMaskSprite(
             clipper->addChild(offLabel); // might be null
         }
         clipper->addChild(thumbSprite);
-        
+
         addChild(clipper);
 
         // Set up the mask with the Mask shader
@@ -322,7 +322,7 @@ bool ControlSwitch::initWithMaskSprite(Sprite *maskSprite, Sprite * onSprite, Sp
         CCASSERT(onSprite,      "onSprite must not be nil.");
         CCASSERT(offSprite,     "offSprite must not be nil.");
         CCASSERT(thumbSprite,   "thumbSprite must not be nil.");
-        
+
         _on = true;
 
         _switchSprite = ControlSwitchSprite::create(maskSprite,
@@ -334,7 +334,7 @@ bool ControlSwitch::initWithMaskSprite(Sprite *maskSprite, Sprite * onSprite, Sp
         _switchSprite->retain();
         _switchSprite->setPosition(_switchSprite->getContentSize().width / 2, _switchSprite->getContentSize().height / 2);
         addChild(_switchSprite);
-        
+
         setIgnoreAnchorPointForPosition(false);
         setAnchorPoint(Vec2(0.5f, 0.5f));
         setContentSize(_switchSprite->getContentSize());
@@ -365,7 +365,7 @@ void ControlSwitch::setOn(bool isOn)
 void ControlSwitch::setOn(bool isOn, bool animated)
 {
     _on = isOn;
-    
+
     if (animated) {
         _switchSprite->runAction
         (
@@ -381,7 +381,7 @@ void ControlSwitch::setOn(bool isOn, bool animated)
     else {
         _switchSprite->setSliderXPosition((_on) ? _switchSprite->getOnPosition() : _switchSprite->getOffPosition());
     }
-    
+
     sendActionsForControlEvents(Control::EventType::VALUE_CHANGED);
 }
 
@@ -391,14 +391,14 @@ void ControlSwitch::setEnabled(bool enabled)
     if (_switchSprite != nullptr)
     {
         _switchSprite->setOpacity((enabled) ? 255 : 128);
-    } 
+    }
 }
 
 Vec2 ControlSwitch::locationFromTouch(Touch* pTouch)
 {
     Vec2 touchLocation   = pTouch->getLocation();                      // Get the touch position
     touchLocation           = this->convertToNodeSpace(touchLocation);                  // Convert to the node space of this class
-    
+
     return touchLocation;
 }
 
@@ -408,16 +408,16 @@ bool ControlSwitch::onTouchBegan(Touch *pTouch, Event* /*pEvent*/)
     {
         return false;
     }
-    
+
     _moved = false;
-    
+
     Vec2 location = this->locationFromTouch(pTouch);
-    
+
     _initialTouchXPosition = location.x - _switchSprite->getSliderXPosition();
-    
+
     _switchSprite->getThumbSprite()->setColor(Color3B::GRAY);
     _switchSprite->needsLayout();
-    
+
     return true;
 }
 
@@ -425,22 +425,22 @@ void ControlSwitch::onTouchMoved(Touch *pTouch, Event* /*pEvent*/)
 {
     Vec2 location    = this->locationFromTouch(pTouch);
     location            = Vec2(location.x - _initialTouchXPosition, 0);
-    
+
     _moved              = true;
-    
+
     _switchSprite->setSliderXPosition(location.x);
 }
 
 void ControlSwitch::onTouchEnded(Touch *pTouch, Event* /*pEvent*/)
 {
     Vec2 location   = this->locationFromTouch(pTouch);
-    
+
     _switchSprite->getThumbSprite()->setColor(Color3B::WHITE);
-    
+
     if (hasMoved())
     {
         setOn(!(location.x < _switchSprite->getContentSize().width / 2), true);
-    } 
+    }
     else
     {
         setOn(!_on, true);
@@ -450,9 +450,9 @@ void ControlSwitch::onTouchEnded(Touch *pTouch, Event* /*pEvent*/)
 void ControlSwitch::onTouchCancelled(Touch *pTouch, Event* /*pEvent*/)
 {
     Vec2 location   = this->locationFromTouch(pTouch);
-    
+
     _switchSprite->getThumbSprite()->setColor(Color3B::WHITE);
-    
+
     if (hasMoved())
     {
         setOn(!(location.x < _switchSprite->getContentSize().width / 2), true);
@@ -463,3 +463,4 @@ void ControlSwitch::onTouchCancelled(Touch *pTouch, Event* /*pEvent*/)
 }
 
 NS_CC_EXT_END
+

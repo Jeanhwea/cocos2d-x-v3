@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,18 +47,18 @@ bool UIEditBoxTest::init()
         auto glview = Director::getInstance()->getOpenGLView();
         auto visibleOrigin = glview->getVisibleOrigin();
         auto visibleSize = glview->getVisibleSize();
-        
+
         auto pBg = Sprite::create("Images/HelloWorld.png");
         pBg->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y+visibleSize.height/2));
         addChild(pBg);
-        
+
         _TTFShowEditReturn = Label::createWithSystemFont("No edit control return!", "Arial", 30);
         _TTFShowEditReturn->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y + visibleSize.height - 50));
         addChild(_TTFShowEditReturn);
-        
-        
+
+
         auto editBoxSize = Size(visibleSize.width - 100, visibleSize.height * 0.1);
-        
+
         // top
         std::string pNormalSprite = "extensions/green_edit.png";
         _editName = ui::EditBox::create(editBoxSize + Size(0,40), ui::Scale9Sprite::create(pNormalSprite));
@@ -73,7 +73,7 @@ bool UIEditBoxTest::init()
         _editName->setDelegate(this);
         _editName->setVisible(true);
         addChild(_editName);
-       
+
         Button* button = Button::create("cocosui/animationbuttonnormal.png",
                                         "cocosui/animationbuttonpressed.png");
         auto buttonSize = button->getContentSize();
@@ -97,7 +97,7 @@ bool UIEditBoxTest::init()
         _editPassword->setDelegate(this);
         _editPassword->setVisible(true);
         addChild(_editPassword);
-       
+
         auto buttonPassword = (ui::Button*)button->clone();
         buttonPassword->setTitleText("Multiline");
         buttonPassword->setPosition(_editPassword->getPosition() + Vec2(editBoxSize.width/2 + buttonSize.width/2, 0 ));
@@ -105,14 +105,14 @@ bool UIEditBoxTest::init()
             _editPassword->setInputMode(ui::EditBox::InputMode::ANY);
         });
         addChild(buttonPassword);
-        
+
         // bottom
         // Add an intermediate Node to test scaling and content size relative to world
         _editEmailParent = Node::create();
 //        _editEmailParent->setScale(0.5);
         _editEmailParent->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2-50, visibleOrigin.y+visibleSize.height/4));
         addChild(_editEmailParent);
-                    
+
         auto bottomButtonSize = Size(editBoxSize.width, editBoxSize.height + 10);
         _editEmail = ui::EditBox::create(bottomButtonSize, "extensions/yellow_edit.png");
         _editEmail->setPlaceHolder("Email:");
@@ -123,7 +123,7 @@ bool UIEditBoxTest::init()
         //It is required to use setFontSize and setContentSize after adding it to the hierarchy, so that native EditBox get the right size
         _editEmail->setFontSize(30);
         _editEmail->setContentSize(bottomButtonSize);
-        
+
         auto buttonEmail = (ui::Button*)button->clone();
         buttonEmail->setTitleText("Multiline");
         buttonEmail->setPosition(_editEmailParent->getPosition() + Vec2(editBoxSize.width/2 + buttonSize.width/2, 0 ));
@@ -131,7 +131,7 @@ bool UIEditBoxTest::init()
             _editEmail->setInputMode(ui::EditBox::InputMode::ANY);
         });
         addChild(buttonEmail);
-        
+
         return true;
     }
     return false;
@@ -161,7 +161,7 @@ void UIEditBoxTest::editBoxTextChanged(cocos2d::ui::EditBox* editBox, const std:
 void UIEditBoxTest::editBoxReturn(ui::EditBox* editBox)
 {
     log("editBox %p was returned !",editBox);
-    
+
     if (_editName == editBox)
     {
         _TTFShowEditReturn->setString("Name EditBox return !");
@@ -185,18 +185,18 @@ bool UIEditBoxTestToggleVisibility::init()
         auto glview = Director::getInstance()->getOpenGLView();
         auto visibleOrigin = glview->getVisibleOrigin();
         auto visibleSize = glview->getVisibleSize();
-        
+
         auto pBg = Sprite::create("Images/HelloWorld.png");
         pBg->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y+visibleSize.height/2));
         addChild(pBg);
-        
+
         _TTFShowEditReturn = Label::createWithSystemFont("No edit control return!", "Arial", 30);
         _TTFShowEditReturn->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2, visibleOrigin.y + visibleSize.height - 50));
         addChild(_TTFShowEditReturn);
-        
-        
+
+
         auto editBoxSize = Size(visibleSize.width - 100, visibleSize.height * 0.1);
-        
+
         // top
         std::string pNormalSprite = "extensions/green_edit.png";
         _editName = ui::EditBox::create(editBoxSize + Size(0,40), ui::Scale9Sprite::create(pNormalSprite));
@@ -211,7 +211,7 @@ bool UIEditBoxTestToggleVisibility::init()
         _editName->setDelegate(this);
         _editName->setVisible(true);
         addChild(_editName);
-        
+
         Button* button = Button::create("cocosui/animationbuttonnormal.png",
                                         "cocosui/animationbuttonpressed.png");
         auto buttonSize = button->getContentSize();
@@ -221,7 +221,7 @@ bool UIEditBoxTestToggleVisibility::init()
             _editName->setVisible(!_editName->isVisible());
         });
         addChild(button);
-        
+
         // middle
         _editPassword = ui::EditBox::create(editBoxSize, "extensions/orange_edit.png");
         _editPassword->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2-50, visibleOrigin.y+visibleSize.height/2));
@@ -234,7 +234,7 @@ bool UIEditBoxTestToggleVisibility::init()
         _editPassword->setDelegate(this);
         _editPassword->setVisible(true);
         addChild(_editPassword);
-        
+
         auto buttonPassword = (ui::Button*)button->clone();
         buttonPassword->setTitleText("Toggle Visibility");
         buttonPassword->setPosition(_editPassword->getPosition() + Vec2(editBoxSize.width/2 + buttonSize.width/2, 0 ));
@@ -242,14 +242,14 @@ bool UIEditBoxTestToggleVisibility::init()
             _editPassword->setVisible(!_editPassword->isVisible());
         });
         addChild(buttonPassword);
-        
+
         // bottom
         // Add an intermediate Node to test scaling and content size relative to world
         _editEmailParent = Node::create();
         //        _editEmailParent->setScale(0.5);
         _editEmailParent->setPosition(Vec2(visibleOrigin.x+visibleSize.width/2-50, visibleOrigin.y+visibleSize.height/4));
         addChild(_editEmailParent);
-        
+
         auto bottomButtonSize = Size(editBoxSize.width, editBoxSize.height + 10);
         _editEmail = ui::EditBox::create(bottomButtonSize, "extensions/yellow_edit.png");
         _editEmail->setPlaceHolder("Email:");
@@ -260,7 +260,7 @@ bool UIEditBoxTestToggleVisibility::init()
         //It is required to use setFontSize and setContentSize after adding it to the hierarchy, so that native EditBox get the right size
         _editEmail->setFontSize(30);
         _editEmail->setContentSize(bottomButtonSize);
-        
+
         auto buttonEmail = (ui::Button*)button->clone();
         buttonEmail->setTitleText("Toggle Visibility");
         buttonEmail->setPosition(_editEmailParent->getPosition() + Vec2(editBoxSize.width/2 + buttonSize.width/2, 0 ));
@@ -268,7 +268,7 @@ bool UIEditBoxTestToggleVisibility::init()
             _editEmail->setVisible(!_editEmail->isVisible());
         });
         addChild(buttonEmail);
-        
+
         return true;
     }
     return false;
@@ -292,7 +292,7 @@ void UIEditBoxTestToggleVisibility::editBoxTextChanged(cocos2d::ui::EditBox* edi
 void UIEditBoxTestToggleVisibility::editBoxReturn(ui::EditBox* editBox)
 {
     log("editBox %p was returned !",editBox);
-    
+
     if (_editName == editBox)
     {
         _TTFShowEditReturn->setString("Name EditBox return !");
@@ -313,12 +313,12 @@ bool UIEditBoxTestTextHorizontalAlignment::init() {
     if (!UIScene::init()) {
       return false;
     }
-  
+
     const auto glview = Director::getInstance()->getOpenGLView();
     const auto visibleOrigin = glview->getVisibleOrigin();
     const auto visibleSize = glview->getVisibleSize();
     const auto editBoxSize = Size(visibleSize.width - 100, visibleSize.height * 0.1);
-  
+
     const auto createEditBox = [this, editBoxSize, visibleOrigin, visibleSize](const std::string& text,
                                       const TextHAlignment alignment,
                                       const int position_y) {
@@ -334,11 +334,11 @@ bool UIEditBoxTestTextHorizontalAlignment::init() {
         editbox->setReturnType(ui::EditBox::KeyboardReturnType::DONE);
         addChild(editbox);
     };
-  
+
     createEditBox("horizontal left text", TextHAlignment::LEFT, visibleOrigin.y+visibleSize.height*3/4);
     createEditBox("horizontal center text", TextHAlignment::CENTER, visibleOrigin.y+visibleSize.height/2);
     createEditBox("horizontal right text", TextHAlignment::RIGHT, visibleOrigin.y+visibleSize.height/4);
-  
+
     return true;
 }
 
@@ -387,3 +387,4 @@ bool UIEditBoxTestPressedAndDisabled::init() {
 
     return true;
 }
+

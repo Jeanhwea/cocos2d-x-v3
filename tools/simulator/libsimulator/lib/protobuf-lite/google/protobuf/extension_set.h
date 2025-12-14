@@ -1005,3 +1005,4 @@ class ExtensionIdentifier {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_EXTENSION_SET_H__
+

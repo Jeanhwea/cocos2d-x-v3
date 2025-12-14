@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,7 +35,7 @@ const float CCPUBoxEmitter::DEFAULT_HEIGHT = 100.0f;
 const float CCPUBoxEmitter::DEFAULT_DEPTH = 100.0f;
 
 //-----------------------------------------------------------------------
-CCPUBoxEmitter::CCPUBoxEmitter() : 
+CCPUBoxEmitter::CCPUBoxEmitter() :
     PUEmitter(),
     _height(DEFAULT_HEIGHT),
     _width(DEFAULT_WIDTH),
@@ -87,7 +87,7 @@ void CCPUBoxEmitter::initParticlePosition(PUParticle3D* particle)
     {
         Mat4 rotMat;
         Mat4::createRotation(static_cast<PUParticleSystem3D *>(_particleSystem)->getDerivedOrientation(), &rotMat);
-        particle->position = getDerivedPosition() + 
+        particle->position = getDerivedPosition() +
             rotMat *
             (/*_emitterScale **/
             Vec3(CCRANDOM_MINUS1_1() * _xRange * _emitterScale.x,
@@ -96,7 +96,7 @@ void CCPUBoxEmitter::initParticlePosition(PUParticle3D* particle)
     }
     //else
     //{
-    //	particle->position = getDerivedPosition() + 
+    //	particle->position = getDerivedPosition() +
     //		_emitterScale *
     //		Vector3(Math::SymmetricRandom() * _xRange,
     //		Math::SymmetricRandom() * _yRange,
@@ -134,3 +134,4 @@ CCPUBoxEmitter* CCPUBoxEmitter::clone()
 }
 
 NS_CC_END
+

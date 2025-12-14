@@ -37,7 +37,7 @@ ConnectWaitLayer::ConnectWaitLayer()
     int designWidth = 1280;
     int designHeight = 800;
     _imagebg = new Image();
-    
+
     if (ConfigParser::getInstance()->isLanscape())
     {
         _imagebg->initWithImageData(__landscapePngData, sizeof(__landscapePngData));
@@ -140,7 +140,7 @@ ConnectWaitLayer::ConnectWaitLayer()
         Vec2 point = target->convertToNodeSpace(Director::getInstance()->convertToGL(touch->getLocationInView()));
         auto rect = Rect(0, 0, target->getContentSize().width, target->getContentSize().height);
         if (!rect.containsPoint(point)) return;
-        
+
         RuntimeEngine::getInstance()->setupRuntime();
         RuntimeEngine::getInstance()->startScript("");
     };
@@ -165,3 +165,4 @@ void ConnectWaitLayer::update(float fDelta)
     }
     _labelUploadFile->setString(transferTip);
 }
+

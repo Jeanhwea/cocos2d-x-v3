@@ -95,7 +95,7 @@ public class Cocos2dxHttpURLConnection
     static void setVerifySSL(HttpURLConnection urlConnection, String sslFilename) {
         if(!(urlConnection instanceof HttpsURLConnection))
             return;
-        
+
 
         HttpsURLConnection httpsURLConnection = (HttpsURLConnection)urlConnection;
 
@@ -255,7 +255,7 @@ public class Cocos2dxHttpURLConnection
 
     static byte[] getResponseContent(HttpURLConnection http) {
         InputStream in;
-        try {            
+        try {
             in = http.getInputStream();
             String contentEncoding = http.getContentEncoding();
             if (contentEncoding != null) {
@@ -265,7 +265,7 @@ public class Cocos2dxHttpURLConnection
                 else if(contentEncoding.equalsIgnoreCase("deflate")){
                     in = new InflaterInputStream(http.getInputStream());
                 }
-            }       
+            }
         } catch (IOException e) {
             in = http.getErrorStream();
         } catch (Exception e) {
@@ -290,7 +290,7 @@ public class Cocos2dxHttpURLConnection
 
         return null;
     }
-    
+
     static int getResponseCode(HttpURLConnection http) {
         int code = 0;
         try {
@@ -402,3 +402,4 @@ public class Cocos2dxHttpURLConnection
         return Long.toString(milliseconds);
     }
 }
+

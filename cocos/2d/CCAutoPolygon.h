@@ -65,14 +65,14 @@ public:
     PolygonInfo(const PolygonInfo& other);
     //  end of creators group
     /// @}
-    
+
     /**
      * Copy the member of the other PolygonInfo
      * @param other     another PolygonInfo to be copied
      */
     PolygonInfo& operator= (const PolygonInfo &other);
     ~PolygonInfo();
-    
+
     /**
      * set the data to be a pointer to a quad
      * the member verts will not be released when this PolygonInfo destructs
@@ -103,7 +103,7 @@ public:
      * @return number of vertices
      */
     unsigned int getVertCount() const;
-    
+
     /**
      * get triangles count
      * @return number of triangles
@@ -112,7 +112,7 @@ public:
 
     /** @deprecated Use method getTrianglesCount() instead */
     CC_DEPRECATED_ATTRIBUTE unsigned int getTriaglesCount() const;
-    
+
     /**
      * get sum of all triangle area size
      * @return sum of all triangle area size
@@ -153,14 +153,14 @@ public:
      * @return  an AutoPolygon object;
      */
     AutoPolygon(const std::string &filename);
-    
+
     /**
      * Destructor of AutoPolygon.
      */
     ~AutoPolygon();
-    
+
     /**
-     * trace all the points along the outline of the image, 
+     * trace all the points along the outline of the image,
      * @warning must create AutoPolygon with filename to use this function
      * @param   rect    a texture rect for specify an area of the image
      * @param   threshold   the value when alpha is greater than this value will be counted as opaque, default to 0.0
@@ -172,7 +172,7 @@ public:
      * @endcode
      */
      std::vector<Vec2> trace(const cocos2d::Rect& rect, float threshold = 0.0f);
-    
+
     /**
      * reduce the amount of points so its faster for GPU to process and draw
      * based on Ramer-Douglas-Peucker algorithm
@@ -186,7 +186,7 @@ public:
      * @endcode
      */
     std::vector<Vec2> reduce(const std::vector<Vec2>& points, const Rect& rect, float epsilon = 2.0f);
-    
+
     /**
      * expand the points along their edge, useful after you reduce the points that cuts into the sprite
      * using ClipperLib
@@ -200,7 +200,7 @@ public:
      * @endcode
      */
     std::vector<Vec2> expand(const std::vector<Vec2>& points, const Rect& rect, float epsilon);
-    
+
     /**
      * Triangulate the input points into triangles for rendering
      * using poly2tri
@@ -213,7 +213,7 @@ public:
      * @endcode
      */
     TrianglesCommand::Triangles triangulate(const std::vector<Vec2>& points);
-    
+
     /**
      * calculate the UV coordinates for each points based on a texture rect
      * @warning This method requires the AutoPolygon object to know the texture file dimension
@@ -227,7 +227,7 @@ public:
      * @endcode
      */
     void calculateUV(const Rect& rect, V3F_C4B_T2F* verts, ssize_t count);
-    
+
     /**
      * a helper function, packing trace, reduce, expand, triangulate and calculate uv in one function
      * @param   rect    texture rect, use Rect::ZERO for the size of the texture, default is Rect::ZERO
@@ -243,7 +243,7 @@ public:
      * @endcode
      */
     PolygonInfo generateTriangles(const Rect& rect = Rect::ZERO, float epsilon = 2.0f, float threshold = 0.05f);
-    
+
     /**
      * a helper function, packing autoPolygon creation, trace, reduce, expand, triangulate and calculate uv in one function
      * @warning if you want to repetitively generate polygons, consider create an AutoPolygon object, and use generateTriangles function, as it only reads the file once
@@ -273,7 +273,7 @@ protected:
 
     //real rect is the size that is in scale with the texture file
     Rect getRealRect(const Rect& rect);
-    
+
     Image* _image;
     unsigned char * _data;
     std::string _filename;
@@ -286,3 +286,4 @@ protected:
 NS_CC_END
 
 #endif // #ifndef COCOS_2D_CCAUTOPOLYGON_H__
+

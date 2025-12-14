@@ -3,17 +3,17 @@
 *
 * Copyright (c) 2010-2011 - cocos2d-x community
 * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
-* 
+*
 * Portions Copyright (c) Microsoft Open Technologies, Inc.
 * All Rights Reserved
-* 
-* Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. 
-* You may obtain a copy of the License at 
-* 
-* http://www.apache.org/licenses/LICENSE-2.0 
-* 
-* Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an 
-* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. 
+*
+* Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+* http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an
+* "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 * See the License for the specific language governing permissions and limitations under the License.
 */
 
@@ -63,7 +63,7 @@ void Audio::Initialize()
 void Audio::CreateResources()
 {
     do
-    {	
+    {
         if (FAILED(XAudio2Create(&m_musicEngine)))
         {
             m_engineExperiencedCriticalError = true;
@@ -102,7 +102,7 @@ void Audio::CreateResources()
             m_engineExperiencedCriticalError = true;
             break;
         }
-    
+
         m_soundEffectEngineCallback.Initialize(this);
         m_soundEffectEngine->RegisterForCallbacks(&m_soundEffectEngineCallback);
 
@@ -131,12 +131,12 @@ unsigned int Audio::Hash(const char *key)
 
 void Audio::ReleaseResources()
 {
-	if (m_musicMasteringVoice != nullptr) 
+	if (m_musicMasteringVoice != nullptr)
     {
         m_musicMasteringVoice->DestroyVoice();
         m_musicMasteringVoice = nullptr;
     }
-	if (m_soundEffectMasteringVoice != nullptr) 
+	if (m_soundEffectMasteringVoice != nullptr)
     {
         m_soundEffectMasteringVoice->DestroyVoice();
         m_soundEffectMasteringVoice = nullptr;
@@ -157,7 +157,7 @@ void Audio::ReleaseResources()
 }
 
 void Audio::Start()
-{	 
+{
     if (m_engineExperiencedCriticalError)
     {
         return;
@@ -446,15 +446,15 @@ void Audio::StopAllSoundEffects(bool bReleaseData)
             StopSoundEffect(iter->first);
             if (bReleaseData)
             {
-                UnloadSoundEffect(iter->first);  
-            }            
+                UnloadSoundEffect(iter->first);
+            }
         }
 	}
     if (bReleaseData)
     {
         for (iter = m_soundEffects.begin(); iter != m_soundEffects.end();)
         {
-            if (iter->first != m_backgroundID){                
+            if (iter->first != m_backgroundID){
                 m_soundEffects.erase(iter++);
             }
             else
@@ -462,7 +462,7 @@ void Audio::StopAllSoundEffects(bool bReleaseData)
                 iter++;
             }
         }
-    }  
+    }
 }
 
 bool Audio::IsSoundEffectStarted(unsigned int sound)
@@ -591,12 +591,11 @@ void Audio::UnloadSoundEffect(unsigned int sound)
 	m_soundEffects[sound].m_soundEffectSourceVoice = nullptr;
 	m_soundEffects[sound].m_soundEffectStarted = false;
     m_soundEffects[sound].m_soundEffectPaused = false;
-    ZeroMemory(&m_soundEffects[sound].m_audioBuffer, sizeof(m_soundEffects[sound].m_audioBuffer));    
+    ZeroMemory(&m_soundEffects[sound].m_audioBuffer, sizeof(m_soundEffects[sound].m_audioBuffer));
 }
 
 void Audio::RemoveFromList( unsigned int sound )
 {
     m_soundEffects.erase(sound);
 }
-
 

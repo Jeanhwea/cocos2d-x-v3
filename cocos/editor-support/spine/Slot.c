@@ -80,3 +80,4 @@ void spSlot_setToSetupPose (spSlot* self) {
 		spSlot_setAttachment(self, attachment);
 	}
 }
+

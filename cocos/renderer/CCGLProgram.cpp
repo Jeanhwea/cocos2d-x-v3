@@ -1029,3 +1029,4 @@ inline void GLProgram::clearHashUniforms()
 }
 
 NS_CC_END
+

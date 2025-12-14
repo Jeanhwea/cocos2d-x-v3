@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,7 +39,7 @@ void PUAffectorTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode 
 {
     PUObjectAbstractNode* obj = reinterpret_cast<PUObjectAbstractNode*>(node);
     PUObjectAbstractNode* parent = obj->parent ? reinterpret_cast<PUObjectAbstractNode*>(obj->parent) : 0;
-    
+
     // The name of the obj is the type of the affector
     // Remark: This can be solved by using a listener, so that obj->values is filled with type + name. Something for later
     std::string type;
@@ -47,7 +47,7 @@ void PUAffectorTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode 
     {
         type = obj->name;
     }
-    
+
     //// Get the factory
     //ParticleAffectorFactory* particleAffectorFactory = ParticleSystemManager::getSingletonPtr()->getAffectorFactory(type);
     //if (!particleAffectorFactory)
@@ -73,7 +73,7 @@ void PUAffectorTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode 
         PUParticleSystem3D* system = static_cast<PUParticleSystem3D*>(parent->context);
         system->addAffector(_affector);
     }
-    
+
     // The first value is the (optional) name
     std::string name;
     if(!obj->values.empty())
@@ -81,10 +81,10 @@ void PUAffectorTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode 
         getString(*obj->values.front(), &name);
         _affector->setName(name);
     }
-    
+
     // Set it in the context
     obj->context = _affector;
-    
+
     // Run through properties
     for(PUAbstractNodeList::iterator i = obj->children.begin(); i != obj->children.end(); ++i)
     {
@@ -192,3 +192,4 @@ void PUAffectorTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode 
 }
 
 NS_CC_END
+

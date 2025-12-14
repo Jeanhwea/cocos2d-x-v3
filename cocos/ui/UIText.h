@@ -324,13 +324,13 @@ public:
     * Return current effect color value.
     */
     Color4B getEffectColor() const;
-    
+
     /**
      * Provides a way to treat each character like a Sprite.
      * @warning No support system font.
      */
     virtual Sprite * getLetter(int lettetIndex);
-    
+
     /**
      * Sets the source blending function.
      *
@@ -339,7 +339,7 @@ public:
      * @lua NA
      */
     virtual void setBlendFunc(const BlendFunc &blendFunc) override;
-    
+
     /**
      * Returns the blending function that is currently being used.
      *
@@ -386,3 +386,4 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__CocoGUI__Label__) */
+

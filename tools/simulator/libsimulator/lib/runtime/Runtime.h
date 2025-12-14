@@ -61,7 +61,7 @@ class CC_LIBSIM_DLL RuntimeEngine
 {
 public:
     static RuntimeEngine* getInstance();
-    
+
     //
     void setupRuntime();
     void setProjectConfig(const ProjectConfig &config);
@@ -71,20 +71,20 @@ public:
     void start();
     void end();
     void setEventTrackingEnable(bool enable);
-    
+
     void addRuntime(RuntimeProtocol *runtime, int type);
     RuntimeProtocol *getRuntime();
-    
+
 private:
     RuntimeEngine();
     bool startNetwork();
     void showUI();
     void updateConfigParser();
-    
-    // 
+
+    //
     void trackEvent(const std::string &eventName);
     void trackLaunchEvent();
-    
+
     RuntimeProtocol *_runtime;  // weak ref
     ProjectConfig _project;
     bool _eventTrackingEnable;  // false default

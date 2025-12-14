@@ -198,3 +198,4 @@ VertexAttribBinding* Pass::getVertexAttributeBinding() const
 
 
 NS_CC_END
+

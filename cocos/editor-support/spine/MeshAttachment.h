@@ -89,3 +89,4 @@ typedef spMeshAttachment MeshAttachment;
 #endif
 
 #endif /* SPINE_MESHATTACHMENT_H_ */
+

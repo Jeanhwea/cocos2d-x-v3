@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,14 +40,14 @@ public:
     SkeletonAnimationCullingFix()
     : SkeletonAnimation()
     {}
-    
+
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t transformFlags) override
     {
         glDisable(GL_CULL_FACE);
         SkeletonAnimation::draw(renderer, transform, transformFlags);
         RenderState::StateBlock::invalidate(cocos2d::RenderState::StateBlock::RS_ALL_ONES);
     }
-    
+
     static SkeletonAnimationCullingFix* createWithFile (const std::string& skeletonDataFile, const std::string& atlasFile, float scale = 1)
     {
         SkeletonAnimationCullingFix* node = new SkeletonAnimationCullingFix();
@@ -76,40 +76,40 @@ class Scene3DTestScene : public TestCase
 {
 public:
     CREATE_FUNC(Scene3DTestScene);
-    
+
     bool onTouchBegan(Touch* touch, Event* event) { return true; }
     void onTouchEnd(Touch*, Event*);
-    
+
 private:
     Scene3DTestScene();
     virtual ~Scene3DTestScene();
     bool init() override;
-    
+
     void createWorld3D();
     void createUI();
     void createPlayerDlg();
     void createDetailDlg();
     void createDescDlg();
-    
+
     // init in init()
     std::vector<Camera *> _gameCameras;
     Node* _worldScene;
     Node* _dlgScene;
     Node* _osdScene;
-    
+
     // init in createWorld3D()
     TextureCube*        _textureCube;
     Skybox*             _skyBox;
     cocos2d::Terrain*   _terrain;
     Player *            _player;
     Node*               _monsters[2];
-    
+
     // init in createUI()
     Node* _playerItem;
     Node* _detailItem;
     Node* _descItem;
     Node* _ui;
-    
+
     // init in createPlayerDlg()
     Node* _playerDlg;
     // init in createDetailDlg()
@@ -127,11 +127,11 @@ private:
         SHOES,
         MAX_TYPE,
     };
-    
+
     std::vector<std::string> _skins[(int)SkinType::MAX_TYPE]; //all skins
     int                      _curSkin[(int)SkinType::MAX_TYPE]; //current skin index
     cocos2d::Sprite3D* _reskinGirl;
-    
+
     // for capture screen
     static const int SNAPSHOT_TAG = 119;
     std::string _snapshotFile;
@@ -172,11 +172,11 @@ enum GAME_CAMERAS_ORDER {
 /*
  Defined s_CF and s_CM to avoid force conversion when call Camera::setCameraFlag
  and Node::setCameraMask.
- 
+
  Usage:
  -   Camera::setCameraFlag(s_CF[<SCENE_LAYER_INDEX>]);
  -   Node::setCameraMask(s_CM[<SCENE_LAYER_INDEX>]);
- 
+
  Note:
  For LAYER_DEFAULT, we use CameraFlag::DEFAULT, thus we don't need to set
  camera flag/mask for this layer, for other layers we must to set camera
@@ -256,7 +256,7 @@ bool Scene3DTestScene::init()
         _gameCameras.resize(CAMERA_COUNT);
         auto visibleSize = Director::getInstance()->getVisibleSize();
         Camera *ca = nullptr;   // temp variable
-        
+
         ////////////////////////////////////////////////////////////////////////
         // create world 3D scene, this scene has two camera
         _worldScene = Node::create();
@@ -292,7 +292,7 @@ bool Scene3DTestScene::init()
         ca->setRotation3D(Vec3(-45,0,0));
         _worldScene->setPosition3D(s_scenePositons[SCENE_WORLD]);
         this->addChild(_worldScene);
-        
+
         ////////////////////////////////////////////////////////////////////////
         // test scene is UI scene, use default camera
         // use the default camera to look 2D base UI layer
@@ -302,7 +302,7 @@ bool Scene3DTestScene::init()
         // create UI element and add to ui scene
         createUI();
         this->addChild(_ui);
-        
+
         ////////////////////////////////////////////////////////////////////////
         // create dialog scene, this scene has two dialog and three cameras
         _dlgScene = Node::create();
@@ -372,7 +372,7 @@ bool Scene3DTestScene::init()
 
         ret = true;
     } while (0);
-    
+
     return ret;
 }
 
@@ -383,7 +383,7 @@ void Scene3DTestScene::createWorld3D()
     auto shader = GLProgram::createWithFilenames("Sprite3DTest/cube_map.vert",
                                                  "Sprite3DTest/cube_map.frag");
     auto state = GLProgramState::create(shader);
-    
+
     // create the second texture for cylinder
     _textureCube = TextureCube::create("Sprite3DTest/skybox/left.jpg",
                                        "Sprite3DTest/skybox/right.jpg",
@@ -398,10 +398,10 @@ void Scene3DTestScene::createWorld3D()
     tRepeatParams.wrapS = GL_MIRRORED_REPEAT;
     tRepeatParams.wrapT = GL_MIRRORED_REPEAT;
     _textureCube->setTexParameters(tRepeatParams);
-    
+
     // pass the texture sampler to our custom shader
     state->setUniformTexture("u_cubeTex", _textureCube);
-    
+
     // add skybox
     _skyBox = Skybox::create();
     _skyBox->setCameraMask(s_CM[LAYER_BACKGROUND]);
@@ -421,7 +421,7 @@ void Scene3DTestScene::createWorld3D()
 
     _terrain->setSkirtHeightRatio(3);
     _terrain->setLODDistance(64,128,192);
-    
+
     // create player
     _player = Player::create("Sprite3DTest/girl.c3b",
                              _gameCameras[CAMERA_WORLD_3D_SCENE],
@@ -429,7 +429,7 @@ void Scene3DTestScene::createWorld3D()
     _player->setScale(0.08f);
     _player->setPositionY(_terrain->getHeight(_player->getPositionX(),
                                               _player->getPositionZ()));
-    
+
     auto animation = Animation3D::create("Sprite3DTest/girl.c3b","Take 001");
     if (animation)
     {
@@ -446,14 +446,14 @@ void Scene3DTestScene::createWorld3D()
     auto moveby1 = MoveBy::create(2.0f, Vec2(-50.0f, 0.0f));
     rootps->runAction(RepeatForever::create(Sequence::create(moveby, moveby1, nullptr)));
     rootps->startParticleSystem();
-    
+
     _player->addChild(rootps, 0);
-    
+
     // add BillBoard for test blend
     auto billboard = BillBoard::create("Images/btn-play-normal.png");
     billboard->setPosition3D(Vec3(0,180,0));
     _player->addChild(billboard);
-    
+
     // create two Sprite3D monster, one is transparent
     auto monster = Sprite3D::create("Sprite3DTest/orc.c3b");
     monster->setRotation3D(Vec3(0,180,0));
@@ -469,7 +469,7 @@ void Scene3DTestScene::createWorld3D()
 void Scene3DTestScene::createUI()
 {
     _ui = Layer::create();
-    
+
     // first, add menu to ui
     // create player button
     auto showPlayerDlgItem = MenuItemImage::create("Images/Pea.png",
@@ -479,7 +479,7 @@ void Scene3DTestScene::createUI()
     });
     showPlayerDlgItem->setName("showPlayerDlgItem");
     showPlayerDlgItem->setPosition(VisibleRect::left().x + 30, VisibleRect::top().y - 30);
-    
+
     // create description button
     TTFConfig ttfConfig("fonts/arial.ttf", 20);
     auto descItem = MenuItemLabel::create(Label::createWithTTF(ttfConfig, "Description"),
@@ -506,7 +506,7 @@ void Scene3DTestScene::createUI()
                              nullptr);
     menu->setPosition(Vec2::ZERO);
     _ui->addChild(menu);
-    
+
     // second, add cameras control button to ui
     auto createCameraButton = [this](int tag, const char* text)-> Node *
     {
@@ -536,7 +536,7 @@ void Scene3DTestScene::createUI()
         }
         return cb;
     };
-    
+
     Vec2 pos = VisibleRect::leftBottom();
     pos.y += 30;
     float stepY = 25;
@@ -563,11 +563,11 @@ void Scene3DTestScene::createUI()
 void Scene3DTestScene::createPlayerDlg()
 {
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(s_s9s_ui_plist);
-    
+
     Size dlgSize(190, 240);
     Vec2 pos = VisibleRect::center();
     float margin = 10;
-    
+
     // first, create dialog ui part, include background, title and buttons
     _playerDlg = ui::Scale9Sprite::createWithSpriteFrameName("button_actived.png");
     _playerDlg->setContentSize(dlgSize);
@@ -575,12 +575,12 @@ void Scene3DTestScene::createPlayerDlg()
     pos.y -= margin;
     pos.x -= margin;
     _playerDlg->setPosition(pos);
-    
+
     // title
     auto title = Label::createWithTTF("Player Dialog","fonts/arial.ttf",16);
     title->setPosition(dlgSize.width / 2, dlgSize.height - margin * 2);
     _playerDlg->addChild(title);
-    
+
     // player background
     Size bgSize(110, 180);
     Vec2 bgPos(margin, dlgSize.height / 2 - margin);
@@ -599,7 +599,7 @@ void Scene3DTestScene::createPlayerDlg()
     itemBg->setAnchorPoint(itemAnchor);
     itemBg->setPosition(itemPos);
     _playerDlg->addChild(itemBg);
-    
+
     auto item = ui::Button::create("crystal.png", "", "", ui::Widget::TextureResType::PLIST);
     item->setTitleText("Crystal");
     item->setScale(1.5);
@@ -609,7 +609,7 @@ void Scene3DTestScene::createPlayerDlg()
         this->_detailDlg->setVisible(!this->_detailDlg->isVisible());
     });
     _playerDlg->addChild(item);
-    
+
     // second, add 3d actor, which on dialog layer
     std::string filename = "Sprite3DTest/girl.c3b";
     auto girl = Sprite3D::create(filename);
@@ -644,7 +644,7 @@ void Scene3DTestScene::createPlayerDlg()
     zoomOut->setName("Zoom Out");
     zoomOut->setCameraMask(s_CM[LAYER_TOP]);
     playerBg->addChild(zoomOut);
-    
+
     // forth, add slider bar
     ui::Slider* slider = ui::Slider::create("cocosui/slidbar.png", "cocosui/sliderballnormal.png");
     slider->setScale9Enabled(true);
@@ -662,11 +662,11 @@ void Scene3DTestScene::createPlayerDlg()
 void Scene3DTestScene::createDetailDlg()
 {
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(s_s9s_ui_plist);
-    
+
     Size dlgSize(190, 240);
     Vec2 pos = VisibleRect::center();
     float margin = 10;
-    
+
     // create dialog
     // use Scale9Sprite as background, it won't swallow touch event
     _detailDlg = ui::Scale9Sprite::createWithSpriteFrameName("button_actived.png");
@@ -676,13 +676,13 @@ void Scene3DTestScene::createDetailDlg()
     pos.y -= margin;
     pos.x += margin;
     _detailDlg->setPosition(pos);
-    
+
     // title
     auto title = Label::createWithTTF("Detail Dialog","fonts/arial.ttf",16);
     title->setPosition(dlgSize.width / 2, dlgSize.height - margin * 2);
     _detailDlg->addChild(title);
 
-    
+
     // add capture screen buttons
     ui::Button* capture = ui::Button::create("cocosui/animationbuttonnormal.png",
                                              "cocosui/animationbuttonpressed.png");
@@ -712,7 +712,7 @@ void Scene3DTestScene::createDetailDlg()
     capture->setTitleText("Take Snapshot");
     capture->setName("Take Snapshot");
     _detailDlg->addChild(capture);
-    
+
     ui::Button* remove = ui::Button::create("cocosui/animationbuttonnormal.png",
                                             "cocosui/animationbuttonpressed.png");
     remove->setScale(0.5);
@@ -725,13 +725,13 @@ void Scene3DTestScene::createDetailDlg()
     remove->setTitleText("Del Snapshot");
     remove->setName("Del Snapshot");
     _detailDlg->addChild(remove);
-    
+
     // add a spine ffd animation on it
     auto skeletonNode =
         SkeletonAnimationCullingFix::createWithFile("spine/goblins-pro.json", "spine/goblins.atlas", 1.5f);
     skeletonNode->setAnimation(0, "walk", true);
     skeletonNode->setSkin("goblin");
-    
+
     skeletonNode->setScale(0.25);
     Size windowSize = Director::getInstance()->getWinSize();
     skeletonNode->setPosition(Vec2(dlgSize.width / 2, remove->getContentSize().height / 2 + 2 * margin));
@@ -741,11 +741,11 @@ void Scene3DTestScene::createDetailDlg()
 void Scene3DTestScene::createDescDlg()
 {
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(s_s9s_ui_plist);
-    
+
     Size dlgSize(440, 240);
     Vec2 pos = VisibleRect::center();
     float margin = 10;
-    
+
     // first, create dialog, add title and description text on it
     // use Layout, which setTouchEnabled(true), as background, it will swallow touch event
     auto desdDlg = ui::Layout::create();
@@ -758,7 +758,7 @@ void Scene3DTestScene::createDescDlg()
     desdDlg->setTouchEnabled(true);
     _descDlg = desdDlg;
 
-    
+
     // title
     auto title = Label::createWithTTF("Description Dialog","fonts/arial.ttf",16);
     title->setPosition(dlgSize.width / 2, dlgSize.height - margin * 2);
@@ -789,7 +789,7 @@ void Scene3DTestScene::createDescDlg()
     text->setAnchorPoint(Vec2(0, 1));
     text->setPosition(textPos);
     _descDlg->addChild(text);
-    
+
     // second, add a 3D model
     std::string fileName = "Sprite3DTest/ReskinGirl.c3b";
     Vec2 girlPos(textPos.x + textSize.width - 40, margin);
@@ -802,40 +802,40 @@ void Scene3DTestScene::createDescDlg()
     if (animation)
     {
         auto animate = Animate3D::create(animation);
-        
+
         _reskinGirl->runAction(RepeatForever::create(animate));
     }
-    
+
     auto& body = _skins[(int)SkinType::UPPER_BODY];
     body.emplace_back("Girl_UpperBody01");
     body.emplace_back("Girl_UpperBody02");
-    
+
     auto& pants = _skins[(int)SkinType::PANTS];
     pants.emplace_back("Girl_LowerBody01");
     pants.emplace_back("Girl_LowerBody02");
-    
+
     auto& shoes = _skins[(int)SkinType::SHOES];
     shoes.emplace_back("Girl_Shoes01");
     shoes.emplace_back("Girl_Shoes02");
-    
+
     auto& hair = _skins[(int)SkinType::HAIR];
     hair.emplace_back("Girl_Hair01");
     hair.emplace_back("Girl_Hair02");
-    
+
     auto& face = _skins[(int)SkinType::FACE];
     face.emplace_back("Girl_Face01");
     face.emplace_back("Girl_Face02");
-    
+
     auto& hand = _skins[(int)SkinType::HAND];
     hand.emplace_back("Girl_Hand01");
     hand.emplace_back("Girl_Hand02");
-    
+
     auto& glasses = _skins[(int)SkinType::GLASSES];
     glasses.emplace_back("");
     glasses.emplace_back("Girl_Glasses01");
-    
+
     memset(_curSkin, 0, (int)SkinType::MAX_TYPE * sizeof(int));
-    
+
     auto applyCurSkin = [this]()
     {
         for (ssize_t i = 0; i < this->_reskinGirl->getMeshCount(); i++) {
@@ -852,7 +852,7 @@ void Scene3DTestScene::createDescDlg()
         }
     };
     applyCurSkin();
-    
+
     // third, add reskin buttons above 3D model
     static const std::string btnTexts[SkinType::MAX_TYPE] =
     {
@@ -932,3 +932,4 @@ Scene3DTests::Scene3DTests()
 {
     ADD_TEST_CASE(Scene3DTestScene);
 }
+

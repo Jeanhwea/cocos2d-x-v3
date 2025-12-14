@@ -158,3 +158,4 @@ THE SOFTWARE.
 
 /// @endcond
 #endif  // __BASE_CC_PLATFORM_CONFIG_H__
+

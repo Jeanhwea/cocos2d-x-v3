@@ -57,3 +57,4 @@ protected:
 NS_CC_END
 
 #endif /* CCVRGenericHeadTracker_hpp */
+

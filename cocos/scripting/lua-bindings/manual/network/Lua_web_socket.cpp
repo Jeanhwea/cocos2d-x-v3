@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,11 +43,11 @@ static int SendBinaryMessageToLua(int nHandler,const unsigned char* pTable,int n
     if (NULL == pTable || nHandler <= 0) {
         return 0;
     }
-    
+
     if (NULL == ScriptEngineManager::getInstance()->getScriptEngine()) {
         return 0;
     }
-    
+
     LuaStack *pStack = LuaEngine::getInstance()->getLuaStack();
     if (NULL == pStack) {
         return 0;
@@ -57,14 +57,14 @@ static int SendBinaryMessageToLua(int nHandler,const unsigned char* pTable,int n
     if (NULL == tolua_s) {
         return 0;
     }
-    
+
     int nRet = 0;
     LuaValueArray array;
     for (int i = 0 ; i < nLength; i++) {
         LuaValue value = LuaValue::intValue(pTable[i]);
         array.push_back(value);
     }
-    
+
     pStack->pushLuaValueArray(array);
     nRet = pStack->executeFunctionByHandler(nHandler, 1);
     pStack->clean();
@@ -90,7 +90,7 @@ void LuaWebSocket::onOpen(WebSocket* ws)
         }
     }
 }
-    
+
 void LuaWebSocket::onMessage(WebSocket* ws, const WebSocket::Data& data)
 {
     LuaWebSocket* luaWs = dynamic_cast<LuaWebSocket*>(ws);
@@ -102,7 +102,7 @@ void LuaWebSocket::onMessage(WebSocket* ws, const WebSocket::Data& data)
             }
         }
         else{
-                
+
             int handler = ScriptHandlerMgr::getInstance()->getObjectHandler((void*)this,ScriptHandlerMgr::HandlerType::WEBSOCKET_MESSAGE);
             if (0 != handler)
             {
@@ -116,7 +116,7 @@ void LuaWebSocket::onMessage(WebSocket* ws, const WebSocket::Data& data)
         }
     }
 }
-    
+
 void LuaWebSocket::onClose(WebSocket* ws)
 {
     LuaWebSocket* luaWs = dynamic_cast<LuaWebSocket*>(ws);
@@ -130,7 +130,7 @@ void LuaWebSocket::onClose(WebSocket* ws)
         }
     }
 }
-    
+
 void LuaWebSocket::onError(WebSocket* ws, const WebSocket::ErrorCode& error)
 {
     LuaWebSocket* luaWs = dynamic_cast<LuaWebSocket*>(ws);
@@ -510,7 +510,7 @@ int tolua_Cocos2d_WebSocket_unregisterScriptHandler00(lua_State* tolua_S)
         LuaWebSocket* self    = (LuaWebSocket*)  tolua_tousertype(tolua_S,1,0);
         if (NULL != self ) {
             ScriptHandlerMgr::HandlerType handlerType = (ScriptHandlerMgr::HandlerType)((int)tolua_tonumber(tolua_S,2,0) + (int)ScriptHandlerMgr::HandlerType::WEBSOCKET_OPEN);
-            
+
             ScriptHandlerMgr::getInstance()->removeObjectHandler((void*)self, handlerType);
         }
     }
@@ -526,7 +526,7 @@ TOLUA_API int register_web_socket_manual(lua_State* tolua_S)
 {
     if (nullptr == tolua_S)
         return 0 ;
-    
+
     lua_pushstring(tolua_S,"cc.WebSocket");
     lua_rawget(tolua_S,LUA_REGISTRYINDEX);
     if (lua_istable(tolua_S,-1))
@@ -539,7 +539,8 @@ TOLUA_API int register_web_socket_manual(lua_State* tolua_S)
         lua_rawset(tolua_S,-3);
     }
     lua_pop(tolua_S, 1);
-    
+
     return 1;
 }
 #endif//(CC_TARGET_PLATFORM == CC_PLATFORM_IOS ...
+

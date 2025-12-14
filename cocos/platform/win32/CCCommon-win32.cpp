@@ -53,3 +53,4 @@ void LuaLog(const char *pszMsg)
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+

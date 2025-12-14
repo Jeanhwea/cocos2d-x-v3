@@ -42,7 +42,7 @@ class Touch;
 
 
 /** @brief A Menu for touch handling.
-* 
+*
 * Features and Limitation:
 *  - You can add MenuItem objects in runtime using addChild.
 *  - But the only accepted children are MenuItem objects.
@@ -58,12 +58,12 @@ public:
         WAITING,
         TRACKING_TOUCH,
     };
-    
+
     /**
      *@brief Creates an empty Menu.
      */
     static Menu* create();
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     // VS2013 does not support nullptr in variable args lists and variadic templates are also not supported.
     typedef MenuItem* M;
@@ -85,20 +85,20 @@ public:
     static Menu* create(MenuItem* item, ...) CC_REQUIRES_NULL_TERMINATION;
 #endif
 
-    /** 
+    /**
      * Creates a Menu with a Array of MenuItem objects.
      * @js NA
      */
     static Menu* createWithArray(const Vector<MenuItem*>& arrayOfItems);
 
     /**
-     * Creates a Menu with it's item, then use addChild() to add 
+     * Creates a Menu with it's item, then use addChild() to add
      * other items. It is used for script, it can't be initialized with undetermined
      * number of variables.
      * @js NA
      */
     static Menu* createWithItem(MenuItem* item);
-    
+
     /** Creates a Menu with MenuItem objects.
      * @js NA
      */
@@ -114,7 +114,7 @@ public:
 
     /** Align items horizontally. */
     void alignItemsHorizontally();
-    
+
     /** Align items horizontally with padding.
     @since v0.7.2
     */
@@ -122,10 +122,10 @@ public:
 
     /** Align items in rows of columns. */
     void alignItemsInColumns(int columns, ...) CC_REQUIRES_NULL_TERMINATION;
-    
+
     /** Align items in rows of columns. */
     void alignItemsInColumns(int columns, va_list args);
-    
+
     /** Align items in array of columns.
      * @js NA
      */
@@ -133,10 +133,10 @@ public:
 
     /** Align items in columns of rows. */
     void alignItemsInRows(int rows, ...) CC_REQUIRES_NULL_TERMINATION;
-    
+
     /** Align items in columns of rows. */
     void alignItemsInRows(int rows, va_list args);
-    
+
     /** Align items in array of rows.
      * @js NA
      */
@@ -161,15 +161,15 @@ public:
     virtual void onTouchEnded(Touch* touch, Event* event) override;
     virtual void onTouchCancelled(Touch* touch, Event* event) override;
     virtual void onTouchMoved(Touch* touch, Event* event) override;
-    
+
     // overrides
     virtual void removeChild(Node* child, bool cleanup) override;
-    
+
     virtual void addChild(Node * child) override;
     virtual void addChild(Node * child, int zOrder) override;
     virtual void addChild(Node * child, int zOrder, int tag) override;
     virtual void addChild(Node * child, int zOrder, const std::string &name) override;
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
     virtual void setOpacityModifyRGB(bool value) override;
@@ -211,3 +211,4 @@ private:
 NS_CC_END
 
 #endif//__CCMENU_H_
+

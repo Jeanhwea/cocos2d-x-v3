@@ -385,7 +385,7 @@ bool js_cocos2dx_CCSequence_create(JSContext *cx, uint32_t argc, jsval *vp)
         js_type_class_t *typeClass = js_get_type_from_native<cocos2d::Sequence>(ret);
         // link the native object with the javascript object
         JS::RootedObject jsobj(cx, jsb_ref_create_jsobject(cx, ret, typeClass, "cocos2d::Sequence"));
-        
+
         auto ok = ret->init(array);
         if (ok)
         {
@@ -631,7 +631,7 @@ void js_remove_object_reference(JS::HandleValue owner, JS::HandleValue target)
 
     JS::RootedObject ownerObj(cx, owner.toObjectOrNull());
     JS::RootedObject targetObj(cx, target.toObjectOrNull());
-    
+
     JS::RootedObject jsbObj(cx);
     get_or_create_js_obj(cx, global, "jsb", &jsbObj);
     JS::RootedValue jsbVal(cx, OBJECT_TO_JSVAL(jsbObj));
@@ -821,7 +821,7 @@ static bool js_callFunc(JSContext *cx, uint32_t argc, jsval *vp)
             {
                 sender = ret->getTarget();
             }
-            
+
             if(sender)
             {
                 js_type_class_t *nodeClass = js_get_type_from_native<cocos2d::Node>(sender);
@@ -1214,7 +1214,7 @@ void JSScheduleWrapper::scheduleFunc(float dt)
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 
     JS::RootedValue callback(cx, getJSCallbackFunc());
-    if(!callback.isNullOrUndefined()) 
+    if(!callback.isNullOrUndefined())
     {
         auto exist = JSScheduleWrapper::getTargetForSchedule(callback);
         if (exist)
@@ -1234,9 +1234,9 @@ void JSScheduleWrapper::scheduleFunc(float dt)
 void JSScheduleWrapper::update(float dt)
 {
     jsval data = DOUBLE_TO_JSVAL(dt);
-    
+
     JSContext *cx = ScriptingCore::getInstance()->getGlobalContext();
-    
+
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 
     JS::RootedValue targetVal(cx, getJSCallbackThis());
@@ -5961,7 +5961,7 @@ void jsb_ObjFinalizeHook_finalize(JSFreeOp *fop, JSObject *obj)
         if (jsproxy)
         {
             sc->setFinalizing(ownerPtr);
-            
+
             nproxy = jsb_get_native_proxy(jsproxy->ptr);
             jsb_remove_proxy(nproxy, jsproxy);
 #if COCOS2D_DEBUG > 1
@@ -6003,7 +6003,7 @@ void jsb_register_ObjFinalizeHook(JSContext *cx, JS::HandleObject global) {
     jsb_ObjFinalizeHook_class->convert = JS_ConvertStub;
     jsb_ObjFinalizeHook_class->finalize = jsb_ObjFinalizeHook_finalize;
     jsb_ObjFinalizeHook_class->flags = JSCLASS_HAS_RESERVED_SLOTS(2);
-    
+
     jsb_ObjFinalizeHook_prototype = JS_InitClass(cx, global,
                                               JS::NullPtr(), // parent proto
                                               jsb_ObjFinalizeHook_class,
@@ -6331,3 +6331,4 @@ void register_cocos2dx_js_core(JSContext* cx, JS::HandleObject global)
     JS_DefineFunction(cx, tmpObj, "setNavMesh", js_cocos2dx_Scene_setNavMesh, 1, JSPROP_ENUMERATE | JSPROP_PERMANENT);
 #endif //CC_USE_NAVMESH
 }
+

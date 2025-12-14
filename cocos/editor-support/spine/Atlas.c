@@ -357,3 +357,4 @@ spAtlasRegion* spAtlas_findRegion(const spAtlas* self, const char* name) {
 	}
 	return 0;
 }
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -78,7 +78,7 @@ public:
      * @param functionId the value used to search the `lua_bridge_function_id` table.
      */
     static int pushLuaFunctionById(int functionId);
-    
+
     /**
      * The retain count would be increase by 1 corresponding to functionId in the `lua_bridge_function_id_retain` table if it could be found.
      * If `lua_bridge_function_id_retain` table is not existed or the type of lua_bridge_function_id_retain[functionId] isn't LUA_TNUMBER, It would return 0.
@@ -88,7 +88,7 @@ public:
      * @return the retain count or 0.
      */
     static int retainLuaFunctionById(int functionId);
-    
+
     /**
      *
      * The retain count would be reduced by 1 corresponding to functionId in the `lua_bridge_function_id_retain` table if it could be found.
@@ -99,7 +99,7 @@ public:
      * @return the retain count or 0.
      */
     static int releaseLuaFunctionById(int functionId);
-    
+
 protected:
     static int retainLuaFunction(lua_State *L, int functionIndex, int *retainCountReturn);
 
@@ -113,3 +113,4 @@ NS_CC_END
 /// @}
 
 #endif // __LUA_BRIDGE_H_
+

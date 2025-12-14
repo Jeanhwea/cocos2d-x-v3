@@ -124,7 +124,7 @@ public class Cocos2dxEditBox extends EditText {
     private static final int kTextVerticalAlignmentCenter = 1;
     private static final int kTextVerticalAlignmentBottom = 2;
 
-    private int mInputFlagConstraints; 
+    private int mInputFlagConstraints;
     private int mInputModeConstraints;
     private  int mMaxLength;
 
@@ -223,7 +223,7 @@ public class Cocos2dxEditBox extends EditText {
         }
         this.setGravity(gravity);
     }
-    
+
     public void setTextVerticalAlignment(int alignment) {
         int gravity = this.getGravity();
         int padding = Cocos2dxEditBoxHelper.getPadding(mScaleX);
@@ -331,3 +331,4 @@ public class Cocos2dxEditBox extends EditText {
         this.setInputType(this.mInputFlagConstraints | this.mInputModeConstraints);
     }
 }
+

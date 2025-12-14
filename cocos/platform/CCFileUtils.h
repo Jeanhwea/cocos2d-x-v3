@@ -169,12 +169,12 @@ public:
      *  Gets string from a file.
      */
     virtual std::string getStringFromFile(const std::string& filename) const;
-    
+
     /**
      * Gets string from a file, async off the main cocos thread
      *
      * @param path filepath for the string to be read. Can be relative or absolute path
-     * @param callback Function that will be called when file is read. Will be called 
+     * @param callback Function that will be called when file is read. Will be called
      * on the main cocos thread.
      */
     virtual void getStringFromFile(const std::string& path, std::function<void(std::string)> callback) const;
@@ -184,13 +184,13 @@ public:
      *  @return A data object.
      */
     virtual Data getDataFromFile(const std::string& filename) const;
-    
+
 
     /**
      * Gets a binary data object from a file, async off the main cocos thread.
      *
      * @param filename filepath for the data to be read. Can be relative or absolute path
-     * @param callback Function that will be called when file is read. Will be called 
+     * @param callback Function that will be called when file is read. Will be called
      * on the main cocos thread.
      */
     virtual void getDataFromFile(const std::string& filename, std::function<void(Data)> callback) const;
@@ -467,9 +467,9 @@ public:
     /**
      *  Gets the array of search paths.
      *
-     *  @return The array of search paths which may contain the prefix of default resource root path. 
+     *  @return The array of search paths which may contain the prefix of default resource root path.
      *  @note In best practise, getter function should return the value of setter function passes in.
-     *        But since we should not break the compatibility, we keep using the old logic. 
+     *        But since we should not break the compatibility, we keep using the old logic.
      *        Therefore, If you want to get the original search paths, please call 'getOriginalSearchPaths()' instead.
      *  @see fullPathForFilename(const char*).
      *  @lua NA
@@ -535,7 +535,7 @@ public:
      */
     virtual bool writeStringToFile(const std::string& dataStr, const std::string& fullPath) const;
 
-    
+
     /**
      * Write a string to a file, done async off the main cocos thread
      * Use this function if you need file access without blocking the main thread.
@@ -546,11 +546,11 @@ public:
      * @param dataStr the string want to save
      * @param fullPath The full path to the file you want to save a string
      * @param callback The function called once the string has been written to a file. This
-     * function will be executed on the main cocos thread. It will have on boolean argument 
+     * function will be executed on the main cocos thread. It will have on boolean argument
      * signifying if the write was successful.
      */
     virtual void writeStringToFile(std::string dataStr, const std::string& fullPath, std::function<void(bool)> callback) const;
-    
+
     /**
      * write Data into a file
      *
@@ -559,7 +559,7 @@ public:
      *@return bool
      */
     virtual bool writeDataToFile(const Data& data, const std::string& fullPath) const;
-    
+
 
     /**
     * Write Data into a file, done async off the main cocos thread.
@@ -572,7 +572,7 @@ public:
     *@param data The data that will be written to disk
     *@param fullPath The absolute file path that the data will be written to
     *@param callback The function that will be called when data is written to disk. This
-    * function will be executed on the main cocos thread. It will have on boolean argument 
+    * function will be executed on the main cocos thread. It will have on boolean argument
     * signifying if the write was successful.
     */
     virtual void writeDataToFile(Data data, const std::string& fullPath, std::function<void(bool)> callback) const;
@@ -597,7 +597,7 @@ public:
     *@param dict The ValueMap that will be written to disk
     *@param fullPath The absolute file path that the data will be written to
     *@param callback The function that will be called when dict is written to disk. This
-    * function will be executed on the main cocos thread. It will have on boolean argument 
+    * function will be executed on the main cocos thread. It will have on boolean argument
     * signifying if the write was successful.
     */
     virtual void writeValueMapToFile(ValueMap dict, const std::string& fullPath, std::function<void(bool)> callback) const;
@@ -622,7 +622,7 @@ public:
     *@param vecData The ValueVector that will be written to disk
     *@param fullPath The absolute file path that the data will be written to
     *@param callback The function that will be called when vecData is written to disk. This
-    * function will be executed on the main cocos thread. It will have on boolean argument 
+    * function will be executed on the main cocos thread. It will have on boolean argument
     * signifying if the write was successful.
     */
     virtual void writeValueVectorToFile(ValueVector vecData, const std::string& fullPath, std::function<void(bool)> callback) const;
@@ -651,7 +651,7 @@ public:
 
     /**
      * Checks if a file exists, done async off the main cocos thread.
-     * 
+     *
      * Use this function if you need to check if a file exists while not blocking the main cocos thread.
      *
      *  @note If a relative path was passed in, it will be inserted a default root path at the beginning.
@@ -692,7 +692,7 @@ public:
      *  Checks whether the absoulate path is a directory, async off of the main cocos thread.
      *
      * @param dirPath The path of the directory, it must be an absolute path
-     * @param callback that will accept a boolean, true if the file exists, false otherwise. 
+     * @param callback that will accept a boolean, true if the file exists, false otherwise.
      * Callback will happen on the main cocos thread.
      */
     virtual void isDirectoryExist(const std::string& fullPath, std::function<void(bool)> callback) const;
@@ -824,7 +824,7 @@ public:
      * @lua NA
      */
     virtual void listFilesAsync(const std::string& dirPath, std::function<void(std::vector<std::string>)> callback) const;
-    
+
     /**
      *  List all files recursively in a directory.
      *
@@ -837,7 +837,7 @@ public:
     *  List all files recursively in a directory, async off the main cocos thread.
     *
     *  @param dirPath The path of the directory, it could be a relative or an absolute path.
-    *  @param callback The callback to be called once the list operation is complete. 
+    *  @param callback The callback to be called once the list operation is complete.
     *          Will be called on the main cocos thread.
     * @js NA
     * @lua NA
@@ -897,8 +897,8 @@ protected:
     virtual std::string getPathForFilename(const std::string& filename, const std::string& resolutionDirectory, const std::string& searchPath) const;
 
     virtual std::string getPathForDirectory(const std::string &dir, const std::string &resolutionDiretory, const std::string &searchPath) const;
-    
-    
+
+
     /**
      *  Gets full path for the directory and the filename.
      *
@@ -910,8 +910,8 @@ protected:
      *  @return The full path of the file, if the file can't be found, it will return an empty string.
      */
     virtual std::string getFullPathForFilenameWithinDirectory(const std::string& directory, const std::string& filename) const;
-    
- 
+
+
     /**
      * Returns the fullpath for a given dirname.
      * @since 3.17.1
@@ -919,7 +919,7 @@ protected:
     virtual std::string fullPathForDirectory(const std::string &dirname) const;
 
     /**
-    * mutex used to protect fields. 
+    * mutex used to protect fields.
     */
     mutable std::recursive_mutex _mutex;
 
@@ -993,19 +993,19 @@ protected:
 
         // Visual Studio 2013 does not support using std::bind to forward template parameters into
         // a lambda. To get around this, we will just copy these arguments via lambda capture
-#if defined(_MSC_VER) && _MSC_VER  < 1900 
-        auto lambda = [action, callback, args...]() 
+#if defined(_MSC_VER) && _MSC_VER  < 1900
+        auto lambda = [action, callback, args...]()
         {
             Director::getInstance()->getScheduler()->performFunctionInCocosThread(std::bind(callback, action(args...)));
         };
 #else
         // As cocos2d-x uses c++11, we will use std::bind to leverage move sematics to
-        // move our arguments into our lambda, to potentially avoid copying. 
+        // move our arguments into our lambda, to potentially avoid copying.
         auto lambda = std::bind([](const T& actionIn, const R& callbackIn, const ARGS& ...argsIn)
         {
             Director::getInstance()->getScheduler()->performFunctionInCocosThread(std::bind(callbackIn, actionIn(argsIn...)));
         }, std::forward<T>(action), std::forward<R>(callback), std::forward<ARGS>(args)...);
-        
+
 #endif
 
         AsyncTaskPool::getInstance()->enqueue(AsyncTaskPool::TaskType::TASK_IO, [](void*){}, nullptr, std::move(lambda));
@@ -1018,3 +1018,4 @@ protected:
 NS_CC_END
 
 #endif    // __CC_FILEUTILS_H__
+

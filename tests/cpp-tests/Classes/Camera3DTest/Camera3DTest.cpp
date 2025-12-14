@@ -58,7 +58,7 @@ CameraRotationTest::CameraRotationTest()
 {
 
     auto s = Director::getInstance()->getWinSize();
-    
+
     _camControlNode = Node::create();
     _camControlNode->setPositionNormalized(Vec2(.5,.5));
     addChild(_camControlNode);
@@ -70,12 +70,12 @@ CameraRotationTest::CameraRotationTest()
     auto sp3d = Sprite3D::create();
     sp3d->setPosition(s.width/2, s.height/2);
     addChild(sp3d);
-    
+
     auto lship = Label::create();
     lship->setString("Ship");
     lship->setPosition(0, 20);
     sp3d->addChild(lship);
-    
+
     //Billboards
     //Yellow is at the back
     bill1 = BillBoard::create("Images/Icon.png");
@@ -83,7 +83,7 @@ CameraRotationTest::CameraRotationTest()
     bill1->setColor(Color3B::YELLOW);
     bill1->setScale(0.6f);
     sp3d->addChild(bill1);
-    
+
     l1 = Label::create();
     l1->setPosition(Vec2(0,-10));
     l1->setString("Billboard1");
@@ -94,19 +94,19 @@ CameraRotationTest::CameraRotationTest()
     auto p1 = ParticleSystemQuad::create("Particles/SmallSun.plist");
     p1->setPosition(30,80);
     bill1->addChild(p1);
-    
+
     bill2 = BillBoard::create("Images/Icon.png");
     bill2->setPosition3D(Vec3(-50, -10, 10));
     bill2->setScale(0.6f);
     sp3d->addChild(bill2);
-    
+
     l2 = Label::create();
     l2->setString("Billboard2");
     l2->setPosition(Vec2(0,-10));
     l2->setColor(Color3B::WHITE);
     l2->setScale(3);
     bill2->addChild(l2);
-    
+
     auto p2 = ParticleSystemQuad::create("Particles/SmallSun.plist");
     p2->setPosition(30,80);
     bill2->addChild(p2);
@@ -138,7 +138,7 @@ CameraRotationTest::CameraRotationTest()
     };
 
     Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(_lis, this);
-    
+
     schedule(schedule_selector(CameraRotationTest::update));
 }
 
@@ -227,7 +227,7 @@ void Camera3DTestDemo::SwitchViewCallback(Ref* sender, CameraType cameraType)
     {
         _camera->setPosition3D(Vec3(0, 130, 130) + _sprite3D->getPosition3D());
         _camera->lookAt(_sprite3D->getPosition3D());
-        
+
         _RotateRightlabel->setColor(Color3B::WHITE);
         _RotateLeftlabel->setColor(Color3B::WHITE);
         _ZoomInlabel->setColor(Color3B::WHITE);
@@ -240,7 +240,7 @@ void Camera3DTestDemo::SwitchViewCallback(Ref* sender, CameraType cameraType)
         newFaceDir.normalize();
         _camera->setPosition3D(Vec3(0,35,0) + _sprite3D->getPosition3D());
         _camera->lookAt(_sprite3D->getPosition3D() + newFaceDir*50);
-        
+
         _RotateRightlabel->setColor(Color3B::WHITE);
         _RotateLeftlabel->setColor(Color3B::WHITE);
         _ZoomInlabel->setColor(Color3B::GRAY);
@@ -250,7 +250,7 @@ void Camera3DTestDemo::SwitchViewCallback(Ref* sender, CameraType cameraType)
     {
         _camera->setPosition3D(Vec3(0, 130, 130) + _sprite3D->getPosition3D());
         _camera->lookAt(_sprite3D->getPosition3D());
-        
+
         _RotateRightlabel->setColor(Color3B::GRAY);
         _RotateLeftlabel->setColor(Color3B::GRAY);
         _ZoomInlabel->setColor(Color3B::WHITE);
@@ -273,63 +273,63 @@ void Camera3DTestDemo::onEnter()
     _curState=State_None;
     addNewSpriteWithCoords( Vec3(0,0,0),"Sprite3DTest/girl.c3b",true,0.2f,true);
     TTFConfig ttfConfig("fonts/arial.ttf", 20);
-    
+
     auto containerForLabel1 = Node::create();
     _ZoomOutlabel = Label::createWithTTF(ttfConfig,"zoom out");
     _ZoomOutlabel->setPosition(s.width-50, VisibleRect::top().y-30);
     containerForLabel1->addChild(_ZoomOutlabel);
     addChild(containerForLabel1, 10);
-    
+
     auto listener1 = EventListenerTouchOneByOne::create();
     listener1->setSwallowTouches(true);
-    
+
     listener1->onTouchBegan = CC_CALLBACK_2(Camera3DTestDemo::onTouchesZoomOut, this);
     listener1->onTouchEnded = CC_CALLBACK_2(Camera3DTestDemo::onTouchesZoomOutEnd, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener1, _ZoomOutlabel);
-    
+
     auto containerForLabel2 = Node::create();
     _ZoomInlabel = Label::createWithTTF(ttfConfig,"zoom in");
     _ZoomInlabel->setPosition(s.width-50, VisibleRect::top().y-100);
     containerForLabel2->addChild(_ZoomInlabel);
     addChild(containerForLabel2, 10);
-    
+
     auto listener2 = EventListenerTouchOneByOne::create();
     listener2->setSwallowTouches(true);
-    
+
     listener2->onTouchBegan = CC_CALLBACK_2(Camera3DTestDemo::onTouchesZoomIn, this);
     listener2->onTouchEnded = CC_CALLBACK_2(Camera3DTestDemo::onTouchesZoomInEnd, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener2, _ZoomInlabel);
-    
+
     auto containerForLabel3 = Node::create();
     _RotateLeftlabel = Label::createWithTTF(ttfConfig,"rotate left");
     _RotateLeftlabel->setPosition(s.width-50, VisibleRect::top().y-170);
     containerForLabel3->addChild(_RotateLeftlabel);
     addChild(containerForLabel3, 10);
-    
+
     auto listener3 = EventListenerTouchOneByOne::create();
     listener3->setSwallowTouches(true);
-    
+
     listener3->onTouchBegan = CC_CALLBACK_2(Camera3DTestDemo::onTouchesRotateLeft, this);
     listener3->onTouchEnded = CC_CALLBACK_2(Camera3DTestDemo::onTouchesRotateLeftEnd, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener3, _RotateLeftlabel);
-    
+
     auto containerForLabel4 = Node::create();
     _RotateRightlabel = Label::createWithTTF(ttfConfig,"rotate right");
     _RotateRightlabel->setPosition(s.width-50, VisibleRect::top().y-240);
     containerForLabel4->addChild(_RotateRightlabel);
     addChild(containerForLabel4, 10);
-    
+
     auto listener4 = EventListenerTouchOneByOne::create();
     listener4->setSwallowTouches(true);
-    
+
     listener4->onTouchBegan = CC_CALLBACK_2(Camera3DTestDemo::onTouchesRotateRight, this);
     listener4->onTouchEnded = CC_CALLBACK_2(Camera3DTestDemo::onTouchesRotateRightEnd, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener4, _RotateRightlabel);
-    
+
     auto label1 = Label::createWithTTF(ttfConfig,"free ");
     auto menuItem1 = MenuItemLabel::create(label1, CC_CALLBACK_1(Camera3DTestDemo::SwitchViewCallback,this,CameraType::Free));
     auto label2 = Label::createWithTTF(ttfConfig,"third person");
@@ -337,9 +337,9 @@ void Camera3DTestDemo::onEnter()
     auto label3 = Label::createWithTTF(ttfConfig,"first person");
     auto menuItem3 = MenuItemLabel::create(label3, CC_CALLBACK_1(Camera3DTestDemo::SwitchViewCallback,this,CameraType::FirstPerson));
     auto menu = Menu::create(menuItem1, menuItem2, menuItem3, nullptr);
-    
+
     menu->setPosition(Vec2::ZERO);
-    
+
     menuItem1->setPosition(VisibleRect::left().x+100, VisibleRect::top().y-50);
     menuItem2->setPosition(VisibleRect::left().x+100, VisibleRect::top().y -100);
     menuItem3->setPosition(VisibleRect::left().x+100, VisibleRect::top().y -150);
@@ -399,7 +399,7 @@ void Camera3DTestDemo::addNewSpriteWithCoords(Vec3 p,const std::string& fileName
     {
         _sprite3D=sprite;
     }
-    sprite->setScale(scale);  
+    sprite->setScale(scale);
 }
 void Camera3DTestDemo::onTouchesBegan(const std::vector<Touch*>& touches, cocos2d::Event  *event)
 {
@@ -499,7 +499,7 @@ void Camera3DTestDemo::onTouchesEnded(const std::vector<Touch*>& touches, cocos2
             if(_sprite3D && _cameraType==CameraType::ThirdPerson && _bZoomOut == false && _bZoomIn == false && _bRotateLeft == false && _bRotateRight == false)
             {
                 Vec3 nearP(location.x, location.y, -1.0f), farP(location.x, location.y, 1.0f);
-                
+
                 auto size = Director::getInstance()->getWinSize();
                 nearP = _camera->unproject(nearP);
                 farP = _camera->unproject(farP);
@@ -511,7 +511,7 @@ void Camera3DTestDemo::onTouchesEnded(const std::vector<Touch*>& touches, cocos2
                 float ndo = Vec3::dot(Vec3(0,1,0),nearP);
                 dist= (0 - ndo) / ndd;
                 Vec3 p =   nearP + dist *  dir;
-                
+
                 if( p.x > 100)
                     p.x = 100;
                 if( p.x < -100)
@@ -520,7 +520,7 @@ void Camera3DTestDemo::onTouchesEnded(const std::vector<Touch*>& touches, cocos2
                     p.z = 100;
                 if( p.z < -100)
                     p.z = -100;
-                
+
                 _targetPos=p;
             }
         }
@@ -542,7 +542,7 @@ void Camera3DTestDemo::updateCamera(float fDelta)
                 if(isState(_curState,State_Rotate))
                 {
                     Vec3 curPos = _sprite3D->getPosition3D();
-                    
+
                     Vec3 newFaceDir = _targetPos - curPos;
                     newFaceDir.y = 0;
                     newFaceDir.normalize();
@@ -558,17 +558,17 @@ void Camera3DTestDemo::updateCamera(float fDelta)
                     mat.m[1] = right.y;
                     mat.m[2] = right.z;
                     mat.m[3] = 0.0f;
-                    
+
                     mat.m[4] = up.x;
                     mat.m[5] = up.y;
                     mat.m[6] = up.z;
                     mat.m[7] = 0.0f;
-                    
+
                     mat.m[8]  = newFaceDir.x;
                     mat.m[9]  = newFaceDir.y;
                     mat.m[10] = newFaceDir.z;
                     mat.m[11] = 0.0f;
-                    
+
                     mat.m[12] = pos.x;
                     mat.m[13] = pos.y;
                     mat.m[14] = pos.z;
@@ -650,11 +650,11 @@ void Camera3DTestDemo::updateCamera(float fDelta)
 bool Camera3DTestDemo::onTouchesCommon(Touch* touch, Event* event, bool* touchProperty)
 {
     auto target = static_cast<Label*>(event->getCurrentTarget());
-    
+
     Vec2 locationInNode = target->convertToNodeSpace(touch->getLocation());
     Size s = target->getContentSize();
     Rect rect = Rect(0, 0, s.width, s.height);
-    
+
     if (rect.containsPoint(locationInNode))
     {
         *touchProperty = true;
@@ -726,7 +726,7 @@ void CameraCullingDemo::onEnter()
     CameraBaseTest::onEnter();
 
     schedule(schedule_selector(CameraCullingDemo::update), 0.0f);
-    
+
     auto s = Director::getInstance()->getWinSize();
     /*auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(Camera3DTestDemo::onTouchesBegan, this);
@@ -736,49 +736,49 @@ void CameraCullingDemo::onEnter()
     auto layer3D=Layer::create();
     addChild(layer3D,0);
     _layer3D=layer3D;
-    
+
     // switch camera
     MenuItemFont::setFontName("fonts/arial.ttf");
     MenuItemFont::setFontSize(20);
-    
+
     auto menuItem1 = MenuItemFont::create("Switch Camera", CC_CALLBACK_1(CameraCullingDemo::switchViewCallback,this));
     menuItem1->setColor(Color3B(0,200,20));
     auto menu = Menu::create(menuItem1,NULL);
     menu->setPosition(Vec2::ZERO);
     menuItem1->setPosition(VisibleRect::left().x + 80, VisibleRect::top().y -70);
     addChild(menu, 1);
-    
+
     // + -
     MenuItemFont::setFontSize(40);
     auto decrease = MenuItemFont::create(" - ", CC_CALLBACK_1(CameraCullingDemo::delSpriteCallback, this));
     decrease->setColor(Color3B(0,200,20));
     auto increase = MenuItemFont::create(" + ", CC_CALLBACK_1(CameraCullingDemo::addSpriteCallback, this));
     increase->setColor(Color3B(0,200,20));
-    
+
     menu = Menu::create(decrease, increase, nullptr);
     menu->alignItemsHorizontally();
     menu->setPosition(Vec2(s.width - 60, VisibleRect::top().y -70));
     addChild(menu, 1);
-    
+
     TTFConfig ttfCount("fonts/Marker Felt.ttf", 30);
     _labelSprite3DCount = Label::createWithTTF(ttfCount,"0 sprits");
     _labelSprite3DCount->setColor(Color3B(0,200,20));
     _labelSprite3DCount->setPosition(Vec2(s.width/2, VisibleRect::top().y -70));
     addChild(_labelSprite3DCount);
-    
+
     // aabb drawNode3D
     _drawAABB = DrawNode3D::create();
     _drawAABB->setCameraMask((unsigned short) CameraFlag::USER1);
     addChild(_drawAABB);
-    
+
     // frustum drawNode3D
     _drawFrustum = DrawNode3D::create();
     _drawFrustum->setCameraMask((unsigned short) CameraFlag::USER1);
     addChild(_drawFrustum);
-    
+
     // set camera
     switchViewCallback(this);
-    
+
     // add sprite
     addSpriteCallback(nullptr);
 }
@@ -799,13 +799,13 @@ void CameraCullingDemo::onExit()
 void CameraCullingDemo::update(float dt)
 {
     _drawAABB->clear();
-    
+
     if(_cameraType == CameraType::ThirdPerson)
         drawCameraFrustum();
-    
+
     Vector<Node*>& children = _layer3D->getChildren();
     Vec3 corners[8];
-    
+
     for (const auto& iter: children)
     {
         const AABB& aabb = static_cast<Sprite3D*>(iter)->getAABB();
@@ -822,7 +822,7 @@ void CameraCullingDemo::reachEndCallBack()
     _cameraFirst->stopActionByTag(100);
     auto inverse = MoveTo::create(4.f, Vec2(-_cameraFirst->getPositionX(), 0));
     inverse->retain();
-    
+
     _moveAction->release();
     _moveAction = inverse;
     auto rot = RotateBy::create(1.f, Vec3(0.f, 180.f, 0.f));
@@ -834,7 +834,7 @@ void CameraCullingDemo::reachEndCallBack()
 void CameraCullingDemo::switchViewCallback(Ref* sender)
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     if (_cameraFirst == nullptr)
     {
         _cameraFirst = Camera::createPerspective(30, (GLfloat)s.width/s.height, 10, 200);
@@ -848,7 +848,7 @@ void CameraCullingDemo::switchViewCallback(Ref* sender)
         _cameraFirst->runAction(seq);
         addChild(_cameraFirst);
     }
-    
+
     if (_cameraThird == nullptr)
     {
         _cameraThird = Camera::createPerspective(60, (GLfloat)s.width/s.height, 1, 1000);
@@ -857,7 +857,7 @@ void CameraCullingDemo::switchViewCallback(Ref* sender)
         _cameraThird->lookAt(Vec3(0,0,0));
         addChild(_cameraThird);
     }
-    
+
     if(_cameraType == CameraType::FirstPerson)
     {
         _cameraType = CameraType::ThirdPerson;
@@ -878,7 +878,7 @@ void CameraCullingDemo::addSpriteCallback(Ref* sender)
     _layer3D->removeAllChildren();
     _objects.clear();
     _drawAABB->clear();
-    
+
     ++_row;
     for (int x = -_row; x < _row; x++)
     {
@@ -891,10 +891,10 @@ void CameraCullingDemo::addSpriteCallback(Ref* sender)
             _layer3D->addChild(sprite);
         }
     }
-    
+
     // set layer mask.
     _layer3D->setCameraMask( (unsigned short) CameraFlag::USER1);
-    
+
     // update sprite number
     char szText[16];
     sprintf(szText,"%ld sprits", static_cast<long>(_layer3D->getChildrenCount()));
@@ -904,10 +904,10 @@ void CameraCullingDemo::addSpriteCallback(Ref* sender)
 void CameraCullingDemo::delSpriteCallback(Ref* sender)
 {
     if (_row == 0) return;
-    
+
     _layer3D->removeAllChildren();
     _objects.clear();
-    
+
     --_row;
     for (int x = -_row; x < _row; x++)
     {
@@ -919,10 +919,10 @@ void CameraCullingDemo::delSpriteCallback(Ref* sender)
             _layer3D->addChild(sprite);
         }
     }
-    
+
     // set layer mask.
     _layer3D->setCameraMask((unsigned short) CameraFlag::USER1);
-    
+
     // update sprite number
     char szText[16];
     sprintf(szText,"%ld sprits", static_cast<long>(_layer3D->getChildrenCount()));
@@ -933,47 +933,47 @@ void CameraCullingDemo::drawCameraFrustum()
 {
     _drawFrustum->clear();
     auto size = Director::getInstance()->getWinSize();
-    
+
     Color4F color(1.f, 1.f, 0.f, 1);
-    
+
     // top-left
     Vec3 tl_0,tl_1;
     Vec3 src(0,0,0);
     tl_0 = _cameraFirst->unproject(src);
     src = Vec3(0,0,1);
     tl_1 = _cameraFirst->unproject(src);
-    
+
     // top-right
     Vec3 tr_0,tr_1;
     src = Vec3(size.width,0,0);
     tr_0 = _cameraFirst->unproject(src);
     src = Vec3(size.width,0,1);
     tr_1 = _cameraFirst->unproject(src);
-    
+
     // bottom-left
     Vec3 bl_0,bl_1;
     src = Vec3(0,size.height,0);
     bl_0 = _cameraFirst->unproject(src);
     src = Vec3(0,size.height,1);
     bl_1 = _cameraFirst->unproject(src);
-    
+
     // bottom-right
     Vec3 br_0,br_1;
     src = Vec3(size.width,size.height,0);
     br_0 = _cameraFirst->unproject(src);
     src = Vec3(size.width,size.height,1);
     br_1 = _cameraFirst->unproject(src);
-    
+
     _drawFrustum->drawLine(tl_0, tl_1, color);
     _drawFrustum->drawLine(tr_0, tr_1, color);
     _drawFrustum->drawLine(bl_0, bl_1, color);
     _drawFrustum->drawLine(br_0, br_1, color);
-    
+
     _drawFrustum->drawLine(tl_0, tr_0, color);
     _drawFrustum->drawLine(tr_0, br_0, color);
     _drawFrustum->drawLine(br_0, bl_0, color);
     _drawFrustum->drawLine(bl_0, tl_0, color);
-    
+
     _drawFrustum->drawLine(tl_1, tr_1, color);
     _drawFrustum->drawLine(tr_1, br_1, color);
     _drawFrustum->drawLine(br_1, bl_1, color);
@@ -1019,7 +1019,7 @@ void CameraArcBallDemo::onEnter()
     // switch camera
     MenuItemFont::setFontName("fonts/arial.ttf");
     MenuItemFont::setFontSize(20);
-    
+
     auto menuItem1 = MenuItemFont::create("Switch Operation", CC_CALLBACK_1(CameraArcBallDemo::switchOperateCallback,this));
     menuItem1->setColor(Color3B(0,200,20));
     auto menuItem2 = MenuItemFont::create("Switch Target", CC_CALLBACK_1(CameraArcBallDemo::switchTargetCallback,this));
@@ -1109,7 +1109,7 @@ void CameraArcBallDemo::onTouchsMoved( const std::vector<Touch*> &touchs, Event 
 
             updateCameraTransform();                                                                //update camera Transform
         }
-        else if(_operate == OperateCamType::MoveCamera)         //camera zoom 
+        else if(_operate == OperateCamType::MoveCamera)         //camera zoom
         {
             Point newPos = touchs[0]->getPreviousLocation() - touchs[0]->getLocation();
             _distanceZ -= newPos.y*0.1f;
@@ -1150,7 +1150,7 @@ float CameraArcBallDemo::projectToSphere( float r, float x, float y )
     if (d < r * 0.70710678118654752440)//inside sphere
     {
         z = std::sqrt(r*r - d*d);
-    }                         
+    }
     else                               //on hyperbola
     {
         t = r / 1.41421356237309504880;
@@ -1235,7 +1235,7 @@ void FogTestDemo::onEnter()
 
     // switch fog type
     TTFConfig ttfConfig("fonts/arial.ttf", 20);
-    
+
     auto label1 = Label::createWithTTF(ttfConfig,"Linear ");
     auto menuItem1 = MenuItemLabel::create(label1, CC_CALLBACK_1(FogTestDemo::switchTypeCallback,this,0));
     auto label2 = Label::createWithTTF(ttfConfig,"Exp");
@@ -1243,9 +1243,9 @@ void FogTestDemo::onEnter()
     auto label3 = Label::createWithTTF(ttfConfig,"Exp2");
     auto menuItem3 = MenuItemLabel::create(label3, CC_CALLBACK_1(FogTestDemo::switchTypeCallback,this,2));
     auto menu = Menu::create(menuItem1, menuItem2, menuItem3, nullptr);
-    
+
     menu->setPosition(Vec2::ZERO);
-    
+
     menuItem1->setPosition(VisibleRect::left().x+60, VisibleRect::top().y-50);
     menuItem2->setPosition(VisibleRect::left().x+60, VisibleRect::top().y -100);
     menuItem3->setPosition(VisibleRect::left().x+60, VisibleRect::top().y -150);
@@ -1265,12 +1265,12 @@ void FogTestDemo::onEnter()
     _sprite3D1->setGLProgramState(_state);
     _sprite3D2->setGLProgramState(_state);
     //pass mesh's attribute to shader
-    long offset = 0; 
+    long offset = 0;
     auto attributeCount = _sprite3D1->getMesh()->getMeshVertexAttribCount();
     for (auto i = 0; i < attributeCount; i++) {
         auto meshattribute = _sprite3D1->getMesh()->getMeshVertexAttribute(i);
         _state->setVertexAttribPointer(s_attributeNames[meshattribute.vertexAttrib],
-            meshattribute.size, 
+            meshattribute.size,
             meshattribute.type,
             GL_FALSE,
             _sprite3D1->getMesh()->getVertexSizeInBytes(),
@@ -1278,12 +1278,12 @@ void FogTestDemo::onEnter()
         offset += meshattribute.attribSizeBytes;
     }
 
-    long offset1 = 0; 
+    long offset1 = 0;
     auto attributeCount1 = _sprite3D2->getMesh()->getMeshVertexAttribCount();
     for (auto i = 0; i < attributeCount1; i++) {
         auto meshattribute = _sprite3D2->getMesh()->getMeshVertexAttribute(i);
         _state->setVertexAttribPointer(s_attributeNames[meshattribute.vertexAttrib],
-            meshattribute.size, 
+            meshattribute.size,
             meshattribute.type,
             GL_FALSE,
             _sprite3D2->getMesh()->getVertexSizeInBytes(),
@@ -1328,7 +1328,7 @@ void FogTestDemo::onEnter()
                                                                 glProgram->initWithFilenames("Sprite3DTest/fog.vert","Sprite3DTest/fog.frag");
                                                                 glProgram->link();
                                                                 glProgram->updateUniforms();
-                                                                
+
                                                                 _state->setUniformVec4("u_fogColor", Vec4(0.5,0.5,0.5,1.0));
                                                                 _state->setUniformFloat("u_fogStart",10);
                                                                 _state->setUniformFloat("u_fogEnd",60);
@@ -1417,12 +1417,12 @@ void FogTestDemo::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Ev
 
 CameraFrameBufferTest::CameraFrameBufferTest()
 {
-    
+
 }
 
 CameraFrameBufferTest::~CameraFrameBufferTest()
 {
-    
+
 }
 
 std::string CameraFrameBufferTest::title() const
@@ -1436,7 +1436,7 @@ void CameraFrameBufferTest::onEnter()
     auto size = Director::getInstance()->getWinSize();
     auto fboSize = Size(sizeInpixels.width * 1, sizeInpixels.height * 1.5);
     auto fbo = experimental::FrameBuffer::create(1, fboSize.width, fboSize.height);
-    
+
     CameraBaseTest::onEnter();
     //auto sprite = Sprite::createWithTexture(fbo);
     //sprite->setPosition(Vec2(100,100));
@@ -1447,7 +1447,7 @@ void CameraFrameBufferTest::onEnter()
     //if (animation)
     //{
     //    auto animate = Animate3D::create(animation);
-        
+
     //    sprite->runAction(RepeatForever::create(animate));
     //}
     //sprite->setPosition(Vec2(100,100));
@@ -1460,7 +1460,7 @@ void CameraFrameBufferTest::onEnter()
     sprite->runAction(RepeatForever::create(RotateBy::create(1, 90)));
     sprite->setPosition(size.width/2, size.height/2);
     addChild(sprite);
-    
+
     auto sprite2 = Sprite::create(s_pathGrossini);
     sprite2->setPosition(Vec2(size.width/5,size.height/5));
     addChild(sprite2);
@@ -1472,7 +1472,7 @@ void CameraFrameBufferTest::onEnter()
                                                                             move, move->reverse())
                                              )
                        );
-    
+
     auto camera = Camera::create();
     camera->setCameraFlag(CameraFlag::USER1);
     camera->setDepth(-1);
@@ -1502,9 +1502,9 @@ std::string BackgroundColorBrushTest::subtitle() const
 void BackgroundColorBrushTest::onEnter()
 {
     CameraBaseTest::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     {
         // 1st Camera
         auto camera = Camera::createPerspective(60, (GLfloat)s.width/s.height, 1, 1000);
@@ -1513,7 +1513,7 @@ void BackgroundColorBrushTest::onEnter()
         camera->setDepth(-2);
         camera->setCameraFlag(CameraFlag::USER1);
         addChild(camera);
-        
+
         // 3D model
         auto model = Sprite3D::create("Sprite3DTest/boss1.obj");
         model->setScale(4);
@@ -1523,13 +1523,13 @@ void BackgroundColorBrushTest::onEnter()
         addChild(model);
         model->runAction(RepeatForever::create(RotateBy::create(1.f, Vec3(10, 20, 30))));
     }
-    
+
     {
         auto base = Node::create();
         base->setContentSize(s);
         base->setCameraMask(static_cast<unsigned short>(CameraFlag::USER2));
         addChild(base);
-        
+
         // 2nd Camera
         auto camera = Camera::createPerspective(60, (GLfloat)s.width/s.height, 1, 1000);
         auto colorBrush = CameraBackgroundBrush::createColorBrush(Color4F(.1f, .1f, 1.f, .5f), 1.f);
@@ -1539,7 +1539,7 @@ void BackgroundColorBrushTest::onEnter()
         camera->setDepth(-1);
         camera->setCameraFlag(CameraFlag::USER2);
         base->addChild(camera);
-        
+
         // for alpha setting
         auto slider = ui::Slider::create();
         slider->loadBarTexture("cocosui/sliderTrack.png");
@@ -1551,7 +1551,7 @@ void BackgroundColorBrushTest::onEnter()
             colorBrush->setColor(Color4F(.1f, .1f, 1.f, (float)slider->getPercent()/100.f));
         });
         addChild(slider);
-        
+
         // 3D model for 2nd camera
         auto model = Sprite3D::create("Sprite3DTest/boss1.obj");
         model->setScale(4);
@@ -1562,3 +1562,4 @@ void BackgroundColorBrushTest::onEnter()
         model->runAction(RepeatForever::create(RotateBy::create(1.f, Vec3(10, 20, 30))));
     }
 }
+

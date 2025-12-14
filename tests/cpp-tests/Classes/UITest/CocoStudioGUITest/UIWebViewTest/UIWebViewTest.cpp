@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,31 +43,31 @@ bool WebViewTest::init()
         _webView->setContentSize(visableSize * 0.5);
         _webView->loadURL("https://www.baidu.com");
         _webView->setScalesPageToFit(true);
-        
+
         _webView->setOnShouldStartLoading(CC_CALLBACK_2(WebViewTest::onWebViewShouldStartLoading, this));
         _webView->setOnDidFinishLoading(CC_CALLBACK_2(WebViewTest::onWebViewDidFinishLoading, this));
         _webView->setOnDidFailLoading(CC_CALLBACK_2(WebViewTest::onWebViewDidFailLoading, this));
-        
+
         this->addChild(_webView);
-        
+
         auto spriteHello = Sprite::create("Hello.png");
         spriteHello->setContentSize(visableSize * 0.5);
         spriteHello->setPosition(VisibleRect::center());
         this->addChild(spriteHello);
-        
+
         TextField *urlTextField = TextField::create("Input a URL here", "Arial", 20);
         urlTextField->setPlaceHolderColor(Color3B::RED);
         urlTextField->setPosition(VisibleRect::center() + Vec2(-80, _webView->getContentSize().height/2 +
                                                                urlTextField->getContentSize().height/2 + 10));
         this->addChild(urlTextField);
-        
+
         Text *httpLabel = Text::create("https:// ", "Arial", 20);
         httpLabel->setTextColor(Color4B::GREEN);
         httpLabel->setAnchorPoint(Vec2(1.0,0.5));
         httpLabel->setPosition(urlTextField->getPosition() - Vec2(urlTextField->getContentSize().width/2,0));
         this->addChild(httpLabel);
-        
-        
+
+
         Button *resetBtn = Button::create("cocosui/animationbuttonnormal.png",
                                        "cocosui/animationbuttonpressed.png");
         resetBtn->setTitleText("Visit URL");
@@ -80,8 +80,8 @@ bool WebViewTest::init()
             }
         });
         this->addChild(resetBtn);
-        
-        
+
+
         Button *reloadBtn = Button::create("cocosui/animationbuttonnormal.png",
                                           "cocosui/animationbuttonpressed.png");
         reloadBtn->setTitleText("Reload");
@@ -91,7 +91,7 @@ bool WebViewTest::init()
             _webView->reload();
         });
         this->addChild(reloadBtn);
-        
+
         Button *forwardBtn = Button::create("cocosui/animationbuttonnormal.png",
                                            "cocosui/animationbuttonpressed.png");
         forwardBtn->setTitleText("Forward");
@@ -101,9 +101,9 @@ bool WebViewTest::init()
             _webView->goForward();
         });
         this->addChild(forwardBtn);
-        
-        
-        
+
+
+
         Button *backBtn = Button::create("cocosui/animationbuttonnormal.png",
                                            "cocosui/animationbuttonpressed.png");
         backBtn->setTitleText("Back");
@@ -113,8 +113,8 @@ bool WebViewTest::init()
             _webView->goBack();
         });
         this->addChild(backBtn);
-        
-        
+
+
         Button *loadFileBtn = Button::create("cocosui/animationbuttonnormal.png",
                                            "cocosui/animationbuttonpressed.png");
         loadFileBtn->setTitleText("Load FILE");
@@ -124,7 +124,7 @@ bool WebViewTest::init()
             _webView->loadFile("Test.html");
         });
         this->addChild(loadFileBtn);
-        
+
         Button *loadHTMLBtn = Button::create("cocosui/animationbuttonnormal.png",
                                             "cocosui/animationbuttonpressed.png");
         loadHTMLBtn->setTitleText("Load Data");
@@ -134,10 +134,10 @@ bool WebViewTest::init()
             _webView->loadHTMLString("<body style=\"font-size:50px;\">Hello World <img src=\"Icon.png\"/> </body>","Images/");
         });
         this->addChild(loadHTMLBtn);
-        
-        
-        
-        
+
+
+
+
         Button *evalJsBtn = Button::create("cocosui/animationbuttonnormal.png",
                                          "cocosui/animationbuttonpressed.png");
         evalJsBtn->setTitleText("Evaluate JS");
@@ -148,7 +148,7 @@ bool WebViewTest::init()
         });
         evalJsBtn->setName("evalJs");
         this->addChild(evalJsBtn);
-        
+
         Button *opacityBtn = Button::create("cocosui/animationbuttonnormal.png",
                                            "cocosui/animationbuttonpressed.png");
         opacityBtn->setTitleText("Opacity 1.f");
@@ -166,12 +166,12 @@ bool WebViewTest::init()
                 _webView->setOpacityWebView(1.f);
                 opacityBtn->setTitleText("Opacity 1.f");
             }
-            
+
         });
         opacityBtn->setName("Opacity");
         this->addChild(opacityBtn);
-        
-        
+
+
         Button *transparentBgBtn = Button::create("cocosui/animationbuttonnormal.png",
                                             "cocosui/animationbuttonpressed.png");
         transparentBgBtn->setTitleText("Transparent BG");
@@ -182,7 +182,7 @@ bool WebViewTest::init()
         });
         transparentBgBtn->setName("Transparent");
         this->addChild(transparentBgBtn);
-        
+
         return true;
     }
     return false;

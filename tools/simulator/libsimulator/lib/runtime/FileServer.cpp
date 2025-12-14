@@ -71,7 +71,7 @@ void FileServer::readResFileFinfo()
     if(! _filecfgjson.IsObject()){
         _filecfgjson.SetObject();
     }
-    
+
     //save file info to disk every five second
     Director::getInstance()->getScheduler()->schedule([&](float){
         rapidjson::StringBuffer buffer;
@@ -152,10 +152,10 @@ bool FileServer::listenOnTCP(int port)
         listenfd = socket(res->ai_family, res->ai_socktype, res->ai_protocol);
         if (listenfd < 0)
             continue;       /* error, try next one */
-        
+
         setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (const char*)&on, sizeof(on));
         //setsockopt(listenfd, IPPROTO_TCP, TCP_NODELAY, (const char*)&on, sizeof(on));
-        
+
         auto address = ConfigParser::getInstance()->getBindAddress();
 
         // bind address
@@ -172,10 +172,10 @@ bool FileServer::listenOnTCP(int port)
                 inet_pton(res->ai_family, address.c_str(), (void*)&sin->sin6_addr);
             }
         }
-        
+
         if (::bind(listenfd, res->ai_addr, res->ai_addrlen) == 0)
             break;          /* success */
-   
+
 		/* bind error, close and try next one */
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
 		closesocket(listenfd);
@@ -193,7 +193,7 @@ bool FileServer::listenOnTCP(int port)
 
     listen(listenfd, 1);
 
-    if (res->ai_family == AF_INET) 
+    if (res->ai_family == AF_INET)
     {
         char buf[INET_ADDRSTRLEN] = "";
         struct sockaddr_in *sin = (struct sockaddr_in*) res->ai_addr;
@@ -255,17 +255,17 @@ _responseEndThread(false)
 #else
     _isUsingWritePath = true;
 #endif
-    
+
     _writePath = FileUtils::getInstance()->getWritablePath();
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
 #include "Widget_mac.h"
     _writePath += getCurAppName();
     _writePath += "/";
 #endif
-    
+
     _writePath += "debugruntime/";
-    
+
     _writePath = replaceAll(_writePath, "\\", "/");
     if (_writePath.at(_writePath.length() - 1) != '/'){
         _writePath.append("/");
@@ -287,7 +287,7 @@ void FileServer::loopReceiveFile()
     int fd = accept(_listenfd, (struct sockaddr *)&client, &client_len );
     char *protoBuf = new char[MAXPROTOLENGTH];
 
-    while(!_receiveEndThread) { 
+    while(!_receiveEndThread) {
 
         // recv start flag
         char startflag[13] = {0};
@@ -400,7 +400,7 @@ void FileServer::loopWriteFile()
             usleep(500);
             continue;
         }
-        
+
         _recvBufListMutex.lock();
         RecvBufStruct recvDataBuf = _recvBufList.front();
         _recvBufList.pop_front();
@@ -413,7 +413,7 @@ void FileServer::loopWriteFile()
         _fileNameMutex.unlock();
         //cocos2d::log("WriteFile:: fullfilename = %s",filename.c_str());
         createDir(fullfilename.substr(0, fullfilename.find_last_of("/")).c_str());
-        
+
         FILE *fp= nullptr;
         if (1 == recvDataBuf.fileProto.package_seq())
         {
@@ -442,7 +442,7 @@ void FileServer::loopWriteFile()
             }
             fclose(fp);
         }
-        
+
         if (1 == recvDataBuf.fileProto.package_seq())
         {
             //record new file modify
@@ -520,7 +520,7 @@ void FileServer::loopResponse()
         responseHeader.protoBufLen = (unsigned short) responseString.size();
         memcpy(dataBuf, &responseHeader, sizeof(responseHeader));
         memcpy(dataBuf + sizeof(responseHeader), responseString.c_str(), responseString.size());
-        
+
         sendBuf(responseBuf.fd, dataBuf, sizeof(responseHeader) + responseString.size());
         cocos2d::log("responseFile:%s,result:%d", fileSendProtoComplete.file_name().c_str(), fileSendProtoComplete.result());
     }
@@ -537,7 +537,7 @@ bool createDir(const char *sPathName)
     {
         strcat(DirName, "/");
     }
-    
+
     len = strlen(DirName);
     for(i = 1; i < len; i++)
     {
@@ -561,6 +561,7 @@ bool createDir(const char *sPathName)
             DirName[i] = '/';
         }
     }
-    
+
     return true;
 }
+

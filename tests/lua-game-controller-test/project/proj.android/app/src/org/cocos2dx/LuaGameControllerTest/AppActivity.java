@@ -30,9 +30,9 @@ import org.cocos2dx.lib.GameControllerActivity;
 import android.os.Bundle;
 
 public class AppActivity extends GameControllerActivity {
-	
+
 	@Override
-	protected void onCreate(Bundle savedInstanceState) {		
+	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
         // Workaround in https://stackoverflow.com/questions/16283079/re-launch-of-activity-on-home-button-but-only-the-first-time/16447508
         if (!isTaskRoot()) {
@@ -43,12 +43,13 @@ public class AppActivity extends GameControllerActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
- 
+
 		//The standard controller,without doing anything special. e.g: Amazon Fire TV
-		
+
 		//Manually specify an adapter.
 		this.connectController(DRIVERTYPE_NIBIRU);
 		//this.connectController(DRIVERTYPE_MOGA);
 		//this.connectController(DRIVERTYPE_OUYA);
 	}
 }
+

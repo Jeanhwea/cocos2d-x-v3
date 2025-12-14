@@ -4,19 +4,19 @@
  *
  * Copyright 2011 Yannick Loriot.
  * http://yannickloriot.com
- * 
+ *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -76,13 +76,13 @@ ControlSlider* ControlSlider::create(const char* bgFile, const char* progressFil
 {
     // Prepare background for slider
     Sprite *backgroundSprite      = Sprite::create(bgFile);
-    
+
     // Prepare progress for slider
     Sprite *progressSprite        = Sprite::create(progressFile);
-    
+
     // Prepare thumb (menuItem) for slider
     Sprite *thumbSprite           = Sprite::create(thumbFile);
-    
+
     // Prepare selected thumb (menuItem) for slider
     Sprite *selectedThumbSprite   = Sprite::create(selectedThumbSpriteFile);
 
@@ -135,7 +135,7 @@ bool ControlSlider::initWithSprites(Sprite * backgroundSprite, Sprite* progressS
         Rect maxRect   = ControlUtils::RectUnion(backgroundSprite->getBoundingBox(), thumbSprite->getBoundingBox());
 
         setContentSize(Size(maxRect.size.width, maxRect.size.height));
-        
+
         // Add the slider background
         _backgroundSprite->setAnchorPoint(Vec2(0.5f, 0.5f));
         _backgroundSprite->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
@@ -146,10 +146,10 @@ bool ControlSlider::initWithSprites(Sprite * backgroundSprite, Sprite* progressS
         _progressSprite->setPosition(0.0f, this->getContentSize().height / 2);
         addChild(_progressSprite);
 
-        // Add the slider thumb  
+        // Add the slider thumb
         _thumbSprite->setPosition(0.0f, this->getContentSize().height / 2);
         addChild(_thumbSprite);
-        
+
         _selectedThumbSprite->setPosition(0.0f, this->getContentSize().height / 2);
         _selectedThumbSprite->setVisible(false);
         addChild(_selectedThumbSprite);
@@ -171,7 +171,7 @@ bool ControlSlider::initWithSprites(Sprite * backgroundSprite, Sprite* progressS
 void ControlSlider::setEnabled(bool enabled)
 {
     Control::setEnabled(enabled);
-    if (_thumbSprite != nullptr) 
+    if (_thumbSprite != nullptr)
     {
         _thumbSprite->setOpacity((enabled) ? 255 : 128);
     }
@@ -185,7 +185,7 @@ void ControlSlider::setEnabled(bool enabled)
          value = _minimumValue;
      }
 
-     if (value > _maximumValue) 
+     if (value > _maximumValue)
      {
          value = _maximumValue;
      }
@@ -201,7 +201,7 @@ void ControlSlider::setEnabled(bool enabled)
  {
      _minimumValue=minimumValue;
      _minimumAllowedValue = minimumValue;
-     if (_minimumValue >= _maximumValue)    
+     if (_minimumValue >= _maximumValue)
      {
         _maximumValue   = _minimumValue + 1.0f;
      }
@@ -212,7 +212,7 @@ void ControlSlider::setEnabled(bool enabled)
  {
      _maximumValue=maximumValue;
      _maximumAllowedValue = maximumValue;
-     if (_maximumValue <= _minimumValue)   
+     if (_maximumValue <= _minimumValue)
      {
         _minimumValue   = _maximumValue - 1.0f;
      }
@@ -323,3 +323,4 @@ float ControlSlider::valueForLocation(Vec2 location)
 }
 
 NS_CC_EXT_END
+

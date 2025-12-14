@@ -194,7 +194,7 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE virtual bool getIgnoreMovementBoneData() const { return isIgnoreMovementBoneData(); }
 
-    
+
     /*
      * Set blend function
      */
@@ -202,7 +202,7 @@ public:
     virtual cocos2d::BlendFunc getBlendFunc() { return _blendFunc; }
 
     /*
-     * Set if blend function is dirty 
+     * Set if blend function is dirty
      */
     virtual void setBlendDirty(bool dirty) { _blendDirty = dirty; }
     virtual bool isBlendDirty() { return _blendDirty; }
@@ -248,10 +248,10 @@ protected:
     cocos2d::Mat4 _worldTransform;
 
     BaseData *_worldInfo;
-    
+
     //! Armature's parent bone
     Bone *_armatureParentBone;
-    
+
     //! Data version
     float _dataVersion;
 };
@@ -259,3 +259,4 @@ protected:
 }
 
 #endif /*__CCBONE_H__*/
+

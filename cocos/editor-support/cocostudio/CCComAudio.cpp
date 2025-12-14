@@ -43,7 +43,7 @@ ComAudio::ComAudio()
 
 ComAudio::~ComAudio()
 {
-    
+
 }
 
 bool ComAudio::init()
@@ -178,7 +178,7 @@ void ComAudio::preloadBackgroundMusic(const char* pszFilePath)
 void ComAudio::playBackgroundMusic(const char* pszFilePath, bool loop)
 {
     CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(pszFilePath, loop);
-    
+
 }
 
 void ComAudio::playBackgroundMusic(const char* pszFilePath)
@@ -333,3 +333,4 @@ void ComAudio::stop()
     stopEffect(_startedSoundId);
 }
 }
+

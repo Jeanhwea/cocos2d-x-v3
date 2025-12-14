@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -61,7 +61,7 @@ public:
      * Bottom margin.
      */
     float bottom;
-    
+
 public:
     /**
      * Default constructor.
@@ -102,7 +102,7 @@ public:
      *@return True if two margins are equal, false otherwise.
      */
     bool equals(const Margin& target) const;
-    
+
     /**
      * A margin constant with all margins equal zero.
      */
@@ -144,27 +144,27 @@ public:
     {
         _layoutParameterType = Type::NONE;
     }
-    
+
     /**
      * Default destructor.
      * @lua NA
      */
     virtual ~LayoutParameter(){};
-    
+
     /**
      * Create a empty LayoutParameter.
      * @return A autorelease LayoutParameter instance.
      */
     static LayoutParameter* create();
-    
+
     /**
      * Set margin parameter for LayoutParameter.
-     * 
+     *
      * @see Margin
      * @param margin
      */
     void setMargin(const Margin& margin);
-    
+
     /**
      * Gets margin parameter of LayoutParameter.
      *
@@ -172,7 +172,7 @@ public:
      * @return Margin of layout parameter.
      */
     const Margin& getMargin() const;
-    
+
     /**
      * Gets LayoutParameterType of LayoutParameter.
      *
@@ -180,7 +180,7 @@ public:
      * @return LayoutParameterType
      */
     Type getLayoutType() const;
-    
+
     /**
      * Create a copy of original LayoutParameter.
      *@return A LayoutParameter pointer.
@@ -192,7 +192,7 @@ public:
      *@return A LayoutParameter pointer.
      */
     virtual LayoutParameter* createCloneInstance();
-    
+
     /**
      * Copy all the member field from argument LayoutParameter to self.
      *@param model A LayoutParameter instance.
@@ -202,7 +202,7 @@ protected:
     Margin _margin;
     Type _layoutParameterType;
 };
-    
+
 /**
  * Protocol for getting a LayoutParameter.
  * Every element want to have layout parameter should inherit from this class.
@@ -222,7 +222,7 @@ public:
     virtual LayoutParameter* getLayoutParameter() const= 0;
 };
 
-    
+
 /**
  * @brief Linear layout parameter.
  * It is used by linear layout manager for arranging elements linearly.
@@ -254,20 +254,20 @@ public:
     {
         _layoutParameterType = Type::LINEAR;
     }
-    
+
     /**
      * Default destructor.
      *
      * @lua NA
      */
     virtual ~LinearLayoutParameter(){};
-    
+
     /**
      * Create a empty LinearLayoutParameter instance.
      * @return A initialized LayoutParameter which is marked as "autorelease".
      */
     static LinearLayoutParameter* create();
-    
+
     /**
      * Sets LinearGravity parameter for LayoutParameter.
      *
@@ -275,7 +275,7 @@ public:
      * @param gravity Gravity in LinearGravity.
      */
     void setGravity(LinearGravity gravity);
-    
+
     /**
      * Gets LinearGravity parameter for LayoutParameter.
      *
@@ -291,8 +291,8 @@ protected:
     LinearGravity _linearGravity;
     int i;
 };
-    
-    
+
+
 
 /**
  * @brief Relative layout parameter.
@@ -311,14 +311,14 @@ public:
         PARENT_TOP_CENTER_HORIZONTAL,
         PARENT_TOP_RIGHT,
         PARENT_LEFT_CENTER_VERTICAL,
-        
+
         CENTER_IN_PARENT,
-        
+
         PARENT_RIGHT_CENTER_VERTICAL,
         PARENT_LEFT_BOTTOM,
         PARENT_BOTTOM_CENTER_HORIZONTAL,
         PARENT_RIGHT_BOTTOM,
-        
+
         LOCATION_ABOVE_LEFTALIGN,
         LOCATION_ABOVE_CENTER,
         LOCATION_ABOVE_RIGHTALIGN,
@@ -346,20 +346,20 @@ public:
     {
         _layoutParameterType = Type::RELATIVE;
     }
-    
+
     /**
      * Default destructor
      *
      * @lua NA
      */
     virtual ~RelativeLayoutParameter(){};
-    
+
     /**
      * Create a RelativeLayoutParameter instance.
      * @return A initialized LayoutParameter which is marked as "autorelease".
      */
     static RelativeLayoutParameter* create();
-    
+
     /**
      * Sets RelativeAlign parameter for LayoutParameter.
      *
@@ -367,7 +367,7 @@ public:
      * @param align Relative align in  `RelativeAlign`.
      */
     void setAlign(RelativeAlign align);
-    
+
     /**
      * Get RelativeAlign parameter for LayoutParameter.
      *
@@ -375,34 +375,34 @@ public:
      * @return  A RelativeAlign variable.
      */
     RelativeAlign getAlign() const;
-    
+
     /**
      * Set widget name your widget want to relative to.
      *
      * @param name Relative widget name.
      */
     void setRelativeToWidgetName(const std::string& name);
-    
+
     /**
      * Get the relative widget name.
      * @return name A relative widget name in string.
      */
     const std::string& getRelativeToWidgetName() const;
-    
+
     /**
      * Set a name for LayoutParameter in Relative Layout.
      *
      * @param name A string name.
      */
     void setRelativeName(const std::string& name);
-    
+
     /**
      * Get a name of LayoutParameter in Relative Layout.
      *
      * @return name Relative name in string.
      */
     const std::string& getRelativeName() const;
-    
+
     //override functions.
     virtual LayoutParameter* createCloneInstance() override;
     virtual void copyProperties(LayoutParameter* model) override;
@@ -420,3 +420,4 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__LayoutParameter__) */
+

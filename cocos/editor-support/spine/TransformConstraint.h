@@ -79,3 +79,4 @@ typedef spTransformConstraint TransformConstraint;
 #endif
 
 #endif /* SPINE_TRANSFORMCONSTRAINT_H_ */
+

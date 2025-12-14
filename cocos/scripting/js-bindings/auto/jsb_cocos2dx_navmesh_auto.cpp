@@ -1187,3 +1187,4 @@ void register_all_cocos2dx_navmesh(JSContext* cx, JS::HandleObject obj) {
 }
 
 #endif //#if CC_USE_NAVMESH
+

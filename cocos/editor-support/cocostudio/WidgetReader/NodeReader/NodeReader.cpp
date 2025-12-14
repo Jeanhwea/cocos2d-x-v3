@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,34 +57,34 @@ namespace cocostudio
     const char* Layout_BottomEdge = "BottomEdge";
 
     IMPLEMENT_CLASS_NODE_READER_INFO(NodeReader)
-    
+
     NodeReader::NodeReader()
     {
-        
+
     }
-    
+
     NodeReader::~NodeReader()
     {
-        
+
     }
-    
+
     static NodeReader* _instanceNodeReader = nullptr;
-    
+
     NodeReader* NodeReader::getInstance()
     {
         if (!_instanceNodeReader)
         {
             _instanceNodeReader = new (std::nothrow) NodeReader();
         }
-        
+
         return _instanceNodeReader;
     }
-    
+
     void NodeReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceNodeReader);
     }
-    
+
     Offset<Table> NodeReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                            flatbuffers::FlatBufferBuilder *builder)
     {
@@ -124,14 +124,14 @@ namespace cocostudio
         float rightMargin = 0;
         float topMargin = 0;
         float bottomMargin = 0;
-        
+
         // attributes
         const tinyxml2::XMLAttribute* attribute = objectData->FirstAttribute();
         while (attribute)
         {
             std::string attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (attriname == "Name")
             {
                 name = value;
@@ -240,10 +240,10 @@ namespace cocostudio
             {
                 bottomMargin = atof(value.c_str());
             }
-            
+
             attribute = attribute->Next();
         }
-        
+
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
@@ -251,12 +251,12 @@ namespace cocostudio
             if (attriname == "Position")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "X")
                     {
                         position.x = atof(value.c_str());
@@ -265,19 +265,19 @@ namespace cocostudio
                     {
                         position.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "Scale")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "ScaleX")
                     {
                         scale.x = atof(value.c_str());
@@ -286,19 +286,19 @@ namespace cocostudio
                     {
                         scale.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "AnchorPoint")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "ScaleX")
                     {
                         anchorPoint.x = atof(value.c_str());
@@ -307,19 +307,19 @@ namespace cocostudio
                     {
                         anchorPoint.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "CColor")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "A")
                     {
                         color.a = atoi(value.c_str());
@@ -336,19 +336,19 @@ namespace cocostudio
                     {
                         color.b = atoi(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "Size")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "X")
                     {
                         size.x = atof(value.c_str());
@@ -357,7 +357,7 @@ namespace cocostudio
                     {
                         size.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
@@ -405,7 +405,7 @@ namespace cocostudio
             }
             child = child->NextSiblingElement();
         }
-        
+
         RotationSkew f_rotationskew(rotationSkew.x, rotationSkew.y);
         Position f_position(position.x, position.y);
         Scale f_scale(scale.x, scale.y);
@@ -429,7 +429,7 @@ namespace cocostudio
                                                             rightMargin,
                                                             topMargin,
                                                             bottomMargin);
-        
+
         auto options = CreateWidgetOptions(*builder,
                                            builder->CreateString(name),
                                            (int)actionTag,
@@ -452,15 +452,15 @@ namespace cocostudio
                                            0,
                                            0,
                                            f_layoutComponent);
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void NodeReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                              const flatbuffers::Table* nodeOptions)
     {
         auto options = (WidgetOptions*)(nodeOptions);
-        
+
         std::string name = options->name()->c_str();
         float x             = options->position()->x();
         float y             = options->position()->y();
@@ -480,9 +480,9 @@ namespace cocostudio
         int alpha           = options->alpha();
         Color3B color(options->color()->r(), options->color()->g(), options->color()->b());
         std::string customProperty = options->customProperty()->c_str();
-        
+
         node->setName(name);
-        
+
 //        if(x != 0 || y != 0)
             node->setPosition(Point(x, y));
         if(scalex != 1)
@@ -505,11 +505,11 @@ namespace cocostudio
             node->setContentSize(Size(w, h));
         if (alpha != 255)
             node->setOpacity(alpha);
-        
+
         node->setColor(color);
-        
+
         node->setTag(tag);
-        
+
         ComExtensionData* extensionData = ComExtensionData::create();
         extensionData->setCustomProperty(customProperty);
         extensionData->setActionTag(actionTag);
@@ -518,8 +518,8 @@ namespace cocostudio
             node->removeComponent(ComExtensionData::COMPONENT_NAME);
         }
         node->addComponent(extensionData);
-        
-        
+
+
         node->setCascadeColorEnabled(true);
         node->setCascadeOpacityEnabled(true);
 
@@ -598,11 +598,10 @@ namespace cocostudio
     Node* NodeReader::createNodeWithFlatBuffers(const flatbuffers::Table *nodeOptions)
     {
         Node* node = Node::create();
-        
+
         setPropsWithFlatBuffers(node, nodeOptions);
-        
+
         return node;
     }
 }
-
 

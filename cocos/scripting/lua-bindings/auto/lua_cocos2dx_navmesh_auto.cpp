@@ -23,7 +23,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setMaxSpeed(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setMaxSpeed'", nullptr);
         return 0;
@@ -31,7 +31,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setMaxSpeed(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -73,7 +73,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_syncToNode(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_syncToNode'", nullptr);
         return 0;
@@ -81,7 +81,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_syncToNode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -120,7 +120,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_completeOffMeshLink(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_completeOffMeshLink'", nullptr);
         return 0;
@@ -128,7 +128,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_completeOffMeshLink(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -167,7 +167,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getSeparationWeight(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getSeparationWeight'", nullptr);
         return 0;
@@ -175,7 +175,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getSeparationWeight(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -214,7 +214,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setAutoTraverseOffMeshLink(lua_State* tolu
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setAutoTraverseOffMeshLink'", nullptr);
         return 0;
@@ -222,7 +222,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setAutoTraverseOffMeshLink(lua_State* tolu
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -264,7 +264,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getCurrentVelocity(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getCurrentVelocity'", nullptr);
         return 0;
@@ -272,7 +272,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getCurrentVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -311,7 +311,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_syncToAgent(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_syncToAgent'", nullptr);
         return 0;
@@ -319,7 +319,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_syncToAgent(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -358,7 +358,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_isOnOffMeshLink(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_isOnOffMeshLink'", nullptr);
         return 0;
@@ -366,7 +366,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_isOnOffMeshLink(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -405,7 +405,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setSeparationWeight(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setSeparationWeight'", nullptr);
         return 0;
@@ -413,7 +413,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setSeparationWeight(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -455,7 +455,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_pause(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_pause'", nullptr);
         return 0;
@@ -463,7 +463,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_pause(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -502,7 +502,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getUserData(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getUserData'", nullptr);
         return 0;
@@ -510,7 +510,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getUserData(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -549,7 +549,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setAutoOrientation(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setAutoOrientation'", nullptr);
         return 0;
@@ -557,7 +557,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setAutoOrientation(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -599,7 +599,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getHeight(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getHeight'", nullptr);
         return 0;
@@ -607,7 +607,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getHeight(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -646,7 +646,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getMaxSpeed(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getMaxSpeed'", nullptr);
         return 0;
@@ -654,7 +654,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getMaxSpeed(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -693,7 +693,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getCurrentOffMeshLinkData(lua_State* tolua
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getCurrentOffMeshLinkData'", nullptr);
         return 0;
@@ -701,7 +701,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getCurrentOffMeshLinkData(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -740,7 +740,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getRadius(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getRadius'", nullptr);
         return 0;
@@ -748,7 +748,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getRadius(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -787,7 +787,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setSyncFlag(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setSyncFlag'", nullptr);
         return 0;
@@ -795,7 +795,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setSyncFlag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshAgent::NavMeshAgentSyncFlag arg0;
 
@@ -837,7 +837,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getSyncFlag(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getSyncFlag'", nullptr);
         return 0;
@@ -845,7 +845,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getSyncFlag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -884,7 +884,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_resume(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_resume'", nullptr);
         return 0;
@@ -892,7 +892,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_resume(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -931,7 +931,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_stop(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_stop'", nullptr);
         return 0;
@@ -939,7 +939,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_stop(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -978,7 +978,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setMaxAcceleration(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setMaxAcceleration'", nullptr);
         return 0;
@@ -986,7 +986,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setMaxAcceleration(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -1028,7 +1028,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setOrientationRefAxes(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setOrientationRefAxes'", nullptr);
         return 0;
@@ -1036,7 +1036,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setOrientationRefAxes(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec3 arg0;
 
@@ -1078,7 +1078,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getMaxAcceleration(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getMaxAcceleration'", nullptr);
         return 0;
@@ -1086,7 +1086,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getMaxAcceleration(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1125,7 +1125,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setHeight(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setHeight'", nullptr);
         return 0;
@@ -1133,7 +1133,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setHeight(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -1175,7 +1175,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setUserData(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setUserData'", nullptr);
         return 0;
@@ -1183,7 +1183,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setUserData(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         void* arg0;
 
@@ -1226,7 +1226,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getObstacleAvoidanceType(lua_State* tolua_
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getObstacleAvoidanceType'", nullptr);
         return 0;
@@ -1234,7 +1234,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getObstacleAvoidanceType(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1273,7 +1273,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getVelocity(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_getVelocity'", nullptr);
         return 0;
@@ -1281,7 +1281,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_getVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1320,7 +1320,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setRadius(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setRadius'", nullptr);
         return 0;
@@ -1328,7 +1328,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setRadius(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -1370,7 +1370,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setObstacleAvoidanceType(lua_State* tolua_
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshAgent_setObstacleAvoidanceType'", nullptr);
         return 0;
@@ -1378,7 +1378,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_setObstacleAvoidanceType(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         uint16_t arg0;
 
@@ -1485,7 +1485,7 @@ int lua_cocos2dx_navmesh_NavMeshAgent_constructor(lua_State* tolua_S)
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1578,7 +1578,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getSyncFlag(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_getSyncFlag'", nullptr);
         return 0;
@@ -1586,7 +1586,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getSyncFlag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1625,7 +1625,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_initWith(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_initWith'", nullptr);
         return 0;
@@ -1633,7 +1633,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_initWith(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         double arg0;
         double arg1;
@@ -1678,7 +1678,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_syncToObstacle(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_syncToObstacle'", nullptr);
         return 0;
@@ -1686,7 +1686,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_syncToObstacle(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1725,7 +1725,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_syncToNode(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_syncToNode'", nullptr);
         return 0;
@@ -1733,7 +1733,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_syncToNode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1772,7 +1772,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getHeight(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_getHeight'", nullptr);
         return 0;
@@ -1780,7 +1780,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getHeight(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1819,7 +1819,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_setSyncFlag(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_setSyncFlag'", nullptr);
         return 0;
@@ -1827,7 +1827,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_setSyncFlag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshObstacle::NavMeshObstacleSyncFlag arg0;
 
@@ -1869,7 +1869,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getRadius(lua_State* tolua_S)
     cobj = (cocos2d::NavMeshObstacle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMeshObstacle_getRadius'", nullptr);
         return 0;
@@ -1877,7 +1877,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_getRadius(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1983,7 +1983,7 @@ int lua_cocos2dx_navmesh_NavMeshObstacle_constructor(lua_State* tolua_S)
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2054,7 +2054,7 @@ int lua_cocos2dx_navmesh_NavMesh_removeNavMeshObstacle(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_removeNavMeshObstacle'", nullptr);
         return 0;
@@ -2062,7 +2062,7 @@ int lua_cocos2dx_navmesh_NavMesh_removeNavMeshObstacle(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshObstacle* arg0;
 
@@ -2104,7 +2104,7 @@ int lua_cocos2dx_navmesh_NavMesh_removeNavMeshAgent(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_removeNavMeshAgent'", nullptr);
         return 0;
@@ -2112,7 +2112,7 @@ int lua_cocos2dx_navmesh_NavMesh_removeNavMeshAgent(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshAgent* arg0;
 
@@ -2154,7 +2154,7 @@ int lua_cocos2dx_navmesh_NavMesh_update(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_update'", nullptr);
         return 0;
@@ -2162,7 +2162,7 @@ int lua_cocos2dx_navmesh_NavMesh_update(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -2204,7 +2204,7 @@ int lua_cocos2dx_navmesh_NavMesh_isDebugDrawEnabled(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_isDebugDrawEnabled'", nullptr);
         return 0;
@@ -2212,7 +2212,7 @@ int lua_cocos2dx_navmesh_NavMesh_isDebugDrawEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2251,7 +2251,7 @@ int lua_cocos2dx_navmesh_NavMesh_addNavMeshAgent(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_addNavMeshAgent'", nullptr);
         return 0;
@@ -2259,7 +2259,7 @@ int lua_cocos2dx_navmesh_NavMesh_addNavMeshAgent(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshAgent* arg0;
 
@@ -2301,7 +2301,7 @@ int lua_cocos2dx_navmesh_NavMesh_addNavMeshObstacle(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_addNavMeshObstacle'", nullptr);
         return 0;
@@ -2309,7 +2309,7 @@ int lua_cocos2dx_navmesh_NavMesh_addNavMeshObstacle(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::NavMeshObstacle* arg0;
 
@@ -2351,7 +2351,7 @@ int lua_cocos2dx_navmesh_NavMesh_setDebugDrawEnable(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_setDebugDrawEnable'", nullptr);
         return 0;
@@ -2359,7 +2359,7 @@ int lua_cocos2dx_navmesh_NavMesh_setDebugDrawEnable(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -2401,7 +2401,7 @@ int lua_cocos2dx_navmesh_NavMesh_debugDraw(lua_State* tolua_S)
     cobj = (cocos2d::NavMesh*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_navmesh_NavMesh_debugDraw'", nullptr);
         return 0;
@@ -2409,7 +2409,7 @@ int lua_cocos2dx_navmesh_NavMesh_debugDraw(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Renderer* arg0;
 
@@ -2484,7 +2484,7 @@ int lua_cocos2dx_navmesh_NavMesh_constructor(lua_State* tolua_S)
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2539,7 +2539,7 @@ int lua_register_cocos2dx_navmesh_NavMesh(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_navmesh(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"cc",0);
 	tolua_beginmodule(tolua_S,"cc");
 
@@ -2552,3 +2552,4 @@ TOLUA_API int register_all_cocos2dx_navmesh(lua_State* tolua_S)
 }
 
 #endif
+

@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,12 +39,12 @@ const bool PUCircleEmitter::DEFAULT_RANDOM = true;
 const Vec3 PUCircleEmitter::DEFAULT_NORMAL(0, 0, 0);
 
 //-----------------------------------------------------------------------
-PUCircleEmitter::PUCircleEmitter() : 
+PUCircleEmitter::PUCircleEmitter() :
     PUEmitter(),
     _radius(DEFAULT_RADIUS),
     _circleAngle(DEFAULT_ANGLE),
     _originalCircleAngle(DEFAULT_ANGLE),
-    _step(DEFAULT_STEP),    
+    _step(DEFAULT_STEP),
     _x(0.0f),
     _z(0.0f),
     _random(DEFAULT_RANDOM),
@@ -98,14 +98,14 @@ const Quaternion& PUCircleEmitter::getOrientation() const
 {
     return _orientation;
 }
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 const Vec3& PUCircleEmitter::getNormal() const
-{ 
+{
     return _normal;
-} 
-//----------------------------------------------------------------------- 
-void PUCircleEmitter::setNormal(const Vec3& normal) 
-{ 
+}
+//-----------------------------------------------------------------------
+void PUCircleEmitter::setNormal(const Vec3& normal)
+{
     //_orientation = Vec3::UNIT_Y.getRotationTo(normal, Vec3::UNIT_X);
     _orientation = getRotationTo(Vec3::UNIT_Y, normal, Vec3::UNIT_X);
     _normal = normal;
@@ -116,7 +116,7 @@ void PUCircleEmitter::notifyStart ()
     // Reset the attributes to allow a restart.
     _circleAngle = _originalCircleAngle;
 }
-//----------------------------------------------------------------------- 
+//-----------------------------------------------------------------------
 void PUCircleEmitter::initParticlePosition(PUParticle3D* particle)
 {
     float angle = 0;
@@ -141,7 +141,7 @@ void PUCircleEmitter::initParticlePosition(PUParticle3D* particle)
         // Take both orientation of the node and its own orientation, based on the normal, into account
         Mat4 rotMat;
         Mat4::createRotation(static_cast<PUParticleSystem3D *>(_particleSystem)->getDerivedOrientation() * _orientation, &rotMat);
-        particle->position = getDerivedPosition() + 
+        particle->position = getDerivedPosition() +
             /*sys->getDerivedOrientation() * */rotMat * (Vec3(_x * _radius * _emitterScale.x, 0, _z * _radius * _emitterScale.z));
     }
     //else
@@ -258,7 +258,7 @@ void PUCircleEmitter::copyAttributesTo( PUEmitter* emitter )
     circleEmitter->_step = _step;
     circleEmitter->_random = _random;
     circleEmitter->_normal = _normal;
-    circleEmitter->_orientation = _orientation; 
+    circleEmitter->_orientation = _orientation;
 }
 
 PUCircleEmitter* PUCircleEmitter::clone()
@@ -269,3 +269,4 @@ PUCircleEmitter* PUCircleEmitter::clone()
 }
 
 NS_CC_END
+

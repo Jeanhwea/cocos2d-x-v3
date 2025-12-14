@@ -52,10 +52,10 @@
                                           sharegroup: nil
                                        multiSampling: NO
                                      numberOfSamples: 0 ];
-    
+
     // Enable or disable multiple touches
     [eaglView setMultipleTouchEnabled:NO];
-    
+
     // Set EAGLView as view of RootViewController
     self.view = eaglView;
 }
@@ -120,10 +120,10 @@
     return NO;
 }
 
-// HOME Indicator need to be tapped twice 
+// HOME Indicator need to be tapped twice
 -(UIRectEdge)preferredScreenEdgesDeferringSystemGestures
 {
-    return UIRectEdgeBottom; 
+    return UIRectEdgeBottom;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -135,3 +135,4 @@
 
 
 @end
+

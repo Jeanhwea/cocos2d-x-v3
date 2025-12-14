@@ -121,7 +121,7 @@ void VideoPlayer::setFileName(const std::string& fileName)
 {
     _videoURL = FileUtils::getInstance()->fullPathForFilename(fileName);
     _videoSource = VideoPlayer::Source::FILENAME;
-    JniHelper::callStaticVoidMethod(videoHelperClassName, "setVideoUrl", _videoPlayerIndex, 
+    JniHelper::callStaticVoidMethod(videoHelperClassName, "setVideoUrl", _videoPlayerIndex,
                                     (int)Source::FILENAME,_videoURL);
 }
 
@@ -157,7 +157,7 @@ void VideoPlayer::draw(Renderer* renderer, const Mat4 &transform, uint32_t flags
     if (flags & FLAGS_TRANSFORM_DIRTY)
     {
         auto uiRect = cocos2d::ui::Helper::convertBoundingBoxToScreen(this);
-        JniHelper::callStaticVoidMethod(videoHelperClassName, "setVideoRect", _videoPlayerIndex, 
+        JniHelper::callStaticVoidMethod(videoHelperClassName, "setVideoRect", _videoPlayerIndex,
                                         (int)uiRect.origin.x, (int)uiRect.origin.y,
                                         (int)uiRect.size.width, (int)uiRect.size.height);
     }
@@ -183,7 +183,7 @@ void VideoPlayer::setFullScreenEnabled(bool enabled)
         _fullScreenEnabled = enabled;
 
         auto frameSize = Director::getInstance()->getOpenGLView()->getFrameSize();
-        JniHelper::callStaticVoidMethod(videoHelperClassName, "setFullScreenEnabled", _videoPlayerIndex, 
+        JniHelper::callStaticVoidMethod(videoHelperClassName, "setFullScreenEnabled", _videoPlayerIndex,
                                         enabled, (int)frameSize.width, (int)frameSize.height);
     }
 }
@@ -317,7 +317,7 @@ void VideoPlayer::onPlayEvent(int event)
     if (event == QUIT_FULLSCREEN)
     {
         _fullScreenEnabled = false;
-    } 
+    }
     else
     {
         VideoPlayer::EventType videoEvent = (VideoPlayer::EventType)event;
@@ -369,3 +369,4 @@ void executeVideoCallback(int index,int event)
 }
 
 #endif
+

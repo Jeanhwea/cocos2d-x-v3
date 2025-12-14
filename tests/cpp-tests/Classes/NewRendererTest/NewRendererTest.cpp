@@ -185,7 +185,7 @@ protected:
     GroupCommand _spriteWrapperCommand;
 public:
     static SpriteInGroupCommand* create(const std::string& filename);
-    
+
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 };
 
@@ -370,15 +370,15 @@ NewCullingTest::NewCullingTest()
     sprite2->setPosition(Vec2(size.width/2,size.height * 2/3));
     sprite2->setScale(2);
     addChild(sprite2);
-    
+
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
-    
+
     listener->onTouchBegan = CC_CALLBACK_2(NewCullingTest::onTouchBegan, this);
     listener->onTouchMoved = CC_CALLBACK_2(NewCullingTest::onTouchMoved, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
 }
 
 bool NewCullingTest::onTouchBegan(Touch* touch, Event  *event)
@@ -389,21 +389,21 @@ bool NewCullingTest::onTouchBegan(Touch* touch, Event  *event)
 }
 
 void NewCullingTest::onTouchMoved(Touch* touch, Event  *event)
-{    
+{
     auto pos = touch->getLocation();
-    
+
     auto offset = pos - _lastPos;
-    
+
     auto layerPos = getPosition();
     auto newPos = layerPos + offset;
-    
+
     setPosition(newPos);
     _lastPos = pos;
 }
 
 NewCullingTest::~NewCullingTest()
 {
-    
+
 }
 
 std::string NewCullingTest::title() const
@@ -422,7 +422,7 @@ VBOFullTest::VBOFullTest()
     Node* parent = Node::create();
     parent->setPosition(0,0);
     addChild(parent);
-    
+
     for (int i=0; i< Renderer::VBO_SIZE / 3.9; ++i)
     {
         Sprite* sprite = Sprite::create("Images/grossini_dance_01.png");
@@ -436,7 +436,7 @@ VBOFullTest::VBOFullTest()
 
 VBOFullTest::~VBOFullTest()
 {
-    
+
 }
 
 std::string VBOFullTest::title() const
@@ -454,7 +454,7 @@ CaptureScreenTest::CaptureScreenTest()
     Size s = Director::getInstance()->getWinSize();
     Vec2 left(s.width / 4, s.height / 2);
     Vec2 right(s.width / 4 * 3, s.height / 2);
-	
+
     auto sp1 = Sprite::create("Images/grossini.png");
     sp1->setPosition(left);
     auto move1 = MoveBy::create(1, Vec2(s.width/2, 0));
@@ -497,7 +497,7 @@ void CaptureScreenTest::onCaptured(Ref*)
     Director::getInstance()->getTextureCache()->removeTextureForKey(_filename);
     removeChildByTag(childTag);
     _filename = "CaptureScreenTest.png";
-    // retain it to avoid crash caused by invoking afterCaptured 
+    // retain it to avoid crash caused by invoking afterCaptured
     this->retain();
     utils::captureScreen(CC_CALLBACK_2(CaptureScreenTest::afterCaptured, this), _filename);
 }
@@ -566,10 +566,10 @@ std::string CaptureNodeTest::subtitle() const
 }
 
 void CaptureNodeTest::onCaptured(Ref*)
-{ 
+{
     Director::getInstance()->getTextureCache()->removeTextureForKey(_filename);
     removeChildByTag(childTag);
-    
+
     _filename = FileUtils::getInstance()->getWritablePath() + "/CaptureNodeTest.png";
 
     // capture this
@@ -866,7 +866,7 @@ void NonBatchSprites::createSprite()
 
 void NonBatchSprites::update(float dt)
 {
-    
+
     if( dt <= 1.0f / 28.0f && dt >= 1.0f/ 31.0f)
     {
         _around30fps.hit();
@@ -875,7 +875,7 @@ void NonBatchSprites::update(float dt)
     {
         _around30fps.cancel();
     }
-    
+
     _maDt = 0.7f * _maDt  + 0.3f * dt;
     _rmaDt = 0.5f * _rmaDt  + 0.5f * dt;
     if(_maDt <= DEST_DT_30FPS) {
@@ -1084,5 +1084,4 @@ std::string SpriteCreation::subtitle() const
     return "In release mode";
 #endif
 }
-
 

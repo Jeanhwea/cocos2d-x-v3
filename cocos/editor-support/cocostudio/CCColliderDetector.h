@@ -95,7 +95,7 @@ public:
 
     inline ContourData *getContourData() { return _contourData; }
 
-#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT 
+#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT
     void setColliderFilter(ColliderFilter *filter);
     ColliderFilter *getColliderFilter();
 #endif
@@ -164,7 +164,7 @@ public:
 
     const cocos2d::Vector<ColliderBody*>& getColliderBodyList();
 
-#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT 
+#if ENABLE_PHYSICS_BOX2D_DETECT || ENABLE_PHYSICS_CHIPMUNK_DETECT
     virtual void setColliderFilter(ColliderFilter *filter);
     virtual ColliderFilter *getColliderFilter();
 #endif
@@ -199,3 +199,4 @@ protected:
 }
 
 #endif /*__CCCOLLIDERDETECTOR_H__*/
+

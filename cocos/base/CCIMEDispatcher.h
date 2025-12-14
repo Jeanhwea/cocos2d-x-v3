@@ -2,7 +2,7 @@
 Copyright (c) 2010      cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -78,7 +78,7 @@ public:
      * @lua NA
      */
     const std::string& getContentText();
- 
+
     /**
     *@brief Returns if any delegate is attached with IME.
     */
@@ -116,7 +116,7 @@ protected:
     /**
      *@brief Attach the Delegate to the IME.
      *@param delegate A instance implements IMEDelegate delegate.
-     *@return If the old delegate can detach from the IME, and the new delegate 
+     *@return If the old delegate can detach from the IME, and the new delegate
      *       can attach to the IME, return true, otherwise false.
      */
     bool attachDelegateWithIME(IMEDelegate * delegate);
@@ -137,7 +137,7 @@ protected:
 
 private:
     IMEDispatcher();
-    
+
     struct Impl;
     Impl * _impl;
 };
@@ -148,3 +148,4 @@ NS_CC_END
 /// @}
 
 #endif    // __CC_IME_DISPATCHER_H__
+

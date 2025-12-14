@@ -360,3 +360,4 @@ spArrayFloatArray* spTriangulator_decompose(spTriangulator* self, spFloatArray* 
 
 	return convexPolygons;
 }
+

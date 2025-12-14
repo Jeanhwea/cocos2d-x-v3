@@ -289,3 +289,4 @@ static bool _registerNativeMethods(JNIEnv* env)
     }
     return true;
 }
+

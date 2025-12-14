@@ -486,7 +486,7 @@ void AudioEngineImpl::update(float dt)
             }
 
             AudioEngine::remove(audioID);
-            
+
             _threadMutex.lock();
             it = _audioPlayers.erase(it);
             _threadMutex.unlock();
@@ -524,3 +524,4 @@ void AudioEngineImpl::uncacheAll()
 }
 
 #endif
+

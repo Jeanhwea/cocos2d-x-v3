@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,31 +47,31 @@ public:
 
     virtual void updatePUAffector(PUParticle3D *particle, float deltaTime) override;
 
-    /** 
+    /**
     */
     PUDynamicAttribute* getDynScaleX() const {return _dynScaleX;};
     void setDynScaleX(PUDynamicAttribute* dynScaleX);
     void resetDynScaleX(bool resetToDefault = true);
 
-    /** 
+    /**
     */
     PUDynamicAttribute* getDynScaleY() const {return _dynScaleY;};
     void setDynScaleY(PUDynamicAttribute* dynScaleY);
     void resetDynScaleY(bool resetToDefault = true);
 
-    /** 
+    /**
     */
     PUDynamicAttribute* getDynScaleZ() const {return _dynScaleZ;};
     void setDynScaleZ(PUDynamicAttribute* dynScaleZ);
     void resetDynScaleZ(bool resetToDefault = true);
 
-    /** 
+    /**
     */
     PUDynamicAttribute* getDynScaleXYZ() const {return _dynScaleXYZ;};
     void setDynScaleXYZ(PUDynamicAttribute* dynScaleXYZ);
     void resetDynScaleXYZ(bool resetToDefault = true);
 
-    /** 
+    /**
     */
     bool isSinceStartSystem() const {return _sinceStartSystem;};
     void setSinceStartSystem(bool sinceStartSystem){_sinceStartSystem = sinceStartSystem;};
@@ -106,3 +106,4 @@ protected:
 NS_CC_END
 
 #endif
+

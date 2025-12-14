@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,59 +43,59 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(GameMapReader)
-    
+
     GameMapReader::GameMapReader()
     {
-        
+
     }
-    
+
     GameMapReader::~GameMapReader()
     {
-        
+
     }
-    
+
     static GameMapReader* _instanceTMXTiledMapReader = nullptr;
-    
+
     GameMapReader* GameMapReader::getInstance()
     {
         if (!_instanceTMXTiledMapReader)
         {
             _instanceTMXTiledMapReader = new (std::nothrow) GameMapReader();
         }
-        
+
         return _instanceTMXTiledMapReader;
     }
-    
+
     void GameMapReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceTMXTiledMapReader);
     }
-    
+
     Offset<Table> GameMapReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                               flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = NodeReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto nodeOptions = *(Offset<WidgetOptions>*)(&temp);
-        
+
         std::string path = "";
         std::string plistFile = "";
         int resourceType = 0;
-        
+
         // child elements
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
             std::string name = child->Name();
-            
+
             if (name == "FileData")
             {
                 const tinyxml2::XMLAttribute* attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     name = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (name == "Path")
                     {
                         path = value;
@@ -108,24 +108,24 @@ namespace cocostudio
                     {
                         plistFile = value;
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         auto options = CreateGameMapOptions(*builder,
                                             nodeOptions,
                                             CreateResourceData(*builder,
                                                                builder->CreateString(path),
                                                                builder->CreateString(plistFile),
                                                                resourceType));
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void GameMapReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                 const flatbuffers::Table *gameMapOptions)
     {
@@ -133,14 +133,14 @@ namespace cocostudio
         auto nodeReader = NodeReader::getInstance();
         nodeReader->setPropsWithFlatBuffers(node, (Table*)options->nodeOptions());
     }
-    
+
     Node* GameMapReader::createNodeWithFlatBuffers(const flatbuffers::Table *gameMapOptions)
     {
         TMXTiledMap* tmx = nullptr;
-        
+
         auto options = (GameMapOptions*)gameMapOptions;
         auto fileNameData = options->fileNameData();
-        
+
         bool fileExist = false;
         std::string errorFilePath = "";
         std::string path = fileNameData->path()->c_str();
@@ -160,7 +160,7 @@ namespace cocostudio
                 }
                 break;
             }
-                
+
             default:
                 break;
         }
@@ -174,7 +174,7 @@ namespace cocostudio
             for (const auto &layerInfo : layers)
             {
                 valid = false;
-                
+
                 if (layerInfo->_visible)
                 {
                     Size size = layerInfo->_layerSize;
@@ -193,7 +193,7 @@ namespace cocostudio
                                     {
                                         int pos = static_cast<int>(x + size.width * y);
                                         int gid = layerInfo->_tiles[ pos ];
-                                        
+
                                         if( gid != 0 )
                                         {
                                             if( (gid & kTMXFlippedMask) >= tileset->_firstGid )
@@ -203,7 +203,7 @@ namespace cocostudio
                                             }
                                         }
                                     }
-                                    
+
                                     if (valid)
                                     {
                                         break;
@@ -212,7 +212,7 @@ namespace cocostudio
                             }
                         }
                     }
-                    
+
                     if (!valid)
                     {
                         layerName = layerInfo->_name;
@@ -224,7 +224,7 @@ namespace cocostudio
                     valid = true;
                 }
             }
-            
+
             if (!valid)
             {
                 Node* node = Node::create();
@@ -236,7 +236,7 @@ namespace cocostudio
                 return node;
             }
             /**/
-            
+
             tmx = TMXTiledMap::create(path);
             if (tmx)
             {
@@ -252,8 +252,9 @@ namespace cocostudio
             setPropsWithFlatBuffers(node, (Table*)gameMapOptions);
             return node;
         }
-        
+
         return tmx;
     }
-    
+
 }
+

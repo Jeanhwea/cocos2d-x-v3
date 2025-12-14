@@ -105,7 +105,7 @@ protected:
     // Overrides
     //
     virtual ProgressTimer* progressTimerNodeWithRenderTexture(RenderTexture* texture) override;
-  
+
 };
 
 

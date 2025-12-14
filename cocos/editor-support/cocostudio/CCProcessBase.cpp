@@ -146,7 +146,7 @@ void ProcessBase::gotoFrame(int frameIndex)
     }
 
     _curFrameIndex = frameIndex;
-    
+
     _nextFrameIndex = _durationTween;
 }
 
@@ -157,3 +157,4 @@ int ProcessBase::getCurrentFrameIndex()
 }
 
 }
+

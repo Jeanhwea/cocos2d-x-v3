@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -57,10 +57,10 @@ public:
     virtual const  cocos2d::Vector<BoneNode*>& getChildBones() const { return _childBones; }
     virtual cocos2d::Vector<BoneNode*>&  getChildBones() { return _childBones; }
 
-    
+
     // get this bone's root skeleton, return null while bone is not in a skeleton
     virtual SkeletonNode* getRootSkeletonNode() const;
-    
+
     /**
      * @brief: get all bones in this bone tree
      */
@@ -81,7 +81,7 @@ public:
 
     /**
     * @brief: display skin
-    * @param: hideOthers, set other skins invisible 
+    * @param: hideOthers, set other skins invisible
     */
     virtual void displaySkin(SkinNode* skin, bool hideOthers);
 
@@ -94,13 +94,13 @@ public:
 
     // get the skins which is visible (displaying skins)
     virtual cocos2d::Vector<SkinNode*> getVisibleSkins() const;
-    
+
     /**
      * get skins in this bone's children
      */
     virtual const  cocos2d::Vector<SkinNode*>& getSkins() const { return _boneSkins; }
     virtual  cocos2d::Vector<SkinNode*>&  getSkins() { return _boneSkins; }
-    
+
     /**
     * @brief: get all skins in this bone tree
     */
@@ -152,7 +152,7 @@ public:
 
     // set localzorder, and recalculate debugdraw
     virtual void setAnchorPoint(const cocos2d::Vec2& anchorPoint) override;
-    
+
 #ifdef CC_STUDIO_ENABLED_VIEW
     // hit test , bonePoint is in self coordinate
     virtual bool isPointOnRack(const cocos2d::Vec2& bonePoint);
@@ -192,14 +192,14 @@ protected:
     virtual void disableCascadeOpacity() override;
     virtual void disableCascadeColor() override;
 
-    virtual void onDraw(const cocos2d::Mat4 &transform, uint32_t flags); 
+    virtual void onDraw(const cocos2d::Mat4 &transform, uint32_t flags);
 
     // override Node::visit, just visit bones in children
     virtual void visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags) override;
 
     // a help function for SkeletonNode
     // for batch bone's draw to _rootSkeleton
-    virtual void batchBoneDrawToSkeleton(BoneNode* bone) const; 
+    virtual void batchBoneDrawToSkeleton(BoneNode* bone) const;
 
     // a help function for SkeletonNode
     // @param bone, visit bone's skins
@@ -229,3 +229,4 @@ private:
 
 NS_TIMELINE_END
 #endif //__CCBONENODE_H__
+

@@ -38,3 +38,4 @@ extern int cocos2dx_lua_loader(lua_State *L);
 }
 
 #endif // __COCOS2DX_LUA_LOADER_H__
+

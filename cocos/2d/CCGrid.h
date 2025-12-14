@@ -3,7 +3,7 @@ Copyright (c) 2009      On-Core
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -98,14 +98,14 @@ public:
     bool isTextureFlipped() const { return _isTextureFlipped; }
     /**Set the texture flipped or not.*/
     void setTextureFlipped(bool flipped);
-    
+
     /**@{
      Init and reset the status when render effects by using the grid.
      */
     void beforeDraw();
     void afterDraw(Node *target);
     /**@}*/
-    
+
     /**@{
      Interface for custom action when before or after draw.
      @js NA
@@ -113,17 +113,17 @@ public:
     virtual void beforeBlit() {}
     virtual void afterBlit() {}
     /**@}*/
-    
+
     /**Interface used to blit the texture with grid to screen.*/
     virtual void blit();
     /**Interface, Reuse the grid vertices.*/
     virtual void reuse();
     /**Interface, Calculate the vertices used for the blit.*/
     virtual void calculateVertexPoints();
-    
+
     /**Change projection to 2D for grabbing.*/
     void set2DProjection();
-    
+
     /**
      * @brief Set the effect grid rect.
      * @param rect The effect grid rect.
@@ -179,7 +179,7 @@ public:
      * @lua NA
      */
     Vec3 getVertex(const Vec2& pos) const;
-    /** @deprecated Use getVertex() instead 
+    /** @deprecated Use getVertex() instead
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Vec3 vertex(const Vec2& pos) const { return getVertex(pos); }
@@ -188,7 +188,7 @@ public:
      * @lua NA
      */
     Vec3 getOriginalVertex(const Vec2& pos) const;
-    /** @deprecated Use getOriginalVertex() instead 
+    /** @deprecated Use getOriginalVertex() instead
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Vec3 originalVertex(const Vec2& pos) const { return getOriginalVertex(pos); }
@@ -206,7 +206,7 @@ public:
     virtual void reuse() override;
     virtual void calculateVertexPoints() override;
     /**@}*/
-    
+
     /**@{
      Getter and Setter for depth test state when blit.
      @js NA
@@ -256,7 +256,7 @@ public:
      * @lua NA
      */
     Quad3 getTile(const Vec2& pos) const;
-    /** returns the tile at the given position 
+    /** returns the tile at the given position
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Quad3 tile(const Vec2& pos) const { return getTile(pos); }
@@ -265,7 +265,7 @@ public:
      * @lua NA
      */
     Quad3 getOriginalTile(const Vec2& pos) const;
-    /** returns the original tile (untransformed) at the given position 
+    /** returns the original tile (untransformed) at the given position
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Quad3 originalTile(const Vec2& pos) const { return getOriginalTile(pos); }
@@ -295,3 +295,4 @@ protected:
 NS_CC_END
 
 #endif // __EFFECTS_CCGRID_H__
+

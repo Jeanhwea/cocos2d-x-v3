@@ -96,8 +96,8 @@ static int fdGetter(const std::string& url, off_t* start, off_t* length)
     if (cocos2d::FileUtilsAndroid::getObbFile() != nullptr)
     {
         fd = getObbAssetFileDescriptorJNI(url.c_str(), start, length);
-    } 
-    
+    }
+
     if (fd <= 0)
     {
         auto asset = AAssetManager_open(cocos2d::FileUtilsAndroid::getAssetManager(), url.c_str(), AASSET_MODE_UNKNOWN);
@@ -179,7 +179,7 @@ bool AudioEngineImpl::init()
         // create output mix
         const SLInterfaceID outputMixIIDs[] = {};
         const SLboolean outputMixReqs[] = {};
-        result = (*_engineEngine)->CreateOutputMix(_engineEngine, &_outputMixObject, 0, outputMixIIDs, outputMixReqs);           
+        result = (*_engineEngine)->CreateOutputMix(_engineEngine, &_outputMixObject, 0, outputMixIIDs, outputMixReqs);
         if(SL_RESULT_SUCCESS != result){ ERRORLOG("create output mix fail"); break; }
 
         // realize the output mix
@@ -250,7 +250,7 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
     ALOGV("play2d, _audioPlayers.size=%d", (int)_audioPlayers.size());
     auto audioId = AudioEngine::INVALID_AUDIO_ID;
 
-    do 
+    do
     {
         if (_engineEngine == nullptr || _audioPlayerProvider == nullptr)
             break;
@@ -302,7 +302,7 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
             player->setVolume(volume);
             player->setAudioFocus(__currentAudioFocus == AUDIOFOCUS_GAIN);
             player->play();
-        } 
+        }
         else
         {
             ALOGE("Oops, player is null ...");
@@ -310,7 +310,7 @@ int AudioEngineImpl::play2d(const std::string &filePath ,bool loop ,float volume
         }
 
         AudioEngine::_audioIDInfoMap[audioId].state = AudioEngine::AudioState::PLAYING;
-        
+
     } while (0);
 
     return audioId;
@@ -374,7 +374,7 @@ void AudioEngineImpl::stopAll()
     }
 
     // Create a temporary vector for storing all players since
-    // p->stop() will trigger _audioPlayers.erase, 
+    // p->stop() will trigger _audioPlayers.erase,
     // and it will cause a crash as it's already in for loop
     std::vector<IAudioPlayer*> players;
     players.reserve(_audioPlayers.size());
@@ -494,3 +494,4 @@ void cocos_audioengine_focus_change(int focusChange)
 }
 
 #endif
+

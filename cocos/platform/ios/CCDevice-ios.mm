@@ -117,9 +117,9 @@ static CGSize _calculateShrinkedSizeForString(NSAttributedString **str,
             if (fitSize.width == 0 || fitSize.height == 0) {
                 continue;
             }
-           
+
             actualSize.size = fitSize;
-            
+
             if (constrainSize.width <= 0) {
                 constrainSize.width = fitSize.width;
             }
@@ -140,10 +140,10 @@ static CGSize _calculateShrinkedSizeForString(NSAttributedString **str,
                 actualSize = CGRectMake(0, 0, 0, 0);
                 break;
             }
-            
+
             NSMutableAttributedString *mutableString = [[*str mutableCopy] autorelease];
             *str = __attributedStringWithFontSize(mutableString, fontSize);
-            
+
             CGSize fitSize = [*str boundingRectWithSize:CGSizeMake(constrainSize.width, MAX_MEASURE_HEIGHT)
                                     options:(NSStringDrawingUsesLineFragmentOrigin)
                                     context:nil].size;
@@ -151,9 +151,9 @@ static CGSize _calculateShrinkedSizeForString(NSAttributedString **str,
             if (fitSize.width == 0 || fitSize.height == 0) {
                 continue;
             }
-            
+
             actualSize.size = fitSize;
-            
+
             if (constrainSize.height <= 0) {
                 constrainSize.height = fitSize.height;
             }
@@ -352,7 +352,7 @@ static CGSize _calculateStringSize(NSAttributedString *str, id font, CGSize *con
     : MAX_MEASURE_HEIGHT;
     textRect.height = constrainSize->height > 0 ? constrainSize->height
     : MAX_MEASURE_HEIGHT;
-    
+
     if (overflow == 1) {
         if(!enableWrap) {
             textRect.width = MAX_MEASURE_HEIGHT;
@@ -382,10 +382,10 @@ static id _createSystemFont( const char * fontName, int size)
     // the font family name itself. This stripping step is required especially for references to user fonts stored in CCB files; CCB files appear to store
     // the '.ttf' extensions when referring to custom fonts.
     fntName = [[fntName lastPathComponent] stringByDeletingPathExtension];
-    
+
     // create the font
     id font = [UIFont fontWithName:fntName size:size];
-    
+
     if (!font)
     {
         font = [UIFont systemFontOfSize:size];
@@ -402,9 +402,9 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
         CC_BREAK_IF(! text || ! info);
 
         id font = _createSystemFont(fontName, size);
-        
+
         CC_BREAK_IF(! font);
-        
+
         NSString * str          = [NSString stringWithUTF8String:text];
         CC_BREAK_IF(!str);
 
@@ -441,7 +441,7 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
             realDimensions = _calculateStringSize(stringWithAttributes, font, &dimensions, enableWrap, overflow);
         }
 
-        
+
         CC_BREAK_IF(realDimensions.width <= 0 || realDimensions.height <= 0);
         if (dimensions.width <= 0) {
             dimensions.width = realDimensions.width;
@@ -453,10 +453,10 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
         // compute start point
         CGFloat yPadding = _calculateTextDrawStartHeight(align, realDimensions, dimensions);
         CGFloat xPadding = FontUtils::_calculateTextDrawStartWidth(align, realDimensions, dimensions);
-        
+
         NSInteger POTWide = dimensions.width;
         NSInteger POTHigh = dimensions.height;
-        
+
         CGRect textRect = CGRectMake(xPadding, yPadding,
                                      realDimensions.width, realDimensions.height);
 
@@ -490,7 +490,7 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
 
         // move Y rendering to the top of the image
         CGContextTranslateCTM(context, 0.0f, POTHigh);
-        
+
         //NOTE: NSString draws in UIKit referential i.e. renders upside-down compared to CGBitmapContext referential
         CGContextScaleCTM(context, 1.0f, -1.0f);
         // store the current context
@@ -511,7 +511,7 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
                                                    blue:info->strokeColorB
                                                   alpha:info->strokeColorA];
 
-                
+
             NSMutableDictionary* tokenAttributesDict2 = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                                         foregroundColor,NSForegroundColorAttributeName,
                                                         font, NSFontAttributeName,
@@ -519,10 +519,10 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
             [tokenAttributesDict2 setObject:[NSNumber numberWithFloat: info->strokeSize / shrinkFontSize * 100]
                                      forKey:NSStrokeWidthAttributeName];
              [tokenAttributesDict2 setObject:strokeColor forKey:NSStrokeColorAttributeName];
-            
+
             NSAttributedString *strokeString =[[[NSAttributedString alloc] initWithString:str
                                                                                        attributes:tokenAttributesDict2] autorelease];
-            
+
             if(overflow == 2){
                 _calculateShrinkedSizeForString(&strokeString, font, dimensions, enableWrap, shrinkFontSize);
             }
@@ -544,7 +544,7 @@ static bool _initWithString(const char * text, cocos2d::Device::TextAlign align,
 
         // release the context
         CGContextRelease(context);
-       
+
         // output params
         info->data                 = data;
         info->isPremultipliedAlpha = true;
@@ -624,3 +624,4 @@ void Device::vibrate(float duration)
 NS_CC_END
 
 #endif // CC_PLATFORM_IOS
+

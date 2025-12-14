@@ -54,3 +54,4 @@ void spSlotData_setAttachmentName (spSlotData* self, const char* attachmentName)
 	else
 		CONST_CAST(char*, self->attachmentName) = 0;
 }
+

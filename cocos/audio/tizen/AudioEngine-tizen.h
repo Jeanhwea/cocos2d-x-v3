@@ -64,7 +64,7 @@ private:
     float _duration;
     int _audioID;
     bool _initSucceed;
-    
+
     std::function<void (int, const std::string &)> _finishCallback;
 
     friend class AudioEngineImpl;
@@ -91,7 +91,7 @@ public:
 
     void uncache(const std::string& filePath){}
     void uncacheAll(){}
-    
+
     void update(float dt);
 
     void preload(const std::string& filePath, std::function<void(bool)> callback);
@@ -106,7 +106,7 @@ private:
     std::vector<int> _toRemoveAudioIDs;
 
     int currentAudioID;
-    
+
     bool _lazyInitLoop;
 };
 
@@ -116,3 +116,4 @@ NS_CC_END
 #endif // __AUDIO_ENGINE_TIZEN_H_
 
 #endif
+

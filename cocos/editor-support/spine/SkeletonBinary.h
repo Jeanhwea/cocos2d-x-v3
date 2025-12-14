@@ -70,3 +70,4 @@ typedef spSkeletonBinary SkeletonBinary;
 #endif
 
 #endif /* SPINE_SKELETONBINARY_H_ */
+

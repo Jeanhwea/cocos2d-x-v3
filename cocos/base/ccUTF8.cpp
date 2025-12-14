@@ -114,7 +114,7 @@ static void trimUTF16VectorFromIndex(std::vector<char16_t>& str, int index)
 
     str.erase(str.begin() + index, str.begin() + size);
 }
-    
+
 /*
  * @str:    the string to trim
  * @index:    the index to start trimming from.
@@ -128,7 +128,7 @@ static void trimUTF32VectorFromIndex(std::vector<char32_t>& str, int index)
     int size = static_cast<int>(str.size());
     if (index >= size || index < 0)
         return;
-    
+
     str.erase(str.begin() + index, str.begin() + size);
 }
 
@@ -158,7 +158,7 @@ bool isCJKUnicode(char32_t ch)
         || (ch >= 0x31C0 && ch <= 0x4DFF)   // Other extensions
         || (ch >= 0x1f004 && ch <= 0x1f682);// Emoji
 }
-    
+
 bool isUnicodeNonBreaking(char32_t ch)
 {
     return ch == 0x00A0   // Non-Breaking Space
@@ -166,7 +166,7 @@ bool isUnicodeNonBreaking(char32_t ch)
     || ch == 0x2007       // Figure Space
     || ch == 0x2060;      // Word Joiner
 }
-    
+
 void trimUTF16Vector(std::vector<char16_t>& str)
 {
     int len = static_cast<int>(str.size());
@@ -190,16 +190,16 @@ void trimUTF16Vector(std::vector<char16_t>& str)
         trimUTF16VectorFromIndex(str, last_index);
     }
 }
-    
+
 void trimUTF32Vector(std::vector<char32_t>& str)
 {
     int len = static_cast<int>(str.size());
-    
+
     if ( len <= 0 )
         return;
-    
+
     int last_index = len - 1;
-    
+
     // Only start trimming if the last character is whitespace..
     if (isUnicodeSpace(str[last_index]))
     {
@@ -210,7 +210,7 @@ void trimUTF32Vector(std::vector<char32_t>& str)
             else
                 break;
         }
-        
+
         trimUTF32VectorFromIndex(str, last_index);
     }
 }
@@ -289,7 +289,7 @@ bool UTF16ToUTF8(const std::u16string& utf16, std::string& outUtf8)
 {
     return utfConvert(utf16, outUtf8, ConvertUTF16toUTF8);
 }
-    
+
 bool UTF16ToUTF32(const std::u16string& utf16, std::u32string& outUtf32)
 {
     return utfConvert(utf16, outUtf32, ConvertUTF16toUTF32);
@@ -305,7 +305,7 @@ bool UTF32ToUTF16(const std::u32string& utf32, std::u16string& outUtf16)
     return utfConvert(utf32, outUtf16, ConvertUTF32toUTF16);
 }
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID) 
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 std::string getStringUTFCharsJNI(JNIEnv* env, jstring srcjStr, bool* ret)
 {
     std::string utf8Str;
@@ -531,19 +531,19 @@ unsigned int cc_utf8_find_last_not_char(const std::vector<unsigned short>& str, 
     {
         char16Vector.push_back(e);
     }
-    
+
     return StringUtils::getIndexOfLastNotChar16(char16Vector, c);
 }
 
 std::vector<unsigned short> cc_utf16_vec_from_utf16_str(const unsigned short* str)
 {
     std::vector<unsigned short> str_new;
-    
+
     if (str == nullptr)
         return str_new;
-    
+
     int len = wcslen_internal(str);
-    
+
     for (int i = 0; i < len; ++i)
     {
         str_new.push_back(str[i]);
@@ -555,13 +555,13 @@ unsigned short* cc_utf8_to_utf16(const char* str_old, int length/* = -1*/, int* 
 {
     if (str_old == nullptr)
         return nullptr;
-    
+
     unsigned short* ret = nullptr;
-    
+
     std::u16string outUtf16;
     std::string inUtf8 = length == -1 ? std::string(str_old) : std::string(str_old, length);
     bool succeed = StringUtils::UTF8ToUTF16(inUtf8, outUtf16);
-    
+
     if (succeed)
     {
         ret = new (std::nothrow) unsigned short[outUtf16.length() + 1];
@@ -572,7 +572,7 @@ unsigned short* cc_utf8_to_utf16(const char* str_old, int length/* = -1*/, int* 
             *rUtf16Size = static_cast<int>(outUtf16.length());
         }
     }
-    
+
     return ret;
 }
 
@@ -583,29 +583,30 @@ char * cc_utf16_to_utf8 (const unsigned short  *str,
 {
     if (str == nullptr)
         return nullptr;
-    
-    
+
+
     std::u16string utf16;
     int utf16Len = len < 0 ? wcslen_internal(str) : len;
-    
+
     for (int i = 0; i < utf16Len; ++i)
     {
         utf16.push_back(str[i]);
     }
-    
+
     char* ret = nullptr;
     std::string outUtf8;
     bool succeed = StringUtils::UTF16ToUTF8(utf16, outUtf8);
-    
+
     if (succeed)
     {
         ret = new (std::nothrow) char[outUtf8.length() + 1];
         ret[outUtf8.length()] = '\0';
         memcpy(ret, outUtf8.data(), outUtf8.length());
     }
-    
+
     return ret;
 }
 
 
 NS_CC_END
+

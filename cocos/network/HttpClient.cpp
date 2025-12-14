@@ -3,19 +3,19 @@
  Copyright (c) 2012      cocos2d-x.org
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -49,11 +49,11 @@ static size_t writeData(void *ptr, size_t size, size_t nmemb, void *stream)
 {
     std::vector<char> *recvBuffer = (std::vector<char>*)stream;
     size_t sizes = size * nmemb;
-    
+
     // add data to the end of recvBuffer
     // write data maybe called more than once in a single request
     recvBuffer->insert(recvBuffer->end(), (char*)ptr, (char*)ptr+sizes);
-    
+
     return sizes;
 }
 
@@ -62,11 +62,11 @@ static size_t writeHeaderData(void *ptr, size_t size, size_t nmemb, void *stream
 {
     std::vector<char> *recvBuffer = (std::vector<char>*)stream;
     size_t sizes = size * nmemb;
-    
+
     // add data to the end of recvBuffer
     // write data maybe called more than once in a single request
     recvBuffer->insert(recvBuffer->end(), (char*)ptr, (char*)ptr+sizes);
-    
+
     return sizes;
 }
 
@@ -102,7 +102,7 @@ void HttpClient::networkThread()
         }
 
         // step 2: libcurl sync access
-        
+
         // Create a HttpResponse object, the default setting is http access failed
         HttpResponse *response = new (std::nothrow) HttpResponse(request);
 
@@ -121,7 +121,7 @@ void HttpClient::networkThread()
         }
         _schedulerMutex.unlock();
     }
-    
+
     // cleanup: if worker thread received quit signal, clean up un-completed request queue
     _requestQueueMutex.lock();
     _requestQueue.clear();
@@ -174,7 +174,7 @@ static bool configureCURL(HttpClient* client, CURL* handle, char* errorBuffer)
     if (!handle) {
         return false;
     }
-    
+
     int32_t code;
     code = curl_easy_setopt(handle, CURLOPT_ERRORBUFFER, errorBuffer);
     if (code != CURLE_OK) {
@@ -198,9 +198,9 @@ static bool configureCURL(HttpClient* client, CURL* handle, char* errorBuffer)
         curl_easy_setopt(handle, CURLOPT_SSL_VERIFYHOST, 2L);
         curl_easy_setopt(handle, CURLOPT_CAINFO, sslCaFilename.c_str());
     }
-    
+
     // FIXED #3224: The subthread of CCHttpClient interrupts main thread if timeout comes.
-    // Document is here: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTNOSIGNAL 
+    // Document is here: http://curl.haxx.se/libcurl/c/curl_easy_setopt.html#CURLOPTNOSIGNAL
     curl_easy_setopt(handle, CURLOPT_NOSIGNAL, 1L);
 
     curl_easy_setopt(handle, CURLOPT_ACCEPT_ENCODING, "");
@@ -275,7 +275,7 @@ public:
                 && setOption(CURLOPT_WRITEDATA, stream)
                 && setOption(CURLOPT_HEADERFUNCTION, headerCallback)
                 && setOption(CURLOPT_HEADERDATA, headerStream);
-        
+
     }
 
     /// @param responseCode Null not allowed
@@ -289,7 +289,7 @@ public:
             return false;
         }
         // Get some mor data.
-        
+
         return true;
     }
 };
@@ -346,7 +346,7 @@ HttpClient* HttpClient::getInstance()
     {
         _httpClient = new (std::nothrow) HttpClient();
     }
-    
+
     return _httpClient;
 }
 
@@ -389,7 +389,7 @@ void HttpClient::enableCookies(const char* cookieFile)
         _cookieFilename = (FileUtils::getInstance()->getWritablePath() + "cookieFile.txt");
     }
 }
-    
+
 void HttpClient::setSSLVerification(const std::string& caFile)
 {
     std::lock_guard<std::mutex> lock(_sslCaFileMutex);
@@ -431,7 +431,7 @@ bool HttpClient::lazyInitThreadSemaphore()
         t.detach();
         _isInited = true;
     }
-    
+
     return true;
 }
 
@@ -442,12 +442,12 @@ void HttpClient::send(HttpRequest* request)
     {
         return;
     }
-    
+
     if (!request)
     {
         return;
     }
-        
+
     request->retain();
 
     _requestQueueMutex.lock();
@@ -487,7 +487,7 @@ void HttpClient::dispatchResponseCallbacks()
         _responseQueue.erase(0);
     }
     _responseQueueMutex.unlock();
-    
+
     if (response)
     {
         HttpRequest *request = response->getHttpRequest();
@@ -503,7 +503,7 @@ void HttpClient::dispatchResponseCallbacks()
         {
             (pTarget->*pSelector)(this, response);
         }
-        
+
         response->release();
         // do not release in other thread
         request->release();
@@ -577,7 +577,7 @@ void HttpClient::processResponse(HttpResponse* response, char* responseMessage)
         response->setSucceed(true);
     }
 }
-    
+
 void HttpClient::clearResponseAndRequestQueue()
 {
     _requestQueueMutex.lock();
@@ -598,7 +598,7 @@ void HttpClient::clearResponseAndRequestQueue()
         }
     }
     _requestQueueMutex.unlock();
-    
+
     _responseQueueMutex.lock();
     if (_clearResponsePredicate)
     {
@@ -640,31 +640,31 @@ void HttpClient::setTimeoutForConnect(int value)
     std::lock_guard<std::mutex> lock(_timeoutForConnectMutex);
     _timeoutForConnect = value;
 }
-    
+
 int HttpClient::getTimeoutForConnect()
 {
     std::lock_guard<std::mutex> lock(_timeoutForConnectMutex);
     return _timeoutForConnect;
 }
-    
+
 void HttpClient::setTimeoutForRead(int value)
 {
     std::lock_guard<std::mutex> lock(_timeoutForReadMutex);
     _timeoutForRead = value;
 }
-    
+
 int HttpClient::getTimeoutForRead()
 {
     std::lock_guard<std::mutex> lock(_timeoutForReadMutex);
     return _timeoutForRead;
 }
-    
+
 const std::string& HttpClient::getCookieFilename()
 {
     std::lock_guard<std::mutex> lock(_cookieFileMutex);
     return _cookieFilename;
 }
-    
+
 const std::string& HttpClient::getSSLVerification()
 {
     std::lock_guard<std::mutex> lock(_sslCaFileMutex);
@@ -674,5 +674,4 @@ const std::string& HttpClient::getSSLVerification()
 }
 
 NS_CC_END
-
 

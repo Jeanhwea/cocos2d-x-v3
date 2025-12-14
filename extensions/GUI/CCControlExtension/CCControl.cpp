@@ -4,19 +4,19 @@
  *
  * Copyright 2011 Yannick Loriot.
  * http://yannickloriot.com
- * 
+ *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -82,9 +82,9 @@ bool Control::init()
         touchListener->onTouchMoved = CC_CALLBACK_2(Control::onTouchMoved, this);
         touchListener->onTouchEnded = CC_CALLBACK_2(Control::onTouchEnded, this);
         touchListener->onTouchCancelled = CC_CALLBACK_2(Control::onTouchCancelled, this);
-        
+
         dispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-        
+
         return true;
     }
     else
@@ -99,7 +99,7 @@ Control::~Control()
     {
         delete iter->second;
     }
-    
+
     _dispatchTable.clear();
 }
 
@@ -148,20 +148,20 @@ void Control::addTargetWithActionForControlEvents(Ref* target, Handler action, E
 
 
 /**
- * Adds a target and action for a particular event to an internal dispatch 
+ * Adds a target and action for a particular event to an internal dispatch
  * table.
- * The action message may optionally include the sender and the event as 
+ * The action message may optionally include the sender and the event as
  * parameters, in that order.
  * When you call this method, target is not retained.
  *
- * @param target The target object that is, the object to which the action 
+ * @param target The target object that is, the object to which the action
  * message is sent. It cannot be nil. The target is not retained.
  * @param action A selector identifying an action message. It cannot be nullptr.
  * @param controlEvent A control event for which the action message is sent.
  * See "CCControlEvent" for constants.
  */
 void Control::addTargetWithActionForControlEvent(Ref* target, Handler action, EventType controlEvent)
-{    
+{
     // Create the invocation object
     Invocation *invocation = Invocation::create(target, action, controlEvent);
 
@@ -187,7 +187,7 @@ void Control::removeTargetWithActionForControlEvent(Ref* target, Handler action,
 {
     // Retrieve all invocations for the given control event
     auto& eventInvocationList = this->dispatchListforControlEvent(controlEvent);
-    
+
     //remove all invocations if the target and action are null
     //TODO: should the invocations be deleted, or just removed from the array? Won't that cause issues if you add a single invocation for multiple events?
 
@@ -195,11 +195,11 @@ void Control::removeTargetWithActionForControlEvent(Ref* target, Handler action,
     {
         //remove objects
         eventInvocationList.clear();
-    } 
+    }
     else
     {
         std::vector<Invocation*> tobeRemovedInvocations;
-        
+
         //normally we would use a predicate, but this won't work here. Have to do it manually
         for(const auto &invocation : eventInvocationList) {
             bool shouldBeRemoved=true;
@@ -229,7 +229,7 @@ void Control::removeTargetWithActionForControlEvent(Ref* target, Handler action,
 void Control::setOpacityModifyRGB(bool bOpacityModifyRGB)
 {
     _isOpacityModifyRGB=bOpacityModifyRGB;
-    
+
     for(auto child : _children){
         child->setOpacityModifyRGB(bOpacityModifyRGB);
     }
@@ -245,7 +245,7 @@ Vec2 Control::getTouchLocation(Touch* touch)
 {
     Vec2 touchLocation = touch->getLocation();            // Get the touch position
     touchLocation = this->convertToNodeSpace(touchLocation);  // Convert to the node space of this class
-    
+
     return touchLocation;
 }
 
@@ -275,7 +275,7 @@ Vector<Invocation*>& Control::dispatchListforControlEvent(EventType controlEvent
 {
     Vector<Invocation*>* invocationList = nullptr;
     auto iter = _dispatchTable.find((int)controlEvent);
-    
+
     // If the invocation list does not exist for the  dispatch table, we create it
     if (iter == _dispatchTable.end())
     {
@@ -350,3 +350,4 @@ Control::EventType operator|(Control::EventType a, Control::EventType b) {
 }
 
 NS_CC_EXT_END
+

@@ -60,7 +60,7 @@ public:
 #if CC_FILEUTILS_APPLE_ENABLE_OBJC
     void setBundle(NSBundle* bundle);
 #endif
-    
+
     virtual bool createDirectory(const std::string& path) const override;
     virtual std::string getPathForDirectory(const std::string &dir, const std::string &resolutionDiretory, const std::string &searchPath) const override;
 
@@ -80,3 +80,4 @@ private:
 NS_CC_END
 
 #endif    // __CC_FILEUTILS_APPLE_H__
+

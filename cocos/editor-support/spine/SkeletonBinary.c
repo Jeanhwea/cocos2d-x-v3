@@ -36,7 +36,7 @@
 #include "kvec.h"
 
 typedef struct {
-	const unsigned char* cursor; 
+	const unsigned char* cursor;
 	const unsigned char* end;
 } _dataInput;
 
@@ -1091,3 +1091,4 @@ spSkeletonData* spSkeletonBinary_readSkeletonData (spSkeletonBinary* self, const
 	FREE(input);
 	return skeletonData;
 }
+

@@ -66,7 +66,7 @@ public:
     GLubyte getSelectedIndexOpacity() const { return _currentIndexNode->getOpacity(); }
     void setIndexNodesOpacity(GLubyte opacity);
     GLubyte getIndexNodesOpacity() const { return _indexNodesOpacity; }
-    
+
     /**
      * Sets texture for index nodes.
      *
@@ -74,7 +74,7 @@ public:
      * @param resType    @see TextureResType .
      */
     void setIndexNodesTexture(const std::string& texName,Widget::TextureResType texType = Widget::TextureResType::LOCAL);
-    
+
 protected:
     bool init() override;
     void increaseNumberOfPages();
@@ -89,7 +89,7 @@ protected:
     float _indexNodesScale;
     Color3B _indexNodesColor;
     GLubyte _indexNodesOpacity;
-    
+
     bool _useDefaultTexture;
     std::string _indexNodesTextureFile;
     Widget::TextureResType _indexNodesTexType;
@@ -101,3 +101,4 @@ protected:
 NS_CC_END
 
 #endif /* defined(__UIPAGEVIEWINDICATOR_H__) */
+

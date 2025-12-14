@@ -53,3 +53,4 @@ bool js_cocos2dx_audioengine_AudioEngine_getPlayingAudioCount(JSContext *cx, uin
 
 #endif // __cocos2dx_audioengine_h__
 #endif //#if (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
+

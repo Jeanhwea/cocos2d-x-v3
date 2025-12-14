@@ -46,3 +46,4 @@ void spBoneData_dispose (spBoneData* self) {
 	FREE(self->name);
 	FREE(self);
 }
+

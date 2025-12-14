@@ -302,3 +302,4 @@ void spBone_rotateWorld (spBone* self, float degrees) {
 	CONST_CAST(float, self->d) = sine * b + cosine * d;
 	CONST_CAST(int, self->appliedValid) = 0;
 }
+

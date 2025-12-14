@@ -352,7 +352,7 @@ void EditBoxImplTizen::openKeyboard()
     rots[0] = (int)(elm_win_rotation_get(parent));
     rots[1] = rots[0] + 180 % 360;
     elm_win_wm_rotation_available_rotations_set(s_keypadWin, rots, 2);
-    
+
     Evas_Object* bgFull = elm_bg_add(s_keypadWin);
     evas_object_color_set(bgFull, 0, 0, 0, 0xa0);
     evas_object_resize(bgFull, frameSize.width, frameSize.height);

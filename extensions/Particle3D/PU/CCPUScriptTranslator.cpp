@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -636,12 +636,12 @@ bool PUScriptTranslator::getFloat(const PUAbstractNode &node, float *result)
 {
     if(node.type != ANT_ATOM)
         return false;
-    
+
     PUAtomAbstractNode *atom = (PUAtomAbstractNode*)(&node);
     int n = sscanf(atom->value.c_str(), "%f", result);
     if(n == 0 || n == EOF)
         return false; // Conversion failed
-    
+
     return true;
 }
 
@@ -649,12 +649,12 @@ bool PUScriptTranslator::getInt(const PUAbstractNode &node, int *result)
 {
     if(node.type != ANT_ATOM)
         return false;
-    
+
     PUAtomAbstractNode *atom = (PUAtomAbstractNode*)&node;
     int n = sscanf(atom->value.c_str(), "%d", result);
     if(n == 0 || n == EOF)
         return false; // Conversion failed
-    
+
     return true;
 }
 
@@ -662,7 +662,7 @@ bool PUScriptTranslator::getUInt(const PUAbstractNode &node, unsigned int *resul
 {
     if(node.type != ANT_ATOM)
         return false;
-    
+
     PUAtomAbstractNode *atom = (PUAtomAbstractNode*)&node;
     int n = sscanf(atom->value.c_str(), "%u", result);
     if(n == 0 || n == EOF)
@@ -677,7 +677,7 @@ bool PUScriptTranslator::getBoolean(const PUAbstractNode &node, bool *result)
     PUAtomAbstractNode *atom = (PUAtomAbstractNode*)&node;
     //if(atom->id != 1 && atom->id != 2)
     //    return false;
-    
+
     *result = atom->value == "true" ? true : false;
     return true;
 }
@@ -843,7 +843,7 @@ bool PUScriptTranslator::passValidateProperty(PUScriptCompiler* compiler,
     {
         return false;
     }
-    
+
     bool ret = true;
     switch(validationType)
     {
@@ -898,7 +898,7 @@ bool PUScriptTranslator::passValidateProperty(PUScriptCompiler* compiler,
         }
             break;
     }
-    
+
     return ret;
 }
 
@@ -948,7 +948,7 @@ bool PUScriptTranslator::passValidatePropertyValidReal(PUScriptCompiler* /*compi
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid Real");
     return false;
@@ -963,7 +963,7 @@ bool PUScriptTranslator::passValidatePropertyValidInt(PUScriptCompiler* /*compil
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid int");
     return false;
@@ -977,7 +977,7 @@ bool PUScriptTranslator::passValidatePropertyValidUint(PUScriptCompiler* /*compi
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid uint");
     return false;
@@ -992,7 +992,7 @@ bool PUScriptTranslator::passValidatePropertyValidBool(PUScriptCompiler* /*compi
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid bool");
     return false;
@@ -1006,7 +1006,7 @@ bool PUScriptTranslator::passValidatePropertyValidVector2(PUScriptCompiler* /*co
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid Vector2");
     return false;
@@ -1020,7 +1020,7 @@ bool PUScriptTranslator::passValidatePropertyValidVector3(PUScriptCompiler* /*co
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid Vector3");
     return false;
@@ -1034,7 +1034,7 @@ bool PUScriptTranslator::passValidatePropertyValidVector4(PUScriptCompiler* /*co
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid Vector4");
     return false;
@@ -1048,7 +1048,7 @@ bool PUScriptTranslator::passValidatePropertyValidQuaternion(PUScriptCompiler* /
     {
         return true;
     }
-    
+
 //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, prop->file, prop->line,
 //                       "PU Compiler: " + prop->values.front()->getValue() + " is not a valid Quaternion");
     return false;
@@ -1059,14 +1059,14 @@ void PUScriptTranslator::errorUnexpectedToken(PUScriptCompiler* /*compiler*/,
 {
 //    CCLOGERROR("PU Compiler: token2 is not recognized tokenFile:%s tokenLine:%s",)
 //    printf()
-//    compiler->addError(ScriptCompiler::CE_UNEXPECTEDTOKEN, token.getPointer()->file, token.getPointer()->line, 
+//    compiler->addError(ScriptCompiler::CE_UNEXPECTEDTOKEN, token.getPointer()->file, token.getPointer()->line,
 //                       );
 }
 //-------------------------------------------------------------------------
 void PUScriptTranslator::errorUnexpectedProperty(PUScriptCompiler* /*compiler*/,
                                                PUPropertyAbstractNode* /*prop*/)
 {
-//    compiler->addError(ScriptCompiler::CE_UNEXPECTEDTOKEN, prop->file, prop->line, 
+//    compiler->addError(ScriptCompiler::CE_UNEXPECTEDTOKEN, prop->file, prop->line,
 //                       "PU Compiler: token \"" + prop->name + "\" is not recognized");
 }
 
@@ -1090,3 +1090,4 @@ void PUScriptTranslator::processNode( PUScriptCompiler *compiler, PUAbstractNode
 //-------------------------------------------------------------------------
 
 NS_CC_END
+

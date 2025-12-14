@@ -124,14 +124,14 @@ public:
          */
         RESIZE_HEIGHT
     };
-    
+
     enum class LabelType {
         TTF,
         BMFONT,
         CHARMAP,
         STRING_TEXTURE
     };
-    
+
     /// @name Creators
     /// @{
 
@@ -187,7 +187,7 @@ public:
     * @return An automatically released Label object.
     * @see TTFConfig setTTFConfig setMaxLineWidth
     */
-    static Label* createWithTTF(const TTFConfig& ttfConfig, const std::string& text, 
+    static Label* createWithTTF(const TTFConfig& ttfConfig, const std::string& text,
         TextHAlignment hAlignment = TextHAlignment::LEFT, int maxLineWidth = 0);
 
     /**
@@ -606,16 +606,16 @@ public:
 
     void setLineSpacing(float height);
     float getLineSpacing() const;
-    
+
     /**
      Returns type of label
-     
+
      @warning Not support system font.
      @return the type of label
      @since v3.17.1
      */
     LabelType getLabelType() const { return _currentLabelType; }
-    
+
     /**
      Returns font size
      */
@@ -725,7 +725,7 @@ protected:
 
     void recordLetterInfo(const cocos2d::Vec2& point, char32_t utf32Char, int letterIndex, int lineIndex);
     void recordPlaceholderInfo(int letterIndex, char32_t utf16Char);
-    
+
     bool updateQuads();
 
     void createSpriteForSystemFont(const FontDefinition& fontDef);
@@ -814,7 +814,7 @@ protected:
     bool _shadowDirty;
     bool _shadowEnabled;
     Size _shadowOffset;
-    
+
     Color4F _shadowColor4F;
     Color3B _shadowColor3B;
     GLubyte _shadowOpacity;
@@ -858,3 +858,4 @@ private:
 NS_CC_END
 
 #endif /*__COCOS2D_CCLABEL_H */
+

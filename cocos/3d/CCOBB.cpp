@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -121,7 +121,7 @@ static void _getEigenVectors(Mat4* vout, Vec3* dout, Mat4 a)
 
         if (i < 3)
             tresh = 0.2 * sm / (n*n);
-        else 
+        else
             tresh = 0.0;
 
         for(ip = 0; ip < n; ip++)
@@ -207,62 +207,62 @@ OBB::OBB()
 OBB::OBB(const AABB& aabb)
 {
     reset();
-    
+
     _center = (aabb._min + aabb._max);
     _center.scale(0.5f);
     _xAxis.set(1.0f, 0.0f, 0.0f);
     _yAxis.set(0.0f, 1.0f, 0.0f);
     _zAxis.set(0.0f, 0.0f, 1.0f);
-    
+
     _extents = aabb._max - aabb._min;
     _extents.scale(0.5f);
-    
+
     computeExtAxis();
 }
 
 OBB::OBB(const Vec3* verts, int num)
 {
     if (!verts) return;
-    
+
     reset();
-    
+
     Mat4 matTransform = _getOBBOrientation(verts, num);
-    
+
     //	For matTransform is orthogonal, so the inverse matrix is just rotate it;
     matTransform.transpose();
-    
+
     Vec3 vecMax = matTransform * Vec3(verts[0].x, verts[0].y, verts[0].z);
-    
+
     Vec3 vecMin = vecMax;
-    
+
     for (int i = 1; i < num; i++)
     {
         Vec3 vect = matTransform * Vec3(verts[i].x, verts[i].y, verts[i].z);
-        
+
         vecMax.x = vecMax.x > vect.x ? vecMax.x : vect.x;
         vecMax.y = vecMax.y > vect.y ? vecMax.y : vect.y;
         vecMax.z = vecMax.z > vect.z ? vecMax.z : vect.z;
-        
+
         vecMin.x = vecMin.x < vect.x ? vecMin.x : vect.x;
         vecMin.y = vecMin.y < vect.y ? vecMin.y : vect.y;
         vecMin.z = vecMin.z < vect.z ? vecMin.z : vect.z;
     }
-    
+
     matTransform.transpose();
-    
+
     _xAxis.set(matTransform.m[0], matTransform.m[1], matTransform.m[2]);
     _yAxis.set(matTransform.m[4], matTransform.m[5], matTransform.m[6]);
     _zAxis.set(matTransform.m[8], matTransform.m[9], matTransform.m[10]);
-    
+
     _center	= 0.5f * (vecMax + vecMin);
     _center *= matTransform;
-    
+
     _xAxis.normalize();
     _yAxis.normalize();
     _zAxis.normalize();
-    
+
     _extents = 0.5f * (vecMax - vecMin);
-    
+
     computeExtAxis();
 }
 
@@ -305,7 +305,7 @@ void OBB::getCorners(Vec3* verts) const
     verts[1] = _center - _extentX - _extentY + _extentZ;     // left bottom front
     verts[2] = _center + _extentX - _extentY + _extentZ;     // right bottom front
     verts[3] = _center + _extentX + _extentY + _extentZ;     // right top front
-    
+
     verts[4] = _center + _extentX + _extentY - _extentZ;     // right top back
     verts[5] = _center + _extentX - _extentY - _extentZ;     // right bottom back
     verts[6] = _center - _extentX - _extentY - _extentZ;     // left bottom back
@@ -337,7 +337,7 @@ Vec3 OBB::getEdgeDirection(int index)const
 {
     Vec3 corners[8];
     getCorners(corners);
-    
+
     Vec3 tmpLine;
     switch(index)
     {
@@ -364,7 +364,7 @@ Vec3 OBB::getFaceDirection(int index) const
 {
     Vec3 corners[8];
     getCorners(corners);
-    
+
     Vec3 faceDirection, v0, v1;
     switch(index)
     {
@@ -402,14 +402,14 @@ bool OBB::intersects(const OBB& box) const
         getInterval(box, getFaceDirection(i), min2, max2);
         if (max1 < min2 || max2 < min1) return false;
     }
-    
+
     for (int i = 0; i < 3; i++)
     {
         getInterval(*this, box.getFaceDirection(i), min1, max1);
         getInterval(box, box.getFaceDirection(i), min2, max2);
         if (max1 < min2 || max2 < min1) return false;
     }
-    
+
     for (int i = 0; i < 3; i++)
     {
         for (int j = 0; j < 3; j++)
@@ -421,7 +421,7 @@ bool OBB::intersects(const OBB& box) const
             if (max1 < min2 || max2 < min1) return false;
         }
     }
-    
+
     return true;
 }
 
@@ -448,8 +448,9 @@ void OBB::transform(const Mat4& mat)
     _extents.x *= scale.x;
     _extents.y *= scale.y;
     _extents.z *= scale.z;
-    
+
     computeExtAxis();
 }
 
 NS_CC_END
+

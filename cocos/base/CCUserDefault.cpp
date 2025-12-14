@@ -56,7 +56,7 @@ static tinyxml2::XMLElement* getXMLNodeForKey(const char* pKey, tinyxml2::XMLEle
         return nullptr;
     }
 
-    do 
+    do
     {
         tinyxml2::XMLDocument* xmlDoc = new (std::nothrow) tinyxml2::XMLDocument();
         *doc = xmlDoc;
@@ -143,7 +143,7 @@ static void setValueForKey(const char* pKey, const char* pValue)
             rootNode->LinkEndChild(tmpNode);
             tinyxml2::XMLText* content = doc->NewText(pValue);//new tinyxml2::XMLText(pValue);
             tmpNode->LinkEndChild(content);
-        }    
+        }
     }
 
     // save file and free doc
@@ -239,7 +239,7 @@ float UserDefault::getFloatForKey(const char* pKey)
 float UserDefault::getFloatForKey(const char* pKey, float defaultValue)
 {
     float ret = (float)getDoubleForKey(pKey, (double)defaultValue);
- 
+
     return ret;
 }
 
@@ -320,14 +320,14 @@ Data UserDefault::getDataForKey(const char* pKey, const Data& defaultValue)
     {
         encodedData = (const char*)(node->FirstChild()->Value());
     }
-    
+
     Data ret;
-    
+
     if (encodedData)
     {
         unsigned char * decodedData = nullptr;
         int decodedDataLen = base64Decode((unsigned char*)encodedData, (unsigned int)strlen(encodedData), &decodedData);
-        
+
         if (decodedData) {
             ret.fastSet(decodedData, decodedDataLen);
         }
@@ -336,10 +336,10 @@ Data UserDefault::getDataForKey(const char* pKey, const Data& defaultValue)
     {
         ret = defaultValue;
     }
-    
+
     delete doc;
-    
-    return ret;    
+
+    return ret;
 }
 
 
@@ -413,11 +413,11 @@ void UserDefault::setDataForKey(const char* pKey, const Data& value) {
     }
 
     char *encodedData = nullptr;
-    
+
     base64Encode(value.getBytes(), static_cast<unsigned int>(value.getSize()), &encodedData);
-        
+
     setValueForKey(pKey, encodedData);
-    
+
     if (encodedData)
         free(encodedData);
 }
@@ -477,32 +477,32 @@ void UserDefault::initXMLFilePath()
     {
         _filePath += FileUtils::getInstance()->getWritablePath() + XML_FILE_NAME;
         _isFilePathInitialized = true;
-    }    
+    }
 }
 
 // create new xml file
 bool UserDefault::createXMLFile()
 {
-    bool bRet = false;  
-    tinyxml2::XMLDocument *pDoc = new (std::nothrow) tinyxml2::XMLDocument(); 
-    if (nullptr==pDoc)  
-    {  
-        return false;  
-    }  
-    tinyxml2::XMLDeclaration *pDeclaration = pDoc->NewDeclaration(nullptr);  
-    if (nullptr==pDeclaration)  
+    bool bRet = false;
+    tinyxml2::XMLDocument *pDoc = new (std::nothrow) tinyxml2::XMLDocument();
+    if (nullptr==pDoc)
+    {
+        return false;
+    }
+    tinyxml2::XMLDeclaration *pDeclaration = pDoc->NewDeclaration(nullptr);
+    if (nullptr==pDeclaration)
     {
         delete pDoc;
-        return false;  
-    }  
-    pDoc->LinkEndChild(pDeclaration); 
-    tinyxml2::XMLElement *pRootEle = pDoc->NewElement(USERDEFAULT_ROOT_NAME);  
-    if (nullptr==pRootEle)  
+        return false;
+    }
+    pDoc->LinkEndChild(pDeclaration);
+    tinyxml2::XMLElement *pRootEle = pDoc->NewElement(USERDEFAULT_ROOT_NAME);
+    if (nullptr==pRootEle)
     {
         delete pDoc;
-        return false;  
-    }  
-    pDoc->LinkEndChild(pRootEle);  
+        return false;
+    }
+    pDoc->LinkEndChild(pRootEle);
     bRet = tinyxml2::XML_SUCCESS == pDoc->SaveFile(FileUtils::getInstance()->getSuitableFOpen(_filePath).c_str());
 
     delete pDoc;
@@ -556,3 +556,4 @@ void UserDefault::deleteValueForKey(const char* key)
 NS_CC_END
 
 #endif // (CC_TARGET_PLATFORM != CC_PLATFORM_IOS && CC_PLATFORM != CC_PLATFORM_ANDROID)
+

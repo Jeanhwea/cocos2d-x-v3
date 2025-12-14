@@ -176,7 +176,7 @@ void VideoPlayer::setLooping(bool looping)
 void VideoPlayer::setUserInputEnabled(bool enableInput)
 {
     _isUserInputEnabled = enableInput
-    
+
 }
 
 void VideoPlayer::setStyle(StyleType style)
@@ -433,7 +433,7 @@ void VideoPlayer::onPlayEvent(int event)
     if (event == QUIT_FULLSCREEN)
     {
         _fullScreenEnabled = false;
-    } 
+    }
     else
     {
         VideoPlayer::EventType videoEvent = (VideoPlayer::EventType)event;
@@ -476,3 +476,4 @@ void VideoPlayer::copySpecialProperties(Widget *widget)
 }
 
 #endif
+

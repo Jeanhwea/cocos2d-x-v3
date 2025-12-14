@@ -128,7 +128,7 @@ Node::Node()
     _scheduler->retain();
     _eventDispatcher = _director->getEventDispatcher();
     _eventDispatcher->retain();
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEngineProtocol* engine = ScriptEngineManager::getInstance()->getScriptEngine();
     _scriptType = engine != nullptr ? engine->getScriptType() : kScriptTypeNone;
@@ -153,7 +153,7 @@ Node * Node::create()
 Node::~Node()
 {
     CCLOGINFO( "deallocing Node: %p - tag: %i", this, _tag );
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_updateScriptHandler)
     {
@@ -164,7 +164,7 @@ Node::~Node()
     // User object has to be released before others, since userObject may have a weak reference of this node
     // It may invoke `node->stopAllActions();` while `_actionManager` is null if the next line is after `CC_SAFE_RELEASE_NULL(_actionManager)`.
     CC_SAFE_RELEASE_NULL(_userObject);
-    
+
     // attributes
     CC_SAFE_RELEASE_NULL(_glProgramState);
 
@@ -174,16 +174,16 @@ Node::~Node()
     }
 
     removeAllComponents();
-    
+
     CC_SAFE_DELETE(_componentContainer);
-    
+
     stopAllActions();
     unscheduleAllCallbacks();
     CC_SAFE_RELEASE_NULL(_actionManager);
     CC_SAFE_RELEASE_NULL(_scheduler);
-    
+
     _eventDispatcher->removeEventListenersForTarget(this);
-    
+
 #if CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS && COCOS2D_DEBUG > 0
     _eventDispatcher->debugCheckNodeHasNoEventListenersOnDestruction(this);
 #endif
@@ -212,7 +212,7 @@ void Node::cleanup()
         ScriptEngineManager::sendNodeEventToLua(this, kNodeOnCleanup);
     }
 #endif // #if CC_ENABLE_SCRIPT_BINDING
-    
+
     // actions
     this->stopAllActions();
     // timers
@@ -220,14 +220,14 @@ void Node::cleanup()
 
     // NOTE: Although it was correct that removing event listeners associated with current node in Node::cleanup.
     // But it broke the compatibility to the versions before v3.16 .
-    // User code may call `node->removeFromParent(true)` which will trigger node's cleanup method, when the node 
-    // is added to scene again, event listeners like EventListenerTouchOneByOne will be lost. 
+    // User code may call `node->removeFromParent(true)` which will trigger node's cleanup method, when the node
+    // is added to scene again, event listeners like EventListenerTouchOneByOne will be lost.
     // In fact, user's code should use `node->removeFromParent(false)` in order not to do a cleanup and just remove node
     // from its parent. For more discussion about why we revert this change is at https://github.com/cocos2d/cocos2d-x/issues/18104.
     // We need to consider more before we want to correct the old and wrong logic code.
     // For now, compatiblity is the most important for our users.
 //    _eventDispatcher->removeEventListenersForTarget(this);
-    
+
     for( const auto &child: _children)
         child->cleanup();
 }
@@ -248,7 +248,7 @@ void Node::setSkewX(float skewX)
 {
     if (_skewX == skewX)
         return;
-    
+
     _skewX = skewX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -262,7 +262,7 @@ void Node::setSkewY(float skewY)
 {
     if (_skewY == skewY)
         return;
-    
+
     _skewY = skewY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -271,7 +271,7 @@ void Node::setLocalZOrder(std::int32_t z)
 {
     if (getLocalZOrder() == z)
         return;
-    
+
     _setLocalZOrder(z);
     if (_parent)
     {
@@ -314,10 +314,10 @@ void Node::setRotation(float rotation)
 {
     if (_rotationZ_X == rotation)
         return;
-    
+
     _rotationZ_X = _rotationZ_Y = rotation;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-    
+
     updateRotationQuat();
 }
 
@@ -332,7 +332,7 @@ void Node::setRotation3D(const Vec3& rotation)
         _rotationY == rotation.y &&
         _rotationZ_X == rotation.z)
         return;
-    
+
     _transformUpdated = _transformDirty = _inverseDirty = true;
 
     _rotationX = rotation.x;
@@ -340,7 +340,7 @@ void Node::setRotation3D(const Vec3& rotation)
 
     // rotation Z is decomposed in 2 to simulate Skew for Flash animations
     _rotationZ_Y = _rotationZ_X = rotation.z;
-    
+
     updateRotationQuat();
 }
 
@@ -374,7 +374,7 @@ void Node::updateRotation3D()
     sy = clampf(sy, -1, 1);
     _rotationY = asinf(sy);
     _rotationZ_X = atan2f(2.f * (w * z + x * y), 1.f - 2.f * (y * y + z * z));
-    
+
     _rotationX = CC_RADIANS_TO_DEGREES(_rotationX);
     _rotationY = CC_RADIANS_TO_DEGREES(_rotationY);
     _rotationZ_X = _rotationZ_Y = -CC_RADIANS_TO_DEGREES(_rotationZ_X);
@@ -396,10 +396,10 @@ void Node::setRotationSkewX(float rotationX)
 {
     if (_rotationZ_X == rotationX)
         return;
-    
+
     _rotationZ_X = rotationX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-    
+
     updateRotationQuat();
 }
 
@@ -412,10 +412,10 @@ void Node::setRotationSkewY(float rotationY)
 {
     if (_rotationZ_Y == rotationY)
         return;
-    
+
     _rotationZ_Y = rotationY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
-    
+
     updateRotationQuat();
 }
 
@@ -431,7 +431,7 @@ void Node::setScale(float scale)
 {
     if (_scaleX == scale && _scaleY == scale && _scaleZ == scale)
         return;
-    
+
     _scaleX = _scaleY = _scaleZ = scale;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -447,7 +447,7 @@ void Node::setScale(float scaleX,float scaleY)
 {
     if (_scaleX == scaleX && _scaleY == scaleY)
         return;
-    
+
     _scaleX = scaleX;
     _scaleY = scaleY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
@@ -458,7 +458,7 @@ void Node::setScaleX(float scaleX)
 {
     if (_scaleX == scaleX)
         return;
-    
+
     _scaleX = scaleX;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -474,7 +474,7 @@ void Node::setScaleZ(float scaleZ)
 {
     if (_scaleZ == scaleZ)
         return;
-    
+
     _scaleZ = scaleZ;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -490,7 +490,7 @@ void Node::setScaleY(float scaleY)
 {
     if (_scaleY == scaleY)
         return;
-    
+
     _scaleY = scaleY;
     _transformUpdated = _transformDirty = _inverseDirty = true;
 }
@@ -518,10 +518,10 @@ void Node::setPosition(float x, float y)
 {
     if (_position.x == x && _position.y == y)
         return;
-    
+
     _position.x = x;
     _position.y = y;
-    
+
     _transformUpdated = _transformDirty = _inverseDirty = true;
     _usingNormalizedPosition = false;
 }
@@ -566,7 +566,7 @@ void Node::setPositionZ(float positionZ)
 {
     if (_positionZ == positionZ)
         return;
-    
+
     _transformUpdated = _transformDirty = _inverseDirty = true;
 
     _positionZ = positionZ;
@@ -672,7 +672,7 @@ bool Node::isIgnoreAnchorPointForPosition() const
 /// isRelativeAnchorPoint setter
 void Node::setIgnoreAnchorPointForPosition(bool newValue)
 {
-    if (newValue != _ignoreAnchorPointForPosition) 
+    if (newValue != _ignoreAnchorPointForPosition)
     {
         _ignoreAnchorPointForPosition = newValue;
         _transformUpdated = _transformDirty = _inverseDirty = true;
@@ -766,7 +766,7 @@ Scene* Node::getScene() const
 {
     if (!_parent)
         return nullptr;
-    
+
     auto sceneNode = _parent;
     while (sceneNode->_parent)
     {
@@ -805,10 +805,10 @@ Node* Node::getChildByTag(int tag) const
 Node* Node::getChildByName(const std::string& name) const
 {
     CCASSERT(!name.empty(), "Invalid name");
-    
+
     std::hash<std::string> h;
     size_t hash = h(name);
-    
+
     for (const auto& child : _children)
     {
         // Different strings may have the same hash code, but can use it to compare first for speed
@@ -822,12 +822,12 @@ void Node::enumerateChildren(const std::string &name, const std::function<bool (
 {
     CCASSERT(!name.empty(), "Invalid name");
     CCASSERT(callback != nullptr, "Invalid callback function");
-    
+
     size_t length = name.length();
-    
+
     size_t subStrStartPos = 0;  // sub string start index
     size_t subStrlength = length; // sub string length
-    
+
     // Starts with '//'?
     bool searchRecursively = false;
     if (length > 2 && name[0] == '/' && name[1] == '/')
@@ -836,7 +836,7 @@ void Node::enumerateChildren(const std::string &name, const std::function<bool (
         subStrStartPos = 2;
         subStrlength -= 2;
     }
-    
+
     // End with '/..'?
     bool searchFromParent = false;
     if (length > 3 &&
@@ -847,12 +847,12 @@ void Node::enumerateChildren(const std::string &name, const std::function<bool (
         searchFromParent = true;
         subStrlength -= 3;
     }
-    
+
     // Remove '//', '/..' if exist
     std::string newName = name.substr(subStrStartPos, subStrlength);
-    
+
     const Node* target = this;
-    
+
     if (searchFromParent)
     {
         if (nullptr == _parent)
@@ -861,7 +861,7 @@ void Node::enumerateChildren(const std::string &name, const std::function<bool (
         }
         target = _parent;
     }
-    
+
     if (searchRecursively)
     {
         // name is '//xxx'
@@ -877,7 +877,7 @@ void Node::enumerateChildren(const std::string &name, const std::function<bool (
 bool Node::doEnumerateRecursive(const Node* node, const std::string &name, const std::function<bool (Node *)>& callback) const
 {
     bool ret =false;
-    
+
     if (node->doEnumerate(name, callback))
     {
         // search itself
@@ -895,7 +895,7 @@ bool Node::doEnumerateRecursive(const Node* node, const std::string &name, const
             }
         }
     }
-    
+
     return ret;
 }
 
@@ -911,7 +911,7 @@ bool Node::doEnumerate(std::string name, const std::function<bool (Node *)>& cal
         name.erase(0, pos+1);
         needRecursive = true;
     }
-    
+
     bool ret = false;
     for (const auto& child : getChildren())
     {
@@ -934,7 +934,7 @@ bool Node::doEnumerate(std::string name, const std::function<bool (Node *)>& cal
             }
         }
     }
-    
+
     return ret;
 }
 
@@ -943,7 +943,7 @@ bool Node::doEnumerate(std::string name, const std::function<bool (Node *)>& cal
 * to override this method
 */
 void Node::addChild(Node *child, int localZOrder, int tag)
-{    
+{
     CCASSERT( child != nullptr, "Argument must be non-nil");
     CCASSERT( child->_parent == nullptr, "child already added. It can't be added again");
 
@@ -954,7 +954,7 @@ void Node::addChild(Node* child, int localZOrder, const std::string &name)
 {
     CCASSERT(child != nullptr, "Argument must be non-nil");
     CCASSERT(child->_parent == nullptr, "child already added. It can't be added again");
-    
+
     addChildHelper(child, localZOrder, INVALID_TAG, name, false);
 }
 
@@ -967,26 +967,26 @@ void Node::addChildHelper(Node* child, int localZOrder, int tag, const std::stri
                     parent = parent->getParent() )
                   if ( parent == child )
                       return false;
-              
+
               return true;
           } );
     (void)assertNotSelfChild;
-    
+
     CCASSERT( assertNotSelfChild(),
               "A node cannot be the child of his own children" );
-    
+
     if (_children.empty())
     {
         this->childrenAlloc();
     }
-    
+
     this->insertChild(child, localZOrder);
-    
+
     if (setTag)
         child->setTag(tag);
     else
         child->setName(name);
-    
+
     child->setParent(this);
 
     child->updateOrderOfArrival();
@@ -1000,12 +1000,12 @@ void Node::addChildHelper(Node* child, int localZOrder, int tag, const std::stri
             child->onEnterTransitionDidFinish();
         }
     }
-    
+
     if (_cascadeColorEnabled)
     {
         updateCascadeColor();
     }
-    
+
     if (_cascadeOpacityEnabled)
     {
         updateCascadeOpacity();
@@ -1034,7 +1034,7 @@ void Node::removeFromParentAndCleanup(bool cleanup)
     if (_parent != nullptr)
     {
         _parent->removeChild(this,cleanup);
-    } 
+    }
 }
 
 /* "remove" logic MUST only be on this method
@@ -1073,9 +1073,9 @@ void Node::removeChildByTag(int tag, bool cleanup/* = true */)
 void Node::removeChildByName(const std::string &name, bool cleanup)
 {
     CCASSERT(!name.empty(), "Invalid name");
-    
+
     Node *child = this->getChildByName(name);
-    
+
     if (child == nullptr)
     {
         CCLOG("cocos2d: removeChildByName(name = %s): child not found!", name.c_str());
@@ -1119,7 +1119,7 @@ void Node::removeAllChildrenWithCleanup(bool cleanup)
         // set parent nil at the end
         child->setParent(nullptr);
     }
-    
+
     _children.clear();
 }
 
@@ -1140,7 +1140,7 @@ void Node::detachChild(Node *child, ssize_t childIndex, bool doCleanup)
     {
         child->cleanup();
     }
-    
+
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
@@ -1231,11 +1231,11 @@ uint32_t Node::processParentFlags(const Mat4& parentTransform, uint32_t parentFl
     uint32_t flags = parentFlags;
     flags |= (_transformUpdated ? FLAGS_TRANSFORM_DIRTY : 0);
     flags |= (_contentSizeDirty ? FLAGS_CONTENT_SIZE_DIRTY : 0);
-    
+
 
     if(flags & FLAGS_DIRTY_MASK)
         _modelViewTransform = this->transform(parentTransform);
-    
+
     _transformUpdated = false;
     _contentSizeDirty = false;
 
@@ -1264,7 +1264,7 @@ void Node::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t paren
     // but it is deprecated and your code should not rely on it
     _director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     _director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
-    
+
     bool visibleByCamera = isVisitableByVisitingCamera();
 
     int i = 0;
@@ -1295,7 +1295,7 @@ void Node::visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t paren
     }
 
     _director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-    
+
     // FIX ME: Why need to set _orderOfArrival to 0??
     // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
     // reset for next frame
@@ -1322,7 +1322,7 @@ void Node::onEnter()
             return;
     }
 #endif
-    
+
     if (_onEnterCallback)
         _onEnterCallback();
 
@@ -1330,16 +1330,16 @@ void Node::onEnter()
     {
         _componentContainer->onEnter();
     }
-    
+
     _isTransitionFinished = false;
-    
+
     for( const auto &child: _children)
         child->onEnter();
-    
+
     this->resume();
-    
+
     _running = true;
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeLua)
     {
@@ -1357,14 +1357,14 @@ void Node::onEnterTransitionDidFinish()
             return;
     }
 #endif
-    
+
     if (_onEnterTransitionDidFinishCallback)
         _onEnterTransitionDidFinishCallback();
 
     _isTransitionFinished = true;
     for( const auto &child: _children)
         child->onEnterTransitionDidFinish();
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeLua)
     {
@@ -1382,13 +1382,13 @@ void Node::onExitTransitionDidStart()
             return;
     }
 #endif
-    
+
     if (_onExitTransitionDidStartCallback)
         _onExitTransitionDidStartCallback();
-    
+
     for( const auto &child: _children)
         child->onExitTransitionDidStart();
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeLua)
     {
@@ -1410,22 +1410,22 @@ void Node::onExit()
             return;
     }
 #endif
-    
+
     if (_onExitCallback)
         _onExitCallback();
-    
+
     if (_componentContainer && !_componentContainer->isEmpty())
     {
         _componentContainer->onExit();
     }
-    
+
     this->pause();
-    
+
     _running = false;
-    
+
     for( const auto &child: _children)
         child->onExit();
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_scriptType == kScriptTypeLua)
     {
@@ -1548,18 +1548,18 @@ void Node::scheduleUpdateWithPriority(int priority)
 void Node::scheduleUpdateWithPriorityLua(int nHandler, int priority)
 {
     unscheduleUpdate();
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     _updateScriptHandler = nHandler;
 #endif
-    
+
     _scheduler->scheduleUpdate(this, priority, !_running);
 }
 
 void Node::unscheduleUpdate()
 {
     _scheduler->unscheduleUpdate(this);
-    
+
 #if CC_ENABLE_SCRIPT_BINDING
     if (_updateScriptHandler)
     {
@@ -1617,7 +1617,7 @@ void Node::unschedule(SEL_SCHEDULE selector)
     // explicit null handling
     if (selector == nullptr)
         return;
-    
+
     _scheduler->unschedule(selector, this);
 }
 
@@ -1667,7 +1667,7 @@ void Node::update(float fDelta)
         ScriptEngineManager::getInstance()->getScriptEngine()->sendEvent(&event);
     }
 #endif
-    
+
     if (_componentContainer && !_componentContainer->isEmpty())
     {
         _componentContainer->visit(fDelta);
@@ -1714,22 +1714,22 @@ const Mat4& Node::getNodeToParentTransform() const
         float x = _position.x;
         float y = _position.y;
         float z = _positionZ;
-        
+
         if (_ignoreAnchorPointForPosition)
         {
             x += _anchorPointInPoints.x;
             y += _anchorPointInPoints.y;
         }
-        
+
         bool needsSkewMatrix = ( _skewX || _skewY );
 
         // Build Transform Matrix = translation * rotation * scale
         Mat4 translation;
         //move to anchor point first, then rotate
         Mat4::createTranslation(x, y, z, &translation);
-        
+
         Mat4::createRotation(_rotationQuat, &_transform);
-        
+
         if (_rotationZ_X != _rotationZ_Y)
         {
             // Rotation values
@@ -1741,7 +1741,7 @@ const Mat4& Node::getNodeToParentTransform() const
             float sx = sinf(radiansX);
             float cy = cosf(radiansY);
             float sy = sinf(radiansY);
-            
+
             float m0 = _transform.m[0], m1 = _transform.m[1], m4 = _transform.m[4], m5 = _transform.m[5], m8 = _transform.m[8], m9 = _transform.m[9];
             _transform.m[0] = cy * m0 - sx * m1, _transform.m[4] = cy * m4 - sx * m5, _transform.m[8] = cy * m8 - sx * m9;
             _transform.m[1] = sy * m0 + cx * m1, _transform.m[5] = sy * m4 + cx * m5, _transform.m[9] = sy * m8 + cx * m9;
@@ -1760,7 +1760,7 @@ const Mat4& Node::getNodeToParentTransform() const
         {
             _transform.m[8] *= _scaleZ, _transform.m[9] *= _scaleZ, _transform.m[10] *= _scaleZ;
         }
-        
+
         // FIXME:: Try to inline skew
         // If skew is needed, apply skew and then anchor point
         if (needsSkewMatrix)
@@ -1773,7 +1773,7 @@ const Mat4& Node::getNodeToParentTransform() const
                 0,  0,  0, 1
             };
             Mat4 skewMatrix(skewMatArray);
-            
+
             _transform = _transform * skewMatrix;
         }
 
@@ -1955,7 +1955,7 @@ Component* Node::getComponent(const std::string& name)
 {
     if (_componentContainer)
         return _componentContainer->get(name);
-    
+
     return nullptr;
 }
 
@@ -1964,10 +1964,10 @@ bool Node::addComponent(Component *component)
     // lazy alloc
     if (!_componentContainer)
         _componentContainer = new (std::nothrow) ComponentContainer(this);
-    
+
     // should enable schedule update, then all components can receive this call back
     scheduleUpdate();
-    
+
     return _componentContainer->add(component);
 }
 
@@ -1975,7 +1975,7 @@ bool Node::removeComponent(const std::string& name)
 {
     if (_componentContainer)
         return _componentContainer->remove(name);
-    
+
     return false;
 }
 
@@ -1985,7 +1985,7 @@ bool Node::removeComponent(Component *component)
     {
         return _componentContainer->remove(component);
     }
-    
+
     return false;
 }
 
@@ -2010,7 +2010,7 @@ GLubyte Node::getDisplayedOpacity() const
 void Node::setOpacity(GLubyte opacity)
 {
     _displayedOpacity = _realOpacity = opacity;
-    
+
     updateCascadeOpacity();
 }
 
@@ -2018,7 +2018,7 @@ void Node::updateDisplayedOpacity(GLubyte parentOpacity)
 {
     _displayedOpacity = _realOpacity * parentOpacity/255.0;
     updateColor();
-    
+
     if (_cascadeOpacityEnabled)
     {
         for(const auto& child : _children)
@@ -2039,9 +2039,9 @@ void Node::setCascadeOpacityEnabled(bool cascadeOpacityEnabled)
     {
         return;
     }
-    
+
     _cascadeOpacityEnabled = cascadeOpacityEnabled;
-    
+
     if (cascadeOpacityEnabled)
     {
         updateCascadeOpacity();
@@ -2055,19 +2055,19 @@ void Node::setCascadeOpacityEnabled(bool cascadeOpacityEnabled)
 void Node::updateCascadeOpacity()
 {
     GLubyte parentOpacity = 255;
-    
+
     if (_parent != nullptr && _parent->isCascadeOpacityEnabled())
     {
         parentOpacity = _parent->getDisplayedOpacity();
     }
-    
+
     updateDisplayedOpacity(parentOpacity);
 }
 
 void Node::disableCascadeOpacity()
 {
     _displayedOpacity = _realOpacity;
-    
+
     for(const auto& child : _children)
     {
         child->updateDisplayedOpacity(255);
@@ -2095,7 +2095,7 @@ const Color3B& Node::getDisplayedColor() const
 void Node::setColor(const Color3B& color)
 {
     _displayedColor = _realColor = color;
-    
+
     updateCascadeColor();
 }
 
@@ -2105,7 +2105,7 @@ void Node::updateDisplayedColor(const Color3B& parentColor)
     _displayedColor.g = _realColor.g * parentColor.g/255.0;
     _displayedColor.b = _realColor.b * parentColor.b/255.0;
     updateColor();
-    
+
     if (_cascadeColorEnabled)
     {
         for(const auto &child : _children)
@@ -2126,9 +2126,9 @@ void Node::setCascadeColorEnabled(bool cascadeColorEnabled)
     {
         return;
     }
-    
+
     _cascadeColorEnabled = cascadeColorEnabled;
-    
+
     if (_cascadeColorEnabled)
     {
         updateCascadeColor();
@@ -2146,7 +2146,7 @@ void Node::updateCascadeColor()
     {
         parentColor = _parent->getDisplayedColor();
     }
-    
+
     updateDisplayedColor(parentColor);
 }
 
@@ -2164,19 +2164,19 @@ bool isScreenPointInRect(const Vec2 &pt, const Camera* camera, const Mat4& w2l, 
     {
         return false;
     }
-    
+
     // first, convert pt to near/far plane, get Pn and Pf
     Vec3 Pn(pt.x, pt.y, -1), Pf(pt.x, pt.y, 1);
     Pn = camera->unprojectGL(Pn);
     Pf = camera->unprojectGL(Pf);
-    
+
     //  then convert Pn and Pf to node space
     w2l.transformPoint(&Pn);
     w2l.transformPoint(&Pf);
 
     // Pn and Pf define a line Q(t) = D + t * E which D = Pn
     auto E = Pf - Pn;
-    
+
     // second, get three points which define content plane
     //  these points define a plane P(u, w) = A + uB + wC
     Vec3 A = Vec3(rect.origin.x, rect.origin.y, 0);
@@ -2184,7 +2184,7 @@ bool isScreenPointInRect(const Vec2 &pt, const Camera* camera, const Mat4& w2l, 
     Vec3 C(rect.origin.x, rect.origin.y + rect.size.height, 0);
     B = B - A;
     C = C - A;
-    
+
     //  the line Q(t) intercept with plane P(u, w)
     //  calculate the intercept point P = Q(t)
     //      (BxC).A - (BxC).D
@@ -2230,3 +2230,4 @@ __NodeRGBA::__NodeRGBA()
 }
 
 NS_CC_END
+

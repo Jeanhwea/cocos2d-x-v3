@@ -102,7 +102,7 @@ void TransformHelp::nodeToMatrix(const BaseData &node, AffineTransform &matrix)
     {
         double sine   = std::sin(node.skewX);
         double cosine = std::cos(node.skewX);
-        
+
         matrix.a = node.scaleX * cosine;
         matrix.b = node.scaleX * -sine;
         matrix.c = node.scaleY * sine;
@@ -141,7 +141,7 @@ void TransformHelp::nodeToMatrix(const BaseData &node, Mat4 &matrix)
         matrix.m[4] = node.scaleY * std::sin(node.skewX);
         matrix.m[5] = node.scaleY * std::cos(node.skewX);
     }
-    
+
     matrix.m[12] = node.x;
     matrix.m[13] = node.y;
 }
@@ -221,3 +221,4 @@ void TransformHelp::nodeSub(BaseData &target, BaseData &source)
 }
 
 }
+

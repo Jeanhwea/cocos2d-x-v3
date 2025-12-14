@@ -143,11 +143,11 @@ bool Effect::initGLProgramState(const std::string &fragmentFilename)
     auto fragmentFullPath = fileUtiles->fullPathForFilename(fragmentFilename);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
     auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     _fragSource = fragSource;
 #endif
-    
+
     _glprogramstate = (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
     CC_SAFE_RETAIN(_glprogramstate);
 
@@ -191,7 +191,7 @@ public:
 
 protected:
     bool init(float blurRadius = 10.0f, float sampleNum = 5.0f);
-    
+
     float _blurRadius;
     float _blurSampleNum;
 };
@@ -200,7 +200,7 @@ void EffectBlur::setTarget(EffectSprite *sprite)
 {
     if (_glprogramstate == nullptr)
         return;
-    
+
     Size size = sprite->getTexture()->getContentSizeInPixels();
     _glprogramstate->setUniformVec2("resolution", size);
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
@@ -218,7 +218,7 @@ bool EffectBlur::init(float blurRadius, float sampleNum)
 #endif
     _blurRadius = blurRadius;
     _blurSampleNum = sampleNum;
-    
+
     return true;
 }
 
@@ -387,7 +387,7 @@ public:
         EffectNormalMapped *normalMappedSprite = new (std::nothrow) EffectNormalMapped();
         if (normalMappedSprite && normalMappedSprite->init() && normalMappedSprite->initNormalMap(normalMapFileName))
         {
-            
+
             normalMappedSprite->autorelease();
             return normalMappedSprite;
         }
@@ -439,7 +439,7 @@ void EffectNormalMapped::setLightPos(const Vec3& pos)
     _lightPos = pos;
     auto glProgramState = getGLProgramState();
     if(glProgramState) glProgramState->setUniformVec4("u_lightPosInLocalSpace", Vec4(_lightPos.x,_lightPos.y,_lightPos.z,1));
-    
+
 }
 
 void EffectNormalMapped::setLightColor(const Color4F& color)
@@ -447,7 +447,7 @@ void EffectNormalMapped::setLightColor(const Color4F& color)
     _lightColor = color;
     auto glProgramState = getGLProgramState();
     if(glProgramState) getGLProgramState()->setUniformVec3("u_diffuseL", Vec3(_lightColor.r,_lightColor.g,_lightColor.b));
-    
+
 }
 
 EffectSpriteTest::EffectSpriteTest()
@@ -514,7 +514,7 @@ bool EffectSpriteTest::init()
 
 //        _sprite->addEffect( _effects.at(8), -10 );
 //        _sprite->addEffect( _effects.at(1), 1 );
-        
+
         return true;
     }
     return false;
@@ -527,15 +527,15 @@ EffectSpriteLamp::EffectSpriteLamp()
 bool EffectSpriteLamp::init()
 {
     if (ShaderTestDemo2::init()) {
-        
+
         auto s = Director::getInstance()->getWinSize();
         _sprite = EffectSprite::create("Images/elephant1_Diffuse.png");
         //auto contentSize = _sprite->getContentSize();
         _sprite->setPosition(Vec2(s.width/2, s.height/2));
         addChild(_sprite);
-        
+
         auto lampEffect = EffectNormalMapped::create("Images/elephant1_Normal.png");
-        
+
         Vec3 pos(150,150, 50);
         _lightSprite = Sprite::create("Images/ball.png");
         this->addChild(_lightSprite);
@@ -602,3 +602,4 @@ void EffectSpriteLamp::onTouchesEnded(const std::vector<Touch*>& touches, Event 
         ((EffectNormalMapped*)_effect)->setLightPos(Vec3(lightPosInLocalSpace.x, lightPosInLocalSpace.y, 50));
     }
 }
+

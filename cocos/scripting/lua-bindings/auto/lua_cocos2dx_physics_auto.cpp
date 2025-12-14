@@ -22,7 +22,7 @@ int lua_cocos2dx_physics_PhysicsShape_getFriction(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getFriction'", nullptr);
         return 0;
@@ -30,7 +30,7 @@ int lua_cocos2dx_physics_PhysicsShape_getFriction(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -69,7 +69,7 @@ int lua_cocos2dx_physics_PhysicsShape_setGroup(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setGroup'", nullptr);
         return 0;
@@ -77,7 +77,7 @@ int lua_cocos2dx_physics_PhysicsShape_setGroup(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -119,7 +119,7 @@ int lua_cocos2dx_physics_PhysicsShape_setDensity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setDensity'", nullptr);
         return 0;
@@ -127,7 +127,7 @@ int lua_cocos2dx_physics_PhysicsShape_setDensity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -169,7 +169,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMass(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getMass'", nullptr);
         return 0;
@@ -177,7 +177,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMass(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -216,7 +216,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMaterial(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getMaterial'", nullptr);
         return 0;
@@ -224,7 +224,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMaterial(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -263,7 +263,7 @@ int lua_cocos2dx_physics_PhysicsShape_setSensor(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setSensor'", nullptr);
         return 0;
@@ -271,7 +271,7 @@ int lua_cocos2dx_physics_PhysicsShape_setSensor(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -313,7 +313,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCollisionBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getCollisionBitmask'", nullptr);
         return 0;
@@ -321,7 +321,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCollisionBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -360,7 +360,7 @@ int lua_cocos2dx_physics_PhysicsShape_getArea(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getArea'", nullptr);
         return 0;
@@ -368,7 +368,7 @@ int lua_cocos2dx_physics_PhysicsShape_getArea(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -407,7 +407,7 @@ int lua_cocos2dx_physics_PhysicsShape_setCategoryBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setCategoryBitmask'", nullptr);
         return 0;
@@ -415,7 +415,7 @@ int lua_cocos2dx_physics_PhysicsShape_setCategoryBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -457,7 +457,7 @@ int lua_cocos2dx_physics_PhysicsShape_getGroup(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getGroup'", nullptr);
         return 0;
@@ -465,7 +465,7 @@ int lua_cocos2dx_physics_PhysicsShape_getGroup(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -504,7 +504,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setMoment'", nullptr);
         return 0;
@@ -512,7 +512,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -554,7 +554,7 @@ int lua_cocos2dx_physics_PhysicsShape_containsPoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_containsPoint'", nullptr);
         return 0;
@@ -562,7 +562,7 @@ int lua_cocos2dx_physics_PhysicsShape_containsPoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -604,7 +604,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCategoryBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getCategoryBitmask'", nullptr);
         return 0;
@@ -612,7 +612,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCategoryBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -651,7 +651,7 @@ int lua_cocos2dx_physics_PhysicsShape_isSensor(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_isSensor'", nullptr);
         return 0;
@@ -659,7 +659,7 @@ int lua_cocos2dx_physics_PhysicsShape_isSensor(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -698,7 +698,7 @@ int lua_cocos2dx_physics_PhysicsShape_getType(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getType'", nullptr);
         return 0;
@@ -706,7 +706,7 @@ int lua_cocos2dx_physics_PhysicsShape_getType(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -745,7 +745,7 @@ int lua_cocos2dx_physics_PhysicsShape_getContactTestBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getContactTestBitmask'", nullptr);
         return 0;
@@ -753,7 +753,7 @@ int lua_cocos2dx_physics_PhysicsShape_getContactTestBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -792,7 +792,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCenter(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getCenter'", nullptr);
         return 0;
@@ -800,7 +800,7 @@ int lua_cocos2dx_physics_PhysicsShape_getCenter(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -839,7 +839,7 @@ int lua_cocos2dx_physics_PhysicsShape_getDensity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getDensity'", nullptr);
         return 0;
@@ -847,7 +847,7 @@ int lua_cocos2dx_physics_PhysicsShape_getDensity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -886,7 +886,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMass(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setMass'", nullptr);
         return 0;
@@ -894,7 +894,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMass(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -936,7 +936,7 @@ int lua_cocos2dx_physics_PhysicsShape_getTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getTag'", nullptr);
         return 0;
@@ -944,7 +944,7 @@ int lua_cocos2dx_physics_PhysicsShape_getTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -983,7 +983,7 @@ int lua_cocos2dx_physics_PhysicsShape_calculateDefaultMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_calculateDefaultMoment'", nullptr);
         return 0;
@@ -991,7 +991,7 @@ int lua_cocos2dx_physics_PhysicsShape_calculateDefaultMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1030,7 +1030,7 @@ int lua_cocos2dx_physics_PhysicsShape_setCollisionBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setCollisionBitmask'", nullptr);
         return 0;
@@ -1038,7 +1038,7 @@ int lua_cocos2dx_physics_PhysicsShape_setCollisionBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -1080,7 +1080,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getMoment'", nullptr);
         return 0;
@@ -1088,7 +1088,7 @@ int lua_cocos2dx_physics_PhysicsShape_getMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1127,7 +1127,7 @@ int lua_cocos2dx_physics_PhysicsShape_getOffset(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getOffset'", nullptr);
         return 0;
@@ -1135,7 +1135,7 @@ int lua_cocos2dx_physics_PhysicsShape_getOffset(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1174,7 +1174,7 @@ int lua_cocos2dx_physics_PhysicsShape_getRestitution(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getRestitution'", nullptr);
         return 0;
@@ -1182,7 +1182,7 @@ int lua_cocos2dx_physics_PhysicsShape_getRestitution(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1221,7 +1221,7 @@ int lua_cocos2dx_physics_PhysicsShape_setFriction(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setFriction'", nullptr);
         return 0;
@@ -1229,7 +1229,7 @@ int lua_cocos2dx_physics_PhysicsShape_setFriction(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -1271,7 +1271,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMaterial(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setMaterial'", nullptr);
         return 0;
@@ -1279,7 +1279,7 @@ int lua_cocos2dx_physics_PhysicsShape_setMaterial(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::PhysicsMaterial arg0;
 
@@ -1321,7 +1321,7 @@ int lua_cocos2dx_physics_PhysicsShape_setTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setTag'", nullptr);
         return 0;
@@ -1329,7 +1329,7 @@ int lua_cocos2dx_physics_PhysicsShape_setTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -1371,7 +1371,7 @@ int lua_cocos2dx_physics_PhysicsShape_setContactTestBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setContactTestBitmask'", nullptr);
         return 0;
@@ -1379,7 +1379,7 @@ int lua_cocos2dx_physics_PhysicsShape_setContactTestBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -1421,7 +1421,7 @@ int lua_cocos2dx_physics_PhysicsShape_setRestitution(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_setRestitution'", nullptr);
         return 0;
@@ -1429,7 +1429,7 @@ int lua_cocos2dx_physics_PhysicsShape_setRestitution(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -1471,7 +1471,7 @@ int lua_cocos2dx_physics_PhysicsShape_getBody(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShape*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShape_getBody'", nullptr);
         return 0;
@@ -1479,7 +1479,7 @@ int lua_cocos2dx_physics_PhysicsShape_getBody(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1568,7 +1568,7 @@ int lua_cocos2dx_physics_PhysicsShapeCircle_getRadius(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapeCircle*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeCircle_getRadius'", nullptr);
         return 0;
@@ -1576,7 +1576,7 @@ int lua_cocos2dx_physics_PhysicsShapeCircle_getRadius(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1797,7 +1797,7 @@ int lua_cocos2dx_physics_PhysicsShapePolygon_getPointsCount(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapePolygon*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapePolygon_getPointsCount'", nullptr);
         return 0;
@@ -1805,7 +1805,7 @@ int lua_cocos2dx_physics_PhysicsShapePolygon_getPointsCount(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -1844,7 +1844,7 @@ int lua_cocos2dx_physics_PhysicsShapePolygon_getPoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapePolygon*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapePolygon_getPoint'", nullptr);
         return 0;
@@ -1852,7 +1852,7 @@ int lua_cocos2dx_physics_PhysicsShapePolygon_getPoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -1915,7 +1915,7 @@ int lua_cocos2dx_physics_PhysicsShapeBox_getSize(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapeBox*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeBox_getSize'", nullptr);
         return 0;
@@ -1923,7 +1923,7 @@ int lua_cocos2dx_physics_PhysicsShapeBox_getSize(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2070,7 +2070,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointB(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapeEdgeSegment*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointB'", nullptr);
         return 0;
@@ -2078,7 +2078,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointB(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2117,7 +2117,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointA(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsShapeEdgeSegment*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointA'", nullptr);
         return 0;
@@ -2125,7 +2125,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeSegment_getPointA(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2260,7 +2260,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgePolygon_getPointsCount(lua_State* tolua
     cobj = (cocos2d::PhysicsShapeEdgePolygon*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeEdgePolygon_getPointsCount'", nullptr);
         return 0;
@@ -2268,7 +2268,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgePolygon_getPointsCount(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2434,7 +2434,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeChain_getPointsCount(lua_State* tolua_S
     cobj = (cocos2d::PhysicsShapeEdgeChain*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsShapeEdgeChain_getPointsCount'", nullptr);
         return 0;
@@ -2442,7 +2442,7 @@ int lua_cocos2dx_physics_PhysicsShapeEdgeChain_getPointsCount(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2501,7 +2501,7 @@ int lua_cocos2dx_physics_PhysicsBody_isGravityEnabled(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_isGravityEnabled'", nullptr);
         return 0;
@@ -2509,7 +2509,7 @@ int lua_cocos2dx_physics_PhysicsBody_isGravityEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2548,7 +2548,7 @@ int lua_cocos2dx_physics_PhysicsBody_resetForces(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_resetForces'", nullptr);
         return 0;
@@ -2556,7 +2556,7 @@ int lua_cocos2dx_physics_PhysicsBody_resetForces(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2595,7 +2595,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityLimit(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getVelocityLimit'", nullptr);
         return 0;
@@ -2603,7 +2603,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityLimit(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2642,7 +2642,7 @@ int lua_cocos2dx_physics_PhysicsBody_setGroup(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setGroup'", nullptr);
         return 0;
@@ -2650,7 +2650,7 @@ int lua_cocos2dx_physics_PhysicsBody_setGroup(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -2692,7 +2692,7 @@ int lua_cocos2dx_physics_PhysicsBody_getMass(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getMass'", nullptr);
         return 0;
@@ -2700,7 +2700,7 @@ int lua_cocos2dx_physics_PhysicsBody_getMass(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2739,7 +2739,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCollisionBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getCollisionBitmask'", nullptr);
         return 0;
@@ -2747,7 +2747,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCollisionBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2786,7 +2786,7 @@ int lua_cocos2dx_physics_PhysicsBody_getRotationOffset(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getRotationOffset'", nullptr);
         return 0;
@@ -2794,7 +2794,7 @@ int lua_cocos2dx_physics_PhysicsBody_getRotationOffset(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2833,7 +2833,7 @@ int lua_cocos2dx_physics_PhysicsBody_getRotation(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getRotation'", nullptr);
         return 0;
@@ -2841,7 +2841,7 @@ int lua_cocos2dx_physics_PhysicsBody_getRotation(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2880,7 +2880,7 @@ int lua_cocos2dx_physics_PhysicsBody_getMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getMoment'", nullptr);
         return 0;
@@ -2888,7 +2888,7 @@ int lua_cocos2dx_physics_PhysicsBody_getMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -2927,7 +2927,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyImpulse(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_applyImpulse'", nullptr);
         return 0;
@@ -2935,7 +2935,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyImpulse(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -2949,7 +2949,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyImpulse(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::Vec2 arg0;
         cocos2d::Vec2 arg1;
@@ -2994,7 +2994,7 @@ int lua_cocos2dx_physics_PhysicsBody_setRotationOffset(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setRotationOffset'", nullptr);
         return 0;
@@ -3002,7 +3002,7 @@ int lua_cocos2dx_physics_PhysicsBody_setRotationOffset(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -3044,7 +3044,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyForce(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_applyForce'", nullptr);
         return 0;
@@ -3052,7 +3052,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyForce(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -3066,7 +3066,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyForce(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::Vec2 arg0;
         cocos2d::Vec2 arg1;
@@ -3111,7 +3111,7 @@ int lua_cocos2dx_physics_PhysicsBody_addShape(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_addShape'", nullptr);
         return 0;
@@ -3119,7 +3119,7 @@ int lua_cocos2dx_physics_PhysicsBody_addShape(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::PhysicsShape* arg0;
 
@@ -3133,7 +3133,7 @@ int lua_cocos2dx_physics_PhysicsBody_addShape(lua_State* tolua_S)
         object_to_luaval<cocos2d::PhysicsShape>(tolua_S, "cc.PhysicsShape",(cocos2d::PhysicsShape*)ret);
         return 1;
     }
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::PhysicsShape* arg0;
         bool arg1;
@@ -3178,7 +3178,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyTorque(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_applyTorque'", nullptr);
         return 0;
@@ -3186,7 +3186,7 @@ int lua_cocos2dx_physics_PhysicsBody_applyTorque(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -3228,7 +3228,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularVelocityLimit(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getAngularVelocityLimit'", nullptr);
         return 0;
@@ -3236,7 +3236,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularVelocityLimit(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3275,7 +3275,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularVelocityLimit(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setAngularVelocityLimit'", nullptr);
         return 0;
@@ -3283,7 +3283,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularVelocityLimit(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -3325,7 +3325,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getVelocity'", nullptr);
         return 0;
@@ -3333,7 +3333,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3372,7 +3372,7 @@ int lua_cocos2dx_physics_PhysicsBody_getLinearDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getLinearDamping'", nullptr);
         return 0;
@@ -3380,7 +3380,7 @@ int lua_cocos2dx_physics_PhysicsBody_getLinearDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3419,7 +3419,7 @@ int lua_cocos2dx_physics_PhysicsBody_removeAllShapes(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_removeAllShapes'", nullptr);
         return 0;
@@ -3427,7 +3427,7 @@ int lua_cocos2dx_physics_PhysicsBody_removeAllShapes(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3438,7 +3438,7 @@ int lua_cocos2dx_physics_PhysicsBody_removeAllShapes(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -3480,7 +3480,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setAngularDamping'", nullptr);
         return 0;
@@ -3488,7 +3488,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -3530,7 +3530,7 @@ int lua_cocos2dx_physics_PhysicsBody_setVelocityLimit(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setVelocityLimit'", nullptr);
         return 0;
@@ -3538,7 +3538,7 @@ int lua_cocos2dx_physics_PhysicsBody_setVelocityLimit(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -3580,7 +3580,7 @@ int lua_cocos2dx_physics_PhysicsBody_setResting(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setResting'", nullptr);
         return 0;
@@ -3588,7 +3588,7 @@ int lua_cocos2dx_physics_PhysicsBody_setResting(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -3630,7 +3630,7 @@ int lua_cocos2dx_physics_PhysicsBody_getPositionOffset(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getPositionOffset'", nullptr);
         return 0;
@@ -3638,7 +3638,7 @@ int lua_cocos2dx_physics_PhysicsBody_getPositionOffset(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3677,7 +3677,7 @@ int lua_cocos2dx_physics_PhysicsBody_setCategoryBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setCategoryBitmask'", nullptr);
         return 0;
@@ -3685,7 +3685,7 @@ int lua_cocos2dx_physics_PhysicsBody_setCategoryBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -3727,7 +3727,7 @@ int lua_cocos2dx_physics_PhysicsBody_getWorld(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getWorld'", nullptr);
         return 0;
@@ -3735,7 +3735,7 @@ int lua_cocos2dx_physics_PhysicsBody_getWorld(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3774,7 +3774,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularVelocity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getAngularVelocity'", nullptr);
         return 0;
@@ -3782,7 +3782,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3821,7 +3821,7 @@ int lua_cocos2dx_physics_PhysicsBody_getPosition(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getPosition'", nullptr);
         return 0;
@@ -3829,7 +3829,7 @@ int lua_cocos2dx_physics_PhysicsBody_getPosition(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3868,7 +3868,7 @@ int lua_cocos2dx_physics_PhysicsBody_setGravityEnable(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setGravityEnable'", nullptr);
         return 0;
@@ -3876,7 +3876,7 @@ int lua_cocos2dx_physics_PhysicsBody_setGravityEnable(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -3918,7 +3918,7 @@ int lua_cocos2dx_physics_PhysicsBody_getGroup(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getGroup'", nullptr);
         return 0;
@@ -3926,7 +3926,7 @@ int lua_cocos2dx_physics_PhysicsBody_getGroup(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -3965,7 +3965,7 @@ int lua_cocos2dx_physics_PhysicsBody_setMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setMoment'", nullptr);
         return 0;
@@ -3973,7 +3973,7 @@ int lua_cocos2dx_physics_PhysicsBody_setMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -4015,7 +4015,7 @@ int lua_cocos2dx_physics_PhysicsBody_getTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getTag'", nullptr);
         return 0;
@@ -4023,7 +4023,7 @@ int lua_cocos2dx_physics_PhysicsBody_getTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4062,7 +4062,7 @@ int lua_cocos2dx_physics_PhysicsBody_local2World(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_local2World'", nullptr);
         return 0;
@@ -4070,7 +4070,7 @@ int lua_cocos2dx_physics_PhysicsBody_local2World(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -4112,7 +4112,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCategoryBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getCategoryBitmask'", nullptr);
         return 0;
@@ -4120,7 +4120,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCategoryBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4159,7 +4159,7 @@ int lua_cocos2dx_physics_PhysicsBody_setDynamic(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setDynamic'", nullptr);
         return 0;
@@ -4167,7 +4167,7 @@ int lua_cocos2dx_physics_PhysicsBody_setDynamic(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -4209,7 +4209,7 @@ int lua_cocos2dx_physics_PhysicsBody_getFirstShape(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getFirstShape'", nullptr);
         return 0;
@@ -4217,7 +4217,7 @@ int lua_cocos2dx_physics_PhysicsBody_getFirstShape(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4256,7 +4256,7 @@ int lua_cocos2dx_physics_PhysicsBody_getShapes(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getShapes'", nullptr);
         return 0;
@@ -4264,7 +4264,7 @@ int lua_cocos2dx_physics_PhysicsBody_getShapes(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4303,7 +4303,7 @@ int lua_cocos2dx_physics_PhysicsBody_getContactTestBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getContactTestBitmask'", nullptr);
         return 0;
@@ -4311,7 +4311,7 @@ int lua_cocos2dx_physics_PhysicsBody_getContactTestBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4350,7 +4350,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularVelocity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setAngularVelocity'", nullptr);
         return 0;
@@ -4358,7 +4358,7 @@ int lua_cocos2dx_physics_PhysicsBody_setAngularVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -4400,7 +4400,7 @@ int lua_cocos2dx_physics_PhysicsBody_world2Local(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_world2Local'", nullptr);
         return 0;
@@ -4408,7 +4408,7 @@ int lua_cocos2dx_physics_PhysicsBody_world2Local(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -4537,7 +4537,7 @@ int lua_cocos2dx_physics_PhysicsBody_setMass(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setMass'", nullptr);
         return 0;
@@ -4545,7 +4545,7 @@ int lua_cocos2dx_physics_PhysicsBody_setMass(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -4587,7 +4587,7 @@ int lua_cocos2dx_physics_PhysicsBody_addMoment(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_addMoment'", nullptr);
         return 0;
@@ -4595,7 +4595,7 @@ int lua_cocos2dx_physics_PhysicsBody_addMoment(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -4637,7 +4637,7 @@ int lua_cocos2dx_physics_PhysicsBody_setVelocity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setVelocity'", nullptr);
         return 0;
@@ -4645,7 +4645,7 @@ int lua_cocos2dx_physics_PhysicsBody_setVelocity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -4687,7 +4687,7 @@ int lua_cocos2dx_physics_PhysicsBody_setLinearDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setLinearDamping'", nullptr);
         return 0;
@@ -4695,7 +4695,7 @@ int lua_cocos2dx_physics_PhysicsBody_setLinearDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -4737,7 +4737,7 @@ int lua_cocos2dx_physics_PhysicsBody_setCollisionBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setCollisionBitmask'", nullptr);
         return 0;
@@ -4745,7 +4745,7 @@ int lua_cocos2dx_physics_PhysicsBody_setCollisionBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -4787,7 +4787,7 @@ int lua_cocos2dx_physics_PhysicsBody_setPositionOffset(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setPositionOffset'", nullptr);
         return 0;
@@ -4795,7 +4795,7 @@ int lua_cocos2dx_physics_PhysicsBody_setPositionOffset(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -4837,7 +4837,7 @@ int lua_cocos2dx_physics_PhysicsBody_setRotationEnable(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setRotationEnable'", nullptr);
         return 0;
@@ -4845,7 +4845,7 @@ int lua_cocos2dx_physics_PhysicsBody_setRotationEnable(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -4887,7 +4887,7 @@ int lua_cocos2dx_physics_PhysicsBody_isRotationEnabled(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_isRotationEnabled'", nullptr);
         return 0;
@@ -4895,7 +4895,7 @@ int lua_cocos2dx_physics_PhysicsBody_isRotationEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4934,7 +4934,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCPBody(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getCPBody'", nullptr);
         return 0;
@@ -4942,7 +4942,7 @@ int lua_cocos2dx_physics_PhysicsBody_getCPBody(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -4981,7 +4981,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getAngularDamping'", nullptr);
         return 0;
@@ -4989,7 +4989,7 @@ int lua_cocos2dx_physics_PhysicsBody_getAngularDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -5028,7 +5028,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityAtLocalPoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getVelocityAtLocalPoint'", nullptr);
         return 0;
@@ -5036,7 +5036,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityAtLocalPoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -5078,7 +5078,7 @@ int lua_cocos2dx_physics_PhysicsBody_isResting(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_isResting'", nullptr);
         return 0;
@@ -5086,7 +5086,7 @@ int lua_cocos2dx_physics_PhysicsBody_isResting(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -5125,7 +5125,7 @@ int lua_cocos2dx_physics_PhysicsBody_addMass(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_addMass'", nullptr);
         return 0;
@@ -5133,7 +5133,7 @@ int lua_cocos2dx_physics_PhysicsBody_addMass(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -5175,7 +5175,7 @@ int lua_cocos2dx_physics_PhysicsBody_getShape(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getShape'", nullptr);
         return 0;
@@ -5183,7 +5183,7 @@ int lua_cocos2dx_physics_PhysicsBody_getShape(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -5225,7 +5225,7 @@ int lua_cocos2dx_physics_PhysicsBody_setTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setTag'", nullptr);
         return 0;
@@ -5233,7 +5233,7 @@ int lua_cocos2dx_physics_PhysicsBody_setTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -5275,7 +5275,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityAtWorldPoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getVelocityAtWorldPoint'", nullptr);
         return 0;
@@ -5283,7 +5283,7 @@ int lua_cocos2dx_physics_PhysicsBody_getVelocityAtWorldPoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -5325,7 +5325,7 @@ int lua_cocos2dx_physics_PhysicsBody_setContactTestBitmask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_setContactTestBitmask'", nullptr);
         return 0;
@@ -5333,7 +5333,7 @@ int lua_cocos2dx_physics_PhysicsBody_setContactTestBitmask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -5375,7 +5375,7 @@ int lua_cocos2dx_physics_PhysicsBody_removeFromWorld(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_removeFromWorld'", nullptr);
         return 0;
@@ -5383,7 +5383,7 @@ int lua_cocos2dx_physics_PhysicsBody_removeFromWorld(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -5422,7 +5422,7 @@ int lua_cocos2dx_physics_PhysicsBody_isDynamic(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_isDynamic'", nullptr);
         return 0;
@@ -5430,7 +5430,7 @@ int lua_cocos2dx_physics_PhysicsBody_isDynamic(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -5469,7 +5469,7 @@ int lua_cocos2dx_physics_PhysicsBody_getNode(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsBody*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsBody_getNode'", nullptr);
         return 0;
@@ -5477,7 +5477,7 @@ int lua_cocos2dx_physics_PhysicsBody_getNode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -5654,7 +5654,7 @@ int lua_cocos2dx_physics_PhysicsBody_create(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 1)
         {
@@ -5667,7 +5667,7 @@ int lua_cocos2dx_physics_PhysicsBody_create(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 0)
         {
@@ -5677,7 +5677,7 @@ int lua_cocos2dx_physics_PhysicsBody_create(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 2)
         {
@@ -5958,7 +5958,7 @@ int lua_cocos2dx_physics_PhysicsContact_getContactData(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContact*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContact_getContactData'", nullptr);
         return 0;
@@ -5966,7 +5966,7 @@ int lua_cocos2dx_physics_PhysicsContact_getContactData(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6005,7 +6005,7 @@ int lua_cocos2dx_physics_PhysicsContact_getEventCode(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContact*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContact_getEventCode'", nullptr);
         return 0;
@@ -6013,7 +6013,7 @@ int lua_cocos2dx_physics_PhysicsContact_getEventCode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6052,7 +6052,7 @@ int lua_cocos2dx_physics_PhysicsContact_getPreContactData(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContact*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContact_getPreContactData'", nullptr);
         return 0;
@@ -6060,7 +6060,7 @@ int lua_cocos2dx_physics_PhysicsContact_getPreContactData(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6099,7 +6099,7 @@ int lua_cocos2dx_physics_PhysicsContact_getShapeA(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContact*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContact_getShapeA'", nullptr);
         return 0;
@@ -6107,7 +6107,7 @@ int lua_cocos2dx_physics_PhysicsContact_getShapeA(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6146,7 +6146,7 @@ int lua_cocos2dx_physics_PhysicsContact_getShapeB(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContact*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContact_getShapeB'", nullptr);
         return 0;
@@ -6154,7 +6154,7 @@ int lua_cocos2dx_physics_PhysicsContact_getShapeB(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6217,7 +6217,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getFriction(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_getFriction'", nullptr);
         return 0;
@@ -6225,7 +6225,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getFriction(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6264,7 +6264,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getRestitution(lua_State* tolua_
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_getRestitution'", nullptr);
         return 0;
@@ -6272,7 +6272,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getRestitution(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6311,7 +6311,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setFriction(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_setFriction'", nullptr);
         return 0;
@@ -6319,7 +6319,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setFriction(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -6361,7 +6361,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_ignore(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_ignore'", nullptr);
         return 0;
@@ -6369,7 +6369,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_ignore(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6408,7 +6408,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getSurfaceVelocity(lua_State* to
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_getSurfaceVelocity'", nullptr);
         return 0;
@@ -6416,7 +6416,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_getSurfaceVelocity(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6455,7 +6455,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setSurfaceVelocity(lua_State* to
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_setSurfaceVelocity'", nullptr);
         return 0;
@@ -6463,7 +6463,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setSurfaceVelocity(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -6505,7 +6505,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setRestitution(lua_State* tolua_
     cobj = (cocos2d::PhysicsContactPreSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPreSolve_setRestitution'", nullptr);
         return 0;
@@ -6513,7 +6513,7 @@ int lua_cocos2dx_physics_PhysicsContactPreSolve_setRestitution(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -6581,7 +6581,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getFriction(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsContactPostSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPostSolve_getFriction'", nullptr);
         return 0;
@@ -6589,7 +6589,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getFriction(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6628,7 +6628,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getSurfaceVelocity(lua_State* t
     cobj = (cocos2d::PhysicsContactPostSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPostSolve_getSurfaceVelocity'", nullptr);
         return 0;
@@ -6636,7 +6636,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getSurfaceVelocity(lua_State* t
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6675,7 +6675,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getRestitution(lua_State* tolua
     cobj = (cocos2d::PhysicsContactPostSolve*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsContactPostSolve_getRestitution'", nullptr);
         return 0;
@@ -6683,7 +6683,7 @@ int lua_cocos2dx_physics_PhysicsContactPostSolve_getRestitution(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -6798,7 +6798,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithBodies_hitTest(lua_State
     cobj = (cocos2d::EventListenerPhysicsContactWithBodies*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_EventListenerPhysicsContactWithBodies_hitTest'", nullptr);
         return 0;
@@ -6806,7 +6806,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithBodies_hitTest(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::PhysicsShape* arg0;
         cocos2d::PhysicsShape* arg1;
@@ -6910,7 +6910,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithShapes_hitTest(lua_State
     cobj = (cocos2d::EventListenerPhysicsContactWithShapes*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_EventListenerPhysicsContactWithShapes_hitTest'", nullptr);
         return 0;
@@ -6918,7 +6918,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithShapes_hitTest(lua_State
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::PhysicsShape* arg0;
         cocos2d::PhysicsShape* arg1;
@@ -7022,7 +7022,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithGroup_hitTest(lua_State*
     cobj = (cocos2d::EventListenerPhysicsContactWithGroup*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_EventListenerPhysicsContactWithGroup_hitTest'", nullptr);
         return 0;
@@ -7030,7 +7030,7 @@ int lua_cocos2dx_physics_EventListenerPhysicsContactWithGroup_hitTest(lua_State*
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::PhysicsShape* arg0;
         cocos2d::PhysicsShape* arg1;
@@ -7132,7 +7132,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getBodyA(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_getBodyA'", nullptr);
         return 0;
@@ -7140,7 +7140,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getBodyA(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7179,7 +7179,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getBodyB(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_getBodyB'", nullptr);
         return 0;
@@ -7187,7 +7187,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getBodyB(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7226,7 +7226,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getMaxForce(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_getMaxForce'", nullptr);
         return 0;
@@ -7234,7 +7234,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getMaxForce(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7273,7 +7273,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setMaxForce(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_setMaxForce'", nullptr);
         return 0;
@@ -7281,7 +7281,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setMaxForce(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -7323,7 +7323,7 @@ int lua_cocos2dx_physics_PhysicsJoint_isEnabled(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_isEnabled'", nullptr);
         return 0;
@@ -7331,7 +7331,7 @@ int lua_cocos2dx_physics_PhysicsJoint_isEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7370,7 +7370,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setEnable(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_setEnable'", nullptr);
         return 0;
@@ -7378,7 +7378,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setEnable(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -7420,7 +7420,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setCollisionEnable(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_setCollisionEnable'", nullptr);
         return 0;
@@ -7428,7 +7428,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setCollisionEnable(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -7470,7 +7470,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getWorld(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_getWorld'", nullptr);
         return 0;
@@ -7478,7 +7478,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getWorld(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7517,7 +7517,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_setTag'", nullptr);
         return 0;
@@ -7525,7 +7525,7 @@ int lua_cocos2dx_physics_PhysicsJoint_setTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -7567,7 +7567,7 @@ int lua_cocos2dx_physics_PhysicsJoint_removeFormWorld(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_removeFormWorld'", nullptr);
         return 0;
@@ -7575,7 +7575,7 @@ int lua_cocos2dx_physics_PhysicsJoint_removeFormWorld(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7614,7 +7614,7 @@ int lua_cocos2dx_physics_PhysicsJoint_isCollisionEnabled(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_isCollisionEnabled'", nullptr);
         return 0;
@@ -7622,7 +7622,7 @@ int lua_cocos2dx_physics_PhysicsJoint_isCollisionEnabled(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7661,7 +7661,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getTag(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJoint*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJoint_getTag'", nullptr);
         return 0;
@@ -7669,7 +7669,7 @@ int lua_cocos2dx_physics_PhysicsJoint_getTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7739,7 +7739,7 @@ int lua_cocos2dx_physics_PhysicsJointFixed_createConstraints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointFixed*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointFixed_createConstraints'", nullptr);
         return 0;
@@ -7747,7 +7747,7 @@ int lua_cocos2dx_physics_PhysicsJointFixed_createConstraints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -7847,7 +7847,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_setAnchr2'", nullptr);
         return 0;
@@ -7855,7 +7855,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -7897,7 +7897,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setAnchr1(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_setAnchr1'", nullptr);
         return 0;
@@ -7905,7 +7905,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setAnchr1(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -7947,7 +7947,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setMax(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_setMax'", nullptr);
         return 0;
@@ -7955,7 +7955,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setMax(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -7997,7 +7997,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_getAnchr2'", nullptr);
         return 0;
@@ -8005,7 +8005,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8044,7 +8044,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getAnchr1(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_getAnchr1'", nullptr);
         return 0;
@@ -8052,7 +8052,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getAnchr1(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8091,7 +8091,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_createConstraints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_createConstraints'", nullptr);
         return 0;
@@ -8099,7 +8099,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_createConstraints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8138,7 +8138,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getMin(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_getMin'", nullptr);
         return 0;
@@ -8146,7 +8146,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getMin(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8185,7 +8185,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getMax(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_getMax'", nullptr);
         return 0;
@@ -8193,7 +8193,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_getMax(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8232,7 +8232,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setMin(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointLimit_setMin'", nullptr);
         return 0;
@@ -8240,7 +8240,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_setMin(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -8278,7 +8278,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_construct(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 6)
         {
@@ -8306,7 +8306,7 @@ int lua_cocos2dx_physics_PhysicsJointLimit_construct(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 4)
         {
@@ -8383,7 +8383,7 @@ int lua_cocos2dx_physics_PhysicsJointPin_createConstraints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointPin*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointPin_createConstraints'", nullptr);
         return 0;
@@ -8391,7 +8391,7 @@ int lua_cocos2dx_physics_PhysicsJointPin_createConstraints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8426,7 +8426,7 @@ int lua_cocos2dx_physics_PhysicsJointPin_construct(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 4)
         {
@@ -8448,7 +8448,7 @@ int lua_cocos2dx_physics_PhysicsJointPin_construct(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 3)
         {
@@ -8514,7 +8514,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_createConstraints(lua_State* tolua
     cobj = (cocos2d::PhysicsJointDistance*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointDistance_createConstraints'", nullptr);
         return 0;
@@ -8522,7 +8522,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_createConstraints(lua_State* tolua
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8561,7 +8561,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_setDistance(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointDistance*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointDistance_setDistance'", nullptr);
         return 0;
@@ -8569,7 +8569,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_setDistance(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -8611,7 +8611,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_getDistance(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointDistance*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointDistance_getDistance'", nullptr);
         return 0;
@@ -8619,7 +8619,7 @@ int lua_cocos2dx_physics_PhysicsJointDistance_getDistance(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8723,7 +8723,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_setAnchr2'", nullptr);
         return 0;
@@ -8731,7 +8731,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -8773,7 +8773,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setAnchr1(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_setAnchr1'", nullptr);
         return 0;
@@ -8781,7 +8781,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setAnchr1(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -8823,7 +8823,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_getDamping'", nullptr);
         return 0;
@@ -8831,7 +8831,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8870,7 +8870,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setStiffness(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_setStiffness'", nullptr);
         return 0;
@@ -8878,7 +8878,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setStiffness(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -8920,7 +8920,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getRestLength(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_getRestLength'", nullptr);
         return 0;
@@ -8928,7 +8928,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getRestLength(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -8967,7 +8967,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_getAnchr2'", nullptr);
         return 0;
@@ -8975,7 +8975,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9014,7 +9014,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getAnchr1(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_getAnchr1'", nullptr);
         return 0;
@@ -9022,7 +9022,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getAnchr1(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9061,7 +9061,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getStiffness(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_getStiffness'", nullptr);
         return 0;
@@ -9069,7 +9069,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_getStiffness(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9108,7 +9108,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_createConstraints(lua_State* tolua_S
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_createConstraints'", nullptr);
         return 0;
@@ -9116,7 +9116,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_createConstraints(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9155,7 +9155,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setRestLength(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_setRestLength'", nullptr);
         return 0;
@@ -9163,7 +9163,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setRestLength(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -9205,7 +9205,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointSpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointSpring_setDamping'", nullptr);
         return 0;
@@ -9213,7 +9213,7 @@ int lua_cocos2dx_physics_PhysicsJointSpring_setDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -9332,7 +9332,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_setAnchr2'", nullptr);
         return 0;
@@ -9340,7 +9340,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -9382,7 +9382,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setGrooveA(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_setGrooveA'", nullptr);
         return 0;
@@ -9390,7 +9390,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setGrooveA(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -9432,7 +9432,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setGrooveB(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_setGrooveB'", nullptr);
         return 0;
@@ -9440,7 +9440,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_setGrooveB(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -9482,7 +9482,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getGrooveA(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_getGrooveA'", nullptr);
         return 0;
@@ -9490,7 +9490,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getGrooveA(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9529,7 +9529,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getGrooveB(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_getGrooveB'", nullptr);
         return 0;
@@ -9537,7 +9537,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getGrooveB(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9576,7 +9576,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getAnchr2(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_getAnchr2'", nullptr);
         return 0;
@@ -9584,7 +9584,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_getAnchr2(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9623,7 +9623,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_createConstraints(lua_State* tolua_S
     cobj = (cocos2d::PhysicsJointGroove*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGroove_createConstraints'", nullptr);
         return 0;
@@ -9631,7 +9631,7 @@ int lua_cocos2dx_physics_PhysicsJointGroove_createConstraints(lua_State* tolua_S
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9741,7 +9741,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_getDamping'", nullptr);
         return 0;
@@ -9749,7 +9749,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9788,7 +9788,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setRestAngle(lua_State* tolua_
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_setRestAngle'", nullptr);
         return 0;
@@ -9796,7 +9796,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setRestAngle(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -9838,7 +9838,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getStiffness(lua_State* tolua_
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_getStiffness'", nullptr);
         return 0;
@@ -9846,7 +9846,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getStiffness(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9885,7 +9885,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_createConstraints(lua_State* t
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_createConstraints'", nullptr);
         return 0;
@@ -9893,7 +9893,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_createConstraints(lua_State* t
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -9932,7 +9932,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setStiffness(lua_State* tolua_
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_setStiffness'", nullptr);
         return 0;
@@ -9940,7 +9940,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setStiffness(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -9982,7 +9982,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setDamping(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_setDamping'", nullptr);
         return 0;
@@ -9990,7 +9990,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_setDamping(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10032,7 +10032,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getRestAngle(lua_State* tolua_
     cobj = (cocos2d::PhysicsJointRotarySpring*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotarySpring_getRestAngle'", nullptr);
         return 0;
@@ -10040,7 +10040,7 @@ int lua_cocos2dx_physics_PhysicsJointRotarySpring_getRestAngle(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10148,7 +10148,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMax(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotaryLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMax'", nullptr);
         return 0;
@@ -10156,7 +10156,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMax(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10195,7 +10195,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_createConstraints(lua_State* to
     cobj = (cocos2d::PhysicsJointRotaryLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotaryLimit_createConstraints'", nullptr);
         return 0;
@@ -10203,7 +10203,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_createConstraints(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10242,7 +10242,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMin(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotaryLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMin'", nullptr);
         return 0;
@@ -10250,7 +10250,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMin(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10292,7 +10292,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMax(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotaryLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMax'", nullptr);
         return 0;
@@ -10300,7 +10300,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_setMax(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10342,7 +10342,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMin(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRotaryLimit*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMin'", nullptr);
         return 0;
@@ -10350,7 +10350,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_getMin(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10385,7 +10385,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_construct(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 2)
         {
@@ -10401,7 +10401,7 @@ int lua_cocos2dx_physics_PhysicsJointRotaryLimit_construct(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 4)
         {
@@ -10474,7 +10474,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getAngle(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_getAngle'", nullptr);
         return 0;
@@ -10482,7 +10482,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getAngle(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10521,7 +10521,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setAngle(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_setAngle'", nullptr);
         return 0;
@@ -10529,7 +10529,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setAngle(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10571,7 +10571,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_createConstraints(lua_State* tolua_
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_createConstraints'", nullptr);
         return 0;
@@ -10579,7 +10579,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_createConstraints(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10618,7 +10618,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setPhase(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_setPhase'", nullptr);
         return 0;
@@ -10626,7 +10626,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setPhase(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10668,7 +10668,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getPhase(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_getPhase'", nullptr);
         return 0;
@@ -10676,7 +10676,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getPhase(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10715,7 +10715,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setRatchet(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_setRatchet'", nullptr);
         return 0;
@@ -10723,7 +10723,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_setRatchet(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10765,7 +10765,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getRatchet(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointRatchet*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointRatchet_getRatchet'", nullptr);
         return 0;
@@ -10773,7 +10773,7 @@ int lua_cocos2dx_physics_PhysicsJointRatchet_getRatchet(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10881,7 +10881,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_setRatio(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGear*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGear_setRatio'", nullptr);
         return 0;
@@ -10889,7 +10889,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_setRatio(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -10931,7 +10931,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_getPhase(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGear*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGear_getPhase'", nullptr);
         return 0;
@@ -10939,7 +10939,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_getPhase(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -10978,7 +10978,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_setPhase(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGear*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGear_setPhase'", nullptr);
         return 0;
@@ -10986,7 +10986,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_setPhase(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -11028,7 +11028,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_createConstraints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGear*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGear_createConstraints'", nullptr);
         return 0;
@@ -11036,7 +11036,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_createConstraints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11075,7 +11075,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_getRatio(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointGear*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointGear_getRatio'", nullptr);
         return 0;
@@ -11083,7 +11083,7 @@ int lua_cocos2dx_physics_PhysicsJointGear_getRatio(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11189,7 +11189,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_setRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointMotor*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointMotor_setRate'", nullptr);
         return 0;
@@ -11197,7 +11197,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_setRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -11239,7 +11239,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_getRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointMotor*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointMotor_getRate'", nullptr);
         return 0;
@@ -11247,7 +11247,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_getRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11286,7 +11286,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_createConstraints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsJointMotor*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsJointMotor_createConstraints'", nullptr);
         return 0;
@@ -11294,7 +11294,7 @@ int lua_cocos2dx_physics_PhysicsJointMotor_createConstraints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11396,7 +11396,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setGravity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setGravity'", nullptr);
         return 0;
@@ -11404,7 +11404,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setGravity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -11446,7 +11446,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getAllBodies(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getAllBodies'", nullptr);
         return 0;
@@ -11454,7 +11454,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getAllBodies(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11493,7 +11493,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setFixedUpdateRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setFixedUpdateRate'", nullptr);
         return 0;
@@ -11501,7 +11501,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setFixedUpdateRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -11543,7 +11543,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setSubsteps(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setSubsteps'", nullptr);
         return 0;
@@ -11551,7 +11551,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setSubsteps(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -11593,7 +11593,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setAutoStep(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setAutoStep'", nullptr);
         return 0;
@@ -11601,7 +11601,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setAutoStep(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -11643,7 +11643,7 @@ int lua_cocos2dx_physics_PhysicsWorld_addJoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_addJoint'", nullptr);
         return 0;
@@ -11651,7 +11651,7 @@ int lua_cocos2dx_physics_PhysicsWorld_addJoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::PhysicsJoint* arg0;
 
@@ -11693,7 +11693,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeAllJoints(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_removeAllJoints'", nullptr);
         return 0;
@@ -11701,7 +11701,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeAllJoints(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11712,7 +11712,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeAllJoints(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -11754,7 +11754,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getDebugDrawMask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getDebugDrawMask'", nullptr);
         return 0;
@@ -11762,7 +11762,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getDebugDrawMask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11801,7 +11801,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setPreUpdateCallback(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setPreUpdateCallback'", nullptr);
         return 0;
@@ -11809,7 +11809,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setPreUpdateCallback(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::function<void ()> arg0;
 
@@ -11855,7 +11855,7 @@ int lua_cocos2dx_physics_PhysicsWorld_isAutoStep(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_isAutoStep'", nullptr);
         return 0;
@@ -11863,7 +11863,7 @@ int lua_cocos2dx_physics_PhysicsWorld_isAutoStep(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -11902,7 +11902,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setPostUpdateCallback(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setPostUpdateCallback'", nullptr);
         return 0;
@@ -11910,7 +11910,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setPostUpdateCallback(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         std::function<void ()> arg0;
 
@@ -12011,7 +12011,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeJoint(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_removeJoint'", nullptr);
         return 0;
@@ -12019,7 +12019,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeJoint(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::PhysicsJoint* arg0;
 
@@ -12033,7 +12033,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeJoint(lua_State* tolua_S)
         lua_settop(tolua_S, 1);
         return 1;
     }
-    if (argc == 2) 
+    if (argc == 2)
     {
         cocos2d::PhysicsJoint* arg0;
         bool arg1;
@@ -12078,7 +12078,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getShapes(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getShapes'", nullptr);
         return 0;
@@ -12086,7 +12086,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getShapes(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -12128,7 +12128,7 @@ int lua_cocos2dx_physics_PhysicsWorld_step(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_step'", nullptr);
         return 0;
@@ -12136,7 +12136,7 @@ int lua_cocos2dx_physics_PhysicsWorld_step(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -12178,7 +12178,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setDebugDrawMask(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setDebugDrawMask'", nullptr);
         return 0;
@@ -12186,7 +12186,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setDebugDrawMask(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -12228,7 +12228,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getGravity(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getGravity'", nullptr);
         return 0;
@@ -12236,7 +12236,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getGravity(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12275,7 +12275,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setUpdateRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setUpdateRate'", nullptr);
         return 0;
@@ -12283,7 +12283,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setUpdateRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -12325,7 +12325,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getFixedUpdateRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getFixedUpdateRate'", nullptr);
         return 0;
@@ -12333,7 +12333,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getFixedUpdateRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12372,7 +12372,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getSubsteps(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getSubsteps'", nullptr);
         return 0;
@@ -12380,7 +12380,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getSubsteps(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12419,7 +12419,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getSpeed(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getSpeed'", nullptr);
         return 0;
@@ -12427,7 +12427,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getSpeed(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12466,7 +12466,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getUpdateRate(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getUpdateRate'", nullptr);
         return 0;
@@ -12474,7 +12474,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getUpdateRate(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12513,7 +12513,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeAllBodies(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_removeAllBodies'", nullptr);
         return 0;
@@ -12521,7 +12521,7 @@ int lua_cocos2dx_physics_PhysicsWorld_removeAllBodies(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -12560,7 +12560,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setSpeed(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setSpeed'", nullptr);
         return 0;
@@ -12568,7 +12568,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setSpeed(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -12610,7 +12610,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getShape(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getShape'", nullptr);
         return 0;
@@ -12618,7 +12618,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getShape(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         cocos2d::Vec2 arg0;
 
@@ -12660,7 +12660,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setDebugDrawGlobalZOrder(lua_State* tolua_
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_setDebugDrawGlobalZOrder'", nullptr);
         return 0;
@@ -12668,7 +12668,7 @@ int lua_cocos2dx_physics_PhysicsWorld_setDebugDrawGlobalZOrder(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         double arg0;
 
@@ -12710,7 +12710,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getBody(lua_State* tolua_S)
     cobj = (cocos2d::PhysicsWorld*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_physics_PhysicsWorld_getBody'", nullptr);
         return 0;
@@ -12718,7 +12718,7 @@ int lua_cocos2dx_physics_PhysicsWorld_getBody(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -12790,7 +12790,7 @@ int lua_register_cocos2dx_physics_PhysicsWorld(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_physics(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"cc",0);
 	tolua_beginmodule(tolua_S,"cc");
 
@@ -12829,3 +12829,4 @@ TOLUA_API int register_all_cocos2dx_physics(lua_State* tolua_S)
 }
 
 #endif
+

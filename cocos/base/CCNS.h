@@ -79,4 +79,3 @@ NS_CC_END
 
 #endif // __PLATFORM_CCNS_H__
 
-

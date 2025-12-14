@@ -64,7 +64,7 @@ static bool compare3DCommand(RenderCommand* a, RenderCommand* b)
 // queue
 RenderQueue::RenderQueue()
 {
-    
+
 }
 
 void RenderQueue::push_back(RenderCommand* command)
@@ -105,7 +105,7 @@ ssize_t RenderQueue::size() const
     {
         result += _commands[index].size();
     }
-    
+
     return result;
 }
 
@@ -128,7 +128,7 @@ RenderCommand* RenderQueue::operator[](ssize_t index) const
             index -= _commands[queIndex].size();
         }
     }
-    
+
     CCASSERT(false, "invalid index");
     return nullptr;
 }
@@ -155,7 +155,7 @@ void RenderQueue::saveRenderState()
     _isDepthEnabled = glIsEnabled(GL_DEPTH_TEST) != GL_FALSE;
     _isCullEnabled = glIsEnabled(GL_CULL_FACE) != GL_FALSE;
     glGetBooleanv(GL_DEPTH_WRITEMASK, &_isDepthWrite);
-    
+
     CHECK_GL_ERROR_DEBUG();
 }
 
@@ -182,7 +182,7 @@ void RenderQueue::restoreRenderState()
         glDisable(GL_DEPTH_TEST);
         RenderState::StateBlock::_defaultState->setDepthTest(false);
     }
-    
+
     glDepthMask(_isDepthWrite);
     RenderState::StateBlock::_defaultState->setDepthWrite(_isDepthEnabled);
 
@@ -211,9 +211,9 @@ Renderer::Renderer()
 #endif
 {
     _groupCommandManager = new (std::nothrow) GroupCommandManager();
-    
+
     _commandGroupStack.push(DEFAULT_RENDER_QUEUE);
-    
+
     RenderQueue defaultRenderQueue;
     _renderGroups.push_back(defaultRenderQueue);
     _queuedTriangleCommands.reserve(BATCH_TRIAGCOMMAND_RESERVED_SIZE);
@@ -230,7 +230,7 @@ Renderer::~Renderer()
 {
     _renderGroups.clear();
     _groupCommandManager->release();
-    
+
     glDeleteBuffers(2, _buffersVBO);
 
     free(_triBatchesToDraw);
@@ -252,12 +252,12 @@ void Renderer::initGLView()
         /** listen the event that renderer was recreated on Android/WP8 */
         this->setupBuffer();
     });
-    
+
     Director::getInstance()->getEventDispatcher()->addEventListenerWithFixedPriority(_cacheTextureListener, -1);
 #endif
 
     setupBuffer();
-    
+
     _glViewAssigned = true;
 }
 
@@ -334,7 +334,7 @@ void Renderer::mapBuffers()
 
     glBindBuffer(GL_ARRAY_BUFFER, _buffersVBO[0]);
     glBufferData(GL_ARRAY_BUFFER, sizeof(_verts[0]) * VBO_SIZE, _verts, GL_DYNAMIC_DRAW);
-    
+
 
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 
@@ -389,7 +389,7 @@ void Renderer::processRenderCommand(RenderCommand* command)
         flush3D();
 
         auto cmd = static_cast<TrianglesCommand*>(command);
-        
+
         // flush own queue when buffer is full
         if(_filledVertex + cmd->getVertexCount() > VBO_SIZE || _filledIndex + cmd->getIndexCount() > INDEX_VBO_SIZE)
         {
@@ -397,7 +397,7 @@ void Renderer::processRenderCommand(RenderCommand* command)
             CCASSERT(cmd->getIndexCount()>= 0 && cmd->getIndexCount() < INDEX_VBO_SIZE, "VBO for index is not big enough, please break the data down or use customized render command");
             drawBatchedTriangles();
         }
-        
+
         // queue it
         _queuedTriangleCommands.push_back(cmd);
         _filledIndex += cmd->getIndexCount();
@@ -407,7 +407,7 @@ void Renderer::processRenderCommand(RenderCommand* command)
     {
         flush2D();
         auto cmd = static_cast<MeshCommand*>(command);
-        
+
         if (cmd->isSkipBatching() || _lastBatchedMeshCommand == nullptr || _lastBatchedMeshCommand->getMaterialID() != cmd->getMaterialID())
         {
             flush3D();
@@ -472,7 +472,7 @@ void Renderer::processRenderCommand(RenderCommand* command)
 void Renderer::visitRenderQueue(RenderQueue& queue)
 {
     queue.saveRenderState();
-    
+
     //
     //Process Global-Z < 0 Objects
     //
@@ -499,14 +499,14 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         }
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
-        
+
         for (const auto& zNegNext : zNegQueue)
         {
             processRenderCommand(zNegNext);
         }
         flush();
     }
-    
+
     //
     //Process Opaque Object
     //
@@ -529,7 +529,7 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         }
         flush();
     }
-    
+
     //
     //Process 3D Transparent object
     //
@@ -553,7 +553,7 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         }
         flush();
     }
-    
+
     //
     //Process Global-Z = 0 Queue
     //
@@ -582,14 +582,14 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
         }
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
-        
+
         for (const auto& zZeroNext : zZeroQueue)
         {
             processRenderCommand(zZeroNext);
         }
         flush();
     }
-    
+
     //
     //Process Global-Z > 0 Queue
     //
@@ -601,7 +601,7 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
             glEnable(GL_DEPTH_TEST);
             glDepthMask(true);
             glEnable(GL_BLEND);
-            
+
             RenderState::StateBlock::_defaultState->setDepthTest(true);
             RenderState::StateBlock::_defaultState->setDepthWrite(true);
             RenderState::StateBlock::_defaultState->setBlend(true);
@@ -611,21 +611,21 @@ void Renderer::visitRenderQueue(RenderQueue& queue)
             glDisable(GL_DEPTH_TEST);
             glDepthMask(false);
             glEnable(GL_BLEND);
-            
+
             RenderState::StateBlock::_defaultState->setDepthTest(false);
             RenderState::StateBlock::_defaultState->setDepthWrite(false);
             RenderState::StateBlock::_defaultState->setBlend(true);
         }
         glDisable(GL_CULL_FACE);
         RenderState::StateBlock::_defaultState->setCullFace(false);
-        
+
         for (const auto& zPosNext : zPosQueue)
         {
             processRenderCommand(zPosNext);
         }
         flush();
     }
-    
+
     queue.restoreRenderState();
 }
 
@@ -636,7 +636,7 @@ void Renderer::render()
 
     //TODO: setup camera or MVP
     _isRendering = true;
-    
+
     if (_glViewAssigned)
     {
         //Process render commands
@@ -814,7 +814,7 @@ void Renderer::drawBatchedTriangles()
         glUnmapBuffer(GL_ARRAY_BUFFER);
 
         glBindBuffer(GL_ARRAY_BUFFER, 0);
-        
+
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, _buffersVBO[1]);
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(_indices[0]) * _filledIndex, _indices, GL_STATIC_DRAW);
     }
@@ -900,14 +900,14 @@ bool Renderer::checkVisibility(const Mat4 &transform, const Size &size)
 {
     auto director = Director::getInstance();
     auto scene = director->getRunningScene();
-    
+
     //If draw to Rendertexture, return true directly.
     // only cull the default camera. The culling algorithm is valid for default camera.
     if (!scene || (scene && scene->_defaultCamera != Camera::getVisitingCamera()))
         return true;
 
     Rect visibleRect(director->getVisibleOrigin(), director->getVisibleSize());
-    
+
     // transform center point to screen space
     float hSizeX = size.width/2;
     float hSizeY = size.height/2;
@@ -918,7 +918,7 @@ bool Renderer::checkVisibility(const Mat4 &transform, const Size &size)
     // convert content size to world coordinates
     float wshw = std::max(fabsf(hSizeX * transform.m[0] + hSizeY * transform.m[4]), fabsf(hSizeX * transform.m[0] - hSizeY * transform.m[4]));
     float wshh = std::max(fabsf(hSizeX * transform.m[1] + hSizeY * transform.m[5]), fabsf(hSizeX * transform.m[1] - hSizeY * transform.m[5]));
-    
+
     // enlarge visible rect half size in screen coord
     visibleRect.origin.x -= wshw;
     visibleRect.origin.y -= wshh;
@@ -935,3 +935,4 @@ void Renderer::setClearColor(const Color4F &clearColor)
 }
 
 NS_CC_END
+

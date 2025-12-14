@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,17 +47,17 @@ enum {
 
 ChipmunkTest::ChipmunkTest()
 {
-#if CC_ENABLE_CHIPMUNK_INTEGRATION      
+#if CC_ENABLE_CHIPMUNK_INTEGRATION
     // enable events
 
     auto touchListener = EventListenerTouchAllAtOnce::create();
     touchListener->onTouchesEnded = CC_CALLBACK_2(ChipmunkTest::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-    
+
     Device::setAccelerometerEnabled(true);
     auto accListener = EventListenerAcceleration::create(CC_CALLBACK_2(ChipmunkTest::onAcceleration, this));
     _eventDispatcher->addEventListenerWithSceneGraphPriority(accListener, this);
-    
+
     // title
     auto label = Label::createWithTTF("Multi touch the screen", "fonts/Marker Felt.ttf", 36.0f);
     label->setPosition(VisibleRect::center().x, VisibleRect::top().y - 30);
@@ -97,11 +97,11 @@ ChipmunkTest::ChipmunkTest()
                                             18);
     auto size = Director::getInstance()->getWinSize();
     label->setPosition(size.width/2, size.height/2);
-    
+
     addChild(label);
-    
+
 #endif
-    
+
 }
 
 void ChipmunkTest::toggleDebugCallback(Ref* sender)
@@ -131,7 +131,7 @@ ChipmunkTest::~ChipmunkTest()
 
 void ChipmunkTest::initPhysics()
 {
-#if CC_ENABLE_CHIPMUNK_INTEGRATION    
+#if CC_ENABLE_CHIPMUNK_INTEGRATION
     // init chipmunk
     //cpInitChipmunk();
 
@@ -164,12 +164,12 @@ void ChipmunkTest::initPhysics()
         cpv(VisibleRect::leftTop().x,VisibleRect::leftTop().y), 0.0f);
 
     // right
-    _walls[3] = cpSegmentShapeNew( cpSpaceGetStaticBody(_space), 
+    _walls[3] = cpSegmentShapeNew( cpSpaceGetStaticBody(_space),
         cpv(VisibleRect::rightBottom().x, VisibleRect::rightBottom().y),
         cpv(VisibleRect::rightTop().x, VisibleRect::rightTop().y), 0.0f);
 
     for( int i=0;i<4;i++) {
-        
+
         cpShapeSetElasticity(_walls[i], 1.0f);
         cpShapeSetFriction(_walls[i], 1.0f);
         cpSpaceAddShape(_space, _walls[i]);
@@ -214,7 +214,7 @@ void ChipmunkTest::reset(Ref* sender)
 
 void ChipmunkTest::addNewSpriteAtPosition(cocos2d::Vec2 pos)
 {
-#if CC_ENABLE_CHIPMUNK_INTEGRATION    
+#if CC_ENABLE_CHIPMUNK_INTEGRATION
     int posx, posy;
 
     auto parent = getChildByTag(kTagParentNode);

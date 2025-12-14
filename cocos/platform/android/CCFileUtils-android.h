@@ -73,7 +73,7 @@ public:
 
     virtual std::string getWritablePath() const override;
     virtual bool isAbsolutePath(const std::string& strPath) const override;
-    
+
     virtual long getFileSize(const std::string& filepath) const override;
     virtual std::vector<std::string> listFiles(const std::string& dirPath) const override;
 
@@ -94,3 +94,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
 
 #endif // __CC_FILEUTILS_ANDROID_H__
+

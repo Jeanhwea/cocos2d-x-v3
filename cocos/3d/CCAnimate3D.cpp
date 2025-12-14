@@ -45,7 +45,7 @@ Animate3D* Animate3D::create(Animation3D* animation)
     auto animate = new (std::nothrow) Animate3D();
     animate->init(animation);
     animate->autorelease();
-    
+
     return animate;
 }
 
@@ -54,7 +54,7 @@ Animate3D* Animate3D::create(Animation3D* animation, float fromTime, float durat
     auto animate = new (std::nothrow) Animate3D();
     animate->init(animation, fromTime, duration);
     animate->autorelease();
-    
+
     return  animate;
 }
 
@@ -63,7 +63,7 @@ Animate3D* Animate3D::createWithFrames(Animation3D* animation, int startFrame, i
     auto animate = new (std::nothrow) Animate3D();
     animate->initWithFrames(animation, startFrame, endFrame, frameRate);
     animate->autorelease();
-    
+
     return  animate;
 }
 
@@ -82,7 +82,7 @@ bool Animate3D::init(Animation3D* animation, float fromTime, float duration)
     float fullDuration = animation->getDuration();
     if (duration > fullDuration - fromTime)
         duration = fullDuration - fromTime;
-    
+
     _start = fromTime / fullDuration;
     _last = duration / fullDuration;
     setDuration(duration);
@@ -108,7 +108,7 @@ Animate3D* Animate3D::clone() const
 {
     auto animate = const_cast<Animate3D*>(this);
     auto copy = Animate3D::create(animate->_animation);
-    
+
     copy->_absSpeed = _absSpeed;
     copy->_weight = _weight;
     copy->_elapsed = _elapsed;
@@ -133,7 +133,7 @@ Node* findChildByNameRecursively(Node* node, const std::string &childName)
     const std::string& name = node->getName();
     if (name == childName)
         return node;
-    
+
     const Vector<Node*>& children = node->getChildren();
     for (const auto& child : children)
     {
@@ -149,15 +149,15 @@ void Animate3D::startWithTarget(Node *target)
 {
     bool needReMap = (_target != target);
     ActionInterval::startWithTarget(target);
-    
+
     if (needReMap)
     {
         _boneCurves.clear();
         _nodeCurves.clear();
-        
+
         bool hasCurve = false;
         Sprite3D* sprite = dynamic_cast<Sprite3D*>(target);
-        
+
         if(sprite)
         {
             if (_animation)
@@ -183,7 +183,7 @@ void Animate3D::startWithTarget(Node *target)
                                 node = target;
                             else
                                 node = findChildByNameRecursively(target, boneName);
-                            
+
                             if (node)
                             {
                                 auto curve = _animation->getBoneCurveByName(boneName);
@@ -209,7 +209,7 @@ void Animate3D::startWithTarget(Node *target)
                     node = target;
                 else
                     node = findChildByNameRecursively(target, boneName);
-                
+
                 if (node)
                 {
                     auto curve = _animation->getBoneCurveByName(boneName);
@@ -219,16 +219,16 @@ void Animate3D::startWithTarget(Node *target)
                         hasCurve = true;
                     }
                 }
-                
+
             }
         }
-        
+
         if (!hasCurve)
         {
             CCLOG("warning: no animation found for the skeleton");
         }
     }
-    
+
     auto runningAction = s_runningAnimates.find(target);
     if (runningAction != s_runningAnimates.end())
     {
@@ -274,7 +274,7 @@ void Animate3D::startWithTarget(Node *target)
 void Animate3D::stop()
 {
     removeFromMap();
-    
+
     ActionInterval::stop();
 }
 
@@ -301,7 +301,7 @@ void Animate3D::update(float t)
         if (_state == Animate3D::Animate3DState::FadeIn && _lastTime > 0.f)
         {
             _accTransTime += (t - _lastTime) * getDuration();
-            
+
             _weight = _accTransTime / _transTime;
             if (_weight >= 1.0f)
             {
@@ -315,13 +315,13 @@ void Animate3D::update(float t)
         else if (_state == Animate3D::Animate3DState::FadeOut && _lastTime > 0.f)
         {
             _accTransTime += (t - _lastTime) * getDuration();
-            
+
             _weight = 1 - _accTransTime / _transTime;
             if (_weight <= 0.0f)
             {
                 _accTransTime = _transTime;
                 _weight = 0.0f;
-                
+
                 s_fadeOutAnimates.erase(_target);
                 _target->stopAction(this);
                 return;
@@ -329,7 +329,7 @@ void Animate3D::update(float t)
         }
         float lastTime = _lastTime;
         _lastTime = t;
-        
+
         if (_quality != Animate3DQuality::QUALITY_NONE)
         {
             if (_weight > 0.0f)
@@ -340,10 +340,10 @@ void Animate3D::update(float t)
                     t = 1 - t;
                     lastTime = 1.0f - lastTime;
                 }
-                
+
                 t = _start + t * _last;
                 lastTime = _start + lastTime * _last;
-                
+
                 for (const auto& it : _boneCurves) {
                     auto bone = it.first;
                     auto curve = it.second;
@@ -364,7 +364,7 @@ void Animate3D::update(float t)
                     }
                     bone->setAnimationValue(trans, rot, scale, this, _weight);
                 }
-                
+
                 for (const auto& it : _nodeCurves)
                 {
                     auto node = it.first;
@@ -503,12 +503,12 @@ Animate3D::Animate3D()
 Animate3D::~Animate3D()
 {
     removeFromMap();
-    
+
     for (auto& it : _keyFrameEvent) {
         delete it.second;
     }
     _keyFrameEvent.clear();
-    
+
     CC_SAFE_RELEASE(_animation);
 }
 
@@ -520,11 +520,11 @@ void Animate3D::removeFromMap()
         auto it = s_fadeInAnimates.find(_target);
         if (it != s_fadeInAnimates.end() && it->second == this)
             s_fadeInAnimates.erase(it);
-        
+
         it = s_fadeOutAnimates.find(_target);
         if (it != s_fadeOutAnimates.end() && it->second == this)
             s_fadeOutAnimates.erase(it);
-        
+
         it = s_runningAnimates.find(_target);
         if (it != s_runningAnimates.end() && it->second == this)
             s_runningAnimates.erase(it);
@@ -532,3 +532,4 @@ void Animate3D::removeFromMap()
 }
 
 NS_CC_END
+

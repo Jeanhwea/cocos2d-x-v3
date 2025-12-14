@@ -35,7 +35,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 public class AppActivity extends Cocos2dxActivity {
-    
+
     private static AppActivity app = null;
 
     @Override
@@ -59,10 +59,10 @@ public class AppActivity extends Cocos2dxActivity {
         Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
         // TestCpp should create stencil buffer
         glSurfaceView.setEGLConfigChooser(5, 6, 5, 0, 16, 8);
-        
+
         return glSurfaceView;
     }
-    
+
     public static void showAlertDialog(final String title, final String message) {
         app.runOnUiThread(new Runnable() {
             @Override
@@ -130,3 +130,4 @@ public class AppActivity extends Cocos2dxActivity {
     }
 
 }
+

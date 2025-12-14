@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -76,7 +76,7 @@ Vec3 PUSimpleSpline::interpolate(float t) const
     // Work out which segment this is in
     float fSeg = t * (_points.size() - 1);
     unsigned int segIdx = (unsigned int)fSeg;
-    // Apportion t 
+    // Apportion t
     t = fSeg - segIdx;
 
     return interpolate(segIdx, t);
@@ -151,7 +151,7 @@ Vec3 PUSimpleSpline::interpolate(unsigned int fromIndex, float t) const
 void PUSimpleSpline::recalcTangents()
 {
     // Catmull-Rom approach
-    // 
+    //
     // tangent[i] = 0.5 * (point[i+1] - point[i-1])
     //
     // Assume endpoint tangents are parallel with line with neighbour
@@ -253,3 +253,4 @@ void PUSimpleSpline::setAutoCalculate(bool autoCalc)
     _autoCalc = autoCalc;
 }
 NS_CC_END
+

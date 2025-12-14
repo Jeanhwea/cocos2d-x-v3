@@ -1118,3 +1118,4 @@ spSkeletonData* spSkeletonJson_readSkeletonData (spSkeletonJson* self, const cha
 	Json_dispose(root);
 	return skeletonData;
 }
+

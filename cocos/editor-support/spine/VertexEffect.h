@@ -83,3 +83,4 @@ SP_API void spSwirlVertexEffect_dispose(spSwirlVertexEffect *effect);
 #endif
 
 #endif /* SPINE_VERTEX_EFFECT_H_ */
+

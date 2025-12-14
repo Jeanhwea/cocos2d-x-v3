@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -173,7 +173,7 @@ void Box2DTest::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
     Director* director = Director::getInstance();
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-    
+
     _modelViewMV = director->getMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 
     _customCommand.init(_globalZOrder);
@@ -198,7 +198,7 @@ void Box2DTest::onDraw()
 void Box2DTest::addNewSpriteAtPosition(Vec2 p)
 {
     CCLOG("Add sprite %0.2f x %02.f",p.x,p.y);
-    
+
     // Define the dynamic body.
     //Set up a 1m squared box in the physics world
     b2BodyDef bodyDef;
@@ -206,21 +206,21 @@ void Box2DTest::addNewSpriteAtPosition(Vec2 p)
     bodyDef.position.Set(p.x/PTM_RATIO, p.y/PTM_RATIO);
 
     b2Body *body = world->CreateBody(&bodyDef);
-    
+
     // Define another box shape for our dynamic body.
     b2PolygonShape dynamicBox;
     dynamicBox.SetAsBox(.5f, .5f);//These are mid points for our 1m box
-    
+
     // Define the dynamic body fixture.
     b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;    
+    fixtureDef.shape = &dynamicBox;
     fixtureDef.density = 1.0f;
     fixtureDef.friction = 0.3f;
-    body->CreateFixture(&fixtureDef);    
-    
+    body->CreateFixture(&fixtureDef);
+
 #if CC_ENABLE_BOX2D_INTEGRATION
     auto parent = this->getChildByTag(kTagParentNode);
-    
+
     //We have a 64x64 sprite sheet with 4 different 32x32 images.  The following code is
     //just randomly picking one of the images
     int idx = (CCRANDOM_0_1() > .5 ? 0:1);
@@ -239,7 +239,7 @@ void Box2DTest::update(float dt)
     //of the simulation, however, we are using a variable time step here.
     //You need to make an informed choice, the following URL is useful
     //http://gafferongames.com/game-physics/fix-your-timestep/
-    
+
     int velocityIterations = 8;
     int positionIterations = 1;
 
@@ -258,9 +258,10 @@ void Box2DTest::onTouchesEnded(const std::vector<Touch*>& touches, Event* event)
             break;
 
         auto location = touch->getLocation();
-    
+
         addNewSpriteAtPosition( location );
     }
 }
 
 #endif
+

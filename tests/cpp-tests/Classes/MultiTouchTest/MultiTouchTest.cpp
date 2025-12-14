@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -72,11 +72,11 @@ bool MultiTouchTest::init()
         listener->onTouchesMoved = CC_CALLBACK_2(MultiTouchTest::onTouchesMoved, this);
         listener->onTouchesEnded = CC_CALLBACK_2(MultiTouchTest::onTouchesEnded, this);
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-        
+
         auto title = Label::createWithSystemFont("Please touch the screen!", "", 24);
         title->setPosition(VisibleRect::top()+Vec2(0, -40));
         addChild(title);
-        
+
         return true;
     }
     return false;
@@ -104,10 +104,10 @@ void MultiTouchTest::onTouchesMoved(const std::vector<Touch*>& touches, Event  *
         auto touch = item;
         auto pTP = s_map.at(touch->getID());
         auto location = touch->getLocation();
-        
+
         removeChild(pTP, true);
         s_map.erase(touch->getID());
-        
+
         auto touchPointNew = TouchPoint::touchPointWithParent(this, location, *s_TouchColors[touch->getID()%5]);
         addChild(touchPointNew);
         s_map.insert(touch->getID(), touchPointNew);
@@ -129,3 +129,4 @@ void MultiTouchTest::onTouchesCancelled(const std::vector<Touch*>& touches, Even
 {
     onTouchesEnded(touches, event);
 }
+

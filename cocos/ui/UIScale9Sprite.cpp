@@ -620,3 +620,4 @@ Rect Scale9Sprite::getCapInsets() const
                 _originalContentSize.width - _insetLeft - _insetRight,
                 _originalContentSize.height - _insetTop - _insetBottom);
 }
+

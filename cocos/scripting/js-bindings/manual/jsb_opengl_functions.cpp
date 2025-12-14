@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -61,7 +61,7 @@ bool JSB_glAttachShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -79,7 +79,7 @@ bool JSB_glBindAttribLocation(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; const char* arg2; 
+    uint32_t arg0; uint32_t arg1; const char* arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -97,7 +97,7 @@ bool JSB_glBindBuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -114,7 +114,7 @@ bool JSB_glBindFramebuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -131,7 +131,7 @@ bool JSB_glBindRenderbuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -148,7 +148,7 @@ bool JSB_glBindTexture(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -165,7 +165,7 @@ bool JSB_glBlendColor(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -184,7 +184,7 @@ bool JSB_glBlendEquation(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -200,7 +200,7 @@ bool JSB_glBlendEquationSeparate(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -217,7 +217,7 @@ bool JSB_glBlendFunc(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -234,7 +234,7 @@ bool JSB_glBlendFuncSeparate(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3; 
+    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -253,7 +253,7 @@ bool JSB_glBufferData(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; void* arg1; uint32_t arg2; 
+    uint32_t arg0; void* arg1; uint32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     GLsizei count;
@@ -272,7 +272,7 @@ bool JSB_glBufferSubData(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; void* arg2; 
+    uint32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -291,7 +291,7 @@ bool JSB_glCheckFramebufferStatus(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -308,7 +308,7 @@ bool JSB_glClear(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -324,7 +324,7 @@ bool JSB_glClearColor(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -343,7 +343,7 @@ bool JSB_glClearDepthf(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; 
+    int32_t arg0;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -359,7 +359,7 @@ bool JSB_glClearStencil(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; 
+    int32_t arg0;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -375,7 +375,7 @@ bool JSB_glColorMask(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint16_t arg0; uint16_t arg1; uint16_t arg2; uint16_t arg3; 
+    uint16_t arg0; uint16_t arg1; uint16_t arg2; uint16_t arg3;
 
     ok &= jsval_to_uint16( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint16( cx, args.get(1), &arg1 );
@@ -394,7 +394,7 @@ bool JSB_glCompileShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -410,7 +410,7 @@ bool JSB_glCompressedTexImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 8, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; uint32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; void* arg7; 
+    uint32_t arg0; int32_t arg1; uint32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; void* arg7;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -434,7 +434,7 @@ bool JSB_glCompressedTexSubImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 9, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; int32_t arg7; void* arg8; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; int32_t arg7; void* arg8;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -459,7 +459,7 @@ bool JSB_glCopyTexImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 8, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; uint32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; int32_t arg7; 
+    uint32_t arg0; int32_t arg1; uint32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; int32_t arg7;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -482,7 +482,7 @@ bool JSB_glCopyTexSubImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 8, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; int32_t arg7; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; int32_t arg6; int32_t arg7;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -499,7 +499,7 @@ bool JSB_glCopyTexSubImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     return true;
 }
 
-// Arguments: 
+// Arguments:
 // Ret value: GLuint
 bool JSB_glCreateProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 0, cx, false, "Invalid number of arguments" );
@@ -517,7 +517,7 @@ bool JSB_glCreateShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -534,7 +534,7 @@ bool JSB_glCullFace(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -550,7 +550,7 @@ bool JSB_glDeleteProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -566,7 +566,7 @@ bool JSB_glDeleteShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -582,7 +582,7 @@ bool JSB_glDepthFunc(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -598,7 +598,7 @@ bool JSB_glDepthMask(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint16_t arg0; 
+    uint16_t arg0;
 
     ok &= jsval_to_uint16( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -614,7 +614,7 @@ bool JSB_glDepthRangef(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; 
+    int32_t arg0; int32_t arg1;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -631,7 +631,7 @@ bool JSB_glDetachShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -648,7 +648,7 @@ bool JSB_glDisable(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -664,7 +664,7 @@ bool JSB_glDisableVertexAttribArray(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -680,7 +680,7 @@ bool JSB_glDrawArrays(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; 
+    uint32_t arg0; int32_t arg1; int32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -698,7 +698,7 @@ bool JSB_glDrawElements(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; uint32_t arg2; void* arg3; 
+    uint32_t arg0; int32_t arg1; uint32_t arg2; void* arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -718,7 +718,7 @@ bool JSB_glEnable(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -734,7 +734,7 @@ bool JSB_glEnableVertexAttribArray(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -744,7 +744,7 @@ bool JSB_glEnableVertexAttribArray(JSContext *cx, uint32_t argc, jsval *vp) {
     return true;
 }
 
-// Arguments: 
+// Arguments:
 // Ret value: void
 bool JSB_glFinish(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 0, cx, false, "Invalid number of arguments" );
@@ -754,7 +754,7 @@ bool JSB_glFinish(JSContext *cx, uint32_t argc, jsval *vp) {
     return true;
 }
 
-// Arguments: 
+// Arguments:
 // Ret value: void
 bool JSB_glFlush(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 0, cx, false, "Invalid number of arguments" );
@@ -770,7 +770,7 @@ bool JSB_glFramebufferRenderbuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3; 
+    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -789,7 +789,7 @@ bool JSB_glFramebufferTexture2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 5, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3; int32_t arg4; 
+    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3; int32_t arg4;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -809,7 +809,7 @@ bool JSB_glFrontFace(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -825,7 +825,7 @@ bool JSB_glGenerateMipmap(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -841,7 +841,7 @@ bool JSB_glGetAttribLocation(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; const char* arg1; 
+    uint32_t arg0; const char* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_charptr( cx, args.get(1), &arg1 );
@@ -853,7 +853,7 @@ bool JSB_glGetAttribLocation(JSContext *cx, uint32_t argc, jsval *vp) {
     return true;
 }
 
-// Arguments: 
+// Arguments:
 // Ret value: GLenum
 bool JSB_glGetError(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 0, cx, false, "Invalid number of arguments" );
@@ -871,7 +871,7 @@ bool JSB_glGetUniformLocation(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; const char* arg1; 
+    uint32_t arg0; const char* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_charptr( cx, args.get(1), &arg1 );
@@ -890,7 +890,7 @@ bool JSB_glHint(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -907,7 +907,7 @@ bool JSB_glIsBuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -924,7 +924,7 @@ bool JSB_glIsEnabled(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -941,7 +941,7 @@ bool JSB_glIsFramebuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -958,7 +958,7 @@ bool JSB_glIsProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -975,7 +975,7 @@ bool JSB_glIsRenderbuffer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -992,7 +992,7 @@ bool JSB_glIsShader(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1009,7 +1009,7 @@ bool JSB_glIsTexture(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1026,7 +1026,7 @@ bool JSB_glLineWidth(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; 
+    int32_t arg0;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1042,7 +1042,7 @@ bool JSB_glLinkProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1058,7 +1058,7 @@ bool JSB_glPixelStorei(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; 
+    uint32_t arg0; int32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1075,7 +1075,7 @@ bool JSB_glPolygonOffset(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; 
+    int32_t arg0; int32_t arg1;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1092,7 +1092,7 @@ bool JSB_glReadPixels(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 7, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; uint32_t arg4; uint32_t arg5; void* arg6; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; uint32_t arg4; uint32_t arg5; void* arg6;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1109,7 +1109,7 @@ bool JSB_glReadPixels(JSContext *cx, uint32_t argc, jsval *vp) {
     return true;
 }
 
-// Arguments: 
+// Arguments:
 // Ret value: void
 bool JSB_glReleaseShaderCompiler(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 0, cx, false, "Invalid number of arguments" );
@@ -1125,7 +1125,7 @@ bool JSB_glRenderbufferStorage(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; int32_t arg2; int32_t arg3; 
+    uint32_t arg0; uint32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1144,7 +1144,7 @@ bool JSB_glSampleCoverage(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; uint16_t arg1; 
+    int32_t arg0; uint16_t arg1;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint16( cx, args.get(1), &arg1 );
@@ -1161,7 +1161,7 @@ bool JSB_glScissor(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1180,7 +1180,7 @@ bool JSB_glStencilFunc(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; uint32_t arg2; 
+    uint32_t arg0; int32_t arg1; uint32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1198,7 +1198,7 @@ bool JSB_glStencilFuncSeparate(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; int32_t arg2; uint32_t arg3; 
+    uint32_t arg0; uint32_t arg1; int32_t arg2; uint32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1217,7 +1217,7 @@ bool JSB_glStencilMask(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1233,7 +1233,7 @@ bool JSB_glStencilMaskSeparate(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; 
+    uint32_t arg0; uint32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1250,7 +1250,7 @@ bool JSB_glStencilOp(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; uint32_t arg2; 
+    uint32_t arg0; uint32_t arg1; uint32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1268,7 +1268,7 @@ bool JSB_glStencilOpSeparate(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3; 
+    uint32_t arg0; uint32_t arg1; uint32_t arg2; uint32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1287,7 +1287,7 @@ bool JSB_glTexImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 9, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; uint32_t arg7; void* arg8; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; uint32_t arg7; void* arg8;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1312,7 +1312,7 @@ bool JSB_glTexParameterf(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; int32_t arg2; 
+    uint32_t arg0; uint32_t arg1; int32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1330,7 +1330,7 @@ bool JSB_glTexParameteri(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; uint32_t arg1; int32_t arg2; 
+    uint32_t arg0; uint32_t arg1; int32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint32( cx, args.get(1), &arg1 );
@@ -1348,7 +1348,7 @@ bool JSB_glTexSubImage2D(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 9, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; uint32_t arg7; void* arg8; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; int32_t arg5; uint32_t arg6; uint32_t arg7; void* arg8;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1373,7 +1373,7 @@ bool JSB_glUniform1f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; 
+    int32_t arg0; int32_t arg1;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1390,7 +1390,7 @@ bool JSB_glUniform1fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1409,7 +1409,7 @@ bool JSB_glUniform1i(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; 
+    int32_t arg0; int32_t arg1;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1426,7 +1426,7 @@ bool JSB_glUniform1iv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1445,7 +1445,7 @@ bool JSB_glUniform2f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; 
+    int32_t arg0; int32_t arg1; int32_t arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1463,7 +1463,7 @@ bool JSB_glUniform2fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1482,7 +1482,7 @@ bool JSB_glUniform2i(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; 
+    int32_t arg0; int32_t arg1; int32_t arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1500,7 +1500,7 @@ bool JSB_glUniform2iv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1519,7 +1519,7 @@ bool JSB_glUniform3f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1538,7 +1538,7 @@ bool JSB_glUniform3fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1557,7 +1557,7 @@ bool JSB_glUniform3i(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1576,7 +1576,7 @@ bool JSB_glUniform3iv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1595,7 +1595,7 @@ bool JSB_glUniform4f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 5, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1615,7 +1615,7 @@ bool JSB_glUniform4fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1634,7 +1634,7 @@ bool JSB_glUniform4i(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 5, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1654,7 +1654,7 @@ bool JSB_glUniform4iv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; void* arg2; 
+    int32_t arg0; int32_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1673,7 +1673,7 @@ bool JSB_glUniformMatrix2fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; uint16_t arg1; void* arg2; 
+    int32_t arg0; uint16_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint16( cx, args.get(1), &arg1 );
@@ -1692,7 +1692,7 @@ bool JSB_glUniformMatrix3fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; uint16_t arg1; void* arg2; 
+    int32_t arg0; uint16_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint16( cx, args.get(1), &arg1 );
@@ -1711,7 +1711,7 @@ bool JSB_glUniformMatrix4fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; uint16_t arg1; void* arg2; 
+    int32_t arg0; uint16_t arg1; void* arg2;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_uint16( cx, args.get(1), &arg1 );
@@ -1730,7 +1730,7 @@ bool JSB_glUseProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1746,7 +1746,7 @@ bool JSB_glValidateProgram(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 1, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; 
+    uint32_t arg0;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
@@ -1762,7 +1762,7 @@ bool JSB_glVertexAttrib1f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; 
+    uint32_t arg0; int32_t arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1779,7 +1779,7 @@ bool JSB_glVertexAttrib1fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; void* arg1; 
+    uint32_t arg0; void* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     GLsizei count;
@@ -1797,7 +1797,7 @@ bool JSB_glVertexAttrib2f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 3, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; 
+    uint32_t arg0; int32_t arg1; int32_t arg2;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1815,7 +1815,7 @@ bool JSB_glVertexAttrib2fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; void* arg1; 
+    uint32_t arg0; void* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     GLsizei count;
@@ -1833,7 +1833,7 @@ bool JSB_glVertexAttrib3f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1852,7 +1852,7 @@ bool JSB_glVertexAttrib3fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; void* arg1; 
+    uint32_t arg0; void* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     GLsizei count;
@@ -1870,7 +1870,7 @@ bool JSB_glVertexAttrib4f(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 5, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4; 
+    uint32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; int32_t arg4;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1890,7 +1890,7 @@ bool JSB_glVertexAttrib4fv(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 2, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; void* arg1; 
+    uint32_t arg0; void* arg1;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     GLsizei count;
@@ -1908,7 +1908,7 @@ bool JSB_glVertexAttribPointer(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 6, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    uint32_t arg0; int32_t arg1; uint32_t arg2; uint16_t arg3; int32_t arg4; int32_t arg5; 
+    uint32_t arg0; int32_t arg1; uint32_t arg2; uint16_t arg3; int32_t arg4; int32_t arg5;
 
     ok &= jsval_to_uint32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1929,7 +1929,7 @@ bool JSB_glViewport(JSContext *cx, uint32_t argc, jsval *vp) {
     JSB_PRECONDITION2( argc == 4, cx, false, "Invalid number of arguments" );
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3; 
+    int32_t arg0; int32_t arg1; int32_t arg2; int32_t arg3;
 
     ok &= jsval_to_int32( cx, args.get(0), &arg0 );
     ok &= jsval_to_int32( cx, args.get(1), &arg1 );
@@ -1944,3 +1944,4 @@ bool JSB_glViewport(JSContext *cx, uint32_t argc, jsval *vp) {
 
 
 #endif // JSB_INCLUDE_OPENGL
+

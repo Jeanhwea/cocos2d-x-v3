@@ -46,7 +46,7 @@ public:
 
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
-    
+
     void centerSprites(unsigned int numberOfSprites);
 
     void positionForTwo();
@@ -274,3 +274,4 @@ public:
 
 
 #endif
+

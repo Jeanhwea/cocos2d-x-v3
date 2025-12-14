@@ -114,7 +114,7 @@ Widget* Helper::seekActionWidgetByActionTag(Widget* root, int tag)
 	}
 	return nullptr;
 }
-    
+
 std::string Helper::getSubStringOfUTF8String(const std::string& str, std::string::size_type start, std::string::size_type length)
 {
     std::u32string utf32;
@@ -156,14 +156,14 @@ void Helper::doLayout(cocos2d::Node *rootNode)
         }
     }
 }
-    
+
 Rect Helper::restrictCapInsetRect(const cocos2d::Rect &capInsets, const Size& textureSize )
 {
     float x = capInsets.origin.x;
     float y = capInsets.origin.y;
     float width = capInsets.size.width;
     float height = capInsets.size.height;
-    
+
     if (textureSize.width < width)
     {
         x = textureSize.width / 2.0f;
@@ -193,9 +193,10 @@ Rect Helper::convertBoundingBoxToScreen(Node* node)
     auto uiTop = frameSize.height /2 - (rightTop.y - winSize.height / 2) * glView->getScaleY();
     auto uiWidth = (rightTop.x - leftBottom.x) * glView->getScaleX();
     auto uiHeight = (rightTop.y - leftBottom.y) * glView->getScaleY();
-    
+
     return Rect(uiLeft, uiTop, uiWidth, uiHeight);
 }
 }
 
 NS_CC_END
+

@@ -40,3 +40,4 @@ extern int getDeviceSampleRate();
 extern int getDeviceAudioBufferSizeInFrames();
 
 #endif /* __Java_org_cocos2dx_lib_Cocos2dxHelper_H__ */
+

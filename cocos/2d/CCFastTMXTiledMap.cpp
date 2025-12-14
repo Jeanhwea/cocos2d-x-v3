@@ -61,7 +61,7 @@ TMXTiledMap* TMXTiledMap::createWithXML(const std::string& tmxString, const std:
 bool TMXTiledMap::initWithTMXFile(const std::string& tmxFile)
 {
     CCASSERT(!tmxFile.empty(), "FastTMXTiledMap: tmx file should not be empty");
-    
+
     setContentSize(Size::ZERO);
 
     TMXMapInfo *mapInfo = TMXMapInfo::create(tmxFile);
@@ -90,7 +90,7 @@ bool TMXTiledMap::initWithXML(const std::string& tmxString, const std::string& r
 
 TMXTiledMap::TMXTiledMap()
     :_mapSize(Size::ZERO)
-    ,_tileSize(Size::ZERO)        
+    ,_tileSize(Size::ZERO)
 {
 }
 
@@ -104,7 +104,7 @@ TMXLayer * TMXTiledMap::parseLayer(TMXLayerInfo *layerInfo, TMXMapInfo *mapInfo)
     TMXTilesetInfo *tileset = tilesetForLayer(layerInfo, mapInfo);
     if (tileset == nullptr)
         return nullptr;
-    
+
     TMXLayer *layer = TMXLayer::create(tileset, layerInfo, mapInfo);
 
     // tell the layerinfo to release the ownership of the tiles map.
@@ -130,13 +130,13 @@ TMXTilesetInfo * TMXTiledMap::tilesetForLayer(TMXLayerInfo *layerInfo, TMXMapInf
                 {
                     uint32_t pos = static_cast<uint32_t>(x + size.width * y);
                     uint32_t gid = layerInfo->_tiles[ pos ];
-                    
+
                     // gid are stored in little endian.
                     // if host is big endian, then swap
                     //if( o == CFByteOrderBigEndian )
                     //    gid = CFSwapInt32( gid );
                     /* We support little endian.*/
-                    
+
                     // FIXME: gid == 0 --> empty tile
                     if( gid != 0 )
                     {
@@ -182,14 +182,14 @@ void TMXTiledMap::buildWithMapInfo(TMXMapInfo* mapInfo)
                 continue;
             }
             addChild(child, idx, idx);
-            
+
             // update content size with the max size
             const Size& childSize = child->getContentSize();
             Size currentSize = this->getContentSize();
             currentSize.width = std::max( currentSize.width, childSize.width );
             currentSize.height = std::max( currentSize.height, childSize.height );
             this->setContentSize(currentSize);
-            
+
             idx++;
         }
     }
@@ -199,7 +199,7 @@ void TMXTiledMap::buildWithMapInfo(TMXMapInfo* mapInfo)
 TMXLayer * TMXTiledMap::getLayer(const std::string& layerName) const
 {
     CCASSERT(!layerName.empty(), "Invalid layer name!");
-    
+
     for (auto& child : _children)
     {
         TMXLayer* layer = dynamic_cast<TMXLayer*>(child);
@@ -240,7 +240,7 @@ Value TMXTiledMap::getProperty(const std::string& propertyName) const
     auto propsItr = _properties.find(propertyName);
     if (propsItr != _properties.end())
         return propsItr->second;
-    
+
     return Value();
 }
 
@@ -249,7 +249,7 @@ Value TMXTiledMap::getPropertiesForGID(int GID) const
     auto propsItr = _tileProperties.find(GID);
     if (propsItr != _tileProperties.end())
         return propsItr->second;
-    
+
     return Value();
 }
 

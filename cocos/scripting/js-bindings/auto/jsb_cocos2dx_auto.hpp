@@ -4275,3 +4275,4 @@ void js_register_cocos2dx_ComponentJS(JSContext *cx, JS::HandleObject global);
 void register_all_cocos2dx(JSContext* cx, JS::HandleObject obj);
 
 #endif // __cocos2dx_h__
+

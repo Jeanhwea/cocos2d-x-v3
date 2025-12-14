@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -86,7 +86,7 @@ class DataTaskHandler extends BinaryHttpResponseHandler {
         LogD("onSuccess(i:" + i + " headers:" + headers);
         _downloader.onFinish(_id, 0, null, binaryData);
     }
-    
+
     @Override
     public void onFinish() {
         // onFinish called after onSuccess/onFailure
@@ -127,7 +127,7 @@ class HeadTaskHandler extends AsyncHttpResponseHandler {
         Cocos2dxDownloader.setResumingSupport(_host, acceptRanges);
         Cocos2dxDownloader.createTask(_downloader, _id, _url, _path);
     }
-    
+
     @Override
     public void onFinish() {
         // onFinish called after onSuccess/onFailure
@@ -449,3 +449,4 @@ public class Cocos2dxDownloader {
     native void nativeOnProgress(int id, int taskId, long dl, long dlnow, long dltotal);
     native void nativeOnFinish(int id, int taskId, int errCode, String errStr, final byte[] data);
 }
+

@@ -164,7 +164,7 @@ void PageView::scrollToPage(ssize_t idx)
 {
     scrollToItem(idx);
 }
-    
+
 void PageView::scrollToPage(ssize_t idx, float time)
 {
     scrollToItem(idx, time);
@@ -508,7 +508,7 @@ const Color3B& PageView::getIndicatorIndexNodesColor() const
     CCASSERT(_indicator != nullptr, "");
     return _indicator->getIndexNodesColor();
 }
-    
+
 void PageView::setIndicatorSelectedIndexOpacity(GLubyte opacity)
 {
     if(_indicator != nullptr)
@@ -570,3 +570,4 @@ void PageView::remedyLayoutParameter(Widget *item)
 }
 
 NS_CC_END
+

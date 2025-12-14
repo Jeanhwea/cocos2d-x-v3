@@ -57,3 +57,4 @@ typedef spBoundingBoxAttachment BoundingBoxAttachment;
 #endif
 
 #endif /* SPINE_BOUNDINGBOXATTACHMENT_H_ */
+

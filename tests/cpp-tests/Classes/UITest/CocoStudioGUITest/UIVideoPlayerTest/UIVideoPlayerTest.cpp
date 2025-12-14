@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,7 +40,7 @@ bool VideoPlayerTest::init()
     {
         return false;
     }
-    
+
     _visibleRect = Director::getInstance()->getOpenGLView()->getVisibleRect();
 
     // Should create video first to make sure video is destryed first. If not, then may crash.
@@ -81,7 +81,7 @@ bool VideoPlayerTest::init()
     auto ratioSwitch = MenuItemFont::create("KeepRatioSwitch", CC_CALLBACK_1(VideoPlayerTest::menuRatioCallback, this));
     ratioSwitch->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
     ratioSwitch->setPosition(Vec2(_visibleRect.origin.x + _visibleRect.size.width - 10,_visibleRect.origin.y + 150));
-    
+
     auto loopToggle = MenuItemFont::create("LoopToogle", CC_CALLBACK_1(VideoPlayerTest::menuLoopCallback, this));
     loopToggle->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
     loopToggle->setPosition(Vec2(_visibleRect.origin.x + _visibleRect.size.width - 10,_visibleRect.origin.y + 170));
@@ -94,7 +94,7 @@ bool VideoPlayerTest::init()
     _videoStateLabel->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
     _videoStateLabel->setPosition(Vec2(_visibleRect.origin.x + _visibleRect.size.width - 10,_visibleRect.origin.y + 200));
     _uiLayer->addChild(_videoStateLabel);
-    
+
     _loopStatusLabel = Label::createWithSystemFont("(1)","Arial",10);
     _loopStatusLabel->setAnchorPoint(Vec2::ANCHOR_MIDDLE_RIGHT);
     _loopStatusLabel->setPosition(Vec2(_visibleRect.origin.x + _visibleRect.size.width - 10,_visibleRect.origin.y + 185));
@@ -195,7 +195,7 @@ void VideoPlayerTest::createVideo()
     _videoPlayer->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     _videoPlayer->setContentSize(Size(widgetSize.width * 0.4f,widgetSize.height * 0.4f));
     _uiLayer->addChild(_videoPlayer);
-    
+
     _videoPlayer->addEventListener(CC_CALLBACK_2(VideoPlayerTest::videoEventCallback, this));
 }
 
@@ -267,7 +267,7 @@ SimpleVideoPlayerTest::SimpleVideoPlayerTest()
     _videoPlayer = nullptr;
     _style = cocos2d::experimental::ui::VideoPlayer::StyleType::NONE;
     _userInputEnabled = true;
-    
+
     _switchUserInputEnabled = nullptr;
     _switchStyle = nullptr;
 }
@@ -279,7 +279,7 @@ void SimpleVideoPlayerTest::updateButtonsTexts()
         std::string str = _userInputEnabled ? "< User Input Enabled >" : "< User Input Disabled >";
         _switchUserInputEnabled->setString(str);
     }
-    
+
     if (_switchStyle)
     {
         std::string str = " - ";
@@ -289,16 +289,16 @@ void SimpleVideoPlayerTest::updateButtonsTexts()
                 _switchUserInputEnabled->setVisible(false);
                 str = "< NO Sytle >";
                 break;
-                
+
             case cocos2d::experimental::ui::VideoPlayer::StyleType::DEFAULT:
                 str = "< Default Style >";
                 _switchUserInputEnabled->setVisible(true);
                 break;
-                
+
             default:
                 break;
         }
-        
+
         _switchStyle->setString(str);
     }
 }
@@ -309,23 +309,23 @@ bool SimpleVideoPlayerTest::init()
     {
         return false;
     }
-    
+
     _visibleRect = Director::getInstance()->getOpenGLView()->getVisibleRect();
-    
+
     MenuItemFont::setFontSize(16);
-    
+
     _switchStyle = MenuItemFont::create("Switch Style", CC_CALLBACK_1(SimpleVideoPlayerTest::switchStyleCallback, this));
     _switchStyle->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     _switchStyle->setPosition(Vec2(_visibleRect.origin.x + 10,_visibleRect.origin.y + 50));
-    
+
     _switchUserInputEnabled = MenuItemFont::create("Enable User Input", CC_CALLBACK_1(SimpleVideoPlayerTest::switchUserInputCallback, this));
     _switchUserInputEnabled->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     _switchUserInputEnabled->setPosition(Vec2(_visibleRect.origin.x + 10,_visibleRect.origin.y + 100));
-    
+
     auto menu = Menu::create(_switchUserInputEnabled,_switchStyle,nullptr);
     menu->setPosition(Vec2::ZERO);
     _uiLayer->addChild(menu);
-    
+
     createVideo();
     updateButtonsTexts();
 
@@ -335,7 +335,7 @@ bool SimpleVideoPlayerTest::init()
 void SimpleVideoPlayerTest::menuCloseCallback(Ref* sender)
 {
     Director::getInstance()->end();
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     exit(0);
 #endif
@@ -348,20 +348,20 @@ void SimpleVideoPlayerTest::switchStyleCallback(Ref* sender)
         case cocos2d::experimental::ui::VideoPlayer::StyleType::NONE:
             _style = cocos2d::experimental::ui::VideoPlayer::StyleType::DEFAULT;
             break;
-            
+
         case cocos2d::experimental::ui::VideoPlayer::StyleType::DEFAULT:
             _style = cocos2d::experimental::ui::VideoPlayer::StyleType::NONE;
             break;
-            
+
         default:
             break;
     }
-    
+
     if (_videoPlayer)
     {
         _videoPlayer->setStyle(_style);
     }
-    
+
     //createVideo();
     updateButtonsTexts();
 }
@@ -373,7 +373,7 @@ void SimpleVideoPlayerTest::switchUserInputCallback(Ref* sender)
     {
         _videoPlayer->setUserInputEnabled(_userInputEnabled);
     }
-    
+
     //createVideo();
     updateButtonsTexts();
 }
@@ -386,9 +386,9 @@ void SimpleVideoPlayerTest::createVideo()
         _uiLayer->removeChild(_videoPlayer);
     }
     auto centerPos = Vec2(_visibleRect.origin.x + _visibleRect.size.width / 2,_visibleRect.origin.y + _visibleRect.size.height /2);
-    
+
     auto widgetSize = _widget->getContentSize();
-    
+
     _videoPlayer = VideoPlayer::create();
     _videoPlayer->setPosition(centerPos);
     _videoPlayer->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
@@ -396,11 +396,12 @@ void SimpleVideoPlayerTest::createVideo()
     _videoPlayer->setLooping(true);
     _videoPlayer->setStyle(_style);
     _videoPlayer->setUserInputEnabled(_userInputEnabled);
-    
+
     _uiLayer->addChild(_videoPlayer);
-    
+
    // _videoPlayer->addEventListener(CC_CALLBACK_2(SimpleVideoPlayerTest::videoEventCallback, this));
-    
+
     _videoPlayer->setFileName("cocosvideo.mp4");
     _videoPlayer->play();
 }
+

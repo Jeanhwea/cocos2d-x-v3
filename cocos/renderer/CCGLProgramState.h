@@ -1,9 +1,9 @@
 /****************************************************************************
 Copyright (c) 2014-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
- 
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -21,7 +21,7 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
- 
+
  Autobinding Interface from GamePlay3D: http://www.gameplay3d.org/
 ****************************************************************************/
 
@@ -94,7 +94,7 @@ public:
     /**
      @}
      */
-    
+
     /**
      Set call back to uniform value, which could be used for array and struct.
      @param callback Callback function to send data to OpenGL pipeline.
@@ -115,7 +115,7 @@ public:
      @param textureUnit The binding texture unit to be used in shader.
      */
     void setTexture(Texture2D* texture, GLuint textureUnit);
-    
+
     /**Apply the uniform value to openGL pipeline.*/
     void apply();
 
@@ -207,7 +207,7 @@ public:
      Destructor.
      */
     ~VertexAttribValue();
-    
+
     /**
      Set the data pointer, which is similar as glVertexAttribPointer.
      @param size The number of type in the vertex attribute.
@@ -249,7 +249,7 @@ protected:
 
 /**
  GLProgramState holds the 'state' (uniforms and attributes) of the GLProgram.
- A GLProgram can be used by thousands of Nodes, but if different uniform values 
+ A GLProgram can be used by thousands of Nodes, but if different uniform values
  are going to be used, then each node will need its own GLProgramState
  */
 class CC_DLL GLProgramState : public Ref
@@ -294,15 +294,15 @@ public:
      Apply user defined uniforms.
      */
     void applyUniforms();
-    
-    /**@{ 
+
+    /**@{
      Setter and Getter of the owner GLProgram binded in this program state.
      */
     void setGLProgram(GLProgram* glprogram);
     GLProgram* getGLProgram() const { return _glprogram; }
-    
+
     /**@}*/
-    
+
     /** Get the flag of vertex attribs used by OR operation.*/
     uint32_t getVertexAttribsFlags() const;
     /**Get the number of vertex attributes.*/
@@ -313,10 +313,10 @@ public:
     void setVertexAttribCallback(const std::string& name, const std::function<void(VertexAttrib*)> &callback);
     void setVertexAttribPointer(const std::string& name, GLint size, GLenum type, GLboolean normalized, GLsizei stride, GLvoid *pointer);
     /**@}*/
-    
+
     /**Get the number of user defined uniform count.*/
     ssize_t getUniformCount() const { return _uniforms.size(); }
-    
+
     /** @{
      Setting user defined uniforms by uniform string name in the shader.
      */
@@ -338,7 +338,7 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE void setUniformTexture(const std::string& uniformName, GLuint textureId);
     /**@}*/
-    
+
     /** @{
      Setting user defined uniforms by uniform location in the shader.
      */
@@ -361,7 +361,7 @@ public:
     CC_DEPRECATED_ATTRIBUTE void setUniformTexture(GLint uniformLocation, GLuint textureId);
     /**@}*/
 
-    /** 
+    /**
      * Returns the Node bound to the GLProgramState
      */
     Node* getNodeBinding() const;
@@ -503,3 +503,4 @@ NS_CC_END
  @}
  */
 #endif /* __CCGLPROGRAMSTATE_H__ */
+

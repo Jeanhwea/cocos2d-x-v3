@@ -44,7 +44,7 @@ PcmBufferProvider::PcmBufferProvider()
         , _nextFrame(0)
         , _unrel(0)
 {
-    
+
 }
 
 bool PcmBufferProvider::init(const void *addr, size_t frames, size_t frameSize)
@@ -100,3 +100,4 @@ void PcmBufferProvider::reset() {
 }
 
 }} // namespace cocos2d { namespace experimental {
+

@@ -38,18 +38,18 @@ int lua_cocos2dx_navmesh_NavMeshAgent_move(lua_State* tolua_S)
     int argc = 0;
     cocos2d::NavMeshAgent* cobj = nullptr;
     bool ok  = true;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
-    
-    
+
+
 #if COCOS2D_DEBUG >= 1
     if (!tolua_isusertype(tolua_S,1,"cc.NavMeshAgent",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     cobj = (cocos2d::NavMeshAgent*)tolua_tousertype(tolua_S,1,0);
-    
+
 #if COCOS2D_DEBUG >= 1
     if (!cobj)
     {
@@ -57,12 +57,12 @@ int lua_cocos2dx_navmesh_NavMeshAgent_move(lua_State* tolua_S)
         return 0;
     }
 #endif
-    
+
     argc = lua_gettop(tolua_S)-1;
     if (argc == 1)
     {
         cocos2d::Vec3 arg0;
-        
+
         ok &= luaval_to_vec3(tolua_S, 2, &arg0, "cc.NavMeshAgent:move");
         if(!ok)
         {
@@ -77,16 +77,16 @@ int lua_cocos2dx_navmesh_NavMeshAgent_move(lua_State* tolua_S)
     {
         cocos2d::Vec3 arg0;
         LUA_FUNCTION handler;
-        
+
         ok &= luaval_to_vec3(tolua_S, 2, &arg0, "cc.NavMeshAgent:move");
-        
+
 #if COCOS2D_DEBUG >= 1
         if (!toluafix_isfunction(tolua_S,3,"LUA_FUNCTION",0,&tolua_err)) {
             goto tolua_lerror;
         }
 #endif
         handler = toluafix_ref_function(tolua_S, 3, 0);
-        
+
         if(!ok)
         {
             tolua_error(tolua_S,"invalid arguments in function 'lua_cocos2dx_navmesh_NavMeshAgent_move'", nullptr);
@@ -103,12 +103,12 @@ int lua_cocos2dx_navmesh_NavMeshAgent_move(lua_State* tolua_S)
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d \n", "cc.NavMeshAgent:move",argc, 1);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(tolua_S,"#ferror in function 'lua_cocos2dx_navmesh_NavMeshAgent_move'.",&tolua_err);
 #endif
-    
+
     return 0;
 }
 
@@ -128,9 +128,9 @@ static int register_all_navmesh_manual(lua_State* L)
 {
     if (nullptr == L)
         return 0;
-    
+
     extendNavMeshAgent(L);
-    
+
     return 1;
 }
 
@@ -147,3 +147,4 @@ int register_navmesh_module(lua_State* L)
 }
 
 #endif
+

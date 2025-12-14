@@ -60,7 +60,7 @@
     {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:title message:content delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"it's false", nil];
         [alertView show];
-    } 
+    }
     return true;
 }
 #elif TARGET_OS_IPHONE && TARGET_OS_TV
@@ -105,7 +105,7 @@
         [alert addButtonWithTitle:@"it's false"];
         [alert addButtonWithTitle:@"Cancel"];
     }
-    
+
     [alert setMessageText:title];
     [alert setInformativeText:content];
     [alert setAlertStyle:NSWarningAlertStyle];
@@ -114,3 +114,4 @@
 }
 #endif
 @end
+

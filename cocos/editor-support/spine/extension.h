@@ -316,3 +316,4 @@ int _spCurveTimeline_binarySearch (float *values, int valuesLength, float target
 #endif
 
 #endif /* SPINE_EXTENSION_H_ */
+

@@ -161,21 +161,21 @@ public:
         if (cocos2d::Director::getInstance() != nullptr && cocos2d::Director::getInstance()->getRunningScene() && cocos2d::ScriptEngineManager::getInstance() != nullptr)
         {
             JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-            
+
             JSContext* cx = ScriptingCore::getInstance()->getGlobalContext();
             JS::RootedObject jsobj(cx, JS_NewObject(cx, NULL, JS::NullPtr(), JS::NullPtr()));
             JS::RootedValue vp(cx);
             vp = c_string_to_jsval(cx, "close");
             JS_SetProperty(cx, jsobj, "type", vp);
-            
+
             JS::RootedValue args(cx, OBJECT_TO_JSVAL(jsobj));
             ScriptingCore::getInstance()->executeFunctionWithOwner(OBJECT_TO_JSVAL(_JSDelegate.ref()), "onclose", 1, args.address());
-            
+
             auto copy = &p->obj;
             JS::RemoveObjectRoot(cx, copy);
             jsb_remove_proxy(p);
         }
-        
+
         // Delete WebSocket instance
         CC_SAFE_DELETE(ws);
         // Delete self at last while websocket was closed.
@@ -453,3 +453,4 @@ void register_jsb_websocket(JSContext *cx, JS::HandleObject global)
     JS_DefineProperty(cx, jsclassObj, "CLOSING", (int)WebSocket::State::CLOSING, JSPROP_ENUMERATE | JSPROP_PERMANENT | JSPROP_READONLY);
     JS_DefineProperty(cx, jsclassObj, "CLOSED", (int)WebSocket::State::CLOSED, JSPROP_ENUMERATE | JSPROP_PERMANENT | JSPROP_READONLY);
 }
+

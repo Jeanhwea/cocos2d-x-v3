@@ -29,3 +29,4 @@
 void JSB_register_opengl( JSContext *globalC, JS::HandleObject globalO);
 
 #endif // __JSB_OPENGL_REGISTRATION
+

@@ -181,3 +181,4 @@ size_t memcpy_by_index_array_initialization_from_channel_mask(int8_t *idxary, si
         return 0;
     }
 }
+

@@ -46,3 +46,4 @@ spClippingAttachment* spClippingAttachment_create (const char* name) {
 	self->endSlot = 0;
 	return self;
 }
+

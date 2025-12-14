@@ -169,7 +169,7 @@ void __String::appendWithFormat(const char* format, ...)
 {
     va_list ap;
     va_start(ap, format);
-    
+
     char* pBuf = (char*)malloc(kMaxStringLen);
     if (pBuf != nullptr)
     {
@@ -177,9 +177,9 @@ void __String::appendWithFormat(const char* format, ...)
         _string.append(pBuf);
         free(pBuf);
     }
-    
+
     va_end(ap);
-    
+
 }
 
 __Array* __String::componentsSeparatedByString(const char *delimiter)
@@ -195,12 +195,12 @@ __Array* __String::componentsSeparatedByString(const char *delimiter)
         }
         strTmp = strTmp.substr(cutAt + 1);
     }
-    
+
     if(!strTmp.empty())
     {
         result->addObject(__String::create(strTmp));
     }
-    
+
     return result;
 }
 
@@ -238,7 +238,7 @@ __String* __String::createWithData(const unsigned char* data, size_t nLen)
             {
                 memcpy(pStr, data, nLen);
             }
-            
+
             ret = __String::create(pStr);
             free(pStr);
         }
@@ -272,5 +272,6 @@ __String* __String::clone() const
 {
     return __String::create(_string);
 }
-    
+
 NS_CC_END
+

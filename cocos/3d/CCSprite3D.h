@@ -62,13 +62,13 @@ public:
      * @return An autoreleased sprite3D object.
      */
     static Sprite3D* create();
-    
+
     /** creates a Sprite3D*/
     static Sprite3D* create(const std::string &modelPath);
-  
+
     // creates a Sprite3D. It only supports one texture, and overrides the internal texture with 'texturePath'
     static Sprite3D* create(const std::string &modelPath, const std::string &texturePath);
-    
+
     /** create 3d sprite asynchronously
      * If the 3d model was previously loaded, it will create a new 3d sprite and the callback will be called at once.
      * Otherwise it will load the model file in a new thread, and when the 3d sprite is loaded, the callback will be called with the created Sprite3D and a user-defined parameter.
@@ -78,20 +78,20 @@ public:
      * @param callbackparam user defined parameter for the callback
      */
     static void createAsync(const std::string &modelPath, const std::function<void(Sprite3D*, void*)>& callback, void* callbackparam);
-    
+
     static void createAsync(const std::string &modelPath, const std::string &texturePath, const std::function<void(Sprite3D*, void*)>& callback, void* callbackparam);
-    
+
     /**set diffuse texture, set the first if multiple textures exist*/
     void setTexture(const std::string& texFile);
     void setTexture(Texture2D* texture);
-    
+
     /**get Mesh by index*/
     Mesh* getMeshByIndex(int index) const;
-    
+
     /**get Mesh by Name, it returns the first one if there are more than one mesh with the same name */
     Mesh* getMeshByName(const std::string& name) const;
-    
-    /** 
+
+    /**
      * get mesh array by name, returns all meshes with the given name
      *
      * @lua NA
@@ -100,34 +100,34 @@ public:
 
     /**get mesh*/
     Mesh* getMesh() const;
-    
+
     /** get mesh count */
     ssize_t getMeshCount() const { return _meshes.size(); }
-    
+
     /**get skin*/
     CC_DEPRECATED_ATTRIBUTE MeshSkin* getSkin() const;
-    
+
     Skeleton3D* getSkeleton() const { return _skeleton; }
-    
+
     /**get AttachNode by bone name, return nullptr if not exist*/
     AttachNode* getAttachNode(const std::string& boneName);
-    
+
     /**remove attach node*/
     void removeAttachNode(const std::string& boneName);
-    
+
     /**remove all attach nodes*/
     void removeAllAttachNode();
 
     // overrides
     virtual void setBlendFunc(const BlendFunc &blendFunc) override;
     virtual const BlendFunc &getBlendFunc() const override;
-    
+
     // overrides
     /** set GLProgramState, you should bind attributes by yourself */
     virtual void setGLProgramState(GLProgramState *glProgramState) override;
     /** just remember bind attributes */
     virtual void setGLProgram(GLProgram *glprogram) override;
-    
+
     /*
      * Get AABB
      * If the sprite has animation, it can't be calculated accurately,
@@ -135,15 +135,15 @@ public:
      * to calculate the AABB.
      */
     const AABB& getAABB() const;
-    
-    /* 
+
+    /*
      * Get AABB Recursively
      * Because some times we may have an empty Sprite3D Node as parent, but
      * the Sprite3D don't contain any meshes, so getAABB()
      * will return a wrong value at that time.
      */
     AABB getAABBRecursively();
-    
+
     /**
      * Executes an action, and returns the action that is executed. For Sprite3D special logic are needed to take care of Fading.
      *
@@ -153,13 +153,13 @@ public:
      * @return An Action pointer
      */
     virtual Action* runAction(Action* action) override;
-    
+
     /**
      * Force to write to depth buffer, this is useful if you want to achieve effects like fading.
      */
     void setForceDepthWrite(bool value) { _forceDepthWrite = value; }
     bool isForceDepthWrite() const { return _forceDepthWrite;};
-    
+
     /**
      * Returns 2d bounding-box
      * Note: the bounding-box is just get from the AABB which as Z=0, so that is not very accurate.
@@ -170,11 +170,11 @@ public:
     void setCullFace(GLenum cullFace);
     // set cull face enable or not
     void setCullFaceEnabled(bool enable);
-    
+
     /** light mask getter & setter, light works only when _lightmask & light's flag is true, default value of _lightmask is 0xffff */
     void setLightMask(unsigned int mask) { _lightMask = mask; }
     unsigned int getLightMask() const { return _lightMask; }
-    
+
     /**draw*/
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 
@@ -195,7 +195,7 @@ public:
      if meshIndex == -1, then it will be applied to all the meshes that belong to the sprite.
      */
     Material* getMaterial(int meshIndex) const;
-    
+
     /**
     * force set this Sprite3D to 2D render queue
     */
@@ -207,19 +207,19 @@ public:
     const Vector<Mesh*>& getMeshes() const { return _meshes; }
 
 CC_CONSTRUCTOR_ACCESS:
-    
+
     Sprite3D();
     virtual ~Sprite3D();
-    
+
     virtual bool init() override;
-    
+
     bool initWithFile(const std::string &path);
-    
+
     bool initFrom(const NodeDatas& nodedatas, const MeshDatas& meshdatas, const MaterialDatas& materialdatas);
-    
+
     /**load sprite3d from cache, return true if succeed, false otherwise*/
     bool loadFromCache(const std::string& path);
-    
+
     /** load file and set it to meshedatas, nodedatas and materialdatas, obj file .mtl file should be at the same directory if exist */
     bool loadFromFile(const std::string& path, NodeDatas* nodedatas, MeshDatas* meshdatas,  MaterialDatas* materialdatas);
 
@@ -228,7 +228,7 @@ CC_CONSTRUCTOR_ACCESS:
      * Note: all its children will rendered as 3D objects
      */
     virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
-    
+
     /**generate default material*/
     void genMaterial(bool useLight = false);
 
@@ -238,25 +238,25 @@ CC_CONSTRUCTOR_ACCESS:
 
     /**get MeshIndexData by Id*/
     MeshIndexData* getMeshIndexData(const std::string& indexId) const;
-    
+
     void addMesh(Mesh* mesh);
-    
+
     void onAABBDirty() { _aabbDirty = true; }
-    
+
     void afterAsyncLoad(void* param);
 
     static AABB getAABBRecursivelyImp(Node *node);
-    
+
 protected:
 
     Skeleton3D*                  _skeleton; //skeleton
-    
+
     Vector<MeshVertexData*>      _meshVertexDatas;
-    
+
     std::unordered_map<std::string, AttachNode*> _attachments;
 
     BlendFunc                    _blend;
-    
+
     Vector<Mesh*>              _meshes;
 
     mutable AABB                 _aabb;                 // cache current aabb
@@ -266,7 +266,7 @@ protected:
     bool                         _shaderUsingLight; // is current shader using light ?
     bool                         _forceDepthWrite; // Always write to depth buffer
     bool                         _usingAutogeneratedGLProgram;
-    
+
     struct AsyncLoadParam
     {
         std::function<void(Sprite3D*, void*)> afterLoadCallback; // callback after load
@@ -305,7 +305,7 @@ public:
             glProgramStates.clear();
         }
     };
-    
+
     /**get & destroy*/
     static Sprite3DCache* getInstance();
     static void destroyInstance();
@@ -316,27 +316,27 @@ public:
      * @lua NA
      */
     Sprite3DData* getSpriteData(const std::string& key) const;
-    
+
     /**
      * add the SpriteData into Sprite3D by given the specified key
      *
      * @lua NA
      */
     bool addSprite3DData(const std::string& key, Sprite3DData* spritedata);
-    
+
     /**remove the SpriteData from Sprite3D by given the specified key*/
     void removeSprite3DData(const std::string& key);
-    
+
     /**remove all the SpriteData from Sprite3D*/
     void removeAllSprite3DData();
-    
+
     CC_CONSTRUCTOR_ACCESS:
     Sprite3DCache();
     ~Sprite3DCache();
-    
+
 protected:
-    
-    
+
+
     static Sprite3DCache*                        _cacheInstance;
     std::unordered_map<std::string, Sprite3DData*> _spriteDatas; //cached sprite data
 };
@@ -346,3 +346,4 @@ protected:
 
 NS_CC_END
 #endif // __SPRITE3D_H_
+

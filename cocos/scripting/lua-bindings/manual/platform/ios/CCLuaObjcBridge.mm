@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,17 +45,17 @@ static void luaTableToObjcDictionary(lua_State *L, NSMutableDictionary *dict,NSS
     while(lua_next(L, -2))
     {
         NSString *key2 = [NSString stringWithCString:lua_tostring(L, -2) encoding:NSUTF8StringEncoding];
-        
+
         switch (lua_type(L, -1))
         {
             case LUA_TNUMBER:
                 [dict2 setObject:[NSNumber numberWithFloat:lua_tonumber(L, -1)] forKey:key2];
                 break;
-                
+
             case LUA_TBOOLEAN:
                 [dict2 setObject:[NSNumber numberWithBool:lua_toboolean(L, -1)] forKey:key2];
                 break;
-                
+
             case LUA_TSTRING:
                 [dict2 setObject:[NSString stringWithCString:lua_tostring(L, -1) encoding:NSUTF8StringEncoding]
                           forKey:key2];
@@ -66,11 +66,11 @@ static void luaTableToObjcDictionary(lua_State *L, NSMutableDictionary *dict,NSS
         }
         lua_pop(L,1);
     }
-    
-    
+
+
     [dict setObject:dict2 forKey:key];
-    
-    
+
+
 }
 
 /**
@@ -86,7 +86,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
     	lua_pushinteger(L, kLuaBridgeErrorInvalidParameters);
     	return 2;
     }
-    
+
     const char *className  = lua_tostring(L, -3);
     const char *methodName = lua_tostring(L, -2);
     if (!className || !methodName)
@@ -95,7 +95,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         lua_pushinteger(L, kLuaBridgeErrorInvalidParameters);
         return 2;
     }
-    
+
     Class targetClass = NSClassFromString([NSString stringWithCString:className encoding:NSUTF8StringEncoding]);
     if (!targetClass)
     {
@@ -103,7 +103,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         lua_pushinteger(L, kLuaBridgeErrorClassNotFound);
         return 2;
     }
-    
+
     SEL methodSel;
     bool hasArguments = lua_istable(L, -1);
     if (hasArguments)
@@ -122,7 +122,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         lua_pushinteger(L, kLuaBridgeErrorMethodNotFound);
         return 2;
     }
-    
+
     NSMethodSignature *methodSig = [targetClass methodSignatureForSelector:(SEL)methodSel];
     if (methodSig == nil)
     {
@@ -130,14 +130,14 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         lua_pushinteger(L, kLuaBridgeErrorMethodSignature);
         return 2;
     }
-    
+
     @try {
         NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:methodSig];
         [invocation setTarget:targetClass];
         [invocation setSelector:methodSel];
         NSUInteger returnLength = [methodSig methodReturnLength];
         const char *returnType = [methodSig methodReturnType];
-        
+
         if (hasArguments)
         {
             NSMutableDictionary *dict = [NSMutableDictionary dictionary];
@@ -145,35 +145,35 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
             while (lua_next(L, -2))
             {
                 NSString *key = [NSString stringWithCString:lua_tostring(L, -2) encoding:NSUTF8StringEncoding];
-                
+
                 switch (lua_type(L, -1))
                 {
                     case LUA_TNUMBER:
                         [dict setObject:[NSNumber numberWithFloat:lua_tonumber(L, -1)] forKey:key];
                         break;
-                        
+
                     case LUA_TBOOLEAN:
                         [dict setObject:[NSNumber numberWithBool:lua_toboolean(L, -1)] forKey:key];
                         break;
-                        
+
                     case LUA_TSTRING:
                         [dict setObject:[NSString stringWithCString:lua_tostring(L, -1) encoding:NSUTF8StringEncoding]
                                  forKey:key];
                         break;
-                        
+
                     case LUA_TTABLE:
                         luaTableToObjcDictionary(L, dict, key);
                         break;
-                        
+
                     case LUA_TFUNCTION:
                         int functionId = retainLuaFunction(L, -1, NULL);
                         [dict setObject:[NSNumber numberWithInt:functionId] forKey:key];
                         break;
                 }
-                
+
                 lua_pop(L, 1);
             }
-            
+
             [invocation setArgument:&dict atIndex:2];
             [invocation invoke];
         }
@@ -181,7 +181,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         {
             [invocation invoke];
         }
-        
+
         lua_pushboolean(L, 1);
         if (returnLength > 0)
         {
@@ -226,7 +226,7 @@ int LuaObjcBridge::callObjcStaticMethod(lua_State *L)
         NSLog(@"EXCEPTION THROW: %@", exception);
         lua_pushboolean(L, 0);
         lua_pushinteger(L, kLuaBridgeErrorExceptionOccurred);
-        return 2; 
+        return 2;
     }
 }
 
@@ -261,7 +261,7 @@ void LuaObjcBridge::pushValue(lua_State *L, void *val)
     else if ([oval isKindOfClass:[NSDictionary class]])
     {
         lua_newtable(L);
-        
+
         for (id key in oval)
         {
             const char *key_ = [[NSString stringWithFormat:@"%@", key] cStringUsingEncoding:NSUTF8StringEncoding];
@@ -269,7 +269,7 @@ void LuaObjcBridge::pushValue(lua_State *L, void *val)
             pushValue(L, [oval objectForKey:key]);
             lua_rawset(L, -3);
         }
-        
+
         return;
     }
     else
@@ -279,3 +279,4 @@ void LuaObjcBridge::pushValue(lua_State *L, void *val)
 }
 
 NS_CC_END
+

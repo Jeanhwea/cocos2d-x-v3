@@ -17,7 +17,7 @@ int lua_cocos2dx_audioengine_AudioProfile_constructor(lua_State* tolua_S)
 
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -603,7 +603,7 @@ int lua_cocos2dx_audioengine_AudioEngine_preload(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 2)
         {
@@ -623,7 +623,7 @@ int lua_cocos2dx_audioengine_AudioEngine_preload(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 1)
         {
@@ -1031,7 +1031,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getProfile(lua_State* tolua_S)
 
     argc = lua_gettop(tolua_S)-1;
 
-    do 
+    do
     {
         if (argc == 1)
         {
@@ -1044,7 +1044,7 @@ int lua_cocos2dx_audioengine_AudioEngine_getProfile(lua_State* tolua_S)
         }
     } while (0);
     ok  = true;
-    do 
+    do
     {
         if (argc == 1)
         {
@@ -1147,7 +1147,7 @@ int lua_register_cocos2dx_audioengine_AudioEngine(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_audioengine(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"ccexp",0);
 	tolua_beginmodule(tolua_S,"ccexp");
 
@@ -1159,3 +1159,4 @@ TOLUA_API int register_all_cocos2dx_audioengine(lua_State* tolua_S)
 }
 
 #endif
+

@@ -62,7 +62,7 @@ static bool splitWithForm(const std::string& content, strArray& strs)
 {
     bool bRet = false;
 
-    do 
+    do
     {
         CC_BREAK_IF(content.empty());
 
@@ -80,7 +80,7 @@ static bool splitWithForm(const std::string& content, strArray& strs)
 
         size_t nPos1 = pointStr.find('{');
         size_t nPos2 = pointStr.find('}');
-        // contain '{' or '}' 
+        // contain '{' or '}'
         CC_BREAK_IF(nPos1 != std::string::npos || nPos2 != std::string::npos);
 
         split(pointStr, ",", strs);
@@ -102,7 +102,7 @@ Rect RectFromString(const std::string& str)
 {
     Rect result = Rect::ZERO;
 
-    do 
+    do
     {
         CC_BREAK_IF(str.empty());
         std::string content = str;
@@ -151,7 +151,7 @@ Vec2 PointFromString(const std::string& str)
 {
     Vec2 ret;
 
-    do 
+    do
     {
         strArray strs;
         CC_BREAK_IF(!splitWithForm(str, strs));
@@ -169,7 +169,7 @@ Size SizeFromString(const std::string& pszContent)
 {
     Size ret = Size::ZERO;
 
-    do 
+    do
     {
         strArray strs;
         CC_BREAK_IF(!splitWithForm(pszContent, strs));
@@ -184,3 +184,4 @@ Size SizeFromString(const std::string& pszContent)
 }
 
 NS_CC_END
+

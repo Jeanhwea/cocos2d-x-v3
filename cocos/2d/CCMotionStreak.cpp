@@ -113,10 +113,10 @@ bool MotionStreak::initWithFade(float fade, float minSeg, float stroke, const Co
 
     _stroke = stroke;
     _fadeDelta = 1.0f/fade;
-    
+
     double fps = 1/Director::getInstance()->getAnimationInterval();
     _maxPoints = (int)(fade*fps)+2;
-    
+
     _nuPoints = 0;
     _pointState = (float *)malloc(sizeof(float) * _maxPoints);
     _pointVertexes = (Vec2*)malloc(sizeof(Vec2) * _maxPoints);
@@ -202,7 +202,7 @@ void MotionStreak::tintWithColor(const Color3B& colors)
     setColor(colors);
 
     // Fast assignation
-    for(unsigned int i = 0; i<_nuPoints*2; i++) 
+    for(unsigned int i = 0; i<_nuPoints*2; i++)
     {
         *((Color3B*) (_colorPointer+i*4)) = colors;
     }
@@ -259,7 +259,7 @@ void MotionStreak::update(float delta)
     {
         return;
     }
-    
+
     delta *= _fadeDelta;
 
     unsigned int newIdx, newIdx2, i, i2;
@@ -379,7 +379,7 @@ void MotionStreak::reset()
 }
 
 void MotionStreak::onDraw(const Mat4 &transform, uint32_t /*flags*/)
-{  
+{
     getGLProgram()->use();
     getGLProgram()->setUniformsForBuiltins(transform);
 
@@ -406,3 +406,4 @@ void MotionStreak::draw(Renderer *renderer, const Mat4 &transform, uint32_t flag
 }
 
 NS_CC_END
+

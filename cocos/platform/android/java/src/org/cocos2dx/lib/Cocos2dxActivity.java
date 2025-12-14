@@ -61,10 +61,10 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     // ===========================================================
     // Fields
     // ===========================================================
-    
+
     private Cocos2dxGLSurfaceView mGLSurfaceView = null;
     private int[] mGLContextAttrs = null;
-    private Cocos2dxHandler mHandler = null;   
+    private Cocos2dxHandler mHandler = null;
     private static Cocos2dxActivity sContext = null;
     private Cocos2dxVideoHelper mVideoHelper = null;
     private Cocos2dxWebViewHelper mWebViewHelper = null;
@@ -81,7 +81,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     public static Context getContext() {
         return sContext;
     }
-    
+
     public void setKeepScreenOn(boolean value) {
         final boolean newValue = value;
         runOnUiThread(new Runnable() {
@@ -118,7 +118,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
             e.printStackTrace();
         }
     }
-    
+
     // ===========================================================
     // Constructors
     // ===========================================================
@@ -143,16 +143,16 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
 
         sContext = this;
         this.mHandler = new Cocos2dxHandler(this);
-        
+
         Cocos2dxHelper.init(this);
-        
+
         this.mGLContextAttrs = getGLContextAttrs();
         this.init();
 
         if (mVideoHelper == null) {
             mVideoHelper = new Cocos2dxVideoHelper(this, mFrameLayout);
         }
-        
+
         if(mWebViewHelper == null){
             mWebViewHelper = new Cocos2dxWebViewHelper(mFrameLayout);
         }
@@ -189,16 +189,16 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         this.hideVirtualButton();
        	resumeIfHasFocus();
     }
-    
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
     	Log.d(TAG, "onWindowFocusChanged() hasFocus=" + hasFocus);
         super.onWindowFocusChanged(hasFocus);
-        
+
         this.hasFocus = hasFocus;
         resumeIfHasFocus();
     }
-    
+
     private void resumeIfHasFocus() {
         //It is possible for the app to receive the onWindowsFocusChanged(true) event
         //even though it is locked or asleep
@@ -221,7 +221,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         Cocos2dxHelper.onPause();
         mGLSurfaceView.onPause();
     }
-    
+
     @Override
     protected void onDestroy() {
         if(gainAudioFocus)
@@ -236,12 +236,12 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         msg.obj = new Cocos2dxHandler.DialogMessage(pTitle, pMessage);
         this.mHandler.sendMessage(msg);
     }
-    
+
     @Override
     public void runOnGLThread(final Runnable pRunnable) {
         this.mGLSurfaceView.queueEvent(pRunnable);
     }
-    
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data)
     {
@@ -258,7 +258,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
     // Methods
     // ===========================================================
     public void init() {
-        
+
         // FrameLayout
         ViewGroup.LayoutParams framelayout_params =
             new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
@@ -297,7 +297,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         setContentView(mFrameLayout);
     }
 
-    
+
     public Cocos2dxGLSurfaceView onCreateView() {
         Cocos2dxGLSurfaceView glSurfaceView = new Cocos2dxGLSurfaceView(this);
         //this line is need on some device if we specify an alpha bits
@@ -376,7 +376,7 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
             return !powerManager.isScreenOn();
         }
     }
-    
+
     // ===========================================================
     // Inner and Anonymous Classes
     // ===========================================================
@@ -467,3 +467,4 @@ public abstract class Cocos2dxActivity extends Activity implements Cocos2dxHelpe
         }
     }
 }
+

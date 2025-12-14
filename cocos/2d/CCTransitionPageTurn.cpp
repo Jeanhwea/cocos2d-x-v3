@@ -37,7 +37,7 @@ TransitionPageTurn::TransitionPageTurn()
 {
     _inSceneProxy = NodeGrid::create();
     _outSceneProxy = NodeGrid::create();
-    
+
     _inSceneProxy->retain();
     _outSceneProxy->retain();
 }
@@ -78,14 +78,14 @@ void TransitionPageTurn::sceneOrder()
 void TransitionPageTurn::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 {
     Scene::draw(renderer, transform, flags);
-    
+
     if( _isInSceneOnTop ) {
         _outSceneProxy->visit(renderer, transform, flags);
         _inSceneProxy->visit(renderer, transform, flags);
     } else {
         _inSceneProxy->visit(renderer, transform, flags);
         _outSceneProxy->visit(renderer, transform, flags);
-        
+
     }
 }
 
@@ -98,7 +98,7 @@ void TransitionPageTurn::onEnter()
 
     _inSceneProxy->onEnter();
     _outSceneProxy->onEnter();
-    
+
     Size s = Director::getInstance()->getWinSize();
     int x,y;
     if (s.width > s.height)
@@ -150,7 +150,7 @@ void TransitionPageTurn::onExit()
     _outSceneProxy->setTarget(nullptr);
     _outSceneProxy->onExit();
     _inSceneProxy->onExit();
-    
+
     TransitionScene::onExit();
 }
 
@@ -172,3 +172,4 @@ ActionInterval* TransitionPageTurn:: actionWithSize(const Size& vector)
 }
 
 NS_CC_END
+

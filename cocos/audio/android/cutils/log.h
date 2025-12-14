@@ -566,3 +566,4 @@ int __android_log_buf_print(int bufID, int prio, const char *tag, const char *fm
 #endif
 
 #endif /* COCOS_CUTILS_LOG_H */
+

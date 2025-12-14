@@ -48,21 +48,21 @@ static const int DEFAULT_LINE_WIDTH = 2;
 class Triangulate
 {
 public:
-    
+
     // triangulate a contour/polygon, places results in STL vector
     // as series of triangles.
     static V2F_C4B_T2F_Triangle * processTriangles(const Vec2 *verts,V2F_C4B_T2F_Triangle * triangles,int n,const Color4F &fillColor);
 
     // compute area of a contour/polygon
     static float computeArea(const Vec2 *verts,int n);
-    
+
     // decide if point Px/Py is inside triangle defined by
     // (Ax,Ay) (Bx,By) (Cx,Cy)
     static bool isInsideTriangle(float Ax, float Ay,
                                float Bx, float By,
                                float Cx, float Cy,
                                float Px, float Py);
-    
+
 private:
     static bool checkSnip(const Vec2 *verts,int u,int v,int w,int n,int *V);
 };
@@ -86,7 +86,7 @@ public:
      * @return Return an autorelease object.
      */
     static DrawNode* create(GLfloat defaultLineWidth = DEFAULT_LINE_WIDTH);
-    
+
     /** Draw a point.
      *
      * @param point A Vec2 used to point.
@@ -95,7 +95,7 @@ public:
      * @js NA
      */
     void drawPoint(const Vec2& point, const float pointSize, const Color4F &color);
-    
+
     /** Draw a group point.
      *
      * @param position A Vec2 pointer.
@@ -104,7 +104,7 @@ public:
      * @js NA
      */
     void drawPoints(const Vec2 *position, unsigned int numberOfPoints, const Color4F &color);
-    
+
     /** Draw a group point.
      *
      * @param position A Vec2 pointer.
@@ -114,16 +114,16 @@ public:
      * @js NA
      */
     void drawPoints(const Vec2 *position, unsigned int numberOfPoints, const float pointSize, const Color4F &color);
-    
-    /** Draw an line from origin to destination with color. 
-     * 
+
+    /** Draw an line from origin to destination with color.
+     *
      * @param origin The line origin.
      * @param destination The line destination.
      * @param color The line color.
      * @js NA
      */
     void drawLine(const Vec2 &origin, const Vec2 &destination, const Color4F &color);
-    
+
     /** Draws a rectangle given the origin and destination point measured in points.
      * The origin and the destination can not have the same x and y coordinate.
      *
@@ -132,7 +132,7 @@ public:
      * @param color The rectangle color.
      */
     void drawRect(const Vec2 &origin, const Vec2 &destination, const Color4F &color);
-    
+
     /** Draws a polygon given a pointer to point coordinates and the number of vertices measured in points.
      * The polygon can be closed or open.
      *
@@ -142,7 +142,7 @@ public:
      * @param color The polygon color.
      */
     void drawPoly(const Vec2 *poli, unsigned int numberOfPoints, bool closePolygon, const Color4F &color);
-    
+
     /** Draws a circle given the center, radius and number of segments.
      *
      * @param center The circle center point.
@@ -155,7 +155,7 @@ public:
      * @param color Set the circle color.
      */
     void drawCircle( const Vec2& center, float radius, float angle, unsigned int segments, bool drawLineToCenter, float scaleX, float scaleY, const Color4F &color);
-    
+
     /** Draws a circle given the center, radius and number of segments.
      *
      * @param center The circle center point.
@@ -166,7 +166,7 @@ public:
      * @param color Set the circle color.
      */
     void drawCircle(const Vec2 &center, float radius, float angle, unsigned int segments, bool drawLineToCenter, const Color4F &color);
-    
+
     /** Draws a quad bezier path.
      *
      * @param origin The origin of the bezier path.
@@ -187,7 +187,7 @@ public:
      * @param color Set the cubic bezier color.
      */
     void drawCubicBezier(const Vec2 &origin, const Vec2 &control1, const Vec2 &control2, const Vec2 &destination, unsigned int segments, const Color4F &color);
-    
+
     /** Draws a Cardinal Spline path.
      *
      * @param config A array point.
@@ -196,7 +196,7 @@ public:
      * @param color Set the Spline color.
      */
     void drawCardinalSpline(PointArray *config, float tension,  unsigned int segments, const Color4F &color);
-    
+
     /** Draws a Catmull Rom path.
      *
      * @param points A point array  of control point.
@@ -204,15 +204,15 @@ public:
      * @param color The Catmull Rom color.
      */
     void drawCatmullRom(PointArray *points, unsigned int segments, const Color4F &color);
-    
-    /** draw a dot at a position, with a given radius and color. 
+
+    /** draw a dot at a position, with a given radius and color.
      *
      * @param pos The dot center.
      * @param radius The dot radius.
      * @param color The dot color.
      */
     void drawDot(const Vec2 &pos, float radius, const Color4F &color);
-    
+
     /** Draws a rectangle with 4 points.
      *
      * @param p1 The rectangle vertex point.
@@ -222,7 +222,7 @@ public:
      * @param color The rectangle color.
      */
     void drawRect(const Vec2 &p1, const Vec2 &p2, const Vec2 &p3, const Vec2& p4, const Color4F &color);
-    
+
     /** Draws a solid rectangle given the origin and destination point measured in points.
      * The origin and the destination can not have the same x and y coordinate.
      *
@@ -232,7 +232,7 @@ public:
      * @js NA
      */
     void drawSolidRect(const Vec2 &origin, const Vec2 &destination, const Color4F &color);
-    
+
     /** Draws a solid polygon given a pointer to CGPoint coordinates, the number of vertices measured in points, and a color.
      *
      * @param poli A solid polygon given a pointer to CGPoint coordinates.
@@ -241,7 +241,7 @@ public:
      * @js NA
      */
     void drawSolidPoly(const Vec2 *poli, unsigned int numberOfPoints, const Color4F &color);
-    
+
     /** Draws a solid circle given the center, radius and number of segments.
      * @param center The circle center point.
      * @param radius The circle rotate of radius.
@@ -253,7 +253,7 @@ public:
      * @js NA
      */
     void drawSolidCircle(const Vec2& center, float radius, float angle, unsigned int segments, float scaleX, float scaleY, const Color4F &color);
-    
+
     /** Draws a solid circle given the center, radius and number of segments.
      * @param center The circle center point.
      * @param radius The circle rotate of radius.
@@ -263,8 +263,8 @@ public:
      * @js NA
      */
     void drawSolidCircle(const Vec2& center, float radius, float angle, unsigned int segments, const Color4F& color);
-    
-    /** draw a segment with a radius and color. 
+
+    /** draw a segment with a radius and color.
      *
      * @param from The segment origin.
      * @param to The segment destination.
@@ -272,7 +272,7 @@ public:
      * @param color The segment color.
      */
     void drawSegment(const Vec2 &from, const Vec2 &to, float radius, const Color4F &color);
-    
+
     /** draw a polygon with a fill color and line color
     * @code
     * When this function bound into js or lua,the parameter will be changed
@@ -287,8 +287,8 @@ public:
     * @js NA
     */
     void drawPolygon(const Vec2 *verts, int count, const Color4F &fillColor, float borderWidth, const Color4F &borderColor);
-	
-    /** draw a triangle with color. 
+
+    /** draw a triangle with color.
      *
      * @param p1 The triangle vertex point.
      * @param p2 The triangle vertex point.
@@ -308,7 +308,7 @@ public:
      * @js NA
      */
     CC_DEPRECATED_ATTRIBUTE void drawQuadraticBezier(const Vec2& from, const Vec2& control, const Vec2& to, unsigned int segments, const Color4F &color);
-    
+
     /** Clear the geometry in the node's buffer. */
     void clear();
     /** Get the color mixed mode.
@@ -336,12 +336,12 @@ public:
      * @js NA
      */
     virtual void onDrawGLPoint(const Mat4 &transform, uint32_t flags);
-    
+
     // Overrides
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 
     virtual void visit(Renderer* renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
-    
+
     void setLineWidth(GLfloat lineWidth);
 
     // Get CocosStudio guide lines width.
@@ -377,13 +377,13 @@ protected:
     int         _bufferCapacity = 0;
     GLsizei     _bufferCount = 0;
     V2F_C4B_T2F *_buffer = nullptr;
-    
+
     int         _bufferCapacityGLPoint = 0;
     GLsizei     _bufferCountGLPoint = 0;
     V2F_C4B_T2F *_bufferGLPoint = nullptr;
     Color4F     _pointColor;
     int         _pointSize = 0;
-    
+
     int         _bufferCapacityGLLine = 0;
     GLsizei     _bufferCountGLLine = 0;
     V2F_C4B_T2F *_bufferGLLine = nullptr;
@@ -397,7 +397,7 @@ protected:
     bool        _dirtyGLPoint = false;
     bool        _dirtyGLLine = false;
     bool        _isolated = false;
-    
+
     GLfloat         _lineWidth = 0.0f;
 
     GLfloat  _defaultLineWidth = 0.0f;
@@ -408,3 +408,4 @@ private:
 NS_CC_END
 
 #endif // __CCDRAWNODES_CCDRAW_NODE_H__
+

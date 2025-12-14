@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,7 @@
 NS_CC_BEGIN
 
 namespace ui {
-    
+
 CC_DEPRECATED_ATTRIBUTE const Widget::PositionType POSITION_ABSOLUTE = Widget::PositionType::ABSOLUTE;
 CC_DEPRECATED_ATTRIBUTE const Widget::PositionType POSITION_PERCENT = Widget::PositionType::PERCENT;
 CC_DEPRECATED_ATTRIBUTE const Widget::SizeType SIZE_ABSOLUTE = Widget::SizeType::ABSOLUTE;
@@ -75,7 +75,7 @@ CC_DEPRECATED_ATTRIBUTE const LinearLayoutParameter::LinearGravity LINEAR_GRAVIT
     = LinearLayoutParameter::LinearGravity::CENTER_VERTICAL;
 CC_DEPRECATED_ATTRIBUTE const LinearLayoutParameter::LinearGravity LINEAR_GRAVITY_CENTER_HORIZONTAL
     = LinearLayoutParameter::LinearGravity::CENTER_HORIZONTAL;
-    
+
 CC_DEPRECATED_ATTRIBUTE const RelativeLayoutParameter::RelativeAlign RELATIVE_ALIGN_NONE
     = RelativeLayoutParameter::RelativeAlign::NONE;
 CC_DEPRECATED_ATTRIBUTE const RelativeLayoutParameter::RelativeAlign RELATIVE_ALIGN_PARENT_TOP_LEFT
@@ -139,7 +139,7 @@ CC_DEPRECATED_ATTRIBUTE const ScrollView::Direction SCROLLVIEW_DIR_VERTICAL =  S
 CC_DEPRECATED_ATTRIBUTE const ScrollView::Direction SCROLLVIEW_DIR_HORIZONTAL =  ScrollView::Direction::HORIZONTAL;
 CC_DEPRECATED_ATTRIBUTE const ScrollView::Direction SCROLLVIEW_DIR_BOTH =  ScrollView::Direction::BOTH;
 
-    
+
 CC_DEPRECATED_ATTRIBUTE typedef Widget::TextureResType TextureResType;
 CC_DEPRECATED_ATTRIBUTE typedef Widget::PositionType   PositionType;
 CC_DEPRECATED_ATTRIBUTE typedef Widget::SizeType SizeType;
@@ -165,3 +165,4 @@ NS_CC_END
 
 /// @endcond
 #endif
+

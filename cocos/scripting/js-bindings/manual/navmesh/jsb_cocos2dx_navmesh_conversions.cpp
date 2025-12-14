@@ -63,9 +63,9 @@ bool jsval_to_NavMeshAgentParam(JSContext *cx, JS::HandleValue v, cocos2d::NavMe
     JS::ToNumber(cx, jsuF, &updateFlags) &&
     JS::ToNumber(cx, jsoAT, &obstacleAvoidanceType) &&
     JS::ToNumber(cx, jsoAT, &queryFilterType);
-    
+
     JSB_PRECONDITION3(ok, cx, false, "Error processing arguments");
-    
+
     ret->radius = (float)radius;
     ret->height = (float)height;
     ret->maxAcceleration = (float)maxAcceleration;
@@ -95,3 +95,4 @@ jsval offMeshLinkData_to_jsval(JSContext* cx, const cocos2d::OffMeshLinkData& v)
     return JSVAL_NULL;
 }
 #endif //#if CC_USE_NAVMESH
+

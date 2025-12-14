@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -41,45 +41,45 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(Light3DReader)
-    
+
     Light3DReader::Light3DReader()
     {
-        
+
     }
-    
+
     Light3DReader::~Light3DReader()
     {
-        
+
     }
-    
+
     static Light3DReader* _instanceLight3DReader = nullptr;
-    
+
     Light3DReader* Light3DReader::getInstance()
     {
         if (!_instanceLight3DReader)
         {
             _instanceLight3DReader = new (std::nothrow) Light3DReader();
         }
-        
+
         return _instanceLight3DReader;
     }
-    
+
     void Light3DReader::purge()
     {
         CC_SAFE_DELETE(_instanceLight3DReader);
     }
-    
+
     void Light3DReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceLight3DReader);
     }
-    
+
     Offset<Table> Light3DReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                              flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = Node3DReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto node3DOptions = *(Offset<Node3DOption>*)(&temp);
-        
+
         bool enabled = true;
         int type = 0;
         int flag = 0;
@@ -93,7 +93,7 @@ namespace cocostudio
         {
             attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (attriname == "Type")
             {
                 if (value == "DIRECTIONAL")  type = (int)LightType::DIRECTIONAL;
@@ -133,15 +133,15 @@ namespace cocostudio
             {
                 enabled = (value == "True") ? true : false;
             }
-            
+
             attribute = attribute->Next();
         }
-        
+
         auto options = CreateLight3DOption(*builder,node3DOptions,enabled,type,flag,intensity,range,outerAngle);
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void Light3DReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                    const flatbuffers::Table* light3DOptions)
     {
@@ -149,7 +149,7 @@ namespace cocostudio
         auto node3DReader = Node3DReader::getInstance();
         node3DReader->setPropsWithFlatBuffers(node, (Table*)(options->node3DOption()));
     }
-    
+
     Node* Light3DReader::createNodeWithFlatBuffers(const flatbuffers::Table* light3DOptions)
     {
         Node* lightNode = Node::create();
@@ -193,3 +193,4 @@ namespace cocostudio
         return lightNode;
     }
 }
+

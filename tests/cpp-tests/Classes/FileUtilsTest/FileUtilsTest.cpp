@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -851,7 +851,7 @@ void TestWriteValueMap::onEnter()
     mapInValueMap["string1"] = "string in dictInMap key 0";
     mapInValueMap["string2"] = "string in dictInMap key 1";
     mapInValueMap["none"].getType();
-    
+
     valueMap["data0"] = Value(mapInValueMap);
 
     valueMap["data1"] = Value("string in array");
@@ -1145,13 +1145,13 @@ void TestIsFileExistAsync::onEnter()
     FileUtilsDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
     auto sharedFileUtils = FileUtils::getInstance();
-    
+
     sharedFileUtils->isFileExist("Images/grossini.png", [=](bool isExist) {
         CCASSERT(std::this_thread::get_id() == Director::getInstance()->getCocos2dThreadId(), "Callback should be on cocos thread");
         auto label = Label::createWithSystemFont(isExist ? "Images/grossini.png exists" : "Images/grossini.png doesn't exist", "", 20);
         label->setPosition(s.width/2, s.height/3);
         this->addChild(label);
-        
+
         isExist = sharedFileUtils->isFileExist("Images/grossini.xcf");
         label = Label::createWithSystemFont(isExist ? "Images/grossini.xcf exists" : "Images/grossini.xcf doesn't exist", "", 20);
         label->setPosition(s.width/2, s.height/3*2);
@@ -1161,12 +1161,12 @@ void TestIsFileExistAsync::onEnter()
 
 void TestIsFileExistAsync::onExit()
 {
-    
+
     FileUtils *sharedFileUtils = FileUtils::getInstance();
-    
+
     // reset filename lookup
     sharedFileUtils->setFilenameLookupDictionary(ValueMap());
-    
+
     FileUtilsDemo::onExit();
 }
 
@@ -1186,7 +1186,7 @@ void TestIsDirectoryExistAsync::onEnter()
     auto s = Director::getInstance()->getWinSize();
     auto util = FileUtils::getInstance();
     int x = s.width/2, y = s.height/3;
-    
+
     std::string dir;
     auto getMsg = [](bool b, const std::string& dir)-> std::string
     {
@@ -1194,7 +1194,7 @@ void TestIsDirectoryExistAsync::onEnter()
         snprintf((char *)msg, 512, "%s for dir: \"%s\"", b ? "success" : "failed", dir.c_str());
         return std::string(msg);
     };
-    
+
     dir = util->getWritablePath();
     util->isDirectoryExist(dir, [=](bool exists) {
         CCAssert(exists, "Writable path should exist");
@@ -1206,12 +1206,12 @@ void TestIsDirectoryExistAsync::onEnter()
 
 void TestIsDirectoryExistAsync::onExit()
 {
-    
+
     FileUtils *sharedFileUtils = FileUtils::getInstance();
-    
+
     // reset filename lookup
     sharedFileUtils->purgeCachedEntries();
-    
+
     FileUtilsDemo::onExit();
 }
 
@@ -1230,39 +1230,39 @@ void TestFileFuncsAsync::onEnter()
     FileUtilsDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
     auto sharedFileUtils = FileUtils::getInstance();
-    
+
     int x = s.width/2,
     y = s.height/5;
-    
+
     std::string filename = "__test.test";
     std::string filename2 = "__newtest.test";
     std::string filepath = sharedFileUtils->getWritablePath() + filename;
     std::string content = "Test string content to put into created file";
     std::string msg;
-    
+
     FILE *out = fopen(filepath.c_str(), "w");
     fputs(content.c_str(), out);
     fclose(out);
-    
-    
+
+
     sharedFileUtils->isFileExist(filepath, [=](bool exists) {
         CCASSERT(exists, "File could not be found");
         auto label = Label::createWithSystemFont("Test file '__test.test' created", "", 20);
         label->setPosition(x, y * 4);
         this->addChild(label);
-        
+
         sharedFileUtils->getFileSize(filepath, [=](long size) {
             auto msg = StringUtils::format("getFileSize: Test file size equals %ld", size);
             auto label = Label::createWithSystemFont(msg, "", 20);
             label->setPosition(x, y * 3);
             this->addChild(label);
-            
+
             sharedFileUtils->renameFile(sharedFileUtils->getWritablePath(), filename, filename2, [=] (bool success) {
                 CCASSERT(success, "Was not able to properly rename file");
                 auto label = Label::createWithSystemFont("renameFile: Test file renamed to  '__newtest.test'", "", 20);
                 label->setPosition(x, y * 2);
                 this->addChild(label);
-                
+
                 sharedFileUtils->removeFile(sharedFileUtils->getWritablePath() + filename2, [=](bool success) {
                     CCASSERT(success, "Was not able to remove file");
                     auto label = Label::createWithSystemFont("removeFile: Test file removed", "", 20);
@@ -1288,24 +1288,24 @@ std::string TestFileFuncsAsync::subtitle() const
 void TestWriteStringAsync::onEnter()
 {
     FileUtilsDemo::onEnter();
-    
+
     auto winSize = Director::getInstance()->getWinSize();
-    
+
     auto writeResult = Label::createWithTTF("show writeResult", "fonts/Thonburi.ttf", 18);
     this->addChild(writeResult);
     writeResult->setPosition(winSize.width / 2, winSize.height * 3 / 4);
-    
+
     auto readResult = Label::createWithTTF("show readResult", "fonts/Thonburi.ttf", 18);
     this->addChild(readResult);
     readResult->setPosition(winSize.width / 2, winSize.height / 3);
-    
+
     std::string writablePath = FileUtils::getInstance()->getWritablePath();
     std::string fileName = "writeStringTest.txt";
-    
+
     // writeTest
     std::string writeDataStr = "the string data will be write into a file";
     std::string fullPath = writablePath + fileName;
-    
+
     FileUtils::getInstance()->writeStringToFile(writeDataStr, fullPath, [=](bool success)
     {
         CCASSERT(success, "Write String to data failed");
@@ -1361,12 +1361,12 @@ void TestWriteDataAsync::onEnter()
         if (success)
         {
             writeResult->setString("Write result success");
-        } 
+        }
         else
         {
             writeResult->setString("Write result failure");
         }
-        
+
         FileUtils::getInstance()->getDataFromFile(fullPath, [=](const Data& readData) {
             auto buffer = (unsigned char*)malloc(sizeof(unsigned char) * (readData.getSize() + 1));
             memcpy(buffer, readData.getBytes(), readData.getSize());
@@ -1460,7 +1460,7 @@ void TestIsFileExistRejectFolder::onEnter()
     auto cntLabel = Label::createWithTTF("waiting...", "fonts/Thonburi.ttf", 18);
     this->addChild(cntLabel);
     cntLabel->setPosition(winSize.width / 2, winSize.height / 3);
-    
+
     auto exists = FileUtils::getInstance()->isFileExist("NavMesh/maps");
     auto isDirectory = FileUtils::getInstance()->isDirectoryExist("NavMesh/maps");
 
@@ -1484,3 +1484,4 @@ std::string TestIsFileExistRejectFolder::subtitle() const
 {
     return "";
 }
+

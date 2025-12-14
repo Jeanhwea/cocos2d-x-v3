@@ -111,3 +111,4 @@ typedef spSkeletonBounds SkeletonBounds;
 #endif
 
 #endif /* SPINE_SKELETONBOUNDS_H_ */
+

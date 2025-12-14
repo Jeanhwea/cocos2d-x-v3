@@ -36,3 +36,4 @@ const char* CocosGUIVersion()
 
 }
 NS_CC_END
+

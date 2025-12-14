@@ -64,19 +64,19 @@ public:
 
     /** @deprecated Use getInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
-    
+
     /* override functions */
     virtual void setAnimationInterval(float interval) override;
 
     virtual LanguageType getCurrentLanguage();
 
     virtual const char * getCurrentLanguageCode();
-    
+
     /**
      @brief Get target platform
      */
     virtual Platform getTargetPlatform();
-    
+
     /**
     @brief Get application version
     */
@@ -95,9 +95,9 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE void setResourceRootPath(const std::string& rootResDir);
 
-    /** 
+    /**
      *  Gets the Resource root path.
-     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead. 
+     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead.
      */
     CC_DEPRECATED_ATTRIBUTE const std::string& getResourceRootPath();
 
@@ -123,3 +123,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
 
 #endif    // __CC_APPLICATION_WIN32_H__
+

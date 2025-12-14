@@ -137,3 +137,4 @@ inline Atomic64 NoBarrier_CompareAndSwap(volatile Atomic64* ptr,
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_GENERIC_GCC_H_
+

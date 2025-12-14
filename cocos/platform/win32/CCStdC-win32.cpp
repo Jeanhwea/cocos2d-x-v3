@@ -52,3 +52,4 @@ NS_CC_END
 #endif // __MINGW32__
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+

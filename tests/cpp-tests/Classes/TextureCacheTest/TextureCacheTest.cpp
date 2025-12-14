@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -138,7 +138,7 @@ void TextureCacheTest::addSprite()
     s15->setPosition(Vec2(70, 270));
 
     this->addChild(bg);
-   
+
     this->addChild(s1);
     this->addChild(s2);
     this->addChild(s3);
@@ -165,7 +165,7 @@ TextureCacheUnbindTest::TextureCacheUnbindTest()
       ("There should be\nnothing below", "fonts/arial.ttf", 15);
     nothing->setPosition(Vec2(size.width / 4, 5 * size.height / 6));
     this->addChild(nothing);
-    
+
     Label* something =
       Label::createWithTTF
       ("There should be\na white square below", "fonts/arial.ttf", 15);
@@ -173,7 +173,7 @@ TextureCacheUnbindTest::TextureCacheUnbindTest()
     this->addChild(something);
 
     auto cache = Director::getInstance()->getTextureCache();
-    
+
     cache->removeTextureForKey("Images/texture2048x2048.png");
 
     cache->addImageAsync
@@ -204,3 +204,4 @@ void TextureCacheUnbindTest::textureLoadedB(Texture2D* texture)
   s->setPosition(3 * size.width / 4, size.height / 2);
   this->addChild(s);
 }
+

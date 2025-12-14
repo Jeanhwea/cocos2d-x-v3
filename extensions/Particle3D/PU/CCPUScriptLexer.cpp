@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -30,29 +30,29 @@
 NS_CC_BEGIN
 PUScriptLexer::PUScriptLexer()
 {
-    
+
 }
 
 PUScriptLexer::~PUScriptLexer()
 {
-    
+
 }
 
 
 void PUScriptLexer::openLexer(const std::string &str,const std::string &source,PUScriptTokenList& tokens)
 {
     enum{ READY = 0, COMMENT, MULTICOMMENT, WORD, QUOTE, VAR, POSSIBLECOMMENT };
-    
+
 
     const wchar_t varopener = '$', quote = '\"', slash = '/', backslash = '\\', openbrace = '{', closebrace = '}', colon = ':', star = '*', cr = '\r', lf = '\n';
     char c = 0, lastc = 0;
-    
-    
+
+
     std::string lexeme;
     unsigned int line = 1, state = READY, lastQuote = 0;
-    
+
 //    ScriptTokenListPtr tokens(OGRE_NEW_T(ScriptTokenList, MEMCATEGORY_GENERAL)(), SPFM_DELETE_T);
-//    
+//
     // Iterate over the input
 
     std::string::const_iterator i = str.begin(), end = str.end();
@@ -60,10 +60,10 @@ void PUScriptLexer::openLexer(const std::string &str,const std::string &source,P
     {
         lastc = c;
         c = *i;
-        
+
         if(c == quote)
             lastQuote = line;
-        
+
         switch(state)
         {
             case READY:
@@ -207,14 +207,14 @@ void PUScriptLexer::openLexer(const std::string &str,const std::string &source,P
                 }
                 break;
         }
-        
+
         // Separate check for newlines just to track line numbers
         if(c == cr || (c == lf && lastc != cr))
             line++;
-        
+
         ++i;
     }
-    
+
     // Check for valid exit states
     if(state == WORD || state == VAR)
     {
@@ -226,33 +226,33 @@ void PUScriptLexer::openLexer(const std::string &str,const std::string &source,P
         if(state == QUOTE)
         {
             printf("Exception\n");
-            
+
 //            OGRE_EXCEPT(Exception::ERR_INVALID_STATE,
 //                        Ogre::String("no matching \" found for \" at line ") +
 //                        Ogre::StringConverter::toString(lastQuote),
 //                        "ScriptLexer::tokenize");
         }
     }
-    
+
 }
 
 
 
-    
+
 void PUScriptLexer::setToken(const std::string &lexeme, int line, const std::string &source, PUScriptTokenList *tokens)
     {
 
-    
-        const char openBracket = '{', closeBracket = '}', colon = ':', 
+
+        const char openBracket = '{', closeBracket = '}', colon = ':',
         quote = '\"', var = '$';
 
         PUScriptToken* token  = new (std::nothrow) PUScriptToken;
-        
+
         token->lexeme = lexeme;
         token->line = line;
         token->file = source;
         bool ignore = false;
-        
+
         // Check the user token map first
         if(lexeme.size() == 1 && isNewline(lexeme[0]))
         {
@@ -282,16 +282,16 @@ void PUScriptLexer::setToken(const std::string &lexeme, int line, const std::str
                 token->type = TID_WORD;
             }
         }
-        
+
         if(!ignore)
             tokens->push_back(token);
     }
-    
+
     bool PUScriptLexer::isWhitespace(char c) const
     {
         return c == ' ' || c == '\r' || c == '\t';
     }
-    
+
     bool PUScriptLexer::isNewline(char c) const
     {
 
@@ -299,3 +299,4 @@ void PUScriptLexer::setToken(const std::string &lexeme, int line, const std::str
     }
 
 NS_CC_END
+

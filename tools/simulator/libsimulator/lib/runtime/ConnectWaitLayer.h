@@ -34,7 +34,7 @@ public:
     ConnectWaitLayer();
 	~ConnectWaitLayer();
     void update(float fDelta);
-    
+
 private:
 	cocos2d::Image* _imagebg;
 	cocos2d::Image* _imageplay;

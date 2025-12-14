@@ -212,7 +212,7 @@ private:
     std::string _path, _tag;
     bool _connected;
     std::shared_ptr<SIOClientImpl> _socket;
-    
+
     SocketIO::SIODelegate* _delegate = nullptr;
 
     EventRegistry _eventRegistry;

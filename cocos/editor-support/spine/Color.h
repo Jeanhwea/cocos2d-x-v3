@@ -76,3 +76,4 @@ typedef spColor color;
 #endif
 
 #endif /* SPINE_COLOR_H_ */
+

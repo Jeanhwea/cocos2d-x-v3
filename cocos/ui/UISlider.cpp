@@ -38,11 +38,11 @@ NS_CC_BEGIN
  */
 
 namespace ui {
-    
+
 static const int BASEBAR_RENDERER_Z = (-2);
 static const int PROGRESSBAR_RENDERER_Z = (-2);
 static const int SLIDBALL_RENDERER_Z = (-1);
-    
+
 IMPLEMENT_CLASS_GUI_INFO(Slider)
 
 Slider::Slider():
@@ -104,7 +104,7 @@ Slider* Slider::create()
     CC_SAFE_DELETE(widget);
     return nullptr;
 }
-    
+
 Slider* Slider::create(const std::string& barTextureName,
                       const std::string& normalBallTextureName,
                       TextureResType resType)
@@ -136,26 +136,26 @@ void Slider::initRenderer()
     _progressBarRenderer = Scale9Sprite::create();
     _barRenderer->setScale9Enabled(false);
     _progressBarRenderer->setScale9Enabled(false);
-    
+
     _progressBarRenderer->setAnchorPoint(Vec2(0.0f, 0.5f));
-    
+
     addProtectedChild(_barRenderer, BASEBAR_RENDERER_Z, -1);
     addProtectedChild(_progressBarRenderer, PROGRESSBAR_RENDERER_Z, -1);
-    
+
     _slidBallNormalRenderer = Sprite::create();
     _slidBallPressedRenderer = Sprite::create();
     _slidBallPressedRenderer->setVisible(false);
     _slidBallDisabledRenderer = Sprite::create();
     _slidBallDisabledRenderer->setVisible(false);
-    
+
     _slidBallRenderer = Node::create();
-    
+
     _slidBallRenderer->addChild(_slidBallNormalRenderer);
     _slidBallRenderer->addChild(_slidBallPressedRenderer);
     _slidBallRenderer->addChild(_slidBallDisabledRenderer);
     _slidBallRenderer->setCascadeColorEnabled(true);
     _slidBallRenderer->setCascadeOpacityEnabled(true);
-    
+
     addProtectedChild(_slidBallRenderer, SLIDBALL_RENDERER_Z, -1);
 }
 
@@ -249,11 +249,11 @@ void Slider::setScale9Enabled(bool able)
     {
         return;
     }
-    
+
     _scale9Enabled = able;
     _barRenderer->setScale9Enabled(_scale9Enabled);
     _progressBarRenderer->setScale9Enabled(_scale9Enabled);
-    
+
     if (_scale9Enabled)
     {
         bool ignoreBefore = _ignoreSize;
@@ -269,7 +269,7 @@ void Slider::setScale9Enabled(bool able)
     _barRendererAdaptDirty = true;
     _progressBarRendererDirty = true;
 }
-    
+
 bool Slider::isScale9Enabled()const
 {
     return _scale9Enabled;
@@ -304,7 +304,7 @@ void Slider::setCapInsetsBarRenderer(const Rect &capInsets)
 
     _barRenderer->setCapInsets(_capInsetsBarRenderer);
 }
-    
+
 const Rect& Slider::getCapInsetsBarRenderer()const
 {
     return _capInsetsBarRenderer;
@@ -324,7 +324,7 @@ void Slider::setCapInsetProgressBarRenderer(const Rect &capInsets)
 
     _progressBarRenderer->setCapInsets(_capInsetsProgressBarRenderer);
 }
-    
+
 const Rect& Slider::getCapInsetsProgressBarRenderer()const
 {
     return _capInsetsProgressBarRenderer;
@@ -489,7 +489,7 @@ void Slider::updateVisualSlider()
         _progressBarRenderer->setTextureRect(rect, _progressBarRenderer->isTextureRectRotated(), rect.size);
     }
 }
-    
+
 bool Slider::hitTest(const cocos2d::Vec2 &pt, const Camera *camera, Vec3* /*p*/) const
 {
     Rect rect;
@@ -543,7 +543,7 @@ void Slider::addEventListenerSlider(Ref *target, SEL_SlidPercentChangedEvent sel
     _sliderEventListener = target;
     _sliderEventSelector = selector;
 }
-    
+
 void Slider::addEventListener(const ccSliderCallback& callback)
 {
     _eventCallback = callback;
@@ -578,7 +578,7 @@ void Slider::onSizeChanged()
     _barRendererAdaptDirty = true;
     _progressBarRendererDirty = true;
 }
-    
+
 void Slider::adaptRenderers()
 {
     if (_barRendererAdaptDirty)
@@ -612,7 +612,7 @@ void Slider::barRendererScaleChangedWithSize()
     }
     else if (_ignoreSize)
     {
-        
+
         _barRenderer->setScale(1.0f);
         _barLength = _contentSize.width;
     }
@@ -691,7 +691,7 @@ void Slider::onPressStateChangedToNormal()
     _slidBallNormalRenderer->setVisible(true);
     _slidBallPressedRenderer->setVisible(false);
     _slidBallDisabledRenderer->setVisible(false);
-    
+
     _slidBallNormalRenderer->setGLProgramState(this->getNormalGLProgramState(_slidBallNormalRenderer->getTexture()));
     _slidBallNormalRenderer->setScale(_sliderBallNormalTextureScaleX, _sliderBallNormalTextureScaleY);
 }
@@ -700,7 +700,7 @@ void Slider::onPressStateChangedToPressed()
 {
     _slidBallNormalRenderer->setGLProgramState(this->getNormalGLProgramState(_slidBallNormalRenderer->getTexture()));
 
-    
+
     if (!_isSliderBallPressedTextureLoaded)
     {
         _slidBallNormalRenderer->setScale(_sliderBallNormalTextureScaleX + _zoomScale,
@@ -726,13 +726,13 @@ void Slider::onPressStateChangedToDisabled()
         _slidBallNormalRenderer->setVisible(false);
         _slidBallDisabledRenderer->setVisible(true);
     }
-    
+
     _slidBallNormalRenderer->setScale(_sliderBallNormalTextureScaleX, _sliderBallNormalTextureScaleY);
-    
+
     _slidBallPressedRenderer->setVisible(false);
 }
-    
-    
+
+
 void Slider::setZoomScale(float scale)
 {
     _zoomScale = scale;
@@ -837,3 +837,4 @@ ResourceData Slider::getBallDisabledFile()
 }
 
 NS_CC_END
+

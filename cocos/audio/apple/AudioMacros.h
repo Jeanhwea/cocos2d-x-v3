@@ -63,3 +63,4 @@ do { \
         ALOGE("(" QUOTEME(condition) ") failed, message: " fmt, ##__VA_ARGS__); \
         break; \
     }
+

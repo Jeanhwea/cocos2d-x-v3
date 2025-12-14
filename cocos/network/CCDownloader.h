@@ -87,14 +87,14 @@ namespace cocos2d { namespace network {
                            int errorCode,
                            int errorCodeInternal,
                            const std::string& errorStr)> onTaskError;
-        
+
         void setOnFileTaskSuccess(const std::function<void(const DownloadTask& task)>& callback) {onFileTaskSuccess = callback;};
-        
+
         void setOnTaskProgress(const std::function<void(const DownloadTask& task,
                                                   int64_t bytesReceived,
                                                   int64_t totalBytesReceived,
                                                   int64_t totalBytesExpected)>& callback) {onTaskProgress = callback;};
-        
+
         void setOnTaskError(const std::function<void(const DownloadTask& task,
                                                int errorCode,
                                                int errorCodeInternal,

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -49,7 +49,7 @@ enum {
     kCaseLabelUpdate,
     kCaseLabelBMFontBigLabels,
     kCaseLabelBigLabels,
-    
+
     kCaseCount
 };
 
@@ -138,7 +138,7 @@ std::string LabelMainScene::title() const
 
 LabelMainScene::~LabelMainScene()
 {
-    
+
 }
 
 void LabelMainScene::updateNodes()
@@ -155,7 +155,7 @@ void LabelMainScene::updateNodes()
 }
 
 void LabelMainScene::onIncrease(Ref* sender)
-{    
+{
     if( _quantityNodes >= kMaxNodes)
         return;
 
@@ -194,7 +194,7 @@ void LabelMainScene::onIncrease(Ref* sender)
                 _quantityNodes++;
             }
             break;
-        }        
+        }
     case kCaseLabelBMFontBigLabels:
         for( int i=0;i< kNodesIncrease;i++)
         {
@@ -217,7 +217,7 @@ void LabelMainScene::onIncrease(Ref* sender)
                 _quantityNodes++;
             }
             break;
-        }        
+        }
     default:
         break;
     }
@@ -245,11 +245,11 @@ void LabelMainScene::updateText(float dt)
     {
         totalStatTime += dt;
         statCount++;
-        
+
         auto curFrameRate = Director::getInstance()->getFrameRate();
         if (maxFrameRate < 0 || curFrameRate > maxFrameRate)
             maxFrameRate = curFrameRate;
-        
+
         if (minFrameRate < 0 || curFrameRate < minFrameRate)
             minFrameRate = curFrameRate;
     }
@@ -290,7 +290,7 @@ void LabelMainScene::updateText(float dt)
 void LabelMainScene::onEnter()
 {
     Scene::onEnter();
-    
+
     auto director = Director::getInstance();
     auto sched = director->getScheduler();
     sched->schedule(CC_SCHEDULE_SELECTOR(LabelMainScene::updateText), this, 0.0f, false);
@@ -320,7 +320,7 @@ void LabelMainScene::doAutoTest()
     totalStatTime = 0.0f;
     minFrameRate = -1.0f;
     maxFrameRate = -1.0f;
-    
+
     // remove all labels
     _labelContainer->removeAllChildren();
     _quantityNodes = 0;
@@ -345,7 +345,7 @@ void LabelMainScene::endStat(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(LabelMainScene::endStat));
     isStating = false;
-    
+
     // record test data
     std::string tf;
     switch (_curTestCase)
@@ -400,10 +400,11 @@ void LabelMainScene::priorTestCallback(cocos2d::Ref* sender)
     if (_curTestCase > 0)
     {
         _curTestCase -= 1;
-    } 
+    }
     else
     {
         _curTestCase = kCaseCount - 1;
     }
     TestCase::priorTestCallback(sender);
 }
+

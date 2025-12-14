@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -48,7 +48,7 @@ using namespace flatbuffers;
 
 namespace cocostudio
 {
-    
+
     const char* P_IgnoreSize = "ignoreSize";
     const char* P_SizeType = "sizeType";
     const char* P_PositionType = "positionType";
@@ -80,7 +80,7 @@ namespace cocostudio
     const char* P_MarginRight = "marginRight";
     const char* P_MarginTop = "marginTop";
     const char* P_MarginDown = "marginDown";
-    
+
     const char* P_Opacity = "opacity";
     const char* P_ColorR = "colorR";
     const char* P_ColorG = "colorG";
@@ -89,8 +89,8 @@ namespace cocostudio
     const char* P_FlipY = "flipY";
     const char* P_AnchorPointX = "anchorPointX";
     const char* P_AnchorPointY = "anchorPointY";
-    
-    
+
+
     const char* P_ResourceType = "resourceType";
     const char* P_Path = "path";
 
@@ -112,11 +112,11 @@ namespace cocostudio
     const char* P_Layout_TopEdge = "TopEdge";
     const char* P_Layout_BottomEdge = "BottomEdge";
 
-    
+
     static WidgetReader* instanceWidgetReader = nullptr;
-    
+
     IMPLEMENT_CLASS_NODE_READER_INFO(WidgetReader)
-    
+
     WidgetReader::WidgetReader()
     :_sizePercentX(0.0f),
     _sizePercentY(0.0f),
@@ -130,7 +130,7 @@ namespace cocostudio
         valueToInt = [=](const std::string& str) -> int{
             return atoi(str.c_str());
         };
-        
+
         valueToBool = [=](const std::string& str) -> bool{
             int intValue = valueToInt(str);
             if (1 == intValue) {
@@ -139,18 +139,18 @@ namespace cocostudio
                 return false;
             }
         };
-        
+
         valueToFloat = [=](const std::string& str) -> float{
             return utils::atof(str.c_str());
         };
     }
-    
+
     WidgetReader::~WidgetReader()
-   
+
     {
-        
+
     }
-    
+
     WidgetReader* WidgetReader::getInstance()
     {
         if (!instanceWidgetReader)
@@ -159,31 +159,31 @@ namespace cocostudio
         }
         return instanceWidgetReader;
     }
-    
+
     void WidgetReader::purge()
     {
         CC_SAFE_DELETE(instanceWidgetReader);
     }
-    
+
     void WidgetReader::destroyInstance()
     {
         CC_SAFE_DELETE(instanceWidgetReader);
     }
-    
+
     void WidgetReader::setPropsFromJsonDictionary(Widget *widget, const rapidjson::Value &options)
-    {        
-   
+    {
+
         bool ignoreSizeExsit = DICTOOL->checkObjectExist_json(options, P_IgnoreSize);
         if (ignoreSizeExsit) {
             widget->ignoreContentAdaptWithSize(DICTOOL->getBooleanValue_json(options, P_IgnoreSize));
         }
-        
+
         widget->setSizeType((Widget::SizeType)DICTOOL->getIntValue_json(options, P_SizeType));
         widget->setPositionType((Widget::PositionType)DICTOOL->getIntValue_json(options, P_PositionType));
-        
+
         widget->setSizePercent(Vec2(DICTOOL->getFloatValue_json(options, P_SizePercentX), DICTOOL->getFloatValue_json(options, P_SizePercentY)));
         widget->setPositionPercent(Vec2(DICTOOL->getFloatValue_json(options, P_PositionPercentX), DICTOOL->getFloatValue_json(options, P_PositionPercentY)));
-        
+
         /* adapt screen */
         float w = 0, h = 0;
         bool adaptScrennExsit = DICTOOL->checkObjectExist_json(options, P_AdaptScreen);
@@ -209,26 +209,26 @@ namespace cocostudio
             h = DICTOOL->getFloatValue_json(options, P_Height);
         }
         widget->setContentSize(Size(w, h));
-        
+
         widget->setTag(DICTOOL->getIntValue_json(options, P_Tag));
         widget->setActionTag(DICTOOL->getIntValue_json(options, P_ActionTag));
         widget->setTouchEnabled(DICTOOL->getBooleanValue_json(options, P_TouchAble));
         const char* name = DICTOOL->getStringValue_json(options, P_Name);
         const char* widgetName = name?name:"default";
         widget->setName(widgetName);
-        
+
         float x = DICTOOL->getFloatValue_json(options, P_X);
         float y = DICTOOL->getFloatValue_json(options, P_Y);
         widget->setPosition(Vec2(x,y));
-      
+
         widget->setScaleX(DICTOOL->getFloatValue_json(options, P_ScaleX,1.0));
-        
-       
+
+
         widget->setScaleY(DICTOOL->getFloatValue_json(options, P_ScaleY,1.0));
-        
-      
+
+
         widget->setRotation(DICTOOL->getFloatValue_json(options, P_Rotation,0));
-        
+
         bool vb = DICTOOL->checkObjectExist_json(options, P_Visbile);
         if (vb)
         {
@@ -236,7 +236,7 @@ namespace cocostudio
         }
         int z = DICTOOL->getIntValue_json(options, P_ZOrder);
         widget->setLocalZOrder(z);
-        
+
         bool layout = DICTOOL->checkObjectExist_json(options, P_LayoutParameter);
         if (layout)
         {
@@ -280,7 +280,7 @@ namespace cocostudio
             }
         }
     }
-    
+
     void WidgetReader::setColorPropsFromJsonDictionary(Widget *widget, const rapidjson::Value &options)
     {
         bool op = DICTOOL->checkObjectExist_json(options, P_Opacity);
@@ -295,15 +295,15 @@ namespace cocostudio
         int colorG = cg ? DICTOOL->getIntValue_json(options, P_ColorG) : 255;
         int colorB = cb ? DICTOOL->getIntValue_json(options, P_ColorB) : 255;
         widget->setColor(Color3B(colorR, colorG, colorB));
-        
+
         this->setAnchorPointForWidget(widget, options);
-        
+
         bool flipX = DICTOOL->getBooleanValue_json(options, P_FlipX);
         bool flipY = DICTOOL->getBooleanValue_json(options, P_FlipY);
         widget->setFlippedX(flipX);
         widget->setFlippedY(flipY);
     }
-    
+
     void WidgetReader::beginSetBasicProperties(cocos2d::ui::Widget *widget)
     {
         _position = widget->getPosition();
@@ -313,11 +313,11 @@ namespace cocostudio
         _opacity = widget->getOpacity();
         _originalAnchorPoint = widget->getAnchorPoint();
     }
-    
+
     void WidgetReader::endSetBasicProperties(Widget *widget)
     {
         Size screenSize = Director::getInstance()->getWinSize();
-        
+
         widget->setPositionPercent(Vec2(_positionPercentX, _positionPercentY));
         widget->setSizePercent(Vec2(_sizePercentX, _sizePercentY));
         if (_isAdaptScreen) {
@@ -333,7 +333,7 @@ namespace cocostudio
         widget->setPosition(_position);
         widget->setAnchorPoint(_originalAnchorPoint);
     }
-    
+
     std::string WidgetReader::getResourcePath(const rapidjson::Value &dict,
                                               const std::string &key,
                                               cocos2d::ui::Widget::TextureResType texType)
@@ -355,7 +355,7 @@ namespace cocostudio
         }
         return imageFileName_tp;
     }
-    
+
     std::string WidgetReader::getResourcePath(CocoLoader *cocoLoader, stExpCocoNode *cocoNode, cocos2d::ui::Widget::TextureResType texType)
     {
         stExpCocoNode *backGroundChildren = cocoNode->GetChildArray(cocoLoader);
@@ -364,9 +364,9 @@ namespace cocostudio
         if (backgroundValue.size() < 3) {
             return "";
         }
-       
+
         std::string binaryPath = GUIReader::getInstance()->getFilePath();
-        
+
         std::string imageFileName_tp;
         if (!backgroundValue.empty())
         {
@@ -382,7 +382,7 @@ namespace cocostudio
         }
         return imageFileName_tp;
     }
-    
+
     void WidgetReader::setAnchorPointForWidget(cocos2d::ui::Widget *widget, const rapidjson::Value &options)
     {
         bool isAnchorPointXExists = DICTOOL->checkObjectExist_json(options, P_AnchorPointX);
@@ -392,7 +392,7 @@ namespace cocostudio
         }else{
             anchorPointXInFile = widget->getAnchorPoint().x;
         }
-        
+
         bool isAnchorPointYExists = DICTOOL->checkObjectExist_json(options, P_AnchorPointY);
         float anchorPointYInFile;
         if (isAnchorPointYExists) {
@@ -401,28 +401,28 @@ namespace cocostudio
         else{
             anchorPointYInFile = widget->getAnchorPoint().y;
         }
-        
+
         if (isAnchorPointXExists || isAnchorPointYExists) {
             widget->setAnchorPoint(Vec2(anchorPointXInFile, anchorPointYInFile));
         }
     }
-    
+
     void WidgetReader::setPropsFromBinary(cocos2d::ui::Widget *widget, cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode)
     {
         stExpCocoNode *stChildArray = cocoNode->GetChildArray(cocoLoader);
-        
+
         this->beginSetBasicProperties(widget);
-        
+
         for (int i = 0; i < cocoNode->GetChildNum(); ++i) {
             std::string key = stChildArray[i].GetName(cocoLoader);
             std::string value = stChildArray[i].GetValue(cocoLoader);
-            
+
             CC_BASIC_PROPERTY_BINARY_READER
         }
-        
+
         this->endSetBasicProperties(widget);
-    }        
-    
+    }
+
     Offset<Table> WidgetReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData, flatbuffers::FlatBufferBuilder *builder)
     {
         std::string name = "";
@@ -462,14 +462,14 @@ namespace cocostudio
         float rightMargin = 0;
         float topMargin = 0;
         float bottomMargin = 0;
-        
+
         // attributes
         const tinyxml2::XMLAttribute* attribute = objectData->FirstAttribute();
         while (attribute)
         {
             std::string attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (attriname == "Name")
             {
                 name = value;
@@ -589,7 +589,7 @@ namespace cocostudio
 
             attribute = attribute->Next();
         }
-        
+
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
@@ -597,12 +597,12 @@ namespace cocostudio
             if (attriname == "Position")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "X")
                     {
                         position.x = atof(value.c_str());
@@ -611,19 +611,19 @@ namespace cocostudio
                     {
                         position.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "Scale")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "ScaleX")
                     {
                         scale.x = atof(value.c_str());
@@ -632,19 +632,19 @@ namespace cocostudio
                     {
                         scale.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "AnchorPoint")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "ScaleX")
                     {
                         anchorPoint.x = atof(value.c_str());
@@ -653,19 +653,19 @@ namespace cocostudio
                     {
                         anchorPoint.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "CColor")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "A")
                     {
                         color.a = atoi(value.c_str());
@@ -682,19 +682,19 @@ namespace cocostudio
                     {
                         color.b = atoi(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
             else if (attriname == "Size")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     attriname = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (attriname == "X")
                     {
                         size.x = atof(value.c_str());
@@ -703,7 +703,7 @@ namespace cocostudio
                     {
                         size.y = atof(value.c_str());
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
@@ -749,10 +749,10 @@ namespace cocostudio
                     attribute = attribute->Next();
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         RotationSkew f_rotationskew(rotationSkew.x, rotationSkew.y);
         Position f_position(position.x, position.y);
         Scale f_scale(scale.x, scale.y);
@@ -776,7 +776,7 @@ namespace cocostudio
                                                             rightMargin,
                                                             topMargin,
                                                             bottomMargin);
-        
+
         auto options = CreateWidgetOptions(*builder,
                                            builder->CreateString(name),
                                            (int32_t)actionTag,
@@ -799,20 +799,20 @@ namespace cocostudio
                                            builder->CreateString(callbackType),
                                            builder->CreateString(callbackName),
                                            f_layoutComponent);
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void WidgetReader::setPropsWithFlatBuffers(cocos2d::Node *node, const flatbuffers::Table *widgetOptions)
     {
         Widget* widget = static_cast<Widget*>(node);
-        
+
         auto options = (WidgetOptions*)widgetOptions;
-        
+
         widget->setCascadeColorEnabled(true);
         widget->setCascadeOpacityEnabled(true);
         widget->setAnchorPoint(Vec2::ZERO);
-        
+
         widget->setUnifySizeEnabled(true);
         bool ignoreSize = options->ignoreSize() != 0;
         widget->ignoreContentAdaptWithSize(ignoreSize);
@@ -822,15 +822,15 @@ namespace cocostudio
         widget->ignoreContentAdaptWithSize(false);
         Size contentSize(options->size()->width(), options->size()->height());
         widget->setContentSize(contentSize);
-        
+
         int tag = options->tag();
         widget->setTag(tag);
-        
+
         int actionTag = options->actionTag();
         widget->setActionTag(actionTag);
-        
+
         std::string customProperty = options->customProperty()->c_str();
-        
+
         ComExtensionData* extensionData = ComExtensionData::create();
         extensionData->setCustomProperty(customProperty);
         extensionData->setActionTag(actionTag);
@@ -839,53 +839,53 @@ namespace cocostudio
             node->removeComponent(ComExtensionData::COMPONENT_NAME);
         }
         node->addComponent(extensionData);
-        
+
         bool touchEnabled = options->touchEnabled() != 0;
         widget->setTouchEnabled(touchEnabled);
-        
+
         std::string name = options->name()->c_str();
         widget->setName(name);
-        
+
         Vec2 position(options->position()->x(), options->position()->y());
         widget->setPosition(position);
-        
+
         float scaleX = options->scale()->scaleX();
         widget->setScaleX(scaleX);
         float scaleY = options->scale()->scaleY();
         widget->setScaleY(scaleY);
-        
+
         float rotationSkewX = options->rotationSkew()->rotationSkewX();
         widget->setRotationSkewX(rotationSkewX);
         float rotationSkewY = options->rotationSkew()->rotationSkewY();
         widget->setRotationSkewY(rotationSkewY);
-        
+
         bool visible = options->visible() != 0;
         widget->setVisible(visible);
-        
+
         int zOrder = options->zOrder();
         widget->setLocalZOrder(zOrder);
-        
+
         auto f_color = options->color();
         Color3B color(f_color->r(), f_color->g(), f_color->b());
         widget->setColor(color);
-        
+
         int alpha = options->alpha();
         widget->setOpacity(alpha);
-        
+
         auto f_anchorPoint = options->anchorPoint();
         Vec2 anchorPoint(f_anchorPoint->scaleX(), f_anchorPoint->scaleY());
         widget->setAnchorPoint(anchorPoint);
-        
+
         bool flippedX = options->flipX() != 0;
         widget->setFlippedX(flippedX);
         bool flippedY = options->flipY() != 0;
         widget->setFlippedY(flippedY);
-        
+
         std::string callbackType = options->callBackType()->c_str();
         widget->setCallbackType(callbackType);
         std::string callbackName = options->callBackName()->c_str();
         widget->setCallbackName(callbackName);
-        
+
         setLayoutComponentPropsWithFlatBuffers(widget, widgetOptions);
     }
 
@@ -957,16 +957,16 @@ namespace cocostudio
         layoutComponent->setLeftMargin(leftMargin);
         layoutComponent->setRightMargin(rightMargin);
     }
-    
+
     Node* WidgetReader::createNodeWithFlatBuffers(const flatbuffers::Table *widgetOptions)
     {
         Widget* widget = Widget::create();
-        
+
         setPropsWithFlatBuffers(widget, (Table*)widgetOptions);
-        
+
         return widget;
     }
-    
+
     std::string WidgetReader::getResourcePath(const std::string &path, cocos2d::ui::Widget::TextureResType texType)
     {
         std::string filePath = GUIReader::getInstance()->getFilePath();
@@ -986,8 +986,6 @@ namespace cocostudio
         }
         return imageFileName_tp;
     }
-    
+
 }
-
-
 

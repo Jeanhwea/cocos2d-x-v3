@@ -421,3 +421,4 @@ void register_all_cocos2dx_3d_manual(JSContext *cx, JS::HandleObject global)
     tmpObj.set(jsb_cocos2d_Terrain_prototype);
     JS_DefineFunction(cx, tmpObj, "getHeightData", js_cocos2dx_Terrain_getHeightData, 0, JSPROP_READONLY | JSPROP_PERMANENT);
 }
+

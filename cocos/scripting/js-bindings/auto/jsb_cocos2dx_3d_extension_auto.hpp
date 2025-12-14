@@ -74,3 +74,4 @@ bool js_cocos2dx_3d_extension_PUParticleSystem3D_create(JSContext *cx, uint32_t 
 bool js_cocos2dx_3d_extension_PUParticleSystem3D_PUParticleSystem3D(JSContext *cx, uint32_t argc, jsval *vp);
 
 #endif // __cocos2dx_3d_extension_h__
+

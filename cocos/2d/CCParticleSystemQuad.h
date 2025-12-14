@@ -5,7 +5,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,7 +47,7 @@ class EventCustom;
 
 It includes all the features of ParticleSystem.
 
-Special features and Limitations:    
+Special features and Limitations:
 - Particle size can be any float number.
 - The system can be scaled.
 - The particles can be rotated.
@@ -79,7 +79,7 @@ public:
      */
     static ParticleSystemQuad * create(const std::string& filename);
     /** Creates a Particle Emitter with a dictionary.
-     * 
+     *
      * @param dictionary Particle dictionary.
      * @return An autoreleased ParticleSystemQuad object.
      */
@@ -119,7 +119,7 @@ public:
     /**
      * @js NA
      * @lua NA
-     */    
+     */
     virtual void updateParticleQuads() override;
     /**
      * @js NA
@@ -144,7 +144,7 @@ public:
     virtual void setTotalParticles(int tp) override;
 
     virtual std::string getDescription() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -155,23 +155,23 @@ CC_CONSTRUCTOR_ACCESS:
      * @lua NA
      */
     virtual ~ParticleSystemQuad();
-    
+
     // Overrides
     /**
      * @js NA
      * @lua NA
      */
     virtual bool initWithTotalParticles(int numberOfParticles) override;
-    
+
 
 
 protected:
     /** initializes the indices for the vertices*/
     void initIndices();
-    
+
     /** initializes the texture with a rectangle measured Points */
     void initTexCoordsWithRect(const Rect& rect);
-    
+
     /** Updates texture coords */
     void updateTexCoords();
 
@@ -185,7 +185,7 @@ protected:
     GLuint              _buffersVBO[2]; //0: vertex  1: indices
 
     QuadCommand _quadCommand;           // quad command
-    
+
 
 
 private:

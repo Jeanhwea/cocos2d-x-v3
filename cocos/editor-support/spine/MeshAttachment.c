@@ -88,7 +88,7 @@ void spMeshAttachment_setParentMesh (spMeshAttachment* self, spMeshAttachment* p
 		self->trianglesCount = parentMesh->trianglesCount;
 
 		self->hullLength = parentMesh->hullLength;
-		
+
 		self->super.worldVerticesLength = parentMesh->super.worldVerticesLength;
 
 		self->edges = parentMesh->edges;
@@ -98,3 +98,4 @@ void spMeshAttachment_setParentMesh (spMeshAttachment* self, spMeshAttachment* p
 		self->height = parentMesh->height;
 	}
 }
+

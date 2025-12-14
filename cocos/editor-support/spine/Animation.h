@@ -586,3 +586,4 @@ typedef spPathConstraintMixTimeline PathConstraintMixTimeline;
 #endif
 
 #endif /* SPINE_ANIMATION_H_ */
+

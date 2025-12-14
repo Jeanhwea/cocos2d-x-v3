@@ -1879,3 +1879,4 @@ void UIRichTextXMLSpace::switchAlignment(Ref *sender, Widget::TouchEventType typ
         _richText->setHorizontalAlignment(alignment);
     }
 }
+

@@ -162,24 +162,24 @@ void TextureCache::addImageAsync(const std::string &path, const std::function<vo
  - find the image has been add or not, if not add an AsyncStruct to _requestQueue  (GL thread)
  - get AsyncStruct from _requestQueue, load res and fill image data to AsyncStruct.image, then add AsyncStruct to _responseQueue (Load thread)
  - on schedule callback, get AsyncStruct from _responseQueue, convert image to texture, then delete AsyncStruct (GL thread)
- 
+
  the Critical Area include these members:
  - _requestQueue: locked by _requestMutex
  - _responseQueue: locked by _responseMutex
- 
+
  the object's life time:
  - AsyncStruct: construct and destruct in GL thread
  - image data: new in Load thread, delete in GL thread(by Image instance)
- 
+
  Note:
  - all AsyncStruct referenced in _asyncStructQueue, for unbind function use.
- 
+
  How to deal add image many times?
  - At first, this situation is abnormal, we only ensure the logic is correct.
  - If the image has been loaded, the after load image call will return immediately.
  - If the image request is in queue already, there will be more than one request in queue,
  - In addImageAsyncCallback, will deduplicate the request to ensure only create one texture.
- 
+
  Does process all response in addImageAsyncCallback consume more time?
  - Convert image to texture faster than load image from disk, so this isn't a
  problem.
@@ -229,7 +229,7 @@ void TextureCache::addImageAsync(const std::string &path, const std::function<vo
     // generate async struct
     AsyncStruct *data =
       new (std::nothrow) AsyncStruct(fullpath, callback, callbackKey);
-    
+
     // add async struct into queue
     _asyncStructQueue.push_back(data);
     std::unique_lock<std::mutex> ul(_requestMutex);
@@ -777,7 +777,7 @@ void VolatileTextureMgr::addImage(Texture2D *tt, Image *image)
 {
     if (tt == nullptr || image == nullptr)
         return;
-    
+
     VolatileTexture *vt = findVolotileTexture(tt);
     image->retain();
     vt->_uiImage = image;

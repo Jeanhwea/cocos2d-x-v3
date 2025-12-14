@@ -126,7 +126,7 @@ public:
      * @return  An autoreleased sprite object.
      */
     static Sprite* create(const std::string& filename);
-    
+
     /**
      * Creates a polygon sprite with a polygon info.
      *
@@ -533,9 +533,9 @@ public:
     virtual void setPositionZ(float positionZ) override;
     virtual void setAnchorPoint(const Vec2& anchor) override;
     virtual void setContentSize(const Size& size) override;
-    
+
     virtual void setIgnoreAnchorPointForPosition(bool value) override;
-    
+
     virtual void setVisible(bool bVisible) override;
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
     virtual void setOpacityModifyRGB(bool modify) override;
@@ -565,8 +565,8 @@ CC_CONSTRUCTOR_ACCESS :
      * @return  True if the sprite is initialized properly, false otherwise.
      */
     virtual bool initWithTexture(Texture2D *texture);
-    
-    
+
+
     /**
      * Initializes a sprite with a PolygonInfo.
      *
@@ -647,7 +647,7 @@ CC_CONSTRUCTOR_ACCESS :
      * @lua     init
      */
     virtual bool initWithFile(const std::string& filename, const Rect& rect);
-    
+
 protected:
 
     virtual void updateColor() override;
@@ -736,3 +736,4 @@ private:
 NS_CC_END
 
 #endif // __SPRITE_NODE_CCSPRITE_H__
+

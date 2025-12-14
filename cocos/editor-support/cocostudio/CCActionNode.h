@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "editor-support/cocostudio/CocosStudioExport.h"
 
 namespace cocostudio {
-    
+
 class CocoLoader;
 struct stExpCocoNode;
 /**
@@ -165,7 +165,7 @@ protected:
     int valueToInt(const std::string& value);
     bool valueToBool(const std::string& value);
     float valueToFloat(const std::string& value);
-    
+
     int _currentFrameIndex;
     int _destFrameIndex;
 
@@ -190,3 +190,4 @@ protected:
 }
 
 #endif
+

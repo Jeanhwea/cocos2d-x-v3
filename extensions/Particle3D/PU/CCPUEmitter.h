@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -77,7 +77,7 @@ public:
 
     PUEmitter();
     virtual ~PUEmitter();
-    
+
     virtual void notifyStart();
     virtual void notifyStop();
     virtual void notifyPause();
@@ -89,7 +89,7 @@ public:
     virtual void updateEmitter(Particle3D *particle, float deltaTime) override;
     virtual void postUpdateEmitter(float deltaTime);
     virtual unsigned short calculateRequestedParticles(float timeElapsed);
-    
+
     virtual void emit(int count) override;
 
     void setLocalPosition(const Vec3 &pos) { _position = pos; };
@@ -97,11 +97,11 @@ public:
         /** Calculate the derived position of the affector.
     @remarks
         Note, that in script, the position is set as localspace, while if the affector is
-        emitted, its position is automatically transformed. This function always returns 
+        emitted, its position is automatically transformed. This function always returns
         the derived position.
     */
     const Vec3& getDerivedPosition();
-    
+
     /** Enables or disables the emitter.
     */
     void setEnabled (bool enabled);
@@ -235,7 +235,7 @@ public:
         The orientation is generated random between mParticleOrientationRangeStart and mParticleOrientationRangeEnd.
     */
     void setParticleOrientationRangeEnd(const Quaternion& orientationRangeEnd);
-            
+
     /** Sets the direction of the particle that the emitter is emitting.
     @remarks
         Don't confuse this with the emitters own direction.
@@ -298,7 +298,7 @@ public:
     /** Set the texture coords range start of an emitted particle. This is the lower value used to set a random texture coords.
     */
     void setParticleTextureCoordsRangeStart(const unsigned short& particleTextureCoordsRangeStart);
-            
+
     /** Get the texture coords range end of an emitted particle.
     */
     const unsigned short& getParticleTextureCoordsRangeEnd() const;
@@ -357,7 +357,7 @@ protected:
         /**  Internal method for generating the angle.
     */
     void generateAngle(float &angle);
-    
+
 protected:
 
     Vec3 _position;
@@ -378,11 +378,11 @@ protected:
 
     /** Direction (and speed) of the emitted particle
     @remarks
-        Don't confuse the particle direction with the direction of the emitter itself. 
+        Don't confuse the particle direction with the direction of the emitter itself.
         The particleDirection is the direction of an emitted particle.
     */
     Vec3 _particleDirection;
-            
+
     /** The original direction of the emitted particle
     @remarks
         Don't confuse this with the particles' originalDirection.
@@ -501,7 +501,7 @@ protected:
     */
     bool _dynRepeatDelaySet;
 
-    /** Auto direction means that the direction of a particle is not determined by the 
+    /** Auto direction means that the direction of a particle is not determined by the
         direction vector that has been set, but the direction vector is generated based on
         the shape of the emitter. In most cases this means that the particle direction is
         perpendicular on the shape of the emitter.
@@ -558,7 +558,7 @@ protected:
     /** Used to randomize the texture coords of an emitted particle.
     */
     unsigned short _particleTextureCoordsRangeStart;
-                
+
     /** Used to randomize the texture coords of an emitted particle.
     */
     unsigned short _particleTextureCoordsRangeEnd;
@@ -579,3 +579,4 @@ protected:
 NS_CC_END
 
 #endif
+

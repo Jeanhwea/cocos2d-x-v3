@@ -57,7 +57,7 @@ static AppDelegate s_sharedApplication;
 #if !defined(CC_TARGET_OS_TVOS)
     [eaglView setMultipleTouchEnabled:YES];
 #endif
-    
+
     // Use RootViewController manage CCEAGLView
     viewController = [[RootViewController alloc] initWithNibName:nil bundle:nil];
 #if !defined(CC_TARGET_OS_TVOS)
@@ -76,7 +76,7 @@ static AppDelegate s_sharedApplication;
         // use this method on ios6
         [window setRootViewController:viewController];
     }
-    
+
     [window makeKeyAndVisible];
 
 #if !defined(CC_TARGET_OS_TVOS)

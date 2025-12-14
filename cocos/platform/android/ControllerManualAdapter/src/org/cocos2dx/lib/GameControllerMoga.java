@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,12 +39,12 @@ import com.bda.controller.StateEvent;
 public class GameControllerMoga implements ControllerListener, GameControllerDelegate {
 
     private static final String mVendorName = "Moga";
-    
+
     private float mOldLeftThumbstickX = 0.0f;
     private float mOldLeftThumbstickY = 0.0f;
     private float mOldRightThumbstickX = 0.0f;
     private float mOldRightThumbstickY = 0.0f;
-    
+
     private float mOldLeftTrigger = 0.0f;
     private float mOldRightTrigger = 0.0f;
 
@@ -56,7 +56,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_B, GameControllerDelegate.BUTTON_B);
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_X, GameControllerDelegate.BUTTON_X);
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_Y, GameControllerDelegate.BUTTON_Y);
-        
+
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_L1,
                 GameControllerDelegate.BUTTON_LEFT_SHOULDER);
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_R1,
@@ -65,7 +65,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
                 GameControllerDelegate.BUTTON_LEFT_TRIGGER);
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_R2,
                 GameControllerDelegate.BUTTON_RIGHT_TRIGGER);
-        
+
         mKeyMap.put(KeyEvent.KEYCODE_DPAD_UP,
                 GameControllerDelegate.BUTTON_DPAD_UP);
         mKeyMap.put(KeyEvent.KEYCODE_DPAD_DOWN,
@@ -74,7 +74,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
                 GameControllerDelegate.BUTTON_DPAD_LEFT);
         mKeyMap.put(KeyEvent.KEYCODE_DPAD_RIGHT,
                 GameControllerDelegate.BUTTON_DPAD_RIGHT);
-        
+
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_START,
                 GameControllerDelegate.BUTTON_START);
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_SELECT,
@@ -86,8 +86,8 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
         mKeyMap.put(KeyEvent.KEYCODE_BUTTON_THUMBR,
                 GameControllerDelegate.BUTTON_RIGHT_THUMBSTICK);
     }
-    
-    public void onKeyEvent(KeyEvent event) {        
+
+    public void onKeyEvent(KeyEvent event) {
         int keycode = event.getKeyCode();
         if (keycode == KeyEvent.KEYCODE_BUTTON_L2
                 || keycode == KeyEvent.KEYCODE_BUTTON_R2) {
@@ -114,7 +114,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
             return;
         }
         int controllerId = event.getControllerId();
-        
+
         float newLeftThumbstickX = event.getAxisValue(MotionEvent.AXIS_X);
         if (newLeftThumbstickX != mOldLeftThumbstickX) {
             mControllerEventListener.onAxisEvent(mVendorName,
@@ -150,7 +150,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
                     newRightThumbstickY, true);
             mOldRightThumbstickY = newRightThumbstickY;
         }
-        
+
         float newLeftTrigger = event.getAxisValue(MotionEvent.AXIS_LTRIGGER);
         if (newLeftTrigger != mOldLeftTrigger) {
             mControllerEventListener.onAxisEvent(mVendorName,
@@ -159,7 +159,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
                     newLeftTrigger, true);
             mOldLeftTrigger = newLeftTrigger;
         }
-        
+
         float newRightTrigger = event.getAxisValue(MotionEvent.AXIS_RTRIGGER);
         if (newRightTrigger != mOldRightTrigger) {
             mControllerEventListener.onAxisEvent(mVendorName,
@@ -206,7 +206,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
 
     public void onCreate(Context context) {
         mController = Controller.getInstance(context);
-        
+
         mController.init();
         mController.setListener(this, new Handler());
     }
@@ -222,7 +222,7 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
     public void onDestroy() {
         mController.exit();
     }
-    
+
     private ControllerEventListener mControllerEventListener;
     @Override
     public void setControllerEventListener(ControllerEventListener listener) {
@@ -240,3 +240,4 @@ public class GameControllerMoga implements ControllerListener, GameControllerDel
     }
 
 }
+

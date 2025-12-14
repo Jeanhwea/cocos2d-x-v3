@@ -177,12 +177,12 @@ void Vec3::normalize()
     // Already normalized.
     if (n == 1.0f)
         return;
-    
+
     n = std::sqrt(n);
     // Too close to zero.
     if (n < MATH_TOLERANCE)
         return;
-    
+
     n = 1.0f / n;
     x *= n;
     y *= n;
@@ -220,3 +220,4 @@ const Vec3 Vec3::UNIT_Y(0.0f, 1.0f, 0.0f);
 const Vec3 Vec3::UNIT_Z(0.0f, 0.0f, 1.0f);
 
 NS_CC_MATH_END
+

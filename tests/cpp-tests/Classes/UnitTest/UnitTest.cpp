@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -235,30 +235,30 @@ void TemplateVectorTest::onEnter()
     vec6.eraseObject(vec6.at(2));
     CCASSERT(vec6.at(2)->getTag() == 1013, "vec6's 3rd element's tag is 1013.");
     vec6.clear();
-    
+
     auto objA = Node::create(); // retain count is 1
     auto objB = Node::create();
     auto objC = Node::create();
     {
         Vector<Node*> array1;
         Vector<Node*> array2;
-        
+
         // push back objA 3 times
         array1.pushBack(objA); // retain count is 2
         array1.pushBack(objA); // retain count is 3
         array1.pushBack(objA); // retain count is 4
-        
+
         array2.pushBack(objA); // retain count is 5
         array2.pushBack(objB);
         array2.pushBack(objC);
-        
+
         for (auto obj : array1) {
             array2.eraseObject(obj);
         }
         CCASSERT(objA->getReferenceCount() == 4, "objA's reference count is 4.");
     }
     CCASSERT(objA->getReferenceCount() == 1, "objA's reference count is 1.");
-    
+
     {
         Vector<Node*> array1;
         // push back objA 3 times
@@ -268,11 +268,11 @@ void TemplateVectorTest::onEnter()
         CCASSERT(objA->getReferenceCount() == 4, "objA's reference count is 4.");
         array1.eraseObject(objA, true); // Remove all occurrences in the Vector.
         CCASSERT(objA->getReferenceCount() == 1, "objA's reference count is 1.");
-        
+
         array1.pushBack(objA); // retain count is 2
         array1.pushBack(objA); // retain count is 3
         array1.pushBack(objA); // retain count is 4
-        
+
         array1.eraseObject(objA, false);
         CCASSERT(objA->getReferenceCount() == 3, "objA's reference count is 3."); // Only remove the first occurrence in the Vector.
     }
@@ -564,36 +564,36 @@ std::string TemplateMapTest::subtitle() const
 void ValueTest::onEnter()
 {
     UnitTestDemo::onEnter();
-    
+
     Value v1;
     CCASSERT(v1.getType() == Value::Type::NONE, "v1's value type should be VALUE::Type::NONE.");
     CCASSERT(v1.isNull(), "v1 is null.");
-    
+
     Value v2(100);
     CCASSERT(v2.getType() == Value::Type::INTEGER, "v2's value type should be VALUE::Type::INTEGER.");
     CCASSERT(!v2.isNull(), "v2 is not null.");
-    
+
     Value v3(101.4f);
     CCASSERT(v3.getType() == Value::Type::FLOAT, "v3's value type should be VALUE::Type::FLOAT.");
     CCASSERT(!v3.isNull(), "v3 is not null.");
-    
+
     Value v4(106.1);
     CCASSERT(v4.getType() == Value::Type::DOUBLE, "v4's value type should be VALUE::Type::DOUBLE.");
     CCASSERT(!v4.isNull(), "v4 is not null.");
-    
+
     unsigned char byte = 50;
     Value v5(byte);
     CCASSERT(v5.getType() == Value::Type::BYTE, "v5's value type should be Value::Type::BTYE.");
     CCASSERT(!v5.isNull(), "v5 is not null.");
-    
+
     Value v6(true);
     CCASSERT(v6.getType() == Value::Type::BOOLEAN, "v6's value type is Value::Type::BOOLEAN.");
     CCASSERT(!v6.isNull(), "v6 is not null.");
-    
+
     Value v7("string");
     CCASSERT(v7.getType() == Value::Type::STRING, "v7's value type is Value::type::STRING.");
     CCASSERT(!v7.isNull(), "v7 is not null.");
-    
+
     Value v8(std::string("string2"));
     CCASSERT(v8.getType() == Value::Type::STRING, "v8's value type is Value::Type::STRING.");
     CCASSERT(!v8.isNull(), "v8 is not null.");
@@ -605,8 +605,8 @@ void ValueTest::onEnter()
         ret.push_back(v3);
         return ret;
     };
-    
-    
+
+
     Value v9(createValueVector());
     CCASSERT(v9.getType() == Value::Type::VECTOR, "v9's value type is Value::Type::VECTOR.");
     CCASSERT(!v9.isNull(), "v9 is not null.");
@@ -618,11 +618,11 @@ void ValueTest::onEnter()
         ret["ccc"] = v3;
         return ret;
     };
-    
+
     Value v10(createValueMap());
     CCASSERT(v10.getType() == Value::Type::MAP, "v10's value type is Value::Type::MAP.");
     CCASSERT(!v10.isNull(), "v10 is not null.");
-    
+
     auto createValueMapIntKey = [&](){
         ValueMapIntKey ret;
         ret[111] = v1;
@@ -630,7 +630,7 @@ void ValueTest::onEnter()
         ret[333] = v3;
         return ret;
     };
-    
+
     Value v11(createValueMapIntKey());
     CCASSERT(v11.getType() == Value::Type::INT_KEY_MAP, "v11's value type is Value::Type::INT_KEY_MAP.");
     CCASSERT(!v11.isNull(), "v11 is not null.");
@@ -717,72 +717,72 @@ static const char16_t WHITE_SPACE_CODE[] =
 static void doUTFConversion()
 {
     bool isSuccess = false;
-    
+
     std::string originalUTF8 = (const char*)__utf8Code;
     std::u16string originalUTF16 = __utf16Code;
-    
+
     //---------------------------
     std::string utf8Str;
     isSuccess = StringUtils::UTF16ToUTF8(originalUTF16, utf8Str);
-    
+
     if (isSuccess)
     {
         isSuccess = memcmp(utf8Str.data(), originalUTF8.data(), originalUTF8.length()+1)==0;
     }
-    
+
     CCASSERT(isSuccess, "StringUtils::UTF16ToUTF8 failed");
-    
+
     //---------------------------
     std::u16string utf16Str;
     isSuccess = StringUtils::UTF8ToUTF16(originalUTF8, utf16Str);
-    
+
     if (isSuccess)
     {
         isSuccess = memcmp(utf16Str.data(), originalUTF16.data(), originalUTF16.length()+1)==0;
     }
-    
+
     CCASSERT(isSuccess && (utf16Str.length() == TEST_CODE_NUM), "StringUtils::UTF8ToUTF16 failed");
-    
+
     //---------------------------
     auto vec1 = StringUtils::getChar16VectorFromUTF16String(originalUTF16);
-    
+
     CCASSERT(vec1.size() == originalUTF16.length(), "StringUtils::getChar16VectorFromUTF16String failed");
-    
+
     //---------------------------
     std::vector<char16_t> vec2( vec1 );
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
-    
+
     std::vector<char16_t> vec3( vec2 );
     StringUtils::trimUTF16Vector(vec2);
-    
+
     CCASSERT(vec1.size() == vec2.size(), "StringUtils::trimUTF16Vector failed");
-    
+
     for (size_t i = 0; i < vec2.size(); i++ )
     {
         CCASSERT(vec1.at(i) == vec2.at(i), "StringUtils::trimUTF16Vector failed");
     }
-    
+
     //---------------------------
     CCASSERT(StringUtils::getCharacterCountInUTF8String(originalUTF8) == TEST_CODE_NUM, "StringUtils::getCharacterCountInUTF8String failed");
-    
+
     //---------------------------
     CCASSERT(StringUtils::getIndexOfLastNotChar16(vec3, 0x2009) == (vec1.size()-1), "StringUtils::getIndexOfLastNotChar16 failed");
-    
+
     //---------------------------
     CCASSERT(originalUTF16.length() == TEST_CODE_NUM, "The length of the original utf16 string isn't equal to TEST_CODE_NUM");
-    
+
     //---------------------------
     size_t whiteCodeNum = sizeof(WHITE_SPACE_CODE) / sizeof(WHITE_SPACE_CODE[0]);
     for( size_t i = 0; i < whiteCodeNum; i++ )
     {
         CCASSERT(StringUtils::isUnicodeSpace(WHITE_SPACE_CODE[i]), "StringUtils::isUnicodeSpace failed");
     }
-    
+
     CCASSERT(!StringUtils::isUnicodeSpace(0xFFFF), "StringUtils::isUnicodeSpace failed");
-    
+
     CCASSERT(!StringUtils::isCJKUnicode(0xFFFF) && StringUtils::isCJKUnicode(0x3100), "StringUtils::isCJKUnicode failed");
 }
 
@@ -1484,73 +1484,73 @@ static void __checkMathUtilResult(const char* description, const float* a1, cons
 void MathUtilTest::onEnter()
 {
     UnitTestDemo::onEnter();
-    
+
     const int MAT4_SIZE = 16;
     const int VEC4_SIZE = 4;
-    
+
     const float inMat41[MAT4_SIZE] = {
         0.234023f, 2.472349f, 1.984244f, 2.23348f,
         0.634124f, 0.234975f, 6.384572f, 0.82368f,
         0.738028f, 1.845237f, 1.934721f, 1.62343f,
         0.339023f, 3.472452f, 1.324714f, 4.23852f,
     };
-    
+
     const float inMat42[MAT4_SIZE] = {
         1.640232f, 4.472349f, 0.983244f, 1.23343f,
         2.834124f, 8.234975f, 0.082572f, 3.82464f,
         3.238028f, 2.845237f, 0.331721f, 4.62544f,
         4.539023f, 9.472452f, 3.520714f, 2.23252f,
     };
-    
+
     const float scalar = 1.323298f;
     const float x = 0.432234f;
     const float y = 1.333229f;
     const float z = 2.535292f;
     const float w = 4.632234f;
-    
+
     const float inVec4[VEC4_SIZE] = {2.323478f, 0.238482f, 4.223783f, 7.238238f};
     const float inVec42[VEC4_SIZE] = {0.322374f, 8.258883f, 3.293683f, 2.838337f};
-    
+
     float outMat4Opt[MAT4_SIZE] = {0};
     float outMat4C[MAT4_SIZE] = {0};
     float outVec4Opt[VEC4_SIZE] = {0};
     float outVec4C[VEC4_SIZE] = {0};
-    
+
     // inline static void addMatrix(const float* m, float scalar, float* dst);
     MathUtilC::addMatrix(inMat41, scalar, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::addMatrix(inMat41, scalar, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::addMatrix(inMat41, scalar, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
 // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void addMatrix(const float* m, float scalar, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void addMatrix(const float* m1, const float* m2, float* dst);
     MathUtilC::addMatrix(inMat41, inMat42, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::addMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::addMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void addMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
@@ -1558,159 +1558,159 @@ void MathUtilTest::onEnter()
 
     // inline static void subtractMatrix(const float* m1, const float* m2, float* dst);
     MathUtilC::subtractMatrix(inMat41, inMat42, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::subtractMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::subtractMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void subtractMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void multiplyMatrix(const float* m, float scalar, float* dst);
     MathUtilC::multiplyMatrix(inMat41, scalar, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::multiplyMatrix(inMat41, scalar, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::multiplyMatrix(inMat41, scalar, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void multiplyMatrix(const float* m, float scalar, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void multiplyMatrix(const float* m1, const float* m2, float* dst);
     MathUtilC::multiplyMatrix(inMat41, inMat42, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::multiplyMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::multiplyMatrix(inMat41, inMat42, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void multiplyMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void negateMatrix(const float* m, float* dst);
     MathUtilC::negateMatrix(inMat41, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::negateMatrix(inMat41, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::negateMatrix(inMat41, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void negateMatrix(const float* m, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void transposeMatrix(const float* m, float* dst);
     MathUtilC::transposeMatrix(inMat41, outMat4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::transposeMatrix(inMat41, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::transposeMatrix(inMat41, outMat4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void transposeMatrix(const float* m, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
-    
+
     // inline static void transformVec4(const float* m, float x, float y, float z, float w, float* dst);
     MathUtilC::transformVec4(inMat41, x, y, z, w, outVec4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::transformVec4(inMat41, x, y, z, w, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::transformVec4(inMat41, x, y, z, w, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void transformVec4(const float* m, float x, float y, float z, float w, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
     memset(outVec4Opt, 0, sizeof(outVec4Opt));
-    
+
     // inline static void transformVec4(const float* m, const float* v, float* dst);
     MathUtilC::transformVec4(inMat41, inVec4, outVec4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::transformVec4(inMat41, inVec4, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::transformVec4(inMat41, inVec4, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void transformVec4(const float* m, const float* v, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
     memset(outVec4Opt, 0, sizeof(outVec4Opt));
-    
+
     // inline static void crossVec3(const float* v1, const float* v2, float* dst);
     MathUtilC::crossVec3(inVec4, inVec42, outVec4C);
-    
+
 #ifdef INCLUDE_NEON32
     MathUtilNeon::crossVec3(inVec4, inVec42, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_NEON64
     MathUtilNeon64::crossVec3(inVec4, inVec42, outVec4Opt);
 #endif
-    
+
 #ifdef INCLUDE_SSE
     // FIXME:
 #endif
-    
+
     __checkMathUtilResult("inline static void crossVec3(const float* v1, const float* v2, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
@@ -1745,5 +1745,4 @@ std::string ResizableBufferAdapterTest::subtitle() const
 {
     return "ResiziableBufferAdapter<Data> Test";
 }
-
 

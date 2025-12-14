@@ -472,7 +472,7 @@ bool js_cocos2dx_3d_Animate3D_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             cocos2d::Animation3D* arg0 = nullptr;
@@ -503,7 +503,7 @@ bool js_cocos2dx_3d_Animate3D_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 1) {
             cocos2d::Animation3D* arg0 = nullptr;
@@ -951,7 +951,7 @@ bool js_cocos2dx_3d_BillBoard_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -987,7 +987,7 @@ bool js_cocos2dx_3d_BillBoard_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::BillBoard* ret = cocos2d::BillBoard::create();
@@ -1017,7 +1017,7 @@ bool js_cocos2dx_3d_BillBoard_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -2117,7 +2117,7 @@ bool js_cocos2dx_3d_Skybox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 6) {
             std::string arg0;
@@ -2149,7 +2149,7 @@ bool js_cocos2dx_3d_Skybox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::Skybox* ret = cocos2d::Skybox::create();
@@ -3046,7 +3046,7 @@ bool js_cocos2dx_3d_Sprite3D_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -3063,7 +3063,7 @@ bool js_cocos2dx_3d_Sprite3D_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::Sprite3D* ret = cocos2d::Sprite3D::create();
@@ -3077,7 +3077,7 @@ bool js_cocos2dx_3d_Sprite3D_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -3132,7 +3132,7 @@ static bool js_cocos2dx_3d_Sprite3D_ctor(JSContext *cx, uint32_t argc, jsval *vp
 
 extern JSObject *jsb_cocos2d_Node_prototype;
 
-    
+
 void js_register_cocos2dx_3d_Sprite3D(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_Sprite3D_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_Sprite3D_class->name = "Sprite3D";

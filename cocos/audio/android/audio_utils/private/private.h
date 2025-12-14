@@ -33,3 +33,4 @@ typedef struct {uint8_t c[3];} __attribute__((__packed__)) uint8x3_t;
 __END_DECLS
 
 #endif /*ANDROID_AUDIO_PRIVATE_H*/
+

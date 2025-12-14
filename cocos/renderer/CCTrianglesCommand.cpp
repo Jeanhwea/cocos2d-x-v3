@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -58,7 +58,7 @@ void TrianglesCommand::init(float globalOrder, GLuint textureID, GLProgramState*
         CCLOGERROR("Resize indexCount from %d to %d, size must be multiple times of 3", count, _triangles.indexCount);
     }
     _mv = mv;
-    
+
     if( _textureID != textureID || _blendType.src != blendType.src || _blendType.dst != blendType.dst ||
        _glProgramState != glProgramState)
     {
@@ -102,9 +102,9 @@ void TrianglesCommand::generateMaterialID()
     } hashMe;
 
     // NOTE: Initialize hashMe struct to make the value of padding bytes be filled with zero.
-    // It's important since XXH32 below will also consider the padding bytes which probably 
+    // It's important since XXH32 below will also consider the padding bytes which probably
     // are set to random values by different compilers.
-    memset(&hashMe, 0, sizeof(hashMe)); 
+    memset(&hashMe, 0, sizeof(hashMe));
 
     hashMe.textureId = _textureID;
     hashMe.blendSrc = _blendType.src;
@@ -117,15 +117,16 @@ void TrianglesCommand::useMaterial() const
 {
     //Set texture
     GL::bindTexture2D(_textureID);
-    
+
     if (_alphaTextureID > 0)
     { // ANDROID ETC1 ALPHA supports.
         GL::bindTexture2DN(1, _alphaTextureID);
     }
     //set blend mode
     GL::blendFunc(_blendType.src, _blendType.dst);
-    
+
     _glProgramState->apply(_mv);
 }
 
 NS_CC_END
+

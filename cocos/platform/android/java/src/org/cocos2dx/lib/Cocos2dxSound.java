@@ -94,7 +94,7 @@ public class Cocos2dxSound {
         else {
             this.mSoundPool = new SoundPool(Cocos2dxSound.MAX_SIMULTANEOUS_STREAMS_DEFAULT, AudioManager.STREAM_MUSIC, Cocos2dxSound.SOUND_QUALITY);
         }
-        
+
         this.mSoundPool.setOnLoadCompleteListener(new OnLoadCompletedListener());
 
         this.mLeftVolume = 0.5f;
@@ -119,7 +119,7 @@ public class Cocos2dxSound {
         return soundID;
     }
 
-    
+
     /*
      * @brief Unload the preloaded effect from internal buffer.
      * @param path The path of the effect file.
@@ -460,3 +460,4 @@ public class Cocos2dxSound {
         }
     }
 }
+

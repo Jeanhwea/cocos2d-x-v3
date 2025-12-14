@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -49,10 +49,10 @@
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+
     [textField_ removeFromSuperview];
     [textField_ release];
-    
+
     [placeholderAttributes_ release];
     [super dealloc];
 }
@@ -60,34 +60,34 @@
 -(id) initWithFrame: (NSRect) frameRect editBox: (void*) editBox
 {
     self = [super init];
-    
+
     if (self)
     {
         editState_ = NO;
         self.textField = [[[NSTextField alloc] initWithFrame:frameRect] autorelease];
-        
+
         NSColor *newColor = [NSColor colorWithCalibratedRed:255 / 255.0f green:0 blue:0 alpha:1.0f];
         self.textField.textColor = newColor;
-        
+
         NSFont *font = [NSFont systemFontOfSize:10]; //TODO need to delete hard code here.
         textField_.font = font;
-        
+
         [self setupTextField:textField_];
-        
+
         self.editBox = editBox;
         self.placeholderAttributes = [NSMutableDictionary dictionaryWithObjectsAndKeys:
                                       font, NSFontAttributeName,
                                       [NSColor grayColor], NSForegroundColorAttributeName,
                                       nil];
-        
+
         [[[self getNSWindow] contentView] addSubview:textField_];
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                 selector:@selector(onTextDidChanged:)
                                                     name:NSControlTextDidEndEditingNotification
                                                   object:nil];
     }
-    
+
     return self;
 }
 
@@ -95,11 +95,11 @@
 {
     // hide first
     [self.textField setHidden:YES];
-    
+
 #if (CC_LUA_ENGINE_ENABLED > 0)
     player::PlayerEditBoxServiceMac *macEditBox = static_cast<player::PlayerEditBoxServiceMac *>(self.editBox);
     auto luaStack = cocos2d::LuaEngine::getInstance()->getLuaStack();
-    
+
     luaStack->pushString([self.textField.stringValue UTF8String]);
     luaStack->executeFunctionByHandler(macEditBox->getHandler(), 1);
 #endif
@@ -134,7 +134,7 @@
 
 -(void) visit
 {
-    
+
 }
 
 -(void) openKeyboard
@@ -194,10 +194,10 @@ void PlayerEditBoxServiceMac::showSingleLineEditBox(const cocos2d::Rect &rect)
 {
     [[_sysEdit.textField cell] setLineBreakMode:NSLineBreakByTruncatingTail];
     [[_sysEdit.textField cell] setTruncatesLastVisibleLine:YES];
-    
+
     [_sysEdit setPosition:NSMakePoint(rect.origin.x, rect.origin.y)];
     [_sysEdit setContentSize:NSMakeSize(rect.size.width, rect.size.height)];
-    
+
     show();
 }
 
@@ -205,10 +205,10 @@ void PlayerEditBoxServiceMac::showMultiLineEditBox(const cocos2d::Rect &rect)
 {
     [[_sysEdit.textField cell] setLineBreakMode:NSLineBreakByCharWrapping];
     [[_sysEdit.textField cell] setTruncatesLastVisibleLine:NO];
-    
+
     [_sysEdit setPosition:NSMakePoint(rect.origin.x, rect.origin.y)];
     [_sysEdit setContentSize:NSMakeSize(rect.size.width, rect.size.height)];
-    
+
     show();
 }
 
@@ -252,3 +252,4 @@ void PlayerEditBoxServiceMac::setFormator(int formator)
 }
 
 PLAYER_NS_END;
+

@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -387,7 +387,7 @@ void Layer::onTouchCancelled(Touch *touch, Event *event)
     CC_UNUSED_PARAM(touch);
     CC_UNUSED_PARAM(event);
 #endif
-}    
+}
 
 void Layer::onTouchesBegan(const std::vector<Touch*>& touches, Event *event)
 {
@@ -468,7 +468,7 @@ LayerColor::LayerColor()
     // default blend function
     _blendFunc = BlendFunc::ALPHA_PREMULTIPLIED;
 }
-    
+
 LayerColor::~LayerColor()
 {
 }
@@ -604,7 +604,7 @@ void LayerColor::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
     _customCommand.init(_globalZOrder, transform, flags);
     _customCommand.func = CC_CALLBACK_0(LayerColor::onDraw, this, transform, flags);
     renderer->addCommand(&_customCommand);
-    
+
     for(int i = 0; i < 4; ++i)
     {
         Vec4 pos;
@@ -619,9 +619,9 @@ void LayerColor::onDraw(const Mat4& transform, uint32_t /*flags*/)
 {
     getGLProgram()->use();
     getGLProgram()->setUniformsForBuiltins(transform);
-    
+
     GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION | GL::VERTEX_ATTRIB_FLAG_COLOR );
-    
+
     //
     // Attributes
     //
@@ -652,7 +652,7 @@ LayerGradient::LayerGradient()
 , _alongVector(Vec2(0, -1))
 , _compressedInterpolation(true)
 {
-    
+
 }
 
 LayerGradient::~LayerGradient()
@@ -859,7 +859,7 @@ LayerRadialGradient* LayerRadialGradient::create(const Color4B& startColor, cons
         layerGradient->autorelease();
         return layerGradient;
     }
-    
+
     delete layerGradient;
     return nullptr;
 }
@@ -872,7 +872,7 @@ LayerRadialGradient* LayerRadialGradient::create()
         layerGradient->autorelease();
         return layerGradient;
     }
-    
+
     delete layerGradient;
     return nullptr;
 }
@@ -901,20 +901,20 @@ bool LayerRadialGradient::initWithColor(const cocos2d::Color4B &startColor, cons
     // should do it before Layer::init()
     for (int i = 0; i < 4; ++i)
         _vertices[i] = {0.0f, 0.0f};
-    
+
     if (Layer::init())
     {
         convertColor4B24F(_startColorRend, startColor);
         _startColor = startColor;
-        
+
         convertColor4B24F(_endColorRend, endColor);
         _endColor = endColor;
-        
+
         _expand = expand;
-        
+
         setRadius(radius);
         setCenter(center);
-        
+
         setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_LAYER_RADIAL_GRADIENT));
         auto program = getGLProgram();
         _uniformLocationStartColor = program->getUniformLocation("u_startColor");
@@ -922,10 +922,10 @@ bool LayerRadialGradient::initWithColor(const cocos2d::Color4B &startColor, cons
         _uniformLocationExpand = program->getUniformLocation("u_expand");
         _uniformLocationRadius = program->getUniformLocation("u_radius");
         _uniformLocationCenter = program->getUniformLocation("u_center");
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -948,20 +948,20 @@ void LayerRadialGradient::onDraw(const Mat4& transform, uint32_t /*flags*/)
     program->setUniformLocationWith2f(_uniformLocationCenter, _center.x, _center.y);
     program->setUniformLocationWith1f(_uniformLocationRadius, _radius);
     program->setUniformLocationWith1f(_uniformLocationExpand, _expand);
-    
-    
+
+
     GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION);
-    
+
     //
     // Attributes
     //
     glBindBuffer(GL_ARRAY_BUFFER, 0);
     glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, _vertices);
-    
+
     GL::blendFunc(_blendFunc.src, _blendFunc.dst);
-    
+
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
-    
+
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,4);
 }
 
@@ -1255,18 +1255,18 @@ bool LayerMultiplex::initWithArray(const Vector<Layer*>& arrayOfLayers)
 
 void LayerMultiplex::switchTo(int n)
 {
-    
+
     switchTo(n, true);
 }
 
 void LayerMultiplex::switchTo(int n, bool cleanup)
 {
     CCASSERT( n < _layers.size(), "Invalid index in MultiplexLayer switchTo message" );
-    
+
     this->removeChild(_layers.at(_enabledLayer), cleanup);
-    
+
     _enabledLayer = n;
-    
+
     this->addChild(_layers.at(n));
 }
 
@@ -1282,7 +1282,7 @@ void LayerMultiplex::switchToAndReleaseMe(int n)
         sEngine->releaseScriptObject(this, _layers.at(_enabledLayer));
     }
 #endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-    
+
     _layers.replace(_enabledLayer, nullptr);
 
     _enabledLayer = n;
@@ -1296,3 +1296,4 @@ std::string LayerMultiplex::getDescription() const
 }
 
 NS_CC_END
+

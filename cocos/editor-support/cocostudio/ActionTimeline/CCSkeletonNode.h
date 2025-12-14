@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -53,7 +53,7 @@ public:
     const cocos2d::Map<std::string, BoneNode*>& getAllSubBonesMap() const;
 
     /**
-    *@brief: change displays 
+    *@brief: change displays
     *@param: boneSkinNameMap, map <name of bone, name of skin to display which added to bone>
     */
     void changeSkins(const std::map<std::string, std::string>& boneSkinNameMap);
@@ -77,7 +77,7 @@ CC_CONSTRUCTOR_ACCESS:
     SkeletonNode();
     virtual ~SkeletonNode();
     virtual bool init() override;
-    
+
 protected:
     virtual void updateVertices() override;
     virtual void updateColor() override;
@@ -117,3 +117,4 @@ private:
 NS_TIMELINE_END
 
 #endif //__CCSKELETONNODE_H__
+

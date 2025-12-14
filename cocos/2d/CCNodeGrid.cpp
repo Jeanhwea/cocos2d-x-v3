@@ -111,7 +111,7 @@ void NodeGrid::visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t p
     if(dirty)
         _modelViewTransform = this->transform(parentTransform);
     _transformUpdated = false;
-    
+
     _groupCommand.init(_globalZOrder);
     renderer->addCommand(&_groupCommand);
     renderer->pushGroup(_groupCommand.getRenderQueueID());
@@ -121,7 +121,7 @@ void NodeGrid::visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t p
     // but it is deprecated and your code should not rely on it
     Director* director = Director::getInstance();
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
-    
+
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
 
@@ -141,7 +141,7 @@ void NodeGrid::visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t p
     {
         _gridTarget->visit(renderer, _modelViewTransform, dirty);
     }
-    
+
     int i = 0;
     bool visibleByCamera = isVisitableByVisitingCamera();
 
@@ -170,11 +170,11 @@ void NodeGrid::visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t p
     {
         this->draw(renderer, _modelViewTransform, dirty);
     }
-    
+
     // FIX ME: Why need to set _orderOfArrival to 0??
     // Please refer to https://github.com/cocos2d/cocos2d-x/pull/6920
     // setOrderOfArrival(0);
-    
+
     if(_nodeGrid && _nodeGrid->isActive())
     {
         // restore projection
@@ -186,7 +186,7 @@ void NodeGrid::visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t p
     renderer->addCommand(&_gridEndCommand);
 
     renderer->popGroup();
- 
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
@@ -198,3 +198,4 @@ void NodeGrid::setGrid(GridBase *grid)
 }
 
 NS_CC_END
+

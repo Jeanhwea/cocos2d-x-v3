@@ -36,7 +36,7 @@ class SpineTestLayer : public TestCase
 {
 public:
     SpineTestLayer();
-    
+
     virtual std::string title() const;
 protected:
     std::string    _title;
@@ -46,9 +46,9 @@ class BatchingExample: public SpineTestLayer {
 public:
     CREATE_FUNC(BatchingExample);
     ~BatchingExample ();
-    
+
     virtual bool init ();
-    
+
 protected:
     spAtlas* _atlas;
     spAttachmentLoader* _attachmentLoader;
@@ -60,9 +60,9 @@ class CoinExample: public SpineTestLayer
 {
 public:
     CREATE_FUNC(CoinExample);
-    
+
     virtual bool init();
-    
+
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
@@ -70,9 +70,9 @@ private:
 class GoblinsExample : public SpineTestLayer {
 public:
     CREATE_FUNC(GoblinsExample);
-    
+
     virtual bool init ();
-    
+
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
@@ -80,9 +80,9 @@ private:
 class RaptorExample : public SpineTestLayer {
 public:
     CREATE_FUNC(RaptorExample);
-    
+
     virtual bool init ();
-    
+
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
@@ -90,11 +90,11 @@ private:
 class SpineboyExample : public SpineTestLayer {
 public:
     CREATE_FUNC (SpineboyExample);
-    
+
     virtual bool init ();
-    
+
     virtual void update (float deltaTime);
-    
+
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
@@ -102,11 +102,12 @@ private:
 class TankExample : public SpineTestLayer {
 public:
     CREATE_FUNC(TankExample);
-    
+
     virtual bool init ();
-    
+
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
 #endif // _EXAMPLELAYER_H_
+

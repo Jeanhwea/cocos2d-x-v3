@@ -104,3 +104,4 @@ void spSkin_attachAll (const spSkin* self, spSkeleton* skeleton, const spSkin* o
 		entry = entry->next;
 	}
 }
+

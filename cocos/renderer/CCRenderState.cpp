@@ -919,3 +919,4 @@ void RenderState::StateBlock::setDepthFunction(DepthFunction func)
 //}
 
 NS_CC_END
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -46,13 +46,13 @@ struct CC_DLL Viewport
 {
     Viewport(float left, float bottom, float width, float height);
     Viewport();
-    
+
     float _left;
     float _bottom;
     float _width;
     float _height;
 };
-    
+
 class CC_DLL RenderTargetBase : public Ref
 {
 public:
@@ -67,10 +67,10 @@ protected:
     bool init(unsigned int width, unsigned int height);
 
 public:
-    
+
     virtual Texture2D* getTexture() const { return nullptr; }
     virtual GLuint getBuffer() const { return 0; }
-    
+
     unsigned int getWidth() const { return _width; }
     unsigned int getHeight() const { return _height; }
     Type getType() const { return _type; }
@@ -78,22 +78,22 @@ protected:
     Type _type;
     unsigned int _width;
     unsigned int _height;
-    
+
 };
 
 class CC_DLL RenderTarget : public RenderTargetBase
 {
 public:
-    
+
     static RenderTarget* create(unsigned int width, unsigned int height, Texture2D::PixelFormat format = Texture2D::PixelFormat::RGBA8888);
-    
+
     bool init(unsigned int width, unsigned int height, Texture2D::PixelFormat format);
-    
+
     virtual Texture2D* getTexture() const { return _texture; }
 CC_CONSTRUCTOR_ACCESS:
     RenderTarget();
     virtual ~RenderTarget();
-    
+
 protected:
     Texture2D* _texture;
 #if CC_ENABLE_CACHE_TEXTURE_DATA
@@ -104,17 +104,17 @@ protected:
 class CC_DLL RenderTargetRenderBuffer : public RenderTargetBase
 {
 public:
-    
+
     static RenderTargetRenderBuffer* create(unsigned int width, unsigned int height);
-    
+
     bool init(unsigned int width, unsigned int height);
-    
+
     virtual GLuint getBuffer() const { return _colorBuffer; }
-    
+
 CC_CONSTRUCTOR_ACCESS:
     RenderTargetRenderBuffer();
     virtual ~RenderTargetRenderBuffer();
-    
+
 protected:
     GLenum _format;
     GLuint _colorBuffer;
@@ -126,18 +126,18 @@ protected:
 class CC_DLL RenderTargetDepthStencil : public RenderTargetBase
 {
 public:
-    
+
     static RenderTargetDepthStencil* create(unsigned int width, unsigned int height);
-    
+
     bool init(unsigned int width, unsigned int height);
-    
+
     virtual GLuint getBuffer() const { return _depthStencilBuffer; }
-    
+
     CC_DEPRECATED(3.7) GLuint getDepthStencilBuffer() const { return _depthStencilBuffer; }
 CC_CONSTRUCTOR_ACCESS:
     RenderTargetDepthStencil();
     virtual ~RenderTargetDepthStencil();
-    
+
 protected:
 
     GLuint _depthStencilBuffer;
@@ -150,7 +150,7 @@ class CC_DLL FrameBuffer : public Ref
 {
 public:
     static FrameBuffer* create(uint8_t fid, unsigned int width, unsigned int height);
-    
+
     bool init(uint8_t fid, unsigned int width, unsigned int height);
 public:
     GLuint getFBO() const { return _fbo; }
@@ -165,12 +165,12 @@ public:
     const Color4F& getClearColor() const { return _clearColor; }
     float getClearDepth() const { return _clearDepth; }
     int8_t getClearStencil() const { return _clearStencil; }
-    
+
     RenderTargetBase* getRenderTarget() const { return _rt; }
     RenderTargetDepthStencil* getDepthStencilTarget() const { return _rtDepthStencil; }
     void attachRenderTarget(RenderTargetBase* rt);
     void attachDepthStencilTarget(RenderTargetDepthStencil* rt);
-    
+
     bool isDefaultFBO() const { return _isDefault; }
     unsigned int getWidth() const { return _width; }
     unsigned int getHeight() const { return _height; }
@@ -204,7 +204,7 @@ private:
     //static GLuint _defaultFBO;
     static FrameBuffer* _defaultFBO;
     static std::set<FrameBuffer*> _frameBuffers;
-    
+
 private:
 #if CC_ENABLE_CACHE_TEXTURE_DATA
     EventListenerCustom* _dirtyFBOListener;
@@ -215,3 +215,4 @@ private:
 NS_CC_END
 
 #endif /* defined(__CC_FRAME_BUFFER_H__) */
+

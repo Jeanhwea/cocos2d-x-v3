@@ -56,7 +56,7 @@ __Array* __Array::create()
     {
         CC_SAFE_DELETE(array);
     }
-    
+
     return array;
 }
 
@@ -86,7 +86,7 @@ __Array* __Array::create(Ref* object, ...)
     {
         array->addObject(object);
         Ref* i = va_arg(args, Ref*);
-        while (i) 
+        while (i)
         {
             array->addObject(i);
             i = va_arg(args, Ref*);
@@ -112,7 +112,7 @@ __Array* __Array::createWithCapacity(int capacity)
     CCASSERT(capacity>=0, "Invalid capacity");
 
     __Array* array = new (std::nothrow) __Array();
-    
+
     if (array && array->initWithCapacity(capacity))
     {
         array->autorelease();
@@ -121,7 +121,7 @@ __Array* __Array::createWithCapacity(int capacity)
     {
         CC_SAFE_DELETE(array);
     }
-    
+
     return array;
 }
 
@@ -159,7 +159,7 @@ bool __Array::initWithObject(Ref* object)
 bool __Array::initWithObjects(Ref* object, ...)
 {
     bool ret = false;
-    do 
+    do
     {
         CC_BREAK_IF(object == nullptr);
 
@@ -170,7 +170,7 @@ bool __Array::initWithObjects(Ref* object, ...)
         {
             this->addObject(object);
             Ref* i = va_arg(args, Ref*);
-            while (i) 
+            while (i)
             {
                 this->addObject(i);
                 i = va_arg(args, Ref*);
@@ -209,7 +209,7 @@ ssize_t __Array::getIndexOfObject(Ref* object) const
             return i;
         }
     }
-    
+
     return -1;
 }
 
@@ -221,14 +221,14 @@ Ref*  __Array::getRandomObject()
     }
 
     float r = CCRANDOM_0_1();
-    
+
     if (r == 1) // to prevent from accessing data-arr[data->num], out of range.
     {
         r = 0;
     }
 
     r *= data.size();
-    
+
     return data[r].get();
 }
 
@@ -482,13 +482,13 @@ __Array* __Array::createWithContentsOfFile(const std::string& fileName)
 __Array* __Array::createWithContentsOfFileThreadSafe(const std::string& fileName)
 {
     ValueVector arr = FileUtils::getInstance()->getValueVectorFromFile(fileName);
-    
+
     __Array* ret = __Array::createWithCapacity(static_cast<int>(arr.size()));
 
     for(const auto &value : arr) {
         ret->addObject(__String::create(value.asString()));
     }
-    
+
     return ret;
 }
 
@@ -521,7 +521,7 @@ bool __Array::initWithObjects(Ref* object, ...)
     {
         CC_BREAK_IF(object == nullptr);
         CC_BREAK_IF(!initWithCapacity(1));
-        
+
         va_list args;
         va_start(args, object);
 
@@ -607,7 +607,7 @@ bool __Array::isEqualToArray(__Array* otherArray)
     return true;
 }
 
-void __Array::addObject(Ref* object) 
+void __Array::addObject(Ref* object)
 {
     CCASSERT(data, "Array not initialized");
     ccArrayAppendObjectWithResize(data, object);
@@ -628,7 +628,7 @@ void __Array::insertObject(Ref* object, ssize_t index)
 void __Array::setObject(Ref* object, ssize_t index)
 {
     CCASSERT(index >= 0 && index < count(), "Invalid index");
-    
+
     if (object != data->arr[index])
     {
         data->arr[index]->release();
@@ -771,3 +771,4 @@ void __Array::acceptVisitor(DataVisitor &visitor)
 #endif // uses ccArray
 
 NS_CC_END
+

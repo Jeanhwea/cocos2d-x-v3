@@ -61,3 +61,4 @@
 #include "spine/VertexEffect.h"
 
 #endif /* SPINE_SPINE_H_ */
+

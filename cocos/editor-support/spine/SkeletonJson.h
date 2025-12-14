@@ -71,3 +71,4 @@ typedef spSkeletonJson SkeletonJson;
 #endif
 
 #endif /* SPINE_SKELETONJSON_H_ */
+

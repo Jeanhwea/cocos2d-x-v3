@@ -79,3 +79,4 @@ float float_from_gain(gain_minifloat_t gain);
 __END_DECLS
 
 #endif  // COCOS_AUDIO_MINIFLOAT_H
+

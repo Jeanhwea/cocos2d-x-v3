@@ -46,3 +46,4 @@ spPathAttachment* spPathAttachment_create (const char* name) {
 	_spAttachment_init(SUPER(SUPER(self)), name, SP_ATTACHMENT_PATH, _spPathAttachment_dispose);
 	return self;
 }
+

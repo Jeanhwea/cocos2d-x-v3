@@ -37,7 +37,7 @@ THE SOFTWARE.
     public: \
         static cocos2d::ObjectFactory::TInfo Type; \
         static cocos2d::Ref* createInstance(); \
-        
+
 #define IMPLEMENT_CLASS_INFO(className) \
         cocos2d::Ref* className::createInstance() \
         { \
@@ -52,3 +52,4 @@ void CC_STUDIO_DLL sendEvent(unsigned int event);
 
 
 #endif
+

@@ -64,7 +64,7 @@ DEFINE_TEST_SUITE(Camera3DTests);
 class CameraBaseTest : public TestCase
 {
 public:
-    
+
 protected:
     cocos2d::BillBoard* bill1;
     cocos2d::BillBoard* bill2;
@@ -120,13 +120,13 @@ public:
     void updateState(float elapsedTime);
     bool isState(unsigned int state,unsigned int bit) const;
     void reachEndCallBack();
-    
+
     bool onTouchesCommon(cocos2d::Touch* touch, cocos2d::Event* event, bool* touchProperty);
     bool onTouchesZoomOut(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchesZoomOutEnd(cocos2d::Touch* touch, cocos2d::Event* event);
     bool onTouchesZoomIn(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchesZoomInEnd(cocos2d::Touch* touch, cocos2d::Event* event);
-    
+
     bool onTouchesRotateLeft(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchesRotateLeftEnd(cocos2d::Touch* touch, cocos2d::Event* event);
     bool onTouchesRotateRight(cocos2d::Touch* touch, cocos2d::Event* event);
@@ -158,12 +158,12 @@ public:
     CREATE_FUNC(CameraCullingDemo);
     CameraCullingDemo(void);
     virtual ~CameraCullingDemo(void);
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
-    
+
     virtual void update(float dt) override;
-    
+
     // overrides
     virtual std::string title() const override;
     void reachEndCallBack();
@@ -172,7 +172,7 @@ public:
     void delSpriteCallback(cocos2d::Ref* sender);
 
     void drawCameraFrustum();
-    
+
 protected:
     cocos2d::Label*                  _labelSprite3DCount;
     cocos2d::Layer*                  _layer3D;
@@ -192,12 +192,12 @@ public:
     CREATE_FUNC(CameraArcBallDemo);
     CameraArcBallDemo(void);
     virtual ~CameraArcBallDemo(void);
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
-    
+
     virtual void update(float dt) override;
-    
+
     // overrides
     virtual std::string title() const override;
 
@@ -229,19 +229,19 @@ public:
     CREATE_FUNC(FogTestDemo);
     FogTestDemo(void);
     virtual ~FogTestDemo(void);
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
-    
+
     virtual void update(float dt) override;
-    
+
     // overrides
     virtual std::string title() const override;
 
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
 
     void switchTypeCallback(cocos2d::Ref* sender,int type);
-    
+
 protected:
     cocos2d::Layer*                  _layer3D;
     CameraType              _cameraType;
@@ -264,7 +264,7 @@ public:
     virtual ~CameraFrameBufferTest(void);
     // overrides
     virtual std::string title() const override;
-    
+
     virtual void onEnter() override;
 };
 
@@ -274,12 +274,13 @@ public:
     CREATE_FUNC(BackgroundColorBrushTest);
     BackgroundColorBrushTest(void);
     virtual ~BackgroundColorBrushTest(void);
-    
+
     // overrides
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    
+
     virtual void onEnter() override;
 };
 
 #endif
+

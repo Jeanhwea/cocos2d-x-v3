@@ -100,7 +100,7 @@ LabelBMFont::LabelBMFont()
     this->addChild(_label);
     this->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     _cascadeOpacityEnabled = true;
-    
+
 #if CC_LABELBMFONT_DEBUG_DRAW
     _debugDrawNode = DrawNode::create();
     addChild(_debugDrawNode);
@@ -243,3 +243,4 @@ void LabelBMFont::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags
 #endif
 
 NS_CC_END
+

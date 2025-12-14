@@ -148,3 +148,4 @@ inline Atomic64 Release_CompareAndSwap(volatile Atomic64* ptr,
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_X86_MSVC_H_
+

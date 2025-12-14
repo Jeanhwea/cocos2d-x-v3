@@ -51,7 +51,7 @@ LabelAtlas* LabelAtlas::create()
     {
         CC_SAFE_RELEASE_NULL(ret);
     }
-    
+
     return ret;
 }
 
@@ -85,7 +85,7 @@ bool LabelAtlas::initWithString(const std::string& string, Texture2D* texture, i
 }
 
 LabelAtlas* LabelAtlas::create(const std::string& string, const std::string& fntFile)
-{    
+{
     LabelAtlas *ret = new (std::nothrow) LabelAtlas();
     if (ret)
     {
@@ -93,12 +93,12 @@ LabelAtlas* LabelAtlas::create(const std::string& string, const std::string& fnt
         {
             ret->autorelease();
         }
-        else 
+        else
         {
             CC_SAFE_RELEASE_NULL(ret);
         }
     }
-    
+
     return ret;
 }
 
@@ -106,7 +106,7 @@ bool LabelAtlas::initWithString(const std::string& theString, const std::string&
 {
     std::string pathStr = FileUtils::getInstance()->fullPathForFilename(fntFile);
     std::string relPathStr = pathStr.substr(0, pathStr.find_last_of('/'))+"/";
-    
+
     ValueMap dict = FileUtils::getInstance()->getValueMapFromFile(pathStr);
 
     CCASSERT(dict["version"].asInt() == 1, "Unsupported version. Upgrade cocos2d version");
@@ -276,3 +276,4 @@ std::string LabelAtlas::getDescription() const
 }
 
 NS_CC_END
+

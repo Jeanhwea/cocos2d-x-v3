@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,11 +53,11 @@ bool UIRadioButtonTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Create a radio button group
         _radioButtonGroup = RadioButtonGroup::create();
         _uiLayer->addChild(_radioButtonGroup);
-        
+
         // Create the radio buttons
         static const int NUMBER_OF_BUTTONS = 5;
         startPosX = widgetSize.width / 2.0f - ((NUMBER_OF_BUTTONS - 1) / 2.0f) * BUTTON_WIDTH;
@@ -70,7 +70,7 @@ bool UIRadioButtonTest::init()
             _radioButtonGroup->addRadioButton(radioButton);
             _uiLayer->addChild(radioButton);
         }
-        
+
         // Add button
         Button* addButton = Button::create("cocosui/backtotopnormal.png", "cocosui/backtotoppressed.png");
         addButton->setTitleText("Add");
@@ -78,7 +78,7 @@ bool UIRadioButtonTest::init()
         addButton->addClickEventListener(CC_CALLBACK_1(UIRadioButtonTest::addRadioButton, this));
         addButton->setScale(0.7f);
         _uiLayer->addChild(addButton);
-        
+
         // Delete button
         Button* deleteButton = Button::create("cocosui/backtotopnormal.png", "cocosui/backtotoppressed.png");
         deleteButton->setTitleText("Delete");
@@ -86,7 +86,7 @@ bool UIRadioButtonTest::init()
         deleteButton->addClickEventListener(CC_CALLBACK_1(UIRadioButtonTest::deleteRadioButton, this));
         deleteButton->setScale(0.7f);
         _uiLayer->addChild(deleteButton);
-        
+
         // Toggle button
         Button* allowNoSelectionToggle = Button::create("cocosui/backtotopnormal.png", "cocosui/backtotoppressed.png");
         allowNoSelectionToggle->setTitleText("Toggle Allow-No-Selection");
@@ -97,7 +97,7 @@ bool UIRadioButtonTest::init()
         });
         allowNoSelectionToggle->setScale(0.7f);
         _uiLayer->addChild(allowNoSelectionToggle);
-        
+
         // Add a label for toggle
         _allowNoSelectionText = Text::create("No selection is disallowed.", "fonts/Marker Felt.ttf", 20);
         _allowNoSelectionText->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f + 70));
@@ -121,7 +121,7 @@ void UIRadioButtonTest::addRadioButton(Ref* sender)
         pos.x = startPosX - BUTTON_WIDTH;
         pos.y = _widget->getContentSize().height / 2.0f + 10;
     }
-    
+
     RadioButton* radioButton = RadioButton::create("cocosui/radio_button_off.png", "cocosui/radio_button_on.png");
     pos.x += BUTTON_WIDTH;
     radioButton->setPosition(pos);
@@ -162,18 +162,18 @@ bool UIRadioButtonTwoGroupsTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add a label in which the radio button events will be displayed
         _groupEventLabel = Text::create("RadioButtonGroup : No Event", "fonts/Marker Felt.ttf", 25);
         _groupEventLabel->setAnchorPoint(Vec2(0.5f, -1));
         _groupEventLabel->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f + 70));
         _uiLayer->addChild(_groupEventLabel);
-        
+
         _buttonEventLabel = Text::create("RadioButton : No Event", "fonts/Marker Felt.ttf", 25);
         _buttonEventLabel->setAnchorPoint(Vec2(0.5f, -1));
         _buttonEventLabel->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f + 35));
         _uiLayer->addChild(_buttonEventLabel);
-        
+
         _logConsole = Text::create("", "fonts/Marker Felt.ttf", 10);
         _logConsole->setAnchorPoint(Vec2(0, 1));
         _logConsole->setPosition(Vec2(widgetSize.width / 2.0f + 110, widgetSize.height / 2.0f + 55));
@@ -182,7 +182,7 @@ bool UIRadioButtonTwoGroupsTest::init()
         static const int NUMBER_OF_BUTTONS = 4;
         static const float SPACE_BETWEEN_BUTTONS = 50;
         float startPosX = widgetSize.width / 2.0f - ((NUMBER_OF_BUTTONS - 1) / 2.0f) * SPACE_BETWEEN_BUTTONS;
-        
+
         for(int type = 0; type < 2; ++type)
         {
             // Create a radio button group
@@ -204,7 +204,7 @@ bool UIRadioButtonTwoGroupsTest::init()
                 posYAdjust = -15;
             }
             _uiLayer->addChild(_radioButtonGroups[type]);
-            
+
             // Set allowing no selections
             _radioButtonGroups[type]->setAllowedNoSelection(type == 0);
 
@@ -217,21 +217,21 @@ bool UIRadioButtonTwoGroupsTest::init()
                 float posX = startPosX + SPACE_BETWEEN_BUTTONS * i;
                 radioButton->setScale(1.5f);
                 radioButton->setPosition(Vec2(posX, posY));
-                
+
                 radioButton->addEventListener(CC_CALLBACK_2(UIRadioButtonTwoGroupsTest::onChangedRadioButtonSelect, this));
                 radioButton->setTag(i);
                 _uiLayer->addChild(radioButton);
                 _radioButtonGroups[type]->addRadioButton(radioButton);
             }
         }
-        
+
         Button* clearButton = Button::create("cocosui/backtotopnormal.png", "cocosui/backtotoppressed.png");
         clearButton->setTitleText("Clear");
         clearButton->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - 65));
         clearButton->addClickEventListener(CC_CALLBACK_1(UIRadioButtonTwoGroupsTest::clearRadioButtonGroup, this));
         clearButton->setScale(0.8f);
         _uiLayer->addChild(clearButton);
-        
+
         Text* text1 = Text::create("Upper radio button group is allowed non-selection, but lower one is not.", "fonts/Marker Felt.ttf", 15);
         text1->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - 100));
         _uiLayer->addChild(text1);
@@ -271,7 +271,7 @@ void UIRadioButtonTwoGroupsTest::onChangedRadioButtonSelect(RadioButton* radioBu
             text.append("Selected");
             break;
         }
-            
+
         case RadioButton::EventType::UNSELECTED:
         {
             text.append("Unselected");
@@ -301,7 +301,7 @@ void UIRadioButtonTwoGroupsTest::addLog(const std::string& log)
     }
     existingLog = existingLog + log;
     ++_numberOfLogLines;
-    
+
     if(_numberOfLogLines > 10)
     {
         size_t pos = existingLog.find('\n') + 1;
@@ -309,7 +309,7 @@ void UIRadioButtonTwoGroupsTest::addLog(const std::string& log)
         existingLog = newLog;
         --_numberOfLogLines;
     }
-    
+
     _logConsole->setString(existingLog);
 }
 
@@ -320,10 +320,10 @@ bool UIRadioButtonTabTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         static const float BUTTON_SCALE = 0.5f;
         const float buttonWidth = 350 * BUTTON_SCALE / Director::getInstance()->getContentScaleFactor();
-        
+
         // Background for buttons
         LayerColor* colorLayer = LayerColor::create(Color4B::WHITE);
         colorLayer->setIgnoreAnchorPointForPosition(false);
@@ -331,11 +331,11 @@ bool UIRadioButtonTabTest::init()
         colorLayer->setContentSize(Size(buttonWidth * 3, 170 / Director::getInstance()->getContentScaleFactor()));
         colorLayer->setPosition(widgetSize / 2.0f);
         _uiLayer->addChild(colorLayer);
-        
+
         // Create a radio button group
         RadioButtonGroup* radioButtonGroup = RadioButtonGroup::create();
         _uiLayer->addChild(radioButtonGroup);
-        
+
         // Create the radio buttons
         static const int NUMBER_OF_BUTTONS = 3;
         float startPosX = widgetSize.width / 2.0f - ((NUMBER_OF_BUTTONS - 1) / 2.0f) * buttonWidth;
@@ -356,3 +356,4 @@ bool UIRadioButtonTabTest::init()
     }
     return false;
 }
+

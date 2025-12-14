@@ -404,16 +404,16 @@ void SpriteMainScene::initWithSubTest(int asubtest, int nNodes)
     infoLabel->setColor(Color3B(0,200,20));
     infoLabel->setPosition(Vec2(s.width/2, s.height-90));
     addChild(infoLabel, 1, kTagInfoLayer);
-    
+
     /**
      *  auto test menu
      */
-    
+
     auto menuAutoTest = Menu::create();
     menuAutoTest->setPosition( Vec2::ZERO );
     MenuItemFont::setFontName("fonts/arial.ttf");
     MenuItemFont::setFontSize(24);
-    
+
     // Sub Tests
     MenuItemFont::setFontSize(28);
     auto subMenu = Menu::create();
@@ -484,9 +484,9 @@ void SpriteMainScene::testNCallback(Ref* sender)
         log("It's auto sprite performance testing,so this operation is invalid");
         return;
     }
-    
+
     _subtestNumber = static_cast<MenuItemFont*>(sender)->getTag();
-    
+
     this->restartTestCallback(sender);
 }
 
@@ -510,7 +510,7 @@ void SpriteMainScene::updateTitle()
 }
 
 void SpriteMainScene::onIncrease(Ref* sender)
-{    
+{
     if( _quantityNodes >= kMaxNodes)
         return;
 
@@ -526,7 +526,7 @@ void SpriteMainScene::onIncrease(Ref* sender)
 
 void SpriteMainScene::onDecrease(Ref* sender)
 {
-    
+
     if( _quantityNodes <= 0 )
         return;
 
@@ -542,14 +542,14 @@ void SpriteMainScene::onDecrease(Ref* sender)
 void SpriteMainScene::onEnter()
 {
     Scene::onEnter();
-    
+
     if (isAutoTesting())
     {
         scheduleUpdate();
         Profile::getInstance()->testCaseBegin("SpriteTest",
                                               genStrVector("SpriteCount", "Type", "SubTest", nullptr),
                                               genStrVector("Avg", "Min", "Max", nullptr));
-        
+
         autoTestIndex = 0;
         _subtestNumber = 1;
 
@@ -575,7 +575,7 @@ void SpriteMainScene::update(float dt)
         auto curFrameRate = Director::getInstance()->getFrameRate();
         if (maxFrameRate < 0 || curFrameRate > maxFrameRate)
             maxFrameRate = curFrameRate;
-        
+
         if (minFrameRate < 0 || curFrameRate < minFrameRate)
             minFrameRate = curFrameRate;
     }
@@ -591,7 +591,7 @@ void SpriteMainScene::endStat(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(SpriteMainScene::endStat));
     isStating = false;
-    
+
     // record test data
     auto typeStr = getTestCaseName();
     auto avgStr = genStr("%.2f", (float) statCount / totalStatTime);
@@ -599,7 +599,7 @@ void SpriteMainScene::endStat(float dt)
                                                        genStr("%d", _subtestNumber).c_str(), nullptr),
                                           genStrVector(avgStr.c_str(), genStr("%.2f", minFrameRate).c_str(),
                                                        genStr("%.2f", maxFrameRate).c_str(), nullptr));
-    
+
     // check the auto test is end or not
     int autoTestCount = sizeof(autoTestSpriteCounts) / sizeof(int);
     if (autoTestIndex >= (autoTestCount - 1) &&
@@ -610,7 +610,7 @@ void SpriteMainScene::endStat(float dt)
         setAutoTesting(false);
         return;
     }
-    
+
     if (autoTestIndex >= (autoTestCount - 1))
     {
         autoTestIndex = 0;
@@ -636,7 +636,7 @@ void SpriteMainScene::doAutoTest()
     CC_SAFE_DELETE(_subTest);
     _subTest = new (std::nothrow) SubTest;
     _subTest->initWithSubTest(_subtestNumber, this);
-    
+
     // create sprites & update the label
     _quantityNodes = autoTestSpriteCounts[autoTestIndex];
     for( int i = 0; i < _quantityNodes; i++)
@@ -854,3 +854,4 @@ void SpritePerformTestG::doTest(Sprite* sprite)
 {
     performanceActions20(sprite);
 }
+

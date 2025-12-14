@@ -291,7 +291,7 @@ bool GLViewImpl::initWithRect(const std::string& viewName, Rect rect, float fram
     glfwWindowHint(GLFW_ALPHA_BITS,_glContextAttrs.alphaBits);
     glfwWindowHint(GLFW_DEPTH_BITS,_glContextAttrs.depthBits);
     glfwWindowHint(GLFW_STENCIL_BITS,_glContextAttrs.stencilBits);
-    
+
     glfwWindowHint(GLFW_SAMPLES, _glContextAttrs.multisamplingCount);
 
     int neededWidth = rect.size.width * _frameZoomFactor;
@@ -365,7 +365,7 @@ bool GLViewImpl::initWithRect(const std::string& viewName, Rect rect, float fram
 
     // Enable point size by default.
     glEnable(GL_VERTEX_PROGRAM_POINT_SIZE);
-    
+
     if(_glContextAttrs.multisamplingCount > 0)
         glEnable(GL_MULTISAMPLE);
 
@@ -392,13 +392,13 @@ bool GLViewImpl::initWithFullscreen(const std::string &viewname, const GLFWvidmo
     _monitor = monitor;
     if (nullptr == _monitor)
         return false;
-    
+
     //These are soft constraints. If the video mode is retrieved at runtime, the resulting window and context should match these exactly. If invalid attribs are passed (eg. from an outdated cache), window creation will NOT fail but the actual window/context may differ.
     glfwWindowHint(GLFW_REFRESH_RATE, videoMode.refreshRate);
     glfwWindowHint(GLFW_RED_BITS, videoMode.redBits);
     glfwWindowHint(GLFW_BLUE_BITS, videoMode.blueBits);
     glfwWindowHint(GLFW_GREEN_BITS, videoMode.greenBits);
-    
+
     return initWithRect(viewname, Rect(0, 0, videoMode.width, videoMode.height), 1.0f, false);
 }
 
@@ -538,7 +538,7 @@ void GLViewImpl::setCursorVisible( bool isVisible )
 {
     if( _mainWindow == NULL )
         return;
-    
+
     if( isVisible )
         glfwSetInputMode(_mainWindow, GLFW_CURSOR, GLFW_CURSOR_NORMAL);
     else
@@ -747,7 +747,7 @@ void GLViewImpl::onGLFWMouseCallBack(GLFWwindow* /*window*/, int button, int act
             }
         }
     }
-    
+
     //Because OpenGL and cocos2d-x uses different Y axis, we need to convert the coordinate here
     float cursorX = (_mouseX - _viewPortRect.origin.x) / _scaleX;
     float cursorY = (_viewPortRect.origin.y + _viewPortRect.size.height - _mouseY) / _scaleY;
@@ -790,7 +790,7 @@ void GLViewImpl::onGLFWMouseMoveCallBack(GLFWwindow* window, double x, double y)
         intptr_t id = 0;
         this->handleTouchesMove(1, &id, &_mouseX, &_mouseY);
     }
-    
+
     //Because OpenGL and cocos2d-x uses different Y axis, we need to convert the coordinate here
     float cursorX = (_mouseX - _viewPortRect.origin.x) / _scaleX;
     float cursorY = (_viewPortRect.origin.y + _viewPortRect.size.height - _mouseY) / _scaleY;
@@ -1062,3 +1062,4 @@ bool GLViewImpl::initGlew()
 }
 
 NS_CC_END // end of namespace cocos2d;
+

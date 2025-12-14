@@ -28,3 +28,4 @@ THE SOFTWARE.
 namespace cocos2d { namespace experimental {
 	extern int getSDKVersion();
 }}
+

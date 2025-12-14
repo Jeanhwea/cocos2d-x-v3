@@ -179,7 +179,7 @@ namespace network {
 
         if(SUCCEEDED(hr)) {
             std::wstring hdr = headers;
-            _headers.insert(_headers.end(), hdr.begin(), hdr.end()); 
+            _headers.insert(_headers.end(), hdr.begin(), hdr.end());
         }
 
         if(headers != nullptr) {
@@ -647,7 +647,7 @@ namespace network {
                 hr = _spXhr->SetRequestHeader(L"Signature", std::wstring(authSig.begin(), authSig.end()).c_str());
             }
         }
-        else 
+        else
         {
             hr = INET_E_AUTHENTICATION_REQUIRED;
         }
@@ -690,7 +690,7 @@ namespace network {
     bool HttpConnection::send()
     {
         if (!_isInitialized) {
-            return false; 
+            return false;
         }
 
         HRESULT hr = E_FAIL;
@@ -745,3 +745,4 @@ namespace network {
 NS_CC_END
 
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+

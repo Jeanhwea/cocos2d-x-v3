@@ -236,3 +236,4 @@ class LIBPROTOBUF_EXPORT ZeroCopyOutputStream {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_IO_ZERO_COPY_STREAM_H__
+

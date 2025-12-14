@@ -42,3 +42,4 @@ void spTransformConstraintData_dispose (spTransformConstraintData* self) {
 	FREE(self->bones);
 	FREE(self);
 }
+

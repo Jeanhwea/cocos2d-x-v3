@@ -40,7 +40,7 @@ using namespace std;
 #define JSO_ERR_VM_FAILURE         (-6)
 
 class JavaScriptObjCBridge{
-    
+
 private:
     typedef enum : char
     {
@@ -54,7 +54,7 @@ private:
         TypeFunction= 6,
     } ValueType;
     typedef vector<ValueType> ValueTypes;
-    
+
     typedef union
     {
         int     intValue;
@@ -78,7 +78,7 @@ private:
         bool isValid() {
             return m_valid;
         }
-        
+
         int getErrorCode() {
             return m_error;
         }
@@ -107,3 +107,4 @@ public:
     JS_BINDED_CONSTRUCTOR(JSObjCBridge);
     JS_BINDED_FUNC(JSObjCBridge, callStaticMethod);
 };
+

@@ -70,7 +70,7 @@ public:
     {
         return __Integer::create(_value);
     }
-    
+
 private:
     int _value;
 };
@@ -82,3 +82,4 @@ NS_CC_END
 
 /// @endcond
 #endif /* __CCINTEGER_H__ */
+

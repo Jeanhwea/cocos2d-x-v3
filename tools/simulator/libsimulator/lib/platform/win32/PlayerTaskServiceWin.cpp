@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -85,7 +85,7 @@ bool PlayerTaskWin::run()
     sa.nLength = sizeof(sa);
     sa.bInheritHandle = TRUE;
 
-    // Create a pipe for the child process's STDOUT. 
+    // Create a pipe for the child process's STDOUT.
     if (!CreatePipe(&_childStdOutRead, &_childStdOutWrite, &sa, 0) || !SetHandleInformation(_childStdOutRead, HANDLE_FLAG_INHERIT, 0))
     {
         CCLOG("PlayerTaskWin::run() - create stdout handle failed, for execute %s", _executePath.c_str());
@@ -93,7 +93,7 @@ bool PlayerTaskWin::run()
         return false;
     }
 
-    // Create a pipe for the child process's STDIN. 
+    // Create a pipe for the child process's STDIN.
     if (!CreatePipe(&_childStdInRead, &_childStdInWrite, &sa, 0) || !SetHandleInformation(_childStdInWrite, HANDLE_FLAG_INHERIT, 0))
     {
         CCLOG("PlayerTaskWin::run() - create stdout handle failed, for execute %s", _executePath.c_str());
@@ -117,15 +117,15 @@ bool PlayerTaskWin::run()
     wcscpy_s(command, MAX_COMMAND, (WCHAR*)u16command.c_str());
 
     BOOL success = CreateProcess(NULL,
-                                 command,   // command line 
-                                 NULL,      // process security attributes 
-                                 NULL,      // primary thread security attributes 
-                                 TRUE,      // handles are inherited 
-                                 0,         // creation flags 
-                                 NULL,      // use parent's environment 
-                                 NULL,      // use parent's current directory 
-                                 &si,       // STARTUPINFO pointer 
-                                 &_pi);     // receives PROCESS_INFORMATION 
+                                 command,   // command line
+                                 NULL,      // process security attributes
+                                 NULL,      // primary thread security attributes
+                                 TRUE,      // handles are inherited
+                                 0,         // creation flags
+                                 NULL,      // use parent's environment
+                                 NULL,      // use parent's current directory
+                                 &si,       // STARTUPINFO pointer
+                                 &_pi);     // receives PROCESS_INFORMATION
 
     if (!success)
     {
@@ -294,3 +294,4 @@ void PlayerTaskServiceWin::removeTask(const std::string &name)
 }
 
 PLAYER_NS_END
+

@@ -2,19 +2,19 @@
  Copyright (c) 2011-2012 cocos2d-x.org
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -95,7 +95,7 @@ typedef union {
 class LuaValue
 {
 public:
-    
+
     /**
      * Construct a LuaValue object by a int value.
      *
@@ -103,7 +103,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue intValue(const int intValue);
-    
+
     /**
      * Construct a LuaValue object by a float value.
      *
@@ -111,7 +111,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue floatValue(const float floatValue);
-    
+
     /**
      * Construct a LuaValue object by a boolean value.
      *
@@ -119,7 +119,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue booleanValue(const bool booleanValue);
-    
+
     /**
      * Construct a LuaValue object by a string pointer.
      *
@@ -127,7 +127,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue stringValue(const char* stringValue);
-    
+
     /**
      * Construct a LuaValue object by a std::string object.
      *
@@ -135,7 +135,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue stringValue(const std::string& stringValue);
-    
+
     /**
      * Construct a LuaValue object by a LuaValueDict value.
      *
@@ -143,7 +143,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue dictValue(const LuaValueDict& dictValue);
-    
+
     /**
      * Construct a LuaValue object by a LuaValueArray value.
      *
@@ -151,7 +151,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue arrayValue(const LuaValueArray& arrayValue);
-    
+
     /**
      * Construct a LuaValue object by a Ref object.
      *
@@ -160,7 +160,7 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue ccobjectValue(Ref* ccobjectValue, const char* objectTypename);
-    
+
     /**
      * Construct a LuaValue object by a Ref object.
      *
@@ -169,8 +169,8 @@ public:
      * @return a LuaValue object.
      */
     static const LuaValue ccobjectValue(Ref* ccobjectValue, const std::string& objectTypename);
-    
-    
+
+
     /**
      * Default constructor of LuaValue.
      * Set the default value for _type(LuaValueTypeInt) and _ccobjectType(nullptr),and init the _field.
@@ -181,31 +181,31 @@ public:
     {
         memset(&_field, 0, sizeof(_field));
     }
-    
+
     /**
      * Copy constructor of Data.
      */
     LuaValue(const LuaValue& rhs);
-    
+
     /**
      * Override of operator= .
      */
     LuaValue& operator=(const LuaValue& rhs);
-    
+
     /**
      * Destructor.
      */
     ~LuaValue();
-    
+
     /**
      * Get the type of LuaValue object.
-     * 
+     *
      * @return the type of LuaValue object.
      */
     LuaValueType getType() const {
         return _type;
     }
-    
+
     /**
      * Get the typename of the Ref object.
      *
@@ -214,7 +214,7 @@ public:
     const std::string& getObjectTypename() const {
         return *_ccobjectType;
     }
-    
+
     /**
      * Get the int value of LuaValue object.
      *
@@ -223,7 +223,7 @@ public:
     int intValue() const {
         return _field.intValue;
     }
-    
+
     /**
      * Get the float value of LuaValue object.
      *
@@ -232,7 +232,7 @@ public:
     float floatValue() const {
         return _field.floatValue;
     }
-    
+
     /**
      * Get the boolean value of LuaValue object.
      *
@@ -241,7 +241,7 @@ public:
     bool booleanValue() const {
         return _field.booleanValue;
     }
-    
+
     /**
      * Get the boolean value of LuaValue object.
      *
@@ -250,7 +250,7 @@ public:
     const std::string& stringValue() const {
         return *_field.stringValue;
     }
-    
+
     /**
      * Get the LuaValueDict value of LuaValue object.
      *
@@ -259,7 +259,7 @@ public:
     const LuaValueDict& dictValue() const {
         return *_field.dictValue;
     }
-    
+
     /**
      * Get the LuaValueArray value of LuaValue object.
      *
@@ -268,7 +268,7 @@ public:
     const LuaValueArray& arrayValue() const {
         return *_field.arrayValue;
     }
-    
+
     /**
      * Get the Ref object of LuaValue object.
      *
@@ -277,12 +277,12 @@ public:
     Ref* ccobjectValue() const {
         return _field.ccobjectValue;
     }
-    
+
 private:
     LuaValueField _field;
     LuaValueType  _type;
     std::string*    _ccobjectType;
-    
+
     void copy(const LuaValue& rhs);
 };
 
@@ -291,3 +291,4 @@ NS_CC_END
 // end group
 /// @}
 #endif // __CC_LUA_VALUE_H_
+

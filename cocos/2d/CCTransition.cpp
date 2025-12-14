@@ -99,7 +99,7 @@ bool TransitionScene::initWithDuration(float t, Scene *scene)
         _outScene->retain();
 
         CCASSERT( _inScene != _outScene, "Incoming scene must be different from the outgoing scene" );
-        
+
         sceneOrder();
 
         return true;
@@ -148,13 +148,13 @@ void TransitionScene::finish()
 }
 
 void TransitionScene::setNewScene(float /*dt*/)
-{    
+{
     this->unschedule(CC_SCHEDULE_SELECTOR(TransitionScene::setNewScene));
-    
+
     // Before replacing, save the "send cleanup to scene"
     Director *director = Director::getInstance();
     _isSendCleanupToScene = director->isSendCleanupToScene();
-    
+
     director->replaceScene(_inScene);
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
@@ -163,7 +163,7 @@ void TransitionScene::setNewScene(float /*dt*/)
         sEngine->releaseScriptObject(this, _inScene);
     }
 #endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-    
+
     // issue #267
     _outScene->setVisible(true);
 }
@@ -185,16 +185,16 @@ void TransitionScene::onEnter()
             return;
     }
 #endif // #if CC_ENABLE_SCRIPT_BINDING
-    
+
     Scene::onEnter();
-    
+
     // disable events while transitions
     _eventDispatcher->setEnabled(false);
-    
+
     // outScene should not receive the onEnter callback
     // only the onExitTransitionDidStart
     _outScene->onExitTransitionDidStart();
-    
+
     _inScene->onEnter();
 }
 
@@ -208,9 +208,9 @@ void TransitionScene::onExit()
             return;
     }
 #endif // #if CC_ENABLE_SCRIPT_BINDING
-    
+
     Scene::onExit();
-    
+
     // enable events while transitions
     _eventDispatcher->setEnabled(true);
     _outScene->onExit();
@@ -235,7 +235,7 @@ void TransitionScene::cleanup()
             return;
     }
 #endif // #if CC_ENABLE_SCRIPT_BINDING
-    
+
     Scene::cleanup();
 
     if( _isSendCleanupToScene )
@@ -278,16 +278,16 @@ TransitionRotoZoom::TransitionRotoZoom()
 {
 }
 
-TransitionRotoZoom* TransitionRotoZoom::create(float t, Scene* scene)                   
-{                                                               
+TransitionRotoZoom* TransitionRotoZoom::create(float t, Scene* scene)
+{
     TransitionRotoZoom* newScene = new (std::nothrow) TransitionRotoZoom();
     if(newScene && newScene->initWithDuration(t, scene))
-    {                                                           
+    {
         newScene->autorelease();
         return newScene;
-    }                                                           
-    CC_SAFE_DELETE(newScene);                                     
-    return nullptr;                                                
+    }
+    CC_SAFE_DELETE(newScene);
+    return nullptr;
 }
 
 TransitionRotoZoom::~TransitionRotoZoom()
@@ -422,7 +422,7 @@ void TransitionMoveInL::onEnter()
         )
     );
 }
- 
+
 ActionInterval* TransitionMoveInL::action()
 {
     return MoveTo::create(_duration, Vec2(0,0));
@@ -746,7 +746,7 @@ void TransitionShrinkGrow::onEnter()
     _outScene->setScale(1.0f);
 
     _inScene->setAnchorPoint(Vec2(2/3.0f,0.5f));
-    _outScene->setAnchorPoint(Vec2(1/3.0f,0.5f));    
+    _outScene->setAnchorPoint(Vec2(1/3.0f,0.5f));
 
     ActionInterval* scaleOut = ScaleTo::create(_duration, 0.01f);
     ActionInterval* scaleIn = ScaleTo::create(_duration, 1.0f);
@@ -815,8 +815,8 @@ void TransitionFlipX::onEnter()
         (
             OrbitCamera::create(_duration/2, 1, 0, outAngleZ, outDeltaZ, 0, 0),
             Hide::create(),
-            DelayTime::create(_duration/2),                            
-            nullptr 
+            DelayTime::create(_duration/2),
+            nullptr
         );
 
     _inScene->runAction(inA);
@@ -856,14 +856,14 @@ void TransitionFlipY::onEnter()
     float inDeltaZ, inAngleZ;
     float outDeltaZ, outAngleZ;
 
-    if( _orientation == TransitionScene::Orientation::UP_OVER ) 
+    if( _orientation == TransitionScene::Orientation::UP_OVER )
     {
         inDeltaZ = 90;
         inAngleZ = 270;
         outDeltaZ = 90;
         outAngleZ = 0;
-    } 
-    else 
+    }
+    else
     {
         inDeltaZ = -90;
         inAngleZ = 90;
@@ -883,7 +883,7 @@ void TransitionFlipY::onEnter()
         (
             OrbitCamera::create(_duration/2, 1, 0, outAngleZ, outDeltaZ, 90, 0),
             Hide::create(),
-            DelayTime::create(_duration/2),                            
+            DelayTime::create(_duration/2),
             nullptr
         );
 
@@ -926,14 +926,14 @@ void TransitionFlipAngular::onEnter()
     float inDeltaZ, inAngleZ;
     float outDeltaZ, outAngleZ;
 
-    if( _orientation == TransitionScene::Orientation::RIGHT_OVER ) 
+    if( _orientation == TransitionScene::Orientation::RIGHT_OVER )
     {
         inDeltaZ = 90;
         inAngleZ = 270;
         outDeltaZ = 90;
         outAngleZ = 0;
-    } 
-    else 
+    }
+    else
     {
         inDeltaZ = -90;
         inAngleZ = 90;
@@ -953,7 +953,7 @@ void TransitionFlipAngular::onEnter()
         (
             OrbitCamera::create(_duration/2, 1, 0, outAngleZ, outDeltaZ, 45, 0),
             Hide::create(),
-            DelayTime::create(_duration/2),                            
+            DelayTime::create(_duration/2),
             nullptr
         );
 
@@ -999,8 +999,8 @@ void TransitionZoomFlipX::onEnter()
         inAngleZ = 270;
         outDeltaZ = 90;
         outAngleZ = 0;
-    } 
-    else 
+    }
+    else
     {
         inDeltaZ = -90;
         inAngleZ = 90;
@@ -1029,7 +1029,7 @@ void TransitionZoomFlipX::onEnter()
                 nullptr
             ),
             Hide::create(),
-            DelayTime::create(_duration/2),                            
+            DelayTime::create(_duration/2),
             nullptr
         );
 
@@ -1105,7 +1105,7 @@ void TransitionZoomFlipY::onEnter()
                 OrbitCamera::create(_duration/2, 1, 0, outAngleZ, outDeltaZ, 90, 0),
                 ScaleTo::create(_duration/2, 0.5f),
                 nullptr
-            ),                            
+            ),
             Hide::create(),
             DelayTime::create(_duration/2),
             nullptr
@@ -1155,8 +1155,8 @@ void TransitionZoomFlipAngular::onEnter()
         inAngleZ = 270;
         outDeltaZ = 90;
         outAngleZ = 0;
-    } 
-    else 
+    }
+    else
     {
         inDeltaZ = -90;
         inAngleZ = 90;
@@ -1185,9 +1185,9 @@ void TransitionZoomFlipAngular::onEnter()
                 OrbitCamera::create(_duration/2, 1, 0 , outAngleZ, outDeltaZ, 45, 0),
                 ScaleTo::create(_duration/2, 0.5f),
                 nullptr
-            ),                            
+            ),
             Hide::create(),
-            DelayTime::create(_duration/2),                            
+            DelayTime::create(_duration/2),
             nullptr
         );
 
@@ -1348,7 +1348,7 @@ void TransitionCrossFade::onEnter()
 
     // set blendfunctions
     inTexture->getSprite()->setBlendFunc(BlendFunc::DISABLE);
-    outTexture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);    
+    outTexture->getSprite()->setBlendFunc(BlendFunc::ALPHA_PREMULTIPLIED);
 
     // add render textures to the layer
     layer->addChild(inTexture);
@@ -1378,7 +1378,7 @@ void TransitionCrossFade::onEnter()
 // clean up on exit
 void TransitionCrossFade::onExit()
 {
-    // remove our layer and release all containing objects 
+    // remove our layer and release all containing objects
     this->removeChildByTag(kSceneFade, false);
     TransitionScene::onExit();
 }
@@ -1450,12 +1450,12 @@ void TransitionTurnOffTiles::onExit()
 void TransitionTurnOffTiles::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 {
     Scene::draw(renderer, transform, flags);
-    
+
     if( _isInSceneOnTop )
     {
         _outSceneProxy->visit(renderer, transform, flags);
         _inScene->visit(renderer, transform, flags);
-    } 
+    }
     else
     {
         _inScene->visit(renderer, transform, flags);
@@ -1511,7 +1511,7 @@ void TransitionSplitCols::onEnter()
     );
 
     _gridProxy->runAction
-    ( 
+    (
         Sequence::create
         (
             easeActionWithAction(seq),
@@ -1646,12 +1646,12 @@ void TransitionFadeTR::onExit()
 void TransitionFadeTR::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 {
     Scene::draw(renderer, transform, flags);
-    
+
     if( _isInSceneOnTop )
     {
         _outSceneProxy->visit(renderer, transform, flags);
         _inScene->visit(renderer, transform, flags);
-    } 
+    }
     else
     {
         _inScene->visit(renderer, transform, flags);
@@ -1754,3 +1754,4 @@ ActionInterval* TransitionFadeDown::actionWithSize(const Size& size)
 }
 
 NS_CC_END
+

@@ -367,7 +367,7 @@ void AudioMixer::track_t::unprepareForReformat() {
     if (requiresReconfigure) {
         reconfigureBufferProviders();
     }
-} 
+}
 
 status_t AudioMixer::track_t::prepareForReformat()
 {
@@ -2099,3 +2099,4 @@ AudioMixer::process_hook_t AudioMixer::getProcessHook(int processType, uint32_t 
 
 // ----------------------------------------------------------------------------
 }} // namespace cocos2d { namespace experimental {
+

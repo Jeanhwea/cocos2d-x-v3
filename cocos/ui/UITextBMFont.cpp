@@ -30,11 +30,11 @@ THE SOFTWARE.
 NS_CC_BEGIN
 
 namespace ui {
-    
+
 static const int LABELBMFONT_RENDERER_Z = (-1);
-    
+
 IMPLEMENT_CLASS_GUI_INFO(TextBMFont)
-    
+
 TextBMFont::TextBMFont():
 _labelBMFontRenderer(nullptr),
 _fntFileName(""),
@@ -45,7 +45,7 @@ _labelBMFontRendererAdaptDirty(true)
 
 TextBMFont::~TextBMFont()
 {
-    
+
 }
 
 TextBMFont* TextBMFont::create()
@@ -59,7 +59,7 @@ TextBMFont* TextBMFont::create()
     CC_SAFE_DELETE(widget);
     return nullptr;
 }
-    
+
 TextBMFont* TextBMFont::create(const std::string &text, const std::string &filename)
 {
     TextBMFont* widget = new (std::nothrow) TextBMFont();
@@ -88,7 +88,7 @@ void TextBMFont::setFntFile(const std::string& fileName)
     }
     _fntFileName = fileName;
     _labelBMFontRenderer->setBMFontFilePath(fileName);
-    
+
     updateContentSizeWithTextureSize(_labelBMFontRenderer->getContentSize());
     _labelBMFontRendererAdaptDirty = true;
 }
@@ -109,7 +109,7 @@ const std::string& TextBMFont::getString()const
 {
     return _stringValue;
 }
-    
+
 ssize_t TextBMFont::getStringLength()const
 {
     return _labelBMFontRenderer->getStringLength();
@@ -120,7 +120,7 @@ void TextBMFont::onSizeChanged()
     Widget::onSizeChanged();
     _labelBMFontRendererAdaptDirty = true;
 }
-    
+
 void TextBMFont::adaptRenderers()
 {
     if (_labelBMFontRendererAdaptDirty)
@@ -198,3 +198,4 @@ void TextBMFont::resetRender()
 }
 
 NS_CC_END
+

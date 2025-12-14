@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,9 +38,9 @@ bool luaval_to_navmeshagentparam(lua_State* L, int lo, cocos2d::NavMeshAgentPara
 {
     if (nullptr == L || nullptr == outValue)
         return false;
-    
+
     bool ok = true;
-    
+
     tolua_Error tolua_err;
     if (!tolua_istable(L, lo, 0, &tolua_err) )
     {
@@ -49,24 +49,24 @@ bool luaval_to_navmeshagentparam(lua_State* L, int lo, cocos2d::NavMeshAgentPara
 #endif
         ok = false;
     }
-    
+
     if (ok)
     {
         lua_pushstring(L, "radius");
         lua_gettable(L,lo);
         outValue->radius = lua_isnumber(L, -1)? (float)lua_tonumber(L, -1) : 0.6;
         lua_pop(L,1);
-        
+
         lua_pushstring(L, "height");
         lua_gettable(L,lo);
         outValue->height = lua_isnumber(L, -1)?(float)lua_tonumber(L, -1) : 2.0;
         lua_pop(L,1);
-        
+
         lua_pushstring(L, "maxAcceleration");
         lua_gettable(L, lo);
         outValue->maxAcceleration = lua_isnumber(L, -1)?(float)lua_tonumber(L, -1) : 8.0;
         lua_pop(L, 1);
-        
+
 
         lua_pushstring(L, "maxSpeed");
         lua_gettable(L, lo);
@@ -105,7 +105,7 @@ bool luaval_to_navmeshagentparam(lua_State* L, int lo, cocos2d::NavMeshAgentPara
 
         return true;
     }
-    
+
     return false;
 }
 
@@ -113,9 +113,9 @@ bool luaval_to_offmeshlinkdata(lua_State* L, int lo, cocos2d::OffMeshLinkData* o
 {
     if (nullptr == L || nullptr == outValue)
         return false;
-    
+
     bool ok = true;
-    
+
     tolua_Error tolua_err;
     if (!tolua_istable(L, lo, 0, &tolua_err) )
     {
@@ -124,7 +124,7 @@ bool luaval_to_offmeshlinkdata(lua_State* L, int lo, cocos2d::OffMeshLinkData* o
 #endif
         ok = false;
     }
-    
+
     if (ok)
     {
         lua_pushstring(L, "startPosition");
@@ -147,7 +147,7 @@ bool luaval_to_offmeshlinkdata(lua_State* L, int lo, cocos2d::OffMeshLinkData* o
         lua_pop(L,1);
         return true;
     }
-    
+
     return false;
 }
 
@@ -155,17 +155,17 @@ void navmeshagentparam_to_luaval(lua_State* L,const cocos2d::NavMeshAgentParam& 
 {
     if (nullptr == L)
         return;
-    
+
     lua_newtable(L);
-    
+
     lua_pushstring(L, "radius");
     lua_pushnumber(L, (lua_Number)inValue.radius);
     lua_rawset(L, -3);
-    
+
     lua_pushstring(L, "height");
     lua_pushnumber(L, (lua_Number)inValue.height);
     lua_rawset(L, -3);
-    
+
     lua_pushstring(L, "maxAcceleration");
     lua_pushnumber(L, (lua_Number)inValue.maxAcceleration);
     lua_rawset(L, -3);
@@ -203,15 +203,16 @@ void offmeshlinkdata_to_luaval(lua_State* L,const cocos2d::OffMeshLinkData& inVa
 {
     if (nullptr == L)
         return;
-    
+
     lua_newtable(L);
     lua_pushstring(L, "startPosition");
     vec3_to_luaval(L, inValue.startPosition);
     lua_rawset(L, -3);
-    
+
     lua_pushstring(L, "endPosition");
     vec3_to_luaval(L, inValue.endPosition);
     lua_rawset(L, -3);
 }
 
 #endif
+

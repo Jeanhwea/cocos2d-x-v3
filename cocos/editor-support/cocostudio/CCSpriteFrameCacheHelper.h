@@ -73,3 +73,4 @@ private:
 }
 
 #endif /*__CCSPRITEFRAMECACHEHELPER_H__*/
+

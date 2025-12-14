@@ -443,7 +443,7 @@ public:
 
     /**
     * @brief    save movement bone data
-    * @key    const std::string& 
+    * @key    const std::string&
     * @value    MovementBoneData *
     */
     cocos2d::Map<std::string, MovementBoneData*> movBoneDataDic;
@@ -553,3 +553,4 @@ public:
 }
 
 #endif /*__CCARMATURE_DATAS_H__*/
+

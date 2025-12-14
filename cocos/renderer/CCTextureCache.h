@@ -124,7 +124,7 @@ public:
      @since v0.8
     */
     virtual void addImageAsync(const std::string &filepath, const std::function<void(Texture2D*)>& callback);
-    
+
     void addImageAsync(const std::string &path, const std::function<void(Texture2D*)>& callback, const std::string& callbackKey );
 
     /** Unbind a specified bound image asynchronous callback.
@@ -134,7 +134,7 @@ public:
      * @since v3.1
      */
     virtual void unbindImageAsync(const std::string &filename);
-    
+
     /** Unbind all bound image asynchronous load callbacks.
      * @since v3.1
      */
@@ -227,7 +227,7 @@ private:
 public:
 protected:
     struct AsyncStruct;
-    
+
     std::thread* _loadingThread;
 
     std::deque<AsyncStruct*> _asyncStructQueue;
@@ -236,7 +236,7 @@ protected:
 
     std::mutex _requestMutex;
     std::mutex _responseMutex;
-    
+
     std::condition_variable _sleepCondition;
 
     bool _needQuit;
@@ -271,7 +271,7 @@ private:
 protected:
     friend class  VolatileTextureMgr;
     Texture2D *_texture;
-    
+
     Image *_uiImage;
 
     ccCachedImageType _cashedImageType;

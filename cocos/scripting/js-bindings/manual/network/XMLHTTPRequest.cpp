@@ -332,7 +332,7 @@ void MinXmlHttpRequest::handle_requestResponse(cocos2d::network::HttpClient *sen
     const auto encodingType = _getEncodingType();
 
 #if ( CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 )
-    if (encodingType == EncodingType::GZIP && 
+    if (encodingType == EncodingType::GZIP &&
         cocos2d::ZipUtils::ccIsGZipBuffer((unsigned char *)buffer->data(), buffer->size()))
     {
         unsigned char *deflatedBuffer = nullptr;
@@ -400,7 +400,7 @@ if (x)\
 } \
 
 void MinXmlHttpRequest::_clearCallbacks()
-{ 
+{
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
     REMOVE_CALLBACK(_onreadystateCallback)
     REMOVE_CALLBACK(_onloadstartCallback)
@@ -1181,3 +1181,4 @@ void MinXmlHttpRequest::_js_register(JSContext *cx, JS::HandleObject global)
     MinXmlHttpRequest::js_proto = JS_InitClass(cx, global, JS::NullPtr(), &MinXmlHttpRequest::js_class , MinXmlHttpRequest::_js_constructor, 0, props, funcs, nullptr, nullptr);
 
 }
+

@@ -166,3 +166,4 @@ bool JSB_do_nothing(JSContext *cx, uint32_t argc, jsval *vp)
     args.rval().setUndefined();
     return true;
 }
+

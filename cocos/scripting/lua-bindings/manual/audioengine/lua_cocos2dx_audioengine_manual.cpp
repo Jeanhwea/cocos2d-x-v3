@@ -242,42 +242,42 @@ int lua_cocos2dx_audioengine_AudioEngine_setFinishCallback(lua_State* tolua_S)
 {
     int argc = 0;
     bool ok  = true;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
-    
+
 #if COCOS2D_DEBUG >= 1
     if (!tolua_isusertable(tolua_S,1,"ccexp.AudioEngine",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     argc = lua_gettop(tolua_S) - 1;
-    
+
     if (argc == 2)
     {
         int arg0;
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0, "ccexp.AudioEngine:setFinishCallback");
-    
+
 #if COCOS2D_DEBUG >= 1
         if (!toluafix_isfunction(tolua_S,3,"LUA_FUNCTION",0,&tolua_err))
         {
             goto tolua_lerror;
         }
 #endif
-    
+
         LUA_FUNCTION handler = (  toluafix_ref_function(tolua_S,3,0));
-    
+
         cocos2d::experimental::AudioEngine::setFinishCallback(arg0, [handler](int audioID, std::string filePath){
             LuaStack* stack = LuaEngine::getInstance()->getLuaStack();
-        
+
             stack->pushInt(audioID);
             stack->pushString(filePath.c_str());
-        
+
             stack->executeFunctionByHandler(handler, 2);
-            
+
             LuaEngine::getInstance()->removeScriptHandler(handler);
         });
-    
+
         return 0;
     }
     luaL_error(tolua_S, "%s has wrong number of arguments: %d, was expecting %d\n ", "ccexp.AudioEngine:setFinishCallback",argc, 2);
@@ -306,7 +306,7 @@ int register_audioengine_module(lua_State* L)
                 tolua_variable(L, "minDelay", lua_get_AudioProfile_minDelay, lua_set_AudioProfile_minDelay);
             }
             lua_pop(L, 1);
-        
+
             lua_pushstring(L, "ccexp.AudioEngine");
             lua_rawget(L, LUA_REGISTRYINDEX);
             if (lua_istable(L,-1))
@@ -317,7 +317,7 @@ int register_audioengine_module(lua_State* L)
         }
     }
     lua_pop(L, 1);
-    
+
     return 1;
 }
 
@@ -329,3 +329,4 @@ int register_audioengine_module(lua_State* L)
 }
 
 #endif
+

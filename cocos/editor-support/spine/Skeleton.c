@@ -581,3 +581,4 @@ spPathConstraint* spSkeleton_findPathConstraint (const spSkeleton* self, const c
 void spSkeleton_update (spSkeleton* self, float deltaTime) {
 	self->time += deltaTime;
 }
+

@@ -100,12 +100,12 @@ std::string getPackageNameJNI() {
 int getObbAssetFileDescriptorJNI(const char* path, long* startOffset, long* size) {
     JniMethodInfo methodInfo;
     int fd = 0;
-    
+
     if (JniHelper::getStaticMethodInfo(methodInfo, className.c_str(), "getObbAssetFileDescriptor", "(Ljava/lang/String;)[J")) {
         jstring stringArg = methodInfo.env->NewStringUTF(path);
         jlongArray newArray = (jlongArray)methodInfo.env->CallStaticObjectMethod(methodInfo.classID, methodInfo.methodID, stringArg);
         jsize theArrayLen = methodInfo.env->GetArrayLength(newArray);
-        
+
         if (theArrayLen == 3) {
             jboolean copy = JNI_FALSE;
             jlong *array = methodInfo.env->GetLongArrayElements(newArray, &copy);
@@ -114,11 +114,11 @@ int getObbAssetFileDescriptorJNI(const char* path, long* startOffset, long* size
             *size = array[2];
             methodInfo.env->ReleaseLongArrayElements(newArray, array, 0);
         }
-        
+
         methodInfo.env->DeleteLocalRef(methodInfo.classID);
         methodInfo.env->DeleteLocalRef(stringArg);
     }
-    
+
     return fd;
 }
 
@@ -172,3 +172,4 @@ bool removeDirectoryJNI(const char* path)
 
     return false;
 }
+

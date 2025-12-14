@@ -193,7 +193,7 @@ void VertexAttribBinding::bind()
         {
             attribute.second.apply();
         }
-        
+
     }
 }
 
@@ -255,3 +255,4 @@ void VertexAttribBinding::setVertexAttribPointer(const std::string &name, GLint 
 }
 
 NS_CC_END
+

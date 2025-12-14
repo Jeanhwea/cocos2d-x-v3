@@ -206,3 +206,4 @@ void spIkConstraint_apply2 (spBone* parent, spBone* child, float targetX, float 
 		spBone_updateWorldTransformWith(child, cx, cy, child->arotation + a2 * alpha, child->ascaleX, child->ascaleY, child->ashearX, child->ashearY);
 	}
 }
+

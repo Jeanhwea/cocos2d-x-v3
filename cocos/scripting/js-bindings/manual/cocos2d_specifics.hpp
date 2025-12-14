@@ -308,3 +308,4 @@ void get_or_create_js_obj(JSContext* cx, JS::HandleObject obj, const std::string
 void get_or_create_js_obj(const std::string &name, JS::MutableHandleObject jsObj);
 
 #endif
+

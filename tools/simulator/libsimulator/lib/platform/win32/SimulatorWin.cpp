@@ -1,18 +1,18 @@
 ﻿/****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -82,9 +82,9 @@ INT_PTR CALLBACK AboutDialogCallback(HWND hDlg, UINT message, WPARAM wParam, LPA
 }
 void onHelpAbout()
 {
-    DialogBox(GetModuleHandle(NULL), 
-        MAKEINTRESOURCE(IDD_DIALOG_ABOUT), 
-        Director::getInstance()->getOpenGLView()->getWin32Window(), 
+    DialogBox(GetModuleHandle(NULL),
+        MAKEINTRESOURCE(IDD_DIALOG_ABOUT),
+        Director::getInstance()->getOpenGLView()->getWin32Window(),
         AboutDialogCallback);
 }
 
@@ -181,7 +181,7 @@ void SimulatorWin::openNewPlayerWithProjectConfig(const ProjectConfig &config)
     commandLine.append(getApplicationExePath());
     commandLine.append(" ");
     commandLine.append(config.makeCommandLine());
-    
+
     CCLOG("SimulatorWin::openNewPlayerWithProjectConfig(): %s", commandLine.c_str());
 
     // http://msdn.microsoft.com/en-us/library/windows/desktop/ms682499(v=vs.85).aspx
@@ -199,15 +199,15 @@ void SimulatorWin::openNewPlayerWithProjectConfig(const ProjectConfig &config)
     MultiByteToWideChar(CP_UTF8, 0, commandLine.c_str(), -1, command, MAX_COMMAND);
 
     BOOL success = CreateProcess(NULL,
-                                 command,   // command line 
-                                 NULL,      // process security attributes 
-                                 NULL,      // primary thread security attributes 
-                                 FALSE,     // handles are inherited 
-                                 0,         // creation flags 
-                                 NULL,      // use parent's environment 
-                                 NULL,      // use parent's current directory 
-                                 &si,       // STARTUPINFO pointer 
-                                 &pi);      // receives PROCESS_INFORMATION 
+                                 command,   // command line
+                                 NULL,      // process security attributes
+                                 NULL,      // primary thread security attributes
+                                 FALSE,     // handles are inherited
+                                 0,         // creation flags
+                                 NULL,      // use parent's environment
+                                 NULL,      // use parent's current directory
+                                 &si,       // STARTUPINFO pointer
+                                 &pi);      // receives PROCESS_INFORMATION
 
     if (!success)
     {
@@ -369,7 +369,7 @@ int SimulatorWin::run()
     // set window position
     if (_project.getProjectDir().length())
     {
-        setZoom(_project.getFrameScale()); 
+        setZoom(_project.getFrameScale());
     }
     Vec2 pos = _project.getWindowOffset();
     if (pos.x != 0 && pos.y != 0)
@@ -526,8 +526,8 @@ void SimulatorWin::setupUI()
                             RECT rect;
                             GetWindowRect(hwnd, &rect);
                             MoveWindow(hwnd, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top + GetSystemMetrics(SM_CYMENU), FALSE);
-                        
-                            // fix: can not update window on some windows system 
+
+                            // fix: can not update window on some windows system
                             ::SendMessage(hwnd, WM_MOVE, NULL, NULL);
                         }
                         else if (data.find("VIEWSIZE_ITEM_MENU_") == 0) // begin with VIEWSIZE_ITEM_MENU_
@@ -811,7 +811,7 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
         HDROP hDrop = (HDROP)wParam;
 
         const int count = DragQueryFileW(hDrop, 0xffffffff, NULL, 0);
-        
+
         if (count > 0)
         {
             int fileIndex = 0;
@@ -838,3 +838,4 @@ LRESULT CALLBACK SimulatorWin::windowProc(HWND hWnd, UINT uMsg, WPARAM wParam, L
 }
 
 PLAYER_NS_END
+

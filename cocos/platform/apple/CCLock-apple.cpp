@@ -39,12 +39,13 @@ Lock::~Lock()
 
 void Lock::lock()
 {
-    
+
 }
 
 void Lock::unlock()
 {
-    
+
 }
 
 NS_CC_END
+

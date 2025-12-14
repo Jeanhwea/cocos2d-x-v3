@@ -154,7 +154,7 @@ void PrettyPrinter::visit(const __Array *p)
         i++;
     }
     setIndentLevel(_indentLevel-1);
-    
+
     _result += "\n";
     _result += _indentStr;
     _result += "</array>";
@@ -165,7 +165,7 @@ void PrettyPrinter::visit(const __Dictionary *p)
     _result += "\n";
     _result += _indentStr;
     _result += "<dict>\n";
-    
+
     setIndentLevel(_indentLevel+1);
     DictElement* element;
     bool bFirstElement = true;
@@ -183,7 +183,7 @@ void PrettyPrinter::visit(const __Dictionary *p)
         bFirstElement = false;
     }
     setIndentLevel(_indentLevel-1);
-    
+
     _result += "\n";
     _result += _indentStr;
     _result += "</dict>";
@@ -194,7 +194,7 @@ void PrettyPrinter::visit(const __Set *p)
     _result += "\n";
     _result += _indentStr;
     _result += "<set>\n";
-    
+
     setIndentLevel(_indentLevel+1);
 
     __Set* tmp = const_cast<__Set*>(p);
@@ -209,7 +209,7 @@ void PrettyPrinter::visit(const __Set *p)
         _result += v.getResult();
     }
     setIndentLevel(_indentLevel-1);
-    
+
     _result += "\n";
     _result += _indentStr;
     _result += "</set>\n";
@@ -225,3 +225,4 @@ void PrettyPrinter::setIndentLevel(int indentLevel)
 }
 
 NS_CC_END
+

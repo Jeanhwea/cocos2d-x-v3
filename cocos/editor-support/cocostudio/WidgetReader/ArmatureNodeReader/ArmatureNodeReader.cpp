@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -92,10 +92,10 @@ Offset<Table> ArmatureNodeReader::createOptionsWithFlatBuffers(const tinyxml2::X
 		else if (attriname == "IsAutoPlay")
 		{
 			isAutoPlay = (value == "True") ? true : false;
-		}		
+		}
 		else if (attriname == "CurrentAnimationName")
 		{
-			currentAnimationName = value;			
+			currentAnimationName = value;
 		}
 
 		attribute = attribute->Next();
@@ -104,7 +104,7 @@ Offset<Table> ArmatureNodeReader::createOptionsWithFlatBuffers(const tinyxml2::X
 	const tinyxml2::XMLElement* child = objectData->FirstChildElement();
 	while (child)
 	{
-		std::string attriname = child->Name();		
+		std::string attriname = child->Name();
 		if (attriname == "FileData")
 		{
 			attribute = child->FirstAttribute();
@@ -116,16 +116,16 @@ Offset<Table> ArmatureNodeReader::createOptionsWithFlatBuffers(const tinyxml2::X
 
 				if (attriname == "Type")
 				{
-					type = 0;					
+					type = 0;
 				}
 				else if (attriname == "Path")
 				{
-					path = value;					
+					path = value;
 				}
 
 				attribute = attribute->Next();
 			}
-		}		
+		}
 
 		child = child->NextSiblingElement();
 	}
@@ -148,21 +148,21 @@ void ArmatureNodeReader::setPropsWithFlatBuffers(cocos2d::Node *node,
 
 	auto* custom = static_cast<Armature*>(node);
 	auto options = (flatbuffers::CSArmatureNodeOption*)nodeOptions;
-    
+
     bool fileExist = false;
     std::string errorFilePath = "";
 
-	std::string filepath(options->fileData()->path()->c_str());    
-    
+	std::string filepath(options->fileData()->path()->c_str());
+
     if (FileUtils::getInstance()->isFileExist(filepath))
     {
         fileExist = true;
-        
+
         std::string fullpath = FileUtils::getInstance()->fullPathForFilename(filepath);
-        
+
         std::string dirpath = fullpath.substr(0, fullpath.find_last_of('/'));
         FileUtils::getInstance()->addSearchPath(dirpath);
-        
+
         ArmatureDataManager::getInstance()->addArmatureFileInfo(fullpath);
         custom->init(getArmatureName(filepath));
         std::string currentname = options->currentAnimationName()->c_str();
@@ -211,3 +211,4 @@ std::string ArmatureNodeReader::getArmatureName(const std::string& exporJsonPath
 		start = 0;
 	return  exporJsonPath.substr(start, end - start);
 }
+

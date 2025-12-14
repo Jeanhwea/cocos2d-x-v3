@@ -146,3 +146,4 @@ inline void GoogleOnceInit(ProtobufOnceType* once, void (*init_func)(Arg*),
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_STUBS_ONCE_H__
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -50,7 +50,7 @@ Camera* Camera::create()
     camera->initDefault();
     camera->autorelease();
     camera->setDepth(0.f);
-    
+
     return camera;
 }
 
@@ -142,11 +142,11 @@ void Camera::lookAt(const Vec3& lookAtPos, const Vec3& up)
     Vec3 zaxis;
     Vec3::subtract(this->getPosition3D(), lookAtPos, &zaxis);
     zaxis.normalize();
-    
+
     Vec3 xaxis;
     Vec3::cross(upv, zaxis, &xaxis);
     xaxis.normalize();
-    
+
     Vec3 yaxis;
     Vec3::cross(zaxis, xaxis, &yaxis);
     yaxis.normalize();
@@ -155,7 +155,7 @@ void Camera::lookAt(const Vec3& lookAtPos, const Vec3& up)
     rotation.m[1] = xaxis.y;
     rotation.m[2] = xaxis.z;
     rotation.m[3] = 0;
-    
+
     rotation.m[4] = yaxis.x;
     rotation.m[5] = yaxis.y;
     rotation.m[6] = yaxis.z;
@@ -164,7 +164,7 @@ void Camera::lookAt(const Vec3& lookAtPos, const Vec3& up)
     rotation.m[9] = zaxis.y;
     rotation.m[10] = zaxis.z;
     rotation.m[11] = 0;
-    
+
     Quaternion  quaternion;
     Quaternion::createFromRotationMatrix(rotation,&quaternion);
     quaternion.normalize();
@@ -179,7 +179,7 @@ const Mat4& Camera::getViewProjectionMatrix() const
         _viewProjectionDirty = false;
         Mat4::multiply(_projection, _view, &_viewProjection);
     }
-    
+
     return _viewProjection;
 }
 
@@ -229,7 +229,7 @@ bool Camera::initPerspective(float fieldOfView, float aspectRatio, float nearPla
     _viewProjectionDirty = true;
     _frustumDirty = true;
     _type = Type::PERSPECTIVE;
-    
+
     return true;
 }
 
@@ -243,22 +243,22 @@ bool Camera::initOrthographic(float zoomX, float zoomY, float nearPlane, float f
     _viewProjectionDirty = true;
     _frustumDirty = true;
     _type = Type::ORTHOGRAPHIC;
-    
+
     return true;
 }
 
 Vec2 Camera::project(const Vec3& src) const
 {
     Vec2 screenPos;
-    
+
     auto viewport = Director::getInstance()->getWinSize();
     Vec4 clipPos;
     getViewProjectionMatrix().transformVector(Vec4(src.x, src.y, src.z, 1.0f), &clipPos);
-    
+
     CCASSERT(clipPos.w != 0.0f, "clipPos.w can't be 0.0f!");
     float ndcX = clipPos.x / clipPos.w;
     float ndcY = clipPos.y / clipPos.w;
-    
+
     screenPos.x = (ndcX + 1.0f) * 0.5f * viewport.width;
     screenPos.y = (1.0f - (ndcY + 1.0f) * 0.5f) * viewport.height;
     return screenPos;
@@ -267,15 +267,15 @@ Vec2 Camera::project(const Vec3& src) const
 Vec2 Camera::projectGL(const Vec3& src) const
 {
     Vec2 screenPos;
-    
+
     auto viewport = Director::getInstance()->getWinSize();
     Vec4 clipPos;
     getViewProjectionMatrix().transformVector(Vec4(src.x, src.y, src.z, 1.0f), &clipPos);
-    
+
     CCASSERT(clipPos.w != 0.0f, "clipPos.w can't be 0.0f!");
     float ndcX = clipPos.x / clipPos.w;
     float ndcY = clipPos.y / clipPos.w;
-    
+
     screenPos.x = (ndcX + 1.0f) * 0.5f * viewport.width;
     screenPos.y = (ndcY + 1.0f) * 0.5f * viewport.height;
     return screenPos;
@@ -298,12 +298,12 @@ Vec3 Camera::unprojectGL(const Vec3& src) const
 void Camera::unproject(const Size& viewport, const Vec3* src, Vec3* dst) const
 {
     CCASSERT(src && dst, "vec3 can not be null");
-    
+
     Vec4 screen(src->x / viewport.width, ((viewport.height - src->y)) / viewport.height, src->z, 1.0f);
     screen.x = screen.x * 2.0f - 1.0f;
     screen.y = screen.y * 2.0f - 1.0f;
     screen.z = screen.z * 2.0f - 1.0f;
-    
+
     getViewProjectionMatrix().getInversed().transformVector(screen, &screen);
     if (screen.w != 0.0f)
     {
@@ -311,19 +311,19 @@ void Camera::unproject(const Size& viewport, const Vec3* src, Vec3* dst) const
         screen.y /= screen.w;
         screen.z /= screen.w;
     }
-    
+
     dst->set(screen.x, screen.y, screen.z);
 }
 
 void Camera::unprojectGL(const Size& viewport, const Vec3* src, Vec3* dst) const
 {
     CCASSERT(src && dst, "vec3 can not be null");
-    
+
     Vec4 screen(src->x / viewport.width, src->y / viewport.height, src->z, 1.0f);
     screen.x = screen.x * 2.0f - 1.0f;
     screen.y = screen.y * 2.0f - 1.0f;
     screen.z = screen.z * 2.0f - 1.0f;
-    
+
     getViewProjectionMatrix().getInversed().transformVector(screen, &screen);
     if (screen.w != 0.0f)
     {
@@ -331,7 +331,7 @@ void Camera::unprojectGL(const Size& viewport, const Vec3* src, Vec3* dst) const
         screen.y /= screen.w;
         screen.z /= screen.w;
     }
-    
+
     dst->set(screen.x, screen.y, screen.z);
 }
 
@@ -534,3 +534,4 @@ bool Camera::isBrushValid()
 }
 
 NS_CC_END
+

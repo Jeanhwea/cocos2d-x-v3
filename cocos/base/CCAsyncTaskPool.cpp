@@ -54,3 +54,4 @@ AsyncTaskPool::~AsyncTaskPool()
 }
 
 NS_CC_END
+

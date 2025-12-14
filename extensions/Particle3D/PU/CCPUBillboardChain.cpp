@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -416,7 +416,7 @@ void PUBillboardChain::updateVertexBuffer(const Mat4 &camMat)
     setupBuffers();
 
     // The contents of the vertex buffer are correct if they are not dirty
-    // and the camera used to build the vertex buffer is still the current 
+    // and the camera used to build the vertex buffer is still the current
     // camera.
     if (!_vertexContentDirty)
         return;
@@ -711,7 +711,7 @@ void PUBillboardChain::render( Renderer* renderer, const Mat4 &transform, Partic
                                transform,
                                Node::FLAGS_RENDER_AS_3D);
             _meshCommand->setSkipBatching(true);
-            _meshCommand->setTransparent(true);            
+            _meshCommand->setTransparent(true);
             _glProgramState->setUniformVec4("u_color", Vec4(1,1,1,1));
             renderer->addCommand(_meshCommand);
         }
@@ -796,3 +796,4 @@ GLuint PUBillboardChain::getTextureName()
 //---------------------------------------------------------------------
 
 NS_CC_END
+

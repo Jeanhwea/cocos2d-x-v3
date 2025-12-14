@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,7 +45,7 @@ void ZwoptexGenericTest::onEnter()
 
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("zwoptex/grossini.plist");
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("zwoptex/grossini-generic.plist");
-    
+
     auto layer1 = LayerColor::create(Color4B(255, 0, 0, 255), 85, 121);
     layer1->setPosition(Vec2(s.width/2-80 - (85.0f * 0.5f), s.height/2 - (121.0f * 0.5f)));
     addChild(layer1);
@@ -60,7 +60,7 @@ void ZwoptexGenericTest::onEnter()
     auto layer2 = LayerColor::create(Color4B(255, 0, 0, 255), 85, 121);
     layer2->setPosition(Vec2(s.width/2+80 - (85.0f * 0.5f), s.height/2 - (121.0f * 0.5f)));
     addChild(layer2);
-    
+
     sprite2 = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini_dance_generic_01.png"));
     sprite2->setPosition(Vec2( s.width/2 + 80, s.height/2));
     addChild(sprite2);
@@ -69,7 +69,7 @@ void ZwoptexGenericTest::onEnter()
     sprite2->setFlippedY(false);
 
     schedule(CC_SCHEDULE_SELECTOR(ZwoptexGenericTest::startIn05Secs), 1.0f);
-    
+
     sprite1->retain();
     sprite2->retain();
 
@@ -147,3 +147,4 @@ std::string ZwoptexGenericTest::subtitle() const
 {
     return "Coordinate Formats, Rotation, Trimming, flipX/Y";
 }
+

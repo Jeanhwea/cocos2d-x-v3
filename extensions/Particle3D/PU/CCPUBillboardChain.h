@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -87,18 +87,18 @@ public:
     /// destructor
     virtual ~PUBillboardChain();
 
-    /** Set the maximum number of chain elements per chain 
+    /** Set the maximum number of chain elements per chain
     */
     virtual void setMaxChainElements(size_t maxElements);
-    /** Get the maximum number of chain elements per chain 
+    /** Get the maximum number of chain elements per chain
     */
     virtual size_t getMaxChainElements() const { return _maxElementsPerChain; }
     /** Set the number of chain segments (this class can render multiple chains
-        at once using the same material). 
+        at once using the same material).
     */
     virtual void setNumberOfChains(size_t numChains);
     /** Get the number of chain segments (this class can render multiple chains
-    at once using the same material). 
+    at once using the same material).
     */
     virtual size_t getNumberOfChains() const { return _chainCount; }
 
@@ -166,7 +166,7 @@ public:
         for dynamic alteration.
     */
     virtual bool getDynamic() const { return _dynamic; }
-        
+
     /** Add an element to the 'head' of a chain.
     @remarks
         If this causes the number of elements to exceed the maximum elements
@@ -175,7 +175,7 @@ public:
     @param chainIndex The index of the chain
     @param billboardChainElement The details to add
     */
-    virtual void addChainElement(size_t chainIndex, 
+    virtual void addChainElement(size_t chainIndex,
         const Element& billboardChainElement);
     /** Remove an element from the 'tail' of a chain.
     @param chainIndex The index of the chain
@@ -183,11 +183,11 @@ public:
     virtual void removeChainElement(size_t chainIndex);
     /** Update the details of an existing chain element.
     @param chainIndex The index of the chain
-    @param elementIndex The element index within the chain, measured from 
+    @param elementIndex The element index within the chain, measured from
         the 'head' of the chain
     @param billboardChainElement The details to set
     */
-    virtual void updateChainElement(size_t chainIndex, size_t elementIndex, 
+    virtual void updateChainElement(size_t chainIndex, size_t elementIndex,
         const Element& billboardChainElement);
     /** Get the detail of a chain element.
     @param chainIndex The index of the chain
@@ -333,3 +333,4 @@ protected:
 
 NS_CC_END
 #endif
+

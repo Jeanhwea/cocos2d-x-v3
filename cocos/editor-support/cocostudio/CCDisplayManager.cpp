@@ -172,7 +172,7 @@ void DisplayManager::addDisplay(Node *display, int index)
 
         display->removeFromParent();
         display->cleanup();
-        
+
         Armature *armature = _bone->getArmature();
         if (armature)
         {
@@ -448,3 +448,4 @@ Vec2 DisplayManager::getAnchorPointInPoints() const
 
 
 }
+

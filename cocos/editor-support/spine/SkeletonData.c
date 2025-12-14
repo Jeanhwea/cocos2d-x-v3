@@ -145,3 +145,4 @@ spPathConstraintData* spSkeletonData_findPathConstraint (const spSkeletonData* s
 		if (strcmp(self->pathConstraints[i]->name, constraintName) == 0) return self->pathConstraints[i];
 	return 0;
 }
+

@@ -82,3 +82,4 @@ bool js_cocos2dx_navmesh_NavMesh_NavMesh(JSContext *cx, uint32_t argc, jsval *vp
 
 #endif // __cocos2dx_navmesh_h__
 #endif //#if CC_USE_NAVMESH
+

@@ -529,7 +529,7 @@ namespace ui {
     {
         if (!_actived)
             return;
-        
+
         Node* parent = this->getOwnerParent();
         if (parent == nullptr)
             return;
@@ -673,3 +673,4 @@ namespace ui {
 }
 
 NS_CC_END
+

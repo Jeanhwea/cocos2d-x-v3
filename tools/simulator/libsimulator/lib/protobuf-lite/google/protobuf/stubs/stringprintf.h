@@ -74,3 +74,4 @@ LIBPROTOBUF_EXPORT extern string StringPrintfVector(const char* format, const ve
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_STUBS_STRINGPRINTF_H
+

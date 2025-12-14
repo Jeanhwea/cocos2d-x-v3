@@ -117,7 +117,7 @@ void BoneNode::removeChild(Node* child, bool cleanup /* = true */)
 void BoneNode::removeFromBoneList(BoneNode* bone)
 {
     if (_rootSkeleton != nullptr)
-    {    
+    {
         auto skeletonNode = dynamic_cast<SkeletonNode*>(bone);
         if (skeletonNode == nullptr)  // is not a nested skeleton
         {
@@ -740,3 +740,4 @@ void BoneNode::setAnchorPoint(const cocos2d::Vec2& anchorPoint)
 }
 
 NS_TIMELINE_END
+

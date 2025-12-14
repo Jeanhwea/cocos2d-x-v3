@@ -64,3 +64,4 @@ private:
 };
 
 #endif /* defined(__ARMATURENODEREADER_H_) */
+

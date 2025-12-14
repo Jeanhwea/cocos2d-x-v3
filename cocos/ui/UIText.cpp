@@ -419,7 +419,7 @@ const BlendFunc& Text::getBlendFunc() const
 {
     return _labelRenderer->getBlendFunc();
 }
-    
+
 Widget* Text::createCloneInstance()
 {
     return Text::create();
@@ -459,3 +459,4 @@ void Text::copySpecialProperties(Widget *widget)
 }
 
 NS_CC_END
+

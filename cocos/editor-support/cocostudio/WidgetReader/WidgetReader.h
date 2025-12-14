@@ -1,19 +1,19 @@
 ﻿/****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,28 +37,28 @@ namespace cocostudio
 {
     class CocoLoader;
     struct stExpCocoNode;
-    
+
     class CC_STUDIO_DLL WidgetReader : public cocos2d::Ref, public WidgetReaderProtocol, public NodeReaderProtocol
     {
         DECLARE_CLASS_NODE_READER_INFO
-        
+
     public:
         WidgetReader();
         virtual ~WidgetReader();
-        
+
         static WidgetReader* getInstance();
         /** @deprecated Use method destroyInstance() instead */
         CC_DEPRECATED_ATTRIBUTE static void purge();
         static void destroyInstance();
-        
+
         virtual void setPropsFromJsonDictionary(cocos2d::ui::Widget* widget,
                                                 const rapidjson::Value& options);
-        
+
         virtual void setColorPropsFromJsonDictionary(cocos2d::ui::Widget* widget,
                                                      const rapidjson::Value& options);
-        
-        virtual void setPropsFromBinary(cocos2d::ui::Widget* widget, CocoLoader* cocoLoader,  stExpCocoNode*	pCocoNode);        
-        
+
+        virtual void setPropsFromBinary(cocos2d::ui::Widget* widget, CocoLoader* cocoLoader,  stExpCocoNode*	pCocoNode);
+
         /* flatbuffers refactoring */
         flatbuffers::Offset<flatbuffers::Table> createOptionsWithFlatBuffers(const tinyxml2::XMLElement* objectData,
                                                                              flatbuffers::FlatBufferBuilder* builder);
@@ -66,29 +66,29 @@ namespace cocostudio
         void setLayoutComponentPropsWithFlatBuffers(cocos2d::Node* node, const flatbuffers::Table* widgetOptions);
         cocos2d::Node* createNodeWithFlatBuffers(const flatbuffers::Table* widgetOptions);
         /**/
-        
+
     protected:
         std::string getResourcePath(const rapidjson::Value& dict,
                                     const std::string& key,
                                     cocos2d::ui::Widget::TextureResType texType);
         void setAnchorPointForWidget(cocos2d::ui::Widget* widget, const rapidjson::Value&options);
-        
-        
+
+
         std::string getResourcePath(CocoLoader* cocoLoader,
                                     stExpCocoNode*	pCocoNode,
-                                    cocos2d::ui::Widget::TextureResType texType);                
-        
+                                    cocos2d::ui::Widget::TextureResType texType);
+
         std::string getResourcePath(const std::string& path,
                                     cocos2d::ui::Widget::TextureResType texType);
 
         void beginSetBasicProperties(cocos2d::ui::Widget *widget);
         void endSetBasicProperties(cocos2d::ui::Widget *widget);
-        
-        
+
+
         std::function<int(const std::string&)> valueToInt;
         std::function<bool(const std::string&)> valueToBool;
         std::function<float(const std::string&)> valueToFloat;
-        
+
         float _sizePercentX;
         float _sizePercentY;
         float _positionPercentX;
@@ -102,7 +102,7 @@ namespace cocostudio
         cocos2d::Vec2 _originalAnchorPoint;
 
     };
-    
+
     //property const define
     extern const char* P_IgnoreSize;
     extern const char* P_SizeType;
@@ -135,7 +135,7 @@ namespace cocostudio
     extern const char* P_MarginRight;
     extern const char* P_MarginTop;
     extern const char* P_MarginDown;
-    
+
     extern const char* P_Opacity;
     extern const char* P_ColorR;
     extern const char* P_ColorG;
@@ -144,10 +144,10 @@ namespace cocostudio
     extern const char* P_FlipY;
     extern const char* P_AnchorPointX;
     extern const char* P_AnchorPointY;
-    
+
     extern const char* P_ResourceType;
     extern const char* P_Path;
-    
+
 #define CC_BASIC_PROPERTY_BINARY_READER  \
     if (key == P_IgnoreSize) {   \
         widget->ignoreContentAdaptWithSize(valueToBool(value)); \
@@ -233,7 +233,7 @@ namespace cocostudio
         }\
       }
 
-    
+
 #define CC_COLOR_PROPERTY_BINARY_READER \
     else if (key == P_Opacity) { \
         _opacity = valueToInt(value); \
@@ -259,3 +259,4 @@ namespace cocostudio
 }
 
 #endif /* defined(__TestCpp__WidgetReader__) */
+

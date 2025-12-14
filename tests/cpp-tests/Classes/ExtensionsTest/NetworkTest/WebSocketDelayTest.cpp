@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,14 +38,14 @@ WebSocketDelayTest::WebSocketDelayTest()
 , _sendTextTimes(0)
 {
     auto winSize = Director::getInstance()->getWinSize();
-    
+
     const int MARGIN = 40;
     const int SPACE = 35;
-    
+
     auto menuRequest = Menu::create();
     menuRequest->setPosition(Vec2::ZERO);
     addChild(menuRequest);
-    
+
     // Send Text
     char cmdLabel[60] = { 0 };
     snprintf(cmdLabel, 60, "Send %d Text", SEND_TEXT_TIMES);
@@ -53,20 +53,20 @@ WebSocketDelayTest::WebSocketDelayTest()
     auto itemSendText = MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketDelayTest::onMenuSendTextClicked, this));
     itemSendText->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - SPACE));
     menuRequest->addChild(itemSendText);
-    
+
     // Send Text Status Label
     _sendTextStatus = Label::createWithTTF("Waiting connection...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _sendTextStatus->setAnchorPoint(Vec2(0, 0));
     _sendTextStatus->setPosition(Vec2(VisibleRect::left().x, VisibleRect::rightBottom().y + 25));
     this->addChild(_sendTextStatus);
-   
+
 
     // Error Label
     _progressStatus = Label::createWithTTF(".", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _progressStatus->setAnchorPoint(Vec2(0, 0));
     _progressStatus->setPosition(Vec2(VisibleRect::left().x + 320, VisibleRect::rightBottom().y + 25));
     this->addChild(_progressStatus);
-    
+
     auto startTestLabel = Label::createWithTTF("DO Connect!", "fonts/arial.ttf", 16);
     auto startTestItem = MenuItemLabel::create(startTestLabel, CC_CALLBACK_1(WebSocketDelayTest::startTestCallback, this));
     startTestItem->setPosition(Vec2(VisibleRect::center().x - 150, VisibleRect::bottom().y + 150));
@@ -96,7 +96,7 @@ void WebSocketDelayTest::startTestCallback(Ref* sender)
     _startTestMenu = nullptr;
 
     _wsiSendText = new network::WebSocket();
-    
+
     std::vector<std::string> protocols;
     protocols.emplace_back("myprotocol_1");
     protocols.emplace_back("myprotocol_2");
@@ -115,7 +115,7 @@ void WebSocketDelayTest::startTestCallback(Ref* sender)
 void WebSocketDelayTest::doSendText()
 {
     _sendTextTimes += 1;
-    if (_sendTextTimes > SEND_TEXT_TIMES) 
+    if (_sendTextTimes > SEND_TEXT_TIMES)
     {
         _sendTextStatus->setString("Test Done!");
         return;
@@ -133,7 +133,7 @@ void WebSocketDelayTest::doReceiveText()
     _receiveTimeMircoSec = getNowMircroSeconds();
     if(_sendTimeMircoSec > 0)
         _totalDelayMircoSec += (_receiveTimeMircoSec - _sendTimeMircoSec);
-    doSendText(); //send next 
+    doSendText(); //send next
 }
 
 // Delegate methods
@@ -204,7 +204,7 @@ void WebSocketDelayTest::onMenuSendTextClicked(cocos2d::Ref *sender)
 
     if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN)
     {
-        
+
         _sendTextTimes = 0;
         _receiveTextTimes = 0;
         doSendText();
@@ -216,3 +216,4 @@ void WebSocketDelayTest::onMenuSendTextClicked(cocos2d::Ref *sender)
         _sendTextStatus->setString(warningStr);
     }
 }
+

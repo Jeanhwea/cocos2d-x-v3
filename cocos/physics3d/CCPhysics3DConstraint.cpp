@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,7 @@ Physics3DConstraint::Physics3DConstraint()
 , _type(Physics3DConstraint::ConstraintType::UNKNOWN)
 , _userData(nullptr)
 {
-    
+
 }
 
 Physics3DConstraint::~Physics3DConstraint()
@@ -89,7 +89,7 @@ Physics3DPointToPointConstraint* Physics3DPointToPointConstraint::create(Physics
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return ret;
 }
@@ -103,18 +103,18 @@ Physics3DPointToPointConstraint* Physics3DPointToPointConstraint::create(Physics
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return ret;
 }
 
 bool Physics3DPointToPointConstraint::init(Physics3DRigidBody* rbA, const cocos2d::Vec3& pivotPointInA)
 {
-    
+
     _constraint = new btPoint2PointConstraint(*rbA->getRigidBody(), convertVec3TobtVector3(pivotPointInA));
     _bodyA = rbA;
     _bodyA->retain();
-    
+
     return true;
 }
 
@@ -125,7 +125,7 @@ bool Physics3DPointToPointConstraint::init(Physics3DRigidBody* rbA, Physics3DRig
     _bodyB = rbB;
     _bodyA->retain();
     _bodyB->retain();
-    
+
     return true;
 }
 
@@ -160,7 +160,7 @@ Physics3DPointToPointConstraint::Physics3DPointToPointConstraint()
 
 Physics3DPointToPointConstraint::~Physics3DPointToPointConstraint()
 {
-    
+
 }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -170,7 +170,7 @@ Physics3DHingeConstraint* Physics3DHingeConstraint::create(Physics3DRigidBody* r
     ret->_constraint = new btHingeConstraint(*rbA->getRigidBody(), convertMat4TobtTransform(rbAFrame), useReferenceFrameA);
     ret->_bodyA = rbA;
     rbA->retain();
-    
+
     ret->autorelease();
     return ret;
 }
@@ -181,7 +181,7 @@ Physics3DHingeConstraint* Physics3DHingeConstraint::create(Physics3DRigidBody* r
     ret->_constraint = new btHingeConstraint(*rbA->getRigidBody(), convertVec3TobtVector3(pivotInA), convertVec3TobtVector3(axisInA), useReferenceFrameA);
     ret->_bodyA = rbA;
     rbA->retain();
-    
+
     ret->autorelease();
     return ret;
 }
@@ -194,7 +194,7 @@ Physics3DHingeConstraint* Physics3DHingeConstraint::create(Physics3DRigidBody* r
     rbA->retain();
     ret->_bodyB = rbB;
     rbB->retain();
-    
+
     ret->autorelease();
     return ret;
 }
@@ -207,7 +207,7 @@ Physics3DHingeConstraint* Physics3DHingeConstraint::create(Physics3DRigidBody* r
     rbA->retain();
     ret->_bodyB = rbB;
     rbB->retain();
-    
+
     ret->autorelease();
     return ret;
 }
@@ -337,7 +337,7 @@ Physics3DSliderConstraint* Physics3DSliderConstraint::create(Physics3DRigidBody*
     ret->_bodyB = rbB;
     rbA->retain();
     rbB->retain();
-    
+
     auto transformA = convertMat4TobtTransform(frameInA);
     auto transformB = convertMat4TobtTransform(frameInB);
     ret->_constraint = new btSliderConstraint(*rbA->getRigidBody(), *rbB->getRigidBody(), transformA, transformB, useLinearReferenceFrameA);
@@ -617,10 +617,10 @@ Physics3DConeTwistConstraint* Physics3DConeTwistConstraint::create(Physics3DRigi
     auto ret = new (std::nothrow) Physics3DConeTwistConstraint();
     ret->_bodyA = rbA;
     rbA->retain();
-    
+
     auto btFrame = convertMat4TobtTransform(frameA);
     ret->_constraint = new btConeTwistConstraint(*rbA->getRigidBody(), btFrame);
-    
+
     ret->autorelease();
     return ret;
 }
@@ -631,12 +631,12 @@ Physics3DConeTwistConstraint* Physics3DConeTwistConstraint::create(Physics3DRigi
     ret->_bodyB = rbB;
     rbA->retain();
     rbB->retain();
-    
+
     auto btFrameA = convertMat4TobtTransform(frameA);
     auto btFrameB = convertMat4TobtTransform(frameB);
-    
+
     ret->_constraint = new btConeTwistConstraint(*rbA->getRigidBody(), *rbB->getRigidBody(), btFrameA, btFrameB);
-    
+
     ret->autorelease();
     return ret;
 }
@@ -722,7 +722,7 @@ void Physics3DConeTwistConstraint::setFrames(const cocos2d::Mat4& frameA, const 
 {
     const auto& btFrameA = convertMat4TobtTransform(frameA);
     const auto& btFrameB = convertMat4TobtTransform(frameB);
-    
+
     static_cast<btConeTwistConstraint*>(_constraint)->setFrames(btFrameA, btFrameB);
 }
 
@@ -744,10 +744,10 @@ Physics3D6DofConstraint* Physics3D6DofConstraint::create(Physics3DRigidBody* rbB
     auto ret = new Physics3D6DofConstraint();
     ret->_bodyB = rbB;
     rbB->retain();
-    
+
     auto frameB = convertMat4TobtTransform(frameInB);
     ret->_constraint = new btGeneric6DofConstraint(*rbB->getRigidBody(), frameB, useLinearReferenceFrameB);
-    
+
     ret->autorelease();
     return ret;
 }
@@ -759,11 +759,11 @@ Physics3D6DofConstraint* Physics3D6DofConstraint::create(Physics3DRigidBody* rbA
     ret->_bodyB = rbB;
     rbA->retain();
     rbB->retain();
-    
+
     auto frameA = convertMat4TobtTransform(frameInA);
     auto frameB = convertMat4TobtTransform(frameInB);
     ret->_constraint = new btGeneric6DofConstraint(*rbA->getRigidBody(), *rbB->getRigidBody(), frameA, frameB, useLinearReferenceFrameA);
-    
+
     ret->autorelease();
     return ret;
 }
@@ -839,3 +839,4 @@ NS_CC_END
 #endif // CC_ENABLE_BULLET_INTEGRATION
 
 #endif //CC_USE_3D_PHYSICS
+

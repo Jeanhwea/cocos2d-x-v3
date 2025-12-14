@@ -54,7 +54,7 @@ CC_CONSTRUCTOR_ACCESS:
      * @js NA
      */
     virtual ~InputDelegate();
-    
+
 public:
     virtual bool isTouchEnabled() const;
     virtual void setTouchEnabled(bool value);
@@ -149,7 +149,7 @@ public:
      */
     virtual void onTouchesCancelled(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event *event);
 
-protected:   
+protected:
     bool _touchEnabled;
     cocos2d::EventListener* _touchListener;
     bool _accelerometerEnabled;
@@ -164,3 +164,4 @@ private:
 }
 
 #endif  // __CC_EXTENTIONS_CCINPUTDELEGATE_H__
+

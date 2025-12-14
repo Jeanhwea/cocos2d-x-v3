@@ -61,9 +61,9 @@ typedef void (Ref::*SEL_PageViewEvent)(Ref*, PageViewEventType);
  */
 class CC_GUI_DLL PageView : public ListView
 {
-    
+
     DECLARE_CLASS_GUI_INFO
-    
+
 public:
     /**
      * Page turn event type.
@@ -72,7 +72,7 @@ public:
     {
         TURNING
     };
-    
+
     /**
      * Touch direction type.
      */
@@ -95,14 +95,14 @@ public:
      * @lua new
      */
     PageView();
-    
+
     /**
      * Default destructor
      * @js NA
      * @lua NA
      */
     virtual ~PageView();
-    
+
     /**
      * Create an empty PageView.
      *@return A PageView instance.
@@ -126,7 +126,7 @@ public:
      * Since v3.9, this is deprecated. Use `insertPage(Widget* page, int idx)` instead.
      */
     CC_DEPRECATED_ATTRIBUTE void addWidgetToPage(Widget* widget, ssize_t pageIdx, bool forceCreate);
-    
+
     /**
      * Insert a page into the end of PageView.
      *
@@ -160,14 +160,14 @@ public:
      * @brief Remove all pages of the PageView.
      */
     void removeAllPages();
-    
+
     /**
      * Scroll to a page with a given index.
      *
      * @param idx   A given index in the PageView. Index start from 0 to pageCount -1.
      */
     void scrollToPage(ssize_t idx);
-    
+
     /**
      * Scroll to a page with a given index and with a given scroll time.
      *
@@ -182,7 +182,7 @@ public:
      * @param itemIndex   A given index in the PageView. Index start from 0 to pageCount -1.
      */
     void scrollToItem(ssize_t itemIndex);
-    
+
     /**
      * Scroll to a item with a given index and with a given scroll time.
      *
@@ -240,7 +240,7 @@ public:
      * Since v3.9, this is obsolete. Use `Widget* ListView::getItem(index)` instead.
      */
     CC_DEPRECATED_ATTRIBUTE Layout* getPage(ssize_t index);
-    
+
     /**
      * Add a page turn callback to PageView, then when one page is turning, the callback will be called.
      *@deprecated Use `PageView::addEventListener` instead.
@@ -293,7 +293,7 @@ public:
      * @param position The position in page view
      */
     void setIndicatorPosition(const Vec2& position);
-    
+
     /**
      * @brief Get the page indicator's position.
      *
@@ -335,49 +335,49 @@ public:
      * @param color New indicator node color.
      */
     void setIndicatorIndexNodesColor(const Color3B& color);
-    
+
     /**
      * @brief Get the color of page indicator's index nodes.
      *
      * @return color
      */
     const Color3B& getIndicatorIndexNodesColor() const;
-    
+
     /**
      * @brief Set opacity of page indicator's selected index.
      *
      * @param color New opacity for selected (current) index.
      */
     void setIndicatorSelectedIndexOpacity(GLubyte opacity);
-    
+
     /**
      * @brief Get the opacity of page indicator's selected index.
      *
      * @return opacity
      */
     GLubyte getIndicatorSelectedIndexOpacity() const;
-    
+
     /**
      * @brief Set opacity of page indicator's index nodes.
      *
      * @param opacity New indicator node opacity.
      */
     void setIndicatorIndexNodesOpacity(GLubyte opacity);
-    
+
     /**
      * @brief Get the opacity of page indicator's index nodes.
      *
      * @return opacity
      */
     GLubyte getIndicatorIndexNodesOpacity() const;
-    
+
     /**
      * @brief Set scale of page indicator's index nodes.
      *
      * @param indexNodesScale Scale of index nodes.
      */
     void setIndicatorIndexNodesScale(float indexNodesScale);
-    
+
     /**
      * sets texture for index nodes.
      *
@@ -385,14 +385,14 @@ public:
      * @param resType    @see TextureResType .
      */
     void setIndicatorIndexNodesTexture(const std::string& texName,Widget::TextureResType texType = Widget::TextureResType::LOCAL);
-    
+
     /**
      * @brief Get scale of page indicator's index nodes.
      *
      * @return indexNodesScale
      */
     float getIndicatorIndexNodesScale() const;
-    
+
     /**
      *@brief If you don't specify the value, the pageView will turn page when scrolling at the half width of a page.
      *@param threshold  A threshold in float.
@@ -479,3 +479,4 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__PageView__) */
+

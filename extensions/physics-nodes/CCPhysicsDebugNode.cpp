@@ -41,7 +41,7 @@ NS_CC_EXT_BEGIN
 #if CC_ENABLE_CHIPMUNK_INTEGRATION
 /*
  IMPORTANT - READ ME!
- 
+
  This file sets pokes around in the private API a lot to provide efficient
  debug rendering given nothing more than reference to a Chipmunk space.
  It is not recommended to write rendering code like this in your own games
@@ -73,7 +73,7 @@ static void DrawShape(cpShape *shape, DrawNode *renderer)
 {
     cpBody *body = cpShapeGetBody(shape);
     Color4F color = ColorForBody(body);
-    
+
     switch (shape->CP_PRIVATE(klass)->type)
     {
         case CP_CIRCLE_SHAPE:
@@ -115,12 +115,12 @@ static void DrawConstraint(cpConstraint *constraint, DrawNode *renderer)
 {
     cpBody *body_a = cpConstraintGetBodyA(constraint);
     cpBody *body_b = cpConstraintGetBodyB(constraint);
-    
+
     if(cpConstraintIsPinJoint(constraint))
     {
         cpVect a = cpvadd(cpBodyGetPosition(body_a), cpvrotate(cpPinJointGetAnchorA(constraint), cpBodyGetRotation(body_a)));
         cpVect b = cpvadd(cpBodyGetPosition(body_b), cpvrotate(cpPinJointGetAnchorB(constraint), cpBodyGetRotation(body_b)));
-        
+
         renderer->drawDot(cpVert2Point(a), 3.0, CONSTRAINT_COLOR);
         renderer->drawDot(cpVert2Point(b), 3.0, CONSTRAINT_COLOR);
         renderer->drawSegment(cpVert2Point(a), cpVert2Point(b), 1.0, CONSTRAINT_COLOR);
@@ -129,7 +129,7 @@ static void DrawConstraint(cpConstraint *constraint, DrawNode *renderer)
     {
         cpVect a = cpvadd(cpBodyGetPosition(body_a), cpvrotate(cpSlideJointGetAnchorA(constraint), cpBodyGetRotation(body_a)));
         cpVect b = cpvadd(cpBodyGetPosition(body_b), cpvrotate(cpSlideJointGetAnchorB(constraint), cpBodyGetRotation(body_b)));
-        
+
         renderer->drawDot(cpVert2Point(a), 3.0, CONSTRAINT_COLOR);
         renderer->drawDot(cpVert2Point(b), 3.0, CONSTRAINT_COLOR);
         renderer->drawSegment(cpVert2Point(a), cpVert2Point(b), 1.0, CONSTRAINT_COLOR);
@@ -138,7 +138,7 @@ static void DrawConstraint(cpConstraint *constraint, DrawNode *renderer)
     {
         cpVect a = cpvadd(cpBodyGetPosition(body_a), cpvrotate(cpPivotJointGetAnchorA(constraint), cpBodyGetRotation(body_a)));
         cpVect b = cpvadd(cpBodyGetPosition(body_b), cpvrotate(cpPivotJointGetAnchorB(constraint), cpBodyGetRotation(body_b)));
-        
+
         renderer->drawDot(cpVert2Point(a), 3.0, CONSTRAINT_COLOR);
         renderer->drawDot(cpVert2Point(b), 3.0, CONSTRAINT_COLOR);
     }
@@ -147,7 +147,7 @@ static void DrawConstraint(cpConstraint *constraint, DrawNode *renderer)
         cpVect a = cpvadd(cpBodyGetPosition(body_a), cpvrotate(cpGrooveJointGetGrooveA(constraint), cpBodyGetRotation(body_a)));
         cpVect b = cpvadd(cpBodyGetPosition(body_a), cpvrotate(cpGrooveJointGetGrooveB(constraint), cpBodyGetRotation(body_a)));
         cpVect c = cpvadd(cpBodyGetPosition(body_b), cpvrotate(cpGrooveJointGetAnchorB(constraint), cpBodyGetRotation(body_b)));
-        
+
         renderer->drawDot(cpVert2Point(c), 3.0, CONSTRAINT_COLOR);
         renderer->drawSegment(cpVert2Point(a), cpVert2Point(b), 1.0, CONSTRAINT_COLOR);
     }
@@ -176,7 +176,7 @@ void PhysicsDebugNode::draw(Renderer *renderer, const Mat4 &transform, uint32_t 
 
     cpSpaceEachShape(_spacePtr, (cpSpaceShapeIteratorFunc)DrawShape, this);
     cpSpaceEachConstraint(_spacePtr, (cpSpaceConstraintIteratorFunc)DrawConstraint, this);
-    
+
     DrawNode::draw(renderer, transform, flags);
 #endif
 }
@@ -202,7 +202,7 @@ PhysicsDebugNode* PhysicsDebugNode::create(cpSpace *space)
     {
         CC_SAFE_DELETE(node);
     }
-    
+
     return node;
 }
 
@@ -230,3 +230,4 @@ void PhysicsDebugNode::setSpace(cpSpace *space)
 }
 
 NS_CC_EXT_END
+

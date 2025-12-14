@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,7 +55,7 @@ TOLUA_API void toluafix_open(lua_State* L);
  * In addition, this function would update some table in the Lua registry,such as toluafix_refid_ptr_mapping, toluafix_refid_type_mapping,tolua_value_root,and so on.
  * Meanwhile, Add a reference about the userdata corresponding to the ptr in the tolua_ubox table.
  * The ptr should be point to a Ref object.
- * 
+ *
  * @param L the current lua_State.
  * @param uid the object id of the ptr.
  * @param p_refid the pointer points to the Lua reference id of the ptr.
@@ -120,7 +120,7 @@ TOLUA_API void toluafix_remove_function_by_refid(lua_State* L, int refid);
 
 /**
  * Verify the value at the given acceptable index is a function or not.
- * 
+ *
  * @param L the current lua_State.
  * @param lo the given acceptable index lo of stack.
  * @param type useless.
@@ -138,7 +138,7 @@ TOLUA_API int toluafix_totable(lua_State* L, int lo, int def);
 
 /**
  * Verify the value at the given acceptable index is a table or not.
- * 
+ *
  * @param L the current lua_State.
  * @param lo the given acceptable index lo of stack.
  * @param type useless.
@@ -165,3 +165,4 @@ TOLUA_API void toluafix_stack_dump(lua_State* L, const char* label);
 /// @}
 
 #endif // __TOLUA_FIX_H_
+

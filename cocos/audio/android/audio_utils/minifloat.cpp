@@ -68,3 +68,4 @@ float float_from_gain(gain_minifloat_t a)
 }
 
 } // extern "C" {
+

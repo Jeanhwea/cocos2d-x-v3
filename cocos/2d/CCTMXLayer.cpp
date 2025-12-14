@@ -948,3 +948,4 @@ TMXTileAnimTask *TMXTileAnimTask::create(TMXLayer *layer, TMXTileAnimInfo *anima
 }
 
 NS_CC_END
+

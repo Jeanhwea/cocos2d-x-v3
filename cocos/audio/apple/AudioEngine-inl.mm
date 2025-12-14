@@ -114,7 +114,7 @@ void AudioEngineInterruptionListenerCallback(void* user_data, UInt32 interruptio
         AudioSessionInitialize(NULL, NULL, AudioEngineInterruptionListenerCallback, self);
       }
 #endif
-    
+
     BOOL success = [[AVAudioSession sharedInstance]
                     setCategory: AVAudioSessionCategoryAmbient
                     error: nil];
@@ -162,7 +162,7 @@ void AudioEngineInterruptionListenerCallback(void* user_data, UInt32 interruptio
                     ALOGE("AVAudioSessionInterruptionTypeEnded, AVAudioSession setActive fail, %d",(int)error.code);
                     return;
                 }
-                
+
                 alcMakeContextCurrent(s_ALContext);
                 if (Director::getInstance()->isPaused())
                 {
@@ -719,3 +719,4 @@ void AudioEngineImpl::uncacheAll()
 }
 
 #endif
+

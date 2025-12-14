@@ -41,7 +41,7 @@ jsval speventdata_to_jsval(JSContext* cx, spEventData& v)
         JS_DefineProperty(cx, tmp, "intValue", v.intValue, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "floatValue", v.floatValue, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "stringValue", jsstr, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
@@ -53,19 +53,19 @@ jsval spevent_to_jsval(JSContext* cx, spEvent& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     JS::RootedValue jsdata(cx, speventdata_to_jsval(cx, *v.data));
     JS::RootedValue jsstr(cx, c_string_to_jsval(cx, v.stringValue));
     bool ok = JS_DefineProperty(cx, tmp, "data", jsdata, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "intValue", v.intValue, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "floatValue", v.floatValue, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "stringValue", jsstr, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -73,12 +73,12 @@ jsval spbonedata_to_jsval(JSContext* cx, const spBoneData* v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     // root haven't parent
     JS::RootedValue parentVal(cx);
     if (strcmp(v->name, "root") && v->parent)
         parentVal = spbonedata_to_jsval(cx, v->parent);
-    
+
     JS::RootedValue jsname(cx, c_string_to_jsval(cx, v->name));
     bool ok = JS_DefineProperty(cx, tmp, "index", v->index, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "name", jsname, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
@@ -92,12 +92,12 @@ jsval spbonedata_to_jsval(JSContext* cx, const spBoneData* v)
         JS_DefineProperty(cx, tmp, "shearX", v->shearX, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "shearY", v->shearY, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "transformMode", v->transformMode, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -105,12 +105,12 @@ jsval spbone_to_jsval(JSContext* cx, spBone& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     // root haven't parent
     JS::RootedValue parentVal(cx);
     if (strcmp(v.data->name, "root") && v.parent)
         parentVal = spbone_to_jsval(cx, *v.parent);
-    
+
     JS::RootedValue jsdata(cx, spbonedata_to_jsval(cx, v.data));
     bool ok = JS_DefineProperty(cx, tmp, "data", jsdata, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "parent", parentVal, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
@@ -137,7 +137,7 @@ jsval spbone_to_jsval(JSContext* cx, spBone& v)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -145,7 +145,7 @@ jsval spskeleton_to_jsval(JSContext* cx, spSkeleton& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     bool ok = JS_DefineProperty(cx, tmp, "x", v.x, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "y", v.y, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "flipX", v.flipX, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
@@ -153,12 +153,12 @@ jsval spskeleton_to_jsval(JSContext* cx, spSkeleton& v)
         JS_DefineProperty(cx, tmp, "time", v.time, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "boneCount", v.bonesCount, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "slotCount", v.slotsCount, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -166,16 +166,16 @@ jsval spattachment_to_jsval(JSContext* cx, spAttachment& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     JS::RootedValue jsname(cx, c_string_to_jsval(cx, v.name));
     bool ok = JS_DefineProperty(cx, tmp, "name", jsname, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "type", v.type, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -183,14 +183,14 @@ jsval spColor_to_jsval(JSContext* cx, const spColor* v)
 {
     if (!v)
         return JSVAL_NULL;
-        
+
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     bool ok = JS_DefineProperty(cx, tmp, "r", v->r, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
     JS_DefineProperty(cx, tmp, "g", v->g, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
     JS_DefineProperty(cx, tmp, "b", v->b, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
         return OBJECT_TO_JSVAL(tmp);
     else
@@ -214,12 +214,12 @@ jsval spslotdata_to_jsval(JSContext* cx, spSlotData& v)
         JS_DefineProperty(cx, tmp, "blendMode", v.blendMode, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "boneData", jsboneData, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "index", v.index, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -227,7 +227,7 @@ jsval spslot_to_jsval(JSContext* cx, spSlot& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     JS::RootedValue jsbone(cx, spbone_to_jsval(cx, *v.bone));
     JS::RootedValue jsattachment(cx, spattachment_to_jsval(cx, *v.attachment));
     JS::RootedValue jsdata(cx, spslotdata_to_jsval(cx, *v.data));
@@ -242,12 +242,12 @@ jsval spslot_to_jsval(JSContext* cx, spSlot& v)
         JS_DefineProperty(cx, tmp, "attachmentVerticesCapacity", v.attachmentVerticesCapacity, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "attachmentVerticesCount", v.attachmentVerticesCount, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "attachmentVertices", *v.attachmentVertices, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-        
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -255,14 +255,14 @@ jsval sptimeline_to_jsval(JSContext* cx, spTimeline& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     bool ok = JS_DefineProperty(cx, tmp, "type", v.type, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -270,15 +270,15 @@ jsval spanimationstate_to_jsval(JSContext* cx, spAnimationState& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     bool ok = JS_DefineProperty(cx, tmp, "timeScale", v.timeScale, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "trackCount", v.tracksCount, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -286,19 +286,19 @@ jsval spanimation_to_jsval(JSContext* cx, spAnimation& v)
 {
     JS::RootedObject tmp(cx, JS_NewObject(cx, nullptr, JS::NullPtr(), JS::NullPtr()));
     if (!tmp) return JSVAL_NULL;
-    
+
     JS::RootedValue jsname(cx, c_string_to_jsval(cx, v.name));
     JS::RootedValue jstimelines(cx, sptimeline_to_jsval(cx, **v.timelines));
     bool ok = JS_DefineProperty(cx, tmp, "duration", v.duration, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "timelineCount", v.timelinesCount, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "name", jsname, JSPROP_ENUMERATE | JSPROP_PERMANENT) &&
         JS_DefineProperty(cx, tmp, "timelines", jstimelines, JSPROP_ENUMERATE | JSPROP_PERMANENT);
-    
+
     if (ok)
     {
         return OBJECT_TO_JSVAL(tmp);
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -372,14 +372,14 @@ void js_register_spine_TrackEntry(JSContext *cx, JS::HandleObject global)
     jsb_spine_TrackEntry_class->convert = JS_ConvertStub;
     jsb_spine_TrackEntry_class->finalize = js_spine_TrackEntry_finalize;
     jsb_spine_TrackEntry_class->flags = JSCLASS_HAS_RESERVED_SLOTS(2);
-    
+
     static JSPropertySpec properties[] =
     {
         JS_PSG("mixingFrom", jsb_spine_TrackEntry_get_mixingFrom, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_PSG("next", jsb_spine_TrackEntry_get_next, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_PS_END
     };
-    
+
     jsb_spine_TrackEntry_prototype = JS_InitClass(cx, global, JS::NullPtr(), jsb_spine_TrackEntry_class, nullptr, 0, properties, nullptr, nullptr, nullptr);
 }
 
@@ -397,7 +397,7 @@ jsval sptrackentry_to_jsval(JSContext* cx, spTrackEntry& v)
         JS::RootedObject proto(cx, jsb_spine_TrackEntry_prototype);
         entry.set(JS_NewObject(cx, jsb_spine_TrackEntry_class, proto, JS::NullPtr()));
     }
-    
+
     JS::RootedValue entryVal(cx, OBJECT_TO_JSVAL(entry));
     if (entryVal.isObject())
     {
@@ -443,16 +443,16 @@ jsval sptrackentry_to_jsval(JSContext* cx, spTrackEntry& v)
         ok &= JS_SetProperty(cx, entry, "interruptAlpha", val);
         val.set(DOUBLE_TO_JSVAL(v.totalAlpha));
         ok &= JS_SetProperty(cx, entry, "totalAlpha", val);
-        
+
         if (v.timelinesRotation)
             val.set(DOUBLE_TO_JSVAL(*v.timelinesRotation));
         else
             val.set(JSVAL_NULL);
         ok &= JS_SetProperty(cx, entry, "timelinesRotation", val);
-        
+
         val.set(INT_TO_JSVAL(v.timelinesRotationCount));
         ok &= JS_SetProperty(cx, entry, "timelinesRotationCount", val);
-        
+
         if (ok)
         {
             if (!found)
@@ -462,7 +462,7 @@ jsval sptrackentry_to_jsval(JSContext* cx, spTrackEntry& v)
             return entryVal;
         }
     }
-    
+
     return JSVAL_NULL;
 }
 
@@ -486,11 +486,11 @@ bool jsb_cocos2dx_spine_findBone(JSContext *cx, uint32_t argc, jsval *vp)
                 jsret = spbone_to_jsval(cx, *ret);
             }
         } while (0);
-        
+
         args.rval().set(jsret);
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -515,11 +515,11 @@ bool jsb_cocos2dx_spine_findSlot(JSContext *cx, uint32_t argc, jsval *vp)
                 jsret = spslot_to_jsval(cx, *ret);
             }
         } while (0);
-        
+
         args.rval().set(jsret);
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -534,11 +534,11 @@ bool jsb_cocos2dx_spine_setDebugBones(JSContext *cx, uint32_t argc, jsval *vp)
     if (argc == 1) {
         bool enable = args.get(0).toBoolean();
         cobj->setDebugBonesEnabled(enable);
-        
+
         args.rval().setUndefined();
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -553,11 +553,11 @@ bool jsb_cocos2dx_spine_setDebugSolots(JSContext *cx, uint32_t argc, jsval *vp)
     if (argc == 1) {
         bool enable = args.get(0).toBoolean();
         cobj->setDebugSlotsEnabled(enable);
-        
+
         args.rval().setUndefined();
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -584,11 +584,11 @@ bool jsb_cocos2dx_spine_getAttachment(JSContext *cx, uint32_t argc, jsval *vp)
                 jsret = spattachment_to_jsval(cx, *ret);
             }
         } while(0);
-        
+
         args.rval().set(jsret);
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -613,7 +613,7 @@ bool jsb_cocos2dx_spine_getCurrent(JSContext *cx, uint32_t argc, jsval *vp)
                 jsret = sptrackentry_to_jsval(cx, *ret);
             }
         } while (0);
-        
+
         args.rval().set(jsret);
         return true;
     }
@@ -626,11 +626,11 @@ bool jsb_cocos2dx_spine_getCurrent(JSContext *cx, uint32_t argc, jsval *vp)
                 jsret = sptrackentry_to_jsval(cx, *ret);
             }
         } while (0);
-        
+
         args.rval().set(jsret);
         return true;
     }
-    
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -646,28 +646,28 @@ bool jsb_cocos2dx_spine_setAnimation(JSContext *cx, uint32_t argc, jsval *vp)
     if (argc == 3) {
         int arg0;
         ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        
+
         const char* arg1;
         std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        
+
         bool arg2 = JS::ToBoolean(args.get(2));
         JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
-        
+
         spTrackEntry* ret = cobj->setAnimation(arg0, arg1, arg2);
         jsval jsret = JSVAL_NULL;
-        
+
         do {
             if (ret)
             {
                 jsret = sptrackentry_to_jsval(cx, *ret);
             }
         } while(0);
-        
+
         args.rval().set(jsret);
         return true;
     }
-    
-    
+
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -683,52 +683,52 @@ bool jsb_cocos2dx_spine_addAnimation(JSContext *cx, uint32_t argc, jsval *vp)
     if (argc == 3) {
         int arg0;
         ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        
+
         const char* arg1;
         std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        
+
         bool arg2 = JS::ToBoolean(args.get(2));
         JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
-        
+
         spTrackEntry* ret = cobj->addAnimation(arg0, arg1, arg2);
         jsval jsret = JSVAL_NULL;
-        
+
         do {
             if (ret)
             {
                 jsret = sptrackentry_to_jsval(cx, *ret);
             }
         } while(0);
-        
+
         args.rval().set(jsret);
         return true;
     } else if (argc == 4) {
         int arg0;
         ok &= jsval_to_int32(cx, args.get(0), (int32_t *)&arg0);
-        
+
         const char* arg1;
         std::string arg1_tmp; ok &= jsval_to_std_string(cx, args.get(1), &arg1_tmp); arg1 = arg1_tmp.c_str();
-        
+
         bool arg2 = JS::ToBoolean(args.get(2));
-        
+
         double arg3;
         ok &= JS::ToNumber(cx, args.get(3), &arg3);
         JSB_PRECONDITION2(ok, cx, false, "Error processing arguments");
-        
+
         spTrackEntry* ret = cobj->addAnimation(arg0, arg1, arg2, arg3);
         jsval jsret = JSVAL_NULL;
-        
+
         do {
             if (ret)
             {
                 jsret = sptrackentry_to_jsval(cx, *ret);
             }
         } while(0);
-        
+
         args.rval().set(jsret);
         return true;
-    }    
-    
+    }
+
     JS_ReportError(cx, "wrong number of arguments: %d, was expecting %d", argc, 1);
     return false;
 }
@@ -740,7 +740,7 @@ extern JSObject* jsb_spine_SkeletonAnimation_prototype;
 void register_all_cocos2dx_spine_manual(JSContext* cx, JS::HandleObject global)
 {
     js_register_spine_TrackEntry(cx, global);
-    
+
     JS::RootedObject skeletonRenderer(cx, jsb_spine_SkeletonRenderer_prototype);
     JS_DefineFunction(cx, skeletonRenderer, "findBone", jsb_cocos2dx_spine_findBone, 1, JSPROP_ENUMERATE | JSPROP_PERMANENT);
     JS_DefineFunction(cx, skeletonRenderer, "findSlot", jsb_cocos2dx_spine_findSlot, 1, JSPROP_ENUMERATE | JSPROP_PERMANENT);
@@ -753,3 +753,4 @@ void register_all_cocos2dx_spine_manual(JSContext* cx, JS::HandleObject global)
     JS_DefineFunction(cx, skeletonAnimation, "setAnimation", jsb_cocos2dx_spine_setAnimation, 3, JSPROP_ENUMERATE | JSPROP_PERMANENT);
     JS_DefineFunction(cx, skeletonAnimation, "addAnimation", jsb_cocos2dx_spine_addAnimation, 4, JSPROP_ENUMERATE | JSPROP_PERMANENT);
 }
+

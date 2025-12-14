@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,7 +43,7 @@ public:
     static const float DEFAULT_MAX_DEVIATION;
 
     static PULineEmitter* create();
-    /** 
+    /**
     */
     virtual void notifyStart () override;
 
@@ -53,21 +53,21 @@ public:
     */
     virtual unsigned short calculateRequestedParticles(float timeElapsed) override;
 
-    /** 
+    /**
     */
     float getMaxDeviation() const;
     void setMaxDeviation(float maxDeviation);
 
-    /** 
+    /**
     */
     float getMaxIncrement() const;
     void setMaxIncrement(float maxIncrement);
-            
-    /** 
+
+    /**
     */
     float getMinIncrement() const;
     void setMinIncrement(float minIncrement);
-            
+
     /** Get the end vector. This is the vector that defines the end of the line (in local space).
     */
     const Vec3& getEnd() const;
@@ -76,15 +76,15 @@ public:
     */
     void setEnd(const Vec3& end);
 
-    /** 
+    /**
     */
     virtual void notifyRescaled(const Vec3& scale) override;
 
-    /** 
+    /**
     */
     virtual void initParticlePosition(PUParticle3D* particle) override;
 
-    /** 
+    /**
     */
     virtual void initParticleDirection(PUParticle3D* particle) override;
 
@@ -103,7 +103,7 @@ protected:
     // This attribute defines the maximum value.
     float _minIncrement;	// Defines the minimum increment value.
     float _maxIncrement;	// If > 0, it defines the maximum (random) increment value that is
-    // taken on the line traject. If not set, there is no particular 
+    // taken on the line traject. If not set, there is no particular
     // order in particle generation.
     float _increment; // Defines the trajectory path along the line in terms of increments
     float _length; // The length of the line
@@ -121,3 +121,4 @@ protected:
 NS_CC_END
 
 #endif
+

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -91,7 +91,7 @@ bool UIFocusTestBase::init()
         _eventListener->onFocusChanged = CC_CALLBACK_2(UIFocusTestBase::onFocusChanged, this);
 
         _eventDispatcher->addEventListenerWithFixedPriority(_eventListener, 1);
-        
+
         _toggleButton = Button::create("cocosui/switch-mask.png");
         _toggleButton->setTitleText("Toggle Loop");
         _toggleButton->setPosition(VisibleRect::leftTop() + Vec2(60, -50));
@@ -264,7 +264,7 @@ bool UIFocusTestVertical::init()
         _loopText->setPosition(VisibleRect::top() + Vec2(0, -50));
         _loopText->setColor(Color3B::GREEN);
         this->addChild(_loopText);
-       
+
         _toggleButton->addTouchEventListener(CC_CALLBACK_2(UIFocusTestVertical::toggleFocusLoop, this));
 
         return true;
@@ -575,3 +575,4 @@ void UIFocusTestNestedLayout3::toggleFocusLoop(cocos2d::Ref * pObjc, Widget::Tou
         }
     }
 }
+

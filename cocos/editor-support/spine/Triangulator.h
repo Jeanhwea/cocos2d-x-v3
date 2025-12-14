@@ -61,3 +61,4 @@ SP_API void spTriangulator_dispose(spTriangulator* self);
 #endif
 
 #endif /* SPINE_TRIANGULATOR_H_ */
+

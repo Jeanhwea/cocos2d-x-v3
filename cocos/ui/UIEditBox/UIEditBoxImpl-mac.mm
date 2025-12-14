@@ -2,19 +2,19 @@
  Copyright (c) 2010-2012 cocos2d-x.org
  Copyright (c) 2012 Jozef Pridavok
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -63,16 +63,16 @@ void EditBoxImplMac::createNativeControl(const cocos2d::Rect &frame)
     NSRect rect = NSMakeRect(0, 0,
                              size.width * glview->getScaleX(),
                              size.height * glview->getScaleY());
-    
+
     float factor = cocos2d::Director::getInstance()->getContentScaleFactor();
-    
+
     rect.size.width /= factor;
     rect.size.height /= factor;
-    
+
     _sysEdit = [[UIEditBoxImplMac alloc] initWithFrame:rect editBox:this];
     this->setNativeVisible(false);
 }
-    
+
 NSFont* EditBoxImplMac::constructFont(const char *fontName, int fontSize)
 {
     NSString * fntName = [NSString stringWithUTF8String:fontName];
@@ -80,7 +80,7 @@ NSFont* EditBoxImplMac::constructFont(const char *fontName, int fontSize)
     float retinaFactor = _inRetinaMode ? 2.0f : 1.0f;
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
     float scaleFactor = glview->getScaleX();
-    
+
     if (fontSize == -1)
     {
         NSRect frameRect = [_sysEdit.textInput frame];
@@ -90,7 +90,7 @@ NSFont* EditBoxImplMac::constructFont(const char *fontName, int fontSize)
     {
         fontSize = fontSize * scaleFactor / retinaFactor;
     }
-    
+
     NSFont *textFont = nil;
     if (strlen(fontName) == 0)
     {
@@ -103,7 +103,7 @@ NSFont* EditBoxImplMac::constructFont(const char *fontName, int fontSize)
             textFont = [NSFont systemFontOfSize:fontSize];
         }
     }
-    
+
     return textFont;
 }
 
@@ -116,7 +116,7 @@ void EditBoxImplMac::setNativeFont(const char *pFontName, int fontSize)
 void EditBoxImplMac::setNativePlaceholderFont(const char *pFontName, int fontSize)
 {
     NSFont *textFont = constructFont(pFontName, fontSize);
-    
+
     if (!textFont) {
         CCLOGWARN("Font not found: %s", pFontName);
         return;
@@ -133,7 +133,7 @@ void EditBoxImplMac::setNativeFontColor(const cocos2d::Color4B &color)
 
     [_sysEdit setTextColor:newColor];
 }
-    
+
 void EditBoxImplMac::setNativePlaceholderFontColor(const cocos2d::Color4B &color)
 {
     NSColor *newColor = [NSColor colorWithCalibratedRed:color.r/255.f
@@ -182,7 +182,7 @@ void EditBoxImplMac::setNativeText(const char *pText)
     NSString *text = [NSString stringWithUTF8String:pText];
     [_sysEdit setText:text];
 }
-    
+
 void EditBoxImplMac::setNativePlaceHolder(const char* pText)
 {
     [_sysEdit setPlaceHolder:pText];
@@ -204,7 +204,7 @@ void EditBoxImplMac::updateNativeFrame(const cocos2d::Rect &rect)
                                      screenPosY,
                                      rect.size.width, rect.size.height)];
 }
-    
+
 const char* EditBoxImplMac::getNativeDefaultFontName()
 {
     return [[_sysEdit getDefaultFontName] UTF8String];
@@ -227,5 +227,4 @@ void EditBoxImplMac::nativeCloseKeyboard()
 NS_CC_END
 
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
-
 

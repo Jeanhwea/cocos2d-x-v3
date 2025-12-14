@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -78,13 +78,13 @@ void PhysicsShape::setMass(float mass)
     {
         return;
     }
-    
+
     if (_body)
     {
         _body->addMass(-_mass);
         _body->addMass(mass);
     };
-    
+
     _mass = mass;
 }
 
@@ -94,13 +94,13 @@ void PhysicsShape::setMoment(float moment)
     {
         return;
     }
-    
+
     if (_body)
     {
         _body->addMoment(-_moment);
         _body->addMoment(moment);
     };
-    
+
     _moment = moment;
 }
 
@@ -122,9 +122,9 @@ void PhysicsShape::setScale(float scaleX, float scaleY)
         }
         _newScaleX = scaleX;
         _newScaleY = scaleY;
-        
+
         updateScale();
-        
+
         // re-calculate area and mass
         _area = calculateArea();
         _mass = _material.density * _area;
@@ -150,72 +150,72 @@ void PhysicsShape::addShape(cpShape* shape)
 
 PhysicsShapeCircle::PhysicsShapeCircle()
 {
-    
+
 }
 
 PhysicsShapeCircle::~PhysicsShapeCircle()
 {
-    
+
 }
 
 PhysicsShapeBox::PhysicsShapeBox()
 {
-    
+
 }
 
 PhysicsShapeBox::~PhysicsShapeBox()
 {
-    
+
 }
 
 PhysicsShapePolygon::PhysicsShapePolygon()
 {
-    
+
 }
 
 PhysicsShapePolygon::~PhysicsShapePolygon()
 {
-    
+
 }
 
 PhysicsShapeEdgeBox::PhysicsShapeEdgeBox()
 {
-    
+
 }
 
 PhysicsShapeEdgeBox::~PhysicsShapeEdgeBox()
 {
-    
+
 }
 
 PhysicsShapeEdgeChain::PhysicsShapeEdgeChain()
 {
-    
+
 }
 
 PhysicsShapeEdgeChain::~PhysicsShapeEdgeChain()
 {
-    
+
 }
 
 PhysicsShapeEdgePolygon::PhysicsShapeEdgePolygon()
 {
-    
+
 }
 
 PhysicsShapeEdgePolygon::~PhysicsShapeEdgePolygon()
 {
-    
+
 }
 
 PhysicsShapeEdgeSegment::PhysicsShapeEdgeSegment()
 {
-    
+
 }
 
 PhysicsShapeEdgeSegment::~PhysicsShapeEdgeSegment()
 {
-    
+
 }
 
 void PhysicsShape::setDensity(float density)
@@ -224,9 +224,9 @@ void PhysicsShape::setDensity(float density)
     {
         return;
     }
-    
+
     _material.density = density;
-    
+
     if (_material.density == PHYSICS_INFINITY)
     {
         setMass(PHYSICS_INFINITY);
@@ -239,7 +239,7 @@ void PhysicsShape::setDensity(float density)
 void PhysicsShape::setRestitution(float restitution)
 {
     _material.restitution = restitution;
-    
+
     for (cpShape* shape : _cpShapes)
     {
         cpShapeSetElasticity(shape, restitution);
@@ -249,7 +249,7 @@ void PhysicsShape::setRestitution(float restitution)
 void PhysicsShape::setFriction(float friction)
 {
     _material.friction = friction;
-    
+
     for (cpShape* shape : _cpShapes)
     {
         cpShapeSetFriction(shape, friction);
@@ -277,7 +277,7 @@ void PhysicsShape::recenterPoints(Vec2* points, int count, const Vec2& center)
     }
     PhysicsHelper::cpvs2points(cpvs, points, count);
     delete[] cpvs;
-    
+
     if (center != Vec2::ZERO)
     {
         for (int i = 0; i < count; ++i)
@@ -292,7 +292,7 @@ Vec2 PhysicsShape::getPolygonCenter(const Vec2* points, int count)
     cpVect* cpvs = new (std::nothrow) cpVect[count];
     cpVect center = cpCentroidForPoly(count, PhysicsHelper::points2cpvs(points, cpvs, count));
     delete[] cpvs;
-    
+
     return PhysicsHelper::cpv2point(center);
 }
 
@@ -308,12 +308,12 @@ void PhysicsShape::setBody(PhysicsBody *body)
     {
         return;
     }
-    
+
     if (_body)
     {
         _body->removeShape(this);
     }
-    
+
     for (auto shape : _cpShapes)
     {
         cpShapeSetBody(shape, body == nullptr ? s_sharedBody : body->_cpBody);
@@ -330,7 +330,7 @@ PhysicsShapeCircle* PhysicsShapeCircle::create(float radius, const PhysicsMateri
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -340,21 +340,21 @@ bool PhysicsShapeCircle::init(float radius, const PhysicsMaterial& material/* = 
     do
     {
         _type = Type::CIRCLE;
-        
+
         auto shape = cpCircleShapeNew(s_sharedBody, radius, PhysicsHelper::point2cpv(offset));
         CC_BREAK_IF(shape == nullptr);
         cpShapeSetUserData(shape, this);
-        
+
         addShape(shape);
-        
+
         _area = calculateArea();
         _mass = material.density == PHYSICS_INFINITY ? PHYSICS_INFINITY : material.density * _area;
         _moment = calculateDefaultMoment();
-        
+
         setMaterial(material);
         return true;
     } while (false);
-    
+
     return false;
 }
 
@@ -380,7 +380,7 @@ float PhysicsShapeCircle::calculateArea()
 float PhysicsShapeCircle::calculateDefaultMoment()
 {
     auto shape = _cpShapes.front();
-    
+
     return _mass == PHYSICS_INFINITY ? PHYSICS_INFINITY
     : PhysicsHelper::cpfloat2float(cpMomentForCircle(_mass,
                                                      0,
@@ -421,7 +421,7 @@ PhysicsShapeEdgeSegment* PhysicsShapeEdgeSegment::create(const Vec2& a, const Ve
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -431,24 +431,24 @@ bool PhysicsShapeEdgeSegment::init(const Vec2& a, const Vec2& b, const PhysicsMa
     do
     {
         _type = Type::EDGESEGMENT;
-        
+
         auto shape = cpSegmentShapeNew(s_sharedBody,
                                            PhysicsHelper::point2cpv(a),
                                            PhysicsHelper::point2cpv(b),
                                            border);
         CC_BREAK_IF(shape == nullptr);
         cpShapeSetUserData(shape, this);
-        
+
         addShape(shape);
-        
+
         _mass = PHYSICS_INFINITY;
         _moment = PHYSICS_INFINITY;
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     return false;
 }
 
@@ -495,7 +495,7 @@ PhysicsShapeBox* PhysicsShapeBox::create(const Size& size, const PhysicsMaterial
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -505,30 +505,30 @@ bool PhysicsShapeBox::init(const Size& size, const PhysicsMaterial& material/* =
     do
     {
         _type = Type::BOX;
-        
+
         auto wh = PhysicsHelper::size2cpv(size);
         cpVect vec[4] =
         {
             {-wh.x/2.0f, -wh.y/2.0f}, {-wh.x/2.0f, wh.y/2.0f}, {wh.x/2.0f, wh.y/2.0f}, {wh.x/2.0f, -wh.y/2.0f}
         };
-        
+
         cpTransform transform = cpTransformTranslate(PhysicsHelper::point2cpv(offset));
-        
+
         auto shape = cpPolyShapeNew(s_sharedBody, 4, vec, transform, radius);
         CC_BREAK_IF(shape == nullptr);
         cpShapeSetUserData(shape, this);
-        
+
         addShape(shape);
-        
+
         _area = calculateArea();
         _mass = material.density == PHYSICS_INFINITY ? PHYSICS_INFINITY : material.density * _area;
         _moment = calculateDefaultMoment();
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     return false;
 }
 
@@ -548,7 +548,7 @@ PhysicsShapePolygon* PhysicsShapePolygon::create(const Vec2* points, int count, 
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -558,27 +558,27 @@ bool PhysicsShapePolygon::init(const Vec2* points, int count, const PhysicsMater
     do
     {
         _type = Type::POLYGON;
-        
+
         auto vecs = new (std::nothrow) cpVect[count];
         PhysicsHelper::points2cpvs(points, vecs, count);        //count = cpConvexHull((int)count, vecs, nullptr, nullptr, 0);
         cpTransform transform = cpTransformTranslate(PhysicsHelper::point2cpv(offset));
         auto shape = cpPolyShapeNew(s_sharedBody, count, vecs, transform, radius);
         CC_SAFE_DELETE_ARRAY(vecs);
-        
+
         CC_BREAK_IF(shape == nullptr);
         cpShapeSetUserData(shape, this);
-        
+
         addShape(shape);
-        
+
         _area = calculateArea();
         _mass = material.density == PHYSICS_INFINITY ? PHYSICS_INFINITY : material.density * _area;
         _moment = calculateDefaultMoment();
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     return false;
 }
 
@@ -588,7 +588,7 @@ float PhysicsShapePolygon::calculateArea(const Vec2* points, int count)
     PhysicsHelper::points2cpvs(points, vecs, count);
     float area = PhysicsHelper::cpfloat2float(cpAreaForPoly(count, vecs, 0.0f));
     CC_SAFE_DELETE_ARRAY(vecs);
-    
+
     return area;
 }
 
@@ -599,7 +599,7 @@ float PhysicsShapePolygon::calculateMoment(float mass, const Vec2* points, int c
     float moment = mass == PHYSICS_INFINITY ? PHYSICS_INFINITY
     : PhysicsHelper::cpfloat2float(cpMomentForPoly(mass, count, vecs, PhysicsHelper::point2cpv(offset), radius));
     CC_SAFE_DELETE_ARRAY(vecs);
-    
+
     return moment;
 }
 
@@ -662,10 +662,10 @@ Vec2 PhysicsShapePolygon::getCenter()
     cpVect* vecs = new cpVect[count];
     for(int i=0;i<count;++i)
         vecs[i] = cpPolyShapeGetVert(shape, i);
-    
+
     Vec2 center =  PhysicsHelper::cpv2point(cpCentroidForPoly(count, vecs));
     CC_SAFE_DELETE_ARRAY(vecs);
-    
+
     return center;
 }
 
@@ -696,10 +696,10 @@ void PhysicsShapePolygon::updateScale()
             vects[count - i - 1] = v;
         }
     }
-    
+
     cpPolyShapeSetVertsRaw(shape, count, vects);
     CC_SAFE_DELETE_ARRAY(vects);
-    
+
     PhysicsShape::updateScale();
 }
 
@@ -712,7 +712,7 @@ PhysicsShapeEdgeBox* PhysicsShapeEdgeBox::create(const Size& size, const Physics
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -722,13 +722,13 @@ bool PhysicsShapeEdgeBox::init(const Size& size, const PhysicsMaterial& material
     do
     {
         _type = Type::EDGEBOX;
-        
+
         cpVect vec[4] = {};
         vec[0] = PhysicsHelper::point2cpv(Vec2(-size.width/2+offset.x, -size.height/2+offset.y));
         vec[1] = PhysicsHelper::point2cpv(Vec2(+size.width/2+offset.x, -size.height/2+offset.y));
         vec[2] = PhysicsHelper::point2cpv(Vec2(+size.width/2+offset.x, +size.height/2+offset.y));
         vec[3] = PhysicsHelper::point2cpv(Vec2(-size.width/2+offset.x, +size.height/2+offset.y));
-        
+
         int i = 0;
         for (; i < 4; ++i)
         {
@@ -738,15 +738,15 @@ bool PhysicsShapeEdgeBox::init(const Size& size, const PhysicsMaterial& material
             addShape(shape);
         }
         CC_BREAK_IF(i < 4);
-        
+
         _mass = PHYSICS_INFINITY;
         _moment = PHYSICS_INFINITY;
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     return false;
 }
 
@@ -759,7 +759,7 @@ PhysicsShapeEdgePolygon* PhysicsShapeEdgePolygon::create(const Vec2* points, int
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -770,10 +770,10 @@ bool PhysicsShapeEdgePolygon::init(const Vec2* points, int count, const PhysicsM
     do
     {
         _type = Type::EDGEPOLYGON;
-        
+
         vec = new (std::nothrow) cpVect[count];
         PhysicsHelper::points2cpvs(points, vec, count);
-        
+
         int i = 0;
         for (; i < count; ++i)
         {
@@ -785,19 +785,19 @@ bool PhysicsShapeEdgePolygon::init(const Vec2* points, int count, const PhysicsM
             addShape(shape);
         }
         CC_SAFE_DELETE_ARRAY(vec);
-        
+
         CC_BREAK_IF(i < count);
-        
+
         _mass = PHYSICS_INFINITY;
         _moment = PHYSICS_INFINITY;
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     CC_SAFE_DELETE_ARRAY(vec);
-    
+
     return false;
 }
 
@@ -810,10 +810,10 @@ Vec2 PhysicsShapeEdgePolygon::getCenter()
     {
         points[i++] = cpSegmentShapeGetA(shape);
     }
-    
+
     Vec2 center = PhysicsHelper::cpv2point(cpCentroidForPoly(count, points));
     delete[] points;
-    
+
     return center;
 }
 
@@ -840,7 +840,7 @@ PhysicsShapeEdgeChain* PhysicsShapeEdgeChain::create(const Vec2* points, int cou
         shape->autorelease();
         return shape;
     }
-    
+
     CC_SAFE_DELETE(shape);
     return nullptr;
 }
@@ -860,7 +860,7 @@ void PhysicsShapeEdgePolygon::updateScale()
         b.y *= factorY;
         cpSegmentShapeSetEndpoints(shape, a, b);
     }
-    
+
     PhysicsShape::updateScale();
 }
 
@@ -870,10 +870,10 @@ bool PhysicsShapeEdgeChain::init(const Vec2* points, int count, const PhysicsMat
     do
     {
         _type = Type::EDGECHAIN;
-        
+
         vec = new (std::nothrow) cpVect[count];
         PhysicsHelper::points2cpvs(points, vec, count);
-        
+
         int i = 0;
         for (; i < count - 1; ++i)
         {
@@ -886,17 +886,17 @@ bool PhysicsShapeEdgeChain::init(const Vec2* points, int count, const PhysicsMat
         }
         CC_SAFE_DELETE_ARRAY(vec);
         CC_BREAK_IF(i < count - 1);
-        
+
         _mass = PHYSICS_INFINITY;
         _moment = PHYSICS_INFINITY;
-        
+
         setMaterial(material);
-        
+
         return true;
     } while (false);
-    
+
     CC_SAFE_DELETE_ARRAY(vec);
-    
+
     return false;
 }
 
@@ -909,12 +909,12 @@ Vec2 PhysicsShapeEdgeChain::getCenter()
     {
         points[i++] = cpSegmentShapeGetA(shape);
     }
-    
+
     points[i++] = cpSegmentShapeGetB(_cpShapes.back());
-    
+
     Vec2 center = PhysicsHelper::cpv2point(cpCentroidForPoly(count, points));
     delete[] points;
-    
+
     return center;
 }
 
@@ -925,7 +925,7 @@ void PhysicsShapeEdgeChain::getPoints(Vec2* outPoints) const
     {
         outPoints[i++] = PhysicsHelper::cpv2point(cpSegmentShapeGetA(shape));
     }
-    
+
     outPoints[i++] = PhysicsHelper::cpv2point(cpSegmentShapeGetB(_cpShapes.back()));
 }
 
@@ -949,7 +949,7 @@ void PhysicsShapeEdgeChain::updateScale()
         b.y *= factorY;
         cpSegmentShapeSetEndpoints(shape, a, b);
     }
-    
+
     PhysicsShape::updateScale();
 }
 
@@ -962,7 +962,7 @@ void PhysicsShape::setGroup(int group)
             cpShapeSetFilter(shape, cpShapeFilterNew(group, CP_ALL_CATEGORIES, CP_ALL_CATEGORIES));
         }
     }
-    
+
     _group = group;
 }
 
@@ -975,10 +975,11 @@ bool PhysicsShape::containsPoint(const Vec2& point) const
             return true;
         }
     }
-    
+
     return false;
 }
 
 NS_CC_END
 
 #endif // CC_USE_PHYSICS
+

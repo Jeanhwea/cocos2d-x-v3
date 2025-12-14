@@ -44,3 +44,4 @@ void spIkConstraintData_dispose (spIkConstraintData* self) {
 	FREE(self->bones);
 	FREE(self);
 }
+

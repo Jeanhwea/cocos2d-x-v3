@@ -45,3 +45,4 @@ spBoundingBoxAttachment* spBoundingBoxAttachment_create (const char* name) {
 	_spAttachment_init(SUPER(SUPER(self)), name, SP_ATTACHMENT_BOUNDING_BOX, _spBoundingBoxAttachment_dispose);
 	return self;
 }
+

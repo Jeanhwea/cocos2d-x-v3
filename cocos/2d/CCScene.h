@@ -64,19 +64,19 @@ For the moment Scene has no other logic than that, but in future releases it mig
 additional logic.
 
 It is a good practice to use a Scene as the parent of all your nodes.
- 
+
 Scene will create a default camera for you.
 */
 class CC_DLL Scene : public Node
 {
 public:
-    /** Creates a new Scene object. 
+    /** Creates a new Scene object.
      *
      * @return An autoreleased Scene object.
      */
     static Scene *create();
 
-    /** Creates a new Scene object with a predefined Size. 
+    /** Creates a new Scene object with a predefined Size.
      *
      * @param size The predefined size of scene.
      * @return An autoreleased Scene object.
@@ -86,9 +86,9 @@ public:
 
     using Node::addChild;
     virtual std::string getDescription() const override;
-    
+
     /** Get all cameras.
-     * 
+     *
      * @return The vector of all cameras, ordered by camera depth.
      * @js NA
      */
@@ -125,7 +125,7 @@ public:
 
     /** override function */
     virtual void removeAllChildren() override;
-    
+
     /**
      * Event callback that is invoked every time when Node enters the 'stage'.
      * If the Node enters the 'stage' with a transition, this event is called when the transition starts.
@@ -134,16 +134,16 @@ public:
      * @lua NA
      */
     virtual void onEnter() override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Scene();
     virtual ~Scene();
-    
+
     bool init() override;
     bool initWithSize(const Size& size);
-    
+
     void setCameraOrderDirty() { _cameraOrderDirty = true; }
-    
+
     void onProjectionChanged(EventCustom* event);
 
 protected:
@@ -153,20 +153,20 @@ protected:
     friend class Camera;
     friend class BaseLight;
     friend class Renderer;
-    
+
     std::vector<Camera*> _cameras; //weak ref to Camera
     Camera*              _defaultCamera = nullptr; //weak ref, default camera created by scene, _cameras[0], Caution that the default camera can not be added to _cameras before onEnter is called
     bool                 _cameraOrderDirty = true; // order is dirty, need sort
     EventListenerCustom*       _event = nullptr;
 
     std::vector<BaseLight *> _lights;
-    
+
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(Scene);
-    
+
 #if (CC_USE_PHYSICS || (CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION))
 public:
-    
+
 #if CC_USE_PHYSICS
     /** Get the physics world of the scene.
      * @return The physics world of the scene.
@@ -174,42 +174,42 @@ public:
      */
     PhysicsWorld* getPhysicsWorld() const { return _physicsWorld; }
 #endif
-    
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
     /** Get the 3d physics world of the scene.
      * @return The 3d physics world of the scene.
      * @js NA
      */
     Physics3DWorld* getPhysics3DWorld() { return _physics3DWorld; }
-    
-    /** 
+
+    /**
      * Set Physics3D debug draw camera.
      */
     void setPhysics3DDebugCamera(Camera* camera);
 #endif
-    
+
     /** Create a scene with physics.
      * @return An autoreleased Scene object with physics.
      * @js NA
      */
     static Scene *createWithPhysics();
-    
+
 CC_CONSTRUCTOR_ACCESS:
     bool initWithPhysics();
-    
+
 protected:
     void addChildToPhysicsWorld(Node* child);
 
 #if CC_USE_PHYSICS
     PhysicsWorld* _physicsWorld = nullptr;
 #endif
-    
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
     Physics3DWorld*            _physics3DWorld = nullptr;
     Camera*                    _physics3dDebugCamera = nullptr;
 #endif
 #endif // (CC_USE_PHYSICS || CC_USE_3D_PHYSICS)
-    
+
 #if CC_USE_NAVMESH
 public:
     /** set navigation mesh */
@@ -225,7 +225,7 @@ protected:
     NavMesh*        _navMesh = nullptr;
     Camera *        _navMeshDebugCamera = nullptr;
 #endif
-    
+
 #if (CC_USE_PHYSICS || (CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION) || CC_USE_NAVMESH)
 public:
     void stepPhysicsAndNavigation(float deltaTime);
@@ -238,3 +238,4 @@ public:
 NS_CC_END
 
 #endif // __CCSCENE_H__
+

@@ -28,3 +28,4 @@ JSB_cpPolyShape_createClass(cx, chipmunk, "PolyShape");
 
 
 #endif // JSB_INCLUDE_CHIPMUNK
+

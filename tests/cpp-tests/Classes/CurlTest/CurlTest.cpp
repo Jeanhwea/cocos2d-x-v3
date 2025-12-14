@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -50,7 +50,7 @@ CurlTest::CurlTest()
     _label = Label::createWithTTF("Touch the screen to connect", "fonts/arial.ttf", 22);
     _label->setPosition(VisibleRect::center());
     addChild(_label, 0);
-    
+
     _label->retain();
 }
 
@@ -64,21 +64,21 @@ WriteMemoryCallback(void *contents, size_t size, size_t nmemb, void *userp)
 {
   size_t realsize = size * nmemb;
   struct MemoryStruct *mem = (struct MemoryStruct *)userp;
- 
+
   mem->memory = (char*)realloc(mem->memory, mem->size + realsize + 1);
   if(mem->memory == NULL) {
-    /* out of memory! */ 
+    /* out of memory! */
     printf("not enough memory (realloc returned NULL)\n");
     return 0;
   }
- 
+
   memcpy(&(mem->memory[mem->size]), contents, realsize);
   mem->size += realsize;
   mem->memory[mem->size] = 0;
- 
+
   return realsize;
 }
- 
+
 
 // the test code is
 // http://curl.haxx.se/mail/lib-2009-12/0071.html
@@ -89,12 +89,12 @@ void CurlTest::onTouchesEnded(const std::vector<Touch*>& touches, Event  *event)
     char buffer[10];
 
     struct MemoryStruct chunk;
-    
+
     chunk.memory = (char*)malloc(1);  /* will be grown as needed by the realloc above */
     chunk.size = 0;    /* no data at this point */
 
     curl = curl_easy_init();
-    if (curl) 
+    if (curl)
     {
         curl_easy_setopt(curl, CURLOPT_URL, "http://webtest.cocos2d-x.org/curltest");
 		//code from http://curl.haxx.se/libcurl/c/getinmemory.html
@@ -115,11 +115,11 @@ void CurlTest::onTouchesEnded(const std::vector<Touch*>& touches, Event  *event)
             sprintf(buffer,"code: %i",res);
             _label->setString(buffer);
         }
-    } 
-    else 
+    }
+    else
     {
         _label->setString("no curl");
-    } 
+    }
 }
 
 CurlTest::~CurlTest()
@@ -127,3 +127,4 @@ CurlTest::~CurlTest()
     _label->release();
 }
 #endif
+

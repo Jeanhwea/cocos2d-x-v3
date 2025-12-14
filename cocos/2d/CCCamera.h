@@ -40,7 +40,7 @@ class Scene;
 class CameraBackgroundBrush;
 
 /**
- * Note: 
+ * Note:
  * Scene creates a default camera. And the default camera mask of Node is 1, therefore it can be seen by the default camera.
  * During rendering the scene, it draws the objects seen by each camera in the added order except default camera. The default camera is the last one being drawn with.
  * It's usually a good idea to render 3D objects in a separate camera.
@@ -147,7 +147,7 @@ public:
 
     /**get view projection matrix*/
     const Mat4& getViewProjectionMatrix() const;
-    
+
     /* convert the specified point in 3D world-space coordinates into the screen-space coordinates.
      *
      * Origin point at left top corner in screen-space.
@@ -155,7 +155,7 @@ public:
      * @return The screen-space position.
      */
     Vec2 project(const Vec3& src) const;
-    
+
     /* convert the specified point in 3D world-space coordinates into the GL-screen-space coordinates.
      *
      * Origin point at left bottom corner in GL-screen-space.
@@ -163,7 +163,7 @@ public:
      * @return The GL-screen-space position.
      */
     Vec2 projectGL(const Vec3& src) const;
-    
+
     /**
      * Convert the specified point of screen-space coordinate into the 3D world-space coordinate.
      *
@@ -172,7 +172,7 @@ public:
      * @return The 3D world-space position.
      */
     Vec3 unproject(const Vec3& src) const;
-    
+
     /**
      * Convert the specified point of GL-screen-space coordinate into the 3D world-space coordinate.
      *
@@ -181,7 +181,7 @@ public:
      * @return The 3D world-space position.
      */
     Vec3 unprojectGL(const Vec3& src) const;
-    
+
     /**
      * Convert the specified point of screen-space coordinate into the 3D world-space coordinate.
      *
@@ -191,7 +191,7 @@ public:
      * @param dst  The 3D world-space position.
      */
     void unproject(const Size& size, const Vec3* src, Vec3* dst) const;
-    
+
     /**
      * Convert the specified point of GL-screen-space coordinate into the 3D world-space coordinate.
      *
@@ -206,27 +206,27 @@ public:
      * Is this aabb visible in frustum
      */
     bool isVisibleInFrustum(const AABB* aabb) const;
-    
+
     /**
      * Get object depth towards camera
      */
     float getDepthInView(const Mat4& transform) const;
-    
+
     /**
      * set depth, camera with larger depth is drawn on top of camera with smaller depth, the depth of camera with CameraFlag::DEFAULT is 0, user defined camera is -1 by default
      */
     void setDepth(int8_t depth);
-    
+
     /**
      * get depth, camera with larger depth is drawn on top of camera with smaller depth, the depth of camera with CameraFlag::DEFAULT is 0, user defined camera is -1 by default
      */
     int8_t getDepth() const { return _depth; }
-    
+
     /**
      get rendered order
      */
     int getRenderOrder() const;
-    
+
     /**
      * Get the frustum's far plane.
      */
@@ -236,7 +236,7 @@ public:
      * Get the frustum's near plane.
      */
     float getNearPlane() const { return _nearPlane; }
-    
+
     //override
     virtual void onEnter() override;
     virtual void onExit() override;
@@ -339,3 +339,4 @@ protected:
 NS_CC_END
 
 #endif// __CCCAMERA_H_
+

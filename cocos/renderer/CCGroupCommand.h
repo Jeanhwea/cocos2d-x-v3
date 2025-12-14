@@ -69,13 +69,13 @@ public:
     GroupCommand();
     ~GroupCommand();
     /**@}*/
-    
+
     /**Init function for group command*/
     void init(float globalOrder);
-    
+
     /**called by renderer, get the group ID.*/
     int getRenderQueueID() const { return _renderQueueID; }
-    
+
 protected:
     int _renderQueueID;
 };
@@ -87,3 +87,4 @@ NS_CC_END
  @}
  */
 #endif //_CC_GROUPCOMMAND_H_
+

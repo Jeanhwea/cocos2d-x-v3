@@ -57,7 +57,7 @@ public:
      */
     static MotionStreak* create(float timeToFade, float minSeg, float strokeWidth, const Color3B& strokeColor, const std::string& imagePath);
     /** Creates and initializes a motion streak with fade in seconds, minimum segments, stroke's width, color, texture.
-     * 
+     *
      * @param timeToFade The fade time, in seconds.
      * @param minSeg The minimum segments.
      * @param strokeWidth The width of stroke.
@@ -77,8 +77,8 @@ public:
      */
     void reset();
 
-    /** When fast mode is enabled, new points are added faster but with lower precision. 
-     * 
+    /** When fast mode is enabled, new points are added faster but with lower precision.
+     *
      * @return True if fast mode is enabled.
      */
     bool isFastMode() const { return _fastMode; }
@@ -109,7 +109,7 @@ public:
      */
     void setStartingPositionInitialized(bool bStartingPositionInitialized)
     {
-        _startingPositionInitialized = bStartingPositionInitialized; 
+        _startingPositionInitialized = bStartingPositionInitialized;
     }
 
     // Overrides
@@ -147,14 +147,14 @@ public:
     virtual void setOpacity(GLubyte opacity) override;
     virtual void setOpacityModifyRGB(bool value) override;
     virtual bool isOpacityModifyRGB() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     MotionStreak();
     virtual ~MotionStreak();
-    
+
     /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture filename */
     bool initWithFade(float fade, float minSeg, float stroke, const Color3B& color, const std::string& path);
-    
+
     /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture  */
     bool initWithFade(float fade, float minSeg, float stroke, const Color3B& color, Texture2D* texture);
 
@@ -186,7 +186,7 @@ protected:
     Vec2* _vertices;
     GLubyte* _colorPointer;
     Tex2F* _texCoords;
-    
+
     CustomCommand _customCommand;
 
 private:
@@ -199,3 +199,4 @@ private:
 NS_CC_END
 
 #endif //__CCMOTION_STREAK_H__
+

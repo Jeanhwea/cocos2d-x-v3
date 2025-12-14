@@ -2,19 +2,19 @@
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -57,7 +57,7 @@ typedef void (^GCControllerDisconnectionBlock)(GCController* controller);
 static GCControllerConnectionEventHandler* __instance = nil;
 
 +(GCControllerConnectionEventHandler*) getInstance {
-    
+
     if (__instance == nil)
     {
         __instance = [[GCControllerConnectionEventHandler alloc] init];
@@ -93,12 +93,12 @@ static GCControllerConnectionEventHandler* __instance = nil;
 
 -(void) onControllerConnected :(NSNotification *)connectedNotification {
     GCController *controller =(GCController *)[connectedNotification object];
-    
+
     self._connectionBlock(controller);
 }
 
 -(void) onControllerDisconnected :(NSNotification *)connectedNotification {
-    
+
     GCController *controller =(GCController *)[connectedNotification object];
     self._disconnectionBlock(controller);
 }
@@ -114,9 +114,9 @@ public:
     : _controller(controller)
     , _gcController(nil)
     {
-        
+
     }
-    
+
     Controller* _controller;
     GCController* _gcController;
 };
@@ -127,32 +127,32 @@ void Controller::startDiscoveryController()
         return;
     }
     [GCController startWirelessControllerDiscoveryWithCompletionHandler: nil];
-    
+
     [[GCControllerConnectionEventHandler getInstance] observerConnection: ^(GCController* gcController) {
-        
+
         auto controller = new (std::nothrow) Controller();
         controller->_impl->_gcController = gcController;
         controller->_deviceName = [gcController.vendorName UTF8String];
-        
+
         s_allController.push_back(controller);
-        
+
         controller->registerListeners();
         controller->getDeviceName();
-        
+
         controller->onConnected();
-        
+
     } disconnection: ^(GCController* gcController) {
         auto iter = std::find_if(s_allController.begin(), s_allController.end(), [gcController](Controller* c){ return c->_impl->_gcController == gcController; });
-        
+
         if(iter == s_allController.end())
         {
             log("disconnect:Could not find the controller");
             return;
         }
-        
+
         (*iter)->onDisconnected();
         s_allController.erase(iter);
-        
+
     }];
 }
 
@@ -178,7 +178,7 @@ Controller::Controller()
 Controller::~Controller()
 {
     delete _impl;
-    
+
     delete _connectEvent;
     delete _keyEvent;
     delete _axisEvent;
@@ -191,35 +191,35 @@ void Controller::registerListeners()
         _impl->_gcController.extendedGamepad.dpad.up.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_UP, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.dpad.down.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_DOWN, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.dpad.left.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_LEFT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.dpad.right.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_RIGHT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.leftThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis, float value){
             onAxisEvent(Key::JOYSTICK_LEFT_X, value, axis.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.leftThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis, float value){
             onAxisEvent(Key::JOYSTICK_LEFT_Y, -value, axis.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.rightThumbstick.xAxis.valueChangedHandler = ^(GCControllerAxisInput *axis, float value){
             onAxisEvent(Key::JOYSTICK_RIGHT_X, value, axis.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.rightThumbstick.yAxis.valueChangedHandler = ^(GCControllerAxisInput *axis, float value){
             onAxisEvent(Key::JOYSTICK_RIGHT_Y, -value, axis.isAnalog);
         };
-        
+
         _impl->_gcController.extendedGamepad.valueChangedHandler = ^(GCExtendedGamepad *gamepad, GCControllerElement *element){
             if (element == gamepad.buttonA)
             {
@@ -260,21 +260,21 @@ void Controller::registerListeners()
         _impl->_gcController.gamepad.dpad.up.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_UP, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.gamepad.dpad.down.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_DOWN, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.gamepad.dpad.left.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_LEFT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.gamepad.dpad.right.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_RIGHT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.gamepad.valueChangedHandler = ^(GCGamepad *gamepad, GCControllerElement *element){
-            
+
             if (element == gamepad.buttonA)
             {
                 onButtonEvent(Key::BUTTON_A, gamepad.buttonA.isPressed, gamepad.buttonA.value, gamepad.buttonA.isAnalog);
@@ -307,21 +307,21 @@ void Controller::registerListeners()
         _impl->_gcController.microGamepad.dpad.up.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_UP, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.microGamepad.dpad.down.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_DOWN, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.microGamepad.dpad.left.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_LEFT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.microGamepad.dpad.right.valueChangedHandler = ^(GCControllerButtonInput *button, float value, BOOL pressed){
             onButtonEvent(Key::BUTTON_DPAD_RIGHT, pressed, value, button.isAnalog);
         };
-        
+
         _impl->_gcController.microGamepad.valueChangedHandler = ^(GCMicroGamepad *gamepad, GCControllerElement *element){
-            
+
             if (element == gamepad.buttonA)
             {
                 onButtonEvent(Key::BUTTON_A, gamepad.buttonA.isPressed, gamepad.buttonA.value, gamepad.buttonA.isAnalog);
@@ -333,17 +333,17 @@ void Controller::registerListeners()
         };
     }
 #endif
-    
+
     _impl->_gcController.controllerPausedHandler = ^(GCController* gcCon){
-        
+
         auto iter = std::find_if(s_allController.begin(), s_allController.end(), [gcCon](Controller* c){ return c->_impl->_gcController == gcCon; });
-        
+
         if(iter == s_allController.end())
         {
             log("Could not find the controller");
             return;
         }
-        
+
         onButtonEvent(Key::BUTTON_PAUSE, true, 1.0f, false);
         onButtonEvent(Key::BUTTON_PAUSE, false, 0.0f, false);
     };
@@ -361,3 +361,4 @@ void Controller::receiveExternalKeyEvent(int externalKeyCode,bool receive)
 NS_CC_END
 
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
+

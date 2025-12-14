@@ -239,24 +239,24 @@ class CC_DLL __Array : public Ref, public Clonable
 {
 public:
 
-    /** Creates an empty array. Default capacity is 10 
+    /** Creates an empty array. Default capacity is 10
      * @js NA
      * @lua NA
      */
     static __Array* create();
-    /** Create an array with objects 
+    /** Create an array with objects
      * @js NA
      */
     static __Array* create(Ref* object, ...) CC_REQUIRES_NULL_TERMINATION;
-    /** Create an array with one object 
+    /** Create an array with one object
      * @js NA
      */
     static __Array* createWithObject(Ref* object);
-    /** Create an array with a default capacity 
+    /** Create an array with a default capacity
      * @js NA
      */
     static __Array* createWithCapacity(ssize_t capacity);
-    /** Create an array with from an existing array 
+    /** Create an array with from an existing array
      * @js NA
      */
     static __Array* createWithArray(__Array* otherArray);
@@ -267,7 +267,7 @@ public:
      * @js NA
      */
     static __Array* createWithContentsOfFile(const std::string& pFileName);
-    
+
     /*
      @brief The same meaning as arrayWithContentsOfFile(), but it doesn't call autorelease, so the
      invoker should call release().
@@ -281,27 +281,27 @@ public:
      */
     ~__Array();
 
-    /** Initializes an array 
+    /** Initializes an array
      * @js NA
      * @lua NA
      */
     bool init();
-    /** Initializes an array with one object 
+    /** Initializes an array with one object
      * @js NA
      * @lua NA
      */
     bool initWithObject(Ref* object);
-    /** Initializes an array with some objects 
+    /** Initializes an array with some objects
      * @js NA
      * @lua NA
      */
     bool initWithObjects(Ref* object, ...) CC_REQUIRES_NULL_TERMINATION;
-    /** Initializes an array with capacity 
+    /** Initializes an array with capacity
      * @js NA
      * @lua NA
      */
     bool initWithCapacity(ssize_t capacity);
-    /** Initializes an array with an existing array 
+    /** Initializes an array with an existing array
      * @js NA
      * @lua NA
      */
@@ -309,7 +309,7 @@ public:
 
     // Querying an Array
 
-    /** Returns element count of the array 
+    /** Returns element count of the array
      * @js NA
      */
     ssize_t count() const
@@ -320,7 +320,7 @@ public:
         return data->num;
 #endif
     }
-    /** Returns capacity of the array 
+    /** Returns capacity of the array
      * @js NA
      */
     ssize_t capacity() const
@@ -331,7 +331,7 @@ public:
         return data->max;
 #endif
     }
-    /** Returns index of a certain object, return UINT_MAX if doesn't contain the object 
+    /** Returns index of a certain object, return UINT_MAX if doesn't contain the object
      * @js NA
      * @lua NA
      */
@@ -341,7 +341,7 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE ssize_t indexOfObject(Ref* object) const { return getIndexOfObject(object); }
 
-    /** Returns an element with a certain index 
+    /** Returns an element with a certain index
      * @js NA
      * @lua NA
      */
@@ -355,7 +355,7 @@ public:
 #endif
     }
     CC_DEPRECATED_ATTRIBUTE Ref* objectAtIndex(ssize_t index) { return getObjectAtIndex(index); }
-    /** Returns the last element of the array 
+    /** Returns the last element of the array
      * @js NA
      */
     Ref* getLastObject()
@@ -365,7 +365,7 @@ public:
 #else
         if(data->num > 0)
             return data->arr[data->num-1];
-        
+
         return nullptr;
 #endif
     }
@@ -373,7 +373,7 @@ public:
      * @js NA
      */
     CC_DEPRECATED_ATTRIBUTE Ref* lastObject() { return getLastObject(); }
-    /** Returns a random element 
+    /** Returns a random element
      * @js NA
      * @lua NA
      */
@@ -382,37 +382,37 @@ public:
      * @js NA
      */
     CC_DEPRECATED_ATTRIBUTE Ref* randomObject() { return getRandomObject(); }
-    /** Returns a Boolean value that indicates whether object is present in array. 
+    /** Returns a Boolean value that indicates whether object is present in array.
      * @js NA
      */
     bool containsObject(Ref* object) const;
-    /** @since 1.1 
+    /** @since 1.1
      * @js NA
      */
     bool isEqualToArray(__Array* otherArray);
     // Adding Objects
 
-    /** Add a certain object 
+    /** Add a certain object
      * @js NA
      */
     void addObject(Ref* object);
     /**
      * @js NA
      */
-    /** Add all elements of an existing array 
+    /** Add all elements of an existing array
      * @js NA
      */
     void addObjectsFromArray(__Array* otherArray);
-    /** Insert a certain object at a certain index 
+    /** Insert a certain object at a certain index
      * @js NA
      */
     void insertObject(Ref* object, ssize_t index);
-    /** sets a certain object at a certain index 
+    /** sets a certain object at a certain index
      * @js NA
      * @lua NA
      */
     void setObject(Ref* object, ssize_t index);
-    /** sets a certain object at a certain index without retaining. Use it with caution 
+    /** sets a certain object at a certain index without retaining. Use it with caution
      * @js NA
      * @lua NA
      */
@@ -441,61 +441,61 @@ public:
 
     // Removing Objects
 
-    /** Remove last object 
+    /** Remove last object
      * @js NA
      */
     void removeLastObject(bool releaseObj = true);
-    /** Remove a certain object 
+    /** Remove a certain object
      * @js NA
      */
     void removeObject(Ref* object, bool releaseObj = true);
-    /** Remove an element with a certain index 
+    /** Remove an element with a certain index
      * @js NA
      */
     void removeObjectAtIndex(ssize_t index, bool releaseObj = true);
-    /** Remove all elements 
+    /** Remove all elements
      * @js NA
      */
     void removeObjectsInArray(__Array* otherArray);
-    /** Remove all objects 
+    /** Remove all objects
      * @js NA
      */
     void removeAllObjects();
-    /** Fast way to remove a certain object 
+    /** Fast way to remove a certain object
      * @js NA
      */
     void fastRemoveObject(Ref* object);
-    /** Fast way to remove an element with a certain index 
+    /** Fast way to remove an element with a certain index
      * @js NA
      */
     void fastRemoveObjectAtIndex(ssize_t index);
 
     // Rearranging Content
 
-    /** Swap two elements 
+    /** Swap two elements
      * @js NA
      */
     void exchangeObject(Ref* object1, Ref* object2);
-    /** Swap two elements with certain indexes 
+    /** Swap two elements with certain indexes
      * @js NA
      */
     void exchangeObjectAtIndex(ssize_t index1, ssize_t index2);
 
-    /** Replace object at index with another object. 
+    /** Replace object at index with another object.
      * @js NA
      */
     void replaceObjectAtIndex(ssize_t index, Ref* object, bool releaseObject = true);
 
-    /** Revers the array 
+    /** Revers the array
      * @js NA
      */
     void reverseObjects();
-    /* Shrinks the array so the memory footprint corresponds with the number of items 
+    /* Shrinks the array so the memory footprint corresponds with the number of items
      * @js NA
      */
     void reduceMemoryFootprint();
-  
-    /* override functions 
+
+    /* override functions
      * @js NA
      */
     virtual void acceptVisitor(DataVisitor &visitor);
@@ -561,3 +561,4 @@ NS_CC_END
 
 /// @endcond
 #endif // __CCARRAY_H__
+

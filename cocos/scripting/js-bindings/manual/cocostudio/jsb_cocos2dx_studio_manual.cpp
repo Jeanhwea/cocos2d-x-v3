@@ -1468,3 +1468,4 @@ void register_all_cocos2dx_studio_manual(JSContext* cx, JS::HandleObject global)
     JS_DefineProperty(cx, textureData, "pivotX", JS::UndefinedHandleValue, JSPROP_ENUMERATE | JSPROP_PERMANENT | JSPROP_SHARED, js_get_TextureData_pivotX, js_set_TextureData_pivotX);
     JS_DefineProperty(cx, textureData, "pivotY", JS::UndefinedHandleValue, JSPROP_ENUMERATE | JSPROP_PERMANENT | JSPROP_SHARED, js_get_TextureData_pivotY, js_set_TextureData_pivotY);
 }
+

@@ -2291,3 +2291,4 @@ int register_cocos3d_module(lua_State* L)
 
     return 1;
 }
+

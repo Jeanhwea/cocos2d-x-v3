@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,7 +39,7 @@ NS_CC_BEGIN
 class Label;
 
 namespace ui {
-    
+
     class Layout;
     class TabControl;
     /**
@@ -48,7 +48,7 @@ namespace ui {
     class CC_GUI_DLL TabHeader : public AbstractCheckButton
     {
         friend class TabControl;
-        
+
     public:
 
         enum class EventType
@@ -56,13 +56,13 @@ namespace ui {
             SELECTED,
             UNSELECTED
         };
-        
-        
+
+
         /**
          * Create and return a empty TabHeader instance pointer.
          */
         static TabHeader* create();
-        
+
         /**
          * factory method to create a TabHeader instance.
          * This method uses less resource to create a TabHeader.
@@ -76,7 +76,7 @@ namespace ui {
                                  const std::string& backGround,
                                  const std::string& cross,
                                  TextureResType texType = TextureResType::LOCAL);
-        
+
         /**
         * Create a TabHeader with various images.
         * @param titleStr The text on the TabHeader
@@ -101,81 +101,81 @@ namespace ui {
          * @return The TabHeader Label.
          */
         Label* getTitleRenderer()const;
-        
+
         /**
          * Change the content of Header's text.
          *@param text The Header's text.
          */
         void setTitleText(const std::string& text);
-        
+
         /**
          * get the TabHeader text
          *@return he TabHeader text
          */
         std::string getTitleText() const;
-        
+
         /**
          * Change the color of he TabHeader text
          *@param color The he TabHeader text's color in Color4B.
          */
         void setTitleColor(const Color4B& color);
-        
+
         /**
          * get the TabHeader text color.
          *@return Color4B of TabHeader text.
          */
         const Color4B& getTitleColor() const;
-        
+
         /**
          * Change the font size of TabHeader text
          *@param size TabHeader text's font size in float.
          */
         void setTitleFontSize(float size);
-        
+
         /**
          * get the font size of TabHeader text
          *@return TabHeader text's font size in float.
          */
         float getTitleFontSize() const;
-        
+
         /**
          * Change the font name of TabHeader text
          *@param fontName a font name string.
          */
         void setTitleFontName(const std::string& fontName);
-        
+
         /**
          * get the font name of TabHeader text
          *@return font name in std::string
          */
         std::string getTitleFontName() const;
-        
+
         /**
          * get the index this header in the TabControl
          * @return -1 means not in any TabControl
          */
         int   getIndexInTabControl() const;
-        
-        
+
+
     protected:
         TabHeader();
         ~TabHeader();
-        
+
         virtual void initRenderer() override;
         virtual void onSizeChanged() override;
-        
+
         void updateContentSize();
-        
+
         virtual void releaseUpEvent() override;
         void dispatchSelectChangedEvent(bool select) override;
-        
+
         virtual void copySpecialProperties(Widget* model) override;
-        
+
     private:
         Label*       _tabLabelRender;
         float        _tabLabelFontSize;
         TabControl*  _tabView;
-        
+
         typedef std::function<void(int tabindex, TabHeader::EventType)> ccTabCallback;
         ccTabCallback  _tabSelectedEvent;
 
@@ -206,44 +206,44 @@ namespace ui {
         {
             SELECT_CHANGED,
         };
-        
+
         typedef std::function<void(int tabIndex, EventType)> ccTabControlCallback;
-        
+
         static TabControl* create();
-        
+
         /// @{
         /// @name behaviours
-        
+
         /**
          * remove the tab from this TabControl
          * @param index The index of tab
          */
         void      removeTab(int index);
-        
+
         /**
          * set tab selected, switch the current selected tab and visible container
          * @param index The index of tab
          */
         void      setSelectTab(int index);
-        
+
         /**
          * set tab selected, switch the current selected tab and visible container
          * @param tabHeader The tab instance
          */
         void      setSelectTab(TabHeader* tabHeader);
-        
+
         /**
          * get TabHeader
          * @param index The index of tab
          */
         TabHeader* getTabHeader(int index) const;
-        
+
         /**
          * get Container
          * @param index The index of tab
          */
         Layout*   getTabContainer(int index) const;
-        
+
         /**
          * insert tab, and init the position of header and container
          * @param index The index tab should be
@@ -251,13 +251,13 @@ namespace ui {
          * @param container The container, will be a protected child in TabControl
          */
         void      insertTab(int index, TabHeader* header, Layout* container);
-        
+
         /**
         * get the count of tabs in this TabControl
         * @return the count of tabs
         */
         size_t    getTabCount() const;
-        
+
         /**
         * get current selected tab's index
         * @return the current selected tab index

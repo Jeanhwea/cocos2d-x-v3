@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -74,32 +74,32 @@ int js_module_register()
     sc->addRegisterCallback(register_all_cocos2dx);
     sc->addRegisterCallback(register_cocos2dx_js_core);
     sc->addRegisterCallback(jsb_register_system);
-    
+
     // extension can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_extension);
     sc->addRegisterCallback(register_all_cocos2dx_extension_manual);
-    
+
     // chipmunk can be commented out to reduce the package
     sc->addRegisterCallback(jsb_register_chipmunk);
     // opengl can be commented out to reduce the package
     sc->addRegisterCallback(JSB_register_opengl);
-    
+
     // builder can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_builder);
     sc->addRegisterCallback(register_CCBuilderReader);
-    
+
     // ui can be commented out to reduce the package, attention studio need ui module
     sc->addRegisterCallback(register_all_cocos2dx_ui);
     sc->addRegisterCallback(register_all_cocos2dx_ui_manual);
-    
+
     // studio can be commented out to reduce the package,
     sc->addRegisterCallback(register_all_cocos2dx_studio);
     sc->addRegisterCallback(register_all_cocos2dx_studio_manual);
-    
+
     // spine can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_spine);
     sc->addRegisterCallback(register_all_cocos2dx_spine_manual);
-    
+
     // XmlHttpRequest can be commented out to reduce the package
     sc->addRegisterCallback(MinXmlHttpRequest::_js_register);
     // websocket can be commented out to reduce the package
@@ -112,10 +112,10 @@ int js_module_register()
     // 3d can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_3d);
     sc->addRegisterCallback(register_all_cocos2dx_3d_manual);
-    
+
     // 3d extension can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_3d_extension);
-    
+
 #if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
     // Physics 3d can be commented out to reduce the package
     sc->addRegisterCallback(register_all_cocos2dx_physics3d);
@@ -151,3 +151,4 @@ JSObject* get_jsb_cocos2d_FileUtils_prototype()
     JS::RootedObject fileUtilsProto(ScriptingCore::getInstance()->getGlobalContext(), jsb_cocos2d_FileUtils_prototype);
     return fileUtilsProto;
 }
+

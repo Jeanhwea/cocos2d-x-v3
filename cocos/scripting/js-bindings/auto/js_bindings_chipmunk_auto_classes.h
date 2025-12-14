@@ -64,3 +64,4 @@ void JSB_cpPolyShape_createClass(JSContext *cx, JS::HandleObject globalObj, cons
 
 
 #endif // JSB_INCLUDE_CHIPMUNK
+

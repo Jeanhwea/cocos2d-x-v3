@@ -68,28 +68,28 @@ static id convertCCValueToNSObject(const cocos2d::Value &value)
     {
         case Value::Type::NONE:
             return [NSNull null];
-            
+
         case Value::Type::STRING:
             return [NSString stringWithCString:value.asString().c_str() encoding:NSUTF8StringEncoding];
-            
+
         case Value::Type::BYTE:
             return [NSNumber numberWithInt:value.asByte()];
-            
+
         case Value::Type::INTEGER:
             return [NSNumber numberWithInt:value.asInt()];
-            
+
         case Value::Type::UNSIGNED:
             return [NSNumber numberWithUnsignedInt:value.asUnsignedInt()];
-            
+
         case Value::Type::FLOAT:
             return [NSNumber numberWithFloat:value.asFloat()];
-            
+
         case Value::Type::DOUBLE:
             return [NSNumber numberWithDouble:value.asDouble()];
-            
+
         case Value::Type::BOOLEAN:
             return [NSNumber numberWithBool:value.asBool()];
-            
+
         case Value::Type::VECTOR: {
             NSMutableArray *array = [NSMutableArray array];
             const ValueVector &vector = value.asValueVector();
@@ -98,7 +98,7 @@ static id convertCCValueToNSObject(const cocos2d::Value &value)
             }
             return array;
         }
-            
+
         case Value::Type::MAP: {
             NSMutableDictionary *dictionary = [NSMutableDictionary dictionary];
             const ValueMap &map = value.asValueMap();
@@ -107,11 +107,11 @@ static id convertCCValueToNSObject(const cocos2d::Value &value)
             }
             return dictionary;
         }
-            
+
         case Value::Type::INT_KEY_MAP:
             break;
     }
-    
+
     return [NSNull null];
 }
 
@@ -122,7 +122,7 @@ static cocos2d::Value convertNSObjectToCCValue(id item)
     {
         return Value([item UTF8String]);
     }
-    
+
     // add number value into array(such as int, float, bool and so on)
     // the value is a number
     if ([item isKindOfClass:[NSNumber class]])
@@ -147,8 +147,8 @@ static cocos2d::Value convertNSObjectToCCValue(id item)
             return Value([num intValue]);
         }
     }
-    
-    
+
+
     // add dictionary value into array
     if ([item isKindOfClass:[NSDictionary class]])
     {
@@ -158,10 +158,10 @@ static cocos2d::Value convertNSObjectToCCValue(id item)
             id subValue = [item objectForKey:subKey];
             addNSObjectToCCMap(subKey, subValue, dict);
         }
-        
+
         return Value(dict);
     }
-    
+
     // add array value into array
     if ([item isKindOfClass:[NSArray class]])
     {
@@ -172,7 +172,7 @@ static cocos2d::Value convertNSObjectToCCValue(id item)
         }
         return Value(subArray);
     }
-    
+
     return Value::Null;
 }
 
@@ -318,11 +318,11 @@ bool FileUtilsApple::removeDirectory(const std::string& path) const
 std::string FileUtilsApple::getPathForDirectory(const std::string &dir, const std::string &resolutionDiretory, const std::string &searchPath) const
 {
     auto path = searchPath + resolutionDiretory + dir;
-    
+
     if(!path.empty() && path[path.length() -1] == '/') {
         path.erase(path.end() - 1);
     }
-    
+
     if(path[0] == '/')
     {
         BOOL isDir = false;
@@ -502,20 +502,21 @@ ValueVector FileUtilsApple::getValueVectorFromFile(const std::string& filename) 
 bool FileUtilsApple::createDirectory(const std::string& path) const
 {
     CCASSERT(!path.empty(), "Invalid path");
-    
+
     if (isDirectoryExist(path))
         return true;
-    
+
     NSError* error;
-    
+
     bool result = [s_fileManager createDirectoryAtPath:[NSString stringWithUTF8String:path.c_str()] withIntermediateDirectories:YES attributes:nil error:&error];
-    
+
     if(!result && error != nil)
     {
         CCLOGERROR("Fail to create directory \"%s\": %s", path.c_str(), [error.localizedDescription UTF8String]);
     }
-    
+
     return result;
 }
 
 NS_CC_END
+

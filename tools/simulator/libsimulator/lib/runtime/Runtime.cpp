@@ -413,3 +413,4 @@ void RuntimeEngine::trackLaunchEvent()
 {
     trackEvent(_launchEvent);
 }
+

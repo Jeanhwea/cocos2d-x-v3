@@ -3402,3 +3402,4 @@ void node_to_luaval(lua_State* L, const char* type, cocos2d::Node* node)
 {
     object_to_luaval<cocos2d::Node>(L, type, node);
 }
+

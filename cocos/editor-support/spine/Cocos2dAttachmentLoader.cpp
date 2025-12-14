@@ -105,3 +105,4 @@ Cocos2dAttachmentLoader* Cocos2dAttachmentLoader_create (spAtlas* atlas) {
 	self->atlasAttachmentLoader = spAtlasAttachmentLoader_create(atlas);
 	return self;
 }
+

@@ -66,12 +66,12 @@ public:
     void onDecrease(cocos2d::Ref* sender);
 
     virtual void doTest(cocos2d::Sprite* sprite) = 0;
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
     virtual void update(float dt) override;
     virtual std::string getTestCaseName() = 0;
-    
+
     void beginStat(float dt);
     void endStat(float dt);
     void doAutoTest();
@@ -162,3 +162,4 @@ public:
 };
 
 #endif
+

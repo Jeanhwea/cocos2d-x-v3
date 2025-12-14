@@ -122,3 +122,4 @@ inline cpShape* cpSpaceAddStaticShape(cpSpace *space, cpShape *shape)
 
 
 #endif // CHIPMUNK_COMPAT_62_H
+

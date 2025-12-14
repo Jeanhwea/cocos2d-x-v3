@@ -77,3 +77,4 @@ typedef spAttachmentLoader AttachmentLoader;
 #endif
 
 #endif /* SPINE_ATTACHMENTLOADER_H_ */
+

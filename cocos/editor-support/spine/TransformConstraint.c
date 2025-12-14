@@ -271,3 +271,4 @@ void spTransformConstraint_apply (spTransformConstraint* self) {
 			_spTransformConstraint_applyAbsoluteWorld(self);
 	}
 }
+

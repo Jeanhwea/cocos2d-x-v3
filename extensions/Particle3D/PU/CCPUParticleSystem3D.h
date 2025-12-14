@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -115,7 +115,7 @@ struct CC_DLL PUParticle3D : public Particle3D
 
     //Quaternion orientationInWorld;
     /*@remarks
-        The orientation of the particle is only visible if the Particle Renderer - such as the Box renderer - 
+        The orientation of the particle is only visible if the Particle Renderer - such as the Box renderer -
         supports orientation.
     */
     Quaternion originalOrientation;
@@ -154,11 +154,11 @@ struct CC_DLL PUParticle3D : public Particle3D
         existing flags on this object.
     */
     void addEventFlags(unsigned int flags) { eventFlags |= flags; }
-            
+
     /** The flags passed as parameters are removed from the existing flags.
     */
     void removeEventFlags(unsigned int flags) { eventFlags &= ~flags; }
-        
+
     /** Return the event flags.
     */
     unsigned int getEventFlags() const { return eventFlags; }
@@ -209,7 +209,7 @@ struct CC_DLL PUParticle3D : public Particle3D
     //float widthInWorld;
     //float heightInWorld;
     //float depthInWorld;
-    
+
 };
 
 class CC_DLL PUParticleSystem3D : public ParticleSystem3D
@@ -229,27 +229,27 @@ public:
     static PUParticleSystem3D* create();
     static PUParticleSystem3D* create(const std::string &filePath);
     static PUParticleSystem3D* create(const std::string &filePath, const std::string &materialPath);
-    
+
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
 
     virtual void update(float delta) override;
     void forceUpdate(float delta);
-    
+
     /**
      * particle system play control
      */
     virtual void startParticleSystem() override;
-    
+
     /**
      * stop particle
      */
     virtual void stopParticleSystem() override;
-    
+
     /**
      * pause particle
      */
     virtual void pauseParticleSystem() override;
-    
+
     /**
      * resume particle
      */
@@ -257,14 +257,14 @@ public:
 
     virtual int getAliveParticleCount() const override;
 
-    /** 
+    /**
      * Returns the velocity scale, defined in the particle system, but passed to the technique for convenience.
      */
     float getParticleSystemScaleVelocity() const;
 
     void setParticleSystemScaleVelocity(float scaleVelocity) { _particleSystemScaleVelocity = scaleVelocity; }
 
-    /** 
+    /**
      * If the orientation of the particle system has been changed since the last update, the passed vector is rotated accordingly.
      */
     void rotationOffset(Vec3& pos);
@@ -277,13 +277,13 @@ public:
     float getDefaultWidth() const;
     void setDefaultWidth(const float width);
 
-    /** 
+    /**
      * default particle height
      */
     float getDefaultHeight() const;
     void setDefaultHeight(const float height);
 
-    /** 
+    /**
      * default particle depth
      */
     float getDefaultDepth() const;
@@ -293,12 +293,12 @@ public:
     Quaternion getDerivedOrientation();
     Vec3 getDerivedScale();
 
-    /** 
+    /**
      * Return the maximum velocity a particle can have, even if the velocity of the particle has been set higher (either by initialisation of the particle or by means of an affector).
      */
     float getMaxVelocity() const;
 
-    /** 
+    /**
      * Set the maximum velocity a particle can have.
      */
     void setMaxVelocity(float maxVelocity);
@@ -379,7 +379,7 @@ protected:
     void initParticleForEmission(PUParticle3D* particle);
     void initParticleForExpiration(PUParticle3D* particle, float timeElapsed);
     void forceStopParticleSystem();
-    
+
     inline bool isExpired(PUParticle3D* particle, float timeElapsed);
 
     static void convertToUnixStylePath(std::string &path);
@@ -414,7 +414,7 @@ protected:
     float                               _defaultHeight; //Default height of each visual particle.
 
     float                               _defaultDepth; //Default depth of each visual particle.
-    
+
     float                               _maxVelocity; //Attributes that limit the velocity of the particles in this technique.
     bool                                _maxVelocitySet;
 
@@ -433,3 +433,4 @@ protected:
 NS_CC_END
 
 #endif
+

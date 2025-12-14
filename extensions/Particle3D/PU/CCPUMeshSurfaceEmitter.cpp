@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -88,14 +88,14 @@ inline void PUTriangle::calculateEdgeNormals ()
 //-----------------------------------------------------------------------
 const Vec3 PUTriangle::getRandomTrianglePosition ()
 {
-    // Use barycentric coordinates. Let A, B, C be the three vertices of the triangle. Any point P inside can 
+    // Use barycentric coordinates. Let A, B, C be the three vertices of the triangle. Any point P inside can
     // be expressed uniquely as P = aA + bB + cC, where a+b+c=1 and a,b,c are each >= 0.
     // Knowing a and b permits you to calculate c=1-a-b.
-    // So if you can generate two random numbers a and b, each in [0,1], such that their sum <=1, you've got a 
-    // random point in your triangle. Generate random a and b independently and uniformly in [0,1] 
-    // If a+b>1, replace a by 1-a, b by 1-b. Let c=1-a-b. Then aA + bB + cC is uniformly distributed 
-    // in triangle ABC: the reflection step a=1-a; b=1-b gives a point (a,b) uniformly distributed in the 
-    // triangle (0,0)(1,0)(0,1), which is then mapped affinely to ABC. Now you have barycentric coordinates 
+    // So if you can generate two random numbers a and b, each in [0,1], such that their sum <=1, you've got a
+    // random point in your triangle. Generate random a and b independently and uniformly in [0,1]
+    // If a+b>1, replace a by 1-a, b by 1-b. Let c=1-a-b. Then aA + bB + cC is uniformly distributed
+    // in triangle ABC: the reflection step a=1-a; b=1-b gives a point (a,b) uniformly distributed in the
+    // triangle (0,0)(1,0)(0,1), which is then mapped affinely to ABC. Now you have barycentric coordinates
     // a,b,c. Compute your point P = aA + bB + cC.
     float a = CCRANDOM_0_1();
     float b = CCRANDOM_0_1();
@@ -129,7 +129,7 @@ const PUTriangle::PositionAndNormal PUTriangle::getRandomEdgePositionAndNormal (
         }
         else
         {
-    
+
             pAndN.position.set(v1.x + mult*(v3.x - v1.x), v1.y + mult*(v3.y - v1.y),  v1.z + mult*(v3.z - v1.z));
             pAndN.normal = en3;
         }
@@ -201,9 +201,9 @@ inline float MeshInfo::getGaussianRandom (float high, float cutoff)
         // Prevent infinite loop
         if (w >= 1.0f && max > 4 )
             w = x1;
-        
+
     } while (w >= 1.0f);
-    
+
     w = std::sqrt((-2.0f * std::log(w)) / w);
     y1 = std::abs(x1 * w);
     y1 = y1 > cutoff ? cutoff : y1;
@@ -337,7 +337,7 @@ const PUTriangle::PositionAndNormal MeshInfo::getRandomPositionAndNormal (const 
 //				Vec3 nt(pReal[0], pReal[1], pReal[2]);
 //				normals[current_offset + j] = nt;
 //			}
-//      
+//
 //			vbuf->unlock();
 //			next_offset += vertex_data->vertexCount;
 //		}
@@ -500,7 +500,7 @@ void PUMeshSurfaceEmitter::initParticlePosition(PUParticle3D* particle)
             //	particle->position = mDerivedPosition + _mEmitterScale * pAndN.position;
             //}
         }
-    
+
         particle->originalPosition = particle->position;
     }
 }
@@ -597,3 +597,4 @@ PUMeshSurfaceEmitter* PUMeshSurfaceEmitter::clone()
 }
 
 NS_CC_END
+

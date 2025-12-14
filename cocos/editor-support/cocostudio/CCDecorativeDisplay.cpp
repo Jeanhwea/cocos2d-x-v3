@@ -77,5 +77,6 @@ void DecorativeDisplay::setDisplay(cocos2d::Node *display)
         _display = display;
     }
 }
-    
+
 }
+

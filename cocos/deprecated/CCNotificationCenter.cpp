@@ -87,7 +87,7 @@ bool __NotificationCenter::observerExisted(Ref *target, const std::string& name,
         NotificationObserver* observer = (NotificationObserver*) obj;
         if (!observer)
             continue;
-        
+
         if (observer->getName() == name && observer->getTarget() == target && observer->getSender() == sender)
             return true;
     }
@@ -97,18 +97,18 @@ bool __NotificationCenter::observerExisted(Ref *target, const std::string& name,
 //
 // observer functions
 //
-void __NotificationCenter::addObserver(Ref *target, 
+void __NotificationCenter::addObserver(Ref *target,
                                        SEL_CallFuncO selector,
                                        const std::string& name,
                                        Ref *sender)
 {
     if (this->observerExisted(target, name, sender))
         return;
-    
+
     NotificationObserver *observer = new (std::nothrow) NotificationObserver(target, selector, name, sender);
     if (!observer)
         return;
-    
+
     observer->autorelease();
     _observers->addObject(observer);
 }
@@ -121,7 +121,7 @@ void __NotificationCenter::removeObserver(Ref *target, const std::string& name)
         NotificationObserver* observer = static_cast<NotificationObserver*>(obj);
         if (!observer)
             continue;
-        
+
         if (observer->getName() == name && observer->getTarget() == target)
         {
             _observers->removeObject(observer);
@@ -153,28 +153,28 @@ int __NotificationCenter::removeAllObservers(Ref *target)
 
 void __NotificationCenter::registerScriptObserver(Ref *target, int handler,const std::string& name)
 {
-    
+
     if (this->observerExisted(target, name, nullptr))
         return;
-    
+
     NotificationObserver *observer = new (std::nothrow) NotificationObserver(target, nullptr, name, nullptr);
     if (!observer)
         return;
-    
+
     observer->setHandler(handler);
     observer->autorelease();
     _observers->addObject(observer);
 }
 
 void __NotificationCenter::unregisterScriptObserver(Ref *target,const std::string& name)
-{        
+{
     Ref* obj = nullptr;
     CCARRAY_FOREACH(_observers, obj)
     {
         NotificationObserver* observer = static_cast<NotificationObserver*>(obj);
         if (!observer)
             continue;
-            
+
         if ( observer->getName() == name && observer->getTarget() == target)
         {
             _observers->removeObject(observer);
@@ -192,7 +192,7 @@ void __NotificationCenter::postNotification(const std::string& name, Ref *sender
         NotificationObserver* observer = static_cast<NotificationObserver*>(obj);
         if (!observer)
             continue;
-        
+
         if (observer->getName() == name && (observer->getSender() == sender || observer->getSender() == nullptr || sender == nullptr))
         {
             if (0 == observer->getHandler())
@@ -214,21 +214,21 @@ int __NotificationCenter::getObserverHandlerByName(const std::string& name)
     {
         return 0;
     }
-    
+
     Ref* obj = nullptr;
     CCARRAY_FOREACH(_observers, obj)
     {
         NotificationObserver* observer = static_cast<NotificationObserver*>(obj);
         if (nullptr == observer)
             continue;
-        
+
         if ( observer->getName() == name )
         {
             return observer->getHandler();
             break;
         }
     }
-    
+
     return 0;
 }
 
@@ -237,7 +237,7 @@ int __NotificationCenter::getObserverHandlerByName(const std::string& name)
 /// NotificationObserver
 ///
 ////////////////////////////////////////////////////////////////////////////////
-NotificationObserver::NotificationObserver(Ref *target, 
+NotificationObserver::NotificationObserver(Ref *target,
                                                SEL_CallFuncO selector,
                                                const std::string& name,
                                                Ref *sender)
@@ -245,7 +245,7 @@ NotificationObserver::NotificationObserver(Ref *target,
     _target = target;
     _selector = selector;
     _sender = sender;
-    
+
     _name = name;
     _handler = 0;
 }
@@ -298,3 +298,4 @@ void NotificationObserver::setHandler(int var)
 }
 
 NS_CC_END
+

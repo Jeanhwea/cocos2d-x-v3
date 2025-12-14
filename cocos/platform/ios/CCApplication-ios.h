@@ -49,21 +49,21 @@ public:
      * @lua NA
      */
     virtual ~Application();
-        
+
     /**
     @brief    Run the message loop.
     */
     int run();
-        
+
     /**
     @brief    Get the current application instance.
     @return Current application instance pointer.
     */
     static Application* getInstance();
-    
+
     /** @deprecated Use getInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
-    
+
     /**
      @brief    Callback by Director for limit FPS.
      @param interval    The time, expressed in seconds, between current frame and next.
@@ -75,23 +75,23 @@ public:
     @return Current language config
     */
     virtual LanguageType getCurrentLanguage() override;
-    
+
     /**
      @brief Get current language iso 639-1 code
      @return Current language iso 639-1 code
      */
     virtual const char * getCurrentLanguageCode() override;
-    
+
     /**
      @brief Get target platform
      */
     virtual Platform getTargetPlatform() override;
-    
+
     /**
      @brief Get application version.
      */
     virtual std::string getVersion() override;
-    
+
     /**
      @brief Open url in default browser
      @param String with url to open.
@@ -115,3 +115,4 @@ NS_CC_END
 #endif // CC_PLATFORM_IOS
 
 #endif    // end of __CC_APPLICATION_IOS_H__
+

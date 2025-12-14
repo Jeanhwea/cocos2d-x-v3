@@ -1901,7 +1901,7 @@ bool js_cocos2dx_physics3d_Physics3DComponent_create(JSContext *cx, uint32_t arg
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             cocos2d::Physics3DObject* arg0 = nullptr;
@@ -1983,7 +1983,7 @@ bool js_cocos2dx_physics3d_Physics3DComponent_create(JSContext *cx, uint32_t arg
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::Physics3DComponent* ret = cocos2d::Physics3DComponent::create();
@@ -3214,7 +3214,7 @@ bool js_cocos2dx_physics3d_Physics3DPointToPointConstraint_create(JSContext *cx,
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 4) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -3256,7 +3256,7 @@ bool js_cocos2dx_physics3d_Physics3DPointToPointConstraint_create(JSContext *cx,
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -3853,7 +3853,7 @@ bool js_cocos2dx_physics3d_Physics3DHingeConstraint_create(JSContext *cx, uint32
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -3917,7 +3917,7 @@ bool js_cocos2dx_physics3d_Physics3DHingeConstraint_create(JSContext *cx, uint32
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -3975,7 +3975,7 @@ bool js_cocos2dx_physics3d_Physics3DHingeConstraint_create(JSContext *cx, uint32
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 6) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -4073,7 +4073,7 @@ bool js_cocos2dx_physics3d_Physics3DHingeConstraint_create(JSContext *cx, uint32
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 4) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -6022,7 +6022,7 @@ bool js_cocos2dx_physics3d_Physics3DConeTwistConstraint_create(JSContext *cx, ui
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 4) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -6064,7 +6064,7 @@ bool js_cocos2dx_physics3d_Physics3DConeTwistConstraint_create(JSContext *cx, ui
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -6395,7 +6395,7 @@ bool js_cocos2dx_physics3d_Physics3D6DofConstraint_create(JSContext *cx, uint32_
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -6426,7 +6426,7 @@ bool js_cocos2dx_physics3d_Physics3D6DofConstraint_create(JSContext *cx, uint32_
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 5) {
             cocos2d::Physics3DRigidBody* arg0 = nullptr;
@@ -6569,3 +6569,4 @@ void register_all_cocos2dx_physics3d(JSContext* cx, JS::HandleObject obj) {
 }
 
 #endif //#if CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION
+

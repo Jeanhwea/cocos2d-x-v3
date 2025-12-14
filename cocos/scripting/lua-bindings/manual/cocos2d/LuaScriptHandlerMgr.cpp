@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -65,12 +65,12 @@ void ScheduleHandlerDelegate::update(float elapse)
 LuaCallFunc * LuaCallFunc::create(const std::function<void(void* ,Node*)>& func)
 {
     auto ret = new (std::nothrow) LuaCallFunc();
-    
+
     if (ret && ret->initWithFunction(func) ) {
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return nullptr;
 }
@@ -96,21 +96,21 @@ bool LuaCallFunc::initWithFunction(const std::function<void (void*, Node*)> &fun
 LuaCallFunc* LuaCallFunc::clone() const
 {
     int handler =  ScriptHandlerMgr::getInstance()->getObjectHandler((void*)this, ScriptHandlerMgr::HandlerType::CALLFUNC);
-    
+
     if (0 == handler)
         return nullptr;
-    
+
     auto ret = new (std::nothrow) LuaCallFunc();
-    
+
     if( _functionLua )
         ret->initWithFunction(_functionLua);
-    
+
     ret->autorelease();
 
     int newscriptHandler = cocos2d::ScriptEngineManager::getInstance()->getScriptEngine()->reallocateScriptHandler(handler);
-    
+
     ScriptHandlerMgr::getInstance()->addObjectHandler((void*)ret, newscriptHandler, ScriptHandlerMgr::HandlerType::CALLFUNC);
-        
+
     return ret;
 }
 
@@ -118,7 +118,7 @@ ScriptHandlerMgr* ScriptHandlerMgr::_scriptHandlerMgr = NULL;
 
 ScriptHandlerMgr::ScriptHandlerMgr()
 {
-    
+
 }
 
 ScriptHandlerMgr::~ScriptHandlerMgr()
@@ -149,16 +149,16 @@ void ScriptHandlerMgr::addObjectHandler(void* object,int handler,ScriptHandlerMg
 {
     if (nullptr == object)
         return;
-    
+
     //may be not need
     removeObjectHandler(object,handlerType);
-    
+
     auto iter = _mapObjectHandlers.find(object);
     VecHandlerPairs vecHandlers;
     vecHandlers.clear();
     if (_mapObjectHandlers.end() != iter)
         vecHandlers = iter->second;
-    
+
     HandlerPair eventHanler = std::make_pair(handlerType, handler);
     vecHandlers.push_back(eventHanler);
     _mapObjectHandlers[object] = vecHandlers;
@@ -167,14 +167,14 @@ void ScriptHandlerMgr::removeObjectHandler(void* object,ScriptHandlerMgr::Handle
 {
     if (nullptr == object || _mapObjectHandlers.empty())
         return;
-    
+
     auto iterMap = _mapObjectHandlers.find(object);
     if (_mapObjectHandlers.end() == iterMap)
         return;
-    
+
     if (iterMap->second.empty())
         return;
-    
+
     auto iterVec = iterMap->second.begin();
     for (; iterVec != iterMap->second.end(); ++iterVec)
     {
@@ -191,13 +191,13 @@ int  ScriptHandlerMgr::getObjectHandler(void* object,ScriptHandlerMgr::HandlerTy
 {
     if (nullptr == object ||   _mapObjectHandlers.empty() )
         return 0;
-    
+
     auto iter = _mapObjectHandlers.find(object);
     if (_mapObjectHandlers.end() != iter)
         for (auto &handlerPair : iter->second)
             if (handlerPair.first == handlerType)
                 return handlerPair.second;
-    
+
     return 0;
 }
 
@@ -205,7 +205,7 @@ void ScriptHandlerMgr::removeObjectAllHandlers(void* object)
 {
     if (nullptr == object || _mapObjectHandlers.empty())
         return;
-    
+
     auto iter = _mapObjectHandlers.find(object);
     if (_mapObjectHandlers.end() != iter)
     {
@@ -213,7 +213,7 @@ void ScriptHandlerMgr::removeObjectAllHandlers(void* object)
         {
             for (auto &handlerPair : iter->second)
                 LuaEngine::getInstance()->removeScriptHandler(handlerPair.second);
-            
+
             (iter->second).clear();
         }
         _mapObjectHandlers.erase(iter);
@@ -223,12 +223,12 @@ void ScriptHandlerMgr::removeObjectAllHandlers(void* object)
 ScriptHandlerMgr::HandlerType ScriptHandlerMgr::addCustomHandler(void* object, int handler)
 {
     assert(nullptr != object);
-    
+
     auto iter = _mapObjectHandlers.find(object);
     VecHandlerPairs vecHandlers;
     vecHandlers.clear();
     HandlerType handlerType = HandlerType::EVENT_CUSTOM_BEGAN;
-    
+
     if (_mapObjectHandlers.end() != iter)
     {
         vecHandlers = iter->second;
@@ -236,11 +236,11 @@ ScriptHandlerMgr::HandlerType ScriptHandlerMgr::addCustomHandler(void* object, i
             handlerType = static_cast<HandlerType>((int)vecHandlers.back().first + 1);
     }
     assert(handlerType <= HandlerType::EVENT_CUSTOM_ENDED);
-    
+
     HandlerPair eventHanler = std::make_pair(handlerType, handler);
     vecHandlers.push_back(eventHanler);
     _mapObjectHandlers[object] = vecHandlers;
-    
+
     return handlerType;
 }
 
@@ -251,14 +251,14 @@ static void tolua_reg_script_handler_mgr_type(lua_State* tolua_S)
 {
     tolua_usertype(tolua_S, "ScheduleHandlerDelegate");
     tolua_usertype(tolua_S, "ScriptHandlerMgr");
-} 
+}
 
 /* method: getInstance of class  ScriptHandlerMgr */
 #ifndef TOLUA_DISABLE_tolua_Cocos2d_ScriptHandlerMgr_getInstance00
 static int tolua_Cocos2d_ScriptHandlerMgr_getInstance00(lua_State* tolua_S)
 {
 #ifndef TOLUA_RELEASE
-    tolua_Error tolua_err; 
+    tolua_Error tolua_err;
     if (!tolua_isusertable(tolua_S,1,"ScriptHandlerMgr",0,&tolua_err) ||
         !tolua_isnoobj(tolua_S,2,&tolua_err) )
         goto tolua_lerror;
@@ -387,5 +387,6 @@ TOLUA_API int tolua_script_handler_mgr_open(lua_State* tolua_S)
         tolua_function(tolua_S, "removeObjectAllHandlers", tolua_Cocos2d_ScriptHandlerMgr_removeObjectAllHandlers00);
       tolua_endmodule(tolua_S);
     tolua_endmodule(tolua_S);
-   return 1; 
+   return 1;
 }
+

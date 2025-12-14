@@ -43,14 +43,14 @@ protected:
      * @js ctor
      */
     ComponentContainer(Node* node);
-    
+
 public:
     /**
      * @js NA
      * @lua NA
      */
     ~ComponentContainer();
-    
+
 	/**
      * @js getComponent
      */
@@ -61,15 +61,15 @@ public:
     bool remove(Component *com);
     void removeAll();
     void visit(float delta);
-    
+
     void onEnter();
     void onExit();
-    
-    bool isEmpty() const { return _componentMap.empty(); } 
+
+    bool isEmpty() const { return _componentMap.empty(); }
 private:
     std::unordered_map<std::string, Component*> _componentMap;
     Node *_owner;
-    
+
     friend class Node;
 };
 
@@ -77,3 +77,4 @@ NS_CC_END
 
 /// @endcond
 #endif  // __CC_FRAMEWORK_COMCONTAINER_H__
+

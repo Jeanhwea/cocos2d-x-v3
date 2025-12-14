@@ -77,3 +77,4 @@ size_t memcpy_by_index_array_initialization_from_channel_mask(int8_t *idxary, si
 __END_DECLS
 
 #endif  // COCOS_AUDIO_FORMAT_H
+

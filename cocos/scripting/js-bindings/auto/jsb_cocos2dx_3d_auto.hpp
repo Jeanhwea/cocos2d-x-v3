@@ -248,3 +248,4 @@ bool js_cocos2dx_3d_Bundle3D_loadObj(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_3d_Bundle3D_Bundle3D(JSContext *cx, uint32_t argc, jsval *vp);
 
 #endif // __cocos2dx_3d_h__
+

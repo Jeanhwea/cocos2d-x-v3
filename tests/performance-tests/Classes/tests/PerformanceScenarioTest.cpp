@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -142,25 +142,25 @@ void ScenarioTest::performTests()
 	});
     increase->setColor(Color3B(0,200,20));
     increase->setPosition(Vec2(origin.x + s.width / 2 + 80, origin.y + 80));
-    
+
     auto menu = Menu::create(_itemToggle, decrease, increase, nullptr);
     menu->setPosition(Vec2(0.0f, 0.0f));
     addChild(menu, 10);
 
-    
+
     // add tip labels
     _spriteLabel = Label::createWithTTF("Sprites : 0", "fonts/arial.ttf", 15);
     _spriteLabel->setAnchorPoint(Vec2(0.0f, 0.5f));
     addChild(_spriteLabel, 10);
     _spriteLabel->setPosition(Vec2(origin.x, origin.y + s.height/2 + 70));
-    
+
     char str[32] = { 0 };
     sprintf(str, "Particles : %d", _particleNumber);
     _particleLabel = Label::createWithTTF(str, "fonts/arial.ttf", 15);
     _particleLabel->setAnchorPoint(Vec2(0.0f, 0.5f));
     addChild(_particleLabel, 10);
     _particleLabel->setPosition(Vec2(origin.x, origin.y + s.height/2 + 45));
-    
+
     _parsysLabel = Label::createWithTTF("Particle System : 0", "fonts/arial.ttf", 15);
     _parsysLabel->setAnchorPoint(Vec2(0.0f, 0.5f));
     addChild(_parsysLabel, 10);
@@ -168,7 +168,7 @@ void ScenarioTest::performTests()
 
     // add sprites
     addNewSprites(_initSpriteNum);
-    
+
     // add particle system
     addParticleSystem(_initParsysNum);
 }
@@ -176,11 +176,11 @@ void ScenarioTest::performTests()
 void ScenarioTest::onTouchesMoved(const std::vector<Touch*>& touches, Event  *event)
 {
     auto touch = touches[0];
-    
+
     auto diff = touch->getDelta();
     auto currentPos1 = _map1->getPosition();
     _map1->setPosition(currentPos1 + diff);
-    
+
     auto currentPos2 = _map2->getPosition();
     _map2->setPosition(currentPos2 + diff);
 }
@@ -203,7 +203,7 @@ void ScenarioTest::removeParticles()
     if (_particleNumber <= 0) {
         return;
     }
-    
+
     int removeNum = MIN(_particleNumber, _parStepNum);
     _particleNumber -= removeNum;
 
@@ -228,14 +228,14 @@ void ScenarioTest::addNewSprites(int num)
 
         auto sprite = Sprite::create("Images/grossini_dance_atlas.png", Rect(x,y,85,121) );
         addChild( sprite );
-        
+
         float randomx = CCRANDOM_0_1();
         float randomy = CCRANDOM_0_1();
         sprite->setPosition(origin + Vec2(randomx * s.width, randomy * s.height));
-        
+
         ActionInterval* action;
         float random = CCRANDOM_0_1();
-        
+
         if( random < 0.20 )
             action = ScaleBy::create(3, 2);
         else if(random < 0.40)
@@ -248,7 +248,7 @@ void ScenarioTest::addNewSprites(int num)
             action = FadeOut::create(2);
         auto action_back = action->reverse();
         auto seq = Sequence::create( action, action_back, nullptr );
-        
+
         sprite->runAction( RepeatForever::create(seq) );
 
         _spriteArray.pushBack(sprite);
@@ -272,7 +272,7 @@ void ScenarioTest::removeSprites()
         removeChild(sprite);
         _spriteArray.eraseObject(sprite);
     }
-    
+
     char str[20] = {0};
     sprintf(str, "Sprites : %d", (int)_spriteArray.size());
     _spriteLabel->setString(str);
@@ -323,14 +323,14 @@ void ScenarioTest::removeParticleSystem()
     if (number <= 0) {
         return;
     }
-    
+
     ssize_t removeNum = MIN(number, _parsysStepNum);
     for (int i = 0; i < removeNum; ++i) {
         auto par = _parsysArray.getRandomObject();
         removeChild(par);
         _parsysArray.eraseObject(par);
     }
-    
+
     char str[40] = {0};
     sprintf(str, "Particle System : %d", (int)_parsysArray.size());
     _parsysLabel->setString(str);
@@ -339,7 +339,7 @@ void ScenarioTest::removeParticleSystem()
 void ScenarioTest::onEnter()
 {
     TestCase::onEnter();
-    
+
     if (isAutoTesting()) {
         autoTestIndex = 0;
         Profile::getInstance()->testCaseBegin("ScenarioTest",
@@ -361,11 +361,11 @@ void ScenarioTest::update(float dt)
     if (isStating) {
         totalStatTime += dt;
         statCount++;
-        
+
         auto curFrameRate = Director::getInstance()->getFrameRate();
         if (maxFrameRate < 0 || curFrameRate > maxFrameRate)
             maxFrameRate = curFrameRate;
-        
+
         if (minFrameRate < 0 || curFrameRate < minFrameRate)
             minFrameRate = curFrameRate;
     }
@@ -381,7 +381,7 @@ void ScenarioTest::endStat(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(ScenarioTest::endStat));
     isStating = false;
-    
+
     // record test data
     auto avgStr = genStr("%.2f", (float) statCount / totalStatTime);
     Profile::getInstance()->addTestResult(genStrVector(genStr("%d", _spriteArray.size()).c_str(),
@@ -412,7 +412,7 @@ void ScenarioTest::doAutoTest()
     totalStatTime = 0.0f;
     minFrameRate = -1.0f;
     maxFrameRate = -1.0f;
-    
+
     // remove all nodes
     while (_spriteArray.size() > 0) {
         removeSprites();
@@ -420,7 +420,7 @@ void ScenarioTest::doAutoTest()
     while (_parsysArray.size() > 0) {
         removeParticleSystem();
     }
-    
+
     // add nodes
     auto caseInfo = autoTestCounts[autoTestIndex];
     _particleNumber = 0;
@@ -436,3 +436,4 @@ std::string ScenarioTest::title() const
 {
     return "Scenario Performance Test";
 }
+

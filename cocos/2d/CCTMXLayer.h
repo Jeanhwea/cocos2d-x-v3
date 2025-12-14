@@ -115,10 +115,10 @@ public:
      * @js NA
      */
     CC_DEPRECATED_ATTRIBUTE Sprite* tileAt(const Vec2& tileCoordinate) { return getTileAt(tileCoordinate); };
-    
+
     /** Returns the tile gid at a given tile coordinate. It also returns the tile flags.
      * This method requires the tile map has not been previously released (eg. don't call [layer releaseMap]).
-     * 
+     *
      * @param tileCoordinate The tile coordinate.
      * @param flags Tile flags.
      * @return Returns the tile gid at a given tile coordinate. It also returns the tile flags.
@@ -144,7 +144,7 @@ public:
      * The Tile GID can be obtained by using the method "tileGIDAt" or by using the TMX editor -> Tileset Mgr +1.
      * If a tile is already placed at that position, then it will be removed.
      * Use withFlags if the tile flags need to be changed as well.
-     * 
+     *
      * @param gid The tile gid.
      * @param tileCoordinate The tile coordinate.
      * @param flags The tile flags.
@@ -152,7 +152,7 @@ public:
 
     void setTileGID(uint32_t gid, const Vec2& tileCoordinate, TMXTileFlags flags);
 
-    /** Removes a tile at given tile coordinate. 
+    /** Removes a tile at given tile coordinate.
      *
      * @param tileCoordinate The tile coordinate.
      */
@@ -182,13 +182,13 @@ public:
 
     /** Creates the tiles. */
     void setupTiles();
-    
-    /** Get the layer name. 
+
+    /** Get the layer name.
      *
      * @return The layer name.
      */
     const std::string& getLayerName() { return _layerName; }
-    
+
     /** Set the layer name.
      *
      * @param layerName The layer name.
@@ -200,44 +200,44 @@ public:
      * @return Size of the layer in tiles.
      */
     const Size& getLayerSize() const { return _layerSize; }
-    
+
     /** Set size of the layer in tiles.
      *
      * @param size Size of the layer in tiles.
      */
     void setLayerSize(const Size& size) { _layerSize = size; }
-    
+
     /** Size of the map's tile (could be different from the tile's size).
      *
      * @return The size of the map's tile.
      */
     const Size& getMapTileSize() const { return _mapTileSize; }
-    
+
     /** Set the size of the map's tile.
      *
      * @param size The size of the map's tile.
      */
     void setMapTileSize(const Size& size) { _mapTileSize = size; }
-    
+
     /** Pointer to the map of tiles.
      * @js NA
      * @lua NA
      * @return Pointer to the map of tiles.
      */
     uint32_t* getTiles() const { return _tiles; };
-    
+
     /** Set a pointer to the map of tiles.
      *
      * @param tiles A pointer to the map of tiles.
      */
     void setTiles(uint32_t* tiles) { _tiles = tiles; };
-    
-    /** Tileset information for the layer. 
+
+    /** Tileset information for the layer.
      *
      * @return Tileset information for the layer.
      */
     TMXTilesetInfo* getTileSet() const { return _tileSet; }
-    
+
     /** Set tileset information for the layer.
      *
      * @param info The tileset information for the layer.
@@ -248,31 +248,31 @@ public:
         CC_SAFE_RELEASE(_tileSet);
         _tileSet = info;
     }
-    
+
     /** Layer orientation, which is the same as the map orientation.
      *
      * @return Layer orientation, which is the same as the map orientation.
      */
     int getLayerOrientation() const { return _layerOrientation; }
-    
+
     /** Set layer orientation, which is the same as the map orientation.
      *
      * @param orientation Layer orientation,which is the same as the map orientation.
      */
     void setLayerOrientation(int orientation) { _layerOrientation = orientation; }
-    
+
     /** Properties from the layer. They can be added using Tiled.
      *
      * @return Properties from the layer. They can be added using Tiled.
      */
     const ValueMap& getProperties() const { return _properties; }
-    
+
     /** Properties from the layer. They can be added using Tiled.
      *
      * @return Properties from the layer. They can be added using Tiled.
      */
     ValueMap& getProperties() { return _properties; }
-    
+
     /** Set an Properties from to layer.
      *
      * @param properties It is used to set the layer Properties.
@@ -340,7 +340,7 @@ protected:
     std::string _layerName;
     //! TMX Layer supports opacity
     unsigned char _opacity;
-    
+
     //! Only used when vertexZ is used
     int _vertexZvalue;
     bool _useAutomaticVertexZ;
@@ -348,10 +348,10 @@ protected:
     //! used for optimization
     Sprite *_reusedTile;
     ccCArray *_atlasIndexArray;
-    
+
     // used for retina display
     float _contentScaleFactor;
-    
+
     /** size of the layer in tiles */
     Size _layerSize;
     /** size of the map's tile (could be different from the tile's size) */
@@ -443,3 +443,4 @@ protected:
 NS_CC_END
 
 #endif //__CCTMX_LAYER_H__
+

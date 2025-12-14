@@ -620,3 +620,4 @@ inline int64 WireFormatLite::ZigZagDecode64(uint64 n) {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_WIRE_FORMAT_LITE_H__
+

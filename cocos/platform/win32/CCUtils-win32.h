@@ -40,3 +40,4 @@ std::string CC_DLL UTF8StringToMultiByte(const std::string& strUtf8);
 NS_CC_END
 
 #endif // __CC_UTILS_WIN32_H__
+

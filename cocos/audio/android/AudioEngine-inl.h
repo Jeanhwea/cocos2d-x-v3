@@ -98,7 +98,7 @@ private:
     EventListener* _onResumeListener;
 
     int _audioIDIndex;
-    
+
     bool _lazyInitLoop;
 };
 
@@ -107,3 +107,4 @@ private:
 NS_CC_END
 
 #endif
+

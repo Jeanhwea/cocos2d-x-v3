@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,52 +43,52 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(UserCameraReader)
-    
+
     UserCameraReader::UserCameraReader()
     {
-        
+
     }
-    
+
     UserCameraReader::~UserCameraReader()
     {
-        
+
     }
-    
+
     static UserCameraReader* _instanceUserCameraReader = nullptr;
-    
+
     UserCameraReader* UserCameraReader::getInstance()
     {
         if (!_instanceUserCameraReader)
         {
             _instanceUserCameraReader = new (std::nothrow) UserCameraReader();
         }
-        
+
         return _instanceUserCameraReader;
     }
-    
+
     void UserCameraReader::purge()
     {
         CC_SAFE_DELETE(_instanceUserCameraReader);
     }
-    
+
     void UserCameraReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceUserCameraReader);
     }
-    
+
     Vec2 UserCameraReader::getVec2Attribute(const tinyxml2::XMLAttribute* attribute) const
     {
         if(!attribute)
             return Vec2::ZERO;
-        
+
         Vec2 ret;
         std::string attriname;
-        
+
         while (attribute)
         {
             attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (attriname == "X")
             {
                 ret.x = atof(value.c_str());
@@ -97,19 +97,19 @@ namespace cocostudio
             {
                 ret.y = atof(value.c_str());
             }
-            
+
             attribute = attribute->Next();
         }
 
         return ret;
     }
-    
+
     Offset<Table> UserCameraReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                              flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = Node3DReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto node3DOptions = *(Offset<Node3DOption>*)(&temp);
-        
+
         float fov = 60.f;
         unsigned int cameraFlag = 0;
         bool skyBoxEnabled = false;
@@ -121,7 +121,7 @@ namespace cocostudio
         {
             attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if(attriname == "Fov")
             {
                 fov = atof(value.c_str());
@@ -151,7 +151,7 @@ namespace cocostudio
             {
                 skyBoxValid = (value == "True") ? true : false;
             }
-            
+
             attribute = attribute->Next();
         }
 
@@ -183,13 +183,13 @@ namespace cocostudio
         std::string backPath = "";
         std::string backPlistFile = "";
         int backResourceType = 0;
-        
+
         // FileData
         const tinyxml2::XMLElement* child = objectData->FirstChildElement();
         while (child)
         {
             std::string name = child->Name();
-            
+
             if (name == "ClipPlane")
             {
                 attribute = child->FirstAttribute();
@@ -381,10 +381,10 @@ namespace cocostudio
                     fbs->_textures.push_back(builder->CreateString(backPlistFile));
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         auto options = CreateUserCameraOptions(*builder,
                                              node3DOptions,
                                              fov,
@@ -417,15 +417,15 @@ namespace cocostudio
                                                          builder->CreateString(backPlistFile),
                                                          backResourceType)
                                              );
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void UserCameraReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                    const flatbuffers::Table* userCameraDOptions)
     {
         auto options = (UserCameraOptions*)userCameraDOptions;
-        
+
         Camera* camera = static_cast<Camera*>(node);
         int cameraFlag = options->cameraFlag();
         camera->setCameraFlag((CameraFlag)cameraFlag);
@@ -466,20 +466,20 @@ namespace cocostudio
                 camera->setBackgroundBrush(GameNode3DReader::getSceneBrushInstance());
         }
     }
-    
+
     Node* UserCameraReader::createNodeWithFlatBuffers(const flatbuffers::Table *userCameraDOptions)
     {
         auto options = (UserCameraOptions*)userCameraDOptions;
-        
+
         float fov = options->fov();
         float nearClip = options->nearClip();
         float farClip = options->farClip();
-        
+
         auto size = Director::getInstance()->getWinSize();
         Camera* camera = Camera::createPerspective(fov, size.width / size.height, nearClip, farClip);
-        
+
         setPropsWithFlatBuffers(camera, userCameraDOptions);
-        
+
         return camera;
     }
 
@@ -501,3 +501,4 @@ namespace cocostudio
         return 1;
     }
 }
+

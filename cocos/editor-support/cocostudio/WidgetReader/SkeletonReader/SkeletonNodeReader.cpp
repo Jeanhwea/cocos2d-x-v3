@@ -78,3 +78,4 @@ cocos2d::Node*  SkeletonNodeReader::createNodeWithFlatBuffers(const flatbuffers:
 
     return bone;
 }
+

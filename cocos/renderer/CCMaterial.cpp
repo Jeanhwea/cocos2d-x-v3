@@ -214,7 +214,7 @@ bool Material::parsePass(Technique* technique, Properties* passProperties)
 bool Material::parseSampler(GLProgramState* glProgramState, Properties* samplerProperties)
 {
     CCASSERT(samplerProperties->getId(), "Sampler must have an id. The id is the uniform name");
-    
+
     // required
     auto filename = samplerProperties->getString("path");
 
@@ -515,3 +515,4 @@ static const char* getOptionalString(Properties* properties, const char* key, co
 }
 
 NS_CC_END
+

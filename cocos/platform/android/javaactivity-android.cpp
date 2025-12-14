@@ -66,7 +66,7 @@ extern "C"
 
     __sighandler_t bsd_signal(int s, __sighandler_t f) {
         if (bsd_signal_func == NULL) {
-            // For now (up to Android 7.0) this is always available 
+            // For now (up to Android 7.0) this is always available
             bsd_signal_func = (bsd_signal_func_t) dlsym(RTLD_DEFAULT, "bsd_signal");
 
             if (bsd_signal_func == NULL) {
@@ -117,16 +117,16 @@ JNIEXPORT void Java_org_cocos2dx_lib_Cocos2dxRenderer_nativeInit(JNIEnv*  env, j
 
 JNIEXPORT jintArray Java_org_cocos2dx_lib_Cocos2dxActivity_getGLContextAttrs(JNIEnv*  env, jobject thiz)
 {
-    cocos2d::Application::getInstance()->initGLContextAttrs(); 
+    cocos2d::Application::getInstance()->initGLContextAttrs();
     GLContextAttrs _glContextAttrs = GLView::getGLContextAttrs();
-    
+
     int tmp[7] = {_glContextAttrs.redBits, _glContextAttrs.greenBits, _glContextAttrs.blueBits,
                            _glContextAttrs.alphaBits, _glContextAttrs.depthBits, _glContextAttrs.stencilBits, _glContextAttrs.multisamplingCount};
 
 
     jintArray glContextAttrsJava = env->NewIntArray(7);
         env->SetIntArrayRegion(glContextAttrsJava, 0, 7, tmp);
-    
+
     return glContextAttrsJava;
 }
 

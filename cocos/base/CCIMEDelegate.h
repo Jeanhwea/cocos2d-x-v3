@@ -65,14 +65,14 @@ public:
      * @lua NA
      */
     virtual ~IMEDelegate();
-    
+
     /**
      * Attach the delegate to IME. Return true if succesful.
      * @js NA
      * @lua NA
      */
     virtual bool attachWithIME();
-    
+
     /**
      * Detach the delegate from IME. Return true if succesful.
      * @js NA
@@ -179,3 +179,4 @@ NS_CC_END
 /// @}
 
 #endif    // __CC_IME_DELEGATE_H__
+

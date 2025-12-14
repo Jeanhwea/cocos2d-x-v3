@@ -80,3 +80,4 @@
 #endif
 
 #endif  // GOOGLE_PROTOBUF_PLATFORM_MACROS_H_
+

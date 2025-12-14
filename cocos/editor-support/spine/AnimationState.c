@@ -929,3 +929,4 @@ spTrackEntry* _spTrackEntry_setTimelineData(spTrackEntry* self, spTrackEntry* to
 	outer:
 	return lastEntry;
 }
+

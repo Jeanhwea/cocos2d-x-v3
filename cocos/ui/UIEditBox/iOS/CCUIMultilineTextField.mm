@@ -3,19 +3,19 @@
  Copyright (c) 2012 James Chen
  Copyright (c) 2015 Mazyad Alabduljaleel
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,7 +43,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
+
         [[NSNotificationCenter defaultCenter] addObserver:self
                                                  selector:@selector(textChanged:)
                                                      name:UITextViewTextDidChangeNotification
@@ -55,9 +55,9 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 - (void)dealloc
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
-    
+
     [_placeHolderLabel release];
-    
+
     [super dealloc];
 }
 
@@ -96,10 +96,10 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
         _placeHolderLabel.backgroundColor = [UIColor clearColor];
         _placeHolderLabel.textColor = [UIColor lightGrayColor];
         _placeHolderLabel.alpha = 0;
-        
+
         [self addSubview:_placeHolderLabel];
     }
-    
+
     return _placeHolderLabel;
 }
 
@@ -108,7 +108,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 - (CGRect)textRectForBounds:(CGRect)bounds
 {
     auto glview = cocos2d::Director::getInstance()->getOpenGLView();
-    
+
     float padding = CC_EDIT_BOX_PADDING * glview->getScaleX() / glview->getContentScaleFactor();
     return CGRectInset(bounds, padding, padding);
 }
@@ -121,7 +121,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    
+
     if (self.placeholder.length > 0) {
         [self sendSubviewToBack:self.placeHolderLabel];
     }
@@ -132,7 +132,7 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     if (self.text.length == 0 && self.placeholder.length > 0) {
         self.placeHolderLabel.alpha = 1;
     }
-    
+
     [super drawRect:rect];
 }
 
@@ -143,12 +143,13 @@ CGFloat const UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION = 0.25;
     if (self.placeholder.length == 0) {
         return;
     }
-    
+
     [UIView animateWithDuration:UI_PLACEHOLDER_TEXT_CHANGED_ANIMATION_DURATION animations:^{
-        
+
         CGFloat alpha = (self.text.length == 0 ? 1 : 0);
         self.placeHolderLabel.alpha = alpha;
     }];
 }
 
 @end
+

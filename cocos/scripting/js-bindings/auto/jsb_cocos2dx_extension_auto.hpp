@@ -374,3 +374,4 @@ void register_all_cocos2dx_extension(JSContext* cx, JS::HandleObject obj);
 bool js_cocos2dx_extension_EventListenerAssetsManagerEx_EventListenerAssetsManagerEx(JSContext *cx, uint32_t argc, jsval *vp);
 
 #endif // __cocos2dx_extension_h__
+

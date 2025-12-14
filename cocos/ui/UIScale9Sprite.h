@@ -607,9 +607,10 @@ namespace ui {
         Scale9Sprite::State _brightState;
         Scale9Sprite::RenderingType _renderingType;
     };
-    
+
 }}  //end of namespace
 // end of ui group
 /// @}
 
 #endif /* defined(__cocos2d_libs__UIScale9Sprite__) */
+

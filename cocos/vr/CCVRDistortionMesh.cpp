@@ -152,3 +152,4 @@ DistortionMesh::DistortionMesh(Distortion *distortion,
 }
 
 NS_CC_END
+

@@ -33,18 +33,18 @@ AttachNode* AttachNode::create(Bone3D* attachBone)
     auto attachnode = new (std::nothrow) AttachNode();
     attachnode->_attachBone = attachBone;
     attachnode->autorelease();
-    
+
     return attachnode;
 }
 
 AttachNode::AttachNode()
 : _attachBone(nullptr)
 {
-    
+
 }
 AttachNode::~AttachNode()
 {
-    
+
 }
 
 Mat4 AttachNode::getWorldToNodeTransform() const

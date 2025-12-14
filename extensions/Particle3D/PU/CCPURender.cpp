@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -78,7 +78,7 @@ void PUParticle3DQuadRender::render(Renderer* renderer, const Mat4 &transform, P
     const ParticlePool &particlePool = particleSystem->getParticlePool();
     if (!_isVisible || particlePool.empty())
         return;
-    
+
     if (_vertexBuffer == nullptr){
         GLsizei stride = sizeof(VertexInfo);
         _vertexBuffer = VertexBuffer::create(stride, 4 * particleSystem->getParticleQuota());
@@ -108,7 +108,7 @@ void PUParticle3DQuadRender::render(Renderer* renderer, const Mat4 &transform, P
 
     auto camera = Camera::getVisitingCamera();
     auto cameraMat = camera->getNodeToWorldTransform();
-    
+
 
     //for (auto iter : activeParticleList){
     //    iter->depthInView = -(viewMat.m[2] * iter->positionInWorld.x + viewMat.m[6] * iter->positionInWorld.y + viewMat.m[10] * iter->positionInWorld.z + viewMat.m[14]);
@@ -118,7 +118,7 @@ void PUParticle3DQuadRender::render(Renderer* renderer, const Mat4 &transform, P
     Vec3 right(cameraMat.m[0], cameraMat.m[1], cameraMat.m[2]);
     Vec3 up(cameraMat.m[4], cameraMat.m[5], cameraMat.m[6]);
     Vec3 backward(cameraMat.m[8], cameraMat.m[9], cameraMat.m[10]);
-    
+
     Mat4 pRotMat;
     Vec3 position; //particle position
     int vertexindex = 0;
@@ -233,21 +233,21 @@ void PUParticle3DQuadRender::render(Renderer* renderer, const Mat4 &transform, P
         //_indexData[index + 3] = vertexindex;
         //_indexData[index + 4] = vertexindex + 3;
         //_indexData[index + 5] = vertexindex + 2;
-        
+
         index += 6;
         vertexindex += 4;
 
     }
-    
+
     _vertices.erase(_vertices.begin() + vertexindex, _vertices.end());
     _indices.erase(_indices.begin() + index, _indices.end());
-    
+
     if (!_vertices.empty() && !_indices.empty()){
         _vertexBuffer->updateVertices(&_vertices[0], vertexindex/* * sizeof(_posuvcolors[0])*/, 0);
         _indexBuffer->updateIndices(&_indices[0], index/* * sizeof(unsigned short)*/, 0);
 
         _stateBlock->setBlendFunc(particleSystem->getBlendFunc());
-        
+
         GLuint texId = (_texture ? _texture->getName() : 0);
         _meshCommand->init(0,
                            texId,
@@ -490,7 +490,7 @@ void PUParticle3DModelRender::render( Renderer* renderer, const Mat4 &transform,
         auto particle = static_cast<PUParticle3D *>(iter);
         Mat4::createRotation(q * particle->orientation, &rotMat);
         sclMat.m[0] = particle->width / _spriteSize.x;
-        sclMat.m[5]  = particle->height / _spriteSize.y; 
+        sclMat.m[5]  = particle->height / _spriteSize.y;
         sclMat.m[10] = particle->depth / _spriteSize.z;
         mat = rotMat * sclMat;
         mat.m[12] = particle->position.x;
@@ -681,7 +681,7 @@ void PUParticle3DBoxRender::render( Renderer* renderer, const Mat4 &transform, P
         val = texRot * Vec3(0.0f, 0.75f, 0.0);
         _vertices[vertexindex + 0].position = particle->position + Vec3(-halfWidth, -halfHeight, halfDepth);
         _vertices[vertexindex + 0].color = particle->color;
-        _vertices[vertexindex + 0].uv.x = val.x; _vertices[vertexindex + 0].uv.y = val.y; 
+        _vertices[vertexindex + 0].uv.x = val.x; _vertices[vertexindex + 0].uv.y = val.y;
         val = texRot * Vec3(0.0f, 0.25f, 0.0);
         _vertices[vertexindex + 1].position = particle->position + Vec3(halfWidth, -halfHeight, halfDepth);
         _vertices[vertexindex + 1].color = particle->color;
@@ -980,3 +980,4 @@ PUSphereRender* PUSphereRender::clone()
 }
 
 NS_CC_END
+

@@ -1,7 +1,7 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -55,7 +55,7 @@ public:
      */
     static MotionStreak3D* create(float fade, float minSeg, float stroke, const Color3B& color, const std::string& path);
     /** Creates and initializes a motion streak with fade in seconds, minimum segments, stroke's width, color, texture.
-     * 
+     *
      * @param fade The fade time, in seconds.
      * @param minSeg The minimum segments.
      * @param stroke The width of stroke.
@@ -74,7 +74,7 @@ public:
     /** Remove all living segments of the ribbon.
      */
     void reset();
-    
+
     /** Get stroke.
      *
      * @return float stroke.
@@ -97,7 +97,7 @@ public:
      */
     void setStartingPositionInitialized(bool bStartingPositionInitialized)
     {
-        _startingPositionInitialized = bStartingPositionInitialized; 
+        _startingPositionInitialized = bStartingPositionInitialized;
     }
 
     // Overrides
@@ -106,7 +106,7 @@ public:
     virtual void setPosition3D(const Vec3& position) override;
     virtual void setRotation3D(const Vec3& rotation) override;
     virtual void setRotationQuat(const Quaternion& quat) override;
-    
+
     virtual const Vec2& getPosition() const override;
     virtual void getPosition(float* x, float* y) const override;
     virtual void setPositionX(float x) override;
@@ -139,25 +139,25 @@ public:
     virtual void setOpacity(GLubyte opacity) override;
     virtual void setOpacityModifyRGB(bool value) override;
     virtual bool isOpacityModifyRGB() const override;
-    
+
     /**
      * Set the direction of sweeping line segment.
      * @param sweepAxis Direction of sweeping line segment
      */
     void setSweepAxis(const Vec3& sweepAxis) { _sweepAxis = sweepAxis.getNormalized(); }
-    
+
     /**
      * Get the direction of sweeping line segment
      */
     const Vec3& getSweepAxis() const { return _sweepAxis; }
-    
+
 CC_CONSTRUCTOR_ACCESS:
     MotionStreak3D();
     virtual ~MotionStreak3D();
-    
+
     /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture filename */
     bool initWithFade(float fade, float minSeg, float stroke, const Color3B& color, const std::string& path);
-    
+
     /** initializes a motion streak with fade in seconds, minimum segments, stroke's width, color and texture  */
     bool initWithFade(float fade, float minSeg, float stroke, const Color3B& color, Texture2D* texture);
 
@@ -173,7 +173,7 @@ protected:
     Vec3 _positionR;
     mutable Vec2 _positionR2D;
     Vec3         _sweepAxis;
-    
+
 
     float _stroke;
     float _fadeDelta;
@@ -191,7 +191,7 @@ protected:
     Vec3* _vertices;
     GLubyte* _colorPointer;
     Tex2F* _texCoords;
-    
+
     CustomCommand _customCommand;
 
 private:
@@ -204,3 +204,4 @@ private:
 NS_CC_END
 
 #endif //__CC_MOTION_STREAK3D_H__
+

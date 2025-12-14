@@ -158,7 +158,7 @@ struct CC_DLL TMXTileAnimInfo : public Ref
 - Image used for the tiles
 - Image size
 
-This information is obtained from the TMX file. 
+This information is obtained from the TMX file.
 */
 class CC_DLL TMXTilesetInfo : public Ref
 {
@@ -205,13 +205,13 @@ This information is obtained from the TMX file.
 
 */
 class CC_DLL TMXMapInfo : public Ref, public SAXDelegator
-{    
-public:    
+{
+public:
     /** creates a TMX Format with a tmx file */
     static TMXMapInfo * create(const std::string& tmxFile);
     /** creates a TMX Format with an XML string and a TMX resource path */
     static TMXMapInfo * createWithXML(const std::string& tmxString, const std::string& resourcePath);
-    
+
     /** creates a TMX Format with a tmx file */
     CC_DEPRECATED_ATTRIBUTE static TMXMapInfo * formatWithTMXFile(const char *tmxFile) { return TMXMapInfo::create(tmxFile); };
     /** creates a TMX Format with an XML string and a TMX resource path */
@@ -225,7 +225,7 @@ public:
      * @lua NA
      */
     virtual ~TMXMapInfo();
-    
+
     /** initializes a TMX format with a  tmx file */
     bool initWithTMXFile(const std::string& tmxFile);
     /** initializes a TMX format with an XML string and a TMX resource path */
@@ -243,7 +243,7 @@ public:
     /// map orientation
     int getOrientation() const { return _orientation; }
     void setOrientation(int orientation) { _orientation = orientation; }
-    
+
     /// map staggeraxis
     int getStaggerAxis() const { return _staggerAxis; }
     void setStaggerAxis(int staggerAxis) { _staggerAxis = staggerAxis; }
@@ -263,7 +263,7 @@ public:
     /// tiles width & height
     const Size& getTileSize() const { return _tileSize; }
     void setTileSize(const Size& tileSize) { _tileSize = tileSize; }
-    
+
     /// Layers
     const Vector<TMXLayerInfo*>& getLayers() const { return _layers; }
     Vector<TMXLayerInfo*>& getLayers() { return _layers; }
@@ -308,7 +308,7 @@ public:
     void setProperties(const ValueMap& properties) {
         _properties = properties;
     }
-    
+
     // implement pure virtual methods of SAXDelegator
     /**
      * @js NA
@@ -325,7 +325,7 @@ public:
      * @lua NA
      */
     void textHandler(void *ctx, const char *ch, size_t len) override;
-    
+
     const std::string& getCurrentString() const { return _currentString; }
     void setCurrentString(const std::string& currentString){ _currentString = currentString; }
     const std::string& getTMXFileName() const { return _TMXFileName; }
@@ -365,7 +365,7 @@ protected:
     ValueMap _properties;
     //! xml format tile index
     int _xmlTileIndex;
-    
+
     //! tmx filename
     std::string _TMXFileName;
     // tmx resource path
@@ -387,3 +387,4 @@ NS_CC_END
 
 /// @endcond
 #endif
+

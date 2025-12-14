@@ -957,3 +957,4 @@ int32_t mulRL(int left, uint32_t inRL, uint32_t vRL)
 __END_DECLS
 
 #endif  // COCOS_AUDIO_PRIMITIVES_H
+

@@ -88,7 +88,7 @@ public:
      * @js ctor
      */
     TextFieldTTF();
-    
+
     /**
      * Default destructor.
      * @js NA
@@ -100,15 +100,15 @@ public:
     * @js NA
     */
     static TextFieldTTF * textFieldWithPlaceHolder(const std::string& placeholder, const Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize);
-    
+
     /** Creates a TextFieldTTF from a fontname and font size.
     * @js NA
     */
     static TextFieldTTF * textFieldWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize);
-    
+
     /** Initializes the TextFieldTTF with a font name, alignment, dimension and font size. */
     bool initWithPlaceHolder(const std::string& placeholder, const Size& dimensions, TextHAlignment alignment, const std::string& fontName, float fontSize);
-    
+
     /** Initializes the TextFieldTTF with a font name and font size. */
     bool initWithPlaceHolder(const std::string& placeholder, const std::string& fontName, float fontSize);
 
@@ -139,7 +139,7 @@ public:
      *@return The total input character count.
      */
     std::size_t getCharCount() const { return _charCount; }
-    
+
     /**
      * Query the color of place holder.
      *@return The place holder color.
@@ -292,3 +292,4 @@ NS_CC_END
 /// @}
 
 #endif    // __CC_TEXT_FIELD_H__
+

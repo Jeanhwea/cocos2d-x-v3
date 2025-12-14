@@ -163,7 +163,7 @@ private:
     cocos2d::SpriteBatchNode* batchNode;
     cocos2d::Sprite* sprite1;
     cocos2d::Sprite* sprite2;
-    cocos2d::Sprite* sprite3;    
+    cocos2d::Sprite* sprite3;
 };
 
 class SpriteBatchNodeReorderIssue767 : public SpriteTestDemo
@@ -233,7 +233,7 @@ class SpriteAnchorPointFromFile : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteAnchorPointFromFile);
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
     virtual std::string title() const override;
@@ -337,7 +337,7 @@ public:
     void startIn05Secs(float dt);
     void flipSprites(float dt);
 private:
-    
+
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
     int      _counter;
@@ -675,7 +675,7 @@ class SpriteBatchNodeReorderSameIndex : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteBatchNodeReorderSameIndex);
     SpriteBatchNodeReorderSameIndex();
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     void reorderSprite(float dt);
@@ -795,11 +795,11 @@ public:
     Sprite3DRotationTest();
     virtual std::string title() const override { return "3D Rotation Test"; };
     virtual std::string subtitle() const override { return "Rotation should based on the anchor point"; };
-    
+
 protected:
     cocos2d::Sprite* sprite1;
     cocos2d::Sprite* sprite2;
-    
+
     cocos2d::Vec3 rotation;
 };
 
@@ -934,3 +934,4 @@ protected:
 };
 
 #endif
+

@@ -70,3 +70,4 @@ typedef spEvent Event;
 #endif
 
 #endif /* SPINE_EVENT_H_ */
+

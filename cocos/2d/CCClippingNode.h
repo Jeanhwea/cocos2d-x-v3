@@ -54,7 +54,7 @@ public:
      * @return An autorelease ClippingNode.
      */
     static ClippingNode* create();
-    
+
     /** Creates and initializes a clipping node with an other node as its stencil.
      * The stencil node will be retained.
      * @param stencil The stencil node.
@@ -68,7 +68,7 @@ public:
      * @return The stencil node.
      */
     Node* getStencil() const;
-    
+
     /** Set the Node to use as a stencil to do the clipping.
      *
      * @param stencil The Node to use as a stencil to do the clipping.
@@ -95,13 +95,13 @@ public:
      * @return The alpha threshold value,Should be a float between 0 and 1.
      */
     GLfloat getAlphaThreshold() const;
-    
-    /** Set the alpha threshold. 
-     * 
+
+    /** Set the alpha threshold.
+     *
      * @param alphaThreshold The alpha threshold.
      */
     void setAlphaThreshold(GLfloat alphaThreshold);
-    
+
     /** Inverted. If this is set to true,
      * the stencil is inverted, so the content is drawn where the stencil is NOT drawn.
      * This default to false.
@@ -109,7 +109,7 @@ public:
      * @return If the clippingNode is Inverted, it will be return true.
      */
     bool isInverted() const;
-    
+
     /** Set the ClippingNode whether or not invert.
      *
      * @param inverted A bool Type,to set the ClippingNode whether or not invert.
@@ -134,12 +134,12 @@ public:
      */
     virtual void onExit() override;
     virtual void visit(Renderer *renderer, const Mat4 &parentTransform, uint32_t parentFlags) override;
-    
+
     virtual void setCameraMask(unsigned short mask, bool applyChildren = true) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ClippingNode();
-    
+
     /**
      * @js NA
      * @lua NA
@@ -149,7 +149,7 @@ CC_CONSTRUCTOR_ACCESS:
     /** Initializes a clipping node without a stencil.
      */
     virtual bool init() override;
-    
+
     /** Initializes a clipping node with an other node as its stencil.
      The stencil node will be retained, and its parent will be set to this clipping node.
      */
@@ -158,9 +158,9 @@ CC_CONSTRUCTOR_ACCESS:
 protected:
     Node* _stencil;
     GLProgram* _originStencilProgram;
-   
+
     StencilStateManager* _stencilStateManager;
-    
+
     GroupCommand _groupCommand;
     CustomCommand _beforeVisitCmd;
     CustomCommand _afterDrawStencilCmd;
@@ -173,3 +173,4 @@ private:
 NS_CC_END
 
 #endif // __MISCNODE_CCCLIPPING_NODE_H__
+

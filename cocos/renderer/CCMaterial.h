@@ -99,7 +99,7 @@ public:
      */
     Technique* getTechniqueByName(const std::string& name);
 
-    /** Returns a Technique by index. 
+    /** Returns a Technique by index.
      returns `nullptr` if the index is invalid.
      */
     Technique* getTechniqueByIndex(ssize_t index);
@@ -138,8 +138,8 @@ protected:
     bool parseSampler(GLProgramState* glProgramState, Properties* properties);
     bool parseUniform(GLProgramState* programState, Properties* properties, const char* uniformName);
     bool parseRenderState(RenderState* renderState, Properties* properties);
-    
-    
+
+
     // material name
     std::string _name;
 
@@ -157,3 +157,4 @@ NS_CC_END
 
 
 #endif /* defined(__cocos2d_libs__CCMaterial__) */
+

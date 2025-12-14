@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,26 +43,26 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(GameNode3DReader)
-    
+
     GameNode3DReader::GameNode3DReader()
     {
-        
+
     }
-    
+
     GameNode3DReader::~GameNode3DReader()
     {
-        
+
     }
-    
+
     static GameNode3DReader* _instanceNode3DReader = nullptr;
-    
+
     GameNode3DReader* GameNode3DReader::getInstance()
     {
         if (!_instanceNode3DReader)
         {
             _instanceNode3DReader = new (std::nothrow) GameNode3DReader();
         }
-        
+
         return _instanceNode3DReader;
     }
     static CameraBackgroundBrush* _sceneBrushInstance = nullptr;
@@ -70,17 +70,17 @@ namespace cocostudio
     {
         return _sceneBrushInstance;
     }
-    
+
     void GameNode3DReader::purge()
     {
         CC_SAFE_DELETE(_instanceNode3DReader);
     }
-    
+
     void GameNode3DReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceNode3DReader);
     }
-    
+
     Offset<Table> GameNode3DReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
         flatbuffers::FlatBufferBuilder *builder)
     {
@@ -152,7 +152,7 @@ namespace cocostudio
             {
                 frameEvent = value;
             }
-            
+
             attribute = attribute->Next();
         }
 
@@ -389,12 +389,12 @@ namespace cocostudio
 
         return *(Offset<Table>*)(&options);
     }
-    
+
     void GameNode3DReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                    const flatbuffers::Table* node3DOptions)
     {
         auto options = (GameNode3DOption*)node3DOptions;
-        
+
         std::string name = options->name()->c_str();
         node->setName(name);
 
@@ -430,13 +430,13 @@ namespace cocostudio
         }
         node->addComponent(extensionData);
     }
-    
+
     Node* GameNode3DReader::createNodeWithFlatBuffers(const flatbuffers::Table *node3DOptions)
     {
         Node* node = Node::create();
-        
+
         setPropsWithFlatBuffers(node, (Table*)node3DOptions);
-        
+
         return node;
     }
 
@@ -458,3 +458,4 @@ namespace cocostudio
         return 1;
     }
 }
+

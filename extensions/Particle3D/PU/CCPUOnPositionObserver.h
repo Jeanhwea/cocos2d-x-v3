@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,41 +45,41 @@ public:
 
     static PUOnPositionObserver* create();
 
-    /** 
+    /**
     */
     virtual bool observe (PUParticle3D* particle, float timeElapsed) override;
 
-    /** 
+    /**
         */
     void setPositionXThreshold(float threshold){_positionXThreshold = threshold; _positionXThresholdSet = true;};
     void setPositionYThreshold(float threshold){_positionYThreshold = threshold; _positionYThresholdSet = true;};
     void setPositionZThreshold(float threshold){_positionZThreshold = threshold; _positionZThresholdSet = true;};
 
-    /** 
+    /**
         */
     float getPositionXThreshold() const {return _positionXThreshold;};
     float getPositionYThreshold() const {return _positionYThreshold;};
     float getPositionZThreshold() const {return _positionZThreshold;};
 
-    /** 
+    /**
         */
     bool isPositionXThresholdSet() const {return _positionXThresholdSet;};
     bool isPositionYThresholdSet() const {return _positionYThresholdSet;};
     bool isPositionZThresholdSet() const {return _positionZThresholdSet;};
 
-    /** 
+    /**
         */
     void resetPositionXThreshold() {_positionXThresholdSet = false;};
     void resetPositionYThreshold() {_positionYThresholdSet = false;};
     void resetPositionZThreshold() {_positionZThresholdSet = false;};
 
-    /** 
+    /**
         */
     void setComparePositionX(PUComparisionOperator op){_comparePositionX = op;};
     void setComparePositionY(PUComparisionOperator op){_comparePositionY = op;};
     void setComparePositionZ(PUComparisionOperator op){_comparePositionZ = op;};
 
-    /** 
+    /**
         */
     PUComparisionOperator getComparePositionX() const {return _comparePositionX;};
     PUComparisionOperator getComparePositionY() const {return _comparePositionY;};
@@ -108,3 +108,4 @@ protected:
 NS_CC_END
 
 #endif
+

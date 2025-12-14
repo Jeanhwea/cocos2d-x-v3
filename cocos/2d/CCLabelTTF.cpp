@@ -68,7 +68,7 @@ LabelTTF * LabelTTF::create()
 }
 
 LabelTTF* LabelTTF::create(const std::string& string, const std::string& fontName, float fontSize,
-                               const Size &dimensions, TextHAlignment hAlignment, 
+                               const Size &dimensions, TextHAlignment hAlignment,
                                TextVAlignment vAlignment)
 {
     LabelTTF *ret = new (std::nothrow) LabelTTF();
@@ -112,7 +112,7 @@ bool LabelTTF::initWithStringAndTextDefinition(const std::string& string, FontDe
     _renderLabel->setFontDefinition(textDefinition);
     _renderLabel->setString(string);
     _contentDirty = true;
-    
+
     return true;
 }
 
@@ -246,7 +246,7 @@ void LabelTTF::setFlippedX(bool flippedX)
     if (flippedX)
     {
         _renderLabel->setScaleX(-1.0f);
-    } 
+    }
     else
     {
         _renderLabel->setScaleX(1.0f);
@@ -258,7 +258,7 @@ void LabelTTF::setFlippedY(bool flippedY)
     if (flippedY)
     {
         _renderLabel->setScaleY(-1.0f);
-    } 
+    }
     else
     {
         _renderLabel->setScaleY(1.0f);
@@ -294,3 +294,4 @@ Rect LabelTTF::getBoundingBox() const
 #endif
 
 NS_CC_END
+

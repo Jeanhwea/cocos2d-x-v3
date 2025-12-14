@@ -67,7 +67,7 @@ class CC_DLL DictElement
 private:
     /**
      *  Constructor of DictElement. It's only for internal usage. Dictionary is its friend class.
-     *  
+     *
      *  @param  pszKey    The string key of this element.
      *  @param  pObject   The object of this element.
      */
@@ -80,7 +80,7 @@ private:
      *  @param  pObject   The object of this element.
      */
     DictElement(intptr_t iKey, Ref* pObject);
-    
+
 public:
     /**
      *  The destructor of DictElement.
@@ -90,10 +90,10 @@ public:
     ~DictElement();
 
     // Inline functions need to be implemented in header file on Android.
-    
+
     /**
      * Get the string key of this element.
-     * @note    This method assumes you know the key type in the element. 
+     * @note    This method assumes you know the key type in the element.
      *          If the element's key type is integer, invoking this method will cause an assert.
      *
      * @return  The string key of this element.
@@ -116,7 +116,7 @@ public:
         CCASSERT(_strKey[0] == '\0', "Should not call this function for string dictionary");
         return _intKey;
     }
-    
+
     /**
      * Get the object of this element.
      *
@@ -138,7 +138,7 @@ public:
 };
 
 /** The macro for traversing dictionary
- *  
+ *
  *  @note It's faster than getting all keys and traversing keys to get objects by objectForKey.
  *        It's also safe to remove elements while traversing.
  */
@@ -191,7 +191,7 @@ public:
      */
     ~__Dictionary();
 
-    /** Initializes the dictionary. It returns true if the initializations was successful. 
+    /** Initializes the dictionary. It returns true if the initializations was successful.
      * @js NA
      * @lua NA
      */
@@ -212,7 +212,7 @@ public:
      */
     __Array* allKeys();
 
-    /** 
+    /**
      *  Get all keys according to the specified object.
      *  @warning  We use '==' to compare two objects
      *  @return   The array contains all keys for the specified object. It's an autorelease object yet.
@@ -240,7 +240,7 @@ public:
      * @js NA
      */
     Ref* objectForKey(const std::string& key);
-    
+
     /**
      *  Get the object according to the specified integer key.
      *
@@ -251,7 +251,7 @@ public:
      * @js NA
      */
     Ref* objectForKey(intptr_t key);
-    
+
     /** Get the value according to the specified string key.
      *
      *  @note Be careful to use this function since it assumes the objects in the dictionary are __String pointer.
@@ -262,7 +262,7 @@ public:
      *  @js NA
      */
     const __String* valueForKey(const std::string& key);
-    
+
     /** Get the value according to the specified integer key.
      *
      *  @note Be careful to use this function since it assumes the objects in the dictionary are __String pointer.
@@ -287,7 +287,7 @@ public:
      * @js NA
      */
     void setObject(Ref* pObject, const std::string& key);
-    
+
     /** Insert an object to dictionary, and match it with the specified string key.
      *
      *  @note Then the first time this method is invoked, the key type will be set to string.
@@ -301,7 +301,7 @@ public:
      */
     void setObject(Ref* pObject, intptr_t key);
 
-    /** 
+    /**
      *  Remove an object by the specified string key.
      *
      *  @param key  The string key for searching.
@@ -310,7 +310,7 @@ public:
      *  @js NA
      */
     void removeObjectForKey(const std::string& key);
-    
+
     /**
      *  Remove an object by the specified integer key.
      *
@@ -320,7 +320,7 @@ public:
      *  @js NA
      */
     void removeObjectForKey(intptr_t key);
-    
+
     /**
      *  Remove objects by an array of keys.
      *
@@ -330,7 +330,7 @@ public:
      *  @js NA
      */
     void removeObjectsForKeys(__Array* pKey__Array);
-    
+
     /**
      *  Remove an object by an element.
      *
@@ -341,7 +341,7 @@ public:
      * @lua NA
      */
     void removeObjectForElememt(DictElement* pElement);
-    
+
     /**
      *  Remove all objects in the dictionary.
      *
@@ -350,17 +350,17 @@ public:
      * @js NA
      */
     void removeAllObjects();
-    
+
     /**
      *  Return a random object in the dictionary.
      *
-     *  @return The random object. 
+     *  @return The random object.
      *  @see objectForKey(intptr_t), objectForKey(const std::string&)
      *  @js NA
      *  @lua NA
      */
     Ref* randomObject();
-    
+
     /**
      *  Create a dictionary.
      *  @return A dictionary which is an autorelease object.
@@ -378,7 +378,7 @@ public:
      *  @js NA
      */
     static __Dictionary* createWithDictionary(__Dictionary* srcDict);
-    
+
     /**
      *  Create a dictionary with a plist file.
      *  @param  pFileName  The name of the plist file.
@@ -387,7 +387,7 @@ public:
      *  @js NA
      */
     static __Dictionary* createWithContentsOfFile(const char *pFileName);
-    
+
     /**
      *  Write a dictionary to a plist file.
      *  @param fullPath The full path of the plist file. You can get writable path by getWritablePath()
@@ -396,10 +396,10 @@ public:
      *  @lua NA
      */
     bool writeToFile(const char *fullPath);
-     
+
     /**
      *  Create a dictionary with a plist file.
-     *  
+     *
      *  @note the return object isn't an autorelease object.
      *        This can make sure not using autorelease pool in a new thread.
      *        Therefore, you need to manage the lifecycle of the return object.
@@ -412,7 +412,7 @@ public:
      */
     static __Dictionary* createWithContentsOfFileThreadSafe(const char *pFileName);
 
-    /* override functions 
+    /* override functions
      *  @js NA
      *  @lua NA
      */
@@ -422,23 +422,23 @@ public:
      *  @lua NA
      */
     virtual __Dictionary* clone() const override;
-    
+
 private:
-    /** 
+    /**
      *  For internal usage, invoked by setObject.
      */
     void setObjectUnSafe(Ref* pObject, const std::string& key);
     void setObjectUnSafe(Ref* pObject, const intptr_t key);
-    
+
 public:
     /**
      *  All the elements in dictionary.
-     * 
+     *
      *  @note For internal usage, we need to declare this member variable as public since it's used in UT_HASH.
      */
     DictElement* _elements;
 private:
-    
+
     /** The support type of dictionary, it's confirmed when setObject is invoked. */
     enum DictType
     {
@@ -446,8 +446,8 @@ private:
         kDictStr,
         kDictInt
     };
-    
-    /** 
+
+    /**
      *  The type of dictionary, it's assigned to kDictUnknown by default.
      */
     DictType _dictType;
@@ -460,3 +460,4 @@ NS_CC_END
 
 /// @endcond
 #endif /* __CCDICTIONARY_H__ */
+

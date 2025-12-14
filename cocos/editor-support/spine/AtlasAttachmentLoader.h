@@ -56,3 +56,4 @@ typedef spAtlasAttachmentLoader AtlasAttachmentLoader;
 #endif
 
 #endif /* SPINE_ATLASATTACHMENTLOADER_H_ */
+

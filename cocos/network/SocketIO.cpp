@@ -704,7 +704,7 @@ void SIOClientImpl::send(const std::string& endpoint, const std::vector<std::str
     {
         auto packet = SocketIOPacket::createPacketWithType("message", _version);
         packet->setEndpoint(endpoint);
-        for(auto &i : s) 
+        for(auto &i : s)
         {
             packet->addData(i);
         }
@@ -1254,7 +1254,7 @@ SIOClient* SocketIO::connect(const std::string& uri, SocketIO::SIODelegate& dele
             return newC;
         }
     }
- 
+
     return c;
 }
 

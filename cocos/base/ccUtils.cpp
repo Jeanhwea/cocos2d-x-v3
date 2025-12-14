@@ -197,7 +197,7 @@ Image* captureNode(Node* startNode, float scale)
         anchor = startNode->getAnchorPoint();
     }
     startNode->setPosition(Point(size.width * anchor.x, size.height * anchor.y));
-    rtx->begin(); 
+    rtx->begin();
     startNode->visit();
     rtx->end();
     startNode->setPosition(savedPos);
@@ -214,7 +214,7 @@ Image* captureNode(Node* startNode, float scale)
         finalRtx = RenderTexture::create(size.width * scale, size.height * scale, Texture2D::PixelFormat::RGBA8888, GL_DEPTH24_STENCIL8);
 
         sprite->setScale(scale); // or use finalRtx->setKeepMatrix(true);
-        finalRtx->begin(); 
+        finalRtx->begin();
         sprite->visit();
         finalRtx->end();
     }
@@ -227,7 +227,7 @@ Image* captureNode(Node* startNode, float scale)
 std::vector<Node*> findChildren(const Node &node, const std::string &name)
 {
     std::vector<Node*> vec;
-    
+
     node.enumerateChildren(name, [&vec](Node* nodeFound) -> bool {
         vec.push_back(nodeFound);
         return false;
@@ -243,17 +243,17 @@ double atof(const char* str)
     {
         return 0.0;
     }
-    
+
     char buf[MAX_ITOA_BUFFER_SIZE];
     strncpy(buf, str, MAX_ITOA_BUFFER_SIZE);
-    
+
     // strip string, only remain 7 numbers after '.'
     char* dot = strchr(buf, '.');
     if (dot != nullptr && dot - buf + 8 <  MAX_ITOA_BUFFER_SIZE)
     {
         dot[8] = '\0';
     }
-    
+
     return ::atof(buf);
 }
 
@@ -276,7 +276,7 @@ Rect getCascadeBoundingBox(Node *node)
 {
     Rect cbb;
     Size contentSize = node->getContentSize();
-    
+
     // check all children bounding box, get maximize box
     Node* child = nullptr;
     bool merge = false;
@@ -284,10 +284,10 @@ Rect getCascadeBoundingBox(Node *node)
     {
         child = dynamic_cast<Node*>(object);
         if (!child->isVisible()) continue;
-        
+
         const Rect box = getCascadeBoundingBox(child);
         if (box.size.width <= 0 || box.size.height <= 0) continue;
-        
+
         if (!merge)
         {
             cbb = box;
@@ -298,7 +298,7 @@ Rect getCascadeBoundingBox(Node *node)
             cbb.merge(box);
         }
     }
-    
+
     // merge content size
     if (contentSize.width > 0 && contentSize.height > 0)
     {
@@ -312,7 +312,7 @@ Rect getCascadeBoundingBox(Node *node)
             cbb.merge(box);
         }
     }
-    
+
     return cbb;
 }
 
@@ -340,7 +340,7 @@ Sprite* createSpriteFromBase64Cached(const char* base64String, const char* key)
     }
 
     Sprite* sprite = Sprite::createWithTexture(texture);
-    
+
     return sprite;
 }
 
@@ -548,3 +548,4 @@ std::vector<int> parseIntegerList(const std::string &intsString) {
 }
 
 NS_CC_END
+

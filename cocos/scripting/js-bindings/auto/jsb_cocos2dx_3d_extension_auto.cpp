@@ -1037,7 +1037,7 @@ bool js_cocos2dx_3d_extension_PUParticleSystem3D_create(JSContext *cx, uint32_t 
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -1054,7 +1054,7 @@ bool js_cocos2dx_3d_extension_PUParticleSystem3D_create(JSContext *cx, uint32_t 
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::PUParticleSystem3D* ret = cocos2d::PUParticleSystem3D::create();
@@ -1068,7 +1068,7 @@ bool js_cocos2dx_3d_extension_PUParticleSystem3D_create(JSContext *cx, uint32_t 
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;

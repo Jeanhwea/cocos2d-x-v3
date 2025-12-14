@@ -75,7 +75,7 @@ protected:
     DistortionMesh* _rightDistortionMesh;
     Distortion* _distortion;
     bool _vignetteEnabled;
-    
+
     GLProgramState* _glProgramState;
     VRGenericHeadTracker* _headTracker;
 };
@@ -83,3 +83,4 @@ protected:
 NS_CC_END
 
 #endif // CCVRGenericRenderer_hpp
+

@@ -75,3 +75,4 @@ typedef spAnimationStateData AnimationStateData;
 #endif
 
 #endif /* SPINE_ANIMATIONSTATEDATA_H_ */
+

@@ -69,7 +69,7 @@ public:
 
     /** @deprecated Use getInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static Application* sharedApplication();
-    
+
     /* override functions */
     virtual LanguageType getCurrentLanguage() override;
 
@@ -78,7 +78,7 @@ public:
     @return Current language iso 639-1 code
     */
     virtual const char * getCurrentLanguageCode() override;
-    
+
     /**
     @brief Get application version
     */
@@ -97,13 +97,13 @@ public:
      *  @deprecated Please use FileUtils::getInstance()->setSearchPaths() instead.
      */
     CC_DEPRECATED_ATTRIBUTE void setResourceRootPath(const std::string& rootResDir);
-    
-    /** 
+
+    /**
      *  Gets the Resource root path.
-     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead. 
+     *  @deprecated Please use FileUtils::getInstance()->getSearchPaths() instead.
      */
     CC_DEPRECATED_ATTRIBUTE const std::string& getResourceRootPath();
-    
+
     /**
      @brief Get target platform
      */
@@ -111,7 +111,7 @@ public:
 protected:
     long       _animationInterval;  //micro second
     std::string _resourceRootPath;
-    
+
     static Application * sm_pSharedApplication;
 };
 
@@ -120,3 +120,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
 
 #endif /* CCAPLICATION_H_ */
+

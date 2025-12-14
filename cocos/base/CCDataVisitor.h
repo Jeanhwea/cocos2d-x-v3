@@ -47,7 +47,7 @@ class __Set;
  *
  * Use cases:
  *  - data serialization,
- *  - pretty printing of Ref* 
+ *  - pretty printing of Ref*
  *  - safe value reading from Array, __Dictionary, Set
  *
  * Usage:
@@ -83,10 +83,10 @@ class CC_DLL PrettyPrinter : public DataVisitor
 {
 public:
     PrettyPrinter(int indentLevel = 0);
-    
+
     virtual void clear();
     virtual std::string getResult();
-    
+
     virtual void visitObject(const Ref *p);
     virtual void visit(const __Bool * p);
     virtual void visit(const __Integer *p);
@@ -111,3 +111,4 @@ NS_CC_END
 
 /// @endcond
 #endif // __CCDATAVISITOR_H__
+

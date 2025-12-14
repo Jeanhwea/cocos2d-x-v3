@@ -66,3 +66,4 @@ NS_CC_END
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
 
 #endif    // __CC_FILEUTILS_LINUX_H__
+

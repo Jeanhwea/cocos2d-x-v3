@@ -101,3 +101,4 @@ NS_CC_BEGIN
 #include "renderer/ccShader_LayerRadialGradient.frag"
 
 NS_CC_END
+

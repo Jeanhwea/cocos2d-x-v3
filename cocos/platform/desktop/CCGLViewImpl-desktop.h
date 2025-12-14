@@ -128,14 +128,14 @@ public:
     void enableRetina(bool enabled);
     /** Check whether retina display is enabled. */
     bool isRetinaEnabled() const { return _isRetinaEnabled; };
-    
+
     /** Get retina factor */
     int getRetinaFactor() const override { return _retinaFactor; }
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
     HWND getWin32Window() { return glfwGetWin32Window(_mainWindow); }
 #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32) */
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC)
     id getCocoaWindow() override { return glfwGetCocoaWindow(_mainWindow); }
     id getNSGLContext() override { return glfwGetNSGLContext(_mainWindow); } // stevetranby: added
@@ -185,7 +185,7 @@ protected:
     GLFWcursor* _cursor;
 
     friend class GLFWEventHandler;
-    
+
 public:
     // View will trigger an event when window is resized, gains or loses focus
     static const std::string EVENT_WINDOW_RESIZED;
@@ -282,3 +282,4 @@ private:
 NS_CC_END   // end of namespace   cocos2d
 
 #endif  // end of __CC_EGLViewImpl_DESKTOP_H__
+

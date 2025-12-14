@@ -1,7 +1,7 @@
 /****************************************************************************
 Copyright (c) 2015-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -30,3 +30,4 @@ using namespace cocos2d;
 NS_TIMELINE_BEGIN
 
 NS_TIMELINE_END
+

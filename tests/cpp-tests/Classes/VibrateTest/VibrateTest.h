@@ -38,21 +38,21 @@ class VibrateTestDemo : public TestCase
 public:
     virtual std::string title() const override;
     virtual void onExit() override;
-   
+
 };
 
 class VibrateControlTest : public VibrateTestDemo
 {
 public:
-    CREATE_FUNC(VibrateControlTest);    
+    CREATE_FUNC(VibrateControlTest);
     virtual ~VibrateControlTest();
-    
-    virtual bool init()override;    
+
+    virtual bool init()override;
     virtual std::string title() const override;
-    
+
 private:
     float _duration;
-    
+
     void* _durationLabel;
     void* _durationSlider;
     bool _updateTimeSlider;
@@ -60,3 +60,4 @@ private:
 
 
 #endif /* defined(__VIBRATE_TEST_H_) */
+

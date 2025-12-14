@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -112,13 +112,13 @@ std::string DemoSun::subtitle() const
 void DemoPause::onEnter()
 {
     ParticleDemo::onEnter();
-    
+
     _emitter = ParticleSmoke::create();
     _emitter->retain();
     _background->addChild(_emitter, 10);
-    
+
     _emitter->setTexture( Director::getInstance()->getTextureCache()->addImage(s_fire) );
-    
+
     setEmitterPosition();
     schedule(CC_SCHEDULE_SELECTOR(DemoPause::pauseEmitter), 2.0f);
 
@@ -1532,8 +1532,8 @@ void MultipleParticleSystems::update(float dt)
 {
     auto atlas = (LabelAtlas*) getChildByTag(kTagParticleCount);
 
-    unsigned int count = 0; 
-    
+    unsigned int count = 0;
+
     for(const auto &child : _children) {
         auto item = dynamic_cast<ParticleSystem*>(child);
         if (item != nullptr)
@@ -1643,7 +1643,7 @@ void AddAndDeleteParticleSystems::onEnter()
 void AddAndDeleteParticleSystems::removeSystem(float dt)
 {
     ssize_t nChildrenCount = _batchNode->getChildren().size();
-    if (nChildrenCount > 0) 
+    if (nChildrenCount > 0)
     {
         CCLOG("remove random system");
         unsigned int uRand = rand() % (nChildrenCount - 1);
@@ -1794,7 +1794,7 @@ void ReorderParticleSystems::onEnter()
 void ReorderParticleSystems::reorderSystem(float time)
 {
     auto system = static_cast<ParticleSystem*>(_batchNode->getChildren().at(1));
-    _batchNode->reorderChild(system, system->getLocalZOrder() - 1);     
+    _batchNode->reorderChild(system, system->getLocalZOrder() - 1);
 }
 
 
@@ -1849,7 +1849,7 @@ void PremultipliedAlphaTest::readdParticle(float delta)
     {
         this->addChild(_emitter);
     }
-    
+
     _hasEmitter = !_hasEmitter;
 }
 
@@ -1881,7 +1881,7 @@ void PremultipliedAlphaTest::onEnter()
 
     this->addChild(_emitter, 10);
     _hasEmitter = true;
-    
+
     schedule(CC_SCHEDULE_SELECTOR(PremultipliedAlphaTest::readdParticle), 1.0f);
 }
 
@@ -1916,18 +1916,18 @@ std::string PremultipliedAlphaTest2::subtitle() const
 void Issue3990::onEnter()
 {
     ParticleDemo::onEnter();
-    
+
 	_color->setColor(Color3B::BLACK);
     this->removeChild(_background, true);
     _background = nullptr;
-    
+
     _emitter = ParticleSystemQuad::create("Particles/Spiral.plist");
-    
+
     _emitter->setPositionType(ParticleSystem::PositionType::GROUPED);
     _emitter->setTotalParticles(1000);
     _emitter->setEmissionRate(_emitter->getTotalParticles() / _emitter->getLife());
     _emitter->setPosition(VisibleRect::center());
-    
+
     _emitter->retain();
     this->addChild(_emitter ,10);
 }
@@ -1947,15 +1947,15 @@ std::string Issue3990::subtitle() const
 void ParticleVisibleTest::onEnter()
 {
     ParticleDemo::onEnter();
-    
+
     _emitter = ParticleFireworks::create();
     _emitter->retain();
     _background->addChild(_emitter, 10);
-    
+
     _emitter->setTexture( Director::getInstance()->getTextureCache()->addImage(s_stars1) );
-    
+
     schedule(CC_SCHEDULE_SELECTOR(ParticleVisibleTest::callback), 1);
-    
+
     setEmitterPosition();
 }
 
@@ -2012,14 +2012,14 @@ std::string ParticleAutoBatching::subtitle() const
 void ParticleResetTotalParticles::onEnter()
 {
     ParticleDemo::onEnter();
-    
+
     _color->setColor(Color3B::BLACK);
     removeChild(_background, true);
     _background = nullptr;
-    
+
     auto p = ParticleFire::createWithTotalParticles(10);
     this->addChild(p);
-    
+
     auto add = MenuItemFont::create("add 10 particles",
                                     [p](Ref*)->void
                                     {
@@ -2027,7 +2027,7 @@ void ParticleResetTotalParticles::onEnter()
                                     });
     add->setFontSizeObj(20);
     add->setPosition(Vec2(0, 25));
-    
+
     auto remove = MenuItemFont::create("remove 10 particles",
                                        [p](Ref*)->void
                                        {
@@ -2037,11 +2037,11 @@ void ParticleResetTotalParticles::onEnter()
                                        });
     remove->setPosition(Vec2(0, -25));
     remove->setFontSizeObj(20);
-    
+
     auto menu = Menu::create(add, remove, nullptr);
     menu->setPosition(Vec2(VisibleRect::center()));
     this->addChild(menu);
-    
+
 }
 
 std::string ParticleResetTotalParticles::title() const
@@ -2110,3 +2110,4 @@ std::string ParticleSpriteFrame::subtitle() const
 {
     return "Should not use entire texture atlas";
 }
+

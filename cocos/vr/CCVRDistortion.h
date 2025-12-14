@@ -52,3 +52,4 @@ private:
 NS_CC_END
 
 #endif /* CCVRDistortion_h */
+

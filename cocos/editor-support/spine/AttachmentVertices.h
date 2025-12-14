@@ -47,3 +47,4 @@ public:
 }
 
 #endif /* SPINE_ATTACHMENTVERTICES_H_ */
+

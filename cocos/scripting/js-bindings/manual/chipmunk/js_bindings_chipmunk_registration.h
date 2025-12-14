@@ -29,3 +29,4 @@
 void jsb_register_chipmunk( JSContext *globalC, JS::HandleObject globalO);
 
 #endif // __JSB_CHIPMUNK_REGISTRATION
+

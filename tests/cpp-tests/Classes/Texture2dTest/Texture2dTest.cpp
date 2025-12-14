@@ -72,9 +72,9 @@ Texture2DTests::Texture2DTests()
     ADD_TEST_CASE(TexturePVRI8v3);
     ADD_TEST_CASE(TexturePVRAI88);
     ADD_TEST_CASE(TexturePVRAI88v3);
-    
+
     ADD_TEST_CASE(TexturePVRv3Premult);
-    
+
     ADD_TEST_CASE(TexturePVRBadEncoding);
     ADD_TEST_CASE(TexturePNG);
     ADD_TEST_CASE(TextureJPEG);
@@ -93,18 +93,18 @@ Texture2DTests::Texture2DTests()
     ADD_TEST_CASE(TextureCache1);
     ADD_TEST_CASE(TextureDrawAtPoint);
     ADD_TEST_CASE(TextureDrawInRect);
-    
+
     ADD_TEST_CASE(TextureETC1);
-    
+
     ADD_TEST_CASE(TextureS3TCDxt1);
     ADD_TEST_CASE(TextureS3TCDxt3);
     ADD_TEST_CASE(TextureS3TCDxt5);
     ADD_TEST_CASE(TextureS3TCWithNoMipmaps);
-    
+
     ADD_TEST_CASE(TextureATITCRGB);
     ADD_TEST_CASE(TextureATITCExplicit);
     ADD_TEST_CASE(TextureATITCInterpolated);
-    
+
     ADD_TEST_CASE(TextureConvertRGB888);
     ADD_TEST_CASE(TextureConvertRGBA8888);
     ADD_TEST_CASE(TextureConvertI8);
@@ -168,7 +168,7 @@ void TextureTGA::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("TileMaps/levelmap.tga");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     this->addChild(img);
@@ -187,7 +187,7 @@ std::string TextureTGA::title() const
 //------------------------------------------------------------------
 void TexturePNG::onEnter()
 {
-    TextureDemo::onEnter();    
+    TextureDemo::onEnter();
 
     auto s = Director::getInstance()->getWinSize();
 
@@ -195,23 +195,23 @@ void TexturePNG::onEnter()
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
-    
+
     // Test PNG files with different pixel formats
     // grayscale without alpha
     auto i8 = Sprite::create("Images/test_image_i8.png");
     i8->setPosition(s.width/4.0f, s.height/4.0f);
     addChild(i8);
-    
+
     // grayscale with alpha
     auto ai88 = Sprite::create("Images/test_image_ai88.png");
     ai88->setPosition(s.width / 4.0f, s.height * 3.0f / 4.0f);
     addChild(ai88);
-    
+
     // rgb without alpha
     auto rgb888 = Sprite::create("Images/test_image_rgb888.png");
     rgb888->setPosition(s.width * 3.0f / 4.0f, s.height / 4.0f);
     addChild(rgb888);
-    
+
     // rgba with alpha
     auto rgba8888 = Sprite::create("Images/test_image_rgba8888.png");
     rgba8888->setPosition(s.width * 3.0f / 4.0f, s.height * 3.0f / 4.0f);
@@ -237,7 +237,7 @@ void TextureJPEG::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image.jpeg");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -258,7 +258,7 @@ void TextureWEBP::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image.webp");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -281,7 +281,7 @@ void TextureWEBPNoAlpha::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_no_alpha.webp");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -321,11 +321,11 @@ void TextureMipMap::onEnter()
     img1->setTextureRect(Rect(85, 121, 85, 121));
     img1->setPosition(Vec2( 2*s.width/3.0f, s.height/2.0f));
     addChild(img1);
-    
-    
+
+
     auto scale1 = EaseOut::create(ScaleBy::create(4, 0.01f), 3);
     auto sc_back = scale1->reverse();
-    
+
     auto scale2 = scale1->clone();
     auto sc_back2 = scale2->reverse();
 
@@ -378,7 +378,7 @@ void TexturePVRMipMap::onEnter()
 
         auto scale2 = scale1->clone();
         auto sc_back2 = scale2->reverse();
-        
+
         imgMipMap->runAction(RepeatForever::create(Sequence::create(scale1, sc_back, nullptr)));
         img->runAction(RepeatForever::create(Sequence::create(scale2, sc_back2, nullptr)));
     }
@@ -403,11 +403,11 @@ void TexturePVRMipMap2::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto imgMipMap = Sprite::create("Images/test_image_rgba4444_mipmap.pvr");
     imgMipMap->setPosition(Vec2( s.width/2.0f-100, s.height/2.0f));
     addChild(imgMipMap);
-    
+
     // support mipmap filtering
     Texture2D::TexParams texParams = { GL_LINEAR_MIPMAP_LINEAR, GL_LINEAR, GL_CLAMP_TO_EDGE, GL_CLAMP_TO_EDGE };
     imgMipMap->getTexture()->setTexParameters(texParams);
@@ -415,13 +415,13 @@ void TexturePVRMipMap2::onEnter()
     auto img = Sprite::create("Images/test_image.png");
     img->setPosition(Vec2( s.width/2.0f+100, s.height/2.0f));
     addChild(img);
-    
+
     auto scale1 = EaseOut::create(ScaleBy::create(4, 0.01f), 3);
     auto sc_back = scale1->reverse();
 
     auto scale2 = scale1->clone();
     auto sc_back2 = scale2->reverse();
-    
+
     imgMipMap->runAction(RepeatForever::create(Sequence::create(scale1, sc_back, nullptr)));
     img->runAction(RepeatForever::create(Sequence::create(scale2, sc_back2, nullptr)));
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
@@ -450,7 +450,7 @@ void TexturePVR2BPP::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto img = Sprite::create("Images/test_image_pvrtc2bpp.pvr");
-    
+
     if( img )
     {
         img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
@@ -475,9 +475,9 @@ void TexturePVRTest::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image.pvr");
-    
+
     if( img )
     {
         img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
@@ -509,7 +509,7 @@ void TexturePVR4BPP::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto img = Sprite::create("Images/test_image_pvrtc4bpp.pvr");
-    
+
     if( img )
     {
         img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
@@ -561,7 +561,7 @@ void TexturePVRBGRA8888::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_bgra8888.pvr");
     if( img )
     {
@@ -591,7 +591,7 @@ void TexturePVRRGBA5551::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgba5551.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -614,7 +614,7 @@ void TexturePVRRGBA4444::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgba4444.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -673,7 +673,7 @@ void TexturePVRRGBA4444CCZ::onEnter()
 
     auto img = Sprite::create("Images/test_image_rgba4444.pvr.ccz");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
-    addChild(img);    
+    addChild(img);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -698,7 +698,7 @@ void TexturePVRRGB565::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgb565.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -744,7 +744,7 @@ void TexturePVRA8::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_a8.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -791,7 +791,7 @@ void TexturePVRAI88::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_ai88.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -808,15 +808,15 @@ void TexturePVR2BPPv3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_pvrtc2bpp_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -835,15 +835,15 @@ void TexturePVRII2BPPv3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_pvrtcii2bpp_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -862,9 +862,9 @@ void TexturePVR4BPPv3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_pvrtc4bpp_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
@@ -874,7 +874,7 @@ void TexturePVR4BPPv3::onEnter()
     {
         log("This test is not supported");
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -897,9 +897,9 @@ void TexturePVRII4BPPv3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_pvrtcii4bpp_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
@@ -909,7 +909,7 @@ void TexturePVRII4BPPv3::onEnter()
     {
         log("This test is not supported");
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -928,15 +928,15 @@ void TexturePVRRGBA8888v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgba8888_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -955,9 +955,9 @@ void TexturePVRBGRA8888v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_bgra8888_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
@@ -967,7 +967,7 @@ void TexturePVRBGRA8888v3::onEnter()
     {
         log("BGRA images are not supported");
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -986,15 +986,15 @@ void TexturePVRRGBA5551v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgba5551_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1013,15 +1013,15 @@ void TexturePVRRGBA4444v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgba4444_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1040,15 +1040,15 @@ void TexturePVRRGB565v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgb565_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1067,15 +1067,15 @@ void TexturePVRRGB888v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_rgb888_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1094,15 +1094,15 @@ void TexturePVRA8v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_a8_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1121,15 +1121,15 @@ void TexturePVRI8v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_i8_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1148,15 +1148,15 @@ void TexturePVRAI88v3::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/test_image_ai88_v3.pvr");
-    
+
     if (img)
     {
         img->setPosition(Vec2(s.width/2.0f, s.height/2.0f));
         addChild(img);
     }
-    
+
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
 }
 
@@ -1209,7 +1209,7 @@ void TexturePVRNonSquare::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/grossini_128x256_mipmap.pvr");
     img->setPosition(Vec2( s.width/2.0f, s.height/2.0f));
     addChild(img);
@@ -1264,7 +1264,7 @@ void TexturePVRNPOT8888::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto img = Sprite::create("Images/grossini_pvr_rgba8888.pvr");
     if( img )
     {
@@ -1293,30 +1293,30 @@ void TextureAlias::onEnter()
 {
     TextureDemo::onEnter();
     auto s = Director::getInstance()->getWinSize();
-    
+
     //
     // Sprite 1: GL_LINEAR
     //
     // Default filter is GL_LINEAR
-    
+
     auto sprite = Sprite::create("Images/grossinis_sister1.png");
     sprite->setPosition(Vec2( s.width/3.0f, s.height/2.0f));
     addChild(sprite);
-    
+
     // this is the default filtering
     sprite->getTexture()->setAntiAliasTexParameters();
-    
+
     //
     // Sprite 1: GL_NEAREST
-    //    
-    
+    //
+
     auto sprite2 = Sprite::create("Images/grossinis_sister2.png");
     sprite2->setPosition(Vec2( 2*s.width/3.0f, s.height/2.0f));
     addChild(sprite2);
-    
+
     // Use Nearest in this one
     sprite2->getTexture()->setAliasTexParameters();
-        
+
     // scale them to show
     auto sc = ScaleBy::create(3, 8.0f);
     auto sc_back = sc->reverse();
@@ -1353,19 +1353,19 @@ void TexturePixelFormat::onEnter()
     // 3- 16-bit RGB5A1
     // 4- 16-bit RGB565
     TextureDemo::onEnter();
-        
+
     auto s = Director::getInstance()->getWinSize();
 
     auto background = LayerColor::create(Color4B(128,128,128,255), s.width, s.height);
     addChild(background, -1);
-    
+
     // RGBA 8888 image (32-bit)
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA8888);
     auto sprite1 = Sprite::create("Images/test-rgba1.png");
     sprite1->setPosition(Vec2(1*s.width/7, s.height/2+32));
     addChild(sprite1, 0);
 
-    // remove texture from texture manager    
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite1->getTexture());
 
     // RGBA 4444 image (16-bit)
@@ -1374,7 +1374,7 @@ void TexturePixelFormat::onEnter()
     sprite2->setPosition(Vec2(2*s.width/7, s.height/2-32));
     addChild(sprite2, 0);
 
-    // remove texture from texture manager    
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite2->getTexture());
 
     // RGB5A1 image (16-bit)
@@ -1383,7 +1383,7 @@ void TexturePixelFormat::onEnter()
     sprite3->setPosition(Vec2(3*s.width/7, s.height/2+32));
     addChild(sprite3, 0);
 
-    // remove texture from texture manager    
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite3->getTexture());
 
     // RGB888 image
@@ -1392,7 +1392,7 @@ void TexturePixelFormat::onEnter()
     sprite4->setPosition(Vec2(4*s.width/7, s.height/2-32));
     addChild(sprite4, 0);
 
-    // remove texture from texture manager    
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite4->getTexture());
 
     // RGB565 image (16-bit)
@@ -1401,7 +1401,7 @@ void TexturePixelFormat::onEnter()
     sprite5->setPosition(Vec2(5*s.width/7, s.height/2+32));
     addChild(sprite5, 0);
 
-    // remove texture from texture manager    
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite5->getTexture());
 
     // A8 image (8-bit)
@@ -1409,8 +1409,8 @@ void TexturePixelFormat::onEnter()
     auto sprite6 = Sprite::create("Images/test-rgba1.png");
     sprite6->setPosition(Vec2(6*s.width/7, s.height/2-32));
     addChild(sprite6, 0);
-    
-    // remove texture from texture manager    
+
+    // remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite6->getTexture());
 
     auto fadeout = FadeOut::create(2);
@@ -1421,7 +1421,7 @@ void TexturePixelFormat::onEnter()
     auto seq_4ever3 = seq_4ever->clone();
     auto seq_4ever4 = seq_4ever->clone();
     auto seq_4ever5 = seq_4ever->clone();
-    
+
     sprite1->runAction(seq_4ever);
     sprite2->runAction(seq_4ever2);
     sprite3->runAction(seq_4ever3);
@@ -1623,7 +1623,7 @@ void TextureGlRepeat::onEnter()
     TextureDemo::onEnter();
 
     auto size = Director::getInstance()->getWinSize();
-    
+
     // The .png image MUST be power of 2 in order to create a continue effect.
     // eg: 32x64, 512x128, 256x1024, 64x64, etc..
     auto sprite = Sprite::create("Images/pattern1.png", Rect(0, 0, 4096, 4096));
@@ -1631,7 +1631,7 @@ void TextureGlRepeat::onEnter()
     sprite->setPosition(Vec2(size.width/2,size.height/2));
     Texture2D::TexParams params = {GL_LINEAR,GL_LINEAR,GL_REPEAT,GL_REPEAT};
     sprite->getTexture()->setTexParameters(params);
-    
+
     auto rotate = RotateBy::create(4, 360);
     sprite->runAction(rotate);
     auto scale = ScaleBy::create(2, 0.04f);
@@ -1659,7 +1659,7 @@ void TextureSizeTest::onEnter()
 {
     TextureDemo::onEnter();
     Sprite *sprite = nullptr;
-    
+
     log("Loading 512x512 image...");
     sprite = Sprite::create("Images/texture512x512.png");
     if( sprite )
@@ -1680,7 +1680,7 @@ void TextureSizeTest::onEnter()
 //         log("OK");
 //     else
 //         log("Error");
-//     
+//
 //     log("Loading 4096x4096 image...");
 //     sprite = Sprite::create("Images/texture4096x4096.png");
 //     if( sprite )
@@ -1709,7 +1709,7 @@ void TextureCache1::onEnter()
     TextureDemo::onEnter();
 
     auto s = Director::getInstance()->getWinSize();
-    
+
     Sprite *sprite;
 
     sprite = Sprite::create("Images/grossinis_sister1.png");
@@ -1719,7 +1719,7 @@ void TextureCache1::onEnter()
     addChild(sprite);
 
     Director::getInstance()->getTextureCache()->removeTexture(sprite->getTexture());
-    
+
     sprite = Sprite::create("Images/grossinis_sister1.png");
     sprite->setPosition(Vec2(s.width/5*2, s.height/2));
     sprite->getTexture()->setAntiAliasTexParameters();
@@ -1727,13 +1727,13 @@ void TextureCache1::onEnter()
     addChild(sprite);
 
     // 2nd set of sprites
-    
+
     sprite = Sprite::create("Images/grossinis_sister2.png");
     sprite->setPosition(Vec2(s.width/5*3, s.height/2));
     sprite->getTexture()->setAliasTexParameters();
     sprite->setScale(2);
     addChild(sprite);
-    
+
     Director::getInstance()->getTextureCache()->removeTextureForKey("Images/grossinis_sister2.png");
 
     sprite = Sprite::create("Images/grossinis_sister2.png");
@@ -1784,7 +1784,7 @@ std::string TextureDrawAtPoint::subtitle() const
 void TextureDrawAtPoint::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 {
     TextureDemo::draw(renderer, transform, flags);
-    
+
     _renderCmd.init(_globalZOrder, transform, flags);
     _renderCmd.func = CC_CALLBACK_0(TextureDrawAtPoint::onDraw, this, transform, flags);
     renderer->addCommand(&_renderCmd);
@@ -1799,10 +1799,10 @@ void TextureDrawAtPoint::onDraw(const Mat4 &transform, uint32_t flags)
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, transform);
 
     auto s = Director::getInstance()->getWinSize();
-    
+
     _tex1->drawAtPoint(Vec2(s.width/2-50, s.height/2 - 50));
     _Tex2F->drawAtPoint(Vec2(s.width/2+50, s.height/2 - 50));
-    
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
@@ -1839,15 +1839,15 @@ void TextureDrawInRect::onDraw(const Mat4 &transform, uint32_t flags)
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
     director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, transform);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto rect1 = Rect( s.width/2 - 80, 20, _tex1->getContentSize().width * 0.5f, _tex1->getContentSize().height *2 );
     auto rect2 = Rect( s.width/2 + 80, s.height/2, _tex1->getContentSize().width * 2, _tex1->getContentSize().height * 0.5f );
-    
+
     _tex1->drawInRect(rect1);
     _Tex2F->drawInRect(rect2);
-    
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
@@ -1870,38 +1870,38 @@ void TextureMemoryAlloc::onEnter()
 {
     TextureDemo::onEnter();
     _background = nullptr;
-    
+
     MenuItemFont::setFontSize(24);
-    
+
     auto item1 = MenuItemFont::create("PNG", CC_CALLBACK_1(TextureMemoryAlloc::updateImage, this));
     item1->setTag(0);
-    
+
     auto item2 = MenuItemFont::create("RGBA8", CC_CALLBACK_1(TextureMemoryAlloc::updateImage, this));
     item2->setTag(1);
-    
+
     auto item3 = MenuItemFont::create("RGB8", CC_CALLBACK_1(TextureMemoryAlloc::updateImage, this));
     item3->setTag(2);
-    
+
     auto item4 = MenuItemFont::create("RGBA4", CC_CALLBACK_1(TextureMemoryAlloc::updateImage, this));
     item4->setTag(3);
-    
+
     auto item5 = MenuItemFont::create("A8", CC_CALLBACK_1(TextureMemoryAlloc::updateImage, this));
     item5->setTag(4);
-    
+
     auto menu = Menu::create(item1, item2, item3, item4, item5, nullptr);
     menu->alignItemsHorizontally();
-    
+
     addChild(menu);
-    
+
     auto warmup = MenuItemFont::create("warm up texture", CC_CALLBACK_1(TextureMemoryAlloc::changeBackgroundVisible, this));
-    
+
     auto menu2 = Menu::create(warmup, nullptr);
 
     menu2->alignItemsHorizontally();
-    
+
     addChild(menu2);
     auto s = Director::getInstance()->getWinSize();
-    
+
     menu2->setPosition(Vec2(s.width/2, s.height/4));
 }
 
@@ -1919,12 +1919,12 @@ void TextureMemoryAlloc::updateImage(cocos2d::Ref *sender)
     {
         _background->removeFromParentAndCleanup(true);
     }
-    
+
     Director::getInstance()->getTextureCache()->removeUnusedTextures();
-	
+
     int tag = ((Node*)sender)->getTag();
 	std::string file;
-	switch (tag) 
+	switch (tag)
     {
 		case 0:
 			file = "Images/test_image.png";
@@ -1945,9 +1945,9 @@ void TextureMemoryAlloc::updateImage(cocos2d::Ref *sender)
 
     _background = Sprite::create(file);
     addChild(_background, -10);
-	
+
     _background->setVisible(false);
-    
+
     auto s = Director::getInstance()->getWinSize();
     _background->setPosition(Vec2(s.width/2, s.height/2));
 }
@@ -1966,23 +1966,23 @@ std::string TextureMemoryAlloc::subtitle() const
 TexturePVRv3Premult::TexturePVRv3Premult()
 {
     auto size = Director::getInstance()->getWinSize();
-        
+
     auto background = LayerColor::create(Color4B(128,128,128,255), size.width, size.height);
     addChild(background, -1);
-    
-    
+
+
     // PVR premultiplied
     auto pvr1 = Sprite::create("Images/grossinis_sister1-testalpha_premult.pvr");
     addChild(pvr1, 0);
     pvr1->setPosition(Vec2(size.width/4*1, size.height/2));
     transformSprite(pvr1);
-    
+
     // PVR non-premultiplied
     auto pvr2 = Sprite::create("Images/grossinis_sister1-testalpha_nopremult.pvr");
     addChild(pvr2, 0);
     pvr2->setPosition(Vec2(size.width/4*2, size.height/2));
     transformSprite(pvr2);
-    
+
     // PNG
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA8888);
     Director::getInstance()->getTextureCache()->removeTextureForKey("Images/grossinis_sister1-testalpha.png");
@@ -2016,10 +2016,10 @@ void TexturePVRv3Premult::transformSprite(cocos2d::Sprite *sprite)
 TextureETC1::TextureETC1()
 {
     auto sprite = Sprite::create("Images/ETC1.pkm");
-    
+
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width/2, size.height/2));
-    
+
     addChild(sprite);
 }
 
@@ -2079,7 +2079,7 @@ TextureS3TCDxt1::TextureS3TCDxt1()
     //auto sprite = Sprite::create("Images/water_2_dxt1.dds");
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
-    
+
     addChild(sprite);
 }
 std::string TextureS3TCDxt1::title() const
@@ -2098,7 +2098,7 @@ TextureS3TCDxt3::TextureS3TCDxt3()
     //auto sprite = Sprite::create("Images/water_2_dxt3.dds");
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
-    
+
     addChild(sprite);
 }
 std::string TextureS3TCDxt3::title() const
@@ -2117,7 +2117,7 @@ TextureS3TCDxt5::TextureS3TCDxt5()
     //auto sprite = Sprite::create("Images/water_2_dxt5.dds");
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
-    
+
     addChild(sprite);
 }
 std::string TextureS3TCDxt5::title() const
@@ -2126,7 +2126,7 @@ std::string TextureS3TCDxt5::title() const
 }
 std::string TextureS3TCDxt5::subtitle() const
 {
-    return "S3TC dxt5 decode";    
+    return "S3TC dxt5 decode";
 }
 
 //Implement of S3TC with no mipmaps
@@ -2135,7 +2135,7 @@ TextureS3TCWithNoMipmaps::TextureS3TCWithNoMipmaps()
     auto sprite = Sprite::create("Images/test_512x512_s3tc_dxt5_with_no_mipmaps.dds");
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
-    
+
     addChild(sprite);
 }
 std::string TextureS3TCWithNoMipmaps::title() const
@@ -2147,7 +2147,7 @@ std::string TextureS3TCWithNoMipmaps::title() const
 TextureATITCRGB::TextureATITCRGB()
 {
     auto sprite = Sprite::create("Images/test_256x256_ATC_RGB_mipmaps.ktx");
-    
+
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
 
@@ -2165,10 +2165,10 @@ std::string TextureATITCRGB::subtitle() const
 TextureATITCExplicit::TextureATITCExplicit()
 {
     auto sprite = Sprite::create("Images/test_256x256_ATC_RGBA_Explicit_mipmaps.ktx");
-    
+
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height / 2));
-    
+
     addChild(sprite);
 }
 std::string TextureATITCExplicit::title() const
@@ -2183,7 +2183,7 @@ std::string TextureATITCExplicit::subtitle() const
 TextureATITCInterpolated::TextureATITCInterpolated()
 {
     auto sprite = Sprite::create("Images/test_256x256_ATC_RGBA_Interpolated_mipmaps.ktx");
-    
+
     auto size = Director::getInstance()->getWinSize();
     sprite->setPosition(Vec2(size.width / 2, size.height /2));
 
@@ -2204,7 +2204,7 @@ static void addImageToDemo(TextureDemo& demo, float x, float y, const char* path
     auto sprite = Sprite::create(path);
     sprite->setPosition(Vec2(x, y));
     demo.addChild(sprite, 0);
-    
+
     //remove texture from texture manager
     Director::getInstance()->getTextureCache()->removeTexture(sprite->getTexture());
 }
@@ -2213,12 +2213,12 @@ static void addImageToDemo(TextureDemo& demo, float x, float y, const char* path
 void TextureConvertRGB888::onEnter()
 {
     TextureDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto background = LayerColor::create(Color4B(255,0,0,255), s.width, s.height);
     addChild(background, -1);
-    
+
     const char* img = "Images/test_image_rgb888.png";
     addImageToDemo(*this, 1*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA8888);
     addImageToDemo(*this, 2*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB888);
@@ -2228,7 +2228,7 @@ void TextureConvertRGB888::onEnter()
     addImageToDemo(*this, 6*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::AI88);
     addImageToDemo(*this, 7*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA4444);
     addImageToDemo(*this, 8*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB5A1);
-    
+
     // restore default
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::DEFAULT);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
@@ -2247,12 +2247,12 @@ std::string TextureConvertRGB888::subtitle() const
 void TextureConvertRGBA8888::onEnter()
 {
     TextureDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto background = LayerColor::create(Color4B(255,0,0,255), s.width, s.height);
     addChild(background, -1);
-    
+
     const char* img = "Images/test_image_rgba8888.png";
     addImageToDemo(*this, 1*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA8888);
     addImageToDemo(*this, 2*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB888);
@@ -2262,7 +2262,7 @@ void TextureConvertRGBA8888::onEnter()
     addImageToDemo(*this, 6*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::AI88);
     addImageToDemo(*this, 7*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA4444);
     addImageToDemo(*this, 8*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB5A1);
-    
+
     // restore default
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::DEFAULT);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
@@ -2281,12 +2281,12 @@ std::string TextureConvertRGBA8888::subtitle() const
 void TextureConvertI8::onEnter()
 {
     TextureDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto background = LayerColor::create(Color4B(255,0,0,255), s.width, s.height);
     addChild(background, -1);
-    
+
     const char* img = "Images/test_image_i8.png";
     addImageToDemo(*this, 1*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA8888);
     addImageToDemo(*this, 2*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB888);
@@ -2296,7 +2296,7 @@ void TextureConvertI8::onEnter()
     addImageToDemo(*this, 6*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::AI88);
     addImageToDemo(*this, 7*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA4444);
     addImageToDemo(*this, 8*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB5A1);
-    
+
     // restore default
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::DEFAULT);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
@@ -2315,12 +2315,12 @@ std::string TextureConvertI8::subtitle() const
 void TextureConvertAI88::onEnter()
 {
     TextureDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto background = LayerColor::create(Color4B(255,0,0,255), s.width, s.height);
     addChild(background, -1);
-    
+
     const char* img = "Images/test_image_ai88.png";
     addImageToDemo(*this, 1*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA8888);
     addImageToDemo(*this, 2*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB888);
@@ -2330,7 +2330,7 @@ void TextureConvertAI88::onEnter()
     addImageToDemo(*this, 6*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::AI88);
     addImageToDemo(*this, 7*s.width/9, s.height/2+32, img, Texture2D::PixelFormat::RGBA4444);
     addImageToDemo(*this, 8*s.width/9, s.height/2-32, img, Texture2D::PixelFormat::RGB5A1);
-    
+
     // restore default
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::DEFAULT);
     log("%s\n", Director::getInstance()->getTextureCache()->getCachedTextureInfo().c_str());
@@ -2345,3 +2345,4 @@ std::string TextureConvertAI88::subtitle() const
 {
     return "RGBA8888,RGB888,RGB565,A8,I8,AI88,RGBA4444,RGB5A1";
 }
+

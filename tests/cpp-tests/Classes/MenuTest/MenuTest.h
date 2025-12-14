@@ -73,7 +73,7 @@ class MenuLayer2 : public cocos2d::Layer
 {
 protected:
     cocos2d::Vec2        _centeredMenu;
-    bool                _alignedH; 
+    bool                _alignedH;
 
     void alignMenusH();
     void alignMenusV();
@@ -113,7 +113,7 @@ class BugsTest : public cocos2d::Layer
 {
 public:
     BugsTest();
-    
+
     void issue1410MenuCallback(cocos2d::Ref* pSender);
     void issue1410v2MenuCallback(cocos2d::Ref* pSender);
     void backMenuCallback(cocos2d::Ref* pSender);
@@ -126,12 +126,13 @@ public:
     ~RemoveMenuItemWhenMove();
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-    
+
     void goBack(cocos2d::Ref* pSender);
-    
+
 private:
     cocos2d::MenuItemFont *item;
     cocos2d::EventListenerTouchOneByOne* _touchListener;
 };
 
 #endif
+

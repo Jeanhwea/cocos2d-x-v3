@@ -537,3 +537,4 @@ void UserDefault::deleteValueForKey(const char* key)
 NS_CC_END
 
 #endif // (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+

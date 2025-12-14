@@ -126,7 +126,7 @@ void TableView::reloadData()
         }
 
         _cellsFreed.pushBack(cell);
-        
+
         cell->reset();
         if (cell->getParent() == this->getContainer())
         {
@@ -136,7 +136,7 @@ void TableView::reloadData()
 
     _indices->clear();
     _cellsUsed.clear();
-    
+
     this->_updateCellPositions();
     this->_updateContentSize();
     if (_dataSource->numberOfCellsInTableView(this) > 0)
@@ -421,10 +421,10 @@ void TableView::_moveCellOutOfSight(TableViewCell *cell)
     _cellsFreed.pushBack(cell);
     _cellsUsed.eraseObject(cell);
     _isUsedCellsDirty = true;
-    
+
     _indices->erase(cell->getIdx());
     cell->reset();
-    
+
     if (cell->getParent() == this->getContainer())
     {
         this->getContainer()->removeChild(cell, false);
@@ -481,7 +481,7 @@ void TableView::scrollViewDidScroll(ScrollView* /*view*/)
             return a->getIdx() < b->getIdx();
         });
     }
-    
+
     ssize_t startIdx = 0, endIdx = 0, idx = 0, maxIdx = 0;
     Vec2 offset = this->getContentOffset() * -1;
     maxIdx = MAX(countOfItems-1, 0);
@@ -536,7 +536,7 @@ void TableView::scrollViewDidScroll(ScrollView* /*view*/)
     {
         auto cell = _cellsUsed.at(0);
         idx = cell->getIdx();
-        
+
         while(idx < startIdx)
         {
             this->_moveCellOutOfSight(cell);
@@ -685,3 +685,4 @@ void TableView::onTouchCancelled(Touch *pTouch, Event *pEvent)
 }
 
 NS_CC_EXT_END
+

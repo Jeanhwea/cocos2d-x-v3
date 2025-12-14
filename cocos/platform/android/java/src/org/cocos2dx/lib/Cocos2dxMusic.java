@@ -139,7 +139,7 @@ public class Cocos2dxMusic {
         if (this.mBackgroundMediaPlayer != null) {
             mBackgroundMediaPlayer.release();
             mBackgroundMediaPlayer = createMediaPlayer(mCurrentPath);
-            
+
             /**
              * should set the state, if not, the following sequence will be error
              * play -> pause -> stop -> resume
@@ -243,7 +243,7 @@ public class Cocos2dxMusic {
             Log.e(TAG, "onEnterBackground, IllegalStateException was triggered!");
         }
     }
-    
+
     public void onEnterForeground(){
         try {
             if (!this.mManualPaused) {
@@ -256,7 +256,7 @@ public class Cocos2dxMusic {
             Log.e(TAG, "onEnterForeground, IllegalStateException was triggered!");
         }
     }
-    
+
     private void initData() {
         this.mLeftVolume = 0.5f;
         this.mRightVolume = 0.5f;
@@ -267,7 +267,7 @@ public class Cocos2dxMusic {
 
     /**
      * create MediaPlayer for music
-     * 
+     *
      * @param path The path relative to assets
      * @return
      */
@@ -314,3 +314,4 @@ public class Cocos2dxMusic {
     // Inner and Anonymous Classes
     // ===========================================================
 }
+

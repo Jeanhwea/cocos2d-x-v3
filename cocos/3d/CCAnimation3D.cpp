@@ -36,7 +36,7 @@ Animation3D* Animation3D::create(const std::string& fileName, const std::string&
     auto animation = Animation3DCache::getInstance()->getAnimation(key);
     if (animation != nullptr)
         return animation;
-    
+
     animation = new (std::nothrow) Animation3D();
     if(animation->initWithFile(fileName, animationName))
     {
@@ -46,14 +46,14 @@ Animation3D* Animation3D::create(const std::string& fileName, const std::string&
     {
         CC_SAFE_DELETE(animation);
     }
-    
+
     return animation;
 }
 
 bool Animation3D::initWithFile(const std::string& filename, const std::string& animationName)
 {
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(filename);
-    
+
     //load animation here
     auto bundle = Bundle3D::createBundle();
     Animation3DData animationdata;
@@ -64,9 +64,9 @@ bool Animation3D::initWithFile(const std::string& filename, const std::string& a
         Bundle3D::destroyBundle(bundle);
         return true;
     }
-    
+
     Bundle3D::destroyBundle(bundle);
-    
+
     return false;
 }
 
@@ -75,14 +75,14 @@ Animation3D::Curve* Animation3D::getBoneCurveByName(const std::string& name) con
     auto it = _boneCurves.find(name);
     if (it != _boneCurves.end())
         return it->second;
-    
+
     return nullptr;
 }
 
 Animation3D::Animation3D()
 : _duration(0)
 {
-    
+
 }
 
 Animation3D::~Animation3D()
@@ -98,7 +98,7 @@ Animation3D::Curve::Curve()
 , rotCurve(nullptr)
 , scaleCurve(nullptr)
 {
-    
+
 }
 Animation3D::Curve::~Curve()
 {
@@ -119,7 +119,7 @@ bool Animation3D::init(const Animation3DData &data)
             curve = new (std::nothrow) Curve();
             _boneCurves[iter.first] = curve;
         }
-        
+
         if(iter.second.empty()) continue;
         std::vector<float> keys;
         std::vector<float> values;
@@ -130,11 +130,11 @@ bool Animation3D::init(const Animation3DData &data)
             values.push_back(keyIter._key.y);
             values.push_back(keyIter._key.z);
         }
-        
+
         curve->translateCurve = Curve::AnimationCurveVec3::create(&keys[0], &values[0], (int)keys.size());
         if(curve->translateCurve) curve->translateCurve->retain();
     }
-    
+
     for(const auto& iter : data._rotationKeys)
     {
         Curve* curve = _boneCurves[iter.first];
@@ -143,7 +143,7 @@ bool Animation3D::init(const Animation3DData &data)
             curve = new (std::nothrow) Curve();
             _boneCurves[iter.first] = curve;
         }
-        
+
         if(iter.second.empty()) continue;
         std::vector<float> keys;
         std::vector<float> values;
@@ -155,11 +155,11 @@ bool Animation3D::init(const Animation3DData &data)
             values.push_back(keyIter._key.z);
             values.push_back(keyIter._key.w);
         }
-        
+
         curve->rotCurve = Curve::AnimationCurveQuat::create(&keys[0], &values[0], (int)keys.size());
         if(curve->rotCurve) curve->rotCurve->retain();
     }
-    
+
     for(const auto& iter : data._scaleKeys)
     {
         Curve* curve = _boneCurves[iter.first];
@@ -168,7 +168,7 @@ bool Animation3D::init(const Animation3DData &data)
             curve = new (std::nothrow) Curve();
             _boneCurves[iter.first] = curve;
         }
-        
+
         if(iter.second.empty()) continue;
         std::vector<float> keys;
         std::vector<float> values;
@@ -179,11 +179,11 @@ bool Animation3D::init(const Animation3DData &data)
             values.push_back(keyIter._key.y);
             values.push_back(keyIter._key.z);
         }
-        
+
         curve->scaleCurve = Curve::AnimationCurveVec3::create(&keys[0], &values[0], (int)keys.size());
         if(curve->scaleCurve) curve->scaleCurve->retain();
     }
-    
+
     return true;
 }
 
@@ -194,7 +194,7 @@ Animation3DCache* Animation3DCache::getInstance()
 {
     if (_cacheInstance == nullptr)
         _cacheInstance = new (std::nothrow) Animation3DCache();
-    
+
     return _cacheInstance;
 }
 void Animation3DCache::destroyInstance()
@@ -243,7 +243,7 @@ void Animation3DCache::removeUnusedAnimation()
 
 Animation3DCache::Animation3DCache()
 {
-    
+
 }
 Animation3DCache::~Animation3DCache()
 {
@@ -251,3 +251,4 @@ Animation3DCache::~Animation3DCache()
 }
 
 NS_CC_END
+

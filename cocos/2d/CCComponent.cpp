@@ -51,7 +51,7 @@ bool Component::init()
 static bool sendComponentEventToJS(Component* node, int action)
 {
     auto scriptEngine = ScriptEngineManager::getInstance()->getScriptEngine();
-    
+
     if (scriptEngine->isCalledFromScript())
     {
         scriptEngine->setCalledFromScript(false);
@@ -63,7 +63,7 @@ static bool sendComponentEventToJS(Component* node, int action)
         if (scriptEngine->sendEvent(&scriptEvent))
             return true;
     }
-    
+
     return false;
 }
 
@@ -151,3 +151,4 @@ void Component::setEnabled(bool enabled)
 }
 
 NS_CC_END
+

@@ -196,3 +196,4 @@ bool PUMaterialCache::loadMaterialsFromSearchPaths( const std::string &fileFolde
 }
 
 NS_CC_END
+

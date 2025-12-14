@@ -66,3 +66,4 @@ inline bool CodedInputStream::InternalReadStringInline(string* buffer,
 }  // namespace protobuf
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_IO_CODED_STREAM_INL_H__
+

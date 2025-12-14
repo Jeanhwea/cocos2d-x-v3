@@ -162,5 +162,3 @@ inline errno_t strcpy_s(char *strDestination, size_t numberOfElements,
 
 #endif  // __CC_STD_C_H__
 
-
-

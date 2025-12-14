@@ -158,4 +158,3 @@ NS_CC_END
 
 #endif // #ifdef __UIEditBoxIMPLWINRT_H__
 
-

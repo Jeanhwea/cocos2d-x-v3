@@ -95,7 +95,7 @@ bool TMXTiledMap::initWithXML(const std::string& tmxString, const std::string& r
 
 TMXTiledMap::TMXTiledMap()
     :_mapSize(Size::ZERO)
-    ,_tileSize(Size::ZERO)        
+    ,_tileSize(Size::ZERO)
     ,_tmxFile("")
     , _tmxLayerNum(0)
 {
@@ -111,7 +111,7 @@ TMXLayer * TMXTiledMap::parseLayer(TMXLayerInfo *layerInfo, TMXMapInfo *mapInfo)
     TMXTilesetInfo *tileset = tilesetForLayer(layerInfo, mapInfo);
     if (tileset == nullptr)
         return nullptr;
-    
+
     TMXLayer *layer = TMXLayer::create(tileset, layerInfo, mapInfo);
 
     if (nullptr != layer)
@@ -154,7 +154,7 @@ TMXTilesetInfo * TMXTiledMap::tilesetForLayer(TMXLayerInfo *layerInfo, TMXMapInf
                             return tileset;
                     }
                 }
-            }        
+            }
         }
     }
 
@@ -204,7 +204,7 @@ void TMXTiledMap::buildWithMapInfo(TMXMapInfo* mapInfo)
 TMXLayer * TMXTiledMap::getLayer(const std::string& layerName) const
 {
     CCASSERT(!layerName.empty(), "Invalid layer name!");
-    
+
     for (auto& child : _children)
     {
         TMXLayer* layer = dynamic_cast<TMXLayer*>(child);
@@ -241,7 +241,7 @@ Value TMXTiledMap::getProperty(const std::string& propertyName) const
 {
     if (_properties.find(propertyName) != _properties.end())
         return _properties.at(propertyName);
-    
+
     return Value();
 }
 
@@ -249,7 +249,7 @@ Value TMXTiledMap::getPropertiesForGID(int GID) const
 {
     if (_tileProperties.find(GID) != _tileProperties.end())
         return _tileProperties.at(GID);
-    
+
     return Value();
 }
 
@@ -292,3 +292,4 @@ void TMXTiledMap::setTileAnimEnabled(bool enabled)
 }
 
 NS_CC_END
+

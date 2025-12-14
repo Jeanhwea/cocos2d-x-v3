@@ -36,8 +36,8 @@ THE SOFTWARE.
 #include <regex>
 #include <sstream>
 
-#include <sys/types.h>  
-#include <sys/stat.h>  
+#include <sys/types.h>
+#include <sys/stat.h>
 
 using namespace std;
 
@@ -537,3 +537,4 @@ bool FileUtilsWin32::removeDirectory(const std::string& dirPath) const
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+

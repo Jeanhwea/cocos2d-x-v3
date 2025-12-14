@@ -107,3 +107,4 @@ std::string UTF8StringToMultiByte(const std::string& strUtf8)
 }
 
 NS_CC_END
+

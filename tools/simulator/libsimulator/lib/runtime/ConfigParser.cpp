@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,14 +55,14 @@ void ConfigParser::readConfig(const string &filepath)
     searchPathArray.insert(searchPathArray.begin(), FileServer::getShareInstance()->getWritePath());
     FileUtils::getInstance()->setSearchPaths(searchPathArray);
 #endif
-    
+
     // read config file
     if (fullPathFile.empty())
     {
         fullPathFile = FileUtils::getInstance()->fullPathForFilename(CONFIG_FILE);
     }
     string fileContent = FileUtils::getInstance()->getStringFromFile(fullPathFile);
-  
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // revert search path
     searchPathArray.erase(searchPathArray.begin());
@@ -71,12 +71,12 @@ void ConfigParser::readConfig(const string &filepath)
 
     if(fileContent.empty())
         return;
-    
+
     if (_docRootjson.Parse<0>(fileContent.c_str()).HasParseError()) {
         cocos2d::log("read json file %s failed because of %d", fullPathFile.c_str(), _docRootjson.GetParseError());
         return;
     }
-    
+
     if (_docRootjson.HasMember("init_cfg"))
     {
         if(_docRootjson["init_cfg"].IsObject())
@@ -92,7 +92,7 @@ void ConfigParser::readConfig(const string &filepath)
                     _initViewSize.height = _initViewSize.width;
                     _initViewSize.width = tmpvalue;
                 }
-                
+
             }
             if (objectInitView.HasMember("name") && objectInitView["name"].IsString())
             {
@@ -245,3 +245,4 @@ const std::string &ConfigParser::getBindAddress()
 {
     return _bindAddress;
 }
+

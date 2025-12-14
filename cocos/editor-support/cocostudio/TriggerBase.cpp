@@ -38,3 +38,4 @@ void sendEvent(unsigned int event)
     EventCustom eventCustom(custom_event_name);
     TriggerMng::getInstance()->dispatchEvent(&eventCustom);
 }
+

@@ -31,7 +31,7 @@ THE SOFTWARE.
 #include "editor-support/cocostudio/CocosStudioExport.h"
 
 namespace cocostudio {
-    
+
 enum FrameType
 {
     kKeyframeMove = 0,
@@ -201,7 +201,7 @@ protected:
     */
     virtual cocos2d::ActionInterval* getEasingAction(cocos2d::ActionInterval* action);
 protected:
-    int _frameType;    
+    int _frameType;
     int _frameIndex;
     float _fTime;
     FrameEaseType _easingType;
@@ -454,3 +454,4 @@ protected:
 }
 
 #endif
+

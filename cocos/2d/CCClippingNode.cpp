@@ -47,7 +47,7 @@ NS_CC_BEGIN
 static void setProgram(Node *n, GLProgram *p)
 {
     n->setGLProgram(p);
-    
+
     auto& children = n->getChildren();
     for(const auto &child : children) {
         setProgram(child, p);
@@ -83,7 +83,7 @@ ClippingNode* ClippingNode::create()
     {
         CC_SAFE_DELETE(ret);
     }
-    
+
     return ret;
 }
 
@@ -98,7 +98,7 @@ ClippingNode* ClippingNode::create(Node *pStencil)
     {
         CC_SAFE_DELETE(ret);
     }
-    
+
     return ret;
 }
 
@@ -122,9 +122,9 @@ void ClippingNode::onEnter()
             return;
     }
 #endif
-    
+
     Node::onEnter();
-    
+
     if (_stencil != nullptr)
     {
         _stencil->onEnter();
@@ -144,9 +144,9 @@ void ClippingNode::onEnterTransitionDidFinish()
             return;
     }
 #endif
-    
+
     Node::onEnterTransitionDidFinish();
-    
+
     if (_stencil != nullptr)
     {
         _stencil->onEnterTransitionDidFinish();
@@ -162,12 +162,12 @@ void ClippingNode::onExitTransitionDidStart()
             return;
     }
 #endif
-    
+
     if (_stencil != nullptr)
     {
         _stencil->onExitTransitionDidStart();
     }
-   
+
     Node::onExitTransitionDidStart();
 }
 
@@ -180,12 +180,12 @@ void ClippingNode::onExit()
             return;
     }
 #endif
-    
+
     if (_stencil != nullptr)
     {
         _stencil->onExit();
     }
-    
+
     Node::onExit();
 }
 
@@ -194,7 +194,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
 {
     if (!_visible || !hasContent())
         return;
-    
+
     uint32_t flags = processParentFlags(parentTransform, parentFlags);
 
     // IMPORTANT:
@@ -206,7 +206,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     director->loadMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW, _modelViewTransform);
 
     //Add group command
-        
+
     _groupCommand.init(_globalZOrder);
     renderer->addCommand(&_groupCommand);
 
@@ -215,7 +215,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     _beforeVisitCmd.init(_globalZOrder);
     _beforeVisitCmd.func = CC_CALLBACK_0(StencilStateManager::onBeforeVisit, _stencilStateManager);
     renderer->addCommand(&_beforeVisitCmd);
-    
+
     auto alphaThreshold = this->getAlphaThreshold();
     if (alphaThreshold < 1)
     {
@@ -241,7 +241,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
 
     int i = 0;
     bool visibleByCamera = isVisitableByVisitingCamera();
-    
+
     if(!_children.empty())
     {
         sortAllChildren();
@@ -249,7 +249,7 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
         for(auto size = _children.size(); i < size; ++i)
         {
             auto node = _children.at(i);
-            
+
             if ( node && node->getLocalZOrder() < 0 )
                 node->visit(renderer, _modelViewTransform, flags);
             else
@@ -272,14 +272,14 @@ void ClippingNode::visit(Renderer *renderer, const Mat4 &parentTransform, uint32
     renderer->addCommand(&_afterVisitCmd);
 
     renderer->popGroup();
-    
+
     director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
 }
 
 void ClippingNode::setCameraMask(unsigned short mask, bool applyChildren)
 {
     Node::setCameraMask(mask, applyChildren);
-    
+
     if (_stencil)
         _stencil->setCameraMask(mask, applyChildren);
 }
@@ -294,7 +294,7 @@ void ClippingNode::setStencil(Node *stencil)
     //early out if the stencil is already set
     if (_stencil == stencil)
         return;
-    
+
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
@@ -305,7 +305,7 @@ void ClippingNode::setStencil(Node *stencil)
             sEngine->retainScriptObject(this, stencil);
     }
 #endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-    
+
     //cleanup current stencil
     if(_stencil != nullptr && _stencil->isRunning())
     {
@@ -313,7 +313,7 @@ void ClippingNode::setStencil(Node *stencil)
         _stencil->onExit();
     }
     CC_SAFE_RELEASE_NULL(_stencil);
-    
+
     //initialise new stencil
     _stencil = stencil;
     CC_SAFE_RETAIN(_stencil);
@@ -325,7 +325,7 @@ void ClippingNode::setStencil(Node *stencil)
             _stencil->onEnterTransitionDidFinish();
         }
     }
-    
+
     if (_stencil != nullptr)
         _originStencilProgram = _stencil->getGLProgram();
 }
@@ -350,7 +350,7 @@ void ClippingNode::setAlphaThreshold(GLfloat alphaThreshold)
             setProgram(_stencil, _originStencilProgram);
     }
 #endif
-    
+
     _stencilStateManager->setAlphaThreshold(alphaThreshold);
 }
 
@@ -366,3 +366,4 @@ void ClippingNode::setInverted(bool inverted)
 
 
 NS_CC_END
+

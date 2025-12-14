@@ -525,3 +525,4 @@ void FontAtlas::setAntiAliasTexParameters()
 }
 
 NS_CC_END
+

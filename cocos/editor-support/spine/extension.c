@@ -126,3 +126,4 @@ float _spMath_pow2_apply(float a) {
 float _spMath_pow2out_apply(float a) {
 	return POW(a - 1, 2) * -1 + 1;
 }
+

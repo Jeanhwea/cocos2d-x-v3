@@ -55,3 +55,4 @@ public class Cocos2dxDataManager {
         setOptimise("shader_compile", String.valueOf(0));
     }
 }
+

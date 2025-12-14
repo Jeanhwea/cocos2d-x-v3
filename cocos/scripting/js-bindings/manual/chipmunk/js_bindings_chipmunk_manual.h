@@ -124,3 +124,4 @@ void JSB_cpSpace_finalize(JSFreeOp *fop, JSObject *obj);
 #endif // JSB_INCLUDE_CHIPMUNK
 
 #endif // __js_bindings_chipmunk_manual
+

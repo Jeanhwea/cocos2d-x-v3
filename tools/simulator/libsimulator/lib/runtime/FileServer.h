@@ -64,7 +64,7 @@ public:
 
     bool listenOnTCP(int port);
     void stop();
-    
+
     void readResFileFinfo();
     void addResFileInfo(const char* filename,uint64_t u64);
     void removeResFileInfo(const char *filename);
@@ -89,20 +89,20 @@ private:
         DIRPROTO = 3,
         DIRSENDCOMPLETE = 4
     };
-    
+
     struct RecvBufStruct
     {
         runtime::FileSendProtos fileProto;
         std::string contentBuf;
         int fd;
     };
-    
+
     struct ResponseStruct
     {
         runtime::FileSendComplete fileResponseProto;
         int fd;
     };
-    
+
     // file descriptor: socket, console, etc.
     int _listenfd;
     std::thread _responseThread;
@@ -114,20 +114,20 @@ private:
 	bool _writeEndThread;
 	bool _responseRunning;
 	bool _responseEndThread;
-    
+
     std::list<RecvBufStruct> _recvBufList;
     std::list<ResponseStruct> _responseBufList;
     std::mutex _recvBufListMutex;
     std::mutex _responseBufListMutex;
-    
+
     rapidjson::Document _filecfgjson;
-    
+
     std::string _strFileName;
     std::mutex _fileNameMutex;
-    
+
     std::string _recvErrorFile;
     std::string _writeErrorFile;
-    
+
     bool _isUsingWritePath;
     std::string _writePath;
 };

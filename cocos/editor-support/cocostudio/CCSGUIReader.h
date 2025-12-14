@@ -44,13 +44,13 @@ namespace tinyxml2
 }
 
 namespace cocostudio {
-    
+
     class CocoLoader;
     struct stExpCocoNode;
 
-    
+
 #define kCCSVersion 1.0
-    
+
     typedef void (cocos2d::Ref::*SEL_ParseEvent)(const std::string&, cocos2d::Ref*, const rapidjson::Value&);
 #define parseselector(_SELECTOR) (SEL_ParseEvent)(&_SELECTOR)
 
@@ -59,14 +59,14 @@ class CC_STUDIO_DLL GUIReader : public cocos2d::Ref
 public:
     CC_DEPRECATED_ATTRIBUTE static GUIReader* shareReader() { return GUIReader::getInstance(); };
     CC_DEPRECATED_ATTRIBUTE static void purgeGUIReader() { GUIReader::destroyInstance(); };
-    
+
     static GUIReader* getInstance();
     static void destroyInstance();
-    
+
     cocos2d::ui::Widget* widgetFromJsonFile(const char* fileName);
-    
+
     cocos2d::ui::Widget* widgetFromBinaryFile(const char* fileName);
-    
+
     int getVersionInteger(const char* str);
     /**
      *  @js NA
@@ -76,7 +76,7 @@ public:
      *  @js NA
      */
     cocos2d::Size getFileDesignSize(const char* fileName) const;
-    
+
     void setFilePath(const std::string& strFilePath) { m_strFilePath = strFilePath; }
     const std::string& getFilePath() const { return m_strFilePath; }
 
@@ -92,19 +92,19 @@ public:
 protected:
     GUIReader();
     ~GUIReader();
-    
+
     std::string m_strFilePath;
     cocos2d::ValueMap _fileDesignSizes;
-    
+
     typedef std::map<std::string, SEL_ParseEvent>  ParseCallBackMap;
     ParseCallBackMap _mapParseSelector;
     typedef std::map<std::string, Ref*> ParseObjectMap;
     ParseObjectMap _mapObject;
-    
+
 public:
     ParseCallBackMap* getParseCallBackMap() { return &_mapParseSelector; };
     ParseObjectMap* getParseObjectMap() { return &_mapObject; };
-    
+
 };
 
 class CC_STUDIO_DLL WidgetPropertiesReader : public cocos2d::Ref
@@ -114,12 +114,12 @@ public:
 
     virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& data) = 0;
     virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader, cocos2d::ui::Widget* widget, const rapidjson::Value& options) = 0;
-    
-    
+
+
     virtual void setPropsForAllCustomWidgetFromJsonDictionary(const std::string& classType,
                                                               cocos2d::ui::Widget* widget,
                                                               const rapidjson::Value& customOptions) = 0;
-    
+
     //add binary parsing
     virtual cocos2d::ui::Widget* createWidgetFromBinary(CocoLoader* cocoLoader,stExpCocoNode*	pCocoNode, const char* fileName)=0;
     virtual cocos2d::ui::Widget* widgetFromBinary(CocoLoader* cocoLoader,  stExpCocoNode*	pCocoNode) = 0;
@@ -127,16 +127,16 @@ public:
                                                 cocos2d::ui::Widget* widget,
                                                 CocoLoader* cocoLoader,
                                                 stExpCocoNode*	pCocoNode) = 0;
-    
+
 protected:
     void setAnchorPointForWidget(cocos2d::ui::Widget* widget, const rapidjson::Value&options);
     std::string  getWidgetReaderClassName(const std::string& classname);
     std::string  getWidgetReaderClassName(cocos2d::ui::Widget *widget);
-    
+
     std::string getGUIClassName(const std::string& name);
     cocos2d::ui::Widget *createGUI(const std::string& classname);
     WidgetReaderProtocol* createWidgetReaderProtocol(const std::string& classname);
-    
+
 protected:
     std::string m_strFilePath;
 };
@@ -144,31 +144,31 @@ protected:
 
 class CC_STUDIO_DLL WidgetPropertiesReader0250 : public WidgetPropertiesReader
 {
-    
-    
+
+
 public:
     WidgetPropertiesReader0250(){};
     virtual ~WidgetPropertiesReader0250(){};
-    
+
     virtual cocos2d::ui::Widget* createWidget(const rapidjson::Value& dic, const char* fullPath, const char* fileName) override;
 
     virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic) override;
-    
+
     //added for binary parsing
     virtual cocos2d::ui::Widget* createWidgetFromBinary(CocoLoader* cocoLoader,
                                                         stExpCocoNode* pCocoNode,
                                                         const char* fileName) override;
-    
+
     virtual cocos2d::ui::Widget* widgetFromBinary(CocoLoader* cocoLoader,
                                                   stExpCocoNode* pCocoNode) override;
-    
+
     virtual void setPropsForAllWidgetFromBinary(WidgetReaderProtocol* reader,
                                                 cocos2d::ui::Widget* widget,
                                                 CocoLoader* cocoLoader,
                                                 stExpCocoNode* pCocoNode) override;
 
     virtual void setPropsForWidgetFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
-    
+
     virtual void setColorPropsForWidgetFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForButtonFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForCheckBoxFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
@@ -179,56 +179,56 @@ public:
     virtual void setPropsForLoadingBarFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForSliderFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForTextFieldFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
-    
+
     virtual void setPropsForLayoutFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
     virtual void setPropsForScrollViewFromJsonDictionary(cocos2d::ui::Widget* widget,const rapidjson::Value& options);
-    
+
     virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader, cocos2d::ui::Widget* widget, const rapidjson::Value& options) override;
     virtual void setPropsForAllCustomWidgetFromJsonDictionary(const std::string& classType,
                                                               cocos2d::ui::Widget* widget,
                                                               const rapidjson::Value& customOptions) override;
 };
-   
+
 class CC_STUDIO_DLL WidgetPropertiesReader0300 : public WidgetPropertiesReader
 {
-    
-    
+
+
 public:
     WidgetPropertiesReader0300(){};
     virtual ~WidgetPropertiesReader0300(){};
-    
+
     virtual cocos2d::ui::Widget* createWidget(const rapidjson::Value& dic,
                                               const char* fullPath,
                                               const char* fileName) override;
-    
-    
+
+
     //add bin parse support
     virtual cocos2d::ui::Widget* createWidgetFromBinary(CocoLoader* cocoLoader,
                                                         stExpCocoNode*	pCocoNode,
                                                         const char* fileName)override;
-    
+
     virtual cocos2d::ui::Widget* widgetFromBinary(CocoLoader* cocoLoader,
                                                   stExpCocoNode*	pCocoNode) override;
-    
+
     virtual void setPropsForAllWidgetFromBinary(WidgetReaderProtocol* reader,
                                                 cocos2d::ui::Widget* widget,
                                                 CocoLoader* cocoLoader,
                                                 stExpCocoNode*	pCocoNode) override;
-    
+
     virtual void setPropsForAllCustomWidgetFromBinary(const std::string& classType,
                                                       cocos2d::ui::Widget* widget,
                                                       CocoLoader* cocoLoader,
                                                       stExpCocoNode* pCocoNode);
 
     virtual cocos2d::ui::Widget* widgetFromJsonDictionary(const rapidjson::Value& dic) override;
-    
+
     virtual void setPropsForAllWidgetFromJsonDictionary(WidgetReaderProtocol* reader,
                                                         cocos2d::ui::Widget* widget,
                                                         const rapidjson::Value& options) override;
-    
+
     virtual void setPropsForAllCustomWidgetFromJsonDictionary(const std::string& classType,
                                                               cocos2d::ui::Widget* widget,
-                                                              const rapidjson::Value& customOptions) override;        
+                                                              const rapidjson::Value& customOptions) override;
 };
 
 
@@ -236,3 +236,4 @@ public:
 
 
 #endif /* defined(__CCSGUIReader__) */
+

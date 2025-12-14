@@ -93,7 +93,7 @@ typedef NS_ENUM(NSInteger, PlayerbackState) {
         [self showPlaybackControls:TRUE];
         [self setUserInteractionEnabled:TRUE];
         [self setKeepRatioEnabled:FALSE];
-        
+
         _videoPlayer = (VideoPlayer*)videoPlayer;
         _state = PlayerbackStateUnknown;
     }
@@ -244,7 +244,7 @@ typedef NS_ENUM(NSInteger, PlayerbackState) {
         [self seekTo:0];
         [self.playerController.player pause];
         _state = PlayerbackStopped;
-        
+
         // stop() will be invoked in dealloc, which is invoked by _videoPlayer's destructor,
         // so do't send the message when _videoPlayer is being deleted.
         if (_videoPlayer)
@@ -526,3 +526,4 @@ void VideoPlayer::copySpecialProperties(Widget *widget)
 }
 
 #endif
+

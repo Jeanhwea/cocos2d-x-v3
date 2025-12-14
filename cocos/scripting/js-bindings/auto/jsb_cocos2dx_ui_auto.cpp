@@ -2137,7 +2137,7 @@ static bool js_cocos2dx_ui_Widget_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ProtectedNode_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Widget(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Widget_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Widget_class->name = "Widget";
@@ -2969,7 +2969,7 @@ static bool js_cocos2dx_ui_Layout_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Layout(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Layout_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Layout_class->name = "Layout";
@@ -3939,7 +3939,7 @@ bool js_cocos2dx_ui_Button_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -4022,7 +4022,7 @@ bool js_cocos2dx_ui_Button_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::Button* ret = cocos2d::ui::Button::create();
@@ -4071,7 +4071,7 @@ static bool js_cocos2dx_ui_Button_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Button(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Button_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Button_class->name = "Button";
@@ -4803,7 +4803,7 @@ bool js_cocos2dx_ui_CheckBox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 5) {
             std::string arg0;
@@ -4863,7 +4863,7 @@ bool js_cocos2dx_ui_CheckBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::CheckBox* ret = cocos2d::ui::CheckBox::create();
@@ -4877,7 +4877,7 @@ bool js_cocos2dx_ui_CheckBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -4954,7 +4954,7 @@ static bool js_cocos2dx_ui_CheckBox_ctor(JSContext *cx, uint32_t argc, jsval *vp
 
 extern JSObject *jsb_cocos2d_ui_AbstractCheckButton_prototype;
 
-    
+
 void js_register_cocos2dx_ui_CheckBox(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_CheckBox_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_CheckBox_class->name = "CheckBox";
@@ -5057,7 +5057,7 @@ bool js_cocos2dx_ui_RadioButton_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 5) {
             std::string arg0;
@@ -5117,7 +5117,7 @@ bool js_cocos2dx_ui_RadioButton_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::RadioButton* ret = cocos2d::ui::RadioButton::create();
@@ -5131,7 +5131,7 @@ bool js_cocos2dx_ui_RadioButton_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -5208,7 +5208,7 @@ static bool js_cocos2dx_ui_RadioButton_ctor(JSContext *cx, uint32_t argc, jsval 
 
 extern JSObject *jsb_cocos2d_ui_AbstractCheckButton_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RadioButton(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RadioButton_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RadioButton_class->name = "RadioButton";
@@ -5615,7 +5615,7 @@ static bool js_cocos2dx_ui_RadioButtonGroup_ctor(JSContext *cx, uint32_t argc, j
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RadioButtonGroup(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RadioButtonGroup_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RadioButtonGroup_class->name = "RadioButtonGroup";
@@ -5897,7 +5897,7 @@ bool js_cocos2dx_ui_ImageView_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -5933,7 +5933,7 @@ bool js_cocos2dx_ui_ImageView_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::ImageView* ret = cocos2d::ui::ImageView::create();
@@ -5982,7 +5982,7 @@ static bool js_cocos2dx_ui_ImageView_ctor(JSContext *cx, uint32_t argc, jsval *v
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_ImageView(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_ImageView_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_ImageView_class->name = "ImageView";
@@ -6751,7 +6751,7 @@ bool js_cocos2dx_ui_Text_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -6774,7 +6774,7 @@ bool js_cocos2dx_ui_Text_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::Text* ret = cocos2d::ui::Text::create();
@@ -6823,7 +6823,7 @@ static bool js_cocos2dx_ui_Text_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Text(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Text_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Text_class->name = "Text";
@@ -7030,7 +7030,7 @@ bool js_cocos2dx_ui_TextAtlas_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 5) {
             std::string arg0;
@@ -7059,7 +7059,7 @@ bool js_cocos2dx_ui_TextAtlas_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::TextAtlas* ret = cocos2d::ui::TextAtlas::create();
@@ -7108,7 +7108,7 @@ static bool js_cocos2dx_ui_TextAtlas_ctor(JSContext *cx, uint32_t argc, jsval *v
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_TextAtlas(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_TextAtlas_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_TextAtlas_class->name = "TextAtlas";
@@ -7369,7 +7369,7 @@ bool js_cocos2dx_ui_LoadingBar_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -7405,7 +7405,7 @@ bool js_cocos2dx_ui_LoadingBar_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::LoadingBar* ret = cocos2d::ui::LoadingBar::create();
@@ -7419,7 +7419,7 @@ bool js_cocos2dx_ui_LoadingBar_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -7496,7 +7496,7 @@ static bool js_cocos2dx_ui_LoadingBar_ctor(JSContext *cx, uint32_t argc, jsval *
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_LoadingBar(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_LoadingBar_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_LoadingBar_class->name = "LoadingBar";
@@ -8799,7 +8799,7 @@ static bool js_cocos2dx_ui_ScrollView_ctor(JSContext *cx, uint32_t argc, jsval *
 
 extern JSObject *jsb_cocos2d_ui_Layout_prototype;
 
-    
+
 void js_register_cocos2dx_ui_ScrollView(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_ScrollView_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_ScrollView_class->name = "ScrollView";
@@ -9898,7 +9898,7 @@ static bool js_cocos2dx_ui_ListView_ctor(JSContext *cx, uint32_t argc, jsval *vp
 
 extern JSObject *jsb_cocos2d_ui_ScrollView_prototype;
 
-    
+
 void js_register_cocos2dx_ui_ListView(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_ListView_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_ListView_class->name = "ListView";
@@ -10690,7 +10690,7 @@ bool js_cocos2dx_ui_Slider_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -10732,7 +10732,7 @@ bool js_cocos2dx_ui_Slider_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::Slider* ret = cocos2d::ui::Slider::create();
@@ -10781,7 +10781,7 @@ static bool js_cocos2dx_ui_Slider_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Slider(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Slider_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Slider_class->name = "Slider";
@@ -11372,7 +11372,7 @@ bool js_cocos2dx_ui_UICCTextField_create(JSContext *cx, uint32_t argc, jsval *vp
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -11395,7 +11395,7 @@ bool js_cocos2dx_ui_UICCTextField_create(JSContext *cx, uint32_t argc, jsval *vp
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::UICCTextField* ret = cocos2d::ui::UICCTextField::create();
@@ -12414,7 +12414,7 @@ bool js_cocos2dx_ui_TextField_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -12437,7 +12437,7 @@ bool js_cocos2dx_ui_TextField_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::TextField* ret = cocos2d::ui::TextField::create();
@@ -12486,7 +12486,7 @@ static bool js_cocos2dx_ui_TextField_ctor(JSContext *cx, uint32_t argc, jsval *v
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_TextField(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_TextField_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_TextField_class->name = "TextField";
@@ -12696,7 +12696,7 @@ bool js_cocos2dx_ui_TextBMFont_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -12716,7 +12716,7 @@ bool js_cocos2dx_ui_TextBMFont_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::TextBMFont* ret = cocos2d::ui::TextBMFont::create();
@@ -12765,7 +12765,7 @@ static bool js_cocos2dx_ui_TextBMFont_ctor(JSContext *cx, uint32_t argc, jsval *
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_TextBMFont(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_TextBMFont_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_TextBMFont_class->name = "TextBMFont";
@@ -13546,7 +13546,7 @@ static bool js_cocos2dx_ui_PageView_ctor(JSContext *cx, uint32_t argc, jsval *vp
 
 extern JSObject *jsb_cocos2d_ui_ListView_prototype;
 
-    
+
 void js_register_cocos2dx_ui_PageView(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_PageView_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_PageView_class->name = "PageView";
@@ -13990,7 +13990,7 @@ static bool js_cocos2dx_ui_RichElement_ctor(JSContext *cx, uint32_t argc, jsval 
 }
 
 
-    
+
 void js_register_cocos2dx_ui_RichElement(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichElement_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichElement_class->name = "RichElement";
@@ -14563,7 +14563,7 @@ static bool js_cocos2dx_ui_RichElementText_ctor(JSContext *cx, uint32_t argc, js
 
 extern JSObject *jsb_cocos2d_ui_RichElement_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RichElementText(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichElementText_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichElementText_class->name = "RichElementText";
@@ -14838,7 +14838,7 @@ static bool js_cocos2dx_ui_RichElementImage_ctor(JSContext *cx, uint32_t argc, j
 
 extern JSObject *jsb_cocos2d_ui_RichElement_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RichElementImage(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichElementImage_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichElementImage_class->name = "RichElementImage";
@@ -14994,7 +14994,7 @@ static bool js_cocos2dx_ui_RichElementCustomNode_ctor(JSContext *cx, uint32_t ar
 
 extern JSObject *jsb_cocos2d_ui_RichElement_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RichElementCustomNode(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichElementCustomNode_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichElementCustomNode_class->name = "RichElementCustomNode";
@@ -15101,7 +15101,7 @@ static bool js_cocos2dx_ui_RichElementNewLine_ctor(JSContext *cx, uint32_t argc,
 
 extern JSObject *jsb_cocos2d_ui_RichElement_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RichElementNewLine(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichElementNewLine_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichElementNewLine_class->name = "RichElementNewLine";
@@ -16285,7 +16285,7 @@ static bool js_cocos2dx_ui_RichText_ctor(JSContext *cx, uint32_t argc, jsval *vp
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RichText(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RichText_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RichText_class->name = "RichText";
@@ -16409,7 +16409,7 @@ bool js_cocos2dx_ui_HBox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             cocos2d::Size arg0;
@@ -16426,7 +16426,7 @@ bool js_cocos2dx_ui_HBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::HBox* ret = cocos2d::ui::HBox::create();
@@ -16475,7 +16475,7 @@ static bool js_cocos2dx_ui_HBox_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Layout_prototype;
 
-    
+
 void js_register_cocos2dx_ui_HBox(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_HBox_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_HBox_class->name = "HBox";
@@ -16553,7 +16553,7 @@ bool js_cocos2dx_ui_VBox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             cocos2d::Size arg0;
@@ -16570,7 +16570,7 @@ bool js_cocos2dx_ui_VBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::VBox* ret = cocos2d::ui::VBox::create();
@@ -16619,7 +16619,7 @@ static bool js_cocos2dx_ui_VBox_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Layout_prototype;
 
-    
+
 void js_register_cocos2dx_ui_VBox(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_VBox_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_VBox_class->name = "VBox";
@@ -16697,7 +16697,7 @@ bool js_cocos2dx_ui_RelativeBox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             cocos2d::Size arg0;
@@ -16714,7 +16714,7 @@ bool js_cocos2dx_ui_RelativeBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::RelativeBox* ret = cocos2d::ui::RelativeBox::create();
@@ -16763,7 +16763,7 @@ static bool js_cocos2dx_ui_RelativeBox_ctor(JSContext *cx, uint32_t argc, jsval 
 
 extern JSObject *jsb_cocos2d_ui_Layout_prototype;
 
-    
+
 void js_register_cocos2dx_ui_RelativeBox(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_RelativeBox_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_RelativeBox_class->name = "RelativeBox";
@@ -17589,7 +17589,7 @@ bool js_cocos2dx_ui_Scale9Sprite_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -17612,7 +17612,7 @@ bool js_cocos2dx_ui_Scale9Sprite_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::Scale9Sprite* ret = cocos2d::ui::Scale9Sprite::create();
@@ -17626,7 +17626,7 @@ bool js_cocos2dx_ui_Scale9Sprite_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Rect arg0;
@@ -17646,7 +17646,7 @@ bool js_cocos2dx_ui_Scale9Sprite_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -17666,7 +17666,7 @@ bool js_cocos2dx_ui_Scale9Sprite_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -17690,7 +17690,7 @@ bool js_cocos2dx_ui_Scale9Sprite_createWithSpriteFrameName(JSContext *cx, uint32
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -17710,7 +17710,7 @@ bool js_cocos2dx_ui_Scale9Sprite_createWithSpriteFrameName(JSContext *cx, uint32
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -17734,7 +17734,7 @@ bool js_cocos2dx_ui_Scale9Sprite_createWithSpriteFrame(JSContext *cx, uint32_t a
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             cocos2d::SpriteFrame* arg0 = nullptr;
@@ -17762,7 +17762,7 @@ bool js_cocos2dx_ui_Scale9Sprite_createWithSpriteFrame(JSContext *cx, uint32_t a
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 1) {
             cocos2d::SpriteFrame* arg0 = nullptr;
@@ -17822,7 +17822,7 @@ static bool js_cocos2dx_ui_Scale9Sprite_ctor(JSContext *cx, uint32_t argc, jsval
 
 extern JSObject *jsb_cocos2d_Sprite_prototype;
 
-    
+
 void js_register_cocos2dx_ui_Scale9Sprite(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_Scale9Sprite_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_Scale9Sprite_class->name = "Scale9Sprite";
@@ -18957,7 +18957,7 @@ bool js_cocos2dx_ui_EditBox_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             cocos2d::Size arg0;
@@ -18980,7 +18980,7 @@ bool js_cocos2dx_ui_EditBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Size arg0;
@@ -19095,7 +19095,7 @@ bool js_cocos2dx_ui_EditBox_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             cocos2d::Size arg0;
@@ -19225,7 +19225,7 @@ static bool js_cocos2dx_ui_EditBox_ctor(JSContext *cx, uint32_t argc, jsval *vp)
 
 extern JSObject *jsb_cocos2d_ui_Widget_prototype;
 
-    
+
 void js_register_cocos2dx_ui_EditBox(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_EditBox_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_EditBox_class->name = "EditBox";
@@ -20326,7 +20326,7 @@ static bool js_cocos2dx_ui_LayoutComponent_ctor(JSContext *cx, uint32_t argc, js
 
 extern JSObject *jsb_cocos2d_Component_prototype;
 
-    
+
 void js_register_cocos2dx_ui_LayoutComponent(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_LayoutComponent_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_LayoutComponent_class->name = "LayoutComponent";
@@ -20623,7 +20623,7 @@ bool js_cocos2dx_ui_TabHeader_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 3) {
             std::string arg0;
@@ -20671,7 +20671,7 @@ bool js_cocos2dx_ui_TabHeader_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocos2d::ui::TabHeader* ret = cocos2d::ui::TabHeader::create();
@@ -20685,7 +20685,7 @@ bool js_cocos2dx_ui_TabHeader_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 6) {
             std::string arg0;
@@ -21617,7 +21617,7 @@ static bool js_cocos2dx_ui_ScrollViewBar_ctor(JSContext *cx, uint32_t argc, jsva
 
 extern JSObject *jsb_cocos2d_ProtectedNode_prototype;
 
-    
+
 void js_register_cocos2dx_ui_ScrollViewBar(JSContext *cx, JS::HandleObject global) {
     jsb_cocos2d_ui_ScrollViewBar_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocos2d_ui_ScrollViewBar_class->name = "ScrollViewBar";

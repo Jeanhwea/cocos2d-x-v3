@@ -4,19 +4,19 @@
  Copyright (c) 2013-2015 zilongshanren
  Copyright (c) 2015 Mazyad Alabduljaleel
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,7 +43,7 @@
 + (void)initialize
 {
     [super initialize];
-    
+
     LoadUITextViewCCUITextInputCategory();
     LoadUITextFieldCCUITextInputCategory();
 }
@@ -54,16 +54,16 @@
 {
     self = [super init];
     if (self) {
-        
+
         _editState = NO;
         self.frameRect = frameRect;
         self.editBox = editBox;
         self.dataInputMode = cocos2d::ui::EditBox::InputFlag::LOWERCASE_ALL_CHARACTERS;
         self.keyboardReturnType = cocos2d::ui::EditBox::KeyboardReturnType::DEFAULT;
-        
+
         [self createMultiLineTextField];
     }
-    
+
     return self;
 }
 
@@ -71,7 +71,7 @@
 {
     // custom setter cleanup
     self.textInput = nil;
-    
+
     [super dealloc];
 }
 
@@ -82,13 +82,13 @@
     if (_textInput == textInput) {
         return;
     }
-    
+
     // common init
     textInput.backgroundColor = [UIColor clearColor];
     textInput.hidden = true;
     textInput.returnKeyType = UIReturnKeyDefault;
     [textInput ccui_setDelegate:self];
-    
+
     // Migrate properties
     textInput.ccui_textColor = _textInput.ccui_textColor ?: [UIColor whiteColor];
     textInput.ccui_text = _textInput.ccui_text ?: @"";
@@ -96,13 +96,13 @@
     textInput.ccui_font = _textInput.ccui_font ?: [UIFont systemFontOfSize:self.frameRect.size.height*2/3];
     textInput.ccui_placeholderFont = _textInput.ccui_placeholderFont ?: textInput.ccui_font;
     textInput.ccui_placeholderTextColor = _textInput.ccui_placeholderTextColor ?: [UIColor lightGrayColor];
-    
+
     [_textInput resignFirstResponder];
     [_textInput removeFromSuperview];
     [_textInput release];
-    
+
     _textInput = [textInput retain];
-    
+
     [self setInputFlag:self.dataInputMode];
     [self setReturnType:self.keyboardReturnType];
 }
@@ -114,9 +114,9 @@
     CCUISingleLineTextField *textField = [[[CCUISingleLineTextField alloc] initWithFrame:self.frameRect] autorelease];
     textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
     textField.borderStyle = UITextBorderStyleNone;
-    
+
     [textField addTarget:self action:@selector(textChanged:) forControlEvents:UIControlEventEditingChanged];
-    
+
     self.textInput = textField;
 }
 
@@ -161,7 +161,7 @@
             [self createSingleLineTextField];
         }
     }
-    
+
     switch (inputMode)
     {
         case cocos2d::ui::EditBox::InputMode::EMAIL_ADDRESS:
@@ -202,27 +202,27 @@
             //textView can't be used for input password
             self.textInput.ccui_secureTextEntry = YES;
             break;
-            
+
         case cocos2d::ui::EditBox::InputFlag::INITIAL_CAPS_WORD:
             self.textInput.autocapitalizationType = UITextAutocapitalizationTypeWords;
             break;
-            
+
         case cocos2d::ui::EditBox::InputFlag::INITIAL_CAPS_SENTENCE:
             self.textInput.autocapitalizationType = UITextAutocapitalizationTypeSentences;
             break;
-            
+
         case cocos2d::ui::EditBox::InputFlag::INITIAL_CAPS_ALL_CHARACTERS:
             self.textInput.autocapitalizationType = UITextAutocapitalizationTypeAllCharacters;
             break;
-            
+
         case cocos2d::ui::EditBox::InputFlag::SENSITIVE:
             self.textInput.autocorrectionType = UITextAutocorrectionTypeNo;
             break;
-            
+
         case cocos2d::ui::EditBox::InputFlag::LOWERCASE_ALL_CHARACTERS:
             self.textInput.autocapitalizationType = UITextAutocapitalizationTypeNone;
             break;
-            
+
         default:
             break;
     }
@@ -235,23 +235,23 @@
         case cocos2d::ui::EditBox::KeyboardReturnType::DEFAULT:
             self.textInput.returnKeyType = UIReturnKeyDefault;
             break;
-            
+
         case cocos2d::ui::EditBox::KeyboardReturnType::DONE:
             self.textInput.returnKeyType = UIReturnKeyDone;
             break;
-            
+
         case cocos2d::ui::EditBox::KeyboardReturnType::SEND:
             self.textInput.returnKeyType = UIReturnKeySend;
             break;
-            
+
         case cocos2d::ui::EditBox::KeyboardReturnType::SEARCH:
             self.textInput.returnKeyType = UIReturnKeySearch;
             break;
-            
+
         case cocos2d::ui::EditBox::KeyboardReturnType::GO:
             self.textInput.returnKeyType = UIReturnKeyGo;
             break;
-            
+
         case cocos2d::ui::EditBox::KeyboardReturnType::NEXT:
             self.textInput.returnKeyType = UIReturnKeyNext;
             break;
@@ -311,7 +311,7 @@
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
     CCEAGLView *eaglview = (CCEAGLView *)view->getEAGLView();
-    
+
     [eaglview doAnimationWhenKeyboardMoveWithDuration:duration distance:distance];
 }
 
@@ -320,7 +320,7 @@
     CGRect frame = self.textInput.frame;
     frame.origin = rect.origin;
     frame.size = rect.size;
-    
+
     self.textInput.frame = frame;
 }
 
@@ -328,7 +328,7 @@
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
     CCEAGLView *eaglview = (CCEAGLView *)view->getEAGLView();
-    
+
     [eaglview addSubview:self.textInput];
     [self.textInput becomeFirstResponder];
 }
@@ -352,7 +352,7 @@
 {
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
     CCEAGLView *eaglview = (CCEAGLView *)view->getEAGLView();
-    
+
     [eaglview doAnimationWhenAnotherEditBeClicked];
 }
 
@@ -363,14 +363,14 @@
     CCLOG("textFieldShouldBeginEditing...");
     _editState = YES;
     _returnPressed = NO;
-    
+
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
     CCEAGLView *eaglview = (CCEAGLView *) view->getEAGLView();
-    
+
     if ([eaglview isKeyboardShown]) {
         [self performSelector:@selector(animationSelector) withObject:nil afterDelay:0.0f];
     }
-    
+
     getEditBoxImplIOS()->editBoxEditingDidBegin();
     return YES;
 }
@@ -383,7 +383,7 @@
 
     const char* inputText = [textView.text UTF8String];
     getEditBoxImplIOS()->editBoxEditingDidEnd(inputText, [self getEndAction]);
-    
+
     return YES;
 }
 
@@ -394,24 +394,24 @@
     {
         [self closeKeyboard];
     }
-    
+
     int maxLength = getEditBoxImplIOS()->getMaxLength();
     if (maxLength < 0)
     {
         return YES;
     }
-    
+
     // Prevent crashing undo bug http://stackoverflow.com/questions/433337/set-the-maximum-character-length-of-a-uitextfield
     if (range.length + range.location > textView.text.length) {
         return NO;
     }
-    
+
     NSUInteger oldLength = textView.text.length;
     NSUInteger replacementLength = text.length;
     NSUInteger rangeLength = range.length;
-    
+
     NSUInteger newLength = oldLength - rangeLength + replacementLength;
-    
+
     return newLength <= maxLength;
 }
 
@@ -422,7 +422,7 @@
         if (textView.text.length > maxLength) {
             textView.text = [textView.text substringToIndex:maxLength];
         }
-        
+
         const char* inputText = [textView.text UTF8String];
         getEditBoxImplIOS()->editBoxEditingChanged(inputText);
     }
@@ -440,7 +440,7 @@
         if (textField.text.length > maxLength) {
             textField.text = [textField.text substringToIndex:maxLength];
         }
-        
+
         const char* inputText = [textField.text UTF8String];
         getEditBoxImplIOS()->editBoxEditingChanged(inputText);
     }
@@ -451,14 +451,14 @@
     CCLOG("textFieldShouldBeginEditing...");
     _editState = YES;
     _returnPressed = NO;
-    
+
     auto view = cocos2d::Director::getInstance()->getOpenGLView();
     CCEAGLView *eaglview = (CCEAGLView *)view->getEAGLView();
-    
+
     if ([eaglview isKeyboardShown]) {
         [self performSelector:@selector(animationSelector) withObject:nil afterDelay:0.0f];
     }
-    
+
     getEditBoxImplIOS()->editBoxEditingDidBegin();
     return YES;
 }
@@ -470,7 +470,7 @@
     const char* inputText = [sender.text UTF8String];
 
     getEditBoxImplIOS()->editBoxEditingDidEnd(inputText, [self getEndAction]);
-    
+
     return YES;
 }
 
@@ -487,19 +487,20 @@
     if (maxLength < 0) {
         return YES;
     }
-    
+
     // Prevent crashing undo bug http://stackoverflow.com/questions/433337/set-the-maximum-character-length-of-a-uitextfield
     if (range.length + range.location > textField.text.length) {
         return NO;
     }
-    
+
     NSUInteger oldLength = textField.text.length;
     NSUInteger replacementLength = string.length;
     NSUInteger rangeLength = range.length;
-    
+
     NSUInteger newLength = oldLength - rangeLength + replacementLength;
-    
+
     return newLength <= maxLength;
 }
 
 @end
+

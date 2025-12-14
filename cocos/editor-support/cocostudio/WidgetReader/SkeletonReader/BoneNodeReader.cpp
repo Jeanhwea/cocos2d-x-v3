@@ -160,3 +160,4 @@ cocos2d::Node*  BoneNodeReader::createNodeWithFlatBuffers(const flatbuffers::Tab
 
     return bone;
 }
+

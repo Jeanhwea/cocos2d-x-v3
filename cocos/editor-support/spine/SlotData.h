@@ -88,3 +88,4 @@ typedef spSlotData SlotData;
 #endif
 
 #endif /* SPINE_SLOTDATA_H_ */
+

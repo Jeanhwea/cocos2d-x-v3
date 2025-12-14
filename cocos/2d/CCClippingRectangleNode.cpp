@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -40,7 +40,7 @@ ClippingRectangleNode* ClippingRectangleNode::create(const Rect& clippingRegion)
     } else {
         CC_SAFE_DELETE(node);
     }
-    
+
     return node;
 }
 
@@ -52,7 +52,7 @@ ClippingRectangleNode* ClippingRectangleNode::create()
     } else {
         CC_SAFE_DELETE(node);
     }
-    
+
     return node;
 }
 
@@ -74,7 +74,7 @@ void ClippingRectangleNode::onBeforeVisitScissor()
             scaleY *= parent->getScaleY();
             parent = parent->getParent();
         }
-        
+
         const Point pos = convertToWorldSpace(Point(_clippingRegion.origin.x, _clippingRegion.origin.y));
         GLView* glView = Director::getInstance()->getOpenGLView();
         glView->setScissorInPoints(pos.x,
@@ -97,12 +97,13 @@ void ClippingRectangleNode::visit(Renderer *renderer, const Mat4 &parentTransfor
     _beforeVisitCmdScissor.init(_globalZOrder);
     _beforeVisitCmdScissor.func = CC_CALLBACK_0(ClippingRectangleNode::onBeforeVisitScissor, this);
     renderer->addCommand(&_beforeVisitCmdScissor);
-    
+
     Node::visit(renderer, parentTransform, parentFlags);
-    
+
     _afterVisitCmdScissor.init(_globalZOrder);
     _afterVisitCmdScissor.func = CC_CALLBACK_0(ClippingRectangleNode::onAfterVisitScissor, this);
     renderer->addCommand(&_afterVisitCmdScissor);
 }
 
 NS_CC_END
+

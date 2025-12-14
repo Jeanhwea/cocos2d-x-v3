@@ -68,7 +68,7 @@ public:
 
         return table;
     }
-   
+
     virtual void onTouchEnded(Touch *touch, Event *event) override
     {
         if (!this->isVisible())
@@ -396,17 +396,17 @@ bool TestCase::init()
         _titleLabel = Label::createWithTTF(ttfConfig, title());
         addChild(_titleLabel, 9999);
         _titleLabel->setPosition(VisibleRect::center().x, VisibleRect::top().y - 30);
-        
+
         ttfConfig.fontSize = 16;
         _subtitleLabel = Label::createWithTTF(ttfConfig, subtitle());
         _subtitleLabel->setMaxLineWidth(VisibleRect::getVisibleRect().size.width);
         addChild(_subtitleLabel, 9999);
         _subtitleLabel->setPosition(VisibleRect::center().x, VisibleRect::top().y - 60);
-        
+
         _priorTestItem = MenuItemImage::create(s_pathB1, s_pathB2, CC_CALLBACK_1(TestCase::priorTestCallback, this));
         _restartTestItem = MenuItemImage::create(s_pathR1, s_pathR2, CC_CALLBACK_1(TestCase::restartTestCallback, this));
         _nextTestItem = MenuItemImage::create(s_pathF1, s_pathF2, CC_CALLBACK_1(TestCase::nextTestCallback, this));
-        
+
         ttfConfig.fontSize = 20;
         auto backLabel = Label::createWithTTF(ttfConfig, "Back");
         auto backItem = MenuItemLabel::create(backLabel, CC_CALLBACK_1(TestCase::onBackCallback, this));
@@ -485,3 +485,4 @@ void TestCase::onBackCallback(Ref* sender)
         _testSuite->backsUpOneLevel();
     }
 }
+

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -110,7 +110,7 @@ void KeyboardNotificationLayer::keyboardWillShow(IMEKeyboardNotificationInfo& in
 bool KeyboardNotificationLayer::onTouchBegan(Touch  *touch, Event  *event)
 {
     CCLOG("++++++++++++++++++++++++++++++++++++++++++++");
-    _beginPos = touch->getLocation();    
+    _beginPos = touch->getLocation();
     return true;
 }
 
@@ -120,8 +120,8 @@ void KeyboardNotificationLayer::onTouchEnded(Touch  *touch, Event  *event)
     {
         return;
     }
-    
-    auto endPos = touch->getLocation();    
+
+    auto endPos = touch->getLocation();
 
     float delta = 5.0f;
     if (std::abs(endPos.x - _beginPos.x) > delta
@@ -183,14 +183,14 @@ void TextFieldTTFDefaultTest::onEnter()
         FONT_SIZE);
     addChild(pTextField);
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)    
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // on android, TextFieldTTF cannot auto adjust its position when soft-keyboard pop up
     // so we had to set a higher position to make it visible
     pTextField->setPosition(Vec2(s.width / 2, s.height/2 + 50));
 #else
     pTextField->setPosition(Vec2(s.width / 2, s.height / 2));
 #endif
-    
+
     _trackNode = pTextField;
 }
 
@@ -244,8 +244,8 @@ void TextFieldTTFActionTest::onEnter()
     addChild(_textField);
 
     _textField->setDelegate(this);
-    
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)    
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // on android, TextFieldTTF cannot auto adjust its position when soft-keyboard pop up
     // so we had to set a higher position
     _textField->setPosition(Vec2(s.width / 2, s.height/2 + 50));
@@ -291,7 +291,7 @@ bool TextFieldTTFActionTest::onTextFieldInsertText(TextFieldTTF * sender, const 
     {
         return false;
     }
-    
+
     // if the textfield's char count more than _charLimit, doesn't insert text anymore.
     if (sender->getCharCount() >= _charLimit)
     {
@@ -311,7 +311,7 @@ bool TextFieldTTFActionTest::onTextFieldInsertText(TextFieldTTF * sender, const 
         endPos.x += sender->getContentSize().width / 2;
     }
     auto inputTextSize = label->getContentSize();
-    Vec2 beginPos(endPos.x, Director::getInstance()->getWinSize().height - inputTextSize.height * 2); 
+    Vec2 beginPos(endPos.x, Director::getInstance()->getWinSize().height - inputTextSize.height * 2);
 
     float duration = 0.5;
     label->setPosition(beginPos);
@@ -340,13 +340,13 @@ bool TextFieldTTFActionTest::onTextFieldDeleteBackward(TextFieldTTF * sender, co
     auto textfieldSize = sender->getContentSize();
     auto labelSize = label->getContentSize();
     beginPos.x += (textfieldSize.width - labelSize.width) / 2.0f;
-    
+
     auto winSize = Director::getInstance()->getWinSize();
     Vec2 endPos(- winSize.width / 4.0f, winSize.height * (0.5 + (float)rand() / (2.0f * RAND_MAX)));
 
     float duration = 1;
     float rotateDuration = 0.2f;
-    int repeatTime = 5; 
+    int repeatTime = 5;
     label->setPosition(beginPos);
 
     auto seq = Sequence::create(
@@ -386,15 +386,15 @@ std::string TextFieldTTFSecureTextEntryTest::subtitle() const
 void TextFieldTTFSecureTextEntryTest::onEnter()
 {
     KeyboardNotificationLayer::onEnter();
-    
+
     // add TextFieldTTF
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto pTextField = TextFieldTTF::textFieldWithPlaceHolder("<click here for input>",
                                                              FONT_NAME,
                                                              FONT_SIZE);
     addChild(pTextField);
-    
+
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
     // on android, TextFieldTTF cannot auto adjust its position when soft-keyboard pop up
     // so we had to set a higher position to make it visible
@@ -403,7 +403,7 @@ void TextFieldTTFSecureTextEntryTest::onEnter()
     pTextField->setPosition(Vec2(s.width / 2, s.height / 2));
 #endif
     pTextField->setSecureTextEntry(true);
-    
+
     _trackNode = pTextField;
 }
 
@@ -458,3 +458,4 @@ void TextFieldTTSetCursorFromPoint::onEnter()
 
     _trackNode = pTextField;
 }
+

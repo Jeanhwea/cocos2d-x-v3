@@ -55,7 +55,7 @@ public:
      * @js NA
      */
     static ParticleFire* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -92,7 +92,7 @@ public:
      * @js NA
      */
     static ParticleFireworks* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -130,7 +130,7 @@ public:
      * @js NA
      */
     static ParticleSun* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -168,7 +168,7 @@ public:
      * @js NA
      */
     static ParticleGalaxy* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -206,7 +206,7 @@ public:
      * @js NA
      */
     static ParticleFlower* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -243,7 +243,7 @@ public:
      * @js NA
      */
     static ParticleMeteor* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -280,7 +280,7 @@ public:
      * @js NA
      */
     static ParticleSpiral* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -318,7 +318,7 @@ public:
      * @js NA
      */
     static ParticleExplosion* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -355,7 +355,7 @@ public:
      * @js NA
      */
     static ParticleSmoke* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -392,7 +392,7 @@ public:
      * @js NA
      */
     static ParticleSnow* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -429,7 +429,7 @@ public:
      * @js NA
      */
     static ParticleRain* createWithTotalParticles(int numberOfParticles);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -454,3 +454,4 @@ private:
 NS_CC_END
 
 #endif //__CCPARTICLE_EXAMPLE_H__
+

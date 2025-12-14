@@ -83,3 +83,4 @@ float Distortion::distortInverse(float radius)
 }
 
 NS_CC_END
+

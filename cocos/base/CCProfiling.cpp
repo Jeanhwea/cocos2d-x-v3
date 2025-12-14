@@ -114,7 +114,7 @@ bool ProfilingTimer::initWithName(const char* timerName)
 
 ProfilingTimer::~ProfilingTimer()
 {
-    
+
 }
 
 std::string ProfilingTimer::getDescription() const

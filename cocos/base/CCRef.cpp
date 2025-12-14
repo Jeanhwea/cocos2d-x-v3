@@ -55,7 +55,7 @@ Ref::Ref()
     static unsigned int uObjectCount = 0;
     _ID = ++uObjectCount;
 #endif
-    
+
 #if CC_REF_LEAK_DETECTION
     trackRef(this);
 #endif
@@ -214,3 +214,4 @@ static void untrackRef(Ref* ref)
 
 
 NS_CC_END
+

@@ -169,10 +169,10 @@ Application* Application::sharedApplication()
 LanguageType Application::getCurrentLanguage()
 {
     LanguageType ret = LanguageType::ENGLISH;
-    
+
     LCID localeID = GetUserDefaultLCID();
     unsigned short primaryLanguageID = localeID & 0xFF;
-    
+
     switch (primaryLanguageID)
     {
         case LANG_CHINESE:
@@ -236,7 +236,7 @@ LanguageType Application::getCurrentLanguage()
             ret = LanguageType::BELARUSIAN;
             break;
     }
-    
+
     return ret;
 }
 
@@ -264,11 +264,11 @@ std::string Application::getVersion()
     UINT   size = 0;
     LPBYTE lpBuffer = NULL;
     DWORD  verSize = GetFileVersionInfoSize(szVersionFile, &verHandle);
-    
+
     if (verSize != NULL)
     {
         LPSTR verData = new char[verSize];
-        
+
         if (GetFileVersionInfo(szVersionFile, verHandle, verSize, verData))
         {
             if (VerQueryValue(verData, L"\\", (VOID FAR* FAR*)&lpBuffer, &size))
@@ -278,7 +278,7 @@ std::string Application::getVersion()
                     VS_FIXEDFILEINFO *verInfo = (VS_FIXEDFILEINFO *)lpBuffer;
                     if (verInfo->dwSignature == 0xfeef04bd)
                     {
-                        
+
                         // Doesn't matter if you are on 32 bit or 64 bit,
                         // DWORD is always 32 bits, so first two revision numbers
                         // come from dwFileVersionMS, last two come from dwFileVersionLS
@@ -370,3 +370,4 @@ static void PVRFrameEnableControlWindow(bool bEnable)
 }
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32
+

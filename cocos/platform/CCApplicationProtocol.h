@@ -118,7 +118,7 @@ public:
     * @lua NA
     */
     virtual LanguageType getCurrentLanguage() = 0;
-    
+
     /**
      @brief Get current language iso 639-1 code.
      @return Current language iso 639-1 code.
@@ -126,21 +126,21 @@ public:
      * @lua NA
      */
     virtual const char * getCurrentLanguageCode() = 0;
-    
+
     /**
      @brief Get target platform.
      * @js NA
      * @lua NA
      */
     virtual Platform getTargetPlatform() = 0;
-    
+
     /**
      @brief Get application version.
      * @js NA
      * @lua NA
      */
     virtual std::string getVersion() = 0;
-    
+
     /**
      @brief Open url in default browser.
      @param String with url to open.
@@ -157,3 +157,4 @@ public:
 NS_CC_END
 
 #endif    // __CC_APPLICATION_PROTOCOL_H__
+

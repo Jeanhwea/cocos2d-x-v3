@@ -189,7 +189,7 @@ public:
      */
     CardinalSplineTo();
 
-    /** 
+    /**
      * Initializes the action with a duration and an array of points.
      *
      * @param duration In seconds.
@@ -222,7 +222,7 @@ public:
     virtual CardinalSplineTo *clone() const override;
     virtual CardinalSplineTo* reverse() const override;
     virtual void startWithTarget(Node *target) override;
-    
+
     /**
      * @param time In seconds.
      */
@@ -291,7 +291,7 @@ public:
      */
     static CatmullRomTo* create(float dt, PointArray* points);
 
-    /** 
+    /**
      * Initializes the action with a duration and an array of points.
      *
      * @param dt In seconds.
@@ -346,3 +346,4 @@ extern CC_DLL Vec2 ccCardinalSplineAt(const Vec2 &p0, const Vec2 &p1, const Vec2
 NS_CC_END
 
 #endif // __CCACTION_CATMULLROM_H__
+

@@ -49,7 +49,7 @@ SpriteFrame* SpriteFrame::createWithTexture(Texture2D *texture, const Rect& rect
     SpriteFrame *spriteFrame = new (std::nothrow) SpriteFrame();
     spriteFrame->initWithTexture(texture, rect);
     spriteFrame->autorelease();
-    
+
     return spriteFrame;
 }
 
@@ -143,7 +143,7 @@ SpriteFrame::~SpriteFrame()
 
 SpriteFrame* SpriteFrame::clone() const
 {
-	// no copy constructor	
+	// no copy constructor
     SpriteFrame *copy = new (std::nothrow) SpriteFrame();
     copy->initWithTexture(_texture, _rectInPixels, _rotated, _offsetInPixels, _originalSizeInPixels);
     copy->setPolygonInfo(_polygonInfo);
@@ -248,3 +248,4 @@ bool SpriteFrame::hasPolygonInfo() const
 }
 
 NS_CC_END
+

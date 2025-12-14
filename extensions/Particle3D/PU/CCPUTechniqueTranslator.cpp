@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,18 +31,18 @@ NS_CC_BEGIN
 
 PUTechniqueTranslator::PUTechniqueTranslator()//:mTechnique(0)
 {
-    
+
 }
 PUTechniqueTranslator::~PUTechniqueTranslator()
 {
-    
+
 }
 
 void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode *node)
 {
     PUObjectAbstractNode* obj = reinterpret_cast<PUObjectAbstractNode*>(node);
     PUObjectAbstractNode* parent = obj->parent ? reinterpret_cast<PUObjectAbstractNode*>(obj->parent) : 0;
-    
+
     // Create the technique
     _system = PUParticleSystem3D::create();
     //mTechnique = ParticleSystemManager::getSingletonPtr()->createTechnique();
@@ -51,7 +51,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
     //    compiler->addError(ScriptCompiler::CE_INVALIDPARAMETERS, obj->file, obj->line);
     //    return;
     //}
-    
+
     if (parent && parent->context)
     {
         PUParticleSystem3D* system = static_cast<PUParticleSystem3D*>(parent->context);
@@ -63,14 +63,14 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
     //    mTechnique->setAliasName(parent->name); // PU 1.4
     //    ParticleSystemManager::getSingletonPtr()->addAlias(mTechnique);
     //}
-    
+
     _system->setName(obj->name);
     obj->context = _system; // Add this to the context, because it is needed for the underlying emitters, affectors, ...
-    
+
     // Get the name of the technique
     //if(!obj->name.empty())
     //    mTechnique->setName(obj->name);
-    
+
     for(PUAbstractNodeList::iterator i = obj->children.begin(); i != obj->children.end(); ++i)
     {
         if((*i)->type == ANT_PROPERTY)
@@ -314,7 +314,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
                 //                mTechnique->setRenderer(newRenderer);
                 //            }
                 //                break;
-                //                
+                //
                 //            case IAlias::AT_EMITTER:
                 //            {
                 //                ParticleEmitter* emitter = static_cast<ParticleEmitter*>(alias);
@@ -322,7 +322,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
                 //                mTechnique->addEmitter(newEmitter);
                 //            }
                 //                break;
-                //                
+                //
                 //            case IAlias::AT_AFFECTOR:
                 //            {
                 //                ParticleAffector* affector = static_cast<ParticleAffector*>(alias);
@@ -330,7 +330,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
                 //                mTechnique->addAffector(newAffector);
                 //            }
                 //                break;
-                //                
+                //
                 //            case IAlias::AT_OBSERVER:
                 //            {
                 //                ParticleObserver* observer = static_cast<ParticleObserver*>(alias);
@@ -338,7 +338,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
                 //                mTechnique->addObserver(newObserver);
                 //            }
                 //                break;
-                //                
+                //
                 //            case IAlias::AT_EXTERN:
                 //            {
                 //                Extern* externObject = static_cast<Extern*>(alias);
@@ -346,7 +346,7 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
                 //                mTechnique->addExtern(newExternObject);
                 //            }
                 //                break;
-                //                
+                //
                 //            case IAlias::AT_BEHAVIOUR:
                 //            {
                 //                ParticleBehaviour* behaviour = static_cast<ParticleBehaviour*>(alias);
@@ -403,3 +403,4 @@ void PUTechniqueTranslator::translate(PUScriptCompiler* compiler, PUAbstractNode
 }
 
 NS_CC_END
+

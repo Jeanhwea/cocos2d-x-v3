@@ -38,13 +38,13 @@ class Sprite;
 struct CC_DLL ResourceData;
 
 namespace ui {
-    
+
 /**
  *  AbstractCheckButton is a specific type of two-states button that can be either checked or unchecked.
  */
 class CC_GUI_DLL AbstractCheckButton : public Widget
 {
-    
+
 public:
     /**
      * Load all textures for initializing a check button.
@@ -62,7 +62,7 @@ public:
                       const std::string& backgroundDisabled,
                       const std::string& frontCrossDisabled,
                       TextureResType texType = TextureResType::LOCAL);
-    
+
     /**
      * Load background texture for check button.
      *
@@ -70,7 +70,7 @@ public:
      * @param type    @see `Widget::TextureResType`
      */
     void loadTextureBackGround(const std::string& backGround,TextureResType type = TextureResType::LOCAL);
-    
+
     /**
      * Load background selected state texture for check button.
      *
@@ -78,7 +78,7 @@ public:
      * @param texType    @see `Widget::TextureResType`
      */
     void loadTextureBackGroundSelected(const std::string& backGroundSelected,TextureResType texType = TextureResType::LOCAL);
-    
+
     /**
      * Load cross texture for check button.
      *
@@ -86,7 +86,7 @@ public:
      * @param texType    @see `Widget::TextureResType`
      */
     void loadTextureFrontCross(const std::string& crossTextureName,TextureResType texType = TextureResType::LOCAL);
-    
+
     /**
      * Load background disabled state texture for checkbox.
      *
@@ -95,7 +95,7 @@ public:
      * @param texType    @see `Widget::TextureResType`
      */
     void loadTextureBackGroundDisabled(const std::string& backGroundDisabled,TextureResType texType = TextureResType::LOCAL);
-    
+
     /**
      * Load frontcross disabled texture for checkbox.
      *
@@ -103,24 +103,24 @@ public:
      * @param texType    @see `Widget::TextureResType`
      */
     void loadTextureFrontCrossDisabled(const std::string& frontCrossDisabled,TextureResType texType = TextureResType::LOCAL);
-    
+
     /**
      * Query whether CheckBox is selected or not.
      *@return true means "selected", false otherwise.
      */
     bool isSelected()const;
-    
+
     /**
      * Change CheckBox state.
      * Set to true will cause the CheckBox's state to "selected", false otherwise.
      *@param selected Set to true will change CheckBox to selected state, false otherwise.
      */
     virtual void setSelected(bool selected);
-    
+
     //override functions
     virtual Size getVirtualRendererSize() const override;
     virtual Node* getVirtualRenderer() override;
-    
+
     /** When user pressed the CheckBox, the button will zoom to a scale.
      * The final scale of the CheckBox  equals (CheckBox original scale + _zoomScale)
      * @since v3.3
@@ -132,31 +132,31 @@ public:
      * @since v3.3
      */
     float getZoomScale()const;
-    
+
     /**
      * @brief Return the sprite instance of background
      * @return the sprite instance of background.
      */
     Sprite* getRendererBackground() const { return _backGroundBoxRenderer; }
-    
+
     /**
      * @brief Return the sprite instance of background when selected
      * @return the sprite instance of background when selected
      */
     Sprite* getRendererBackgroundSelected() const { return _backGroundSelectedBoxRenderer; }
-    
+
     /**
      * @brief Return the sprite instance of front cross
      * @return the sprite instance of front cross
      */
     Sprite* getRendererFrontCross() const { return _frontCrossRenderer; }
-    
+
     /**
      * @brief Return the sprite instance of background when disabled
      * @return the sprite instance of background when disabled
      */
     Sprite* getRendererBackgroundDisabled() const { return _backGroundBoxDisabledRenderer; }
-    
+
     /**
      * @brief Return the sprite instance of front cross when disabled
      * @return the sprite instance of front cross when disabled
@@ -177,25 +177,25 @@ CC_CONSTRUCTOR_ACCESS:
                       const std::string& backGroundDisabled,
                       const std::string& frontCrossDisabled,
                       TextureResType texType = TextureResType::LOCAL);
-    
+
 protected:
     /**
      * Default constructor.
      */
     AbstractCheckButton();
-    
+
     /**
      * Default destructor.
      *
      * @lua NA
      */
     virtual ~AbstractCheckButton();
-    
+
     virtual void initRenderer() override;
     virtual void onPressStateChangedToNormal() override;
     virtual void onPressStateChangedToPressed() override;
     virtual void onPressStateChangedToDisabled() override;
-    
+
     virtual void setupBackgroundTexture();
     void loadTextureBackGround(SpriteFrame* spriteFrame);
     virtual void setupBackgroundSelectedTexture();
@@ -206,17 +206,17 @@ protected:
     void loadTextureBackGroundDisabled(SpriteFrame* spriteframe);
     virtual void setupFrontCrossDisableTexture();
     void loadTextureFrontCrossDisabled(SpriteFrame* spriteframe);
-    
+
     virtual void dispatchSelectChangedEvent(bool selected) = 0;
-    
+
     virtual void onSizeChanged() override;
-    
+
     virtual void backGroundTextureScaleChangedWithSize();
     void backGroundSelectedTextureScaleChangedWithSize();
     void frontCrossTextureScaleChangedWithSize();
     void backGroundDisabledTextureScaleChangedWithSize();
     void frontCrossDisabledTextureScaleChangedWithSize();
-    
+
     virtual void copySpecialProperties(Widget* model) override;
     virtual void adaptRenderers() override;
 protected:
@@ -226,7 +226,7 @@ protected:
     Sprite* _backGroundBoxDisabledRenderer;
     Sprite* _frontCrossDisabledRenderer;
     bool _isSelected;
-    
+
     bool _isBackgroundSelectedTextureLoaded;
     bool _isBackgroundDisabledTextureLoaded;
     bool _isFrontCrossDisabledTextureLoaded;
@@ -235,11 +235,11 @@ protected:
     TextureResType _frontCrossTexType;
     TextureResType _backGroundDisabledTexType;
     TextureResType _frontCrossDisabledTexType;
-    
+
     float _zoomScale;
     float _backgroundTextureScaleX;
     float _backgroundTextureScaleY;
-    
+
     bool _backGroundBoxRendererAdaptDirty;
     bool _backGroundSelectedBoxRendererAdaptDirty;
     bool _frontCrossRendererAdaptDirty;
@@ -252,7 +252,7 @@ protected:
     std::string _backGroundDisabledFileName;
     std::string _frontCrossDisabledFileName;
 };
-    
+
 }
 
 NS_CC_END
@@ -260,3 +260,4 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__UIABSTRACTCHECKBUTTON_H__) */
+

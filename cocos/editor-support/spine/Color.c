@@ -82,3 +82,4 @@ void spColor_clamp(spColor* self) {
 	if (self->a < 0) self->a = 0;
 	else if (self->a > 1) self->a = 1;
 }
+

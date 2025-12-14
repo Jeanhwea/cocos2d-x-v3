@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -70,7 +70,7 @@ Skybox* Skybox::create(const std::string& positive_x, const std::string& negativ
 {
     auto ret = new (std::nothrow) Skybox();
     ret->init(positive_x, negative_x, positive_y, negative_y, positive_z, negative_z);
-    
+
     ret->autorelease();
     return ret;
 }
@@ -97,7 +97,7 @@ bool Skybox::init(const std::string& positive_x, const std::string& negative_x,
     auto texture = TextureCube::create(positive_x, negative_x, positive_y, negative_y, positive_z, negative_z);
     if (texture == nullptr)
         return false;
-    
+
     init();
     setTexture(texture);
     return true;
@@ -169,14 +169,14 @@ void Skybox::draw(Renderer* renderer, const Mat4& transform, uint32_t flags)
 void Skybox::onDraw(const Mat4& transform, uint32_t /*flags*/)
 {
     auto camera = Camera::getVisitingCamera();
-    
+
     Mat4 cameraModelMat = camera->getNodeToWorldTransform();
     Mat4 projectionMat = camera->getProjectionMatrix();
     // Ignore the translation
     cameraModelMat.m[12] = cameraModelMat.m[13] = cameraModelMat.m[14] = 0;
     // prescale the matrix to account for the camera fov
     cameraModelMat.scale(1 / projectionMat.m[0], 1 / projectionMat.m[5], 1.0);
-    
+
     auto state = getGLProgramState();
     state->apply(transform);
 
@@ -195,7 +195,7 @@ void Skybox::onDraw(const Mat4& transform, uint32_t /*flags*/)
 
     glCullFace(GL_BACK);
     RenderState::StateBlock::_defaultState->setCullFaceSide(RenderState::CULL_FACE_SIDE_BACK);
-    
+
     glDisable(GL_BLEND);
     RenderState::StateBlock::_defaultState->setBlend(false);
 
@@ -250,3 +250,4 @@ void Skybox::reload()
 }
 
 NS_CC_END
+

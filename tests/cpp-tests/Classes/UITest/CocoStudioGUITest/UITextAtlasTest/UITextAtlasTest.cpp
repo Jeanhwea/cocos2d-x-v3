@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,13 +39,13 @@ bool UITextAtlasTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text* alert = Text::create("TextAtlas","fonts/Marker Felt.ttf",30);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the text atlas
         TextAtlas* textAtlas = nullptr;
         if (Director::getInstance()->getWinSizeInPixels().height > 320.f)
@@ -57,7 +57,7 @@ bool UITextAtlasTest::init()
             textAtlas = TextAtlas::create("1234567890", "cocosui/labelatlas.png", 17, 22, "0");
         }
         textAtlas->setPosition(Vec2((widgetSize.width) / 2, widgetSize.height / 2.0f));
-        _uiLayer->addChild(textAtlas);                
+        _uiLayer->addChild(textAtlas);
         _textAtlas = textAtlas;
 
         TTFConfig ttfConfig("fonts/arial.ttf", 15);
@@ -84,13 +84,13 @@ bool UITextAtlasETC1ShadowTest::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text* alert = Text::create("TextAtlas With ETC1 format","fonts/Marker Felt.ttf",30);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the text atlas
         TextAtlas* textAtlas = nullptr;
         if (Director::getInstance()->getWinSizeInPixels().height > 320.f)
@@ -106,7 +106,7 @@ bool UITextAtlasETC1ShadowTest::init()
         auto labelAtlas = (Label*)textAtlas->getVirtualRenderer();
         labelAtlas->enableShadow(Color4B::GREEN);
         _textAtlas = textAtlas;
-        
+
         TTFConfig ttfConfig("fonts/arial.ttf", 15);
         auto label1 = Label::createWithTTF(ttfConfig, "Print Resources");
         auto item1 = MenuItemLabel::create(label1, CC_CALLBACK_1(UITextAtlasETC1ShadowTest::printWidgetResources, this));
@@ -123,3 +123,4 @@ void UITextAtlasETC1ShadowTest::printWidgetResources(cocos2d::Ref* sender)
     cocos2d::ResourceData textureFile = _textAtlas->getRenderFile();
     CCLOG("textureFile  Name : %s, Type: %d", textureFile.file.c_str(), textureFile.type);
 }
+

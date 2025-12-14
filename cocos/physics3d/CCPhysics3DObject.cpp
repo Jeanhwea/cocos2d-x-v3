@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,7 +39,7 @@ Physics3DRigidBody::Physics3DRigidBody()
 : _btRigidBody(nullptr)
 , _physics3DShape(nullptr)
 {
-    
+
 }
 
 Physics3DRigidBody::~Physics3DRigidBody()
@@ -66,7 +66,7 @@ Physics3DRigidBody* Physics3DRigidBody::create(Physics3DRigidBodyDes* info)
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return ret;
 }
@@ -75,7 +75,7 @@ bool Physics3DRigidBody::init(Physics3DRigidBodyDes* info)
 {
     if (info->shape == nullptr)
         return false;
-    
+
     btScalar mass = info->mass;
     auto shape = info->shape->getbtShape();
     auto localInertia = convertVec3TobtVector3(info->localInertia);
@@ -83,7 +83,7 @@ bool Physics3DRigidBody::init(Physics3DRigidBodyDes* info)
     {
         shape->calculateLocalInertia(mass,localInertia);
     }
-    
+
     auto transform = convertMat4TobtTransform(info->originalTransform);
     btDefaultMotionState* myMotionState = new btDefaultMotionState(transform);
     btRigidBody::btRigidBodyConstructionInfo rbInfo(mass,myMotionState,shape,localInertia);
@@ -527,7 +527,7 @@ bool Physics3DCollider::isTrigger() const
 void Physics3DCollider::setTrigger(bool isTrigger)
 {
     _btGhostObject->setCollisionFlags(isTrigger == true ?
-        _btGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE : 
+        _btGhostObject->getCollisionFlags() | btCollisionObject::CF_NO_CONTACT_RESPONSE :
         _btGhostObject->getCollisionFlags() & ~btCollisionObject::CF_NO_CONTACT_RESPONSE);
 }
 
@@ -537,7 +537,7 @@ bool Physics3DCollider::init(Physics3DColliderDes *info)
     _physics3DShape->retain();
     _btGhostObject = new btCollider(this);
     _btGhostObject->setCollisionShape(_physics3DShape->getbtShape());
-    
+
     setTrigger(info->isTrigger);
     setFriction(info->friction);
     setRollingFriction(info->rollingFriction);
@@ -545,7 +545,7 @@ bool Physics3DCollider::init(Physics3DColliderDes *info)
     setHitFraction(info->hitFraction);
     setCcdSweptSphereRadius(info->ccdSweptSphereRadius);
     setCcdMotionThreshold(info->ccdMotionThreshold);
-    
+
     _type = Physics3DObject::PhysicsObjType::COLLIDER;
     return true;
 }
@@ -560,3 +560,4 @@ NS_CC_END
 #endif // CC_ENABLE_BULLET_INTEGRATION
 
 #endif // CC_USE_3D_PHYSICS
+

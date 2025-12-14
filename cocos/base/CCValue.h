@@ -60,10 +60,10 @@ public:
 
     /** Default constructor. */
     Value();
-    
+
     /** Create a Value by an unsigned char value. */
     explicit Value(unsigned char v);
-    
+
     /** Create a Value by an integer value. */
     explicit Value(int v);
 
@@ -72,29 +72,29 @@ public:
 
     /** Create a Value by a float value. */
     explicit Value(float v);
-    
+
     /** Create a Value by a double value. */
     explicit Value(double v);
-    
+
     /** Create a Value by a bool value. */
     explicit Value(bool v);
-    
+
     /** Create a Value by a char pointer. It will copy the chars internally. */
     explicit Value(const char* v);
-    
+
     /** Create a Value by a string. */
     explicit Value(const std::string& v);
-    
+
     /** Create a Value by a ValueVector object. */
     explicit Value(const ValueVector& v);
     /** Create a Value by a ValueVector object. It will use std::move internally. */
     explicit Value(ValueVector&& v);
-    
+
     /** Create a Value by a ValueMap object. */
     explicit Value(const ValueMap& v);
     /** Create a Value by a ValueMap object. It will use std::move internally. */
     explicit Value(ValueMap&& v);
-    
+
     /** Create a Value by a ValueMapIntKey object. */
     explicit Value(const ValueMapIntKey& v);
     /** Create a Value by a ValueMapIntKey object. It will use std::move internally. */
@@ -104,7 +104,7 @@ public:
     Value(const Value& other);
     /** Create a Value by a Value object. It will use std::move internally. */
     Value(Value&& other);
-    
+
     /** Destructor. */
     ~Value();
 
@@ -251,3 +251,4 @@ NS_CC_END
 
 
 #endif /* defined(__cocos2d_libs__CCValue__) */
+

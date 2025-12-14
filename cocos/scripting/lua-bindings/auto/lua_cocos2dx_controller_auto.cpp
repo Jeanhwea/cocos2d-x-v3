@@ -22,7 +22,7 @@ int lua_cocos2dx_controller_Controller_receiveExternalKeyEvent(lua_State* tolua_
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_receiveExternalKeyEvent'", nullptr);
         return 0;
@@ -30,7 +30,7 @@ int lua_cocos2dx_controller_Controller_receiveExternalKeyEvent(lua_State* tolua_
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 2) 
+    if (argc == 2)
     {
         int arg0;
         bool arg1;
@@ -75,7 +75,7 @@ int lua_cocos2dx_controller_Controller_getDeviceName(lua_State* tolua_S)
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_getDeviceName'", nullptr);
         return 0;
@@ -83,7 +83,7 @@ int lua_cocos2dx_controller_Controller_getDeviceName(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -122,7 +122,7 @@ int lua_cocos2dx_controller_Controller_isConnected(lua_State* tolua_S)
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_isConnected'", nullptr);
         return 0;
@@ -130,7 +130,7 @@ int lua_cocos2dx_controller_Controller_isConnected(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -169,7 +169,7 @@ int lua_cocos2dx_controller_Controller_getDeviceId(lua_State* tolua_S)
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_getDeviceId'", nullptr);
         return 0;
@@ -177,7 +177,7 @@ int lua_cocos2dx_controller_Controller_getDeviceId(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -216,7 +216,7 @@ int lua_cocos2dx_controller_Controller_setTag(lua_State* tolua_S)
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_setTag'", nullptr);
         return 0;
@@ -224,7 +224,7 @@ int lua_cocos2dx_controller_Controller_setTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -266,7 +266,7 @@ int lua_cocos2dx_controller_Controller_getTag(lua_State* tolua_S)
     cobj = (cocos2d::Controller*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_Controller_getTag'", nullptr);
         return 0;
@@ -274,7 +274,7 @@ int lua_cocos2dx_controller_Controller_getTag(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -482,7 +482,7 @@ int lua_cocos2dx_controller_EventController_getControllerEventType(lua_State* to
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_getControllerEventType'", nullptr);
         return 0;
@@ -490,7 +490,7 @@ int lua_cocos2dx_controller_EventController_getControllerEventType(lua_State* to
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -529,7 +529,7 @@ int lua_cocos2dx_controller_EventController_setConnectStatus(lua_State* tolua_S)
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_setConnectStatus'", nullptr);
         return 0;
@@ -537,7 +537,7 @@ int lua_cocos2dx_controller_EventController_setConnectStatus(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         bool arg0;
 
@@ -579,7 +579,7 @@ int lua_cocos2dx_controller_EventController_isConnected(lua_State* tolua_S)
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_isConnected'", nullptr);
         return 0;
@@ -587,7 +587,7 @@ int lua_cocos2dx_controller_EventController_isConnected(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -626,7 +626,7 @@ int lua_cocos2dx_controller_EventController_setKeyCode(lua_State* tolua_S)
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_setKeyCode'", nullptr);
         return 0;
@@ -634,7 +634,7 @@ int lua_cocos2dx_controller_EventController_setKeyCode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 1) 
+    if (argc == 1)
     {
         int arg0;
 
@@ -676,7 +676,7 @@ int lua_cocos2dx_controller_EventController_getController(lua_State* tolua_S)
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_getController'", nullptr);
         return 0;
@@ -684,7 +684,7 @@ int lua_cocos2dx_controller_EventController_getController(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -723,7 +723,7 @@ int lua_cocos2dx_controller_EventController_getKeyCode(lua_State* tolua_S)
     cobj = (cocos2d::EventController*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
-    if (!cobj) 
+    if (!cobj)
     {
         tolua_error(tolua_S,"invalid 'cobj' in function 'lua_cocos2dx_controller_EventController_getKeyCode'", nullptr);
         return 0;
@@ -731,7 +731,7 @@ int lua_cocos2dx_controller_EventController_getKeyCode(lua_State* tolua_S)
 #endif
 
     argc = lua_gettop(tolua_S)-1;
-    if (argc == 0) 
+    if (argc == 0)
     {
         if(!ok)
         {
@@ -900,7 +900,7 @@ int lua_register_cocos2dx_controller_EventListenerController(lua_State* tolua_S)
 TOLUA_API int register_all_cocos2dx_controller(lua_State* tolua_S)
 {
 	tolua_open(tolua_S);
-	
+
 	tolua_module(tolua_S,"cc",0);
 	tolua_beginmodule(tolua_S,"cc");
 
@@ -913,3 +913,4 @@ TOLUA_API int register_all_cocos2dx_controller(lua_State* tolua_S)
 }
 
 #endif
+

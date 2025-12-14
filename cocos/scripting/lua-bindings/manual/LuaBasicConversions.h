@@ -1319,3 +1319,4 @@ CC_LUA_DLL extern void node_to_luaval(lua_State* L, const char* type, cocos2d::N
 // end group
 /// @}
 #endif //__COCOS2DX_SCRIPTING_LUA_COCOS2DXSUPPORT_LUABAISCCONVERSIONS_H__
+

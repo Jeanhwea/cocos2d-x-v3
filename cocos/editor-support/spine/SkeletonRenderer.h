@@ -64,7 +64,7 @@ public:
 
 	void setDebugBonesEnabled(bool enabled);
 	bool getDebugBonesEnabled() const;
-	
+
 	void setDebugMeshesEnabled(bool enabled);
 	bool getDebugMeshesEnabled() const;
 
@@ -79,14 +79,14 @@ public:
 	spBone* findBone (const std::string& boneName) const;
 	/* Returns 0 if the slot was not found. */
 	spSlot* findSlot (const std::string& slotName) const;
-	
+
 	/* Sets the skin used to look up attachments not found in the SkeletonData defaultSkin. Attachments from the new skin are
 	 * attached if the corresponding attachment from the old skin was attached. Returns false if the skin was not found.
 	 * @param skin May be empty string ("") for no skin.*/
 	bool setSkin (const std::string& skinName);
 	/** @param skin May be 0 for no skin.*/
 	bool setSkin (const char* skinName);
-	
+
 	/* Returns 0 if the slot or attachment was not found. */
 	spAttachment* getAttachment (const std::string& slotName, const std::string& attachmentName) const;
 	/* Returns false if the slot or attachment was not found.
@@ -94,12 +94,12 @@ public:
 	bool setAttachment (const std::string& slotName, const std::string& attachmentName);
 	/* @param attachmentName May be 0 for no attachment. */
 	bool setAttachment (const std::string& slotName, const char* attachmentName);
-	
+
 	/* Enables/disables two color tinting for this instance. May break batching */
 	void setTwoColorTint(bool enabled);
 	/* Whether two color tinting is enabled */
 	bool isTwoColorTint();
-	
+
 	/* Sets the vertex effect to be used, set to 0 to disable vertex effects */
 	void setVertexEffect(spVertexEffect* effect);
 
@@ -128,7 +128,7 @@ CC_CONSTRUCTOR_ACCESS:
 protected:
 	void setSkeletonData (spSkeletonData* skeletonData, bool ownsSkeletonData);
 	virtual AttachmentVertices* getAttachmentVertices (spRegionAttachment* attachment) const;
-	virtual AttachmentVertices* getAttachmentVertices (spMeshAttachment* attachment) const;	
+	virtual AttachmentVertices* getAttachmentVertices (spMeshAttachment* attachment) const;
 
 	bool _ownsSkeletonData;
 	spAtlas* _atlas;
@@ -149,3 +149,4 @@ protected:
 }
 
 #endif /* SPINE_SKELETONRENDERER_H_ */
+

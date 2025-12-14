@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -35,7 +35,7 @@ const float PUBoxCollider::DEFAULT_HEIGHT = 100.0f;
 const float PUBoxCollider::DEFAULT_DEPTH = 100.0f;
 
 //-----------------------------------------------------------------------
-PUBoxCollider::PUBoxCollider() : 
+PUBoxCollider::PUBoxCollider() :
     PUBaseCollider(),
     _width(DEFAULT_WIDTH),
     _height(DEFAULT_HEIGHT),
@@ -103,7 +103,7 @@ void PUBoxCollider::calculateDirectionAfterCollision(PUParticle3D* particle)
         {
             // Determine the nearest side and reverse the direction
             if (isSmallestValue (particle->position.x - _xmin, particle->position))
-            {		
+            {
                 particle->direction.x *= -1;
             }
             else if (isSmallestValue (_xmax - particle->position.x, particle->position))
@@ -132,7 +132,7 @@ void PUBoxCollider::calculateDirectionAfterCollision(PUParticle3D* particle)
         case PUBaseCollider::CT_FLOW:
         {
             if (isSmallestValue (particle->position.x - _xmin, particle->position))
-            {		
+            {
                 particle->direction.x = 0;
             }
             else if (isSmallestValue (_xmax - particle->position.x, particle->position))
@@ -187,9 +187,9 @@ bool PUBoxCollider::isSmallestValue(float value, const Vec3& particlePosition)
     float value6 = _zmax - particlePosition.z;
 
     return (
-        value <= value1 && 
+        value <= value1 &&
         value <= value2 &&
-        value <= value3 && 
+        value <= value3 &&
         value <= value4 &&
         value <= value5 &&
         value <= value6);
@@ -205,7 +205,7 @@ void PUBoxCollider::updatePUAffector( PUParticle3D *particle, float /*deltaTime*
 
         /** Collision detection is a two-step. First, we determine whether the particle is now colliding.
             If it is, the particle is re-positioned. However, a timeElapsed value is used, which is not the same
-            as the one that was used at the moment before the particle was colliding. Therefore, we rather 
+            as the one that was used at the moment before the particle was colliding. Therefore, we rather
             want to predict particle collision in front. This probably isn't the fastest solution.
             The same approach was used for the other colliders.
         */
@@ -232,8 +232,8 @@ void PUBoxCollider::updatePUAffector( PUParticle3D *particle, float /*deltaTime*
             {
                 AABB box;
                 populateAlignedBox(box,
-                    particle->position, 
-                    particle->width, 
+                    particle->position,
+                    particle->width,
                     particle->height,
                     particle->depth);
 
@@ -246,8 +246,8 @@ void PUBoxCollider::updatePUAffector( PUParticle3D *particle, float /*deltaTime*
                 else
                 {
                     populateAlignedBox(box,
-                        _predictedPosition, 
-                        particle->width, 
+                        _predictedPosition,
+                        particle->width,
                         particle->height,
                         particle->depth);
                     if (_innerCollision != box.intersects(_box))
@@ -298,3 +298,4 @@ void PUBoxCollider::copyAttributesTo( PUAffector* affector )
 }
 
 NS_CC_END
+

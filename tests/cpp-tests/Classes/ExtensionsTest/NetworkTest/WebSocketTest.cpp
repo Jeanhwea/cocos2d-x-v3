@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -49,50 +49,50 @@ WebSocketTest::WebSocketTest()
 , _sendBinaryTimes(0)
 {
     auto winSize = Director::getInstance()->getWinSize();
-    
+
     const int MARGIN = 40;
     const int SPACE = 35;
-    
+
     auto menuRequest = Menu::create();
     menuRequest->setPosition(Vec2::ZERO);
     addChild(menuRequest);
-    
+
     // Send Text
     auto labelSendText = Label::createWithTTF("Send Text", "fonts/arial.ttf", 20);
     auto itemSendText = MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketTest::onMenuSendTextClicked, this));
     itemSendText->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - SPACE));
     menuRequest->addChild(itemSendText);
-    
+
     labelSendText = Label::createWithTTF("Send Multiple Text", "fonts/arial.ttf", 20);
     itemSendText = MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketTest::onMenuSendMultipleTextClicked, this));
     itemSendText->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - 2 * SPACE));
     menuRequest->addChild(itemSendText);
-    
+
     // Send Binary
     auto labelSendBinary = Label::createWithTTF("Send Binary", "fonts/arial.ttf", 20);
     auto itemSendBinary = MenuItemLabel::create(labelSendBinary, CC_CALLBACK_1(WebSocketTest::onMenuSendBinaryClicked, this));
     itemSendBinary->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - 3 * SPACE));
     menuRequest->addChild(itemSendBinary);
-    
+
 
     // Send Text Status Label
     _sendTextStatus = Label::createWithTTF("Send Text WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _sendTextStatus->setAnchorPoint(Vec2(0, 0));
     _sendTextStatus->setPosition(Vec2(VisibleRect::left().x, VisibleRect::rightBottom().y + 25));
     this->addChild(_sendTextStatus);
-    
+
     // Send Binary Status Label
     _sendBinaryStatus = Label::createWithTTF("Send Binary WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _sendBinaryStatus->setAnchorPoint(Vec2(0, 0));
     _sendBinaryStatus->setPosition(Vec2(VisibleRect::left().x + 160, VisibleRect::rightBottom().y + 25));
     this->addChild(_sendBinaryStatus);
-    
+
     // Error Label
     _errorStatus = Label::createWithTTF("Error WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _errorStatus->setAnchorPoint(Vec2(0, 0));
     _errorStatus->setPosition(Vec2(VisibleRect::left().x + 320, VisibleRect::rightBottom().y + 25));
     this->addChild(_errorStatus);
-    
+
     auto startTestLabel = Label::createWithTTF("Start Test WebSocket", "fonts/arial.ttf", 16);
     auto startTestItem = MenuItemLabel::create(startTestLabel, CC_CALLBACK_1(WebSocketTest::startTestCallback, this));
     startTestItem->setPosition(Vec2(VisibleRect::center().x - 150, VisibleRect::bottom().y + 150));
@@ -196,7 +196,7 @@ void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::
         sprintf(times, "%d", _sendTextTimes);
         std::string textStr = std::string("response text msg: ")+data.bytes+", "+times;
         log("%s", textStr.c_str());
-        
+
         _sendTextStatus->setString(textStr);
     }
     else
@@ -206,7 +206,7 @@ void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::
         sprintf(times, "%d", _sendBinaryTimes);
 
         std::string binaryStr = "response bin msg: ";
-        
+
         for (int i = 0; i < data.len; ++i) {
             if (data.bytes[i] != '\0')
             {
@@ -217,7 +217,7 @@ void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::
                 binaryStr += "\'\\0\'";
             }
         }
-        
+
         binaryStr += std::string(", ")+times;
         log("%s", binaryStr.c_str());
         _sendBinaryStatus->setString(binaryStr);
@@ -295,7 +295,7 @@ void WebSocketTest::onMenuSendMultipleTextClicked(cocos2d::Ref *sender)
     {
         return;
     }
-    
+
     if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN)
     {
         _sendTextStatus->setString("Send Multiple Text WS is waiting...");

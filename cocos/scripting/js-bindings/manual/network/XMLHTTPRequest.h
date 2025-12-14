@@ -68,7 +68,7 @@ public:
     MinXmlHttpRequest();
     MinXmlHttpRequest(JSContext *cx);
     ~MinXmlHttpRequest();
-    
+
     JS_BINDED_CLASS_GLUE(MinXmlHttpRequest);
     JS_BINDED_CONSTRUCTOR(MinXmlHttpRequest);
     JS_BINDED_PROP_ACCESSOR(MinXmlHttpRequest, onloadstart);
@@ -140,3 +140,4 @@ private:
 };
 
 #endif
+

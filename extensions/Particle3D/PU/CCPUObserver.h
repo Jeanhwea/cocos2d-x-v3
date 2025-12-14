@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -193,7 +193,7 @@ protected:
     /** Determines whether the _observe() function must be executed.
     @remarks
         This is independent of mEnabled, which means that an observer can be enabled, but if mObserve has
-        been set to false, it still doesn't observe. It is used to enable/disable execution of the _observe() 
+        been set to false, it still doesn't observe. It is used to enable/disable execution of the _observe()
         function in combination with the update interval.
     */
     bool _observe;
@@ -234,7 +234,7 @@ protected:
 
     /** Handle the event.
     @remarks
-        This function iterates over all at the observer registered handlers and executes them.				
+        This function iterates over all at the observer registered handlers and executes them.
     */
     virtual void handleEvent (PUParticle3D* particle, float timeElapsed);
 };
@@ -242,3 +242,4 @@ protected:
 NS_CC_END
 
 #endif
+

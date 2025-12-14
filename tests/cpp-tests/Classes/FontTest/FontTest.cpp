@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -34,7 +34,7 @@ enum {
     kTagLabel2,
     kTagLabel3,
     kTagLabel4,
-    
+
     kTagColor1,
     kTagColor2,
     kTagColor3,
@@ -66,12 +66,12 @@ FontTests::FontTests()
     {
         addTestCase("FontTests", [&](){vAlignIdx = 0; return FontTest::create(fontFile); });
     }
-    
+
     for (auto& fontFile : fontList)
     {
         addTestCase("FontTests", [&](){ vAlignIdx = 1;  return FontTest::create(fontFile); });
     }
-    
+
     for (auto& fontFile : fontList)
     {
         addTestCase("FontTests", [&](){vAlignIdx = 2; return FontTest::create(fontFile); });
@@ -279,3 +279,4 @@ std::string FontReplacementTest::title() const
 {
 	return "Font replacement test";
 }
+

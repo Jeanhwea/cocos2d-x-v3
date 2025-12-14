@@ -149,3 +149,4 @@ float spAnimationStateData_getMix (spAnimationStateData* self, spAnimation* from
 	}
 	return self->defaultMix;
 }
+

@@ -141,3 +141,4 @@ bool InsertIfNotPresent(Collection * const collection,
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_STUBS_MAP_UTIL_H__
+

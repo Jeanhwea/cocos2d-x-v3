@@ -53,7 +53,7 @@ You SHOULD not use this class.
 Instead, use the newer TMX file format: TMXTiledMap
 @js NA
 */
-class CC_DLL TileMapAtlas : public AtlasNode 
+class CC_DLL TileMapAtlas : public AtlasNode
 {
 public:
     /** creates a TileMap with a tile file (atlas) with a map file and the width and height of each tile in points.
@@ -69,7 +69,7 @@ public:
      * @lua NA
      */
     virtual ~TileMapAtlas();
-    
+
     /** initializes a TileMap with a tile file (atlas) with a map file and the width and height of each tile in points.
     The file will be loaded using the TextureMgr.
     */
@@ -90,7 +90,7 @@ public:
     void setTile(const Color3B& tile, const Vec2& position);
     /** dealloc the map from memory */
     void releaseMap();
-    
+
     /**
      * Query TGA image info.
      *@return The TGA image info.

@@ -32,7 +32,7 @@ THE SOFTWARE.
 
 #include <string.h>
 
-#define CC_DLL 
+#define CC_DLL
 
 #include <assert.h>
 #define CC_ASSERT(cond)    assert(cond)
@@ -51,3 +51,4 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
 
 #endif /* __CCPLATFORMDEFINE_H__*/
+

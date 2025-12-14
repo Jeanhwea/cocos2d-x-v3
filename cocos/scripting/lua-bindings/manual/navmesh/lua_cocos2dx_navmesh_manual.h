@@ -56,3 +56,4 @@ TOLUA_API int  register_navmesh_module(lua_State* L);
 
 #endif // #if CC_USE_NAVMESH
 #endif // #ifndef COCOS_SCRIPTING_LUA_BINDINGS_MANUAL_PHYSICS3D_LUA_COCOS2DX_NAVMESH_MANUAL_H__
+

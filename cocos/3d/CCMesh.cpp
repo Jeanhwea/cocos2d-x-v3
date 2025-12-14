@@ -134,7 +134,7 @@ Mesh::Mesh()
 , _material(nullptr)
 , _texFile("")
 {
-    
+
 }
 Mesh::~Mesh()
 {
@@ -181,7 +181,7 @@ Mesh* Mesh::create(const std::vector<float>& positions, const std::vector<float>
     att.size = 3;
     att.type = GL_FLOAT;
     att.attribSizeBytes = att.size * sizeof(float);
-    
+
     if (!positions.empty())
     {
         perVertexSizeInFloat += 3;
@@ -202,7 +202,7 @@ Mesh* Mesh::create(const std::vector<float>& positions, const std::vector<float>
         att.attribSizeBytes = att.size * sizeof(float);
         attribs.push_back(att);
     }
-    
+
     bool hasNormal = (!normals.empty());
     bool hasTexCoord = (!texs.empty());
     //position, normal, texCoordinate into _vertexs
@@ -219,7 +219,7 @@ Mesh* Mesh::create(const std::vector<float>& positions, const std::vector<float>
             vertices.push_back(normals[i * 3 + 1]);
             vertices.push_back(normals[i * 3 + 2]);
         }
-    
+
         if (hasTexCoord)
         {
             vertices.push_back(texs[i * 2]);
@@ -238,7 +238,7 @@ Mesh* Mesh::create(const std::vector<float>& vertices, int /*perVertexSizeInFloa
     meshdata.subMeshIds.emplace_back("");
     auto meshvertexdata = MeshVertexData::create(meshdata);
     auto indexData = meshvertexdata->getMeshIndexDataByIndex(0);
-    
+
     return create("", indexData);
 }
 
@@ -250,7 +250,7 @@ Mesh* Mesh::create(const std::string& name, MeshIndexData* indexData, MeshSkin* 
     state->_name = name;
     state->setMeshIndexData(indexData);
     state->setSkin(skin);
-    
+
     return state;
 }
 
@@ -288,11 +288,11 @@ void Mesh::setTexture(Texture2D* tex, NTextureData::Usage usage, bool cacheFileN
     // This functionality is added for compatibility issues
     if (tex == nullptr)
         tex = getDummyTexture();
-    
+
     CC_SAFE_RETAIN(tex);
     CC_SAFE_RELEASE(_textures[usage]);
-    _textures[usage] = tex;   
-    
+    _textures[usage] = tex;
+
     if (usage == NTextureData::Usage::Diffuse){
         if (_material) {
             auto technique = _material->_currentTechnique;
@@ -304,7 +304,7 @@ void Mesh::setTexture(Texture2D* tex, NTextureData::Usage usage, bool cacheFileN
                 pass->setTexture(tex);
             }
         }
-        
+
         bindMeshCommand();
         if (cacheFileName)
             _texFile = tex->getPath();
@@ -359,11 +359,11 @@ void Mesh::setMaterial(Material* material)
     // Was the texture set before the GLProgramState ? Set it
     for(auto& tex : _textures)
         setTexture(tex.second, tex.first);
-        
-    
+
+
     if (_blendDirty)
         setBlendFunc(_blend);
-    
+
     bindMeshCommand();
 }
 
@@ -490,7 +490,7 @@ void Mesh::calculateAABB()
                     root = parent;
                 }
             }
-            
+
             if (root)
             {
                 _aabb.transform(root->getWorldMat() * _skin->getInvBindPose(root));
@@ -655,7 +655,7 @@ void Mesh::setLightUniforms(Pass* pass, Scene* scene, const Vec4& color, unsigne
         if (hasAmbient)
         {
             ambient.x /= 255.f; ambient.y /= 255.f; ambient.z /= 255.f;
-            //override the uniform value of u_color using the calculated color 
+            //override the uniform value of u_color using the calculated color
             glProgramState->setUniformVec4("u_color", Vec4(color.x * ambient.x, color.y * ambient.y, color.z * ambient.z, color.w));
         }
     }
@@ -704,3 +704,4 @@ GLuint Mesh::getIndexBuffer() const
     return _meshIndexData->getIndexBuffer()->getVBO();
 }
 NS_CC_END
+

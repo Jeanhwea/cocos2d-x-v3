@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -50,7 +50,7 @@ Vec3 AABB::getCenter()
 void AABB::getCorners(Vec3 *dst) const
 {
     assert(dst);
-    
+
     // Near face, specified counter-clockwise looking towards the origin from the positive z-axis.
     // Left-top-front.
     dst[0].set(_min.x, _max.y, _max.z);
@@ -127,23 +127,23 @@ void AABB::updateMinMax(const Vec3* point, ssize_t num)
         // Leftmost point.
         if (point[i].x < _min.x)
             _min.x = point[i].x;
-        
+
         // Lowest point.
         if (point[i].y < _min.y)
             _min.y = point[i].y;
-        
+
         // Farthest point.
         if (point[i].z < _min.z)
             _min.z = point[i].z;
-        
+
         // Rightmost point.
         if (point[i].x > _max.x)
             _max.x = point[i].x;
-        
+
         // Highest point.
         if (point[i].y > _max.y)
             _max.y = point[i].y;
-        
+
         // Nearest point.
         if (point[i].z > _max.z)
             _max.z = point[i].z;
@@ -176,10 +176,11 @@ void AABB::transform(const Mat4& mat)
     // Transform the corners, recalculate the min and max points along the way.
     for (int i = 0; i < 8; i++)
         mat.transformPoint(&corners[i]);
-    
+
     reset();
-    
+
     updateMinMax(corners, 8);
 }
 
 NS_CC_END
+

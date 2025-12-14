@@ -75,3 +75,4 @@ LIBPROTOBUF_EXPORT int StringSpaceUsedExcludingSelf(const string& str);
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_GENERATED_MESSAGE_UTIL_H__
+

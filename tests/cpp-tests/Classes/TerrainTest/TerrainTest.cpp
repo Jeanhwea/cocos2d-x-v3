@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -64,16 +64,16 @@ TerrainSimple::TerrainSimple()
     auto rootps = PUParticleSystem3D::create("Particle3D/scripts/mp_torch.pu");
     rootps->setCameraMask((unsigned short)CameraFlag::USER1);
     rootps->startParticleSystem();
-    
+
     this->addChild(rootps, 0, 0);
 }
 
-std::string TerrainSimple::title() const 
+std::string TerrainSimple::title() const
 {
     return "Terrain with skirt";
 }
 
-std::string TerrainSimple::subtitle() const 
+std::string TerrainSimple::subtitle() const
 {
     return "Drag to walkThru";
 }
@@ -95,18 +95,18 @@ void TerrainSimple::onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, 
     cameraRightDir.normalize();
     cameraRightDir.y=0;
     Vec3 cameraPos=  _camera->getPosition3D();
-    cameraPos+=cameraDir*newPos.y*0.5*delta;  
+    cameraPos+=cameraDir*newPos.y*0.5*delta;
     cameraPos+=cameraRightDir*newPos.x*0.5*delta;
-    _camera->setPosition3D(cameraPos);   
+    _camera->setPosition3D(cameraPos);
 }
 
 
-std::string TerrainWalkThru::title() const 
+std::string TerrainWalkThru::title() const
 {
     return "Player walk around in terrain";
 }
 
-std::string TerrainWalkThru::subtitle() const 
+std::string TerrainWalkThru::subtitle() const
 {
     return "touch to move";
 }
@@ -139,14 +139,14 @@ TerrainWalkThru::TerrainWalkThru()
     _player->setCameraMask(2);
     _player->setScale(0.08f);
     _player->setPositionY(_terrain->getHeight(_player->getPositionX(),_player->getPositionZ())+PLAYER_HEIGHT);
-    
+
     // add Particle3D for test blend
     auto rootps = PUParticleSystem3D::create("Particle3D/scripts/mp_torch.pu");
     rootps->setCameraMask((unsigned short)CameraFlag::USER1);
     rootps->setScale(30.0f);
     rootps->startParticleSystem();
     _player->addChild(rootps);
-    
+
     // add BillBoard for test blend
     auto billboard = BillBoard::create("Images/btn-play-normal.png");
     billboard->setPosition3D(Vec3(0,180,0));
@@ -189,7 +189,7 @@ void TerrainWalkThru::onTouchesEnd(const std::vector<cocos2d::Touch*>& touches, 
             dir.normalize();
             Vec3 collisionPoint(-999,-999,-999);
             bool isInTerrain = _terrain->getIntersectionPoint(Ray(nearP, dir), collisionPoint);
-            if (!isInTerrain) 
+            if (!isInTerrain)
             {
             _player->idle();
             return;
@@ -268,7 +268,7 @@ void Player::update(float dt)
     player->setPositionY(player_h);
     Quaternion q2;
     q2.createFromAxisAngle(Vec3(0,1,0),(float)-M_PI,&q2);
- 
+
     Quaternion headingQ;
     headingQ.createFromAxisAngle(_headingAxis,_headingAngle,&headingQ);
     player->setRotationQuat(headingQ*q2);
@@ -346,17 +346,17 @@ Player * Player::create(const char * file,Camera * cam,Terrain * terrain)
 TerrainWithLightMap::TerrainWithLightMap()
 {
     Size visibleSize = Director::getInstance()->getVisibleSize();
-    
+
     //use custom camera
     _camera = Camera::createPerspective(60,visibleSize.width/visibleSize.height,0.1f,800);
     _camera->setCameraFlag(CameraFlag::USER1);
     _camera->setPosition3D(Vec3(-1,1.6f,4));
     addChild(_camera);
-    
+
     Terrain::DetailMap r("TerrainTest/dirt.jpg"),g("TerrainTest/Grass2.jpg"),b("TerrainTest/road.jpg"),a("TerrainTest/GreenSkin.jpg");
-    
+
     Terrain::TerrainData data("TerrainTest/heightmap16.jpg","TerrainTest/alphamap.png",r,g,b,a);
-    
+
     _terrain = Terrain::create(data,Terrain::CrackFixedType::SKIRT);
     _terrain->setLODDistance(3.2f,6.4f,9.6f);
     _terrain->setMaxDetailMapAmount(4);
@@ -367,7 +367,7 @@ TerrainWithLightMap::TerrainWithLightMap()
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesMoved = CC_CALLBACK_2(TerrainWithLightMap::onTouchesMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
 }
 std::string TerrainWithLightMap::title() const
 {
@@ -384,7 +384,7 @@ void TerrainWithLightMap::onTouchesMoved(const std::vector<cocos2d::Touch*>& tou
     auto location = touch->getLocation();
     auto PreviousLocation = touch->getPreviousLocation();
     Point newPos = PreviousLocation - location;
-    
+
     Vec3 cameraDir;
     Vec3 cameraRightDir;
     _camera->getNodeToWorldTransform().getForwardVector(&cameraDir);
@@ -398,3 +398,4 @@ void TerrainWithLightMap::onTouchesMoved(const std::vector<cocos2d::Touch*>& tou
     cameraPos+=cameraRightDir*newPos.x*0.5*delta;
     _camera->setPosition3D(cameraPos);
 }
+

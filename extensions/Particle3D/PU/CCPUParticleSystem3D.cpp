@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -431,7 +431,7 @@ void PUParticleSystem3D::update(float delta)
 {
     if (!_isEnabled || _isMarkedForEmission) return;
     if (_state != State::RUNNING){
-        if (_state == State::PAUSE) 
+        if (_state == State::PAUSE)
             return;
         else if (_state == State::STOP && getAliveParticleCount() <= 0){
             forceStopParticleSystem();
@@ -501,7 +501,7 @@ void PUParticleSystem3D::prepared()
             //if (it->isEnabled())
                 (static_cast<PUAffector*>(it))->prepare();
         }
-        
+
         if (!_poolPrepared){
             for (auto it : _emitters) {
                 //if (it->isEnabled())
@@ -564,21 +564,21 @@ void PUParticleSystem3D::unPrepared()
     if (_prepared){
         if (_render)
             static_cast<PURender *>(_render)->unPrepare();
-        
+
         for (auto it : _behaviourTemplates) {
             it->unPrepare();
         }
-        
+
         for (auto it : _emitters) {
             if (it->isEnabled())
                 (static_cast<PUEmitter*>(it))->unPrepare();
         }
-        
+
         for (auto it : _affectors) {
             if (it->isEnabled())
                 (static_cast<PUAffector*>(it))->unPrepare();
         }
-        
+
         _particlePool.lockAllDatas();
         for (auto &iter : _emittedEmitterParticlePool){
             PUParticle3D *particle = static_cast<PUParticle3D *>(iter.second.getFirst());
@@ -589,7 +589,7 @@ void PUParticleSystem3D::unPrepared()
             }
             iter.second.lockAllDatas();
         }
-        
+
         for (auto &iter : _emittedSystemParticlePool){
             PUParticle3D *particle = static_cast<PUParticle3D *>(iter.second.getFirst());
             while (particle)
@@ -776,7 +776,7 @@ bool PUParticleSystem3D::isExpired( PUParticle3D* particle, float timeElapsed )
 
 cocos2d::Vec3 PUParticleSystem3D::getDerivedPosition()
 {
-    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Vec3::ZERO; 
+    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Vec3::ZERO;
     //if (_keepLocal) return Vec3::ZERO;
     if (_isMarkedForEmission){
         return Vec3(_position.x, _position.y, _positionZ);
@@ -788,7 +788,7 @@ cocos2d::Vec3 PUParticleSystem3D::getDerivedPosition()
 
 cocos2d::Quaternion PUParticleSystem3D::getDerivedOrientation()
 {
-    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Quaternion(); 
+    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Quaternion();
     //if (_keepLocal) return Quaternion();
     if (_isMarkedForEmission){
         return getRotationQuat();
@@ -802,7 +802,7 @@ cocos2d::Quaternion PUParticleSystem3D::getDerivedOrientation()
 
 cocos2d::Vec3 PUParticleSystem3D::getDerivedScale()
 {
-    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Vec3::ONE; 
+    //if (_parentParticleSystem && _parentParticleSystem->isKeepLocal()) return Vec3::ONE;
     //if (_keepLocal) return Vec3::ONE;
     if (_isMarkedForEmission){
         return Vec3(_scaleX, _scaleY, _scaleZ);
@@ -913,7 +913,7 @@ void PUParticleSystem3D::emitParticles( ParticlePool &pool, PUEmitter* emitter, 
     for (unsigned short i = 0; i < requested; ++i)
     {
         PUParticle3D *particle = static_cast<PUParticle3D *>(pool.createData());
-        if (!particle) 
+        if (!particle)
             return;
 
         particle->initForEmission();
@@ -1316,10 +1316,10 @@ void PUParticleSystem3D::processMotion( PUParticle3D* particle, float timeElapse
     return;
 
 
-    /** Because everything is calculated in worldspace we recalculate it back to the techniques' origin (the result is still 
+    /** Because everything is calculated in worldspace we recalculate it back to the techniques' origin (the result is still
         worldspace) just by adding a relative offset of the particle system, technique, emitter or visual particle.
         Change in V1.4:
-        The additional PEF_EMITTED check fixes the problem with scenenodese moving forward at extremely fast speeds 
+        The additional PEF_EMITTED check fixes the problem with scenenodese moving forward at extremely fast speeds
         The bug is due to how PU code processes keep_local, and the calculation shouldn't be applied to newly emitted particles.
     */
     if (!particle->hasEventFlags(PUParticle3D::PEF_EMITTED))
@@ -1395,7 +1395,7 @@ int PUParticleSystem3D::getAliveParticleCount() const
         }
     }
 
-    if (_emittedSystemParticlePool.empty()) 
+    if (_emittedSystemParticlePool.empty())
         return sz;
 
     for (auto &iter : _emittedSystemParticlePool){
@@ -1434,3 +1434,4 @@ void PUParticleSystem3D::forceStopParticleSystem()
 }
 
 NS_CC_END
+

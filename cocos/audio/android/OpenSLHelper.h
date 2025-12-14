@@ -98,3 +98,4 @@ typedef std::function<int(const std::string&, off_t* start, off_t* length)> FdGe
 #define intervalInMS(oldTime, newTime) (static_cast<long>(std::chrono::duration_cast<std::chrono::microseconds>((newTime) - (oldTime)).count()) / 1000.f)
 
 #define ARRAY_SIZE(arr) (sizeof(arr) / sizeof(arr[0]))
+

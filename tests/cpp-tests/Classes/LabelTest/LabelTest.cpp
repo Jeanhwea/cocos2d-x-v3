@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -100,20 +100,20 @@ Atlas1::Atlas1()
 {
     setGLProgram(GLProgramCache::getInstance()->getProgram(GLProgram::SHADER_NAME_POSITION_TEXTURE));
     _textureAtlas = TextureAtlas::create(s_AtlasTest, 3); _textureAtlas->retain();
-    
+
     auto s = Director::getInstance()->getWinSize();
 
     //
     // Notice: u,v tex coordinates are inverted
     //
-    V3F_C4B_T2F_Quad quads[] = 
+    V3F_C4B_T2F_Quad quads[] =
     {
         {
             {Vec3(0,0,0),Color4B(0,0,255,255),Tex2F(0.0f,1.0f),},                // bottom left
             {Vec3(s.width,0,0),Color4B(0,0,255,0),Tex2F(1.0f,1.0f),},            // bottom right
             {Vec3(0,s.height,0),Color4B(0,0,255,0),Tex2F(0.0f,0.0f),},            // top left
             {Vec3(s.width,s.height,0),Color4B(0,0,255,255),Tex2F(1.0f,0.0f),},    // top right
-        },        
+        },
         {
             {Vec3(40,40,0),Color4B(255,255,255,255),Tex2F(0.0f,0.2f),},            // bottom left
             {Vec3(120,80,0),Color4B(255,0,0,255),Tex2F(0.5f,0.2f),},            // bottom right
@@ -127,11 +127,11 @@ Atlas1::Atlas1()
             {Vec3(s.width/2-50,200,0),Color4B(0,0,255,255),Tex2F(0.0f,0.0f),},        // top left
             {Vec3(s.width,100,0),Color4B(255,255,0,255),Tex2F(1.0f,0.0f),},        // top right
         },
-        
+
     };
-    
-    
-    for( int i=0;i<3;i++) 
+
+
+    for( int i=0;i<3;i++)
     {
         _textureAtlas->updateQuad(&quads[i], i);
     }
@@ -226,7 +226,7 @@ LabelAtlasColorTest::LabelAtlasColorTest()
     addChild(label1, 0, kTagSprite1);
     label1->setPosition( Vec2(10,100) );
     label1->setOpacity( 200 );
-    
+
     auto label2 = LabelAtlas::create("0123456789", "fonts/tuffy_bold_italic-charmap.png", 48, 64, ' ');
     addChild(label2, 0, kTagSprite2);
     label2->setPosition( Vec2(10,200) );
@@ -237,10 +237,10 @@ LabelAtlasColorTest::LabelAtlasColorTest()
     auto cb = CallFunc::create(CC_CALLBACK_0(LabelAtlasColorTest::actionFinishCallback, this));
     auto seq = Sequence::create(fade, fade_in, cb, nullptr);
     auto repeat = RepeatForever::create( seq );
-    label2->runAction( repeat );    
+    label2->runAction( repeat );
 
     _time = 0;
-    
+
     schedule(CC_CALLBACK_1(LabelAtlasColorTest::step, this), "step_key");
 }
 
@@ -257,10 +257,10 @@ void LabelAtlasColorTest::step(float dt)
     //std::string string = std::string::createWithFormat("%2.2f Test", _time);
     auto label1 = (LabelAtlas*)getChildByTag(kTagSprite1);
     label1->setString(string);
-    
+
     auto label2 = (LabelAtlas*)getChildByTag(kTagSprite2);
     sprintf(string, "%d", (int)_time);
-    label2->setString( string );    
+    label2->setString( string );
 }
 
 std::string LabelAtlasColorTest::title() const
@@ -285,11 +285,11 @@ LabelTTFAlignment::LabelTTFAlignment()
 
     auto ttf0 = LabelTTF::create("Alignment 0\nnew line", "Helvetica", 12,
                                           Size(256, 32), TextHAlignment::LEFT);
-    
+
     ttf0->setPosition(Vec2(s.width/2,(s.height/6)*2));
     ttf0->setAnchorPoint(Vec2::ANCHOR_MIDDLE);
     this->addChild(ttf0);
-    
+
     auto ttf1 = LabelTTF::create("Alignment 1\nnew line", "Helvetica", 12,
                                       Size(245, 32), TextHAlignment::CENTER);
     ttf1->setPosition(Vec2(s.width/2,(s.height/6)*3));
@@ -329,9 +329,9 @@ Atlas3::Atlas3()
 
     auto col = LayerColor::create( Color4B(128,128,128,255) );
     addChild(col, -10);
-    
+
     auto label1 = LabelBMFont::create("Test",  "fonts/bitmapFontTest2.fnt");
-    
+
     // testing anchors
     label1->setAnchorPoint( Vec2::ANCHOR_BOTTOM_LEFT );
     addChild(label1, 0, kTagBitmapAtlas1);
@@ -340,7 +340,7 @@ Atlas3::Atlas3()
     auto seq = Sequence::create(fade, fade_in, nullptr);
     auto repeat = RepeatForever::create(seq);
     label1->runAction(repeat);
-    
+
 
     // VERY IMPORTANT
     // color and opacity work OK because bitmapFontAltas2 loads a BMP image (not a PNG image)
@@ -356,12 +356,12 @@ Atlas3::Atlas3()
         TintTo::create(1, 0, 0, 255),
         nullptr);
     label2->runAction( RepeatForever::create(tint) );
-    
+
     auto label3 = LabelBMFont::create("Test", "fonts/bitmapFontTest2.fnt");
     // testing anchors
     label3->setAnchorPoint( Vec2::ANCHOR_TOP_RIGHT );
     addChild(label3, 0, kTagBitmapAtlas3);
-       
+
     label1->setPosition( VisibleRect::leftBottom() );
     label2->setPosition( VisibleRect::center() );
     label3->setPosition( VisibleRect::rightTop() );
@@ -376,13 +376,13 @@ void Atlas3::step(float dt)
     char string[15] = {0};
     sprintf(string, "%2.2f Test j", _time);
     //string.format("%2.2f Test j", _time);
-    
+
     auto label1 = (LabelBMFont*) getChildByTag(kTagBitmapAtlas1);
     label1->setString(string);
-    
+
     auto label2 = (LabelBMFont*) getChildByTag(kTagBitmapAtlas2);
     label2->setString(string);
-    
+
     auto label3 = (LabelBMFont*) getChildByTag(kTagBitmapAtlas3);
     label3->setString(string);
 }
@@ -413,7 +413,7 @@ Atlas4::Atlas4()
     _time = 0;
 
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto drawNode = DrawNode::create();
     drawNode->drawLine( Vec2(0, s.height/2), Vec2(s.width, s.height/2), Color4F(1.0, 1.0, 1.0, 1.0) );
     drawNode->drawLine( Vec2(s.width/2, 0), Vec2(s.width/2, s.height), Color4F(1.0, 1.0, 1.0, 1.0) );
@@ -422,46 +422,46 @@ Atlas4::Atlas4()
     // Upper Label
     auto label = LabelBMFont::create("Bitmap Font Atlas", "fonts/bitmapFontTest.fnt");
     addChild(label);
-    
+
     label->setPosition( Vec2(s.width/2, s.height/2) );
     label->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
-    
-    
+
+
     auto BChar = (Sprite*) label->getChildByTag(0);
     auto FChar = (Sprite*) label->getChildByTag(7);
     auto AChar = (Sprite*) label->getChildByTag(12);
-    
-    
+
+
     auto rotate = RotateBy::create(2, 360);
     auto rot_4ever = RepeatForever::create(rotate);
-    
+
     auto scale = ScaleBy::create(2, 1.5f);
     auto scale_back = scale->reverse();
     auto scale_seq = Sequence::create(scale, scale_back,nullptr);
     auto scale_4ever = RepeatForever::create(scale_seq);
-    
+
     auto jump = JumpBy::create(0.5f, Vec2::ZERO, 60, 1);
     auto jump_4ever = RepeatForever::create(jump);
-    
+
     auto fade_out = FadeOut::create(1);
     auto fade_in = FadeIn::create(1);
     auto seq = Sequence::create(fade_out, fade_in, nullptr);
     auto fade_4ever = RepeatForever::create(seq);
-    
+
     BChar->runAction(rot_4ever);
     BChar->runAction(scale_4ever);
     FChar->runAction(jump_4ever);
     AChar->runAction(fade_4ever);
-    
-    
+
+
     // Bottom Label
     auto label2 = LabelBMFont::create("00.0", "fonts/bitmapFontTest.fnt");
     addChild(label2, 0, kTagBitmapAtlas2);
     label2->setPosition( Vec2(s.width/2.0f, 80) );
-    
+
     auto lastChar = (Sprite*) label2->getChildByTag(3);
     lastChar->runAction( rot_4ever->clone() );
-    
+
     schedule(CC_CALLBACK_1(Atlas4::step, this), 0.1f, "step_key");
 }
 
@@ -472,7 +472,7 @@ void Atlas4::step(float dt)
     sprintf(string, "%04.1f", _time);
 //     std::string string;
 //     string.format("%04.1f", _time);
-    
+
     auto label1 = (LabelBMFont*) getChildByTag(kTagBitmapAtlas2);
     label1->setString(string);
 }
@@ -503,9 +503,9 @@ Atlas5::Atlas5()
 {
     auto label = LabelBMFont::create("abcdefg", "fonts/bitmapFontTest4.fnt");
     addChild(label);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     label->setPosition( Vec2(s.width/2, s.height/2) );
     label->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 }
@@ -540,7 +540,7 @@ Atlas6::Atlas6()
     addChild(label);
     label->setPosition( Vec2(s.width/2, s.height/2+50) );
     label->setAnchorPoint( Vec2::ANCHOR_MIDDLE ) ;
-    
+
     label = LabelBMFont::create("fafefifofu", "fonts/bitmapFontTest5.fnt");
     addChild(label);
     label->setPosition( Vec2(s.width/2, s.height/2) );
@@ -549,7 +549,7 @@ Atlas6::Atlas6()
     label = LabelBMFont::create("aeiou", "fonts/bitmapFontTest5.fnt");
     addChild(label);
     label->setPosition( Vec2(s.width/2, s.height/2-50) );
-    label->setAnchorPoint( Vec2::ANCHOR_MIDDLE ); 
+    label->setAnchorPoint( Vec2::ANCHOR_MIDDLE );
 }
 
 std::string Atlas6::title() const
@@ -576,7 +576,7 @@ std::string Atlas6::subtitle() const
 AtlasBitmapColor::AtlasBitmapColor()
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     LabelBMFont* label = nullptr;
     label = LabelBMFont::create("Blue", "fonts/bitmapFontTest5.fnt");
     label->setColor( Color3B::BLUE );
@@ -623,13 +623,13 @@ std::string AtlasBitmapColor::subtitle() const
 AtlasFastBitmap::AtlasFastBitmap()
 {
         // Upper Label
-        for( int i=0 ; i < 100;i ++ ) 
+        for( int i=0 ; i < 100;i ++ )
         {
             char str[6] = {0};
             sprintf(str, "-%d-", i);
             auto label = LabelBMFont::create(str, "fonts/bitmapFontTest.fnt");
             addChild(label);
-            
+
             auto s = Director::getInstance()->getWinSize();
 
             auto p = Vec2( CCRANDOM_0_1() * s.width, CCRANDOM_0_1() * s.height);
@@ -1068,9 +1068,9 @@ BitmapFontMultiLineAlignment::BitmapFontMultiLineAlignment()
     listener->onTouchesBegan = CC_CALLBACK_2(BitmapFontMultiLineAlignment::onTouchesBegan, this);
     listener->onTouchesMoved = CC_CALLBACK_2(BitmapFontMultiLineAlignment::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(BitmapFontMultiLineAlignment::onTouchesEnded, this);
-    
+
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     // ask director the the window size
     auto size = Director::getInstance()->getWinSize();
 
@@ -1232,7 +1232,7 @@ void BitmapFontMultiLineAlignment::onTouchesMoved(const std::vector<Touch*>& tou
 
     auto winSize = Director::getInstance()->getWinSize();
 
-    this->_arrowsShouldRetain->setPosition(Vec2(MAX(MIN(location.x, ArrowsMax*winSize.width), ArrowsMin*winSize.width), 
+    this->_arrowsShouldRetain->setPosition(Vec2(MAX(MIN(location.x, ArrowsMax*winSize.width), ArrowsMin*winSize.width),
         this->_arrowsShouldRetain->getPosition().y));
 
     float labelWidth = std::fabs(this->_arrowsShouldRetain->getPosition().x - this->_labelShouldRetain->getPosition().x) * 2;
@@ -1391,105 +1391,105 @@ TTFFontShadowAndStroke::TTFFontShadowAndStroke()
 {
     auto layer = LayerColor::create(Color4B(0,190,0,255));
     addChild(layer, -10);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     Color3B tintColorRed(  255, 0, 0   );
     Color3B tintColorYellow( 255, 255, 0 );
     Color3B tintColorBlue( 0, 0, 255   );
     Color3B strokeColor( 0, 0, 255  );
     Color3B strokeShadowColor( 255, 0, 0   );
-    
+
     Size shadowOffset(12.0, 12.0);
-    
+
     FontDefinition shadowTextDef;
     shadowTextDef._fontSize = 20;
     shadowTextDef._fontName = std::string("Marker Felt");
-    
+
     shadowTextDef._shadow._shadowEnabled = true;
     shadowTextDef._shadow._shadowOffset  = shadowOffset;
     shadowTextDef._shadow._shadowOpacity = 1.0;
     shadowTextDef._shadow._shadowBlur    = 1.0;
     shadowTextDef._fontFillColor   = tintColorRed;
-    
+
     // shadow only label
     auto fontShadow = LabelTTF::createWithFontDefinition("Shadow Only Red Text", shadowTextDef);
-    
+
     // add label to the scene
     this->addChild(fontShadow);
     fontShadow->setPosition(Vec2(s.width/2,s.height/4*2.5));
-    
+
 
     // create the stroke only label
     FontDefinition strokeTextDef;
     strokeTextDef._fontSize = 20;
     strokeTextDef._fontName = std::string("Marker Felt");
-    
+
     strokeTextDef._stroke._strokeEnabled = true;
     strokeTextDef._stroke._strokeColor   = strokeColor;
     strokeTextDef._stroke._strokeSize    = 1.5;
-    
+
     strokeTextDef._fontFillColor   = tintColorYellow;
-    
+
     // stroke only label
     auto fontStroke = LabelTTF::createWithFontDefinition("Stroke Only Yellow Text", strokeTextDef);
-    
+
     // add label to the scene
     this->addChild(fontStroke);
     fontStroke->setPosition(Vec2(s.width/2,s.height/4*1.8));
-    
-    
-    
+
+
+
     // create the label stroke and shadow
     FontDefinition strokeShaodwTextDef;
     strokeShaodwTextDef._fontSize = 20;
     strokeShaodwTextDef._fontName = std::string("Marker Felt");
-    
+
     strokeShaodwTextDef._stroke._strokeEnabled = true;
     strokeShaodwTextDef._stroke._strokeColor   = strokeShadowColor;
     strokeShaodwTextDef._stroke._strokeSize    = 1.5;
-    
+
     strokeShaodwTextDef._shadow._shadowEnabled = true;
     strokeShaodwTextDef._shadow._shadowOffset  = shadowOffset;
     strokeShaodwTextDef._shadow._shadowOpacity = 1.0;
     strokeShaodwTextDef._shadow._shadowBlur    = 1.0;
-    
-    
+
+
     strokeShaodwTextDef._fontFillColor   = tintColorBlue;
-    
+
     // shadow + stroke label
     auto fontStrokeAndShadow = LabelTTF::createWithFontDefinition("Stroke & Shadow Blue Text", strokeShaodwTextDef);
-    
+
     // add label to the scene
     this->addChild(fontStrokeAndShadow);
     fontStrokeAndShadow->setPosition(Vec2(s.width/2,s.height/4*1.1));
-    
+
     auto buttonBG = MenuItemImage::create("cocosui/animationbuttonnormal.png", "cocosui/animationbuttonpressed.png");
     buttonBG->setAnchorPoint(Vec2::ANCHOR_MIDDLE_LEFT);
     buttonBG->setPosition(VisibleRect::left());
-    
+
     // create the label stroke and shadow
     strokeShaodwTextDef._fontSize = 18;
     strokeShaodwTextDef._fontName = "Marker Felt";
-    
+
     strokeShaodwTextDef._stroke._strokeEnabled = true;
     strokeShaodwTextDef._stroke._strokeColor   = Color3B::BLACK;
     strokeShaodwTextDef._stroke._strokeSize    = 3.0f;
-    
+
     strokeShaodwTextDef._shadow._shadowEnabled = false;
     strokeShaodwTextDef._shadow._shadowOffset  = Size(1, 1);
     strokeShaodwTextDef._shadow._shadowOpacity = 1.0;
     strokeShaodwTextDef._shadow._shadowBlur    = 0.5f;
-    
+
     strokeShaodwTextDef._fontFillColor   = Color3B::WHITE;
-    
+
     // shadow + stroke label
     fontStrokeAndShadow = LabelTTF::createWithFontDefinition("Test", strokeShaodwTextDef);
-    
+
     // add label to the scene
     buttonBG->addChild(fontStrokeAndShadow);
     fontStrokeAndShadow->setPosition(Vec2(buttonBG->getContentSize().width/2, buttonBG->getContentSize().height/2));
-    
+
     auto menu = Menu::create(buttonBG, nullptr);
     menu->setAnchorPoint(Vec2::ANCHOR_BOTTOM_LEFT);
     menu->setPosition(Vec2::ZERO);
@@ -1537,24 +1537,24 @@ std::string Issue1343::subtitle() const
 LabelBMFontBounds::LabelBMFontBounds()
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto layer = LayerColor::create(Color4B(128,128,128,255));
     addChild(layer, -10);
-    
+
     // LabelBMFont
     auto label1 = LabelBMFont::create("Testing Glyph Designer", "fonts/boundsTestFont.fnt");
-    
+
     addChild(label1);
     label1->setPosition(Vec2(s.width/2, s.height/2));
-    
+
     auto drawNode = DrawNode::create();
-    
+
     auto labelSize = label1->getContentSize();
     auto origin = Director::getInstance()->getWinSize();
-    
+
     origin.width = origin.width / 2 - (labelSize.width / 2);
     origin.height = origin.height / 2 - (labelSize.height / 2);
-    
+
     Vec2 vertices[4]=
     {
         Vec2(origin.width, origin.height),
@@ -1580,7 +1580,7 @@ std::string LabelBMFontBounds::subtitle() const
 void LabelBMFontCrashTest::onEnter()
 {
     AtlasDemo::onEnter();
-    
+
     auto winSize = Director::getInstance()->getWinSize();
     //Create a label and add it
     auto label1 = new (std::nothrow) LabelBMFont();
@@ -1588,11 +1588,11 @@ void LabelBMFontCrashTest::onEnter()
     this->addChild(label1);
     // Visit will call draw where the function "ccGLBindVAO(m_uVAOname);" will be invoked.
     label1->visit();
-    
+
     // Remove this label
     label1->removeFromParentAndCleanup(true);
     label1->release();
-    
+
     // Create a new label and add it (then crashes)
     auto label2 = LabelBMFont::create("test 2", "fonts/bitmapFontTest.fnt");
     label2->setPosition(Vec2(winSize.width/2, winSize.height/2));
@@ -1637,3 +1637,4 @@ std::string LabelBMFontBinaryFormat::subtitle() const
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
 #endif
+

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,7 +44,7 @@ UILoadingBarTests::UILoadingBarTests()
 UILoadingBarTest_Left::UILoadingBarTest_Left()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarTest_Left::~UILoadingBarTest_Left()
@@ -57,9 +57,9 @@ bool UILoadingBarTest_Left::init()
     if (UIScene::init())
     {
         scheduleUpdate();
-        
+
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text* alert = Text::create("Test LoadingBar Change Direction",
                                    "fonts/Marker Felt.ttf", 30);
@@ -67,7 +67,7 @@ bool UILoadingBarTest_Left::init()
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the loading bar
         LoadingBar* loadingBar = LoadingBar::create("cocosui/sliderProgress.png");
         loadingBar->setTag(0);
@@ -114,7 +114,7 @@ bool UILoadingBarTest_Left::init()
         auto pMenu1 = Menu::create(item1, nullptr);
         pMenu1->setPosition(Vec2(0, 0));
         this->addChild(pMenu1, 10);
-        
+
         return true;
     }
     return false;
@@ -144,7 +144,7 @@ void UILoadingBarTest_Left::printWidgetResources(cocos2d::Ref* sender)
 UILoadingBarTest_Right::UILoadingBarTest_Right()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarTest_Right::~UILoadingBarTest_Right()
@@ -157,25 +157,25 @@ bool UILoadingBarTest_Right::init()
     if (UIScene::init())
     {
         scheduleUpdate();
-        
+
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text *alert = Text::create("LoadingBar right", "fonts/Marker Felt.ttf", 30);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the loading bar
         LoadingBar* loadingBar = LoadingBar::create("cocosui/sliderProgress.png");
         loadingBar->setTag(0);
         loadingBar->setDirection(LoadingBar::Direction::RIGHT);
-        
+
         loadingBar->setPosition(Vec2(widgetSize.width / 2.0f,
                                       widgetSize.height / 2.0f + loadingBar->getContentSize().height / 4.0f));
-        
+
         _uiLayer->addChild(loadingBar);
-        
+
         return true;
     }
     return false;
@@ -197,7 +197,7 @@ void UILoadingBarTest_Right::update(float delta)
 UILoadingBarTest_Left_Scale9::UILoadingBarTest_Left_Scale9()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarTest_Left_Scale9::~UILoadingBarTest_Left_Scale9()
@@ -210,27 +210,27 @@ bool UILoadingBarTest_Left_Scale9::init()
     if (UIScene::init())
     {
         scheduleUpdate();
-        
+
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text* alert = Text::create("LoadingBar left scale9 render", "fonts/Marker Felt.ttf", 20);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 2.7f));
         _uiLayer->addChild(alert);
-        
+
         // Create the loading bar
         LoadingBar* loadingBar = LoadingBar::create("cocosui/slider_bar_active_9patch.png");
         loadingBar->setTag(0);
         loadingBar->setScale9Enabled(true);
         loadingBar->setCapInsets(Rect(0, 0, 0, 0));
         loadingBar->setContentSize(Size(300, 13));
-        
+
         loadingBar->setPosition(Vec2(widgetSize.width / 2.0f,
                                       widgetSize.height / 2.0f + loadingBar->getContentSize().height / 4.0f));
-        
+
         _uiLayer->addChild(loadingBar);
-        
+
         return true;
     }
     return false;
@@ -252,7 +252,7 @@ void UILoadingBarTest_Left_Scale9::update(float delta)
 UILoadingBarTest_Right_Scale9::UILoadingBarTest_Right_Scale9()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarTest_Right_Scale9::~UILoadingBarTest_Right_Scale9()
@@ -265,15 +265,15 @@ bool UILoadingBarTest_Right_Scale9::init()
     if (UIScene::init())
     {
         scheduleUpdate();
-        
+
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text *alert = Text::create("LoadingBar right scale9 render", "fonts/Marker Felt.ttf", 20);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 2.7f));
         _uiLayer->addChild(alert);
-        
+
         // Create the loading bar
         LoadingBar* loadingBar = LoadingBar::create("cocosui/slider_bar_active_9patch.png");
         loadingBar->setTag(0);
@@ -281,12 +281,12 @@ bool UILoadingBarTest_Right_Scale9::init()
         loadingBar->setCapInsets(Rect(0, 0, 0, 0));
         loadingBar->setContentSize(Size(300, 13));
         loadingBar->setDirection(LoadingBar::Direction::RIGHT);
-        
+
         loadingBar->setPosition(Vec2(widgetSize.width / 2.0f,
                                       widgetSize.height / 2.0f + loadingBar->getContentSize().height / 4.0f));
-        
+
         _uiLayer->addChild(loadingBar);
-        
+
         return true;
     }
     return false;
@@ -366,12 +366,12 @@ bool UILoadingBarTest_Scale9_State_Change::init()
 UILoadingBarReloadTexture::UILoadingBarReloadTexture()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarReloadTexture::~UILoadingBarReloadTexture()
 {
-    
+
 }
 
 bool UILoadingBarReloadTexture::init()
@@ -379,14 +379,14 @@ bool UILoadingBarReloadTexture::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text *alert = Text::create("Click button to Toggle Scale9 and switch Texture.", "fonts/Marker Felt.ttf", 20);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 2.7f));
         _uiLayer->addChild(alert);
-        
+
         LoadingBar* loadingBar = LoadingBar::create("cocosui/slider_bar_active_9patch.png");
         loadingBar->setTag(0);
         loadingBar->ignoreContentAdaptWithSize(false);
@@ -398,9 +398,9 @@ bool UILoadingBarReloadTexture::init()
         loadingBar->setPercent(70);
         loadingBar->setPosition(Vec2(widgetSize.width / 2.0f,
                                      widgetSize.height / 2.0f + loadingBar->getContentSize().height / 4.0f));
-        
+
         _uiLayer->addChild(loadingBar);
-        
+
         auto buttonScale9 = Button::create("cocosui/animationbuttonnormal.png",
                                            "cocosui/animationbuttonpressed.png");
         buttonScale9->setTitleText("ToggleScale9");
@@ -409,7 +409,7 @@ bool UILoadingBarReloadTexture::init()
         });
         buttonScale9->setPosition(loadingBar->getPosition() + Vec2(-50,50));
         _uiLayer->addChild(buttonScale9);
-        
+
         auto buttonChangeTexture = Button::create("cocosui/animationbuttonnormal.png",
                                                   "cocosui/animationbuttonpressed.png");
         buttonChangeTexture->setTitleText("ChangeTexture");
@@ -428,7 +428,7 @@ bool UILoadingBarReloadTexture::init()
         });
         buttonChangeTexture->setPosition(loadingBar->getPosition() + Vec2(50,50));
         _uiLayer->addChild(buttonChangeTexture);
-        
+
         this->scheduleUpdate();
         return true;
     }
@@ -452,7 +452,7 @@ void UILoadingBarReloadTexture::update(float delta)
 UILoadingBarIssue12249::UILoadingBarIssue12249()
 : _count(0)
 {
-    
+
 }
 
 UILoadingBarIssue12249::~UILoadingBarIssue12249()
@@ -465,9 +465,9 @@ bool UILoadingBarIssue12249::init()
     if (UIScene::init())
     {
         scheduleUpdate();
-        
+
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add the alert
         Text* alert = Text::create("Test LoadingBar Change Direction",
                                    "fonts/Marker Felt.ttf", 30);
@@ -475,7 +475,7 @@ bool UILoadingBarIssue12249::init()
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
-        
+
         // Create the loading bar
         LoadingBar* loadingBar = LoadingBar::create("cocosui/sliderProgress.png");
         loadingBar->setScale9Enabled(true);
@@ -483,7 +483,7 @@ bool UILoadingBarIssue12249::init()
         loadingBar->setTag(0);
         loadingBar->setPosition(Vec2(widgetSize.width / 2.0f,
                                      widgetSize.height / 2.0f + loadingBar->getContentSize().height / 4.0f));
-        
+
         LoadingBar* loadingBarCopy = LoadingBar::create();
         loadingBarCopy->setScale9Enabled(true);
         loadingBarCopy->loadTexture("cocosui/sliderProgress.png");
@@ -492,12 +492,12 @@ bool UILoadingBarIssue12249::init()
         loadingBarCopy->setPosition(loadingBar->getPosition()
                                     + Vec2(0, -40));
         loadingBarCopy->setDirection(LoadingBar::Direction::RIGHT);
-        
+
         Button* button = Button::create("cocosui/animationbuttonnormal.png",
                                         "cocosui/animationbuttonpressed.png");
         button->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f + 50));
         button->setTitleText("Click to change direction!");
-        
+
         button->addTouchEventListener([=](Ref*, Widget::TouchEventType type)
                                       {
                                           if (type == Widget::TouchEventType::ENDED)
@@ -517,7 +517,7 @@ bool UILoadingBarIssue12249::init()
         _uiLayer->addChild(loadingBar,1);
         _uiLayer->addChild(loadingBarCopy,2);
         _uiLayer->addChild(button);
-        
+
         return true;
     }
     return false;
@@ -608,3 +608,4 @@ bool UILoadingBarTest_Direction::init()
     }
     return false;
 }
+

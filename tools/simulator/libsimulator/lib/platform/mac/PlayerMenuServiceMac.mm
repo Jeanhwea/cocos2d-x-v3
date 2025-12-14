@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -48,7 +48,7 @@ static bool __G_IS_MENUBAR_ENABLED__ = true;    // WTF
     {
         return [[[NNMenuItem alloc] initWithMenuItem:macMenuItem] autorelease];
     }
-    
+
     return NULL;
 }
 
@@ -60,16 +60,16 @@ static bool __G_IS_MENUBAR_ENABLED__ = true;    // WTF
     {
         self.target = self;
     }
-    
+
     self.macMenuItem = menuItem;
-    
+
     return self;
 }
 
 -(void) setShortcut:(std::string) shortcut
 {
     std::vector <std::string> fields = player::splitString(shortcut, std::string("+"));
-    
+
     NSUInteger mask = [self keyEquivalentModifierMask];
     for (auto cut : fields)
     {
@@ -101,7 +101,7 @@ static bool __G_IS_MENUBAR_ENABLED__ = true;    // WTF
             }
         }
     }
-    
+
     if (mask != 0)
     {
         [self setKeyEquivalentModifierMask:mask];
@@ -111,7 +111,7 @@ static bool __G_IS_MENUBAR_ENABLED__ = true;    // WTF
 -(void) onClicked:(id)sender
 {
     AppEvent event(kAppEventName, APP_EVENT_MENU);
-    
+
     std::stringstream buf;
     buf << "{\"data\":\"" << self.macMenuItem->getMenuId().c_str() << "\"";
     buf << ",\"name\":" << "\"menuClicked\"" << "}";
@@ -156,7 +156,7 @@ PlayerMenuItemMac::~PlayerMenuItemMac()
     {
         [_parent->_menu removeItem:_menuItem];
     }
-    
+
     CCLOG("PlayerMenuItemWin::~PlayerMenuItemWin() - %s", _menuId.c_str());
 }
 
@@ -167,20 +167,20 @@ void PlayerMenuItemMac::setTitle(const std::string &title)
         CCLOG("MenuServiceWin::setTitle() - can not set menu title to empty, menu id (%s)", _menuId.c_str());
         return;
     }
-    
+
     _menuItem.title = [NSString stringWithUTF8String:title.c_str()];
     if (_menu)
     {
         _menu.title = _menuItem.title;
     }
-    
+
     _title = title;
 }
 
 void PlayerMenuItemMac::setEnabled(bool enabled)
 {
     _isEnabled = enabled;
-    
+
     if (enabled)
     {
         [_menuItem setAction:@selector(onClicked:)];
@@ -210,7 +210,7 @@ void PlayerMenuItemMac::setShortcut(const std::string &shortcut)
 PlayerMenuServiceMac::PlayerMenuServiceMac()
 {
     // @TODO: build menu with **EDIT** menu
-    
+
     NSApplication *thisApp = [NSApplication sharedApplication];
     _root._menu = [thisApp mainMenu];
 }
@@ -229,14 +229,14 @@ PlayerMenuItem* PlayerMenuServiceMac::addItem(const std::string &menuId, const s
         CCLOG("PlayerMenuServiceMac::addItem() - menuId and title must is non-empty");
         return nullptr;
     }
-    
+
     // check menu id is exists
     if (_items.find(menuId) != _items.end())
     {
         CCLOG("PlayerMenuServiceMac::addItem() - menu id (%s) is exists", menuId.c_str());
         return nullptr;
     }
-    
+
     // set parent
     PlayerMenuItemMac *parent = &_root;
     if (parentId.length())
@@ -248,7 +248,7 @@ PlayerMenuItem* PlayerMenuServiceMac::addItem(const std::string &menuId, const s
             parent = it->second;
         }
     }
-    
+
     if (!parent->_menu)
     {
         NSMenu *nsmenu = [[NSMenu alloc] initWithTitle:[parent->_menuItem title]];
@@ -262,7 +262,7 @@ PlayerMenuItem* PlayerMenuServiceMac::addItem(const std::string &menuId, const s
     PlayerMenuItemMac *item = PlayerMenuItemMac::create(menuId, title);
     item->_parent = parent;
     item->_parent->retain();
-    
+
     // check new menu item position
     int childSize = (int) [parent->_menu itemArray].count;
     childSize = (int) parent->_children.size();
@@ -275,7 +275,7 @@ PlayerMenuItem* PlayerMenuServiceMac::addItem(const std::string &menuId, const s
         order = 0;
     }
 
-    
+
     // add menu item to menu bar
     int newIndex = order;
     if (parent == &_root)
@@ -286,12 +286,12 @@ PlayerMenuItem* PlayerMenuServiceMac::addItem(const std::string &menuId, const s
     [parent->_menu insertItem:newItem atIndex:newIndex];
     item->_menuItem = newItem;
 
-    
+
     // update menu state
     parent->_children.insert(order, item);
     _items[item->_menuId] = item;
     updateChildrenOrder(parent);
-    
+
     return item;
 }
 
@@ -308,7 +308,7 @@ PlayerMenuItem* PlayerMenuServiceMac::getItem(const std::string &menuId)
         CCLOG("MenuServiceWin::getItem() - Invalid menu id (%s)", menuId.c_str());
         return nullptr;
     }
-    
+
     return it->second;
 }
 
@@ -348,7 +348,7 @@ bool PlayerMenuServiceMac::removeItemInternal(const std::string &menuId, bool is
                 break;
             }
         }
-        
+
         if (!removed)
         {
             CCLOG("MenuServiceWin::removeItem() - remove menu item (%s) failed, not found command id from parent->children", item->_menuId.c_str());
@@ -376,7 +376,7 @@ bool PlayerMenuServiceMac::removeItemInternal(const std::string &menuId, bool is
          }
         return removeItemInternal(menuId, true);
     }
-    
+
     return false;
 }
 
@@ -392,3 +392,4 @@ void PlayerMenuServiceMac::updateChildrenOrder(PlayerMenuItemMac *parent)
 }
 
 PLAYER_NS_END
+

@@ -2,19 +2,19 @@
  Copyright (c) 2013      Zynga Inc.
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -74,17 +74,17 @@ public:
      * @lua NA
      */
     virtual ~FontAtlas();
-    
+
     void addLetterDefinition(char32_t utf32Char, const FontLetterDefinition &letterDefinition);
     bool getLetterDefinitionForChar(char32_t utf32Char, FontLetterDefinition &letterDefinition);
-    
+
     bool prepareLetterDefinitions(const std::u32string& utf16String);
 
     const std::unordered_map<ssize_t, Texture2D*>& getTextures() const { return _atlasTextures; }
     void  addTexture(Texture2D *texture, int slot);
     float getLineHeight() const { return _lineHeight; }
     void  setLineHeight(float newHeight);
-    
+
     std::string getFontName() const;
 
     Texture2D* getTexture(int slot);
@@ -94,7 +94,7 @@ public:
      It only has effect on Android and WP8.
      */
     void listenRendererRecreated(EventCustom *event);
-    
+
     /** Removes textures atlas.
      It will purge the textures atlas and if multiple texture exist in the FontAtlas.
      */
@@ -114,9 +114,9 @@ public:
 
 protected:
     void reset();
-    
+
     void reinit();
-    
+
     void releaseTextures();
 
     void findNewCharacters(const std::u32string& u32Text, std::unordered_map<unsigned int, unsigned int>& charCodeMap);
@@ -158,3 +158,4 @@ NS_CC_END
 
 /// @endcond
 #endif /* defined(__cocos2d_libs__CCFontAtlas__) */
+

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,11 +45,11 @@ ShaderTests::ShaderTests()
 }
 
 ///---------------------------------------
-// 
+//
 // ShaderNode
-// 
+//
 ///---------------------------------------
-enum 
+enum
 {
     SIZE_X = 256,
     SIZE_Y = 256,
@@ -97,7 +97,7 @@ bool ShaderNode::initWithVertex(const std::string &vert, const std::string &frag
 
     setContentSize(Size(SIZE_X, SIZE_Y));
     setAnchorPoint(Vec2(0.5f, 0.5f));
-    
+
 
     return true;
 }
@@ -159,7 +159,7 @@ void ShaderNode::onDraw(const Mat4 &transform, uint32_t flags)
     glProgramState->apply(transform);
 
     glDrawArrays(GL_TRIANGLES, 0, 6);
-    
+
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1,6);
 }
 
@@ -216,7 +216,7 @@ bool ShaderMandelbrot::init()
 #endif
         return true;
     }
-    
+
     return false;
 }
 
@@ -399,14 +399,14 @@ SpriteBlur* SpriteBlur::create(const char *pszFileName)
     {
         CC_SAFE_DELETE(pRet);
     }
-    
+
     return pRet;
 }
 
 bool SpriteBlur::initWithTexture(Texture2D* texture, const Rect& rect)
 {
     _blurRadius = 0;
-    if( Sprite::initWithTexture(texture, rect) ) 
+    if( Sprite::initWithTexture(texture, rect) )
     {
 #if CC_ENABLE_CACHE_TEXTURE_DATA
         auto listener = EventListenerCustom::create(EVENT_RENDERER_RECREATED, [this](EventCustom* event){
@@ -415,7 +415,7 @@ bool SpriteBlur::initWithTexture(Texture2D* texture, const Rect& rect)
 
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 #endif
-        
+
         initGLProgram();
 
         return true;
@@ -437,7 +437,7 @@ void SpriteBlur::initGLProgram()
 
     auto glProgramState = GLProgramState::getOrCreateWithGLProgram(program);
     setGLProgramState(glProgramState);
-    
+
     auto size = getTexture()->getContentSizeInPixels();
     getGLProgramState()->setUniformVec2("resolution", size);
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
@@ -477,7 +477,7 @@ std::string ShaderBlur::subtitle() const
 void ShaderBlur::createSliderCtls()
 {
     auto screenSize = Director::getInstance()->getWinSize();
-    
+
     {
         ControlSlider *slider = ControlSlider::create("extensions/sliderTrack.png","extensions/sliderProgress.png" ,"extensions/sliderThumb.png");
         slider->setAnchorPoint(Vec2(0.5f, 1.0f));
@@ -489,12 +489,12 @@ void ShaderBlur::createSliderCtls()
         slider->setValue(2.0f);
         addChild(slider);
         _sliderRadiusCtl = slider;
-        
+
         auto label = Label::createWithTTF("Blur Radius", "fonts/arial.ttf", 12.0f);
         addChild(label);
         label->setPosition(Vec2(screenSize.width / 4.0f, screenSize.height / 3.0f));
     }
-    
+
     {
         ControlSlider *slider = ControlSlider::create("extensions/sliderTrack.png","extensions/sliderProgress.png" ,"extensions/sliderThumb.png");
         slider->setAnchorPoint(Vec2(0.5f, 1.0f));
@@ -506,17 +506,17 @@ void ShaderBlur::createSliderCtls()
         slider->setValue(7.0f);
         addChild(slider);
         _sliderNumCtrl = slider;
-        
+
         auto label = Label::createWithTTF("Blur Sample Num", "fonts/arial.ttf", 12.0f);
         addChild(label);
         label->setPosition(Vec2(screenSize.width / 4.0f, screenSize.height / 3.0f - 34.0f));
     }
- 
+
 }
 
 bool ShaderBlur::init()
 {
-    if( ShaderTestDemo::init() ) 
+    if( ShaderTestDemo::init() )
     {
         _blurSprite = SpriteBlur::create("Images/grossini.png");
         auto sprite = Sprite::create("Images/grossini.png");
@@ -526,7 +526,7 @@ bool ShaderBlur::init()
 
         addChild(_blurSprite);
         addChild(sprite);
-        
+
         auto label = Label::createWithTTF("Normal Sprite", "fonts/arial.ttf", 12.0f);
         addChild(label);
         label->setPosition(Vec2(2*s.width/3, s.height/3.0f));
@@ -566,7 +566,7 @@ ShaderRetroEffect::ShaderRetroEffect()
 bool ShaderRetroEffect::init()
 {
     if( ShaderTestDemo::init() ) {
-        
+
         auto fragStr = FileUtils::getInstance()->getStringFromFile(FileUtils::getInstance()->fullPathForFilename("Shaders/example_HorizontalColor.fsh"));
         GLchar * fragSource = (GLchar*)fragStr.c_str();
 
@@ -601,10 +601,10 @@ void ShaderRetroEffect::update(float dt)
         {
             auto oldPosition = sprite->getPosition();
             sprite->setPosition(Vec2( oldPosition.x, sinf( _accum * 2 + i/2.0) * 20  ));
-            
+
             // add fabs() to prevent negative scaling
             float scaleY = ( sinf( _accum * 2 + i/2.0 + 0.707) );
-            
+
             sprite->setScaleY(scaleY);
         }
     }
@@ -640,15 +640,15 @@ bool ShaderLensFlare::init()
     if (ShaderTestDemo::init())
     {
         auto sn = ShaderNode::shaderNodeWithVertex("", "Shaders/shadertoy_LensFlare.fsh");
-        
+
         auto s = Director::getInstance()->getWinSize();
         sn->setPosition(Vec2(s.width/2, s.height/2));
         sn->setContentSize(Size(s.width/2,s.height/2));
         addChild(sn);
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -674,15 +674,15 @@ bool ShaderGlow::init()
     if (ShaderTestDemo::init())
     {
         auto sn = ShaderNode::shaderNodeWithVertex("", "Shaders/shadertoy_Glow.fsh");
-        
+
         auto s = Director::getInstance()->getWinSize();
         sn->setPosition(Vec2(s.width/2, s.height/2));
         sn->setContentSize(Size(s.width/2,s.height/2));
         addChild(sn);
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -759,7 +759,7 @@ bool ShaderMultiTexture::init()
 
         // slider
         createSliderCtl();
-        
+
         // menu
         auto label = Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "change");
         auto mi = MenuItemLabel::create(label, CC_CALLBACK_1(ShaderMultiTexture::changeTexture, this));
@@ -787,3 +787,4 @@ void ShaderMultiTexture::changeTexture(Ref*)
     auto programState = _sprite->getGLProgramState();
     programState->setUniformTexture("u_texture1", right->getTexture());
 }
+

@@ -216,3 +216,4 @@ void SimpleAudioEngine::setEffectsVolume(float volume) {
 } // end of namespace CocosDenshion
 
 #endif
+

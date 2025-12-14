@@ -66,3 +66,4 @@ SP_API void spSkeletonClipping_dispose(spSkeletonClipping* self);
 #endif
 
 #endif /* SPINE_SKELETONCLIPPING_H */
+

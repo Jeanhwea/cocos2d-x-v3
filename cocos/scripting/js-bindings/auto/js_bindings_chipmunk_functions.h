@@ -327,3 +327,4 @@ bool JSB_cpvunrotate(JSContext *cx, uint32_t argc, jsval *vp);
 
 
 #endif // JSB_INCLUDE_CHIPMUNK
+

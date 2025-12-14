@@ -76,7 +76,7 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
     }
     _actionDic[fileName] = actionList;
 }
-    
+
     void ActionManagerEx::initWithBinary(const char* file,
                                          cocos2d::Ref *root,
                                          CocoLoader* cocoLoader,
@@ -86,7 +86,7 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
         ssize_t pos = path.find_last_of('/');
         std::string fileName = path.substr(pos+1,path.length());
         cocos2d::Vector<ActionObject*> actionList;
-        
+
         stExpCocoNode *stChildArray = pCocoNode->GetChildArray(cocoLoader);
         stExpCocoNode *actionNode = nullptr;
         for (int i=0; i < pCocoNode->GetChildNum(); ++i) {
@@ -102,14 +102,14 @@ void ActionManagerEx::initWithDictionary(const char* jsonName,const rapidjson::V
             for (int i = 0; i < actionCount; ++i) {
                 ActionObject* action = new (std::nothrow) ActionObject();
                 action->autorelease();
-                
+
                 action->initWithBinary(cocoLoader, &actionNode->GetChildArray(cocoLoader)[i], root);
-                
+
                 actionList.pushBack(action);
             }
         }
         _actionDic[fileName] = actionList;
-        
+
     }
 
 
@@ -164,7 +164,7 @@ ActionObject* ActionManagerEx::stopActionByName(const char* jsonName,const char*
     }
     return action;
 }
-    
+
 void ActionManagerEx::releaseActions()
 {
     for (auto& iter : _actionDic)
@@ -179,7 +179,7 @@ void ActionManagerEx::releaseActions()
         }
         objList.clear();
     }
-    
+
     _actionDic.clear();
 }
 
@@ -189,3 +189,4 @@ int ActionManagerEx::getStudioVersionNumber() const
 }
 
 }
+

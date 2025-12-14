@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -45,52 +45,52 @@ using namespace flatbuffers;
 namespace cocostudio
 {
     IMPLEMENT_CLASS_NODE_READER_INFO(Sprite3DReader)
-    
+
     Sprite3DReader::Sprite3DReader()
     {
-        
+
     }
-    
+
     Sprite3DReader::~Sprite3DReader()
     {
-        
+
     }
-    
+
     static Sprite3DReader* _instanceSprite3DReader = nullptr;
-    
+
     Sprite3DReader* Sprite3DReader::getInstance()
     {
         if (!_instanceSprite3DReader)
         {
             _instanceSprite3DReader = new (std::nothrow) Sprite3DReader();
         }
-        
+
         return _instanceSprite3DReader;
     }
-    
+
     void Sprite3DReader::purge()
     {
         CC_SAFE_DELETE(_instanceSprite3DReader);
     }
-    
+
     void Sprite3DReader::destroyInstance()
     {
         CC_SAFE_DELETE(_instanceSprite3DReader);
     }
-    
+
     Vec2 Sprite3DReader::getVec2Attribute(const tinyxml2::XMLAttribute* attribute) const
     {
         if(!attribute)
             return Vec2::ZERO;
-        
+
         Vec2 ret;
         std::string attriname;
-        
+
         while (attribute)
         {
             attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if (attriname == "X")
             {
                 ret.x = atof(value.c_str());
@@ -99,32 +99,32 @@ namespace cocostudio
             {
                 ret.y = atof(value.c_str());
             }
-            
+
             attribute = attribute->Next();
         }
 
         return ret;
     }
-    
+
     Offset<Table> Sprite3DReader::createOptionsWithFlatBuffers(const tinyxml2::XMLElement *objectData,
                                                              flatbuffers::FlatBufferBuilder *builder)
     {
         auto temp = Node3DReader::getInstance()->createOptionsWithFlatBuffers(objectData, builder);
         auto node3DOptions = *(Offset<Node3DOption>*)(&temp);
-        
+
         bool runAction = false;
         std::string path;
         int resourceType = 0;
         bool isFlipped = false;
         int lightFlag = 0;
-        
+
         std::string attriname;
         const tinyxml2::XMLAttribute* attribute = objectData->FirstAttribute();
         while(attribute)
         {
             attriname = attribute->Name();
             std::string value = attribute->Value();
-            
+
             if(attriname == "RunAction3D")
             {
                 runAction = value == "True" ? true : false;
@@ -149,7 +149,7 @@ namespace cocostudio
                 else if (value == "LIGHT11") lightFlag = (int)LightFlag::LIGHT11;
                 else if (value == "LIGHT12") lightFlag = (int)LightFlag::LIGHT12;
             }
-            
+
             attribute = attribute->Next();
         }
 
@@ -158,16 +158,16 @@ namespace cocostudio
         while (child)
         {
             std::string name = child->Name();
-            
+
             if (name == "FileData")
             {
                 attribute = child->FirstAttribute();
-                
+
                 while (attribute)
                 {
                     name = attribute->Name();
                     std::string value = attribute->Value();
-                    
+
                     if (name == "Path")
                     {
                         path = value;
@@ -183,14 +183,14 @@ namespace cocostudio
                             resourceType = 0;
                         }
                     }
-                    
+
                     attribute = attribute->Next();
                 }
             }
-            
+
             child = child->NextSiblingElement();
         }
-        
+
         auto options = CreateSprite3DOptions(*builder,
                                              node3DOptions,
                                              CreateResourceData(*builder,
@@ -201,17 +201,17 @@ namespace cocostudio
                                              isFlipped,
                                              lightFlag
                                              );
-        
+
         return *(Offset<Table>*)(&options);
     }
-    
+
     void Sprite3DReader::setPropsWithFlatBuffers(cocos2d::Node *node,
                                                    const flatbuffers::Table* sprite3DOptions)
     {
         Sprite3D* sprite3D = static_cast<Sprite3D*>(node);
-        
+
         auto options = (Sprite3DOptions*)sprite3DOptions;
-        
+
         int lightFlag = options->lightFlag();
         bool runAction = options->runAction() != 0;
         bool isFlipped = options->isFlipped() != 0;
@@ -228,14 +228,14 @@ namespace cocostudio
                 sprite3D->runAction(action);
             }
         }
-        
+
         auto nodeOptions = options->node3DOption()->nodeOptions();
-        
+
         GLubyte alpha       = (GLubyte)nodeOptions->color()->a();
         GLubyte red         = (GLubyte)nodeOptions->color()->r();
         GLubyte green       = (GLubyte)nodeOptions->color()->g();
         GLubyte blue        = (GLubyte)nodeOptions->color()->b();
-        
+
         if (alpha != 255)
         {
             sprite3D->setOpacity(alpha);
@@ -255,26 +255,27 @@ namespace cocostudio
             lightFlag = 1;
         }
         sprite3D->setLightMask(lightFlag);
-        
+
         auto node3DReader = Node3DReader::getInstance();
         node3DReader->setPropsWithFlatBuffers(sprite3D, (Table*)(options->node3DOption()));
     }
-    
+
     Node* Sprite3DReader::createNodeWithFlatBuffers(const flatbuffers::Table *sprite3DOptions)
     {
         auto options = (Sprite3DOptions*)sprite3DOptions;
-        
+
         auto fileData = options->fileData();
         std::string path = fileData->path()->c_str();
-        
+
         Sprite3D* ret = Sprite3D::create();
         if(FileUtils::getInstance()->isFileExist(path))
         {
             ret->initWithFile(path);
         }
-        
+
         setPropsWithFlatBuffers(ret, sprite3DOptions);
-        
+
         return ret;
     }
 }
+

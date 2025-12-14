@@ -2,7 +2,7 @@
  Copyright (c) 2013      Zynga Inc.
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -72,7 +72,7 @@ BMFontConfiguration* FNTConfigLoadFile(const std::string& fntFile)
         if (ret)
         {
             s_configurations->insert(fntFile, ret);
-        }        
+        }
     }
 
     return ret;
@@ -167,12 +167,12 @@ std::set<unsigned int>* BMFontConfiguration::parseConfigFile(const std::string& 
         return nullptr;
     }
     auto contents = data.c_str();
-    
+
     std::set<unsigned int> *validCharsString = new (std::nothrow) std::set<unsigned int>();
-    
+
     auto contentsLen = strlen(contents);
     char line[512] = {0};
-    
+
     auto next = strchr(contents, '\n');
     auto base = contents;
     size_t lineLength = 0;
@@ -188,7 +188,7 @@ std::set<unsigned int>* BMFontConfiguration::parseConfigFile(const std::string& 
         {
             base = next + 1;
             next = strchr(base, '\n');
-        } 
+        }
         else
         {
             next = nullptr;
@@ -225,7 +225,7 @@ std::set<unsigned int>* BMFontConfiguration::parseConfigFile(const std::string& 
             this->parseKerningEntry(line);
         }
     }
-    
+
     return validCharsString;
 }
 
@@ -329,7 +329,7 @@ std::set<unsigned int>* BMFontConfiguration::parseBinaryConfigFile(unsigned char
             for (unsigned long i = 0; i < count; i++)
             {
                 uint32_t charId = 0; memcpy(&charId, pData + (i * 20), 4);
-                
+
                 BMFontDef& fontDef = _fontDefDictionary[charId];
                 fontDef.charID = charId;
 
@@ -395,7 +395,7 @@ void BMFontConfiguration::parseImageFileName(const char* line, const std::string
     sscanf(line, "page id=%d", &pageId);
     CCASSERT(pageId == 0, "LabelBMFont file could not be found");
 
-    // file 
+    // file
     char fileName[255];
     sscanf(strstr(line, "file=\"") + 6, "%[^\"]", fileName);
     _atlasName = FileUtils::getInstance()->fullPathFromRelativeFile(fileName, fntFile);
@@ -420,11 +420,11 @@ void BMFontConfiguration::parseCommonArguments(const char* line)
     // line to parse:
     // common lineHeight=104 base=26 scaleW=1024 scaleH=512 pages=1 packed=0
     //////////////////////////////////////////////////////////////////////////
-  
+
     // Height
     auto tmp = strstr(line, "lineHeight=") + 11;
     sscanf(tmp, "%d", &_commonHeight);
-    
+
 #if COCOS2D_DEBUG > 0
     // scaleW. sanity check
     int value;
@@ -450,16 +450,16 @@ void BMFontConfiguration::parseCommonArguments(const char* line)
 unsigned int BMFontConfiguration::parseCharacterDefinition(const char* line)
 {
     unsigned int charID = 0;
-    
+
     //////////////////////////////////////////////////////////////////////////
     // line to parse:
-    // char id=32   x=0     y=0     width=0     height=0     xoffset=0     yoffset=44    xadvance=14     page=0  chnl=0 
+    // char id=32   x=0     y=0     width=0     height=0     xoffset=0     yoffset=44    xadvance=14     page=0  chnl=0
     //////////////////////////////////////////////////////////////////////////
 
     // Character ID
     auto tmp = strstr(line, "id=") + 3;
     sscanf(tmp, "%u", &charID);
-    
+
     BMFontDef& characterDefinition = _fontDefDictionary[charID];
     characterDefinition.charID = charID;
 
@@ -484,12 +484,12 @@ unsigned int BMFontConfiguration::parseCharacterDefinition(const char* line)
     // Character xadvance
     tmp = strstr(tmp, "xadvance=") + 9;
     sscanf(tmp, "%hd", &characterDefinition.xAdvance);
-    
+
     return charID;
 }
 
 void BMFontConfiguration::parseKerningEntry(const char* line)
-{        
+{
     //////////////////////////////////////////////////////////////////////////
     // line to parse:
     // kerning first=121  second=44  amount=-7
@@ -506,7 +506,7 @@ void BMFontConfiguration::parseKerningEntry(const char* line)
     sscanf(tmp, "%d", &amount);
 
     uint64_t key = ((uint64_t)first<<32) | ((uint64_t)second&0xffffffffll);
-    
+
     _kerningDictionary[key] = amount;
 }
 
@@ -515,9 +515,9 @@ FontFNT * FontFNT::create(const std::string& fntFilePath, const Rect& imageRect,
     const auto newConf = FNTConfigLoadFile(fntFilePath);
     if (!newConf)
         return nullptr;
-    
+
     const auto tempFont = new FontFNT(newConf, imageRect, imageRotated);
-    
+
     if (!tempFont)
     {
         return nullptr;
@@ -609,14 +609,14 @@ void FontFNT::purgeCachedData()
 int * FontFNT::getHorizontalKerningForTextUTF32(const std::u32string& text, int &outNumLetters) const
 {
     outNumLetters = static_cast<int>(text.length());
-    
+
     if (!outNumLetters)
         return nullptr;
-    
+
     int *sizes = new (std::nothrow) int[outNumLetters];
     if (!sizes)
         return nullptr;
-    
+
     for (int c = 0; c < outNumLetters; ++c)
     {
         if (c < (outNumLetters-1))
@@ -624,7 +624,7 @@ int * FontFNT::getHorizontalKerningForTextUTF32(const std::u32string& text, int 
         else
             sizes[c] = 0;
     }
-    
+
     return sizes;
 }
 
@@ -632,14 +632,14 @@ int  FontFNT::getHorizontalKerningForChars(char32_t firstChar, char32_t secondCh
 {
     int ret = 0;
     uint64_t key = ((uint64_t)firstChar << 32) | ((uint64_t)secondChar & 0xffffffffll);
-    
+
     auto iter = _configuration->_kerningDictionary.find(key);
-    
+
     if (iter != _configuration->_kerningDictionary.end())
     {
         ret = iter->second;
     }
-    
+
     return ret;
 }
 
@@ -658,18 +658,18 @@ FontAtlas * FontFNT::createFontAtlas()
     // check that everything is fine with the BMFontCofniguration
     if (_configuration->_fontDefDictionary.empty())
         return nullptr;
-    
+
     size_t numGlyphs = _configuration->_characterSet->size();
     if (numGlyphs == 0)
         return nullptr;
-    
+
     if (_configuration->_commonHeight == 0)
         return nullptr;
-    
+
     FontAtlas *tempAtlas = new (std::nothrow) FontAtlas(*this);
     if (tempAtlas == nullptr)
         return nullptr;
-    
+
     // common height
     int originalFontSize = _configuration->_fontSize;
     float originalLineHeight = _configuration->_commonHeight;
@@ -679,7 +679,7 @@ FontAtlas * FontFNT::createFontAtlas()
     }else {
         factor = _fontSize / originalFontSize;
     }
-    
+
     tempAtlas->setLineHeight(originalLineHeight * factor);
 
     auto rw = _imageRectInPoints.size.width;
@@ -699,7 +699,7 @@ FontAtlas * FontFNT::createFontAtlas()
         FontLetterDefinition tempDefinition;
 
         const auto tempRect = CC_RECT_PIXELS_TO_POINTS(fontDef.rect);
-        
+
         tempDefinition.offsetX  = fontDef.xOffset;
         tempDefinition.offsetY  = fontDef.yOffset;
 
@@ -716,10 +716,10 @@ FontAtlas * FontFNT::createFontAtlas()
 
         tempDefinition.width    = tempRect.size.width;
         tempDefinition.height   = tempRect.size.height;
-        
+
         //carloX: only one texture supported FOR NOW
         tempDefinition.textureID = 0;
-        
+
         tempDefinition.validDefinition = true;
         tempDefinition.xAdvance = fontDef.xAdvance;
         tempDefinition.rotated = _imageRotated;
@@ -731,18 +731,18 @@ FontAtlas * FontFNT::createFontAtlas()
             tempAtlas->addLetterDefinition(fontDef.charID,tempDefinition);
         }
     }
-    
+
     // add the texture (only one texture for now)
-    
+
     Texture2D *tempTexture = Director::getInstance()->getTextureCache()->addImage(_configuration->getAtlasName());
     if (!tempTexture) {
         CC_SAFE_RELEASE(tempAtlas);
         return nullptr;
     }
-    
+
     // add the texture
     tempAtlas->addTexture(tempTexture, 0);
-    
+
     // done
     return tempAtlas;
 }
@@ -769,3 +769,4 @@ void FontFNT::reloadBMFontResource(const std::string& fntFilePath)
 }
 
 NS_CC_END
+

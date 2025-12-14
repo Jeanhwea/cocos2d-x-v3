@@ -59,3 +59,4 @@ typedef spClippingAttachment ClippingAttachment;
 #endif
 
 #endif /* SPINE_CLIPPINGATTACHMENT_H_ */
+

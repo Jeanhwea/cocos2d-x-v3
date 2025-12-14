@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -29,9 +29,9 @@
 NS_CC_BEGIN
 
 namespace ui {
-    
+
 const Margin Margin::ZERO = Margin(0,0,0,0);
-    
+
 Margin::Margin() : left(0), top(0), right(0), bottom(0)
 {
 }
@@ -62,7 +62,7 @@ bool Margin::equals(const Margin &target) const
 {
     return (left == target.left && top == target.top && right == target.right && bottom == target.bottom);
 }
-    
+
 
 LayoutParameter* LayoutParameter::create()
 {
@@ -90,19 +90,19 @@ LayoutParameter::Type LayoutParameter::getLayoutType() const
 {
     return _layoutParameterType;
 }
-    
+
 LayoutParameter* LayoutParameter::clone()
 {
     LayoutParameter* clonedParameter = createCloneInstance();
     clonedParameter->copyProperties(this);
     return clonedParameter;
 }
-    
+
 LayoutParameter* LayoutParameter::createCloneInstance()
 {
     return LayoutParameter::create();
 }
-    
+
 void LayoutParameter::copyProperties(LayoutParameter *model)
 {
     _margin = model->_margin;
@@ -129,7 +129,7 @@ LinearLayoutParameter::LinearGravity LinearLayoutParameter::getGravity() const
 {
     return _linearGravity;
 }
-    
+
 LayoutParameter* LinearLayoutParameter::createCloneInstance()
 {
     return LinearLayoutParameter::create();
@@ -186,7 +186,7 @@ const std::string& RelativeLayoutParameter::getRelativeName() const
 {
     return _relativeLayoutName;
 }
-    
+
 LayoutParameter* RelativeLayoutParameter::createCloneInstance()
 {
     return RelativeLayoutParameter::create();
@@ -207,3 +207,4 @@ void RelativeLayoutParameter::copyProperties(LayoutParameter *model)
 }
 
 NS_CC_END
+

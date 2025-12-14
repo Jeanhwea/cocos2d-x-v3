@@ -74,16 +74,16 @@ public:
      @param flags Flag used to indicate whether the command should be draw at 3D mode or not.
      */
     void init(float globalZOrder, const Mat4& modelViewTransform, uint32_t flags);
-    
+
     /** Get global Z order. */
     float getGlobalOrder() const { return _globalOrder; }
 
     /** Returns the Command type. */
     Type getType() const { return _type; }
-    
+
     /** Returns whether is transparent. */
     bool isTransparent() const { return _isTransparent; }
-    
+
     /** Set transparent flag. */
     void setTransparent(bool isTransparent) { _isTransparent = isTransparent; }
     /**
@@ -98,7 +98,7 @@ public:
     void set3D(bool value) { _is3D = value; }
     /**Get the depth by current model view matrix.*/
     float getDepth() const { return _depth; }
-    
+
 protected:
     /**Constructor.*/
     RenderCommand();
@@ -112,19 +112,19 @@ protected:
 
     /** Commands are sort by global Z order. */
     float _globalOrder;
-    
+
     /** Transparent flag. */
     bool  _isTransparent;
-    
+
     /**
      QuadCommand and TrianglesCommand could be auto batched if there material ID is the same, however, if
      a command is skip batching, it would be forced to draw in a separate function call, and break the batch.
      */
     bool _skipBatching;
-    
+
     /** Is the command been rendered on 3D pass. */
     bool _is3D;
-    
+
     /** Depth from the model view matrix.*/
     float _depth;
 };
@@ -135,3 +135,4 @@ NS_CC_END
  @}
  */
 #endif //__CCRENDERCOMMAND_H_
+

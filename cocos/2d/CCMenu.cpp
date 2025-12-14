@@ -39,7 +39,7 @@ using namespace std;
 
 NS_CC_BEGIN
 
-enum 
+enum
 {
     kDefaultPadding =  5,
 };
@@ -64,11 +64,11 @@ Menu * Menu::variadicCreate(MenuItem* item, ...)
 {
     va_list args;
     va_start(args,item);
-    
+
     Menu *ret = Menu::createWithItems(item, args);
-    
+
     va_end(args);
-    
+
     return ret;
 }
 #else
@@ -78,11 +78,11 @@ Menu * Menu::create(MenuItem* item, ...)
 {
     va_list args;
     va_start(args,item);
-    
+
     Menu *ret = Menu::createWithItems(item, args);
-    
+
     va_end(args);
-    
+
     return ret;
 }
 #endif
@@ -99,7 +99,7 @@ Menu* Menu::createWithArray(const Vector<MenuItem*>& arrayOfItems)
     {
         CC_SAFE_DELETE(ret);
     }
-    
+
     return ret;
 }
 
@@ -116,7 +116,7 @@ Menu* Menu::createWithItems(MenuItem* item, va_list args)
             i = va_arg(args, MenuItem*);
         }
     }
-    
+
     return Menu::createWithArray(items);
 }
 
@@ -143,33 +143,33 @@ bool Menu::initWithArray(const Vector<MenuItem*>& arrayOfItems)
         this->setContentSize(s);
 
         setPosition(s.width/2, s.height/2);
-        
+
         int z=0;
-        
+
         for (auto& item : arrayOfItems)
         {
             this->addChild(item, z);
             z++;
         }
-    
+
         _selectedItem = nullptr;
         _state = Menu::State::WAITING;
-        
+
         // enable cascade color and opacity on menus
         setCascadeColorEnabled(true);
         setCascadeOpacityEnabled(true);
-        
-        
+
+
         auto touchListener = EventListenerTouchOneByOne::create();
         touchListener->setSwallowTouches(true);
-        
+
         touchListener->onTouchBegan = CC_CALLBACK_2(Menu::onTouchBegan, this);
         touchListener->onTouchMoved = CC_CALLBACK_2(Menu::onTouchMoved, this);
         touchListener->onTouchEnded = CC_CALLBACK_2(Menu::onTouchEnded, this);
         touchListener->onTouchCancelled = CC_CALLBACK_2(Menu::onTouchCancelled, this);
-        
+
         _eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
-        
+
         return true;
     }
     return false;
@@ -209,7 +209,7 @@ void Menu::onEnter()
             return;
     }
 #endif
-    
+
     Layer::onEnter();
 }
 
@@ -222,7 +222,7 @@ void Menu::onExit()
             return;
     }
 #endif
-    
+
     if (_state == Menu::State::TRACKING_TOUCH)
     {
         if (_selectedItem)
@@ -230,7 +230,7 @@ void Menu::onExit()
             _selectedItem->unselected();
             _selectedItem = nullptr;
         }
-        
+
         _state = Menu::State::WAITING;
     }
 
@@ -240,12 +240,12 @@ void Menu::onExit()
 void Menu::removeChild(Node* child, bool cleanup)
 {
     CCASSERT(dynamic_cast<MenuItem*>(child) != nullptr, "Menu only supports MenuItem objects as children");
-    
+
     if (_selectedItem == child)
     {
         _selectedItem = nullptr;
     }
-    
+
     Node::removeChild(child, cleanup);
 }
 
@@ -258,7 +258,7 @@ bool Menu::onTouchBegan(Touch* touch, Event* /*event*/)
     {
         return false;
     }
-    
+
     for (Node *c = this->_parent; c != nullptr; c = c->getParent())
     {
         if (c->isVisible() == false)
@@ -273,10 +273,10 @@ bool Menu::onTouchBegan(Touch* touch, Event* /*event*/)
         _state = Menu::State::TRACKING_TOUCH;
         _selectedWithCamera = camera;
         _selectedItem->selected();
-        
+
         return true;
     }
-    
+
     return false;
 }
 
@@ -338,7 +338,7 @@ void Menu::alignItemsVerticallyWithPadding(float padding)
         height += child->getContentSize().height * child->getScaleY() + padding;
 
     float y = height / 2.0f;
-    
+
     for(const auto &child : _children) {
         child->setPosition(0, y - child->getContentSize().height * child->getScaleY() / 2.0f);
         y -= child->getContentSize().height * child->getScaleY() + padding;
@@ -357,7 +357,7 @@ void Menu::alignItemsHorizontallyWithPadding(float padding)
         width += child->getContentSize().width * child->getScaleX() + padding;
 
     float x = -width / 2.0f;
-    
+
     for(const auto &child : _children) {
         child->setPosition(x + child->getContentSize().width * child->getScaleX() / 2.0f, 0);
         x += child->getContentSize().width * child->getScaleX() + padding;
@@ -396,19 +396,19 @@ void Menu::alignItemsInColumnsWithArray(const ValueVector& rows)
 
     for(const auto &child : _children) {
         CCASSERT(row < rows.size(), "row should less than rows.size()!");
-        
+
         rowColumns = rows[row].asInt();
         // can not have zero columns on a row
         CCASSERT(rowColumns, "rowColumns can't be 0.");
-        
+
         float tmp = child->getContentSize().height;
         rowHeight = (unsigned int)((rowHeight >= tmp || isnan(tmp)) ? rowHeight : tmp);
-        
+
         ++columnsOccupied;
         if (columnsOccupied >= rowColumns)
         {
             height += rowHeight + 5;
-            
+
             columnsOccupied = 0;
             rowHeight = 0;
             ++row;
@@ -590,3 +590,4 @@ std::string Menu::getDescription() const
 }
 
 NS_CC_END
+

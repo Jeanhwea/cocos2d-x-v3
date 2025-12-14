@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -67,22 +67,23 @@ GUIDynamicCreateTests::GUIDynamicCreateTests()
     addTest("CheckBox Test", [](){ return new (std::nothrow) UICheckBoxTests; });
     addTest("RadioButton Test", [](){ return new (std::nothrow) UIRadioButtonTests; });
     addTest("Slider Test", [](){ return new (std::nothrow) UISliderTests; });
-   
+
     addTest("ImageView Test", [](){ return new (std::nothrow) UIImageViewTests; });
     addTest("LoadingBar Test", [](){ return new (std::nothrow) UILoadingBarTests; });
     addTest("TextAtlas Test", [](){ return new (std::nothrow) UITextAtlasTests; });
-    
+
     addTest("Text Test", [](){ return new (std::nothrow) UITextTests; });
     addTest("TextBMFont Test", [](){ return new (std::nothrow) UITextBMFontTests; });
     addTest("TextField Test", [](){ return new (std::nothrow) UITextFieldTests; });
     addTest("Layout Test", [](){ return new (std::nothrow) UILayoutTests; });
-    
+
     addTest("ScrollView Test", [](){ return new (std::nothrow) UIScrollViewTests; });
     addTest("PageView Test", [](){ return new (std::nothrow) UIPageViewTests; });
     addTest("ListView Test", [](){ return new (std::nothrow) UIListViewTests; });
-    
+
     addTest("WidgetAddNode Test", [](){ return new (std::nothrow) UIWidgetAddNodeTests; });
     addTest("RichText Test", [](){ return new (std::nothrow) UIRichTextTests; });
 
     addTest("TabControl Test", [](){return new (std::nothrow) UITabControlTests; });
 }
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,7 +54,7 @@ struct CC_DLL Particle3D
     float width;//Own width
     float height;//Own height
     float depth;//Own depth
-    
+
     //user defined property
     std::unordered_map<std::string, void*> userDefs;
 };
@@ -124,7 +124,7 @@ public:
     const PoolList& getUnActiveDataList() const { return _locked; };
 
     void addData(T* data){
-        _locked.push_back(data); 
+        _locked.push_back(data);
     }
 
     bool empty() const { return _released.empty(); };
@@ -156,47 +156,47 @@ public:
         RUNNING,
         PAUSE,
     };
-    
+
     /**
      * override function
      */
     virtual void update(float delta) override;
-    
+
     /**
      * override function
      */
     virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
-    
+
     /**
      * override function
      */
     virtual void setBlendFunc(const BlendFunc &blendFunc) override;
-    
+
     /**
      * override function
      */
     virtual const BlendFunc &getBlendFunc() const override;
-    
+
     /**
      * particle system play control
      */
     virtual void startParticleSystem();
-    
+
     /**
      * stop particle
      */
     virtual void stopParticleSystem();
-    
+
     /**
      * pause particle
      */
     virtual void pauseParticleSystem();
-    
+
     /**
      * resume particle
      */
     virtual void resumeParticleSystem();
-    
+
     /**
      * set emitter for particle system, can set your own particle emitter
      */
@@ -213,18 +213,18 @@ public:
      * add particle affector
      */
     void addAffector(Particle3DAffector* affector);
-    
+
     /**
      * remove affector by index
      */
     void removeAffector(int index);
-    
+
     /**
      * remove all particle affector
      */
     void removeAllAffector();
 
-    /** 
+    /**
      * get particle quota
      */
     unsigned int getParticleQuota() const;
@@ -232,12 +232,12 @@ public:
      * set particle quota
      */
     void setParticleQuota(unsigned int quota);
-    
+
     /**
      * get particle affector by index
      */
     Particle3DAffector* getAffector(int index);
-    
+
     /**
      * get particle pool
      */
@@ -245,7 +245,7 @@ public:
     {
         return  _particlePool;
     }
-    
+
     /**
      * get alive particles count
      */
@@ -253,7 +253,7 @@ public:
     {
         return 0;
     }
-    
+
     /**
      * get particle playing state
      */
@@ -262,11 +262,11 @@ public:
     bool isKeepLocal() const { return _keepLocal; }
     void setKeepLocal(bool keepLocal);
 
-     /** 
+     /**
       *Enables or disables the system.
       */
     void setEnabled (bool enabled);
-    
+
     /**
      * is enabled
      */
@@ -275,19 +275,19 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     ParticleSystem3D();
     virtual ~ParticleSystem3D();
-    
+
 protected:
-    
+
     State                            _state;
     Particle3DEmitter*               _emitter;
     std::vector<Particle3DAffector*> _affectors;
     Particle3DRender*                _render;
-    
+
     //particles
     ParticlePool                     _particlePool;
     int                              _aliveParticlesCnt;
     unsigned int                     _particleQuota;
-    
+
     BlendFunc                        _blend;
 
     bool _keepLocal;
@@ -297,3 +297,4 @@ protected:
 NS_CC_END
 
 #endif
+

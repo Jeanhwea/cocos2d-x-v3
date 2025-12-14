@@ -166,3 +166,4 @@ public class Cocos2dxAccelerometer implements SensorEventListener {
     // Inner and Anonymous Classes
     // ===========================================================
 }
+

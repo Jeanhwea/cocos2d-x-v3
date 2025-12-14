@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -182,7 +182,7 @@ CSLoader* CSLoader::getInstance()
         _sharedCSLoader = new (std::nothrow) CSLoader();
         _sharedCSLoader->init();
     }
-    
+
     return _sharedCSLoader;
 }
 
@@ -204,7 +204,7 @@ CSLoader::CSLoader()
     CREATE_CLASS_NODE_READER_INFO(SpriteReader);
     CREATE_CLASS_NODE_READER_INFO(ParticleReader);
     CREATE_CLASS_NODE_READER_INFO(GameMapReader);
-    
+
     CREATE_CLASS_NODE_READER_INFO(ButtonReader);
     CREATE_CLASS_NODE_READER_INFO(CheckBoxReader);
     CREATE_CLASS_NODE_READER_INFO(ImageViewReader);
@@ -218,7 +218,7 @@ CSLoader::CSLoader()
     CREATE_CLASS_NODE_READER_INFO(ScrollViewReader);
     CREATE_CLASS_NODE_READER_INFO(PageViewReader);
     CREATE_CLASS_NODE_READER_INFO(ListViewReader);
-    
+
     CREATE_CLASS_NODE_READER_INFO(ArmatureNodeReader);
     CREATE_CLASS_NODE_READER_INFO(Node3DReader);
     CREATE_CLASS_NODE_READER_INFO(Sprite3DReader);
@@ -239,7 +239,7 @@ void CSLoader::purge()
 void CSLoader::init()
 {
     using namespace std::placeholders;
-    
+
     _funcs.insert(Pair(ClassName_Node,      std::bind(&CSLoader::loadSimpleNode, this, _1)));
     _funcs.insert(Pair(ClassName_SubGraph,  std::bind(&CSLoader::loadSubGraph,   this, _1)));
     _funcs.insert(Pair(ClassName_Sprite,    std::bind(&CSLoader::loadSprite,     this, _1)));
@@ -263,9 +263,9 @@ void CSLoader::init()
     _funcs.insert(Pair(ClassName_PageView,  std::bind(&CSLoader::loadWidget,   this, _1)));
     _funcs.insert(Pair(ClassName_Widget,    std::bind(&CSLoader::loadWidget,   this, _1)));
     _funcs.insert(Pair(ClassName_Label,     std::bind(&CSLoader::loadWidget,   this, _1)));
-    
+
     _componentFuncs.insert(ComponentPair(ClassName_ComAudio, std::bind(&CSLoader::loadComAudio, this, _1)));
-    
+
 }
 
 Node* CSLoader::createNode(const std::string& filename)
@@ -273,7 +273,7 @@ Node* CSLoader::createNode(const std::string& filename)
     const std::string& path = filename;
     size_t pos = path.find_last_of('.');
     std::string suffix = path.substr(pos + 1, path.length());
-    
+
     CSLoader* load = CSLoader::getInstance();
 
     if (suffix == "csb")
@@ -293,14 +293,14 @@ Node* CSLoader::createNode(const std::string &filename, const ccNodeLoadCallback
     const std::string& path = filename;
     size_t pos = path.find_last_of('.');
     std::string suffix = path.substr(pos + 1, path.length());
-    
+
     CSLoader* load = CSLoader::getInstance();
 
     if (suffix == "csb")
     {
         return load->createNodeWithFlatBuffersFile(filename, callback);
     }
-    
+
     return nullptr;
 }
 
@@ -340,9 +340,9 @@ std::string CSLoader::getExtentionName(const std::string& name)
 ActionTimeline* CSLoader::createTimeline(const std::string &filename)
 {
     std::string suffix = getExtentionName(filename);
-    
+
     ActionTimelineCache* cache = ActionTimelineCache::getInstance();
-    
+
     if (suffix == "csb")
     {
         return cache->createActionWithFlatBuffersFile(filename);
@@ -351,7 +351,7 @@ ActionTimeline* CSLoader::createTimeline(const std::string &filename)
     {
         return cache->createActionFromJson(filename);
     }
-    
+
     return nullptr;
 }
 
@@ -380,13 +380,13 @@ ActionTimelineNode* CSLoader::createActionTimelineNode(const std::string& filena
 {
     Node* root = createNode(filename);
     ActionTimeline* action = createTimeline(filename);
-    
+
     if(root && action)
     {
         root->runAction(action);
         action->gotoFrameAndPlay(0);
     }
-    
+
     ActionTimelineNode* node = ActionTimelineNode::create(root, action);
     return node;
 }
@@ -396,7 +396,7 @@ ActionTimelineNode* CSLoader::createActionTimelineNode(const std::string& filena
     ActionTimeline* action = node->getActionTimeline();
     if(action)
         action->gotoFrameAndPlay(startIndex, endIndex, loop);
-    
+
     return node;
 }
  */
@@ -409,7 +409,7 @@ Node* CSLoader::createNodeFromJson(const std::string& filename)
     {
         std::string jsonPath = filename.substr(0, filename.find_last_of('/') + 1);
         GUIReader::getInstance()->setFilePath(jsonPath);
-        
+
         _jsonPath = jsonPath;
     }
     else
@@ -417,9 +417,9 @@ Node* CSLoader::createNodeFromJson(const std::string& filename)
         GUIReader::getInstance()->setFilePath("");
         _jsonPath = "";
     }
-    
+
     Node* node = loadNodeWithFile(filename);
-    
+
     return node;
 }
 
@@ -427,12 +427,12 @@ Node* CSLoader::loadNodeWithFile(const std::string& fileName)
 {
     // Read content from file
     std::string contentStr = FileUtils::getInstance()->getStringFromFile(fileName);
-    
+
     Node* node = loadNodeWithContent(contentStr);
-    
+
     // Load animation data from file
     ActionTimelineCache::getInstance()->loadAnimationActionWithContent(fileName, contentStr);
-    
+
     return node;
 }
 
@@ -444,13 +444,13 @@ Node* CSLoader::loadNodeWithContent(const std::string& content)
     {
         CCLOG("GetParseError %d\n", doc.GetParseError());
     }
-    
+
     // cocos2dx version mono editor is based on
     _monoCocos2dxVersion = DICTOOL->getStringValue_json(doc, MONO_COCOS2D_VERSION, "");
-    
+
     // decode plist
     int length = DICTOOL->getArrayCount_json(doc, TEXTURES);
-    
+
     for(int i=0; i<length; i++)
     {
         std::string plist = DICTOOL->getStringValueFromArray_json(doc, TEXTURES, i);
@@ -459,12 +459,12 @@ Node* CSLoader::loadNodeWithContent(const std::string& content)
         png   = _jsonPath + png;
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile(plist, png);
     }
-    
+
     // decode node tree
     const rapidjson::Value& subJson = DICTOOL->getSubDictionary_json(doc, NODE);
     Node* root = loadNode(subJson);
     root->release();
-    
+
     return root;
 }
 
@@ -472,13 +472,13 @@ Node* CSLoader::loadNode(const rapidjson::Value& json)
 {
     Node* node = nullptr;
     std::string nodeType = DICTOOL->getStringValue_json(json, CLASSNAME);
-    
+
     NodeCreateFunc func = _funcs[nodeType];
     if (func != nullptr)
     {
         const rapidjson::Value& options = DICTOOL->getSubDictionary_json(json, OPTIONS);
         node = func(options);
-        
+
         // component
         if (node)
         {
@@ -495,7 +495,7 @@ Node* CSLoader::loadNode(const rapidjson::Value& json)
             }
         }
     }
-    
+
     if(node)
     {
         int length = DICTOOL->getArrayCount_json(json, CHILDREN, 0);
@@ -546,7 +546,7 @@ Node* CSLoader::loadNode(const rapidjson::Value& json)
                             }
                         }
                     }
-                    
+
                     node->addChild(child);
                 }
                 child->release();
@@ -557,7 +557,7 @@ Node* CSLoader::loadNode(const rapidjson::Value& json)
     {
         CCLOG("Not supported NodeType: %s", nodeType.c_str());
     }
-    
+
     return node;
 }
 
@@ -584,7 +584,7 @@ void CSLoader::initNode(Node* node, const rapidjson::Value& json)
     int tag             = DICTOOL->getIntValue_json(json, TAG);
     int actionTag       = DICTOOL->getIntValue_json(json, ACTION_TAG);
     bool visible        = DICTOOL->getBooleanValue_json(json, VISIBLE);
-    
+
     if(x != 0 || y != 0)
         node->setPosition(Point(x, y));
     if(scalex != 1)
@@ -609,7 +609,7 @@ void CSLoader::initNode(Node* node, const rapidjson::Value& json)
         node->setLocalZOrder(zorder);
     if(visible != true)
         node->setVisible(visible);
-    
+
     if(alpha != 255)
     {
         node->setOpacity(alpha);
@@ -618,8 +618,8 @@ void CSLoader::initNode(Node* node, const rapidjson::Value& json)
     {
         node->setColor(Color3B(red, green, blue));
     }
-    
-    
+
+
     node->setTag(tag);
     node->setUserObject(ActionTimelineData::create(actionTag));
 }
@@ -630,14 +630,14 @@ Node* CSLoader::loadSimpleNode(const rapidjson::Value& json)
     // fix memory leak for v3.3
     //node->retain();
     initNode(node, json);
-    
+
     return node;
 }
 
 Node* CSLoader::loadSubGraph(const rapidjson::Value& json)
 {
     const char* filePath = DICTOOL->getStringValue_json(json, FILE_PATH);
-    
+
     Node* node = nullptr;
     if (filePath && strcmp("", filePath) != 0)
     {
@@ -649,9 +649,9 @@ Node* CSLoader::loadSubGraph(const rapidjson::Value& json)
     }
     // fix memory leak for v3.3
     //node->retain();
-    
+
     initNode(node, json);
-    
+
     return node;
 }
 
@@ -659,11 +659,11 @@ Node* CSLoader::loadSprite(const rapidjson::Value& json)
 {
     const char* filePath = DICTOOL->getStringValue_json(json, FILE_PATH);
     Sprite *sprite = nullptr;
-    
+
     if(filePath != nullptr)
     {
         std::string path = filePath;
-        
+
         SpriteFrame* spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName(path);
         if(!spriteFrame)
         {
@@ -674,7 +674,7 @@ Node* CSLoader::loadSprite(const rapidjson::Value& json)
         {
             sprite = Sprite::createWithSpriteFrame(spriteFrame);
         }
-        
+
         if(!sprite)
         {
             sprite = Sprite::create();
@@ -685,20 +685,20 @@ Node* CSLoader::loadSprite(const rapidjson::Value& json)
     {
         sprite = Sprite::create();
     }
-    
+
     // fix memory leak for v3.3
     //sprite->retain();
-    
+
     initNode(sprite, json);
-    
+
     bool flipX          = DICTOOL->getBooleanValue_json(json, FLIPX);
     bool flipY          = DICTOOL->getBooleanValue_json(json, FLIPY);
-    
+
     if(flipX != false)
         sprite->setFlippedX(flipX);
     if(flipY != false)
         sprite->setFlippedY(flipY);
-    
+
     return sprite;
 }
 
@@ -706,14 +706,14 @@ Node* CSLoader::loadParticle(const rapidjson::Value& json)
 {
     const char* filePath = DICTOOL->getStringValue_json(json, PLIST_FILE);
     int num = DICTOOL->getIntValue_json(json, PARTICLE_NUM);
-    
+
     ParticleSystemQuad* particle = ParticleSystemQuad::create(filePath);
     particle->setTotalParticles(num);
     // fix memory leak for v3.3
     //particle->retain();
-    
+
     initNode(particle, json);
-    
+
     return particle;
 }
 
@@ -722,9 +722,9 @@ Node* CSLoader::loadTMXTiledMap(const rapidjson::Value &json)
     const char* tmxFile = DICTOOL->getStringValue_json(json, TMX_FILE);
     const char* tmxString = DICTOOL->getStringValue_json(json, TMX_STRING);
     const char* resourcePath = DICTOOL->getStringValue_json(json, RESOURCE_PATH);
-    
+
     TMXTiledMap* tmx = nullptr;
-    
+
     if (tmxFile && strcmp("", tmxFile) != 0)
     {
         tmx = TMXTiledMap::create(tmxFile);
@@ -734,9 +734,9 @@ Node* CSLoader::loadTMXTiledMap(const rapidjson::Value &json)
     {
         tmx = TMXTiledMap::createWithXML(tmxString, resourcePath);
     }
-    
+
     return tmx;
-    
+
 }
 
 Node* CSLoader::loadWidget(const rapidjson::Value& json)
@@ -744,26 +744,26 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
     const char* str = DICTOOL->getStringValue_json(json, CLASSNAME);
     if(str == nullptr)
         return nullptr;
-    
+
     std::string classname = str;
-    
-    
-    
+
+
+
     WidgetPropertiesReader0300* widgetPropertiesReader = new (std::nothrow) WidgetPropertiesReader0300();
     Widget* widget = nullptr;
-    
+
     if (isWidget(classname))
     {
         std::string readerName = getGUIClassName(classname);
         readerName.append("Reader");
-        
+
         std::string guiClassName = getGUIClassName(classname);
         widget = dynamic_cast<Widget*>(ObjectFactory::getInstance()->createObject(guiClassName));
         // fix memory leak for v3.3
         //widget->retain();
-        
+
         WidgetReaderProtocol* reader = dynamic_cast<WidgetReaderProtocol*>(ObjectFactory::getInstance()->createObject(readerName));
-        
+
         if (reader && widget)
         {
             widgetPropertiesReader->setPropsForAllWidgetFromJsonDictionary(reader, widget, json);
@@ -772,10 +772,10 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
     else if (isCustomWidget(classname))
     {
         widget = dynamic_cast<Widget*>(ObjectFactory::getInstance()->createObject(classname));
-        
+
         //fix memory leak for v3.3
         //widget->retain();
-        
+
         //
         // 1st., custom widget parse properties of parent widget with parent widget reader
         std::string readerName = getWidgetReaderClassName(widget);
@@ -783,7 +783,7 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
         if (reader && widget)
         {
             widgetPropertiesReader->setPropsForAllWidgetFromJsonDictionary(reader, widget, json);
-            
+
             // 2nd., custom widget parse with custom reader
             const char* customProperty = DICTOOL->getStringValue_json(json, "customProperty");
             rapidjson::Document customJsonDict;
@@ -792,7 +792,7 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
             {
                 CCLOG("GetParseError %d\n", customJsonDict.GetParseError());
             }
-            
+
             widgetPropertiesReader->setPropsForAllCustomWidgetFromJsonDictionary(classname, widget, customJsonDict);
         }
         else
@@ -801,7 +801,7 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
         }
     }
     CC_SAFE_DELETE(widgetPropertiesReader);
-    
+
     if (widget)
     {
         float rotationSkewX = DICTOOL->getFloatValue_json(json, ROTATION_SKEW_X);
@@ -816,47 +816,47 @@ Node* CSLoader::loadWidget(const rapidjson::Value& json)
             widget->setSkewX(skewx);
         if(skewy != 0)
             widget->setSkewY(skewy);
-        
+
         int actionTag = DICTOOL->getIntValue_json(json, ACTION_TAG);
         widget->setUserObject(ActionTimelineData::create(actionTag));
     }
-    
+
     return widget;
 }
 
 Component* CSLoader::loadComponent(const rapidjson::Value &json)
 {
     Component* component = nullptr;
-    
+
     std::string componentType = DICTOOL->getStringValue_json(json, COMPONENT_TYPE);
-    
+
     ComponentCreateFunc func = _componentFuncs[componentType];
-    
+
     if (func != nullptr)
     {
         component = func(json);
     }
-    
+
     return component;
 }
 
 Component* CSLoader::loadComAudio(const rapidjson::Value &json)
 {
     ComAudio* audio = ComAudio::create();
-    
+
     const char* name = DICTOOL->getStringValue_json(json, COMPONENT_NAME);
     bool enabled = DICTOOL->getBooleanValue_json(json, COMPONENT_ENABLED);
-    
+
     audio->setName(name);
     audio->setEnabled(enabled);
-    
+
     const char* filePath = DICTOOL->getStringValue_json(json, COMPONENT_AUDIO_FILE_PATH);
     bool loop = DICTOOL->getBooleanValue_json(json, COMPONENT_LOOP);
-    
+
     audio->setFile(filePath);
     audio->setLoop(loop);
-    
-    
+
+
     return audio;
 }
 
@@ -869,7 +869,7 @@ Node * CSLoader::createNode(const Data& data, const ccNodeLoadCallback &callback
 {
     CSLoader * loader = CSLoader::getInstance();
     Node * node = nullptr;
-    do 
+    do
     {
         CC_BREAK_IF(data.isNull() || data.getSize() <= 0);
         auto csparsebinary = GetCSParseBinary(data.getBytes());
@@ -950,9 +950,9 @@ Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName)
 Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName, const ccNodeLoadCallback &callback)
 {
     std::string fullPath = FileUtils::getInstance()->fullPathForFilename(fileName);
-    
+
     CC_ASSERT(FileUtils::getInstance()->isFileExist(fullPath));
-    
+
     Data buf = FileUtils::getInstance()->getDataFromFile(fullPath);
 
     if (buf.isNull())
@@ -963,8 +963,8 @@ Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName, const ccNod
     }
 
     auto csparsebinary = GetCSParseBinary(buf.getBytes());
-    
-    
+
+
     auto csBuildId = csparsebinary->version();
     if (csBuildId)
     {
@@ -981,7 +981,7 @@ Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName, const ccNod
                                           "http://www.cocos2d-x.org/filedown/cocos-reader",
                                           " and replace it in your Cocos2d-x").c_str());
     }
-    
+
     // decode plist
     auto textures = csparsebinary->textures();
     int textureSize = textures->size();
@@ -989,9 +989,9 @@ Node* CSLoader::nodeWithFlatBuffersFile(const std::string &fileName, const ccNod
     {
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile(textures->Get(i)->c_str());
     }
-    
+
     Node* node = nodeWithFlatBuffers(csparsebinary->nodeTree(), callback);
-    
+
     return node;
 }
 
@@ -1007,17 +1007,17 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
 
     {
         Node* node = nullptr;
-        
+
         std::string classname = nodetree->classname()->c_str();
-        
+
         auto options = nodetree->options();
-        
+
         if (classname == "ProjectNode")
         {
             auto reader = ProjectNodeReader::getInstance();
             auto projectNodeOptions = (ProjectNodeOptions*)options->data();
             std::string filePath = projectNodeOptions->fileName()->c_str();
-            
+
             cocostudio::timeline::ActionTimeline* action = nullptr;
             if (!filePath.empty() && FileUtils::getInstance()->isFileExist(filePath))
             {
@@ -1058,22 +1058,22 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
             }
             std::string readername = getGUIClassName(classname);
             readername.append("Reader");
-            
+
             NodeReaderProtocol* reader = dynamic_cast<NodeReaderProtocol*>(ObjectFactory::getInstance()->createObject(readername));
             if (reader)
             {
                 node = reader->createNodeWithFlatBuffers(options->data());
             }
-            
+
             Widget* widget = dynamic_cast<Widget*>(node);
             if (widget)
             {
                 std::string callbackName = widget->getCallbackName();
                 std::string callbackType = widget->getCallbackType();
-                
+
                 bindCallback(callbackName, callbackType, widget, _rootNode);
             }
-            
+
             /* To reconstruct nest node as WidgetCallBackHandlerProtocol. */
             auto callbackHandler = dynamic_cast<WidgetCallBackHandlerProtocol *>(node);
             if (callbackHandler)
@@ -1084,13 +1084,13 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
             /**/
             //        _loadingNodeParentHierarchy.push_back(node);
         }
-        
+
         // If node is invalid, there is no necessity to process children of node.
         if (!node)
         {
             return nullptr;
         }
-        
+
         auto children = nodetree->children();
         int size = children->size();
         for (int i = 0; i < size; ++i)
@@ -1121,16 +1121,16 @@ Node* CSLoader::nodeWithFlatBuffers(const flatbuffers::NodeTree *nodetree, const
                 {
                     node->addChild(child);
                 }
-                
+
                 if (callback)
                 {
                     callback(child);
                 }
             }
         }
-        
+
         //    _loadingNodeParentHierarchy.pop_back();
-        
+
         return node;
     }
 }
@@ -1174,9 +1174,9 @@ bool CSLoader::bindCallback(const std::string &callbackName,
             }
         }
     }
-    
+
     CCLOG("callBackName %s cannot be found", callbackName.c_str());
-    
+
     return false;
 }
 
@@ -1200,7 +1200,7 @@ bool CSLoader::isWidget(const std::string &type)
             || type == ClassName_PageView
             || type == ClassName_Widget
             || type == ClassName_Label);
-    
+
 }
 
 bool CSLoader::isCustomWidget(const std::string &type)
@@ -1211,7 +1211,7 @@ bool CSLoader::isCustomWidget(const std::string &type)
         CC_SAFE_DELETE(widget);
         return true;
     }
-    
+
     return false;
 }
 
@@ -1242,15 +1242,15 @@ std::string CSLoader::getGUIClassName(const std::string &name)
     {
         convertedClassName = "TextBMFont";
     }
-    
-    
+
+
     return convertedClassName;
 }
 
 std::string CSLoader::getWidgetReaderClassName(Widget* widget)
 {
     std::string readerName;
-    
+
     // 1st., custom widget parse properties of parent widget with parent widget reader
     if (dynamic_cast<Button*>(widget))
     {
@@ -1300,7 +1300,7 @@ std::string CSLoader::getWidgetReaderClassName(Widget* widget)
     {
         readerName = "ScrollViewReader";
     }
-    
+
     else if (dynamic_cast<Layout*>(widget))
     {
         readerName = "LayoutReader";
@@ -1309,7 +1309,7 @@ std::string CSLoader::getWidgetReaderClassName(Widget* widget)
     {
         readerName = "WidgetReader";
     }
-    
+
     return readerName;
 }
 
@@ -1319,7 +1319,7 @@ void CSLoader::registReaderObject(const std::string &className,
     ObjectFactory::TInfo t;
     t._class = className;
     t._fun = ins;
-    
+
     ObjectFactory::getInstance()->registerType(t);
 }
 
@@ -1328,9 +1328,9 @@ Node* CSLoader::createNodeWithFlatBuffersForSimulator(const std::string& filenam
     FlatBuffersSerialize* fbs = FlatBuffersSerialize::getInstance();
     fbs->_isSimulator = true;
     FlatBufferBuilder* builder = fbs->createFlatBuffersWithXMLFileForSimulator(filename);
-    
+
     auto csparsebinary = GetCSParseBinary(builder->GetBufferPointer());
-    
+
     // decode plist
     auto textures = csparsebinary->textures();
     int textureSize = csparsebinary->textures()->size();
@@ -1339,32 +1339,32 @@ Node* CSLoader::createNodeWithFlatBuffersForSimulator(const std::string& filenam
     {
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile(textures->Get(i)->c_str());
     }
-    
+
     auto nodeTree = csparsebinary->nodeTree();
 
     Node* node = nodeWithFlatBuffersForSimulator(nodeTree);
-    
+
     _rootNode = nullptr;
-    
+
     fbs->deleteFlatBufferBuilder();
-    
+
     return node;
 }
 
 Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nodetree)
 {
     Node* node = nullptr;
-    
+
     std::string classname = nodetree->classname()->c_str();
-    
+
     auto options = nodetree->options();
-    
+
     if (classname == "ProjectNode")
     {
         auto reader = ProjectNodeReader::getInstance();
         auto projectNodeOptions = (ProjectNodeOptions*)options->data();
         std::string filePath = projectNodeOptions->fileName()->c_str();
-        
+
         cocostudio::timeline::ActionTimeline* action = nullptr;
         if (!filePath.empty() && FileUtils::getInstance()->isFileExist(filePath))
         {
@@ -1398,35 +1398,35 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
     {
         std::string readername = getGUIClassName(classname);
         readername.append("Reader");
-        
+
         NodeReaderProtocol* reader = dynamic_cast<NodeReaderProtocol*>(ObjectFactory::getInstance()->createObject(readername));
         if (reader)
         {
             node = reader->createNodeWithFlatBuffers(options->data());
         }
-        
+
         Widget* widget = dynamic_cast<Widget*>(node);
         if (widget)
         {
             std::string callbackName = widget->getCallbackName();
             std::string callbackType = widget->getCallbackType();
-            
+
             bindCallback(callbackName, callbackType, widget, _rootNode);
         }
-        
+
         if (_rootNode == nullptr)
         {
             _rootNode = node;
         }
 //        _loadingNodeParentHierarchy.push_back(node);
     }
-    
+
     // If node is invalid, there is no necessity to process children of node.
     if (!node)
     {
         return nullptr;
     }
-    
+
     auto children = nodetree->children();
     int size = children->size();
     for (int i = 0; i < size; ++i)
@@ -1459,10 +1459,11 @@ Node* CSLoader::nodeWithFlatBuffersForSimulator(const flatbuffers::NodeTree *nod
             }
         }
     }
-    
+
 //    _loadingNodeParentHierarchy.pop_back();
-    
+
     return node;
 }
 
 NS_CC_END
+

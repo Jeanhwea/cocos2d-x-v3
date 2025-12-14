@@ -51,7 +51,7 @@ void Bone3D::setOriPose(const Mat4& m)
 void Bone3D::resetPose()
 {
     _local =_oriPose;
-    
+
     for (auto it : _children) {
         it->resetPose();
     }
@@ -85,10 +85,10 @@ const Mat4& Bone3D::getWorldMat()
         }
         else
             _world = _local;
-        
+
         _worldDirty = false;
     }
-    
+
     return _world;
 }
 
@@ -114,10 +114,10 @@ void Bone3D::setAnimationValue(float* trans, float* rot, float* scale, void* tag
         state.localRot.set(rot);
     if (scale)
         state.localScale.set(scale);
-    
+
     state.weight = weight;
     state.tag = tag;
-    
+
     _blendStates.push_back(state);
 }
 
@@ -186,7 +186,7 @@ Bone3D::Bone3D(const std::string& id)
 , _parent(nullptr)
 , _worldDirty(true)
 {
-    
+
 }
 
 Bone3D::~Bone3D()
@@ -200,7 +200,7 @@ void Bone3D::updateLocalMat()
     {
         Vec3 translate, scale;
         Quaternion quat(Quaternion::ZERO);
-        
+
         float total = 0.f;
         for (const auto& it: _blendStates) {
             total += it.weight;
@@ -235,11 +235,11 @@ void Bone3D::updateLocalMat()
                 quat.normalize();
             }
         }
-        
+
         Mat4::createTranslation(translate, &_local);
         _local.rotate(quat);
         _local.scale(scale);
-        
+
         _blendStates.clear();
     }
 }
@@ -248,7 +248,7 @@ void Bone3D::updateLocalMat()
 
 Skeleton3D::Skeleton3D()
 {
-    
+
 }
 
 Skeleton3D::~Skeleton3D()
@@ -278,7 +278,7 @@ Bone3D* Skeleton3D::getBoneByIndex(unsigned int index) const
 {
     if (index < static_cast<unsigned int>(_bones.size()))
         return _bones.at(index);
-    
+
     return nullptr;
 }
 Bone3D* Skeleton3D::getBoneByName(const std::string& id) const
@@ -288,7 +288,7 @@ Bone3D* Skeleton3D::getBoneByName(const std::string& id) const
         if (it->getName() == id)
             return it;
     }
-    
+
     return nullptr;
 }
 
@@ -346,3 +346,4 @@ Bone3D* Skeleton3D::createBone3D(const NodeData& nodedata)
 }
 
 NS_CC_END
+

@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -69,12 +69,12 @@ PerformceMathTests::PerformceMathTests()
 void PerformanceMathLayer::onEnter()
 {
     TestCase::onEnter();
-    
+
     _loopCount = 10000;
     _stepCount = 10000;
-    
+
     CC_PROFILER_PURGE_ALL();
-    
+
     if (isAutoTesting()) {
         autoTestIndex = 0;
         _loopCount = autoTestLoopCounts[autoTestIndex];
@@ -82,29 +82,29 @@ void PerformanceMathLayer::onEnter()
                                               genStrVector("Type", "LoopCount", nullptr),
                                               genStrVector("Avg", "Min", "Max", nullptr));
     }
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     MenuItemFont::setFontSize(65);
     auto decrease = MenuItemFont::create(" - ", CC_CALLBACK_1(PerformanceMathLayer::subLoopCount, this));
     decrease->setColor(Color3B(0,200,20));
     auto increase = MenuItemFont::create(" + ", CC_CALLBACK_1(PerformanceMathLayer::addLoopCount, this));
     increase->setColor(Color3B(0,200,20));
-    
+
     auto menu = Menu::create(decrease, increase, nullptr);
     menu->alignItemsHorizontally();
     menu->setPosition(Vec2(s.width/2, s.height/2));
     addChild(menu, 1);
-    
+
     auto infoLabel = Label::createWithTTF("0", "fonts/Marker Felt.ttf", 30);
     infoLabel->setColor(Color3B(0,200,20));
     infoLabel->setPosition(Vec2(s.width/2, s.height/2 + 40));
     addChild(infoLabel, 1, K_INFO_LOOP_TAG);
     updateLoopLabel();
-    
+
     getScheduler()->schedule(schedule_selector(PerformanceMathLayer::doPerformanceTest), this, 0.0f, false);
     getScheduler()->schedule(schedule_selector(PerformanceMathLayer::dumpProfilerInfo), this, 2, false);
-    
+
 }
 
 void PerformanceMathLayer::addLoopCount(Ref *sender)
@@ -128,13 +128,13 @@ void PerformanceMathLayer::updateLoopLabel()
     char str[16] = {0};
     sprintf(str, "%u", _loopCount);
     infoLabel->setString(str);
-    
+
 }
 
 void PerformanceMathLayer::dumpProfilerInfo(float dt)
 {
     CC_PROFILER_DISPLAY_TIMERS();
-    
+
     if (this->isAutoTesting()) {
         // record the test result to class Profile
         auto timer = Profiler::getInstance()->_activeTimers.at(_profileName);
@@ -172,7 +172,7 @@ void PerformanceMathLayer1::doPerformanceTest(float dt)
         dst = dst * src;
     }
     CC_PROFILER_STOP(_profileName.c_str());
-    
+
 }
 
 void PerformanceMathLayer2::doPerformanceTest(float dt)
@@ -186,5 +186,6 @@ void PerformanceMathLayer2::doPerformanceTest(float dt)
         dst = src * dst;
     }
     CC_PROFILER_STOP(_profileName.c_str());
-    
+
 }
+

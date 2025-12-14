@@ -9022,3 +9022,4 @@ int register_all_cocos2dx_math_manual(lua_State* tolua_S)
     tolua_endmodule(tolua_S);
     return 0;
 }
+

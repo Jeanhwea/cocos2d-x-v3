@@ -4,17 +4,17 @@
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
 
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,16 +47,16 @@ DictElement::DictElement(const char* pszKey, Ref* pObject)
     CCASSERT(pszKey && strlen(pszKey) > 0, "Invalid key value.");
     _intKey = 0;
     const char* pStart = pszKey;
-    
+
     size_t len = strlen(pszKey);
     if (len > MAX_KEY_LEN )
     {
         char* pEnd = (char*)&pszKey[len-1];
         pStart = pEnd - (MAX_KEY_LEN-1);
     }
-    
+
     strcpy(_strKey, pStart);
-    
+
     _object = pObject;
     memset(&hh, 0, sizeof(hh));
 }
@@ -105,7 +105,7 @@ __Array* __Dictionary::allKeys()
     DictElement *pElement, *tmp;
     if (_dictType == kDictStr)
     {
-        HASH_ITER(hh, _elements, pElement, tmp) 
+        HASH_ITER(hh, _elements, pElement, tmp)
         {
             __String* pOneKey = new (std::nothrow) __String(pElement->_strKey);
             array->addObject(pOneKey);
@@ -114,14 +114,14 @@ __Array* __Dictionary::allKeys()
     }
     else if (_dictType == kDictInt)
     {
-        HASH_ITER(hh, _elements, pElement, tmp) 
+        HASH_ITER(hh, _elements, pElement, tmp)
         {
             __Integer* pOneKey = new (std::nothrow) __Integer(static_cast<int>(pElement->_intKey));
             array->addObject(pOneKey);
             CC_SAFE_RELEASE(pOneKey);
         }
     }
-    
+
     return array;
 }
 
@@ -135,7 +135,7 @@ __Array* __Dictionary::allKeysForObject(Ref* object)
 
     if (_dictType == kDictStr)
     {
-        HASH_ITER(hh, _elements, pElement, tmp) 
+        HASH_ITER(hh, _elements, pElement, tmp)
         {
             if (object == pElement->_object)
             {
@@ -147,7 +147,7 @@ __Array* __Dictionary::allKeysForObject(Ref* object)
     }
     else if (_dictType == kDictInt)
     {
-        HASH_ITER(hh, _elements, pElement, tmp) 
+        HASH_ITER(hh, _elements, pElement, tmp)
         {
             if (object == pElement->_object)
             {
@@ -275,7 +275,7 @@ void __Dictionary::removeObjectForKey(const std::string& key)
     {
         return;
     }
-    
+
     CCASSERT(_dictType == kDictStr, "this dictionary doesn't use string as its key");
     CCASSERT(!key.empty(), "Invalid Argument!");
     DictElement *pElement = nullptr;
@@ -289,7 +289,7 @@ void __Dictionary::removeObjectForKey(intptr_t key)
     {
         return;
     }
-    
+
     CCASSERT(_dictType == kDictInt, "this dictionary doesn't use integer as its key");
     DictElement *pElement = nullptr;
     HASH_FIND_PTR(_elements, &key, pElement);
@@ -333,7 +333,7 @@ void __Dictionary::removeObjectForElememt(DictElement* pElement)
 void __Dictionary::removeAllObjects()
 {
     DictElement *pElement, *tmp;
-    HASH_ITER(hh, _elements, pElement, tmp) 
+    HASH_ITER(hh, _elements, pElement, tmp)
     {
         HASH_DEL(_elements, pElement);
         pElement->_object->release();
@@ -348,9 +348,9 @@ Ref* __Dictionary::randomObject()
     {
         return nullptr;
     }
-    
+
     Ref* key = allKeys()->getRandomObject();
-    
+
     if (_dictType == kDictInt)
     {
         return objectForKey( static_cast<__Integer*>(key)->getValue());
@@ -391,7 +391,7 @@ static __Dictionary* visitDict(const ValueMap& dict)
 {
     __Dictionary* ret = new (std::nothrow) __Dictionary();
     ret->init();
-    
+
     for (auto iter = dict.begin(); iter != dict.end(); ++iter)
     {
         if (iter->second.getType() == Value::Type::MAP)
@@ -445,7 +445,7 @@ static __Array* visitArray(const ValueVector& array)
             str->release();
         }
     }
-    
+
     return ret;
 }
 
@@ -474,7 +474,7 @@ static ValueMap ccdictionary_to_valuemap(__Dictionary* dict);
 static ValueVector ccarray_to_valuevector(__Array* arr)
 {
     ValueVector ret;
-    
+
     Ref* obj;
     CCARRAY_FOREACH(arr, obj)
     {
@@ -487,7 +487,7 @@ static ValueVector ccarray_to_valuevector(__Array* arr)
         __Bool* boolVal = nullptr;
         __Float* floatVal = nullptr;
         __Integer* intVal = nullptr;
-        
+
         if ((strVal = dynamic_cast<__String *>(obj))) {
             arrElement = Value(strVal->getCString());
         } else if ((dictVal = dynamic_cast<__Dictionary*>(obj))) {
@@ -518,7 +518,7 @@ static ValueMap ccdictionary_to_valuemap(__Dictionary* dict)
     CCDICT_FOREACH(dict, pElement)
     {
         Ref* obj = pElement->getObject();
-        
+
         __String* strVal = nullptr;
         __Dictionary* dictVal = nullptr;
         __Array* arrVal = nullptr;
@@ -526,9 +526,9 @@ static ValueMap ccdictionary_to_valuemap(__Dictionary* dict)
         __Bool* boolVal = nullptr;
         __Float* floatVal = nullptr;
         __Integer* intVal = nullptr;
-        
+
         Value dictElement;
-        
+
         if ((strVal = dynamic_cast<__String *>(obj))) {
             dictElement = Value(strVal->getCString());
         } else if ((dictVal = dynamic_cast<__Dictionary*>(obj))) {
@@ -566,7 +566,7 @@ bool __Dictionary::writeToFile(const char *fullPath)
 __Dictionary* __Dictionary::clone() const
 {
     __Dictionary* newDict = __Dictionary::create();
-    
+
     DictElement* element = nullptr;
     Ref* tmpObj = nullptr;
     Clonable* obj = nullptr;
@@ -610,8 +610,9 @@ __Dictionary* __Dictionary::clone() const
             }
         }
     }
-    
+
     return newDict;
 }
 
 NS_CC_END
+

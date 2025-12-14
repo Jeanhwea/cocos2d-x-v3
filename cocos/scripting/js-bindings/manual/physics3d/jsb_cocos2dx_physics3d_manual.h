@@ -39,3 +39,4 @@ bool jsval_to_physics3DRigidBodyDes(JSContext* cx, JS::HandleValue v, cocos2d::P
 #endif
 
 #endif //__jsb_cococs2dx_physics3d_manual_h__
+

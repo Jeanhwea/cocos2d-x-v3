@@ -93,7 +93,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
         } else {
             final long now = System.nanoTime();
             final long interval = now - this.mLastTickInNanoSeconds;
-        
+
             if (interval < Cocos2dxRenderer.sAnimationInterval) {
                 try {
                     Thread.sleep((Cocos2dxRenderer.sAnimationInterval - interval) / Cocos2dxRenderer.NANOSECONDSPERMICROSECOND);
@@ -149,7 +149,7 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
 
     public void handleOnPause() {
         /**
-         * onPause may be invoked before onSurfaceCreated, 
+         * onPause may be invoked before onSurfaceCreated,
          * and engine will be initialized correctly after
          * onSurfaceCreated is invoked. Can not invoke any
          * native method before onSurfaceCreated is invoked
@@ -186,3 +186,4 @@ public class Cocos2dxRenderer implements GLSurfaceView.Renderer {
     // Inner and Anonymous Classes
     // ===========================================================
 }
+

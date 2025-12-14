@@ -31,16 +31,16 @@ USING_NS_CC;
 
 #define TRANSITION_DURATION (1.2f)
 
-class FadeWhiteTransition : public TransitionFade 
+class FadeWhiteTransition : public TransitionFade
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionFade::create(t, s, Color3B::WHITE); 
+        return TransitionFade::create(t, s, Color3B::WHITE);
     }
 };
 
-class FlipXLeftOver : public TransitionFlipX 
+class FlipXLeftOver : public TransitionFlipX
 {
 public:
     static TransitionScene* create(float t, Scene* s)
@@ -49,7 +49,7 @@ public:
     }
 };
 
-class FlipXRightOver : public TransitionFlipX 
+class FlipXRightOver : public TransitionFlipX
 {
 public:
     static TransitionScene* create(float t, Scene* s)
@@ -58,34 +58,34 @@ public:
     }
 };
 
-class FlipYUpOver : public TransitionFlipY 
+class FlipYUpOver : public TransitionFlipY
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionFlipY::create(t, s, TransitionScene::Orientation::UP_OVER); 
+        return TransitionFlipY::create(t, s, TransitionScene::Orientation::UP_OVER);
     }
 };
 
-class FlipYDownOver : public TransitionFlipY 
+class FlipYDownOver : public TransitionFlipY
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionFlipY::create(t, s, TransitionScene::Orientation::DOWN_OVER); 
+        return TransitionFlipY::create(t, s, TransitionScene::Orientation::DOWN_OVER);
     }
 };
 
-class FlipAngularLeftOver : public TransitionFlipAngular 
+class FlipAngularLeftOver : public TransitionFlipAngular
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionFlipAngular::create(t, s, TransitionScene::Orientation::LEFT_OVER); 
+        return TransitionFlipAngular::create(t, s, TransitionScene::Orientation::LEFT_OVER);
     }
 };
 
-class FlipAngularRightOver : public TransitionFlipAngular 
+class FlipAngularRightOver : public TransitionFlipAngular
 {
 public:
     static TransitionScene* create(float t, Scene* s)
@@ -94,16 +94,16 @@ public:
     }
 };
 
-class ZoomFlipXLeftOver : public TransitionZoomFlipX 
+class ZoomFlipXLeftOver : public TransitionZoomFlipX
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionZoomFlipX::create(t, s, TransitionScene::Orientation::LEFT_OVER); 
+        return TransitionZoomFlipX::create(t, s, TransitionScene::Orientation::LEFT_OVER);
     }
 };
 
-class ZoomFlipXRightOver : public TransitionZoomFlipX 
+class ZoomFlipXRightOver : public TransitionZoomFlipX
 {
 public:
     static TransitionScene* create(float t, Scene* s)
@@ -112,35 +112,35 @@ public:
     }
 };
 
-class ZoomFlipYUpOver : public TransitionZoomFlipY 
+class ZoomFlipYUpOver : public TransitionZoomFlipY
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionZoomFlipY::create(t, s, TransitionScene::Orientation::UP_OVER); 
+        return TransitionZoomFlipY::create(t, s, TransitionScene::Orientation::UP_OVER);
 
     }
 };
 
-class ZoomFlipYDownOver : public TransitionZoomFlipY 
+class ZoomFlipYDownOver : public TransitionZoomFlipY
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionZoomFlipY::create(t, s, TransitionScene::Orientation::DOWN_OVER); 
+        return TransitionZoomFlipY::create(t, s, TransitionScene::Orientation::DOWN_OVER);
     }
 };
 
-class ZoomFlipAngularLeftOver : public TransitionZoomFlipAngular 
+class ZoomFlipAngularLeftOver : public TransitionZoomFlipAngular
 {
 public:
     static TransitionScene* create(float t, Scene* s)
     {
-        return TransitionZoomFlipAngular::create(t, s, TransitionScene::Orientation::LEFT_OVER); 
+        return TransitionZoomFlipAngular::create(t, s, TransitionScene::Orientation::LEFT_OVER);
     }
 };
 
-class ZoomFlipAngularRightOver : public TransitionZoomFlipAngular 
+class ZoomFlipAngularRightOver : public TransitionZoomFlipAngular
 {
 public:
     static TransitionScene* create(float t, Scene* s)
@@ -292,10 +292,10 @@ TestLayer1::TestLayer1(const std::string& transitionName)
 
     auto label = Label::createWithTTF("SCENE 1", "fonts/Marker Felt.ttf", 38);
     label->setColor( Color3B(16,16,255));
-    label->setPosition( Vec2(x/2,y/2));    
+    label->setPosition( Vec2(x/2,y/2));
     addChild( label);
 
-    schedule( CC_SCHEDULE_SELECTOR(TestLayer1::step), 1.0f); 
+    schedule( CC_SCHEDULE_SELECTOR(TestLayer1::step), 1.0f);
 }
 
 TestLayer1::~TestLayer1()
@@ -368,7 +368,7 @@ TestLayer2::TestLayer2(const std::string& transitionName)
 
     auto label = Label::createWithTTF("SCENE 2", "fonts/Marker Felt.ttf", 38);
     label->setColor( Color3B(16,16,255));
-    label->setPosition( Vec2(x/2,y/2));    
+    label->setPosition( Vec2(x/2,y/2));
     addChild( label);
 
     schedule(CC_SCHEDULE_SELECTOR(TestLayer2::step), 1.0f);
@@ -408,3 +408,4 @@ void TestLayer2::onExit()
     Director::getInstance()->setDepthTest(false);
     log("Scene 2 onExit");
 }
+

@@ -2376,7 +2376,7 @@ bool js_cocos2dx_studio_ColliderDetector_create(JSContext *cx, uint32_t argc, js
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             cocostudio::Bone* arg0 = nullptr;
@@ -2401,7 +2401,7 @@ bool js_cocos2dx_studio_ColliderDetector_create(JSContext *cx, uint32_t argc, js
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::ColliderDetector* ret = cocostudio::ColliderDetector::create();
@@ -4082,7 +4082,7 @@ bool js_cocos2dx_studio_Bone_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -4099,7 +4099,7 @@ bool js_cocos2dx_studio_Bone_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::Bone* ret = cocostudio::Bone::create();
@@ -5861,7 +5861,7 @@ bool js_cocos2dx_studio_Armature_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -5878,7 +5878,7 @@ bool js_cocos2dx_studio_Armature_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::Armature* ret = cocostudio::Armature::create();
@@ -5892,7 +5892,7 @@ bool js_cocos2dx_studio_Armature_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 2) {
             std::string arg0;
@@ -5955,7 +5955,7 @@ static bool js_cocos2dx_studio_Armature_ctor(JSContext *cx, uint32_t argc, jsval
 
 extern JSObject *jsb_cocos2d_Node_prototype;
 
-    
+
 void js_register_cocos2dx_studio_Armature(JSContext *cx, JS::HandleObject global) {
     jsb_cocostudio_Armature_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocostudio_Armature_class->name = "Armature";
@@ -6135,7 +6135,7 @@ bool js_cocos2dx_studio_Skin_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             std::string arg0;
@@ -6152,7 +6152,7 @@ bool js_cocos2dx_studio_Skin_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::Skin* ret = cocostudio::Skin::create();
@@ -7582,7 +7582,7 @@ static bool js_cocos2dx_studio_ComController_ctor(JSContext *cx, uint32_t argc, 
 
 extern JSObject *jsb_cocos2d_Component_prototype;
 
-    
+
 void js_register_cocos2dx_studio_ComController(JSContext *cx, JS::HandleObject global) {
     jsb_cocostudio_ComController_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocostudio_ComController_class->name = "ComController";
@@ -7687,7 +7687,7 @@ bool js_cocos2dx_studio_ComRender_create(JSContext *cx, uint32_t argc, jsval *vp
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 2) {
             cocos2d::Node* arg0 = nullptr;
@@ -7715,7 +7715,7 @@ bool js_cocos2dx_studio_ComRender_create(JSContext *cx, uint32_t argc, jsval *vp
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::ComRender* ret = cocostudio::ComRender::create();
@@ -12090,7 +12090,7 @@ bool js_cocos2dx_studio_BoneNode_create(JSContext *cx, uint32_t argc, jsval *vp)
 {
     JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
     bool ok = true;
-    
+
     do {
         if (argc == 1) {
             int arg0 = 0;
@@ -12107,7 +12107,7 @@ bool js_cocos2dx_studio_BoneNode_create(JSContext *cx, uint32_t argc, jsval *vp)
             return true;
         }
     } while (0);
-    
+
     do {
         if (argc == 0) {
             cocostudio::timeline::BoneNode* ret = cocostudio::timeline::BoneNode::create();
@@ -12156,7 +12156,7 @@ static bool js_cocos2dx_studio_BoneNode_ctor(JSContext *cx, uint32_t argc, jsval
 
 extern JSObject *jsb_cocos2d_Node_prototype;
 
-    
+
 void js_register_cocos2dx_studio_BoneNode(JSContext *cx, JS::HandleObject global) {
     jsb_cocostudio_timeline_BoneNode_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocostudio_timeline_BoneNode_class->name = "BoneNode";
@@ -12375,7 +12375,7 @@ static bool js_cocos2dx_studio_SkeletonNode_ctor(JSContext *cx, uint32_t argc, j
 
 extern JSObject *jsb_cocostudio_timeline_BoneNode_prototype;
 
-    
+
 void js_register_cocos2dx_studio_SkeletonNode(JSContext *cx, JS::HandleObject global) {
     jsb_cocostudio_timeline_SkeletonNode_class = (JSClass *)calloc(1, sizeof(JSClass));
     jsb_cocostudio_timeline_SkeletonNode_class->name = "SkeletonNode";

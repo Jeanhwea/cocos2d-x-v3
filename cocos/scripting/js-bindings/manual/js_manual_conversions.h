@@ -377,3 +377,4 @@ jsval vector_vec2_to_jsval(JSContext *cx, const std::vector<cocos2d::Vec2>& v);
 jsval std_map_string_string_to_jsval(JSContext* cx, const std::map<std::string, std::string>& v);
 
 #endif /* __JS_MANUAL_CONVERSIONS_H__ */
+

@@ -2,7 +2,7 @@
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Copyright (c) 2014 GamePlay3D team
- 
+
  http://www.cocos2d-x.org
 
 
@@ -85,7 +85,7 @@ public:
      * Returns the topmost RenderState in the hierarchy below the given RenderState.
      */
     RenderState* getTopmost(RenderState* below);
-    
+
     void setParent(RenderState* parent) { _parent = parent; }
 
     enum Blend
@@ -197,7 +197,7 @@ public:
         friend class Pass;
         friend class RenderQueue;
         friend class Renderer;
-        
+
     public:
         /**
          * Creates a new StateBlock with default render state settings.
@@ -206,7 +206,7 @@ public:
 
         /** The recommended way to create StateBlocks is by calling `create`.
          * Don't use `new` or `delete` on them.
-         * 
+         *
          */
         StateBlock();
         ~StateBlock();
@@ -374,11 +374,11 @@ public:
 //            RS_STENCIL_FUNC = (1 << 9),
 //            RS_STENCIL_OP = (1 << 10),
             RS_FRONT_FACE = (1 << 11),
-            
+
             RS_ALL_ONES = 0xFFFFFFFF,
         };
 
-        /** 
+        /**
          * Invalidates the default StateBlock.
          *
          * Only call it if you are calling GL calls directly. Invoke this function
@@ -398,7 +398,7 @@ public:
          * states that were changed will be restored.
          *
          * Rule of thumb:
-         
+
          - call `restore()` if you want to restore to the default state after using `StateBlock`.
          - call `invalidate()` if you want to restore to the default state after calling manual GL calls.
 
@@ -469,3 +469,4 @@ protected:
 NS_CC_END
 
 #endif /* defined(__cocos2d_libs__CCRenderState__) */
+

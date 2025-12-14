@@ -23,7 +23,7 @@
         self.myMarkedText = nil;
         self.autocorrectionType = UITextAutocorrectionTypeNo;
     }
-    
+
     return self;
 }
 
@@ -51,7 +51,7 @@
 }
 
 - (void)setInputDelegate:(id<UITextInputDelegate>)inputDelegate {
-    
+
 }
 
 - (void)setSelectedTextRange:(UITextRange *)aSelectedTextRange {
@@ -140,7 +140,7 @@
 }
 
 - (void)replaceRange:(nonnull UITextRange *)range withText:(nonnull NSString *)text {
-    
+
 }
 
 - (nonnull NSArray<UITextSelectionRect *> *)selectionRectsForRange:(nonnull UITextRange *)range {
@@ -149,7 +149,7 @@
 }
 
 - (void)setBaseWritingDirection:(NSWritingDirection)writingDirection forRange:(nonnull UITextRange *)range {
-    
+
 }
 
 - (void)setMarkedText:(nullable NSString *)markedText selectedRange:(NSRange)selectedRange {
@@ -202,3 +202,4 @@
 }
 
 @end
+

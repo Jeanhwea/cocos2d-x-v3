@@ -2,19 +2,19 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Author: Justin Graham (https://github.com/mannewalis)
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,16 +53,16 @@ class AllocatorStrategyGlobalSmallBlock
     : public AllocatorBase
 {
 public:
-    
+
     // default number of block to allocate per page.
     static const size_t kDefaultSmallBlockCount = 100;
-    
+
     // default max small block size pool.
 	static const size_t kMaxSmallBlockPower = 13; // 2^13 8kb
-    
+
     // @brief define for allocator strategy, cannot be typedef because we want to eval at use
 #define SType(size) AllocatorStrategyFixedBlock<size>
-    
+
     void _lazy_init()
     {
         // this gets called before static constructors
@@ -71,13 +71,13 @@ public:
         if (once)
         {
             once = false;
-            
+
             // call our own constructor. Global new can be called before the constructors are called.
             // Make sure it gets called by having it done lazily in the call to allocate.
             new (this) AllocatorStrategyGlobalSmallBlock();
         }
     }
-    
+
     AllocatorStrategyGlobalSmallBlock()
     {
         // this gets called before static constructors
@@ -86,14 +86,14 @@ public:
         if (once)
         {
             once = false;
-            
+
             _maxBlockSize = 1 << kMaxSmallBlockPower;
-            
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
             AllocatorDiagnostics::instance()->trackAllocator(this);
             AllocatorBase::setTag("GlobalSmallBlock");
 #endif
-            
+
             memset(_smallBlockAllocators, 0, sizeof(_smallBlockAllocators));
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
             memset(_smallBlockAllocations, 0, sizeof(_smallBlockAllocations));
@@ -106,7 +106,7 @@ public:
                     auto v = ccAllocatorGlobal.allocate(sizeof(SType(size))); \
                     _smallBlockAllocators[n] = (AllocatorBase*)(new (v) SType(size)("GlobalSmallBlock::"#size)); \
                 }
-                
+
             SBA(2,  4)
             SBA(3,  8);
             SBA(4,  16);
@@ -119,41 +119,41 @@ public:
             SBA(11, 2048);
             SBA(12, 4096);
             SBA(13, 8192);
-            
+
             #undef SBA
         }
     }
-    
+
     virtual ~AllocatorStrategyGlobalSmallBlock()
     {
         for (int i = 0; i <= kMaxSmallBlockPower; ++i)
             if (_smallBlockAllocators[i])
                 ccAllocatorGlobal.deallocate(_smallBlockAllocators[i]);
-        
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
         AllocatorDiagnostics::instance()->untrackAllocator(this);
 #endif
     }
-    
+
     // @brief Allocate a block of some size. If the block is <= 8192 it is allocated out of an array
     // of fixed size block allocators. If larger, then we default back to the global allocator.
     // @param size Size of block to allocate. This will be rounded to the next power of two.
     CC_ALLOCATOR_INLINE void* allocate(size_t size)
     {
         _lazy_init();
-        
+
         if (size < sizeof(intptr_t)) // always allocate at least enough space to store a pointer. this is
             size = sizeof(intptr_t); // so we can link the empty blocks together in the block allocator.
-        
+
         // if the size is greater than what we determine to be a small block
         // size then fall through to calling the global allocator instead.
         if (size > _maxBlockSize)
             return ccAllocatorGlobal.allocate(size);
-        
+
         // make sure the size fits into one of the
         // fixed sized block allocators we have above.
         size_t adjusted_size = AllocatorBase::nextPow2BlockSize(size);
-        
+
         #define ALLOCATE(slot, size) \
             case size: \
             { \
@@ -164,9 +164,9 @@ public:
                 TRACK(slot, size, +=); \
             } \
             break;
-            
+
         void* address = nullptr;
-        
+
         switch (adjusted_size)
         {
         ALLOCATE(2,  4);
@@ -185,15 +185,15 @@ public:
             CC_ASSERT(false);
             break;
         }
-        
+
         #undef ALLOCATE
-        
+
         CC_ASSERT(adjusted_size < AllocatorBase::kDefaultAlignment || 0 == ((intptr_t)address & (AllocatorBase::kDefaultAlignment - 1)));
         CC_ASSERT(nullptr != address);
-        
+
         return address;
     }
-    
+
     // @brief Deallocate a block by choosing one of the fixed size block allocators
     // or defaulting to the global allocator if we do not own this block.
     CC_ALLOCATOR_INLINE void deallocate(void* address, size_t size = 0)
@@ -217,7 +217,7 @@ public:
                         } \
                     } \
                 }
-            
+
             // falls through until found
             switch (sizeof(uint32_t))
             {
@@ -235,19 +235,19 @@ public:
             OWNS(13, 8192, address);
             }
         }
-        
+
         // if the size is greater than what we determine to be a small block
         // size then default to calling the global allocator instead.
         if (0 == size || size > _maxBlockSize)
             return ccAllocatorGlobal.deallocate(address, size);
-        
+
         if (size < sizeof(intptr_t)) // always allocate at least enough space to store a pointer. this is
             size = sizeof(intptr_t); // so we can link the empty blocks together in the block allocator.
-        
+
         // make sure the size fits into one of the
         // fixed sized block allocators we have above.
         size_t adjusted_size = AllocatorBase::nextPow2BlockSize(size);
-        
+
         #define DEALLOCATE(slot, size, address) \
             case size: \
             { \
@@ -258,7 +258,7 @@ public:
                 TRACK(slot, size, -=); \
             } \
             break;
-        
+
         switch (adjusted_size)
         {
         DEALLOCATE(2,  4,    address);
@@ -276,10 +276,10 @@ public:
         default:
             CC_ASSERT(false);
         }
-        
+
         #undef DEALLOCATE
     }
-    
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
     std::string diagnostics() const
     {
@@ -299,15 +299,15 @@ public:
     }
     size_t _highestCount;
 #endif
-    
+
 protected:
-    
+
     // @brief the max size of a block this allocator will pool before using global allocator
     size_t _maxBlockSize;
-    
+
     // @brief array of small block allocators from 2^0 -> 2^kMaxSmallBlockPower
     AllocatorBase* _smallBlockAllocators[kMaxSmallBlockPower + 1];
-    
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
     size_t _smallBlockAllocations[kMaxSmallBlockPower + 1];
 #endif
@@ -318,3 +318,4 @@ NS_CC_END
 
 /// @endcond
 #endif//CC_ALLOCATOR_STRATEGY_GLOBAL_SMALL_BLOCK_H
+

@@ -244,3 +244,4 @@ class LIBPROTOBUF_EXPORT MessageLite {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_MESSAGE_LITE_H__
+

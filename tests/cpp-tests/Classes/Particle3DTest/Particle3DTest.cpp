@@ -2,19 +2,19 @@
  Copyright (c) 2012 cocos2d-x.org
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -51,7 +51,7 @@ Particle3DTests::Particle3DTests()
     ADD_TEST_CASE(Particle3DWithSprite3DDemo);
 }
 
-std::string Particle3DTestDemo::title() const 
+std::string Particle3DTestDemo::title() const
 {
     return "Particle3D Test";
 }
@@ -85,14 +85,14 @@ bool Particle3DTestDemo::init()
     _particleLab->setPosition(Vec2(0.0f, size.height / 6.0f));
     _particleLab->setAnchorPoint(Vec2(0.0f, 0.0f));
     this->addChild(_particleLab);
-    
+
     scheduleUpdate();
     return true;
 }
 
 void Particle3DTestDemo::onTouchesBegan(const std::vector<Touch*>& touches, cocos2d::Event  *event)
 {
-    
+
 }
 
 void Particle3DTestDemo::onTouchesMoved(const std::vector<Touch*>& touches, cocos2d::Event  *event)
@@ -101,7 +101,7 @@ void Particle3DTestDemo::onTouchesMoved(const std::vector<Touch*>& touches, coco
     {
         auto touch = touches[0];
         auto delta = touch->getDelta();
-        
+
         _angle -= CC_DEGREES_TO_RADIANS(delta.x);
         _camera->setPosition3D(Vec3(100.0f * sinf(_angle), 0.0f, 100.0f * cosf(_angle)));
         _camera->lookAt(Vec3(0.0f, 0.0f, 0.0f), Vec3(0.0f, 1.0f, 0.0f));
@@ -110,7 +110,7 @@ void Particle3DTestDemo::onTouchesMoved(const std::vector<Touch*>& touches, coco
 
 void Particle3DTestDemo::onTouchesEnded(const std::vector<Touch*>& touches, cocos2d::Event  *event)
 {
-    
+
 }
 
 Particle3DTestDemo::Particle3DTestDemo()
@@ -143,14 +143,14 @@ Particle3DTestDemo::~Particle3DTestDemo()
     _particleLab->release();
 }
 
-std::string Particle3DAdvancedLodSystemDemo::subtitle() const 
+std::string Particle3DAdvancedLodSystemDemo::subtitle() const
 {
     return "AdvancedSystem";
 }
 
 bool Particle3DAdvancedLodSystemDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("advancedLodSystem.pu");
@@ -168,14 +168,14 @@ bool Particle3DAdvancedLodSystemDemo::init()
     return true;
 }
 
-std::string Particle3DBlackHoleDemo::subtitle() const 
+std::string Particle3DBlackHoleDemo::subtitle() const
 {
     return "BlackHole";
 }
 
 bool Particle3DBlackHoleDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("blackHole.pu", "pu_mediapack_01.material");
@@ -195,14 +195,14 @@ bool Particle3DBlackHoleDemo::init()
     return true;
 }
 
-std::string Particle3DHypnoDemo::subtitle() const 
+std::string Particle3DHypnoDemo::subtitle() const
 {
     return "Hypno";
 }
 
 bool Particle3DHypnoDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("hypno.pu", "pu_mediapack_01.material");
@@ -218,14 +218,14 @@ bool Particle3DHypnoDemo::init()
     return true;
 }
 
-std::string Particle3DTimeShiftDemo::subtitle() const 
+std::string Particle3DTimeShiftDemo::subtitle() const
 {
     return "TimeShift";
 }
 
 bool Particle3DTimeShiftDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("timeShift.pu", "pu_mediapack_01.material");
@@ -238,14 +238,14 @@ bool Particle3DTimeShiftDemo::init()
     return true;
 }
 
-std::string Particle3DUVAnimDemo::subtitle() const 
+std::string Particle3DUVAnimDemo::subtitle() const
 {
     return "UVAnim";
 }
 
 bool Particle3DUVAnimDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("UVAnimation.pu", "pu_mediapack_01.material");
@@ -257,14 +257,14 @@ bool Particle3DUVAnimDemo::init()
     return true;
 }
 
-std::string Particle3DFirePlaceDemo::subtitle() const 
+std::string Particle3DFirePlaceDemo::subtitle() const
 {
     return "Fire";
 }
 
 bool Particle3DFirePlaceDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("mp_torch.pu", "pu_mediapack_01.material");
@@ -277,14 +277,14 @@ bool Particle3DFirePlaceDemo::init()
     return true;
 }
 
-std::string Particle3DLineStreakDemo::subtitle() const 
+std::string Particle3DLineStreakDemo::subtitle() const
 {
     return "LineStreak";
 }
 
 bool Particle3DLineStreakDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("lineStreak.pu", "pu_mediapack_01.material");
@@ -303,14 +303,14 @@ bool Particle3DLineStreakDemo::init()
     return true;
 }
 
-std::string Particle3DElectricBeamSystemDemo::subtitle() const 
+std::string Particle3DElectricBeamSystemDemo::subtitle() const
 {
     return "ElectricBeamSystem";
 }
 
 bool Particle3DElectricBeamSystemDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
 
@@ -322,14 +322,14 @@ bool Particle3DElectricBeamSystemDemo::init()
     return true;
 }
 
-std::string Particle3DFlareShieldDemo::subtitle() const 
+std::string Particle3DFlareShieldDemo::subtitle() const
 {
     return "flareShield";
 }
 
 bool Particle3DFlareShieldDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
 
@@ -342,14 +342,14 @@ bool Particle3DFlareShieldDemo::init()
     return true;
 }
 
-std::string Particle3DLightningBoltDemo::subtitle() const 
+std::string Particle3DLightningBoltDemo::subtitle() const
 {
     return "LightningBolt";
 }
 
 bool Particle3DLightningBoltDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
 
@@ -362,14 +362,14 @@ bool Particle3DLightningBoltDemo::init()
     return true;
 }
 
-std::string Particle3DExplosionSystemDemo::subtitle() const 
+std::string Particle3DExplosionSystemDemo::subtitle() const
 {
     return "ExplosionSystem";
 }
 
 bool Particle3DExplosionSystemDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
 
@@ -386,14 +386,14 @@ bool Particle3DExplosionSystemDemo::init()
     return true;
 }
 
-std::string Particle3DCanOfWormsDemo::subtitle() const 
+std::string Particle3DCanOfWormsDemo::subtitle() const
 {
     return "CanOfWorms";
 }
 
 bool Particle3DCanOfWormsDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("canOfWorms.pu");
@@ -404,14 +404,14 @@ bool Particle3DCanOfWormsDemo::init()
     return true;
 }
 
-std::string Particle3DRibbonTrailDemo::subtitle() const 
+std::string Particle3DRibbonTrailDemo::subtitle() const
 {
     return "RibbonTrailTest";
 }
 
 bool Particle3DRibbonTrailDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("ribbonTrailTest.pu");
@@ -422,14 +422,14 @@ bool Particle3DRibbonTrailDemo::init()
     return true;
 }
 
-std::string Particle3DWeaponTrailDemo::subtitle() const 
+std::string Particle3DWeaponTrailDemo::subtitle() const
 {
     return "WeaponTrail";
 }
 
 bool Particle3DWeaponTrailDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     auto rootps = PUParticleSystem3D::create("weaponTrail.pu");
@@ -440,14 +440,14 @@ bool Particle3DWeaponTrailDemo::init()
     return true;
 }
 
-std::string Particle3DWithSprite3DDemo::subtitle() const 
+std::string Particle3DWithSprite3DDemo::subtitle() const
 {
     return "Particle3DWithSprite3D";
 }
 
 bool Particle3DWithSprite3DDemo::init()
 {
-    if (!Particle3DTestDemo::init()) 
+    if (!Particle3DTestDemo::init())
         return false;
 
     std::string c3bfileName = "Sprite3DTest/orc.c3b";
@@ -478,3 +478,4 @@ bool Particle3DWithSprite3DDemo::init()
 
     return true;
 }
+

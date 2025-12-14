@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -24,7 +24,7 @@
 
 //
 // ClippingNodeTest
-// 
+//
 //
 // by Pierre-David Bélanger
 //
@@ -70,7 +70,7 @@ ClippingNodeTests::ClippingNodeTests()
 bool BaseClippingNodeTest::init()
 {
 	if (TestCase::init()) {
-        
+
         auto background = Sprite::create(s_back3);
         background->setAnchorPoint( Vec2::ZERO );
         background->setPosition( Vec2::ZERO );
@@ -113,18 +113,18 @@ std::string BasicTest::subtitle() const
 void BasicTest::setup()
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto stencil = this->stencil();
     stencil->setTag( kTagStencilNode );
     stencil->setPosition(50, 50);
-    
+
     auto clipper = this->clipper();
     clipper->setTag( kTagClipperNode );
     clipper->setAnchorPoint(Vec2(0.5, 0.5));
     clipper->setPosition(s.width / 2 - 50, s.height / 2 - 50);
     clipper->setStencil(stencil);
     this->addChild(clipper);
-    
+
     auto content = this->content();
     content->setPosition(50, 50);
     clipper->addChild(content);
@@ -310,11 +310,11 @@ std::string NestedTest::subtitle() const
 void NestedTest::setup()
 {
     static int depth = 9;
-    
+
     Node* parent = this;
-    
+
     for (int i = 0; i < depth; i++) {
-                
+
         int size = 225 - i * (225 / (depth * 2));
 
         auto clipper = ClippingNode::create();
@@ -324,7 +324,7 @@ void NestedTest::setup()
         clipper->setAlphaThreshold(0.05f);
         clipper->runAction(RepeatForever::create(RotateBy::create(i % 3 ? 1.33 : 1.66, i % 2 ? 90 : -90)));
         parent->addChild(clipper);
-        
+
         auto stencil = Sprite::create(s_pathGrossini);
         stencil->setScale( 2.5 - (i * (2.5 / depth)) );
         stencil->setAnchorPoint( Vec2(0.5, 0.5) );
@@ -334,7 +334,7 @@ void NestedTest::setup()
         clipper->setStencil(stencil);
 
         clipper->addChild(stencil);
-        
+
         parent = clipper;
     }
 
@@ -364,7 +364,7 @@ void HoleDemo::setup()
     auto target = Sprite::create(s_pathBlock);
     target->setAnchorPoint(Vec2::ZERO);
     target->setScale(3);
-    
+
     _outerClipper = ClippingNode::create();
     _outerClipper->retain();
     AffineTransform transform = AffineTransform::IDENTITY;
@@ -374,29 +374,29 @@ void HoleDemo::setup()
     _outerClipper->setAnchorPoint( Vec2(0.5, 0.5) );
     _outerClipper->setPosition(Vec2(this->getContentSize()) * 0.5f);
     _outerClipper->runAction(RepeatForever::create(RotateBy::create(1, 45)));
-    
+
     _outerClipper->setStencil( target );
-    
+
     auto holesClipper = ClippingNode::create();
     holesClipper->setInverted(true);
     holesClipper->setAlphaThreshold( 0.05f );
-    
+
     holesClipper->addChild(target);
-    
+
     _holes = Node::create();
     _holes->retain();
-    
+
     holesClipper->addChild(_holes);
-    
+
     _holesStencil = Node::create();
     _holesStencil->retain();
-    
+
     holesClipper->setStencil( _holesStencil);
-    
+
     _outerClipper->addChild(holesClipper);
-    
+
     this->addChild(_outerClipper);
-    
+
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesBegan = CC_CALLBACK_2(HoleDemo::onTouchesBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -406,19 +406,19 @@ void HoleDemo::pokeHoleAtPoint(Vec2 point)
 {
     float scale = CCRANDOM_0_1() * 0.2 + 0.9;
     float rotation = CCRANDOM_0_1() * 360;
-    
+
     auto hole = Sprite::create("Images/hole_effect.png");
     hole->setPosition( point );
     hole->setRotation( rotation );
     hole->setScale( scale );
-    
+
     _holes->addChild(hole);
-    
+
     auto holeStencil = Sprite::create("Images/hole_stencil.png");
     holeStencil->setPosition( point );
     holeStencil->setRotation( rotation );
     holeStencil->setScale( scale );
-    
+
     _holesStencil->addChild(holeStencil);
 
     _outerClipper->runAction(Sequence::createWithTwoActions(ScaleBy::create(0.05f, 0.95f),
@@ -463,7 +463,7 @@ void ScrollViewDemo::setup()
     rectangle[1] = Vec2(clipper->getContentSize().width, 0);
     rectangle[2] = Vec2(clipper->getContentSize().width, clipper->getContentSize().height);
     rectangle[3] = Vec2(0, clipper->getContentSize().height);
-    
+
     Color4F white(1, 1, 1, 1);
     stencil->drawPolygon(rectangle, 4, white, 1, white);
     clipper->setStencil(stencil);
@@ -473,7 +473,7 @@ void ScrollViewDemo::setup()
     content->setAnchorPoint(  Vec2(0.5, 0.5) );
     content->setPosition(clipper->getContentSize().width / 2, clipper->getContentSize().height / 2);
     clipper->addChild(content);
-    
+
     _scrolling = false;
 
     auto listener = EventListenerTouchAllAtOnce::create();
@@ -552,7 +552,7 @@ void RawStencilBufferTest::setup()
     if (_stencilBits < 3) {
         CCLOGWARN("Stencil must be enabled for the current GLView.");
     }
-    
+
     for(int i = 0; i < _planeCount; ++i)
     {
         Sprite* sprite = Sprite::create(s_pathGrossini);
@@ -570,29 +570,29 @@ void RawStencilBufferTest::setup()
 }
 
 void RawStencilBufferTest::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
-{    
+{
     auto winPoint = Vec2(Director::getInstance()->getWinSize());
-    
+
     auto planeSize = winPoint * (1.0 / _planeCount);
-    
+
     size_t neededCmdSize = _planeCount * 2 + 2;
     if(_renderCmds.size() != neededCmdSize)
     {
         _renderCmds.resize(neededCmdSize);
     }
-    
+
     auto iter = _renderCmds.begin();
-    
+
     iter->init(_globalZOrder);
     iter->func = CC_CALLBACK_0(RawStencilBufferTest::onEnableStencil, this);
     renderer->addCommand(&(*iter));
     ++iter;
 
     for (int i = 0; i < _planeCount; i++) {
-        
+
         auto stencilPoint = planeSize * (_planeCount - i);
         stencilPoint.x = winPoint.x;
-        
+
         auto spritePoint = planeSize * i;
         spritePoint.x += planeSize.x / 2;
         spritePoint.y = 0;
@@ -603,26 +603,26 @@ void RawStencilBufferTest::draw(Renderer *renderer, const Mat4 &transform, uint3
         iter->func = CC_CALLBACK_0(RawStencilBufferTest::onBeforeDrawClip, this, i, stencilPoint);
         renderer->addCommand(&(*iter));
         ++iter;
-        
+
         Director* director = Director::getInstance();
         CCASSERT(nullptr != director, "Director is null when setting matrix stack");
         director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-        
+
         _modelViewTransform = this->transform(transform);
         _spritesStencil.at(i)->visit(renderer, _modelViewTransform, flags);
         director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-                
+
         iter->init(_globalZOrder);
         iter->func = CC_CALLBACK_0(RawStencilBufferTest::onBeforeDrawSprite, this, i, winPoint);
         renderer->addCommand(&(*iter));
         ++iter;
-        
+
         director->pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
         _modelViewTransform = this->transform(transform);
         _sprites.at(i)->visit(renderer, _modelViewTransform, flags);
         director->popMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
     }
-    
+
     iter->init(_globalZOrder);
     iter->func = CC_CALLBACK_0(RawStencilBufferTest::onDisableStencil, this);
     renderer->addCommand(&(*iter));
@@ -651,23 +651,23 @@ void RawStencilBufferTest::onBeforeDrawClip(int planeIndex, const Vec2& pt)
         pt,
         Vec2(0, pt.y)
     };
-    
+
     auto glProgram= GLProgramCache::getInstance()->getGLProgram(GLProgram::SHADER_NAME_POSITION_U_COLOR);
-    
+
     int colorLocation = glProgram->getUniformLocation("u_color");
     CHECK_GL_ERROR_DEBUG();
 
     Color4F color(1, 1, 1, 1);
-    
+
     glProgram->use();
     glProgram->setUniformsForBuiltins();
     glProgram->setUniformLocationWith4fv(colorLocation, (GLfloat*) &color.r, 1);
-    
+
     GL::enableVertexAttribs( GL::VERTEX_ATTRIB_FLAG_POSITION );
-    
+
     glVertexAttribPointer(GLProgram::VERTEX_ATTRIB_POSITION, 2, GL_FLOAT, GL_FALSE, 0, vertices);
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
-    
+
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, 4);
 }
 
@@ -874,7 +874,7 @@ void RawStencilBufferTest6::setupStencilForClippingOnPlane(GLint plane)
     glStencilMask(planeMask);
     glStencilFunc(GL_NEVER, 0, planeMask);
     glStencilOp(GL_REPLACE, GL_KEEP, GL_KEEP);
-  
+
     Vec2 pt = Director::getInstance()->getWinSize();
     Vec2 vertices[] = {
         Vec2::ZERO,
@@ -900,7 +900,7 @@ void RawStencilBufferTest6::setupStencilForClippingOnPlane(GLint plane)
     glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
     CC_INCREMENT_GL_DRAWN_BATCHES_AND_VERTICES(1, 4);
-    
+
     glStencilFunc(GL_NEVER, planeMask, planeMask);
     glStencilOp(GL_REPLACE, GL_KEEP, GL_KEEP);
     glDisable(GL_DEPTH_TEST);
@@ -1087,10 +1087,11 @@ void ClippingRectangleNodeTest::setup()
     clipper->setClippingRegion(Rect(this->getContentSize().width / 2 - 100, this->getContentSize().height / 2 - 100, 200, 200));
     clipper->setTag( kTagClipperNode );
     this->addChild(clipper);
-    
+
     auto content = Sprite::create(s_back2);
     content->setTag( kTagContentNode );
     content->setAnchorPoint(  Vec2(0.5, 0.5) );
     content->setPosition(this->getContentSize().width / 2, this->getContentSize().height / 2);
     clipper->addChild(content);
 }
+

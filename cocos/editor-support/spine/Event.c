@@ -42,3 +42,4 @@ void spEvent_dispose (spEvent* self) {
 	FREE(self->stringValue);
 	FREE(self);
 }
+

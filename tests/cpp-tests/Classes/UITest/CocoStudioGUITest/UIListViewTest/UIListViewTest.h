@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -43,11 +43,11 @@ public:
     void selectedItemEvent(cocos2d::Ref* sender, cocos2d::ui::ListView::EventType type);
     void selectedItemEventScrollView(cocos2d::Ref* sender, cocos2d::ui::ScrollView::EventType type);
     virtual void update(float dt) override;
-    
+
 protected:
     float getItemPositionYInView(cocos2d::ui::Widget* item) const;
     void updateItem(int itemID, int templateID);
-    
+
     cocos2d::ui::Text* _displayValueLabel;
     //how many items we actually spawn, these items will be reused.
     int _spawnCount;
@@ -79,7 +79,7 @@ public:
 protected:
     float getItemPositionXInView(cocos2d::ui::Widget* item) const;
     void updateItem(int itemID, int templateID);
-    
+
     cocos2d::ui::Text* _displayValueLabel;
     //how many items we actually spawn, these items will be reused.
     int _spawnCount;
@@ -93,7 +93,7 @@ protected:
     float _lastContentPosX;
     float _reuseItemOffset;
     cocos2d::ui::ListView* _listView;
-    
+
     std::vector<std::string> _array;
 };
 
@@ -101,7 +101,7 @@ class Issue12692 : public UIScene
 {
 public:
     CREATE_FUNC(Issue12692);
-    
+
     virtual bool init() override;
 };
 
@@ -109,7 +109,7 @@ class Issue8316 : public UIScene
 {
 public:
     CREATE_FUNC(Issue8316);
-    
+
     virtual bool init() override;
 };
 
@@ -120,7 +120,7 @@ class UIListViewTest_ScrollToItem : public UIScene
 protected:
     virtual bool init() override;
     virtual cocos2d::ui::ScrollView::Direction getListViewDirection() const = 0;
-    
+
     cocos2d::ui::ListView* _listView;
     cocos2d::ui::Text* _titleLabel;
     int _nextIndex;
@@ -153,11 +153,11 @@ class UIListViewTest_Magnetic : public UIScene
 protected:
     virtual bool init() override;
     virtual cocos2d::ui::ScrollView::Direction getListViewDirection() const = 0;
-    
+
     cocos2d::ui::ListView* _listView;
     cocos2d::ui::Text* _titleLabel;
     cocos2d::ui::Text* _indexLabels[5];
-    
+
 };
 
 class UIListViewTest_MagneticVertical : public UIListViewTest_Magnetic
@@ -218,3 +218,4 @@ public:
 };
 
 #endif /* defined(__TestCpp__UIListViewTest__) */
+

@@ -42,7 +42,7 @@ public class Cocos2dxHandler extends Handler {
     // Fields
     // ===========================================================
     private WeakReference<Cocos2dxActivity> mActivity;
-    
+
     // ===========================================================
     // Constructors
     // ===========================================================
@@ -57,7 +57,7 @@ public class Cocos2dxHandler extends Handler {
     // ===========================================================
     // Methods for/from SuperClass/Interfaces
     // ===========================================================
-    
+
     // ===========================================================
     // Methods
     // ===========================================================
@@ -69,36 +69,37 @@ public class Cocos2dxHandler extends Handler {
                 break;
         }
     }
-    
+
     private void showDialog(Message msg) {
         Cocos2dxActivity theActivity = this.mActivity.get();
         DialogMessage dialogMessage = (DialogMessage)msg.obj;
         new AlertDialog.Builder(theActivity)
         .setTitle(dialogMessage.title)
         .setMessage(dialogMessage.message)
-        .setPositiveButton("Ok", 
+        .setPositiveButton("Ok",
                 new DialogInterface.OnClickListener() {
-                    
+
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // TODO Auto-generated method stub
-                        
+
                     }
                 }).create().show();
     }
 
-    
+
     // ===========================================================
     // Inner and Anonymous Classes
     // ===========================================================
-    
+
     public static class DialogMessage {
         public String title;
         public String message;
-        
+
         public DialogMessage(String title, String message) {
             this.title = title;
             this.message = message;
         }
     }
 }
+

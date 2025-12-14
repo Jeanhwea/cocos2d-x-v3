@@ -42,7 +42,7 @@ struct FontDefinition;
 
 /**
  * @class Device
- * @brief 
+ * @brief
  */
 class CC_DLL Device
 {
@@ -66,7 +66,7 @@ public:
      *  @return The DPI of device.
      */
     static int getDPI();
-    
+
     /**
      * To enable or disable accelerometer.
      */
@@ -79,7 +79,7 @@ public:
 
     /**
      * Controls whether the screen should remain on.
-     * 
+     *
      * @param keepScreenOn One flag indicating that the screen should remain on.
      */
     static void setKeepScreenOn(bool keepScreenOn);
@@ -108,3 +108,4 @@ private:
 NS_CC_END
 
 #endif /* __CCDEVICE_H__ */
+

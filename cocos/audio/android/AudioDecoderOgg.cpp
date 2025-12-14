@@ -111,3 +111,4 @@ bool AudioDecoderOgg::decodeToPcm()
 }
 
 }} // namespace cocos2d { namespace experimental {
+

@@ -95,7 +95,7 @@ bool FileUtilsAndroid::init()
     DECLARE_GUARD;
 
     _defaultResRootPath = ASSETS_FOLDER_NAME;
-    
+
     std::string assetsPath(getApkPath());
     if (assetsPath.find("/obb/") != std::string::npos)
     {
@@ -159,7 +159,7 @@ std::string FileUtilsAndroid::getNewFilename(const std::string &filename) const
 
 bool FileUtilsAndroid::isFileExistInternal(const std::string& strFilePath) const
 {
-    
+
     DECLARE_GUARD;
 
     if (strFilePath.empty())
@@ -176,7 +176,7 @@ bool FileUtilsAndroid::isFileExistInternal(const std::string& strFilePath) const
 
         // Found "assets/" at the beginning of the path and we don't want it
         if (strFilePath.find(_defaultResRootPath) == 0) s += _defaultResRootPath.length();
-        
+
         if (obbfile && obbfile->fileExists(s))
         {
             bFound = true;
@@ -219,7 +219,7 @@ bool FileUtilsAndroid::isDirectoryExistInternal(const std::string& dirPath) cons
     }
 
     const char* s = dirPathCopy.c_str();
-    
+
     // find absolute path in flash memory
     if (s[0] == '/')
     {
@@ -252,7 +252,7 @@ bool FileUtilsAndroid::isDirectoryExistInternal(const std::string& dirPath) cons
             }
         }
     }
-    
+
     return false;
 }
 
@@ -277,7 +277,7 @@ long FileUtilsAndroid::getFileSize(const std::string& filepath) const
     if (size != -1) {
         return size;
     }
-    
+
     if (FileUtilsAndroid::assetmanager)
     {
         string relativePath = filepath;
@@ -285,7 +285,7 @@ long FileUtilsAndroid::getFileSize(const std::string& filepath) const
         {
             relativePath = filepath.substr(_defaultResRootPath.size());
         }
-        
+
         AAsset* asset = AAssetManager_open(FileUtilsAndroid::assetmanager, relativePath.data(), AASSET_MODE_UNKNOWN);
         if (asset)
         {
@@ -293,7 +293,7 @@ long FileUtilsAndroid::getFileSize(const std::string& filepath) const
             AAsset_close(asset);
         }
     }
-    
+
     return size;
 }
 
@@ -348,7 +348,7 @@ bool FileUtilsAndroid::removeDirectory(const std::string& path) const
 {
     if (path.empty())
         return false;
-    
+
     return removeDirectoryJNI(path.c_str());
 }
 
@@ -371,7 +371,7 @@ FileUtils::Status FileUtilsAndroid::getContents(const std::string& filename, Res
     } else {
         relativePath = fullPath;
     }
-    
+
     if (obbfile)
     {
         if (obbfile->getFileData(relativePath, buffer))
@@ -426,3 +426,4 @@ string FileUtilsAndroid::getWritablePath() const
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
+

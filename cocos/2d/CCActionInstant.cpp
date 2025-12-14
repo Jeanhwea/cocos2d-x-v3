@@ -4,7 +4,7 @@
  Copyright (c) 2011      Zynga Inc.
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -74,7 +74,7 @@ void ActionInstant::update(float /*time*/)
 // Show
 //
 
-Show* Show::create() 
+Show* Show::create()
 {
     Show* ret = new (std::nothrow) Show();
 
@@ -106,7 +106,7 @@ Show* Show::clone() const
 //
 // Hide
 //
-Hide * Hide::create() 
+Hide * Hide::create()
 {
     Hide *ret = new (std::nothrow) Hide();
 
@@ -170,7 +170,7 @@ ToggleVisibility * ToggleVisibility::clone() const
 //
 // Remove Self
 //
-RemoveSelf * RemoveSelf::create(bool isNeedCleanUp /*= true*/) 
+RemoveSelf * RemoveSelf::create(bool isNeedCleanUp /*= true*/)
 {
     RemoveSelf *ret = new (std::nothrow) RemoveSelf();
 
@@ -346,7 +346,7 @@ CallFunc * CallFunc::create(const std::function<void()> &func)
     return nullptr;
 }
 
-CallFunc * CallFunc::create(Ref* selectorTarget, SEL_CallFunc selector) 
+CallFunc * CallFunc::create(Ref* selectorTarget, SEL_CallFunc selector)
 {
     CallFunc *ret = new (std::nothrow) CallFunc();
 
@@ -423,7 +423,7 @@ void CallFunc::execute()
     if (_callFunc)
     {
         (_selectorTarget->*_callFunc)();
-    } 
+    }
     else if( _function )
     {
         _function();
@@ -516,13 +516,13 @@ CallFuncN * CallFuncN::clone() const
 __CCCallFuncND * __CCCallFuncND::create(Ref* selectorTarget, SEL_CallFuncND selector, void* d)
 {
     __CCCallFuncND* ret = new (std::nothrow) __CCCallFuncND();
-    
+
     if (ret && ret->initWithTarget(selectorTarget, selector, d))
     {
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return nullptr;
 }
@@ -535,7 +535,7 @@ bool __CCCallFuncND::initWithTarget(Ref* selectorTarget, SEL_CallFuncND selector
         _callFuncND = selector;
         return true;
     }
-    
+
     return false;
 }
 
@@ -551,12 +551,12 @@ __CCCallFuncND * __CCCallFuncND::clone() const
 {
     // no copy constructor
     auto a = new (std::nothrow) __CCCallFuncND();
-    
+
     if( _selectorTarget)
     {
         a->initWithTarget(_selectorTarget, _callFuncND, _data);
     }
-    
+
     a->autorelease();
     return a;
 }
@@ -585,13 +585,13 @@ void __CCCallFuncO::execute()
 __CCCallFuncO * __CCCallFuncO::create(Ref* selectorTarget, SEL_CallFuncO selector, Ref* object)
 {
     __CCCallFuncO *ret = new (std::nothrow) __CCCallFuncO();
-    
+
     if (ret && ret->initWithTarget(selectorTarget, selector, object))
     {
         ret->autorelease();
         return ret;
     }
-    
+
     CC_SAFE_DELETE(ret);
     return nullptr;
 }
@@ -602,11 +602,11 @@ bool __CCCallFuncO::initWithTarget(Ref* selectorTarget, SEL_CallFuncO selector, 
     {
         _object = object;
         CC_SAFE_RETAIN(_object);
-        
+
         _callFuncO = selector;
         return true;
     }
-    
+
     return false;
 }
 
@@ -614,12 +614,12 @@ __CCCallFuncO * __CCCallFuncO::clone() const
 {
     // no copy constructor
     auto a = new (std::nothrow) __CCCallFuncO();
-    
+
     if( _selectorTarget)
     {
         a->initWithTarget(_selectorTarget, _callFuncO, _object);
     }
-    
+
     a->autorelease();
     return a;
 }
@@ -628,7 +628,7 @@ Ref* __CCCallFuncO::getObject() const
 {
     return _object;
 }
-    
+
 void __CCCallFuncO::setObject(Ref* obj)
 {
     if (obj != _object)
@@ -646,3 +646,4 @@ NS_CC_END
 #elif _MSC_VER >= 1400 //vs 2005 or higher
 #pragma warning (pop)
 #endif
+

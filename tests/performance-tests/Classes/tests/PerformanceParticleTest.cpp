@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -70,7 +70,7 @@ PerformceParticleTests::PerformceParticleTests()
 ParticleMainScene::ParticleMainScene()
 : particleSize(4)
 {
-    
+
 }
 
 bool ParticleMainScene::init()
@@ -167,7 +167,7 @@ void ParticleMainScene::initWithSubTest(int asubtest, int particles)
 void ParticleMainScene::onExitTransitionDidStart()
 {
     Scene::onExitTransitionDidStart();
-    
+
     auto director = Director::getInstance();
     auto sched = director->getScheduler();
 
@@ -184,7 +184,7 @@ void ParticleMainScene::onEnterTransitionDidFinish()
                                               genStrVector("Avg", "Min", "Max", nullptr));
         autoTestIndex = 0;
         subtestNumber = 1;
-        
+
         doAutoTest();
     }
 }
@@ -196,7 +196,7 @@ void ParticleMainScene::doAutoTest()
     totalStatTime = 0.0f;
     minFrameRate = -1.0f;
     maxFrameRate = -1.0f;
-    
+
     quantityParticles = autoTestParticleCounts[autoTestIndex];
     updateQuantityLabel();
     updateTitle();
@@ -270,16 +270,16 @@ void ParticleMainScene::step(float dt)
     char str[10] = {0};
     sprintf(str, "%4d", emitter->getParticleCount());
     atlas->setString(str);
-    
+
     if (isStating)
     {
         totalStatTime += dt;
         statCount++;
-        
+
         auto curFrameRate = Director::getInstance()->getFrameRate();
         if (maxFrameRate < 0 || curFrameRate > maxFrameRate)
             maxFrameRate = curFrameRate;
-        
+
         if (minFrameRate < 0 || curFrameRate < minFrameRate)
             minFrameRate = curFrameRate;
     }
@@ -303,7 +303,7 @@ void ParticleMainScene::createParticleSystem()
     */
     removeChildByTag(kTagParticleSystem, true);
 
-    // remove the "fire.png" from the TextureCache cache. 
+    // remove the "fire.png" from the TextureCache cache.
     auto texture = Director::getInstance()->getTextureCache()->addImage("Images/fire.png");
     Director::getInstance()->getTextureCache()->removeTexture(texture);
 
@@ -325,11 +325,11 @@ void ParticleMainScene::createParticleSystem()
     case 2:
         Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
         particleSystem->setTexture(Director::getInstance()->getTextureCache()->addImage("Images/fire.png"));
-        break;            
+        break;
     case 3:
         Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::A8);
         particleSystem->setTexture(Director::getInstance()->getTextureCache()->addImage("Images/fire.png"));
-        break;                        
+        break;
 //     case 4:
 //         particleSystem->initWithTotalParticles(quantityParticles);
 //         ////---- particleSystem.texture = [[TextureCache sharedTextureCache] addImage:@"fire.pvr"];
@@ -342,11 +342,11 @@ void ParticleMainScene::createParticleSystem()
 //    case 5:
 //        Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA4444);
 //        particleSystem->setTexture(Director::getInstance()->getTextureCache()->addImage("Images/fire.png"));
-//        break;            
+//        break;
 //    case 6:
 //        Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::A8);
 //        particleSystem->setTexture(Director::getInstance()->getTextureCache()->addImage("Images/fire.png"));
-//        break;                        
+//        break;
 //     case 8:
 //         ////---- particleSystem.texture = [[TextureCache sharedTextureCache] addImage:@"fire.pvr"];
 //         particleSystem->setTexture(Director::getInstance()->getTextureCache()->addImage("Images/fire.png"));
@@ -368,49 +368,49 @@ void ParticleMainScene::doTest()
 {
     auto s = Director::getInstance()->getWinSize();
     auto particleSystem = (ParticleSystem*)getChildByTag(kTagParticleSystem);
-    
+
     // duration
     particleSystem->setDuration(-1);
-    
+
     // gravity
     particleSystem->setGravity(Vec2(0,-90));
-    
+
     // angle
     particleSystem->setAngle(90);
     particleSystem->setAngleVar(0);
-    
+
     // radial
     particleSystem->setRadialAccel(0);
     particleSystem->setRadialAccelVar(0);
-    
+
     // speed of particles
     particleSystem->setSpeed(180);
     particleSystem->setSpeedVar(50);
-    
+
     // emitter position
     particleSystem->setPosition(Vec2(s.width/2, 100));
     particleSystem->setPosVar(Vec2(s.width/2,0));
-    
+
     // life of particles
     particleSystem->setLife(2.0f);
     particleSystem->setLifeVar(1);
-    
+
     // emits per frame
     particleSystem->setEmissionRate(particleSystem->getTotalParticles() /particleSystem->getLife());
-    
+
     // color of particles
     Color4F startColor(0.5f, 0.5f, 0.5f, 1.0f);
     particleSystem->setStartColor(startColor);
-    
+
     Color4F startColorVar(0.5f, 0.5f, 0.5f, 1.0f);
     particleSystem->setStartColorVar( startColorVar);
-    
+
     Color4F endColor(0.1f, 0.1f, 0.1f, 0.2f);
     particleSystem->setEndColor(endColor);
-    
+
     Color4F endColorVar(0.1f, 0.1f, 0.1f, 0.2f);
     particleSystem->setEndColorVar(endColorVar);
-    
+
     // size, in pixels
     particleSystem->setEndSize(particleSize);
     particleSystem->setStartSize(particleSize);
@@ -522,3 +522,4 @@ void ParticlePerformTest4::initWithSubTest(int subtest, int particles)
     particleSize = 64;
     ParticleMainScene::initWithSubTest(subtest, particles);
 }
+

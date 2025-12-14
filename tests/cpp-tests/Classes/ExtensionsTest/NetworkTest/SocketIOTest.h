@@ -56,7 +56,7 @@ public:
 	*  @brief Common function to call on both socket.io disconnect and websocket close
 	**/
 	void closedSocketAction(cocos2d::network::SIOClient* client);
-	
+
 	// test action handlers for main Test Client that connects to default namespace "" or "/"
 	void onMenuSIOClientClicked(cocos2d::Ref *sender);
 	void onMenuTestMessageClicked(cocos2d::Ref *sender);
@@ -107,3 +107,4 @@ protected:
 };
 
 #endif /* defined(__TestCpp__SocketIOTest__) */
+

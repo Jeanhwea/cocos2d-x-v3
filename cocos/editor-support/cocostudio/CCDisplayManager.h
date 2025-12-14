@@ -81,7 +81,7 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE void changeDisplayByIndex(int index, bool force);
     CC_DEPRECATED_ATTRIBUTE void changeDisplayByName(const std::string& name, bool force);
-    
+
     /**
      * Change display by index. You can just use this method to change display in the display list.
      * The display list is just used for this bone, and it is the displays you may use in every frame.
@@ -158,3 +158,4 @@ protected:
 }
 
 #endif /*__CCDISPLAYMANAGER_H__*/
+

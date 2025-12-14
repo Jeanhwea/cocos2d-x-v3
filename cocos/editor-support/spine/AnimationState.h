@@ -183,3 +183,4 @@ typedef spAnimationState AnimationState;
 #endif
 
 #endif /* SPINE_ANIMATIONSTATE_H_ */
+

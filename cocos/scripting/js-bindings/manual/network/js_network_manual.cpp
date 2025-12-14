@@ -3,7 +3,7 @@
  * Created by panda on 1/13/17.
  *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
@@ -31,7 +31,7 @@ bool jsval_to_DownloaderHints(JSContext *cx, JS::HandleValue v, cocos2d::network
     JS::RootedValue jsCountOfMaxProcessingTasks(cx);
     JS::RootedValue jsTimeoutInSeconds(cx);
     JS::RootedValue jsTempFileNameSuffix(cx);
-    
+
     double countOfMaxProcessingTasks = 0, timeoutInSeconds = 0;
     std::string tempFileNameSuffix;
     bool ok = v.isObject() &&
@@ -42,9 +42,9 @@ bool jsval_to_DownloaderHints(JSContext *cx, JS::HandleValue v, cocos2d::network
     JS::ToNumber(cx, jsCountOfMaxProcessingTasks, &countOfMaxProcessingTasks) &&
     JS::ToNumber(cx, jsTimeoutInSeconds, &timeoutInSeconds) &&
     jsval_to_std_string(cx, jsTempFileNameSuffix, &tempFileNameSuffix);
-    
+
     JSB_PRECONDITION3(ok, cx, false, "Error processing arguments");
-    
+
     ret->countOfMaxProcessingTasks = (uint32_t)countOfMaxProcessingTasks;
     ret->timeoutInSeconds = (uint32_t)timeoutInSeconds;
     ret->tempFileNameSuffix = tempFileNameSuffix;

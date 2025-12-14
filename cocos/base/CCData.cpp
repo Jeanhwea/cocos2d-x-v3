@@ -83,7 +83,7 @@ Data& Data::operator= (Data&& other)
 void Data::move(Data& other)
 {
     if(_bytes != other._bytes) clear();
-    
+
     _bytes = other._bytes;
     _size = other._size;
 
@@ -149,3 +149,4 @@ unsigned char* Data::takeBuffer(ssize_t* size)
 }
 
 NS_CC_END
+

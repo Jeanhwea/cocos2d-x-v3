@@ -97,7 +97,7 @@ int Device::getDPI()
          *         = N pixels / (M inch / 25.4)
          *         = N * 25.4 pixels / M inch
          */
-        double xres = ((((double) DisplayWidth(dpy,scr)) * 25.4) / 
+        double xres = ((((double) DisplayWidth(dpy,scr)) * 25.4) /
             ((double) DisplayWidthMM(dpy,scr)));
         dpi = std::lround(xres);
         //printf("dpi = %d\n", dpi);
@@ -129,7 +129,7 @@ public:
     ~BitmapDC() {
         FT_Done_FreeType(library);
         FcFini();
-        
+
         reset();
     }
 
@@ -282,7 +282,7 @@ public:
                         textLines.push_back(currentLine);
                         currentLine.reset();
                     }
-    
+
                     prevGlyphIndex = 0;
                     prevCharacter = 0;
                     firstBreakIndex = -1;
@@ -292,7 +292,7 @@ public:
                     prevCharacter = unicode;
                 }
             }
-            
+
             if ( currentLine.glyphs.empty() ) {
                 currentPaintPosition = -glyph.bearingX;
             }
@@ -495,7 +495,7 @@ static BitmapDC& sharedBitmapDC()
 Data Device::getTextureDataForText(const char * text, const FontDefinition& textDefinition, TextAlign align, int &width, int &height, bool& hasPremultipliedAlpha)
 {
     Data ret;
-    do 
+    do
     {
         BitmapDC &dc = sharedBitmapDC();
 
@@ -522,3 +522,4 @@ void Device::vibrate(float /*duration*/)
 NS_CC_END
 
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+

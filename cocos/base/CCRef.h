@@ -41,7 +41,7 @@ NS_CC_BEGIN
 
 class Ref;
 
-/** 
+/**
   * Interface that defines how to clone an Ref.
   * @lua NA
   * @js NA
@@ -51,7 +51,7 @@ class CC_DLL Clonable
 public:
     /** Returns a copy of the Ref. */
     virtual Clonable* clone() const = 0;
-    
+
     /**
      * @js NA
      * @lua NA
@@ -202,3 +202,4 @@ NS_CC_END
 /** @} */
 
 #endif // __BASE_CCREF_H__
+

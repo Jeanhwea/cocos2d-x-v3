@@ -1134,3 +1134,4 @@ inline bool CodedInputStream::IsFlat() const {
 
 }  // namespace google
 #endif  // GOOGLE_PROTOBUF_IO_CODED_STREAM_H__
+

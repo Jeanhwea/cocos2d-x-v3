@@ -46,3 +46,4 @@ AssetFd::~AssetFd()
 };
 
 }} // namespace cocos2d { namespace experimental {
+

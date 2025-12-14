@@ -117,3 +117,4 @@ void QuadCommand::init(float globalOrder, Texture2D* texture, GLProgramState* gl
 }
 
 NS_CC_END
+

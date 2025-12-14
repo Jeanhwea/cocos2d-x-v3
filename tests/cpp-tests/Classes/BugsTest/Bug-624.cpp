@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -50,7 +50,7 @@ bool Bug624Layer::init()
 
         label->setPosition(size.width/2, size.height/2);
         addChild(label);
-        
+
         Device::setAccelerometerEnabled(true);
         auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer::onAcceleration,  this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
@@ -59,7 +59,7 @@ bool Bug624Layer::init()
 
         return true;
     }
-    
+
     return false;
 }
 
@@ -67,13 +67,13 @@ void Bug624Layer::switchLayer(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
 
-    auto scene = Scene::create();    
+    auto scene = Scene::create();
     scene->addChild(Bug624Layer2::create(), 0);
     Director::getInstance()->replaceScene(TransitionFade::create(2.0f, scene, Color3B::WHITE));
 }
 
 void Bug624Layer::onAcceleration(Acceleration* acc, Event* event)
-{    
+{
     log("Layer1 accel");
 }
 
@@ -96,12 +96,12 @@ bool Bug624Layer2::init()
 
         label->setPosition(size.width/2, size.height/2);
         addChild(label);
-        
+
         Device::setAccelerometerEnabled(true);
         auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer2::onAcceleration, this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-        
-        
+
+
         schedule(CC_SCHEDULE_SELECTOR(Bug624Layer2::switchLayer), 5.0f);
 
         return true;
@@ -114,12 +114,13 @@ void Bug624Layer2::switchLayer(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer));
 
-    auto scene = Scene::create();    
+    auto scene = Scene::create();
     scene->addChild(Bug624Layer::create(), 0);
     Director::getInstance()->replaceScene(TransitionFade::create(2.0f, scene, Color3B::RED));
 }
 
 void Bug624Layer2::onAcceleration(Acceleration* acc, Event* event)
-{    
+{
     log("Layer2 accel");
 }
+

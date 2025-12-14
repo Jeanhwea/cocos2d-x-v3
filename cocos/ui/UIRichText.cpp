@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -64,7 +64,7 @@ public:
     , _handleOpenUrl(handleOpenUrl)
     {
         setName(ListenerComponent::COMPONENT_NAME);
-        
+
         _touchListener = cocos2d::EventListenerTouchAllAtOnce::create();
         _touchListener->onTouchesEnded = CC_CALLBACK_2(ListenerComponent::onTouchesEnded, this);
 
@@ -91,7 +91,7 @@ public:
             }
         }
     }
-    
+
     void setOpenUrlHandler(const RichText::OpenUrlHandler& handleOpenUrl)
     {
         _handleOpenUrl = handleOpenUrl;
@@ -140,7 +140,7 @@ RichElementText* RichElementText::create(int tag, const Color3B &color, GLubyte 
     CC_SAFE_DELETE(element);
     return nullptr;
 }
-    
+
 bool RichElementText::init(int tag, const Color3B &color, GLubyte opacity, const std::string& text,
                            const std::string& fontName, float fontSize, uint32_t flags, const std::string& url,
                            const Color3B& outlineColor, int outlineSize ,
@@ -176,7 +176,7 @@ RichElementImage* RichElementImage::create(int tag, const Color3B &color, GLubyt
     CC_SAFE_DELETE(element);
     return nullptr;
 }
-    
+
 bool RichElementImage::init(int tag, const Color3B &color, GLubyte opacity, const std::string& filePath, const std::string& url, Widget::TextureResType texType)
 {
     if (RichElement::init(tag, color, opacity))
@@ -217,7 +217,7 @@ RichElementCustomNode* RichElementCustomNode::create(int tag, const Color3B &col
     CC_SAFE_DELETE(element);
     return nullptr;
 }
-    
+
 bool RichElementCustomNode::init(int tag, const Color3B &color, GLubyte opacity, cocos2d::Node *customNode)
 {
     if (RichElement::init(tag, color, opacity))
@@ -228,7 +228,7 @@ bool RichElementCustomNode::init(int tag, const Color3B &color, GLubyte opacity,
     }
     return false;
 }
-    
+
 RichElementNewLine* RichElementNewLine::create(int tag, const Color3B& color, GLubyte opacity)
 {
     RichElementNewLine* element = new (std::nothrow) RichElementNewLine();
@@ -251,7 +251,7 @@ public:
         UNDERLINE,          /*!< underline */
         STRIKETHROUGH       /*!< a typographical presentation of words with a horizontal line through their center */
     };
-    
+
     /** @brief outline, shadow or glow */
     enum class StyleEffect {
         NONE,
@@ -259,7 +259,7 @@ public:
         SHADOW,             /*!< shadow effect enabled */
         GLOW                /*!< glow effect enabled @discussion Limiting use to only when the Label created with true type font. */
     };
-    
+
     /** @brief the attributes of text tag */
     struct Attributes
     {
@@ -278,7 +278,7 @@ public:
         cocos2d::Size shadowOffset;             /*!< shadow effect offset value */
         int shadowBlurRadius;                   /*!< the shadow effect blur radius */
         Color3B glowColor;                      /*!< the glow effect color value */
-        
+
         void setColor(const Color3B& acolor)
         {
             color = acolor;
@@ -294,63 +294,63 @@ public:
         {
         }
     };
-    
+
 private:
     std::vector<Attributes> _fontElements;
-    
+
     RichText* _richText;
-    
+
     struct TagBehavior {
         bool                isFontElement;
         RichText::VisitEnterHandler   handleVisitEnter;
     };
     typedef std::unordered_map<std::string, TagBehavior> TagTables;
-    
+
     static TagTables        _tagTables;
-    
+
 public:
     explicit MyXMLVisitor(RichText* richText);
     virtual ~MyXMLVisitor();
-    
+
     Color3B getColor() const;
-    
+
     float getFontSize() const;
-    
+
     std::string getFace() const;
-    
+
     std::string getURL() const;
-    
+
     bool getBold() const;
-    
+
     bool getItalics() const;
-    
+
     bool getUnderline() const;
-    
+
     bool getStrikethrough() const;
-    
+
     std::tuple<bool, Color3B, int> getOutline() const;
-    
+
     std::tuple<bool, Color3B, cocos2d::Size, int> getShadow() const;
-    
+
     std::tuple<bool, Color3B> getGlow() const;
-    
+
     void startElement(void *ctx, const char *name, const char **atts) override;
 
     void endElement(void *ctx, const char *name) override;
 
     void textHandler(void *ctx, const char *s, size_t len) override;
 
-    
+
     void pushBackFontElement(const Attributes& attribs);
-    
+
     void popBackFontElement();
-    
+
     void pushBackElement(RichElement* element);
-    
+
     static void setTagDescription(const std::string& tag, bool isFontElement, const RichText::VisitEnterHandler& handleVisitEnter);
-    
+
     static void removeTagDescription(const std::string& tag);
-    
+
 private:
     ValueMap tagAttrMapWithXMLElement(const char ** attrs);
 };
@@ -365,7 +365,7 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         // supported attributes:
         // size, color, align, face
         ValueMap attrValueMap;
-        
+
         if (tagAttrValueMap.find("size") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_FONT_SIZE] = tagAttrValueMap.at("size").asString();
         }
@@ -375,50 +375,50 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         if (tagAttrValueMap.find("face") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_FONT_FACE] = tagAttrValueMap.at("face").asString();
         }
-        
+
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("b", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_BOLD] = true;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("i", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_ITALIC] = true;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("del", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_LINE] = RichText::VALUE_TEXT_LINE_DEL;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("u", true, [](const ValueMap& /*tagAttrValueMap*/) {
         // no supported attributes
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_TEXT_LINE] = RichText::VALUE_TEXT_LINE_UNDER;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("small", true, [](const ValueMap& /*tagAttrValueMap*/) {
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_FONT_SMALL] = true;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("big", true, [](const ValueMap& /*tagAttrValueMap*/) {
         ValueMap attrValueMap;
         attrValueMap[RichText::KEY_FONT_BIG] = true;
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("img", false, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
         // src, height, width
@@ -426,7 +426,7 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         int height = -1;
         int width = -1;
         Widget::TextureResType resType = Widget::TextureResType::LOCAL;
-        
+
         if (tagAttrValueMap.find("src") != tagAttrValueMap.end()) {
             src = tagAttrValueMap.at("src").asString();
         }
@@ -443,7 +443,7 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
             int type = tagAttrValueMap.at("type").asInt();
             resType = type == 0 ? Widget::TextureResType::LOCAL : Widget::TextureResType::PLIST;
         }
-        
+
         RichElementImage* elementImg = nullptr;
         if (src.length()) {
             elementImg = RichElementImage::create(0, Color3B::WHITE, 255, src, "", resType);
@@ -452,27 +452,27 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         }
         return make_pair(ValueMap(), elementImg);
     });
-    
+
     MyXMLVisitor::setTagDescription("a", true, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
         ValueMap attrValueMap;
-        
+
         if (tagAttrValueMap.find("href") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_URL] = tagAttrValueMap.at("href").asString();
         }
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("br", false, [](const ValueMap& /*tagAttrValueMap*/)  {
         RichElementNewLine* richElement = RichElementNewLine::create(0, Color3B::WHITE, 255);
         return make_pair(ValueMap(), richElement);
     });
-    
+
     MyXMLVisitor::setTagDescription("outline", true, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
         // color, size
         ValueMap attrValueMap;
-        
+
         attrValueMap[RichText::KEY_TEXT_STYLE] = RichText::VALUE_TEXT_STYLE_OUTLINE;
         if (tagAttrValueMap.find("color") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_TEXT_OUTLINE_COLOR] = tagAttrValueMap.at("color").asString();
@@ -482,12 +482,12 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         }
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("shadow", true, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
         // color, offsetWidth, offsetHeight, blurRadius
         ValueMap attrValueMap;
-        
+
         attrValueMap[RichText::KEY_TEXT_STYLE] = RichText::VALUE_TEXT_STYLE_SHADOW;
         if (tagAttrValueMap.find("color") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_TEXT_SHADOW_COLOR] = tagAttrValueMap.at("color").asString();
@@ -503,12 +503,12 @@ MyXMLVisitor::MyXMLVisitor(RichText* richText)
         }
         return make_pair(attrValueMap, nullptr);
     });
-    
+
     MyXMLVisitor::setTagDescription("glow", true, [](const ValueMap& tagAttrValueMap) {
         // supported attributes:
         // color
         ValueMap attrValueMap;
-        
+
         attrValueMap[RichText::KEY_TEXT_STYLE] = RichText::VALUE_TEXT_STYLE_GLOW;
         if (tagAttrValueMap.find("color") != tagAttrValueMap.end()) {
             attrValueMap[RichText::KEY_TEXT_GLOW_COLOR] = tagAttrValueMap.at("color").asString();
@@ -643,7 +643,7 @@ void MyXMLVisitor::startElement(void* /*ctx*/, const char *elementName, const ch
             RichElement* richElement = result.second;
             if (!attrValueMap.empty()) {
                 Attributes attributes;
-                
+
                 if (attrValueMap.find(RichText::KEY_FONT_SIZE) != attrValueMap.end()) {
                     attributes.fontSize = attrValueMap.at(RichText::KEY_FONT_SIZE).asFloat();
                 }
@@ -737,7 +737,7 @@ void MyXMLVisitor::startElement(void* /*ctx*/, const char *elementName, const ch
                         }
                     }
                 }
-                
+
                 pushBackFontElement(attributes);
             }
             if (richElement) {
@@ -780,7 +780,7 @@ void MyXMLVisitor::textHandler(void* /*ctx*/, const char *str, size_t len)
     auto outline = getOutline();
     auto shadow = getShadow();
     auto glow = getGlow();
-    
+
     uint32_t flags = 0;
     if (italics)
         flags |= RichElementText::ITALICS_FLAG;
@@ -898,12 +898,12 @@ RichText::RichText()
     _defaults[KEY_ANCHOR_TEXT_LINE] = VALUE_TEXT_LINE_NONE;
     _defaults[KEY_ANCHOR_TEXT_STYLE] = VALUE_TEXT_STYLE_NONE;
 }
-    
+
 RichText::~RichText()
 {
     _richElements.clear();
 }
-    
+
 RichText* RichText::create()
 {
     RichText* widget = new (std::nothrow) RichText();
@@ -966,7 +966,7 @@ bool RichText::initWithXML(const std::string& origxml, const ValueMap& defaults,
     }
     return false;
 }
-    
+
 void RichText::initRenderer()
 {
 }
@@ -976,19 +976,19 @@ void RichText::insertElement(RichElement *element, int index)
     _richElements.insert(index, element);
     _formatTextDirty = true;
 }
-    
+
 void RichText::pushBackElement(RichElement *element)
 {
     _richElements.pushBack(element);
     _formatTextDirty = true;
 }
-    
+
 void RichText::removeElement(int index)
 {
     _richElements.erase(index);
     _formatTextDirty = true;
 }
-    
+
 void RichText::removeElement(RichElement *element)
 {
     _richElements.eraseObject(element);
@@ -1412,7 +1412,7 @@ void RichText::formatText()
                             elementRenderer = Sprite::create(elmtImage->_filePath);
                         else
                             elementRenderer = Sprite::createWithSpriteFrameName(elmtImage->_filePath);
-                        
+
                         if (elementRenderer && (elmtImage->_height != -1 || elmtImage->_width != -1))
                         {
                             auto currentSize = elementRenderer->getContentSize();
@@ -1781,14 +1781,14 @@ void RichText::handleCustomRenderer(cocos2d::Node *renderer)
         pushToContainer(renderer);
     }
 }
-    
+
 void RichText::addNewLine()
 {
     _leftSpaceWidth = _customSize.width;
     _elementRenders.emplace_back();
     _lineHeights.emplace_back();
 }
-    
+
 void RichText::formatRenderers()
 {
     float verticalSpace = _defaults[KEY_VERTICAL_SPACE].asFloat();
@@ -1826,7 +1826,7 @@ void RichText::formatRenderers()
         // calculate real height
         float newContentSizeHeight = 0.0f;
         std::vector<float> maxHeights(_elementRenders.size());
-        
+
         for (size_t i=0, size = _elementRenders.size(); i<size; i++)
         {
             Vector<Node*>& row = _elementRenders[i];
@@ -1862,14 +1862,14 @@ void RichText::formatRenderers()
                 this->addProtectedChild(iter, 1);
                 nextPosX += iter->getContentSize().width;
             }
-            
+
             doHorizontalAlignment(row, nextPosX);
         }
     }
-    
+
     _elementRenders.clear();
     _lineHeights.clear();
-    
+
     if (_ignoreSize)
     {
         Size s = getVirtualRendererSize();
@@ -1949,7 +1949,7 @@ void RichText::pushToContainer(cocos2d::Node *renderer)
     }
     _elementRenders[_elementRenders.size()-1].pushBack(renderer);
 }
-    
+
 void RichText::setVerticalSpace(float space)
 {
     _defaults[KEY_VERTICAL_SPACE] = space;
@@ -1968,3 +1968,4 @@ std::string RichText::getDescription() const
 {
     return "RichText";
 }
+

@@ -35,7 +35,7 @@ THE SOFTWARE.
 using namespace cocos2d;
 
 ConsoleCommand* ConsoleCommand::s_sharedConsoleCommand = nullptr;
-ConsoleCommand* ConsoleCommand::getShareInstance() 
+ConsoleCommand* ConsoleCommand::getShareInstance()
 {
 	if (s_sharedConsoleCommand == nullptr)
 	{
@@ -81,7 +81,7 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
         if (dArgParse.HasMember("cmd"))
         {
             string strcmd = dArgParse["cmd"].GetString();
-            
+
             rapidjson::Document dReplyParse;
             dReplyParse.SetObject();
             rapidjson::Document::AllocatorType& allocator = dReplyParse.GetAllocator();
@@ -91,7 +91,7 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
             {
                 dReplyParse.AddMember("seq",dArgParse["seq"],allocator);
             }
-            
+
             if(strcmp(strcmd.c_str(), "start-logic") == 0)
             {
                 auto runtime = RuntimeEngine::getInstance()->getRuntime();
@@ -145,10 +145,10 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
                 {
                     bodyvalue.AddMember(itr->name, itr->value, allocator);
                 }
-                
+
                 dReplyParse.AddMember("body", bodyvalue, allocator);
                 dReplyParse.AddMember("code", 0, allocator);
-               
+
             } else if (strcmp(strcmd.c_str(), "getEntryfile") == 0)
             {
                 rapidjson::Value bodyvalue(rapidjson::kObjectType);
@@ -176,16 +176,16 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
                     for (rapidjson::SizeType i = 0; i < objectfiles.Size(); i++)
                     {
                         filename = objectfiles[i].GetString();
-                        
+
                         // remove js compiled script
                         auto runtime = RuntimeEngine::getInstance()->getRuntime();
                         if (runtime) runtime->onRemove(filename);
-                        
+
                         // remove file from disk
                         string filepath(_fileserver->getWritePath() + "/" + filename);
-                        if (FileUtils::getInstance()->isFileExist(filepath)) 
+                        if (FileUtils::getInstance()->isFileExist(filepath))
                         {
-                            if(remove(filepath.c_str()) != 0) 
+                            if(remove(filepath.c_str()) != 0)
                             {
                                 // remove failed
                                 bodyvalue.AddMember(rapidjson::Value(filename, allocator)
@@ -242,12 +242,12 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
                 // only iOS and Android need to open using write path by Code IDE
                 FileServer::getShareInstance()->setIsUsingWritePath(true);
-                
+
                 std::vector<std::string> searchPathArray = FileUtils::getInstance()->getSearchPaths();
                 searchPathArray.insert(searchPathArray.begin(), FileServer::getShareInstance()->getWritePath());
                 FileUtils::getInstance()->setSearchPaths(searchPathArray);
 #endif
-                
+
                 dReplyParse.AddMember("code", 0, allocator);
             }
             else if (strcmp(strcmd.c_str(), "workdir") == 0)
@@ -256,7 +256,7 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
                 {
                     const rapidjson::Value& objectPath = dArgParse["path"];
                     FileUtils::getInstance()->setDefaultResourceRootPath(objectPath.GetString());
-                    
+
                     rapidjson::Value bodyvalue(rapidjson::kObjectType);
                     bodyvalue.AddMember("path", rapidjson::Value(objectPath.GetString(), allocator)
                                         , allocator);
@@ -270,7 +270,7 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
                 {
                     const rapidjson::Value& objectPath = dArgParse["path"];
                     FileUtils::getInstance()->setWritablePath(objectPath.GetString());
-                    
+
                     rapidjson::Value bodyvalue(rapidjson::kObjectType);
                     bodyvalue.AddMember("path", rapidjson::Value(objectPath.GetString(), allocator)
                                         , allocator);
@@ -278,16 +278,16 @@ void ConsoleCommand::onSendCommand(int fd, const std::string &args)
                 }
                 dReplyParse.AddMember("code", 0, allocator);
             }
-            
+
             rapidjson::StringBuffer buffer;
             rapidjson::Writer< rapidjson::StringBuffer > writer(buffer);
             dReplyParse.Accept(writer);
             string msgContent = buffer.GetString();
             char msgLength[64] = {0x1, 0};
             sprintf(msgLength + 1, "%ld:", msgContent.size());
-            
+
             string msg(msgLength + msgContent);
-            
+
             sendBuf(fd, msg.c_str(), msg.size());
         }
     });
@@ -297,3 +297,4 @@ ConsoleCommand::~ConsoleCommand()
 {
 	Director::getInstance()->getConsole()->stop();
 }
+

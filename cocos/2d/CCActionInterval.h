@@ -81,7 +81,7 @@ public:
      * @param amp   The amplitude rate.
      */
     void setAmplitudeRate(float amp);
-    
+
     /** Gets the amplitude rate, extension in GridAction
      *
      * @return  The amplitude rate.
@@ -117,7 +117,7 @@ protected:
     float _elapsed;
     bool _firstTick;
     bool _done;
-    
+
 protected:
     bool sendUpdateEventToScript(float dt, Action *actionObject);
 };
@@ -191,7 +191,7 @@ public:
      * @param t In seconds.
      */
     virtual void update(float t) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Sequence();
     virtual ~Sequence();
@@ -259,7 +259,7 @@ public:
      */
     virtual void update(float dt) override;
     virtual bool isDone() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Repeat() {}
     virtual ~Repeat();
@@ -328,7 +328,7 @@ public:
      */
     virtual void step(float dt) override;
     virtual bool isDone() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     RepeatForever()
     : _innerAction(nullptr)
@@ -381,7 +381,7 @@ public:
     static Spawn* create(FiniteTimeAction *action1, ...) CC_REQUIRES_NULL_TERMINATION;
 #endif
 
-    /** Helper constructor to create an array of spawned actions. 
+    /** Helper constructor to create an array of spawned actions.
      *
      * @param action1   The first sequenceable action.
      * @param args  The va_list variable.
@@ -417,7 +417,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Spawn();
     virtual ~Spawn();
@@ -437,11 +437,11 @@ private:
 /** @class RotateTo
  * @brief Rotates a Node object to a certain angle by modifying it's rotation attribute.
  The direction will be decided by the shortest angle.
-*/ 
+*/
 class CC_DLL RotateTo : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action with separate rotation angles.
      *
      * @param duration Duration time, in seconds.
@@ -451,7 +451,7 @@ public:
      */
     static RotateTo* create(float duration, float dstAngleX, float dstAngleY);
 
-    /** 
+    /**
      * Creates the action.
      *
      * @param duration Duration time, in seconds.
@@ -460,7 +460,7 @@ public:
      */
     static RotateTo* create(float duration, float dstAngle);
 
-    /** 
+    /**
      * Creates the action with 3D rotation angles.
      * @param duration Duration time, in seconds.
      * @param dstAngle3D A Vec3 angle.
@@ -478,12 +478,12 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     RotateTo();
     virtual ~RotateTo() {}
 
-    /** 
+    /**
      * initializes the action
      * @param duration in seconds
      * @param dstAngleX in degreesCW
@@ -496,12 +496,12 @@ CC_CONSTRUCTOR_ACCESS:
      */
     bool initWithDuration(float duration, const Vec3& dstAngle3D);
 
-    /** 
+    /**
      * calculates the start and diff angles
      * @param dstAngle in degreesCW
      */
     void calculateAngles(float &startAngle, float &diffAngle, float dstAngle);
-    
+
 protected:
     bool _is3D;
     Vec3 _dstAngle;
@@ -518,7 +518,7 @@ private:
 class CC_DLL RotateBy : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      *
      * @param duration Duration time, in seconds.
@@ -554,21 +554,21 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     RotateBy();
     virtual ~RotateBy() {}
 
     /** initializes the action */
     bool initWithDuration(float duration, float deltaAngle);
-    /** 
+    /**
      * @warning The physics body contained in Node doesn't support rotate with different x and y angle.
      * @param deltaAngleZ_X in degreesCW
      * @param deltaAngleZ_Y in degreesCW
      */
     bool initWithDuration(float duration, float deltaAngleZ_X, float deltaAngleZ_Y);
     bool initWithDuration(float duration, const Vec3& deltaAngle3D);
-    
+
 protected:
     bool _is3D;
     Vec3 _deltaAngle;
@@ -588,7 +588,7 @@ private:
 class CC_DLL MoveBy : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      *
      * @param duration Duration time, in seconds.
@@ -615,7 +615,7 @@ public:
      * @param time in seconds
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     MoveBy():_is3D(false) {}
     virtual ~MoveBy() {}
@@ -643,7 +643,7 @@ private:
 class CC_DLL MoveTo : public MoveBy
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param duration Duration time, in seconds.
      * @param position The destination position in 2d.
@@ -664,12 +664,12 @@ public:
     virtual MoveTo* clone() const override;
     virtual MoveTo* reverse() const  override;
     virtual void startWithTarget(Node *target) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     MoveTo() {}
     virtual ~MoveTo() {}
 
-    /** 
+    /**
      * initializes the action
      * @param duration in seconds
      */
@@ -694,7 +694,7 @@ private:
 class CC_DLL SkewTo : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param t Duration time, in seconds.
      * @param sx Skew x angle.
@@ -713,7 +713,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     SkewTo();
     virtual ~SkewTo() {}
@@ -743,7 +743,7 @@ private:
 class CC_DLL SkewBy : public SkewTo
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param t Duration time, in seconds.
      * @param deltaSkewX Skew x delta angle.
@@ -758,7 +758,7 @@ public:
     virtual void startWithTarget(Node *target) override;
     virtual SkewBy* clone() const  override;
     virtual SkewBy* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     SkewBy() {}
     virtual ~SkewBy() {}
@@ -774,7 +774,7 @@ private:
 /** @class ResizeTo
 * @brief Resize a Node object to the final size by modifying it's Size attribute.
 */
-class  CC_DLL ResizeTo : public ActionInterval 
+class  CC_DLL ResizeTo : public ActionInterval
 {
 public:
     /**
@@ -796,7 +796,7 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     ResizeTo() {}
     virtual ~ResizeTo() {}
-    
+
     /**
     * initializes the action
     * @param duration in seconds
@@ -817,7 +817,7 @@ private:
 /** @class ResizeBy
 * @brief Resize a Node object by a Size. Works on all nodes where setContentSize is effective. But it's mostly useful for nodes where 9-slice is enabled
 */
-class CC_DLL ResizeBy : public ActionInterval 
+class CC_DLL ResizeBy : public ActionInterval
 {
 public:
     /**
@@ -828,7 +828,7 @@ public:
     * @return An autoreleased ResizeBy object.
     */
     static ResizeBy* create(float duration, const cocos2d::Size& deltaSize);
-    
+
     //
     // Overrides
     //
@@ -843,7 +843,7 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     ResizeBy() {}
     virtual ~ResizeBy() {}
-    
+
     /** initializes the action */
     bool initWithDuration(float duration, const cocos2d::Size& deltaSize);
 
@@ -863,7 +863,7 @@ private:
 class CC_DLL JumpBy : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param duration Duration time, in seconds.
      * @param position The jumping distance.
@@ -883,12 +883,12 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     JumpBy() {}
     virtual ~JumpBy() {}
 
-    /** 
+    /**
      * initializes the action
      * @param duration in seconds
      */
@@ -907,11 +907,11 @@ private:
 
 /** @class JumpTo
  * @brief Moves a Node object to a parabolic position simulating a jump movement by modifying it's position attribute.
-*/ 
+*/
 class CC_DLL JumpTo : public JumpBy
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param duration Duration time, in seconds.
      * @param position The jumping destination position.
@@ -932,7 +932,7 @@ CC_CONSTRUCTOR_ACCESS:
     JumpTo() {}
     virtual ~JumpTo() {}
 
-    /** 
+    /**
      * initializes the action
      * @param duration In seconds.
      */
@@ -984,12 +984,12 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     BezierBy() {}
     virtual ~BezierBy() {}
 
-    /** 
+    /**
      * initializes the action with a duration and a bezier configuration
      * @param t in seconds
      */
@@ -1029,7 +1029,7 @@ public:
     virtual void startWithTarget(Node *target) override;
     virtual BezierTo* clone() const override;
     virtual BezierTo* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     BezierTo() {}
     virtual ~BezierTo() {}
@@ -1053,7 +1053,7 @@ private:
 class CC_DLL ScaleTo : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action with the same scale factor for X and Y.
      * @param duration Duration time, in seconds.
      * @param s Scale factor of x and y.
@@ -1061,7 +1061,7 @@ public:
      */
     static ScaleTo* create(float duration, float s);
 
-    /** 
+    /**
      * Creates the action with and X factor and a Y factor.
      * @param duration Duration time, in seconds.
      * @param sx Scale factor of x.
@@ -1070,7 +1070,7 @@ public:
      */
     static ScaleTo* create(float duration, float sx, float sy);
 
-    /** 
+    /**
      * Creates the action with X Y Z factor.
      * @param duration Duration time, in seconds.
      * @param sx Scale factor of x.
@@ -1090,23 +1090,23 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ScaleTo() {}
     virtual ~ScaleTo() {}
 
-    /** 
+    /**
      * initializes the action with the same scale factor for X and Y
      * @param duration in seconds
      */
     bool initWithDuration(float duration, float s);
-    /** 
-     * initializes the action with and X factor and a Y factor 
+    /**
+     * initializes the action with and X factor and a Y factor
      * @param duration in seconds
      */
     bool initWithDuration(float duration, float sx, float sy);
-    /** 
-     * initializes the action with X Y Z factor 
+    /**
+     * initializes the action with X Y Z factor
      * @param duration in seconds
      */
     bool initWithDuration(float duration, float sx, float sy, float sz);
@@ -1136,7 +1136,7 @@ private:
 class CC_DLL ScaleBy : public ScaleTo
 {
 public:
-    /** 
+    /**
      * Creates the action with the same scale factor for X and Y.
      * @param duration Duration time, in seconds.
      * @param s Scale factor of x and y.
@@ -1144,7 +1144,7 @@ public:
      */
     static ScaleBy* create(float duration, float s);
 
-    /** 
+    /**
      * Creates the action with and X factor and a Y factor.
      * @param duration Duration time, in seconds.
      * @param sx Scale factor of x.
@@ -1153,7 +1153,7 @@ public:
      */
     static ScaleBy* create(float duration, float sx, float sy);
 
-    /** 
+    /**
      * Creates the action with X Y Z factor.
      * @param duration Duration time, in seconds.
      * @param sx Scale factor of x.
@@ -1184,7 +1184,7 @@ private:
 class CC_DLL Blink : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param duration Duration time, in seconds.
      * @param blinks Blink times.
@@ -1203,17 +1203,17 @@ public:
     virtual void update(float time) override;
     virtual void startWithTarget(Node *target) override;
     virtual void stop() override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Blink() {}
     virtual ~Blink() {}
 
-    /** 
-     * initializes the action 
+    /**
+     * initializes the action
      * @param duration in seconds
      */
     bool initWithDuration(float duration, int blinks);
-    
+
 protected:
     int _times;
     bool _originalState;
@@ -1230,7 +1230,7 @@ private:
 class CC_DLL FadeTo : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates an action with duration and opacity.
      * @param duration Duration time, in seconds.
      * @param opacity A certain opacity, the range is from 0 to 255.
@@ -1248,13 +1248,13 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     FadeTo() {}
     virtual ~FadeTo() {}
 
-    /** 
-     * initializes the action with duration and opacity 
+    /**
+     * initializes the action with duration and opacity
      * @param duration in seconds
      */
     bool initWithDuration(float duration, GLubyte opacity);
@@ -1275,7 +1275,7 @@ private:
 class CC_DLL FadeIn : public FadeTo
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param d Duration time, in seconds.
      * @return An autoreleased FadeIn object.
@@ -1310,7 +1310,7 @@ private:
 class CC_DLL FadeOut : public FadeTo
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param d Duration time, in seconds.
      */
@@ -1344,7 +1344,7 @@ private:
 class CC_DLL TintTo : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates an action with duration and color.
      * @param duration Duration time, in seconds.
      * @param red Red Color, from 0 to 255.
@@ -1371,7 +1371,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     TintTo() {}
     virtual ~TintTo() {}
@@ -1394,7 +1394,7 @@ private:
 class CC_DLL TintBy : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates an action with duration and color.
      * @param duration Duration time, in seconds.
      * @param deltaRed Delta red color.
@@ -1414,7 +1414,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     TintBy() {}
     virtual ~TintBy() {}
@@ -1441,7 +1441,7 @@ private:
 class CC_DLL DelayTime : public ActionInterval
 {
 public:
-    /** 
+    /**
      * Creates the action.
      * @param d Duration time, in seconds.
      * @return An autoreleased DelayTime object.
@@ -1468,7 +1468,7 @@ private:
 
 /** @class ReverseTime
  * @brief Executes an action in reverse order, from time=duration to time=0
- 
+
  @warning Use this action carefully. This action is not
  sequenceable. Use it as the default "reversed" method
  of your own actions, but using it outside the "reversed"
@@ -1495,7 +1495,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ReverseTime();
     virtual ~ReverseTime();
@@ -1524,12 +1524,12 @@ public:
      */
     static Animate* create(Animation *animation);
 
-    /** Sets the Animation object to be animated 
-     * 
+    /** Sets the Animation object to be animated
+     *
      * @param animation certain animation.
      */
     void setAnimation( Animation* animation );
-    /** returns the Animation object that is being animated 
+    /** returns the Animation object that is being animated
      *
      * @return Gets the animation object that is being animated.
      */
@@ -1552,7 +1552,7 @@ public:
      * @param t In seconds.
      */
     virtual void update(float t) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Animate();
     virtual ~Animate();
@@ -1582,7 +1582,7 @@ class CC_DLL TargetedAction : public ActionInterval
 {
 public:
     /** Create an action with the specified action and forced target.
-     * 
+     *
      * @param target The target needs to override.
      * @param action The action needs to override.
      * @return An autoreleased TargetedAction object.
@@ -1594,7 +1594,7 @@ public:
      * @param forcedTarget The target that the action will be forced to run with.
      */
     void setForcedTarget(Node* forcedTarget);
-    /** returns the target that the action is forced to run with. 
+    /** returns the target that the action is forced to run with.
      *
      * @return The target that the action is forced to run with.
      */
@@ -1612,7 +1612,7 @@ public:
      * @param time In seconds.
      */
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     TargetedAction();
     virtual ~TargetedAction();
@@ -1686,3 +1686,4 @@ private:
 NS_CC_END
 
 #endif //__ACTION_CCINTERVAL_ACTION_H__
+

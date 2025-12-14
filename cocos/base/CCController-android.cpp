@@ -107,7 +107,7 @@ public:
             onConnected(deviceName, deviceId);
             iter = findController(deviceName, deviceId);
         }
-        
+
         (*iter)->onAxisEvent(axisCode, value, isAnalog);
     }
 
@@ -190,3 +190,4 @@ extern "C" {
 
 
 #endif // #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
+

@@ -3,7 +3,7 @@ Copyright (c) 2008-2010 Ricardo Quesada
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -58,7 +58,7 @@ class Label;
  *
  * Custom ttf file can be put in assets/ or external storage that the Application can access.
  * @code
- * LabelTTF *label1 = LabelTTF::create("alignment left", "A Damn Mess", fontSize, blockSize, 
+ * LabelTTF *label1 = LabelTTF::create("alignment left", "A Damn Mess", fontSize, blockSize,
  *                                          TextHAlignment::LEFT, TextVAlignment::CENTER);
  * LabelTTF *label2 = LabelTTF::create("alignment right", "/mnt/sdcard/Scissor Cuts.ttf", fontSize, blockSize,
  *                                          TextHAlignment::LEFT, TextVAlignment::CENTER);
@@ -84,39 +84,39 @@ public:
     static LabelTTF * create(const std::string& string, const std::string& fontName, float fontSize,
                              const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::CENTER,
                              TextVAlignment vAlignment = TextVAlignment::TOP);
-    
-    
+
+
     /** Create a label with string and a font definition*/
     static LabelTTF * createWithFontDefinition(const std::string& string, FontDefinition &textDefinition);
-    
+
     /** initializes the LabelTTF with a font name, alignment, dimension and font size */
     bool initWithString(const std::string& string, const std::string& fontName, float fontSize,
-                        const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::LEFT, 
+                        const Size& dimensions = Size::ZERO, TextHAlignment hAlignment = TextHAlignment::LEFT,
                         TextVAlignment vAlignment = TextVAlignment::TOP);
-    
+
     /** initializes the LabelTTF with a font name, alignment, dimension and font size */
     bool initWithStringAndTextDefinition(const std::string& string, FontDefinition &textDefinition);
-    
+
     /** set the text definition used by this label */
     void setTextDefinition(const FontDefinition& theDefinition);
-    
+
     /** get the text definition used by this label */
     const FontDefinition& getTextDefinition();
-    
-    
-    
+
+
+
     /** enable or disable shadow for the label */
     void enableShadow(const Size &shadowOffset, float shadowOpacity, float shadowBlur, bool mustUpdateTexture = true);
-    
+
     /** disable shadow rendering */
     void disableShadow(bool mustUpdateTexture = true);
-    
+
     /** enable or disable stroke */
     void enableStroke(const Color3B &strokeColor, float strokeSize, bool mustUpdateTexture = true);
-    
+
     /** disable stroke */
     void disableStroke(bool mustUpdateTexture = true);
-    
+
     /** set text tinting */
     void setFontFillColor(const Color3B &tintColor, bool mustUpdateTexture = true);
 
@@ -129,19 +129,19 @@ public:
     */
     virtual void setString(const std::string &label) override;
     virtual const std::string& getString() const override ;
-    
+
     TextHAlignment getHorizontalAlignment() const;
     void setHorizontalAlignment(TextHAlignment alignment);
-    
+
     TextVAlignment getVerticalAlignment() const;
     void setVerticalAlignment(TextVAlignment verticalAlignment);
-    
+
     const Size& getDimensions() const;
     void setDimensions(const Size &dim);
-    
+
     float getFontSize() const;
     void setFontSize(float fontSize);
-    
+
     const std::string& getFontName() const;
     void setFontName(const std::string& fontName);
 

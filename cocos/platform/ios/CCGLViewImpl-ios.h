@@ -53,7 +53,7 @@ public:
 
     /** creates a GLViewImpl with a name in fullscreen mode */
     static GLViewImpl* createWithFullScreen(const std::string& viewName);
-    
+
     static void convertAttrs();
     static void* _pixelFormat;
     static int _depthFormat;
@@ -96,3 +96,4 @@ NS_CC_END
 #endif // CC_PLATFORM_IOS
 
 #endif    // end of __CC_EGLViewImpl_IPHONE_H__
+

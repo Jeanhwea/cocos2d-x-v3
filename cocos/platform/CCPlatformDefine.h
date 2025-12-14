@@ -44,3 +44,4 @@ THE SOFTWARE.
 
 /// @endcond
 #endif /* __PLATFORM_CCPLATFORMDEFINE_H__*/
+

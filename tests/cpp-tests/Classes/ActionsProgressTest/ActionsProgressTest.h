@@ -105,3 +105,4 @@ public:
 };
 
 #endif // _ACTIONS__PROGRESS_TEST_H_
+

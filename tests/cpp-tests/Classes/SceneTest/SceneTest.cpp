@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -52,12 +52,12 @@ SceneTestLayer1::SceneTestLayer1()
     auto item1 = MenuItemFont::create( "Test pushScene", CC_CALLBACK_1(SceneTestLayer1::onPushScene, this));
     auto item2 = MenuItemFont::create( "Test pushScene w/transition", CC_CALLBACK_1(SceneTestLayer1::onPushSceneTran, this));
     auto item3 = MenuItemFont::create( "Quit", CC_CALLBACK_1(SceneTestLayer1::onQuit, this));
-    
+
     auto menu = Menu::create( item1, item2, item3, nullptr );
     menu->alignItemsVertically();
-    
+
     addChild( menu );
-    
+
     auto s = Director::getInstance()->getWinSize();
     auto sprite = Sprite::create(s_pathGrossini);
     addChild(sprite);
@@ -128,10 +128,10 @@ SceneTestLayer2::SceneTestLayer2()
     auto item1 = MenuItemFont::create( "replaceScene", CC_CALLBACK_1(SceneTestLayer2::onReplaceScene, this));
     auto item2 = MenuItemFont::create( "replaceScene w/transition", CC_CALLBACK_1(SceneTestLayer2::onReplaceSceneTran, this));
     auto item3 = MenuItemFont::create( "Go Back", CC_CALLBACK_1(SceneTestLayer2::onGoBack, this));
-    
+
     auto menu = Menu::create( item1, item2, item3, nullptr );
     menu->alignItemsVertically();
-    
+
     addChild( menu );
 
     auto s = Director::getInstance()->getWinSize();
@@ -265,3 +265,4 @@ SceneTestScene* SceneTestScene::create(int testIndex /* = 1 */)
 
     return scene;
 }
+

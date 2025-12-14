@@ -3,7 +3,7 @@ Copyright (c) 2009      Sindesso Pty Ltd http://www.sindesso.com/
 Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -57,7 +57,7 @@ GridBase* PageTurn3D::getGrid()
     {
         result->setNeedDepthTestForBlit(true);
     }
-    
+
     return result;
 }
 
@@ -70,29 +70,29 @@ void PageTurn3D::update(float time)
     float tt = MAX(0, time - 0.25f);
     float deltaAy = (tt * tt * 500);
     float ay = -100 - deltaAy;
-    
+
     float deltaTheta = sqrtf(time);
     float theta = deltaTheta > 0.5f ? (float)M_PI_2*deltaTheta : (float)M_PI_2*(1-deltaTheta);
-    
+
     float rotateByYAxis = (2-time)* M_PI;
-    
+
     float sinTheta = sinf(theta);
     float cosTheta = cosf(theta);
-    
+
     for (int i = 0; i <= _gridSize.width; ++i)
     {
         for (int j = 0; j <= _gridSize.height; ++j)
         {
             // Get original vertex
             Vec3 p = getOriginalVertex(Vec2(i ,j));
-            
+
             p.x -= getGridRect().origin.x;
             float R = sqrtf((p.x * p.x) + ((p.y - ay) * (p.y - ay)));
             float r = R * sinTheta;
             float alpha = asinf( p.x / R );
             float beta = alpha / sinTheta;
             float cosBeta = cosf( beta );
-            
+
             // If beta > PI then we've wrapped around the cone
             // Reduce the radius to stop these points interfering with others
             if (beta <= M_PI)
@@ -121,13 +121,14 @@ void PageTurn3D::update(float time)
             {
                 p.z = 0.5f;
             }
-            
+
             // Set new coords
             p.x += getGridRect().origin.x;
             setVertex(Vec2(i, j), p);
-            
+
         }
     }
 }
 
 NS_CC_END
+

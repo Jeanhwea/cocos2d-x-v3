@@ -36,3 +36,4 @@ void register_all_cocos2dx_navmesh_manual(JSContext *cx, JS::HandleObject global
 
 #endif // __jsb_cocos2dx_navmesh_manual__
 #endif //#if CC_USE_NAVMESH
+

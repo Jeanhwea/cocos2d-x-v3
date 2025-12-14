@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -95,7 +95,7 @@ cocos2d::ActionInterval* FlipY3DDemo::createEffect(float t)
     auto flipy  = FlipY3D::create(t);
     auto flipy_back = flipy->reverse();
     auto delay = DelayTime::create(2);
-    
+
     return Sequence::create(flipy, delay, flipy_back, nullptr);
 }
 
@@ -190,7 +190,7 @@ cocos2d::ActionInterval* ShuffleTilesDemo::createEffect(float t)
     auto shuffle = ShuffleTiles::create(t, Size(16,12), 25);
     auto shuffle_back = shuffle->reverse();
     auto delay = DelayTime::create(2);
-    
+
     return Sequence::create(shuffle, delay, shuffle_back, nullptr);
 }
 
@@ -205,7 +205,7 @@ cocos2d::ActionInterval* FadeOutTRTilesDemo::createEffect(float t)
     auto fadeout = FadeOutTRTiles::create(t, Size(16,12));
     auto back = fadeout->reverse();
     auto delay = DelayTime::create(0.5f);
-    
+
     return Sequence::create(fadeout, delay, back, nullptr);
 }
 
@@ -220,7 +220,7 @@ cocos2d::ActionInterval* FadeOutBLTilesDemo::createEffect(float t)
     auto fadeout = FadeOutBLTiles::create(t, Size(16,12));
     auto back = fadeout->reverse();
     auto delay = DelayTime::create(0.5f);
-    
+
     return Sequence::create(fadeout, delay, back, nullptr);
 }
 
@@ -235,7 +235,7 @@ cocos2d::ActionInterval* FadeOutUpTilesDemo::createEffect(float t)
     auto fadeout = FadeOutUpTiles::create(t, Size(16,12));
     auto back = fadeout->reverse();
     auto delay = DelayTime::create(0.5f);
-    
+
     return Sequence::create(fadeout, delay, back, nullptr);
 }
 
@@ -250,7 +250,7 @@ cocos2d::ActionInterval* FadeOutDownTilesDemo::createEffect(float t)
     auto fadeout = FadeOutDownTiles::create(t, Size(16,12));
     auto back = fadeout->reverse();
     auto delay = DelayTime::create(0.5f);
-    
+
     return Sequence::create(fadeout, delay, back, nullptr);
 }
 
@@ -265,7 +265,7 @@ cocos2d::ActionInterval* TurnOffTilesDemo::createEffect(float t)
     auto fadeout = TurnOffTiles::create(t, Size(48,32), 25);
     auto back = fadeout->reverse();
     auto delay = DelayTime::create(0.5f);
-    
+
     return Sequence::create(fadeout, delay, back, nullptr);
 }
 
@@ -346,7 +346,7 @@ PageTurn3DRectDemo::PageTurn3DRectDemo()
 EffectBaseTest::EffectBaseTest()
 : _gridNodeTarget(nullptr)
 {
-    
+
 }
 
 bool EffectBaseTest::init()
@@ -370,27 +370,27 @@ bool EffectBaseTest::init()
         }
         addChild(_gridNodeTarget, 0);
         _gridNodeTarget->runAction(createEffect(3));
-        
+
         auto bg = Sprite::create(s_back3);
         _gridNodeTarget->addChild(bg, 0);
         bg->setPosition(VisibleRect::center());
-        
+
         auto grossini = Sprite::create(s_pathSister2);
         _gridNodeTarget->addChild(grossini, 1);
         grossini->setPosition(VisibleRect::left().x+VisibleRect::getVisibleRect().size.width/3,VisibleRect::center().y);
         auto sc = ScaleBy::create(2, 5);
         auto sc_back = sc->reverse();
         grossini->runAction( RepeatForever::create(Sequence::create(sc, sc_back, nullptr) ) );
-        
+
         auto tamara = Sprite::create(s_pathSister1);
         _gridNodeTarget->addChild(tamara, 1);
         tamara->setPosition(VisibleRect::left().x+2*VisibleRect::getVisibleRect().size.width/3,VisibleRect::center().y);
         auto sc2 = ScaleBy::create(2, 5);
         auto sc2_back = sc2->reverse();
         tamara->runAction( RepeatForever::create(Sequence::create(sc2, sc2_back, nullptr)) );
-        
+
         schedule( CC_SCHEDULE_SELECTOR(EffectBaseTest::checkAnim) );
-        
+
         return true;
     }
     return false;
@@ -405,3 +405,4 @@ void EffectBaseTest::checkAnim(float dt)
 EffectBaseTest::~EffectBaseTest()
 {
 }
+

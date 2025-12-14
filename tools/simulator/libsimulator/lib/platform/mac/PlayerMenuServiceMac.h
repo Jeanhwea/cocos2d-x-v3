@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -63,7 +63,7 @@ class PlayerMenuItemMac : public PlayerMenuItem
 public:
     static PlayerMenuItemMac *create(const std::string &menuId, const std::string &title);
     virtual ~PlayerMenuItemMac();
-    
+
     virtual void setTitle(const std::string &title);
     virtual void setEnabled(bool enabled);
     virtual void setChecked(bool checked);
@@ -71,7 +71,7 @@ public:
 
 protected:
     PlayerMenuItemMac();
-    
+
     PlayerMenuItemMac *_parent;
     NNMenuItem *_menuItem;
     NSMenu     *_menu;
@@ -91,11 +91,11 @@ public:
     virtual PlayerMenuItem *getItem(const std::string &menuId);
     virtual bool removeItem(const std::string &menuId);
     virtual void setMenuBarEnabled(bool enabled);
-    
+
 private:
     bool removeItemInternal(const std::string &menuId, bool isUpdateChildrenOrder);
     void updateChildrenOrder(PlayerMenuItemMac *parent);
-    
+
 private:
     PlayerMenuItemMac _root;
     std::unordered_map<std::string, PlayerMenuItemMac*> _items;
@@ -104,3 +104,4 @@ private:
 PLAYER_NS_END
 
 #endif // __PLAYER_MENU_SERVICE_MAC_H_
+

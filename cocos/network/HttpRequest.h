@@ -236,7 +236,7 @@ public:
     {
         return _pUserData;
     }
-    
+
     /**
      * Set the target and related callback selector.
      * When response come back, it would call (pTarget->*pSelector) to process something.
@@ -248,7 +248,7 @@ public:
     {
         doSetResponseCallback(pTarget, (SEL_HttpResponse)pSelector);
     }
-    
+
     /**
      * Set the target and related callback selector of HttpRequest object.
      * When response come back, we would call (pTarget->*pSelector) to process response data.
@@ -270,8 +270,8 @@ public:
     {
         _pCallback = callback;
     }
-    
-    /** 
+
+    /**
      * Get the target of callback selector function, mainly used by HttpClient.
      *
      * @return Ref* the target of callback selector function
@@ -346,7 +346,7 @@ private:
         {
             _pTarget->release();
         }
-        
+
         _pTarget = pTarget;
         _pSelector = pSelector;
         if (_pTarget)

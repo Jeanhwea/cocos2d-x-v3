@@ -87,7 +87,7 @@ void SpriteFrameCache::initializePolygonInfo(const Size &textureSize,
 {
     size_t vertexCount = vertices.size();
     size_t indexCount = triangleIndices.size();
-    
+
     float scaleFactor = CC_CONTENT_SCALE_FACTOR();
 
     V3F_C4B_T2F *vertexData = new (std::nothrow) V3F_C4B_T2F[vertexCount];
@@ -163,8 +163,8 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
         {
             continue;
         }
-        
-        if(format == 0) 
+
+        if(format == 0)
         {
             float x = frameDict["x"].asFloat();
             float y = frameDict["y"].asFloat();
@@ -189,8 +189,8 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
                                                          Vec2(ox, oy),
                                                          Size((float)ow, (float)oh)
                                                          );
-        } 
-        else if(format == 1 || format == 2) 
+        }
+        else if(format == 1 || format == 2)
         {
             Rect frame = RectFromString(frameDict["frame"].asString());
             bool rotated = false;
@@ -211,7 +211,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dictionary, Textu
                                                          offset,
                                                          sourceSize
                                                          );
-        } 
+        }
         else if (format == 3)
         {
             // get values
@@ -286,7 +286,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dict, const std::
             pixelFormatName = metadataDict.at("pixelFormat").asString();
         }
     }
-    
+
     Texture2D *texture = nullptr;
     static std::unordered_map<std::string, Texture2D::PixelFormat> pixelFormats = {
         {"RGBA8888", Texture2D::PixelFormat::RGBA8888},
@@ -316,7 +316,7 @@ void SpriteFrameCache::addSpriteFramesWithDictionary(ValueMap& dict, const std::
     {
         texture = Director::getInstance()->getTextureCache()->addImage(texturePath);
     }
-    
+
     if (texture)
     {
         addSpriteFramesWithDictionary(dict, texture, plist);
@@ -352,8 +352,8 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist, const s
 void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
 {
     CCASSERT(!plist.empty(), "plist filename should not be nullptr");
-    
-    if (_spriteFramesCache.isPlistFull(plist)) 
+
+    if (_spriteFramesCache.isPlistFull(plist))
     {
         return;
     }
@@ -388,7 +388,7 @@ void SpriteFrameCache::addSpriteFramesWithFile(const std::string& plist)
         texturePath = plist;
 
         // remove .xxx
-        size_t startPos = texturePath.find_last_of('.'); 
+        size_t startPos = texturePath.find_last_of('.');
         if(startPos != string::npos)
         {
             texturePath = texturePath.erase(startPos);
@@ -423,7 +423,7 @@ void SpriteFrameCache::removeUnusedSpriteFrames()
 {
     bool removed = false;
     std::vector<std::string> toRemoveFrames;
-    
+
     for (auto& iter : _spriteFramesCache.getSpriteFrames())
     {
         SpriteFrame* spriteFrame = iter.second;
@@ -436,7 +436,7 @@ void SpriteFrameCache::removeUnusedSpriteFrames()
         }
     }
 
- 
+
     if( removed )
     {
         _spriteFramesCache.eraseFrames(toRemoveFrames);
@@ -698,7 +698,7 @@ bool SpriteFrameCache::reloadTexture(const std::string& plist)
         {
             texturePath = texturePath.erase(startPos);
         }
-        
+
         // append .png
         texturePath = texturePath.append(".png");
     }
@@ -791,7 +791,7 @@ bool SpriteFrameCache::PlistFramesCache::isPlistUsed(const std::string &plist) c
 {
     auto frames = _indexPlist2Frames.find(plist);
     return frames != _indexPlist2Frames.end() && !frames->second.empty();
-} 
+}
 
 SpriteFrame * SpriteFrameCache::PlistFramesCache::at(const std::string &frame)
 {
@@ -803,3 +803,4 @@ Map<std::string, SpriteFrame*>&  SpriteFrameCache::PlistFramesCache::getSpriteFr
 }
 
 NS_CC_END
+

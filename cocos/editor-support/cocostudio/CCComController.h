@@ -41,7 +41,7 @@ public:
      *  @js ctor
      */
     ComController();
-    
+
 public:
     const static std::string COMPONENT_NAME;
 
@@ -84,3 +84,4 @@ public:
 }
 
 #endif  // __CC_EXTENTIONS_CCCOMCONTROLLER_H__
+

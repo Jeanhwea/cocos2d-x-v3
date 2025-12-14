@@ -52,13 +52,13 @@ NS_CC_BEGIN
 MeshIndexData* MeshIndexData::create(const std::string& id, MeshVertexData* vertexData, IndexBuffer* indexbuffer, const AABB& aabb)
 {
     auto meshindex = new (std::nothrow) MeshIndexData();
-    
+
     meshindex->_id = id;
     meshindex->_indexBuffer = indexbuffer;
     meshindex->_vertexData = vertexData;
     indexbuffer->retain();
     meshindex->_aabb = aabb;
-    
+
     meshindex->autorelease();
     return meshindex;
 }
@@ -73,7 +73,7 @@ MeshIndexData::MeshIndexData()
 , _vertexData(nullptr)
 , _primitiveType(GL_TRIANGLES)
 {
-    
+
 }
 MeshIndexData::~MeshIndexData()
 {
@@ -88,20 +88,20 @@ MeshVertexData* MeshVertexData::create(const MeshData& meshdata)
     vertexdata->_vertexData = VertexData::create();
     CC_SAFE_RETAIN(vertexdata->_vertexData);
     CC_SAFE_RETAIN(vertexdata->_vertexBuffer);
-    
+
     int offset = 0;
     for (const auto& it : meshdata.attribs) {
         vertexdata->_vertexData->setStream(vertexdata->_vertexBuffer, VertexStreamAttribute(offset, it.vertexAttrib, it.type, it.size));
         offset += it.attribSizeBytes;
     }
-    
+
     vertexdata->_attribs = meshdata.attribs;
-    
+
     if(vertexdata->_vertexBuffer)
     {
         vertexdata->_vertexBuffer->updateVertices((void*)&meshdata.vertex[0], (int)meshdata.vertex.size() * 4 / vertexdata->_vertexBuffer->getSizePerVertex(), 0);
     }
-    
+
     bool needCalcAABB = (meshdata.subMeshAABB.size() != meshdata.subMeshIndices.size());
     for (size_t i = 0, size = meshdata.subMeshIndices.size(); i < size; ++i) {
 
@@ -117,10 +117,10 @@ MeshVertexData* MeshVertexData::create(const MeshData& meshdata)
         }
         else
             indexdata = MeshIndexData::create(id, vertexdata, indexBuffer, meshdata.subMeshAABB[i]);
-        
+
         vertexdata->_indexs.pushBack(indexdata);
     }
-    
+
     vertexdata->autorelease();
     return vertexdata;
 }
@@ -148,7 +148,7 @@ MeshVertexData::MeshVertexData()
 , _vertexBuffer(nullptr)
 , _vertexCount(0)
 {
-    
+
 }
 MeshVertexData::~MeshVertexData()
 {
@@ -158,3 +158,4 @@ MeshVertexData::~MeshVertexData()
 }
 
 NS_CC_END
+

@@ -522,12 +522,12 @@ void ScriptingCore::string_report(JS::HandleValue val) {
 bool ScriptingCore::evalString(const char *string, JS::MutableHandleValue outVal, const char *filename, JSContext* cx, JS::HandleObject global)
 {
     JS::PersistentRootedScript script(cx);
-    
+
     JS::CompileOptions op(cx);
     op.setUTF8(true);
-    
+
     std::string content = string;
-    
+
     bool ok = false;
     bool evaluatedOK = false;
     if (!content.empty())
@@ -660,7 +660,7 @@ void ScriptingCore::createGlobalContext() {
     for (auto& callback : registrationList) {
         callback(_cx, global);
     }
-    
+
     _needCleanup = true;
 }
 
@@ -710,10 +710,10 @@ JS::PersistentRootedScript* ScriptingCore::compileScript(const std::string& path
     if (script == nullptr) {
         return nullptr;
     }
-    
+
     JS::RootedObject obj(cx, global);
     bool compileSucceed = false;
-    
+
     // a) check jsc file first
     std::string byteCodePath = RemoveFileExt(std::string(path)) + BYTE_CODE_FILE_EXT;
 
@@ -725,7 +725,7 @@ JS::PersistentRootedScript* ScriptingCore::compileScript(const std::string& path
         {
             *script = JS_DecodeScript(cx, data.getBytes(), static_cast<uint32_t>(data.getSize()), nullptr);
         }
-        
+
         if (*script) {
             compileSucceed = true;
             filename_script[byteCodePath] = script;
@@ -761,7 +761,7 @@ JS::PersistentRootedScript* ScriptingCore::compileScript(const std::string& path
     else {
         filename_script[byteCodePath] = script;
     }
-    
+
     if (compileSucceed) {
         return script;
     } else {
@@ -885,27 +885,27 @@ void ScriptingCore::cleanup()
     localStorageFree();
     removeAllRoots(_cx);
     garbageCollect();
-    
+
     PoolManager::getInstance()->getCurrentPool()->clear();
 
     if (_js_log_buf) {
         free(_js_log_buf);
         _js_log_buf = NULL;
     }
-    
+
     for (auto& s : filename_script)
     {
-        CC_SAFE_DELETE(s.second); 
+        CC_SAFE_DELETE(s.second);
     }
     filename_script.clear();
     registrationList.clear();
-    
+
     for (auto iter = _js_global_type_map.begin(); iter != _js_global_type_map.end(); ++iter)
     {
         delete iter->second->parentProto.ptr();
         delete iter->second->proto.ptr();
     }
-    
+
     CC_SAFE_DELETE(_global);
     CC_SAFE_DELETE(_debugGlobal);
 
@@ -923,14 +923,14 @@ void ScriptingCore::cleanup()
         JS_DestroyRuntime(_rt);
         _rt = NULL;
     }
-    
+
     for (auto iter = _js_global_type_map.begin(); iter != _js_global_type_map.end(); ++iter)
     {
         free(iter->second->jsclass);
         free(iter->second);
     }
     _js_global_type_map.clear();
-    
+
     _needCleanup = false;
 }
 
@@ -1848,10 +1848,10 @@ void SimpleRunLoop::update(float dt)
             --messageCount;
         }
         g_qMutex.unlock();
-        
+
         if (!message.empty())
             ScriptingCore::getInstance()->debugProcessInput(message);
-        
+
         if (messageCount == 0)
             break;
     }
@@ -1883,10 +1883,10 @@ static bool NS_ProcessNextEvent()
             --messageCount;
         }
         g_qMutex.unlock();
-        
+
         if (!message.empty())
             ScriptingCore::getInstance()->debugProcessInput(message);
-        
+
         if (messageCount == 0)
             break;
     }
@@ -2027,7 +2027,7 @@ static void serverEntryPoint(unsigned int port)
 
 #define MAX_RECEIVED_SIZE 1024
 #define BUF_SIZE MAX_RECEIVED_SIZE + 1
-    
+
     char buf[BUF_SIZE] = {0};
     int readBytes = 0;
     while (true) {
@@ -2046,7 +2046,7 @@ static void serverEntryPoint(unsigned int port)
             inData = "connected";
             // process any input, send any output
             clearBuffers();
-            
+
             while ((readBytes = (int)::recv(clientSocket, buf, MAX_RECEIVED_SIZE, 0)) > 0)
             {
                 buf[readBytes] = '\0';
@@ -2061,7 +2061,7 @@ static void serverEntryPoint(unsigned int port)
             cc_closesocket(clientSocket);
         }
     } // while(true)
-    
+
 #undef BUF_SIZE
 #undef MAX_RECEIVED_SIZE
 }
@@ -2451,7 +2451,7 @@ void jsb_ref_rebind(JSContext* cx, JS::HandleObject jsobj, js_proxy_t *proxy, co
 
     // Rebind js obj with new action
     js_proxy_t* newProxy = jsb_new_proxy(newRef, jsobj);
-    
+
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     CC_UNUSED_PARAM(newProxy);
 #else
@@ -2491,3 +2491,4 @@ JSObject *jsb_get_and_remove_hook_owner(JSObject *hook)
     }
     return nullptr;
 }
+

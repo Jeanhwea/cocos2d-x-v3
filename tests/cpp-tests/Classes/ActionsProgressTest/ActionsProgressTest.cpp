@@ -74,7 +74,7 @@ void SpriteDemo::onEnter()
 void SpriteProgressToRadial::onEnter()
 {
     SpriteDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
 
     auto to1 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
@@ -85,7 +85,7 @@ void SpriteProgressToRadial::onEnter()
     addChild(left);
     left->setPosition(100, s.height/2);
     left->runAction( RepeatForever::create(to1));
-    
+
     auto right = ProgressTimer::create(Sprite::create(s_pathBlock));
     right->setType(ProgressTimer::Type::RADIAL);
     // Makes the ridial CCW
@@ -109,12 +109,12 @@ std::string SpriteProgressToRadial::subtitle() const
 void SpriteProgressToHorizontal::onEnter()
 {
     SpriteDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto to1 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
     auto to2 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
-    
+
     auto left = ProgressTimer::create(Sprite::create(s_pathSister1));
     left->setType(ProgressTimer::Type::BAR);
     //    Setup for a bar starting from the left since the midpoint is 0 for the x
@@ -124,7 +124,7 @@ void SpriteProgressToHorizontal::onEnter()
     addChild(left);
     left->setPosition(100, s.height/2);
     left->runAction( RepeatForever::create(to1));
-    
+
     auto right = ProgressTimer::create(Sprite::create(s_pathSister2));
     right->setType(ProgressTimer::Type::BAR);
     //    Setup for a bar starting from the left since the midpoint is 1 for the x
@@ -149,12 +149,12 @@ std::string SpriteProgressToHorizontal::subtitle() const
 void SpriteProgressToVertical::onEnter()
 {
     SpriteDemo::onEnter();
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto to1 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
     auto to2 = Sequence::createWithTwoActions(ProgressTo::create(2, 100), ProgressTo::create(0, 0));
-    
+
     auto left = ProgressTimer::create(Sprite::create(s_pathSister1));
     left->setType(ProgressTimer::Type::BAR);
 
@@ -165,7 +165,7 @@ void SpriteProgressToVertical::onEnter()
     addChild(left);
     left->setPosition(100, s.height/2);
     left->runAction( RepeatForever::create(to1));
-    
+
     auto right = ProgressTimer::create(Sprite::create(s_pathSister2));
     right->setType(ProgressTimer::Type::BAR);
     //    Setup for a bar starting from the bottom since the midpoint is 0 for the y
@@ -393,3 +393,4 @@ std::string SpriteProgressWithSpriteFrame::subtitle() const
 {
     return "Progress With Sprite Frame";
 }
+

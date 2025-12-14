@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -165,23 +165,23 @@ void LuaMinXmlHttpRequest::_gotHeader(const std::string& header)
 {
     // check for colon.
     size_t found_header_field = header.find_first_of(':');
-    
+
     if (found_header_field != std::string::npos)
     {
         // Found a header field.
         std::string http_field;
         std::string http_value;
-        
+
         http_field = header.substr(0,found_header_field);
         http_value = header.substr(found_header_field+1, header.length());
-        
+
         // Get rid of all \n
         if (!http_value.empty() && http_value[http_value.size() - 1] == '\n') {
         	http_value.erase(http_value.size() - 1);
         }
-        
+
         _httpHeader[http_field] = http_value;
-        
+
     }
     else
     {
@@ -209,9 +209,9 @@ void LuaMinXmlHttpRequest::setRequestHeader(const char* field, const char* value
     std::stringstream header_s;
     std::stringstream value_s;
     std::string header;
-    
+
     auto iter = _requestHeader.find(field);
-    
+
     // Concatenate values when header exists.
     if (iter != _requestHeader.end())
     {
@@ -221,7 +221,7 @@ void LuaMinXmlHttpRequest::setRequestHeader(const char* field, const char* value
     {
         value_s << value;
     }
-    
+
     _requestHeader[field] = value_s.str();
 }
 
@@ -232,17 +232,17 @@ void LuaMinXmlHttpRequest::setRequestHeader(const char* field, const char* value
 void LuaMinXmlHttpRequest::_setHttpRequestHeader()
 {
     std::vector<std::string> header;
-    
+
     for (auto it = _requestHeader.begin(); it != _requestHeader.end(); ++it)
     {
         header.push_back(it->first + ": " + it->second);
     }
-    
+
     if (!header.empty())
     {
         _httpRequest->setHeaders(header);
     }
-    
+
 }
 
 /**
@@ -253,14 +253,14 @@ void LuaMinXmlHttpRequest::_sendRequest()
     _httpRequest->setResponseCallback([this](cocos2d::network::HttpClient* sender, cocos2d::network::HttpResponse* response){
         if (_isAborted)
             return ;
-        
+
         if (0 != strlen(response->getHttpRequest()->getTag()))
         {
             CCLOG("%s completed", response->getHttpRequest()->getTag());
         }
-        
+
         long statusCode = response->getResponseCode();
-        
+
         if (!response->isSucceed())
         {
             CCLOG("Response failed, error buffer: %s", response->getErrorBuffer());
@@ -272,7 +272,7 @@ void LuaMinXmlHttpRequest::_sendRequest()
             }
             // TODO: call back lua function
             int handler = cocos2d::ScriptHandlerMgr::getInstance()->getObjectHandler((void*)this, cocos2d::ScriptHandlerMgr::HandlerType::XMLHTTPREQUEST_READY_STATE_CHANGE );
-            
+
             if (0 != handler)
             {
                 CCLOG("come in handler, handler is %d", handler);
@@ -282,20 +282,20 @@ void LuaMinXmlHttpRequest::_sendRequest()
             }
             return;
         }
-        
+
         // set header
         std::vector<char> *headers = response->getResponseHeader();
-        
+
         std::string header(headers->begin(), headers->end());
         std::istringstream stream(header);
         std::string line;
         while(std::getline(stream, line)) {
             _gotHeader(line);
         }
-        
+
         /** get the response data **/
         std::vector<char> *buffer = response->getResponseData();
-        
+
         if (statusCode == 200)
         {
             //Succeeded
@@ -308,10 +308,10 @@ void LuaMinXmlHttpRequest::_sendRequest()
         {
             _status = 0;
         }
-        
+
         // TODO: call back lua function
         int handler = cocos2d::ScriptHandlerMgr::getInstance()->getObjectHandler((void*)this, cocos2d::ScriptHandlerMgr::HandlerType::XMLHTTPREQUEST_READY_STATE_CHANGE );
-        
+
         if (0 != handler)
         {
             cocos2d::CommonScriptData data(handler,"");
@@ -346,11 +346,11 @@ static int lua_cocos2dx_XMLHttpRequest_constructor(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
 #endif
-    
+
     argc = lua_gettop(L)-1;
     if (argc == 0)
     {
@@ -359,10 +359,10 @@ static int lua_cocos2dx_XMLHttpRequest_constructor(lua_State* L)
         tolua_register_gc(L, lua_gettop(L));
         return 1;
     }
-    
+
     luaL_error(L, "%s has wrong number of arguments: %d, was expecting %d \n", "XMLHttpRequest",argc, 0);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_cocos2dx_XMLHttpRequest_constructor'.",&tolua_err);
@@ -371,14 +371,14 @@ tolua_lerror:
 }
 
 static int lua_get_XMLHttpRequest_responseType(lua_State* L)
-{    
+{
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -387,10 +387,10 @@ static int lua_get_XMLHttpRequest_responseType(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     tolua_pushnumber(L, (lua_Number)self->getResponseType());
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_responseType'.",&tolua_err);
@@ -402,12 +402,12 @@ static int lua_set_XMLHttpRequest_responseType(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -416,25 +416,25 @@ static int lua_set_XMLHttpRequest_responseType(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if (1 == argc)
-    {        
+    {
 #if COCOS2D_DEBUG >= 1
         if (!tolua_isnumber(L, 2, 0, &tolua_err))
             goto tolua_lerror;
 #endif
         int responseType = (int)tolua_tonumber(L,2,0);
-        
+
         self->setResponseType((LuaMinXmlHttpRequest::ResponseType)responseType);
-        
+
         return 0;
     }
-    
+
     luaL_error(L, "'setResponseType' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 1);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_set_XMLHttpRequest_responseType'.",&tolua_err);
@@ -445,12 +445,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_withCredentials(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -459,10 +459,10 @@ static int lua_get_XMLHttpRequest_withCredentials(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     tolua_pushboolean(L, self->getWithCredentialsValue());
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_withCredentials'.",&tolua_err);
@@ -474,12 +474,12 @@ static int lua_set_XMLHttpRequest_withCredentials(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -488,9 +488,9 @@ static int lua_set_XMLHttpRequest_withCredentials(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if (1 == argc)
     {
 #if COCOS2D_DEBUG >= 1
@@ -500,10 +500,10 @@ static int lua_set_XMLHttpRequest_withCredentials(lua_State* L)
         self->setWithCredentialsValue((bool)tolua_toboolean(L, 2, 0));
         return 0;
     }
-    
+
     luaL_error(L, "'setWithCredentials' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 1);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_set_XMLHttpRequest_withCredentials'.",&tolua_err);
@@ -514,12 +514,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_timeout(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -528,10 +528,10 @@ static int lua_get_XMLHttpRequest_timeout(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     tolua_pushnumber(L, (lua_Number)self->getTimeout());
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_timeout'.",&tolua_err);
@@ -543,12 +543,12 @@ static int lua_set_XMLHttpRequest_timeout(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -557,9 +557,9 @@ static int lua_set_XMLHttpRequest_timeout(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if (1 == argc)
     {
 #if COCOS2D_DEBUG >= 1
@@ -569,10 +569,10 @@ static int lua_set_XMLHttpRequest_timeout(lua_State* L)
         self->setTimeout((unsigned)tolua_tonumber(L, 2, 0));
         return 0;
     }
-    
+
     luaL_error(L, "'setTimeout' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 1);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_set_XMLHttpRequest_timeout'.",&tolua_err);
@@ -583,12 +583,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_readyState(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -597,11 +597,11 @@ static int lua_get_XMLHttpRequest_readyState(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     lua_pushinteger(L, (lua_Integer)self->getReadyState());
-    
+
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_readyState'.",&tolua_err);
@@ -612,12 +612,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_status(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -626,11 +626,11 @@ static int lua_get_XMLHttpRequest_status(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     lua_pushinteger(L, (lua_Integer)self->getStatus());
-    
+
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_status'.",&tolua_err);
@@ -641,12 +641,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_statusText(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -655,11 +655,11 @@ static int lua_get_XMLHttpRequest_statusText(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     lua_pushstring(L, self->getStatusText().c_str());
-    
+
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_statusText'.",&tolua_err);
@@ -670,12 +670,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_responseText(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -686,7 +686,7 @@ static int lua_get_XMLHttpRequest_responseText(lua_State* L)
 #endif
     lua_pushlstring(L, self->getDataStr().c_str(), self->getDataSize());
     return 1;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_responseText'.",&tolua_err);
@@ -697,12 +697,12 @@ tolua_lerror:
 static int lua_get_XMLHttpRequest_response(lua_State* L)
 {
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -711,12 +711,12 @@ static int lua_get_XMLHttpRequest_response(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     if (self->getResponseType() == LuaMinXmlHttpRequest::ResponseType::JSON)
     {
         if (self->getReadyState() != LuaMinXmlHttpRequest::DONE || self->getErrorFlag())
             return 0;
-        
+
         lua_pushlstring(L, self->getDataStr().c_str(), self->getDataSize());
         return 1;
     }
@@ -724,35 +724,35 @@ static int lua_get_XMLHttpRequest_response(lua_State* L)
     {
         if (self->getReadyState() != LuaMinXmlHttpRequest::DONE || self->getErrorFlag())
             return 0;
-        
+
         LuaStack *pStack = LuaEngine::getInstance()->getLuaStack();
         if (NULL == pStack) {
             return 0;
         }
-        
+
         lua_State *tolua_s = pStack->getLuaState();
         if (NULL == tolua_s) {
             return 0;
         }
-        
+
         LuaValueArray array;
-        
+
         uint8_t* tmpData = new (std::nothrow) uint8_t[self->getDataSize()];
         if (nullptr == tmpData)
         {
             return 0;
         }
-        
+
         self->getByteData(tmpData);
-        
+
         for (int i = 0 ; i < self->getDataSize(); i++)
         {
             LuaValue value = LuaValue::intValue(tmpData[i]);
             array.push_back(value);
         }
-        
+
         pStack->pushLuaValueArray(array);
-        
+
         CC_SAFE_DELETE_ARRAY(tmpData);
         return 1;
     }
@@ -761,7 +761,7 @@ static int lua_get_XMLHttpRequest_response(lua_State* L)
         lua_pushlstring(L, self->getDataStr().c_str(), self->getDataSize());
         return 1;
     }
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_get_XMLHttpRequest_response'.",&tolua_err);
@@ -773,12 +773,12 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -787,9 +787,9 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if ( argc >= 2)
     {
 #if COCOS2D_DEBUG >= 1
@@ -797,7 +797,7 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
             !tolua_isstring(L, 3, 0, &tolua_err))
             goto tolua_lerror;
 #endif
-        
+
         std::string method = tolua_tostring(L, 2, "");
         std::string url    = tolua_tostring(L, 3, "");
         bool async = true;
@@ -809,17 +809,17 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
 #endif
             async = tolua_toboolean(L, 4, 0);
         }
-        
+
         self->setUrl(url);
         self->setMethod(method);
         self->setReadyState(1);
         self->setAsync(async);
-        
+
         if (url.length() > 5 && url.compare(url.length() - 5, 5, ".json") == 0 )
         {
             self->setResponseType(LuaMinXmlHttpRequest::ResponseType::JSON);
         }
-        
+
         if (nullptr != self->getHttpRequest())
         {
             if (method == "post" || method == "POST")
@@ -842,11 +842,11 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
             {
                 self->getHttpRequest()->setRequestType(network::HttpRequest::Type::UNKNOWN);
             }
-            
+
             self->getHttpRequest()->setUrl(url);
-            
+
         }
-        
+
         self->setIsNetWork(true);
         self->setReadyState(LuaMinXmlHttpRequest::OPENED);
         self->setStatus(0);
@@ -854,10 +854,10 @@ static int lua_cocos2dx_XMLHttpRequest_open(lua_State* L)
 
         return 0;
     }
-    
+
     luaL_error(L, "'open' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 2);
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_cocos2dx_XMLHttpRequest_open'.",&tolua_err);
@@ -872,12 +872,12 @@ static int lua_cocos2dx_XMLHttpRequest_send(lua_State* L)
     //std::string data = "";
     const char* data = NULL;
     size_t size = 0;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -888,7 +888,7 @@ static int lua_cocos2dx_XMLHttpRequest_send(lua_State* L)
 #endif
     self->clearHttpHeader();
     self->setErrorFlag(false);
-    
+
     argc = lua_gettop(L) - 1;
 
     if ( 1 == argc )
@@ -900,7 +900,7 @@ static int lua_cocos2dx_XMLHttpRequest_send(lua_State* L)
         //data = tolua_tostring(L, 2, "");
         data = (const char*) lua_tolstring(L, 2, &size);
     }
-    
+
     if (size > 0 &&
         (self->getMethod() == "post" || self->getMethod() == "POST"
          || self->getMethod() == "put" || self->getMethod() == "PUT" )&&
@@ -908,11 +908,11 @@ static int lua_cocos2dx_XMLHttpRequest_send(lua_State* L)
     {
         self->getHttpRequest()->setRequestData(data,size);
     }
-    
+
     self->_setHttpRequestHeader();
     self->_sendRequest();
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_cocos2dx_XMLHttpRequest_send'.",&tolua_err);
@@ -927,12 +927,12 @@ static int lua_cocos2dx_XMLHttpRequest_abort(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -941,16 +941,16 @@ static int lua_cocos2dx_XMLHttpRequest_abort(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if ( 0 == argc )
     {
         self->setAborted(true);
         self->setReadyState(LuaMinXmlHttpRequest::UNSENT);
     }
     return 0;
-    
+
 #if COCOS2D_DEBUG >= 1
 tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_cocos2dx_XMLHttpRequest_send'.",&tolua_err);
@@ -964,12 +964,12 @@ static int lua_cocos2dx_XMLHttpRequest_setRequestHeader(lua_State* L)
     LuaMinXmlHttpRequest* self = nullptr;
     const char* field = "";
     const char* value = "";
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -978,9 +978,9 @@ static int lua_cocos2dx_XMLHttpRequest_setRequestHeader(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if ( 2 == argc )
     {
 #if COCOS2D_DEBUG >= 1
@@ -988,13 +988,13 @@ static int lua_cocos2dx_XMLHttpRequest_setRequestHeader(lua_State* L)
             !tolua_isstring(L, 3, 0, &tolua_err) )
             goto tolua_lerror;
 #endif
-        
+
         field = tolua_tostring(L, 2, "");
         value = tolua_tostring(L, 3, "");
         self->setRequestHeader(field, value);
         return 0;
     }
-    
+
     luaL_error(L, "'setRequestHeader' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 2);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -1008,15 +1008,15 @@ static int lua_cocos2dx_XMLHttpRequest_getAllResponseHeaders(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
     std::stringstream responseheaders;
     std::string responseheader = "";
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -1025,23 +1025,23 @@ static int lua_cocos2dx_XMLHttpRequest_getAllResponseHeaders(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if ( 0 == argc )
     {
         const auto& httpHeader = self->getHttpHeader();
-        
+
         for (auto it = httpHeader.begin(); it != httpHeader.end(); ++it)
         {
             responseheaders << it->first << ": "<< it->second << "\n";
         }
-        
+
         responseheader = responseheaders.str();
         tolua_pushstring(L, responseheader.c_str());
         return 1;
     }
-    
+
     luaL_error(L, "'getAllResponseHeaders' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 0);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -1055,14 +1055,14 @@ static int lua_cocos2dx_XMLHttpRequest_getResponseHeader(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
     std::string responseheader = "";
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -1071,9 +1071,9 @@ static int lua_cocos2dx_XMLHttpRequest_getResponseHeader(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if ( 1 == argc )
     {
 #if COCOS2D_DEBUG >= 1
@@ -1094,7 +1094,7 @@ static int lua_cocos2dx_XMLHttpRequest_getResponseHeader(lua_State* L)
         }
         return 1;
     }
-    
+
     luaL_error(L, "'getResponseHeader' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 1);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -1108,14 +1108,14 @@ static int lua_cocos2dx_XMLHttpRequest_registerScriptHandler(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
     std::string responseheader = "";
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -1124,21 +1124,21 @@ static int lua_cocos2dx_XMLHttpRequest_registerScriptHandler(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if (1 == argc)
     {
 #if COCOS2D_DEBUG >= 1
         if (!toluafix_isfunction(L,2,"LUA_FUNCTION",0,&tolua_err))
             goto tolua_lerror;
 #endif
-        
+
         int handler = (  toluafix_ref_function(L,2,0));
         cocos2d::ScriptHandlerMgr::getInstance()->addObjectHandler((void*)self, handler, cocos2d::ScriptHandlerMgr::HandlerType::XMLHTTPREQUEST_READY_STATE_CHANGE);
         return 0;
     }
-    
+
     luaL_error(L, "'registerScriptHandler' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 1);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -1152,14 +1152,14 @@ static int lua_cocos2dx_XMLHttpRequest_unregisterScriptHandler(lua_State* L)
 {
     int argc = 0;
     LuaMinXmlHttpRequest* self = nullptr;
-    
+
     std::string responseheader = "";
-    
+
 #if COCOS2D_DEBUG >= 1
     tolua_Error tolua_err;
     if (!tolua_isusertype(L,1,"cc.XMLHttpRequest",0,&tolua_err)) goto tolua_lerror;
 #endif
-    
+
     self = (LuaMinXmlHttpRequest*)  tolua_tousertype(L,1,0);
 #if COCOS2D_DEBUG >= 1
     if (nullptr == self)
@@ -1168,16 +1168,16 @@ static int lua_cocos2dx_XMLHttpRequest_unregisterScriptHandler(lua_State* L)
 		return 0;
     }
 #endif
-    
+
     argc = lua_gettop(L) - 1;
-    
+
     if (0 == argc)
-    {                
+    {
         cocos2d::ScriptHandlerMgr::getInstance()->removeObjectHandler((void*)self, cocos2d::ScriptHandlerMgr::HandlerType::XMLHTTPREQUEST_READY_STATE_CHANGE);
-        
+
         return 0;
     }
-    
+
     luaL_error(L, "'unregisterScriptHandler' function of XMLHttpRequest wrong number of arguments: %d, was expecting %d\n", argc, 0);
     return 0;
 #if COCOS2D_DEBUG >= 1
@@ -1185,7 +1185,7 @@ tolua_lerror:
     tolua_error(L,"#ferror in function 'lua_cocos2dx_XMLHttpRequest_unregisterScriptHandler'.",&tolua_err);
     return 0;
 #endif
-    
+
 }
 
 
@@ -1218,3 +1218,4 @@ TOLUA_API int register_xml_http_request(lua_State* L)
     tolua_endmodule(L);
     return 1;
 }
+

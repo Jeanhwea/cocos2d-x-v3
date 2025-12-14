@@ -45,7 +45,7 @@ NS_CC_BEGIN
 class CC_DLL ShakyTiles3D : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
     @brief Create the action with a range, shake Z vertices, a grid and duration.
     @param duration Specify the duration of the ShakyTiles3D action. It's a value in seconds.
     @param gridSize Specify the size of the grid.
@@ -58,12 +58,12 @@ public:
     // Override
     virtual ShakyTiles3D* clone() const override;
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ShakyTiles3D() {}
     virtual ~ShakyTiles3D() {}
 
-    /** 
+    /**
     @brief Initializes the action with a range, shake Z vertices, grid size and duration.
     @param duration Specify the duration of the ShakyTiles3D action. It's a value in seconds.
     @param gridSize Specify the size of the grid.
@@ -90,7 +90,7 @@ private:
 class CC_DLL ShatteredTiles3D : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
      * @brief Create the action with a range, whether of not to shatter Z vertices, grid size and duration.
      * @param duration Specify the duration of the ShatteredTiles3D action. It's a value in seconds.
      * @param gridSize Specify the size of the grid.
@@ -103,12 +103,12 @@ public:
     // Override
     virtual ShatteredTiles3D* clone() const override;
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ShatteredTiles3D() {}
     virtual ~ShatteredTiles3D() {}
 
-    /** 
+    /**
     @brief Initializes the action with a range, shatter Z vertices, grid size and duration.
     @param duration Specify the duration of the ShatteredTiles3D action. It's a value in seconds.
     @param gridSize Specify the size of the grid.
@@ -137,7 +137,7 @@ struct Tile;
 class CC_DLL ShuffleTiles : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
     * @brief Create the action with grid size, random seed and duration.
     * @param duration Specify the duration of the ShuffleTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -154,12 +154,12 @@ public:
     virtual void startWithTarget(Node *target) override;
     virtual void update(float time) override;
     virtual ShuffleTiles* clone() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ShuffleTiles() {}
     virtual ~ShuffleTiles();
 
-    /** 
+    /**
     * @brief Initializes the action with grid size, random seed and duration.
     * @param duration Specify the duration of the ShuffleTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -185,7 +185,7 @@ private:
 class CC_DLL FadeOutTRTiles : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the FadeOutTRTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -239,7 +239,7 @@ private:
 class CC_DLL FadeOutBLTiles : public FadeOutTRTiles
 {
 public:
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the FadeOutBLTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -266,7 +266,7 @@ private:
 class CC_DLL FadeOutUpTiles : public FadeOutTRTiles
 {
 public:
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the FadeOutUpTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -295,7 +295,7 @@ private:
 class CC_DLL FadeOutDownTiles : public FadeOutUpTiles
 {
 public:
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the FadeOutDownTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -322,14 +322,14 @@ private:
 class CC_DLL TurnOffTiles : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the TurnOffTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
     * @return If the creation success, return a pointer of TurnOffTiles action; otherwise, return nil.
     */
     static TurnOffTiles* create(float duration, const Size& gridSize);
-    /** 
+    /**
     * @brief Create the action with the grid size and the duration.
     * @param duration Specify the duration of the TurnOffTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -361,12 +361,12 @@ public:
 	virtual TurnOffTiles* clone() const override;
     virtual void startWithTarget(Node *target) override;
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     TurnOffTiles() {}
     virtual ~TurnOffTiles();
 
-    /** 
+    /**
     * @brief Initializes the action with grid size, random seed and duration.
     * @param duration Specify the duration of the TurnOffTiles action. It's a value in seconds.
     * @param gridSize Specify the size of the grid.
@@ -391,7 +391,7 @@ private:
 class CC_DLL WavesTiles3D : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
      * @brief Create the action with a number of waves, the waves amplitude, the grid size and the duration.
      * @param duration Specify the duration of the WavesTiles3D action. It's a value in seconds.
      * @param gridSize Specify the size of the grid.
@@ -426,12 +426,12 @@ public:
     // Override
     virtual WavesTiles3D* clone() const override;
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     WavesTiles3D() {}
     virtual ~WavesTiles3D() {}
 
-    /** 
+    /**
     @brief Initializes an action with duration, grid size, waves count and amplitude.
     @param duration Specify the duration of the WavesTiles3D action. It's a value in seconds.
     @param gridSize Specify the size of the grid.
@@ -457,7 +457,7 @@ private:
 class CC_DLL JumpTiles3D : public TiledGrid3DAction
 {
 public:
-    /** 
+    /**
      * @brief Create the action with the number of jumps, the sin amplitude, the grid size and the duration.
      * @param duration Specify the duration of the JumpTiles3D action. It's a value in seconds.
      * @param gridSize Specify the size of the grid.
@@ -492,12 +492,12 @@ public:
     // Override
     virtual JumpTiles3D* clone() const override;
     virtual void update(float time) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     JumpTiles3D() {}
     virtual ~JumpTiles3D() {}
 
-    /** 
+    /**
      * @brief Initializes the action with the number of jumps, the sin amplitude, the grid size and the duration.
      * @param duration Specify the duration of the JumpTiles3D action. It's a value in seconds.
      * @param gridSize Specify the size of the grid.
@@ -524,7 +524,7 @@ private:
 class CC_DLL SplitRows : public TiledGrid3DAction
 {
 public :
-    /** 
+    /**
      * @brief Create the action with the number of rows and the duration.
      * @param duration Specify the duration of the SplitRows action. It's a value in seconds.
      * @param rows Specify the rows count should be split.
@@ -536,12 +536,12 @@ public :
     virtual SplitRows* clone() const override;
     virtual void update(float time) override;
     virtual void startWithTarget(Node *target) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     SplitRows() {}
     virtual ~SplitRows() {}
 
-    /** 
+    /**
      * @brief Initializes the action with the number rows and the duration.
      * @param duration Specify the duration of the SplitRows action. It's a value in seconds.
      * @param rows Specify the rows count should be split.
@@ -565,8 +565,8 @@ private:
 class CC_DLL SplitCols : public TiledGrid3DAction
 {
 public:
-    
-    /** 
+
+    /**
      * @brief Create the action with the number of columns and the duration.
      * @param duration Specify the duration of the SplitCols action. It's a value in seconds.
      * @param cols Specify the columns count should be split.
@@ -581,12 +581,12 @@ public:
      */
     virtual void update(float time) override;
     virtual void startWithTarget(Node *target) override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     SplitCols() {}
     virtual ~SplitCols() {}
 
-    /** 
+    /**
      * @brief Initializes the action with the number columns and the duration.
      * @param duration Specify the duration of the SplitCols action. It's a value in seconds.
      * @param cols Specify the columns count should be split.
@@ -608,3 +608,4 @@ private:
 NS_CC_END
 
 #endif // __ACTION_CCTILEDGRID_ACTION_H__
+

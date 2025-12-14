@@ -217,7 +217,7 @@ void MotionStreak3D::tintWithColor(const Color3B& colors)
     setColor(colors);
 
     // Fast assignation
-    for(unsigned int i = 0; i<_nuPoints*2; i++) 
+    for(unsigned int i = 0; i<_nuPoints*2; i++)
     {
         *((Color3B*) (_colorPointer+i*4)) = colors;
     }
@@ -274,7 +274,7 @@ void MotionStreak3D::update(float delta)
     {
         return;
     }
-    
+
     delta *= _fadeDelta;
 
     unsigned int newIdx, newIdx2, i, i2;
@@ -383,7 +383,7 @@ void MotionStreak3D::reset()
 }
 
 void MotionStreak3D::onDraw(const Mat4 &transform, uint32_t /*flags*/)
-{  
+{
     getGLProgram()->use();
     getGLProgram()->setUniformsForBuiltins(transform);
 
@@ -391,7 +391,7 @@ void MotionStreak3D::onDraw(const Mat4 &transform, uint32_t /*flags*/)
     GL::blendFunc( _blendFunc.src, _blendFunc.dst );
 
     GL::bindTexture2D( _texture->getName() );
-    
+
     glDisable(GL_CULL_FACE);
     RenderState::StateBlock::_defaultState->setCullFace(false);
     glEnable(GL_DEPTH_TEST);
@@ -415,3 +415,4 @@ void MotionStreak3D::draw(Renderer *renderer, const Mat4 &transform, uint32_t fl
 }
 
 NS_CC_END
+

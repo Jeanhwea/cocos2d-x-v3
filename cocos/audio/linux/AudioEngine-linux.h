@@ -47,7 +47,7 @@ class CC_DLL AudioEngineImpl : public cocos2d::Ref
 public:
     AudioEngineImpl();
     ~AudioEngineImpl();
-    
+
     bool init();
     int play2d(const std::string &fileFullPath ,bool loop ,float volume);
     void setVolume(int audioID,float volume);
@@ -60,47 +60,47 @@ public:
     float getCurrentTime(int audioID);
     bool setCurrentTime(int audioID, float time);
     void setFinishCallback(int audioID, const std::function<void (int, const std::string &)> &callback);
-    
+
     void uncache(const std::string& filePath);
     void uncacheAll();
-    
+
 
     int preload(const std::string& filePath, const std::function<void(bool isSuccess)>& callback);
-    
+
     void update(float dt);
-    
+
     /**
-     * used internally by ffmod callback 
-     */ 
-    void onSoundFinished(FMOD::Channel * channel); 
-    
+     * used internally by ffmod callback
+     */
+    void onSoundFinished(FMOD::Channel * channel);
+
 private:
-  
+
     /**
     * returns null if a sound with the given path is not found
     */
     FMOD::Sound * findSound(const std::string &path);
-  
+
     FMOD::Channel * getChannel(FMOD::Sound *);
-  
+
     struct ChannelInfo{
         int id;
-        std::string path; 
+        std::string path;
         FMOD::Sound * sound;
-        FMOD::Channel * channel; 
-        bool loop; 
-        float volume; 
+        FMOD::Channel * channel;
+        bool loop;
+        float volume;
         std::function<void (int, const std::string &)> callback;
     };
-    
+
     std::map<int, ChannelInfo> mapChannelInfo;
 
     std::map<std::string, int> mapId;
-    
-    std::map<std::string, FMOD::Sound *> mapSound;  
-    
+
+    std::map<std::string, FMOD::Sound *> mapSound;
+
     FMOD::System* pSystem;
-    
+
 };
 }
 NS_CC_END

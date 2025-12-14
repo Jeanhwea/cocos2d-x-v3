@@ -66,12 +66,12 @@ void __Set::acceptVisitor(DataVisitor &visitor)
 __Set * __Set::create()
 {
     __Set * pRet = new (std::nothrow) __Set();
-    
+
     if (pRet != nullptr)
     {
         pRet->autorelease();
     }
-    
+
     return pRet;
 }
 
@@ -120,7 +120,7 @@ void __Set::removeAllObjects()
         {
             break;
         }
-        
+
         tmp = it;
         ++tmp;
         Ref * obj = *it;
@@ -151,7 +151,7 @@ Ref* __Set::anyObject()
     {
         return 0;
     }
-    
+
     __SetIterator it;
 
     for( it = _set->begin(); it != _set->end(); ++it)
@@ -166,3 +166,4 @@ Ref* __Set::anyObject()
 }
 
 NS_CC_END
+

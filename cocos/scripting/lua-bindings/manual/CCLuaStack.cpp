@@ -913,3 +913,4 @@ int LuaStack::luaLoadBuffer(lua_State *L, const char *chunk, int chunkSize, cons
 }
 
 NS_CC_END
+

@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -46,7 +46,7 @@ enum {
  * @{
  */
 
-/** 
+/**
  * @brief Base class for Action objects.
  */
 class CC_DLL Action : public Ref, public Clonable
@@ -70,7 +70,7 @@ public:
         return nullptr;
     }
 
-    /** Returns a new action that performs the exact reverse of the action. 
+    /** Returns a new action that performs the exact reverse of the action.
      *
      * @return A new action that performs the exact reverse of the action.
      * @js NA
@@ -81,31 +81,31 @@ public:
         return nullptr;
     }
 
-    /** Return true if the action has finished. 
-     * 
+    /** Return true if the action has finished.
+     *
      * @return Is true if the action has finished.
      */
     virtual bool isDone() const;
 
-    /** Called before the action start. It will also set the target. 
+    /** Called before the action start. It will also set the target.
      *
      * @param target A certain target.
      */
     virtual void startWithTarget(Node *target);
 
-    /** 
+    /**
      * Called after the action has finished. It will set the 'target' to nil.
      * IMPORTANT: You should never call "Action::stop()" manually. Instead, use: "target->stopAction(action);".
      */
     virtual void stop();
 
-    /** Called every frame with it's delta time, dt in seconds. DON'T override unless you know what you are doing. 
+    /** Called every frame with it's delta time, dt in seconds. DON'T override unless you know what you are doing.
      *
      * @param dt In seconds.
      */
     virtual void step(float dt);
 
-    /** 
+    /**
      * Called once per frame. time a value between 0 and 1.
 
      * For example:
@@ -121,17 +121,17 @@ public:
      * @return A certain target.
      */
     Node* getTarget() const { return _target; }
-    /** The action will modify the target properties. 
+    /** The action will modify the target properties.
      *
      * @param target A certain target.
      */
     void setTarget(Node *target) { _target = target; }
-    /** Return a original Target. 
+    /** Return a original Target.
      *
      * @return A original Target.
      */
     Node* getOriginalTarget() const { return _originalTarget; }
-    /** 
+    /**
      * Set the original target, since target can be nil.
      * Is the target that were used to run the action. Unless you are doing something complex, like ActionManager, you should NOT call this method.
      * The target is 'assigned', it is not 'retained'.
@@ -140,12 +140,12 @@ public:
      * @param originalTarget Is 'assigned', it is not 'retained'.
      */
     void setOriginalTarget(Node *originalTarget) { _originalTarget = originalTarget; }
-    /** Returns a tag that is used to identify the action easily. 
+    /** Returns a tag that is used to identify the action easily.
      *
      * @return A tag.
      */
     int getTag() const { return _tag; }
-    /** Changes the tag that is used to identify the action easily. 
+    /** Changes the tag that is used to identify the action easily.
      *
      * @param tag Used to identify the action easily.
      */
@@ -167,7 +167,7 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
     Node    *_originalTarget;
-    /** 
+    /**
      * The "target".
      * The target will be set with the 'startWithTarget' method.
      * When the 'stop' method is called, target will be set to nil.
@@ -197,12 +197,12 @@ private:
 class CC_DLL FiniteTimeAction : public Action
 {
 public:
-    /** Get duration in seconds of the action. 
+    /** Get duration in seconds of the action.
      *
      * @return The duration in seconds of the action.
      */
     float getDuration() const { return _duration; }
-    /** Set duration in seconds of the action. 
+    /** Set duration in seconds of the action.
      *
      * @param duration In seconds of the action.
      */
@@ -258,7 +258,7 @@ public:
      * @return The action speed.
      */
     float getSpeed() const { return _speed; }
-    /** Alter the speed of the inner function in runtime. 
+    /** Alter the speed of the inner function in runtime.
      *
      * @param speed Alter the speed of the inner function in runtime.
      */
@@ -291,7 +291,7 @@ public:
      * @return Is true if the action has finished.
      */
     virtual bool isDone() const  override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Speed();
     virtual ~Speed();
@@ -325,9 +325,9 @@ public:
      * @param rect  The boundary. If \p rect is equal to Rect::ZERO, it'll work
      *              with no boundary.
     */
-    
+
     static Follow* create(Node *followedNode, const Rect& rect = Rect::ZERO);
-    
+
     /**
      * Creates the action with a set boundary or with no boundary with offsets.
      *
@@ -344,19 +344,19 @@ public:
      */
 
     static Follow* createWithOffset(Node* followedNode,float xOffset,float yOffset,const Rect& rect = Rect::ZERO);
-    
+
     /** Return boundarySet.
      *
      * @return Return boundarySet.
      */
     bool isBoundarySet() const { return _boundarySet; }
-    /** Alter behavior - turn on/off boundary. 
+    /** Alter behavior - turn on/off boundary.
      *
      * @param value Turn on/off boundary.
      */
     void setBoundarySet(bool value) { _boundarySet = value; }
-    
-    /** @deprecated Alter behavior - turn on/off boundary. 
+
+    /** @deprecated Alter behavior - turn on/off boundary.
      *
      * @param value Turn on/off boundary.
      */
@@ -396,7 +396,7 @@ CC_CONSTRUCTOR_ACCESS:
      * @lua NA
      */
     virtual ~Follow();
-    
+
     /**
      * Initializes the action with a set boundary or with no boundary.
      *
@@ -405,8 +405,8 @@ CC_CONSTRUCTOR_ACCESS:
      *              with no boundary.
     */
     bool initWithTarget(Node *followedNode, const Rect& rect = Rect::ZERO);
-    
-    
+
+
     /**
      * Initializes the action with a set boundary or with no boundary with offsets.
      *
@@ -443,11 +443,11 @@ protected:
     float _rightBoundary;
     float _topBoundary;
     float _bottomBoundary;
-    
+
     /** Horizontal (x) and vertical (y) offset values. */
     float _offsetX;
     float _offsetY;
-    
+
     Rect _worldRect;
 
 private:
@@ -460,3 +460,4 @@ private:
 NS_CC_END
 
 #endif // __ACTIONS_CCACTION_H__
+

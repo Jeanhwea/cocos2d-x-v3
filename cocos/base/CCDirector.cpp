@@ -70,7 +70,7 @@ THE SOFTWARE.
 
 /**
  Position of the FPS
- 
+
  Default: 0,0 (bottom-left corner)
  */
 #ifndef CC_DIRECTOR_STATS_POSITION
@@ -122,7 +122,7 @@ bool Director::init()
 
     // FPS
     _lastUpdate = std::chrono::steady_clock::now();
-    
+
     _console = new (std::nothrow) Console;
 
     // scheduler
@@ -132,7 +132,7 @@ bool Director::init()
     _scheduler->scheduleUpdate(_actionManager, Scheduler::PRIORITY_SYSTEM, false);
 
     _eventDispatcher = new (std::nothrow) EventDispatcher();
-    
+
     _beforeSetNextScene = new (std::nothrow) EventCustom(EVENT_BEFORE_SET_NEXT_SCENE);
     _beforeSetNextScene->setUserData(this);
     _afterSetNextScene = new (std::nothrow) EventCustom(EVENT_AFTER_SET_NEXT_SCENE);
@@ -187,7 +187,7 @@ Director::~Director()
     delete _console;
 
     CC_SAFE_RELEASE(_eventDispatcher);
-    
+
     Configuration::destroyInstance();
     ObjectFactory::destroyInstance();
 
@@ -253,7 +253,7 @@ void Director::drawScene()
 {
     // calculate "global" dt
     calculateDeltaTime();
-    
+
     if (_openGLView)
     {
         _openGLView->pollEvents();
@@ -269,9 +269,9 @@ void Director::drawScene()
 
     _renderer->clear();
     experimental::FrameBuffer::clearAllFBOs();
-    
+
     _eventDispatcher->dispatchEvent(_eventBeforeDraw);
-    
+
     /* to avoid flickr, nextScene MUST be here: after tick and before draw.
      * FIXME: Which bug is this one. It seems that it can't be reproduced with v0.9
      */
@@ -281,7 +281,7 @@ void Director::drawScene()
     }
 
     pushMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
-    
+
     if (_runningScene)
     {
 #if (CC_USE_PHYSICS || (CC_USE_3D_PHYSICS && CC_ENABLE_BULLET_INTEGRATION) || CC_USE_NAVMESH)
@@ -289,11 +289,11 @@ void Director::drawScene()
 #endif
         //clear draw stats
         _renderer->clearDrawStats();
-        
+
         //render the scene
         if(_openGLView)
             _openGLView->renderScene(_runningScene, _renderer);
-        
+
         _eventDispatcher->dispatchEvent(_eventAfterVisit);
     }
 
@@ -304,14 +304,14 @@ void Director::drawScene()
     }
 
     updateFrameRate();
-    
+
     if (_displayStats)
     {
 #if !CC_STRIP_FPS
         showStats();
 #endif
     }
-    
+
     _renderer->render();
 
     _eventDispatcher->dispatchEvent(_eventAfterDraw);
@@ -654,7 +654,7 @@ void Director::setProjection(Projection projection)
             loadIdentityMatrix(MATRIX_STACK_TYPE::MATRIX_STACK_MODELVIEW);
             break;
         }
-            
+
         case Projection::_3D:
         {
             float zeye = this->getZEye();
@@ -743,7 +743,7 @@ const Color4F& Director::getClearColor() const
 static void GLToClipTransform(Mat4 *transformOut)
 {
     if(nullptr == transformOut) return;
-    
+
     Director* director = Director::getInstance();
     CCASSERT(nullptr != director, "Director is null when setting matrix stack");
 
@@ -789,7 +789,7 @@ Vec2 Director::convertToUI(const Vec2& glPoint)
     b = (a×M)T
     Out = 1 ⁄ bw(bx, by, bz)
     */
-	
+
     clipCoord.x = clipCoord.x / clipCoord.w;
     clipCoord.y = clipCoord.y / clipCoord.w;
     clipCoord.z = clipCoord.z / clipCoord.w;
@@ -860,15 +860,15 @@ void Director::replaceScene(Scene *scene)
 {
     //CCASSERT(_runningScene, "Use runWithScene: instead to start the director");
     CCASSERT(scene != nullptr, "the scene should not be null");
-    
+
     if (_runningScene == nullptr) {
         runWithScene(scene);
         return;
     }
-    
+
     if (scene == _nextScene)
         return;
-    
+
     if (_nextScene)
     {
         if (_nextScene->isRunning())
@@ -915,7 +915,7 @@ void Director::pushScene(Scene *scene)
 void Director::popScene()
 {
     CCASSERT(_runningScene != nullptr, "running scene should not null");
-    
+
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
@@ -1015,7 +1015,7 @@ void Director::reset()
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
 #endif // CC_ENABLE_GC_FOR_NATIVE_OBJECTS
-    
+
     if (_runningScene)
     {
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
@@ -1028,31 +1028,31 @@ void Director::reset()
         _runningScene->cleanup();
         _runningScene->release();
     }
-    
+
     _runningScene = nullptr;
     _nextScene = nullptr;
 
     if (_eventDispatcher)
         _eventDispatcher->dispatchEvent(_eventResetDirector);
-    
+
     // cleanup scheduler
     getScheduler()->unscheduleAll();
-    
+
     // Remove all events
     if (_eventDispatcher)
     {
         _eventDispatcher->removeAllEventListeners();
     }
-    
+
     if(_notificationNode)
     {
         _notificationNode->onExit();
         _notificationNode->cleanup();
         _notificationNode->release();
     }
-    
+
     _notificationNode = nullptr;
-    
+
     // remove all objects, but don't release it.
     // runWithScene might be executed after 'end'.
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
@@ -1070,22 +1070,22 @@ void Director::reset()
     {
         _scenesStack.popBack();
     }
-    
+
     stopAnimation();
-    
+
     CC_SAFE_RELEASE_NULL(_notificationNode);
     CC_SAFE_RELEASE_NULL(_FPSLabel);
     CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
     CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
-    
+
     // purge bitmap cache
     FontFNT::purgeCachedData();
     FontAtlasCache::purgeCachedData();
-    
+
     FontFreeType::shutdownFreeType();
-    
+
     // purge all managed caches
-    
+
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
 #elif _MSC_VER >= 1400 //vs 2005 or higher
@@ -1107,14 +1107,14 @@ void Director::reset()
     GLProgramStateCache::destroyInstance();
     FileUtils::destroyInstance();
     AsyncTaskPool::destroyInstance();
-    
+
     // cocos2d-x specific data structures
     UserDefault::destroyInstance();
-    
+
     GL::invalidateStateCache();
 
     RenderState::finalize();
-    
+
     destroyTextureCache();
 }
 
@@ -1123,14 +1123,14 @@ void Director::purgeDirector()
     reset();
 
     CHECK_GL_ERROR_DEBUG();
-    
+
     // OpenGL view
     if (_openGLView)
     {
         _openGLView->end();
         _openGLView = nullptr;
     }
-    
+
     // delete Director
     release();
 }
@@ -1138,22 +1138,22 @@ void Director::purgeDirector()
 void Director::restartDirector()
 {
     reset();
-    
+
     // RenderState need to be reinitialized
     RenderState::initialize();
 
     // Texture cache need to be reinitialized
     initTextureCache();
-    
+
     // Reschedule for action manager
     getScheduler()->scheduleUpdate(getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
-    
+
     // release the objects
     PoolManager::getInstance()->getCurrentPool()->clear();
 
     // Restart animation
     startAnimation();
-    
+
     // Real restart in script level
 #if CC_ENABLE_SCRIPT_BINDING
     ScriptEvent scriptEvent(kRestartGame, nullptr);
@@ -1176,7 +1176,7 @@ void Director::setNextScene()
              _runningScene->onExitTransitionDidStart();
              _runningScene->onExit();
          }
- 
+
          // issue #709. the root node (scene) should receive the cleanup message too
          // otherwise it might be leaked.
          if (_sendCleanupToScene && _runningScene)
@@ -1198,7 +1198,7 @@ void Director::setNextScene()
         _runningScene->onEnter();
         _runningScene->onEnterTransitionDidFinish();
     }
-    
+
     _eventDispatcher->dispatchEvent(_afterSetNextScene);
 }
 
@@ -1235,7 +1235,7 @@ void Director::updateFrameRate()
 {
 //    static const float FPS_FILTER = 0.1f;
 //    static float prevDeltaTime = 0.016f; // 60FPS
-//    
+//
 //    float dt = _deltaTime * FPS_FILTER + (1.0f-FPS_FILTER) * prevDeltaTime;
 //    prevDeltaTime = dt;
 //    _frameRate = 1.0f/dt;
@@ -1261,7 +1261,7 @@ void Director::showStats()
 
     ++_frames;
     _accumDt += _deltaTime;
-    
+
     if (_displayStats && _FPSLabel && _drawnBatchesLabel && _drawnVerticesLabel)
     {
         char buffer[30] = {0};
@@ -1310,7 +1310,7 @@ void Director::calculateMPF()
 // returns the FPS image data pointer and len
 void Director::getFPSImageData(unsigned char** datapointer, ssize_t* length)
 {
-    // FIXME: fixed me if it should be used 
+    // FIXME: fixed me if it should be used
     *datapointer = cc_fps_images_png;
     *length = cc_fps_images_len();
 }
@@ -1326,7 +1326,7 @@ void Director::createStatsLabel()
         fpsString = _FPSLabel->getString();
         drawBatchString = _drawnBatchesLabel->getString();
         drawVerticesString = _drawnVerticesLabel->getString();
-        
+
         CC_SAFE_RELEASE_NULL(_FPSLabel);
         CC_SAFE_RELEASE_NULL(_drawnBatchesLabel);
         CC_SAFE_RELEASE_NULL(_drawnVerticesLabel);
@@ -1352,9 +1352,9 @@ void Director::createStatsLabel()
     CC_SAFE_RELEASE(image);
 
     /*
-     We want to use an image which is stored in the file named ccFPSImage.c 
-     for any design resolutions and all resource resolutions. 
-     
+     We want to use an image which is stored in the file named ccFPSImage.c
+     for any design resolutions and all resource resolutions.
+
      To achieve this, we need to ignore 'contentScaleFactor' in 'AtlasNode' and 'LabelAtlas'.
      So I added a new method called 'setIgnoreContentScaleFactor' for 'AtlasNode',
      this is not exposed to game developers, it's only used for displaying FPS now.
@@ -1434,7 +1434,7 @@ void Director::setActionManager(ActionManager* actionManager)
         CC_SAFE_RETAIN(actionManager);
         CC_SAFE_RELEASE(_actionManager);
         _actionManager = actionManager;
-    }    
+    }
 }
 
 void Director::setEventDispatcher(EventDispatcher* dispatcher)
@@ -1476,7 +1476,7 @@ void Director::mainLoop()
     else if (! _invalid)
     {
         drawScene();
-     
+
         // release the objects
         PoolManager::getInstance()->getCurrentPool()->clear();
     }

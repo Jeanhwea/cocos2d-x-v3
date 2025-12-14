@@ -108,7 +108,7 @@ void GLViewImpl::convertAttrs()
     {
         CCASSERT(0, "Unsupported format for depth and stencil buffers. Using default");
     }
-    
+
     _multisamplingCount = _glContextAttrs.multisamplingCount;
 }
 
@@ -282,3 +282,4 @@ Rect GLViewImpl::getSafeAreaRect() const
 NS_CC_END
 
 #endif // CC_PLATFORM_IOS
+

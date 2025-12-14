@@ -4,7 +4,7 @@ Copyright (c) 2010-2012 cocos2d-x.org
 Copyright (c) 2011      Zynga Inc.
 Copyright (c) 2013-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -40,7 +40,7 @@ static Texture2D* getDefaultTexture()
 {
     Texture2D* texture = nullptr;
     Image* image = nullptr;
-    do 
+    do
     {
         const std::string key = "/__firePngData";
         texture = Director::getInstance()->getTextureCache()->getTextureForKey(key);
@@ -106,7 +106,7 @@ bool ParticleFire::initWithTotalParticles(int numberOfParticles)
 
         // Gravity Mode: speed of particles
         this->modeA.speed = 60;
-        this->modeA.speedVar = 20;        
+        this->modeA.speedVar = 20;
 
         // starting angle
         _angle = 90;
@@ -153,7 +153,7 @@ bool ParticleFire::initWithTotalParticles(int numberOfParticles)
         {
             setTexture(texture);
         }
-        
+
         // additive
         this->setBlendAdditive(true);
         return true;
@@ -728,7 +728,7 @@ ParticleSpiral* ParticleSpiral::createWithTotalParticles(int numberOfParticles)
 
 bool ParticleSpiral::initWithTotalParticles(int numberOfParticles)
 {
-    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) ) 
+    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) )
     {
         // duration
         _duration = DURATION_INFINITY;
@@ -837,7 +837,7 @@ ParticleExplosion* ParticleExplosion::createWithTotalParticles(int numberOfParti
 
 bool ParticleExplosion::initWithTotalParticles(int numberOfParticles)
 {
-    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) ) 
+    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) )
     {
         // duration
         _duration = 0.1f;
@@ -1050,7 +1050,7 @@ ParticleSnow* ParticleSnow::createWithTotalParticles(int numberOfParticles)
 
 bool ParticleSnow::initWithTotalParticles(int numberOfParticles)
 {
-    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) ) 
+    if( ParticleSystemQuad::initWithTotalParticles(numberOfParticles) )
     {
         // duration
         _duration = DURATION_INFINITY;
@@ -1234,3 +1234,4 @@ bool ParticleRain::initWithTotalParticles(int numberOfParticles)
 }
 
 NS_CC_END
+

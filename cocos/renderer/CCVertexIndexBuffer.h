@@ -74,7 +74,7 @@ public:
     Get the internal openGL handle.
     */
     GLuint getVBO() const;
-    
+
 protected:
     /**
     Constructor.
@@ -123,7 +123,7 @@ protected:
     GLenum _usage;
 protected:
     /**
-    Static member to indicate that use _shadowCopy or not. 
+    Static member to indicate that use _shadowCopy or not.
     */
     static bool _enableShadowCopy;
 public:
@@ -155,7 +155,7 @@ public:
         /**Int index will be used.*/
         INDEX_TYPE_UINT_32
     };
-    
+
 public:
     /**
     Create an instance of IndexBuffer.
@@ -208,7 +208,7 @@ protected:
     @param usage A hint to indicate whether the vertexBuffer are updated frequently or not to let GL optimise it.
     */
     bool init(IndexType type, int number, GLenum usage = GL_STATIC_DRAW);
-    
+
 protected:
     /**
     Handle for openGL.
@@ -222,7 +222,7 @@ protected:
     Number of indices.
     */
     int _indexNumber;
-    
+
 protected:
     /**
     Event handler for foreground.
@@ -264,3 +264,4 @@ NS_CC_END
  @}
  */
 #endif /* __CC_VERTEX_INDEX_BUFFER_H__*/
+

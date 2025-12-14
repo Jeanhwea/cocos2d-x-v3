@@ -249,3 +249,4 @@ private:
 NS_CC_END
 #endif
 #endif /* defined(__cocos2d_libs__CCController__) */
+

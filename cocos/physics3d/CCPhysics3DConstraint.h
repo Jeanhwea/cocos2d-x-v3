@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -62,71 +62,71 @@ public:
      * get the impulse that break the constraint
      */
     float getBreakingImpulse() const;
-    
+
     /**
      * set the impulse that break the constraint
      */
     void setBreakingImpulse(float impulse);
-    
+
     /**
      * is it enabled
      */
     bool isEnabled() const;
-    
+
     /**
      * set enable or not
      */
     void setEnabled(bool enabled);
-    
+
     /**
      * get rigid body a
      */
     Physics3DRigidBody* getBodyA() const { return _bodyA; }
-    
+
     /**
      * get rigid body b
      */
     Physics3DRigidBody* getBodyB() const { return _bodyB; }
-    
+
     /**
      * get constraint type
      */
     ConstraintType getConstraintType() const { return _type; }
-    
+
     /**
      * get user data
      */
     void setUserData(void* userData) { _userData = userData; }
-    
+
     /**
      * get user data
      */
     void* getUserData() const { return _userData; }
-    
+
     /**
      * get override number of solver iterations
      */
     int getOverrideNumSolverIterations() const;
-    
+
     /**
      * override the number of constraint solver iterations used to solve this constraint, -1 will use the default number of iterations, as specified in SolverInfo.m_numIterations
      */
     void setOverrideNumSolverIterations(int overrideNumIterations);
-    
+
 #if (CC_ENABLE_BULLET_INTEGRATION)
     btTypedConstraint* getbtContraint() { return _constraint; }
 #endif
-    
+
 protected:
-    
+
     Physics3DConstraint();
     virtual ~Physics3DConstraint();
-    
+
     btTypedConstraint* _constraint;
-    
+
     Physics3DRigidBody* _bodyA;
     Physics3DRigidBody* _bodyB;
-    
+
     ConstraintType      _type;
     void*               _userData;
 };
@@ -144,7 +144,7 @@ public:
      * @return created constraint
      */
     static Physics3DPointToPointConstraint* create(Physics3DRigidBody* rbA, const cocos2d::Vec3& pivotPointInA);
-    
+
     /**
      * create point to point constraint, make the local pivot points of 2 rigid bodies match in worldspace.
      * @param rbA The rigid body A going to be fixed
@@ -154,33 +154,33 @@ public:
      * @return created constraint
      */
     static Physics3DPointToPointConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Vec3& pivotPointInA, const cocos2d::Vec3& pivotPointInB);
-    
+
     /**
      * set pivot point in A's local space
      */
     void setPivotPointInA(const cocos2d::Vec3& pivotA);
-    
+
     /**
      * set pivot point in B's local space
      */
     void setPivotPointInB(const cocos2d::Vec3& pivotB);
-    
+
     /**
      * get pivot point in A's local space
      */
     cocos2d::Vec3 getPivotPointInA() const;
-    
+
     /**
      * get pivot point in B's local space
      */
     cocos2d::Vec3 getPivotPointInB() const;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DPointToPointConstraint();
     virtual ~Physics3DPointToPointConstraint();
     bool init(Physics3DRigidBody* rbA, const cocos2d::Vec3& pivotPointInA);
     bool init(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Vec3& pivotPointInA, const cocos2d::Vec3& pivotPointInB);
-    
+
 };
 
 /**
@@ -197,7 +197,7 @@ public:
      * @param useReferenceFrameA use frame A as reference
      */
     static Physics3DHingeConstraint* create(Physics3DRigidBody* rbA, const cocos2d::Mat4& rbAFrame, bool useReferenceFrameA = false);
-    
+
     /**
      * create hinge constraint
      * @param rbA rigid body A
@@ -218,7 +218,7 @@ public:
      * @param useReferenceFrameA use frame A as reference
      */
     static Physics3DHingeConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Vec3& pivotInA,const cocos2d::Vec3& pivotInB, cocos2d::Vec3& axisInA, cocos2d::Vec3& axisInB, bool useReferenceFrameA = false);
-    
+
     /**
      * create hinge constraint
      * @param rbA rigid body A
@@ -228,30 +228,30 @@ public:
      * @param useReferenceFrameA use frame A as reference
      */
     static Physics3DHingeConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Mat4& rbAFrame, const cocos2d::Mat4& rbBFrame, bool useReferenceFrameA = false);
-    
+
     /**
      * get rigid body A's frame offset
      */
     cocos2d::Mat4 getFrameOffsetA() const;
-    
+
     /**
      * get rigid body B's frame offset
      */
     cocos2d::Mat4 getFrameOffsetB() const;
-    
+
     /**
      * set frames for rigid body A and B
      */
     void setFrames(const cocos2d::Mat4& frameA, const cocos2d::Mat4& frameB);
-    
+
     /**
      * set angular only
      */
     void setAngularOnly(bool angularOnly);
-    
+
     /** enable angular motor */
     void enableAngularMotor(bool enableMotor, float targetVelocity, float maxMotorImpulse);
-    
+
     // extra motor API, including ability to set a target rotation (as opposed to angular velocity)
     // note: setMotorTarget sets angular velocity under the hood, so you must call it every tick to
     //       maintain a given angular target.
@@ -264,7 +264,7 @@ public:
     void setMotorTarget(const cocos2d::Quaternion& qAinB, float dt);
     /** set motor target */
     void setMotorTarget(float targetAngle, float dt);
-    
+
     /** set limit */
     void setLimit(float low, float high, float _softness = 0.9f, float _biasFactor = 0.3f, float _relaxationFactor = 1.0f);
     /**set axis*/
@@ -277,7 +277,7 @@ public:
     float getHingeAngle() const;
     /**get hinge angle*/
     float getHingeAngle(const cocos2d::Mat4& transA, const cocos2d::Mat4& transB);
-    
+
     /**get A's frame */
     cocos2d::Mat4 getAFrame() const;
     /**get B's frame*/
@@ -290,12 +290,12 @@ public:
     float getMotorTargetVelosity() const;
     /**get max motor impulse*/
     float getMaxMotorImpulse() const;
-    
+
     /** access for UseFrameOffset*/
     bool getUseFrameOffset() const;
     /**set use frame offset*/
     void setUseFrameOffset(bool frameOffsetOnOff);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DHingeConstraint()
     {
@@ -325,7 +325,7 @@ public:
      * @param useLinearReferenceFrameA use fixed frame A for linear limits
      */
     static Physics3DSliderConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Mat4& frameInA, const cocos2d::Mat4& frameInB ,bool useLinearReferenceFrameA);
-    
+
     /**get A's frame offset*/
     cocos2d::Mat4 getFrameOffsetA() const;
     /**get B's frame offset*/
@@ -348,7 +348,7 @@ public:
     void setUpperAngLimit(float upperLimit);
     /**use A's frame as linear reference*/
     bool getUseLinearReferenceFrameA() const;
-    
+
     float getSoftnessDirLin() const;
     float getRestitutionDirLin() const;
     float getDampingDirLin() const;
@@ -397,18 +397,18 @@ public:
     float getTargetAngMotorVelocity() const;
     void setMaxAngMotorForce(float maxAngMotorForce);
     float getMaxAngMotorForce() const;
-    
+
     float getLinearPos() const;
     float getAngularPos() const;
-    
+
     /** access for UseFrameOffset*/
     bool getUseFrameOffset() const;
     /**set use frame offset*/
     void setUseFrameOffset(bool frameOffsetOnOff);
-    
+
     /**set frames for rigid body A and B*/
     void setFrames(const cocos2d::Mat4& frameA, const cocos2d::Mat4& frameB);
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DSliderConstraint()
     {
@@ -424,7 +424,7 @@ class CC_DLL Physics3DConeTwistConstraint : public Physics3DConstraint
 {
 public:
     /**
-     * create cone twist constraint 
+     * create cone twist constraint
      * rbA rigid body A
      * frameA A's local frame
      */
@@ -437,7 +437,7 @@ public:
      * frameB rigid body B's local frame
      */
     static Physics3DConeTwistConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Mat4& frameA, const cocos2d::Mat4& frameB);
-    
+
     /**
      * set limits
      * @param swingSpan1 swing span1
@@ -448,12 +448,12 @@ public:
      * @param relaxationFactor 0->1, recommend to stay near 1. the lower the value, the less the constraint will fight velocities which violate the angular limits.
      */
     void setLimit(float swingSpan1,float swingSpan2,float twistSpan, float softness = 1.f, float biasFactor = 0.3f, float relaxationFactor = 1.0f);
-    
+
     /**get A's frame*/
     cocos2d::Mat4 getAFrame() const;
     /**get B's frame*/
     cocos2d::Mat4 getBFrame() const;
-    
+
     /**get swing span1*/
     float getSwingSpan1() const;
     /**get swing span2*/
@@ -462,10 +462,10 @@ public:
     float getTwistSpan() const;
     /**get twist angle*/
     float getTwistAngle() const;
-    
+
     /**set damping*/
     void setDamping(float damping);
-    
+
     /**enable motor*/
     void enableMotor(bool b);
     /**set max motor impulse*/
@@ -476,28 +476,28 @@ public:
     float getFixThresh() const;
     /**set fix thresh*/
     void setFixThresh(float fixThresh);
-    
+
     /**
      * setMotorTarget
      * @param q the desired rotation of bodyA wrt bodyB. Note: if q violates the joint limits, the internal target is clamped to avoid conflicting impulses (very bad for stability), also don't forget to enableMotor()
      */
     void setMotorTarget(const btQuaternion &q);
-    
+
     /** setMotorTarget, q is the desired rotation of frameA wrt frameB in constraint space*/
     void setMotorTargetInConstraintSpace(const btQuaternion &q);
-    
+
     /**get point for angle*/
     cocos2d::Vec3 GetPointForAngle(float fAngleInRadians, float fLength) const;
-    
+
     /**set A and B's frame*/
     virtual void setFrames(const cocos2d::Mat4& frameA, const cocos2d::Mat4& frameB);
-    
+
     /**get A's frame offset*/
     cocos2d::Mat4 getFrameOffsetA() const;
-    
+
     /**get B's frame offset*/
     cocos2d::Mat4 getFrameOffsetB() const;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DConeTwistConstraint()
     {
@@ -507,8 +507,8 @@ CC_CONSTRUCTOR_ACCESS:
 };
 
 /**
- * This generic constraint can emulate a variety of standard constraints, by configuring each of the 6 degrees of freedom (dof). 
- * The first 3 dof axis are linear axis, which represent translation of rigidbodies, and the latter 3 dof axis represent the angular motion. 
+ * This generic constraint can emulate a variety of standard constraints, by configuring each of the 6 degrees of freedom (dof).
+ * The first 3 dof axis are linear axis, which represent translation of rigidbodies, and the latter 3 dof axis represent the angular motion.
  * Each axis can be either locked, free or limited. All axis are locked by default.
  * For each axis:
  * Lowerlimit == Upperlimit -> axis is locked.
@@ -527,7 +527,7 @@ public:
      * @param useLinearReferenceFrameA use fixed frame A for linear limits
      */
     static Physics3D6DofConstraint* create(Physics3DRigidBody* rbA, Physics3DRigidBody* rbB, const cocos2d::Mat4& frameInA, const cocos2d::Mat4& frameInB, bool useLinearReferenceFrameA);
-    
+
     /**
      * create 6 dof constraint
      * @param rbB rigid body B
@@ -535,43 +535,43 @@ public:
      * @param useLinearReferenceFrameB use fixed frame B for linear limits
      */
     static Physics3D6DofConstraint* create(Physics3DRigidBody* rbB, const cocos2d::Mat4& frameInB, bool useLinearReferenceFrameB);
-    
+
     /**set linear lower limit*/
     void setLinearLowerLimit(const cocos2d::Vec3& linearLower);
-    
+
     /**get linear lower limit*/
     cocos2d::Vec3 getLinearLowerLimit() const;
-    
+
     /**set linear upper limit*/
     void setLinearUpperLimit(const cocos2d::Vec3& linearUpper);
-    
+
     /**get linear upper limit*/
     cocos2d::Vec3 getLinearUpperLimit() const;
-    
+
     /**set angular lower limit*/
     void setAngularLowerLimit(const cocos2d::Vec3& angularLower);
-    
+
     /**get angular lower limit*/
     cocos2d::Vec3 getAngularLowerLimit() const;
-    
+
     /**set angular upper limit*/
     void setAngularUpperLimit(const cocos2d::Vec3& angularUpper);
-    
+
     /**get angular upper limit*/
     cocos2d::Vec3 getAngularUpperLimit() const;
-    
-    /** 
+
+    /**
      * is limited?
      * @param limitIndex first 3 are linear, next 3 are angular
      */
     bool isLimited(int limitIndex) const;
-    
+
     /** access for UseFrameOffset*/
     bool getUseFrameOffset() const;
     /**set use frame offset*/
     void setUseFrameOffset(bool frameOffsetOnOff) const;
 
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3D6DofConstraint()
     {
@@ -590,3 +590,4 @@ NS_CC_END
 #endif // CC_USE_3D_PHYSICS
 
 #endif // __PHYSICS_3D_CONSTRAINT_H__
+

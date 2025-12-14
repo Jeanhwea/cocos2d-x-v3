@@ -86,7 +86,7 @@ void ActionEase::stop()
 {
     if (_inner)
         _inner->stop();
-    
+
     ActionInterval::stop();
 }
 
@@ -323,3 +323,4 @@ EaseBezierAction* EaseBezierAction::reverse() const
 }
 
 NS_CC_END
+

@@ -467,3 +467,4 @@ void register_all_cocos2dx_experimental_video(JSContext* cx, JS::HandleObject ob
 }
 
 #endif //#if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_IOS) && !defined(CC_TARGET_OS_TVOS)
+

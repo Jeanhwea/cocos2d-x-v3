@@ -155,7 +155,7 @@ bool TextFieldTTF::initWithPlaceHolder(const std::string& placeholder, const std
 {
     _placeHolder = placeholder;
 
-    do 
+    do
     {
         // If fontName is ttf file and it corrected, use TTFConfig
         if (FileUtils::getInstance()->isFileExist(fontName))
@@ -171,7 +171,7 @@ bool TextFieldTTF::initWithPlaceHolder(const std::string& placeholder, const std
         setSystemFontSize(fontSize);
 
     } while (false);
-    
+
     setTextColorInternally(_colorSpaceHolder);
     Label::setString(_placeHolder);
 
@@ -428,7 +428,7 @@ void TextFieldTTF::setTextColorInternally(const Color4B& color)
         Label::setColor(Color3B(color));
         return;
     }
-    
+
     Label::setTextColor(color);
 }
 
@@ -690,7 +690,7 @@ void TextFieldTTF::setCursorEnabled(bool enabled)
     {
         return;
     }
-    
+
     _cursorEnabled = enabled;
     if (_cursorEnabled)
     {
@@ -700,7 +700,7 @@ void TextFieldTTF::setCursorEnabled(bool enabled)
         }
         return;
     }
-    
+
     _cursorPosition = 0;
     if (_currentLabelType == LabelType::TTF || _currentLabelType == LabelType::BMFONT) {
         unscheduleUpdate();

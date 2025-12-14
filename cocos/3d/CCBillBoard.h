@@ -93,11 +93,11 @@ public:
     Mode getMode() const;
 
     //override
-    
+
     /** update billboard's transform and turn it towards camera */
     virtual void visit(Renderer *renderer, const Mat4& parentTransform, uint32_t parentFlags) override;
-    
-    /** 
+
+    /**
      * draw BillBoard object.
      *
      * @lua NA
@@ -118,7 +118,7 @@ protected:
 
     /** @deprecated Use calculateBillboardTransform instead. */
     CC_DEPRECATED_ATTRIBUTE bool calculateBillbaordTransform();
-    
+
     Mat4 _camWorldMat;
     Mat4 _mvTransform;
 
@@ -137,3 +137,4 @@ NS_CC_END
 
 
 #endif // __CCBILLBOARD_H__
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -60,31 +60,31 @@ public:
         HEIGHT_FIELD,
         COMPOUND
     };
-    
+
     /**
      * get shape type
      */
     virtual ShapeType getShapeType() const;
-    
+
     /**
      * create box shape
      * @param extent The extent of sphere.
      */
     static Physics3DShape* createBox(const cocos2d::Vec3& extent);
-    
+
     /**
      * create sphere shape
      * @param radius The radius of sphere.
      */
     static Physics3DShape* createSphere(float radius);
-    
+
     /**
      * create cylinder shape
      * @param radius The radius of cylinder.
      * @param height The height.
      */
     static Physics3DShape* createCylinder(float radius, float height);
-    
+
     /**
      * create capsule shape
      * @param radius The radius of capsule.
@@ -126,15 +126,15 @@ public:
      */
     static Physics3DShape* createCompoundShape(const std::vector<std::pair<Physics3DShape *, Mat4>> &shapes);
 
-    
+
 #if CC_ENABLE_BULLET_INTEGRATION
     btCollisionShape* getbtShape() const { return _btShape; }
 #endif
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DShape();
     ~Physics3DShape();
-    
+
     bool initBox(const cocos2d::Vec3& ext);
     bool initSphere(float radius);
     bool initCylinder(float radius, float height);
@@ -147,10 +147,10 @@ CC_CONSTRUCTOR_ACCESS:
         , bool useFloatDatam, bool flipQuadEdges
         , bool useDiamondSubdivision);
     bool initCompoundShape(const std::vector<std::pair<Physics3DShape *, Mat4>> &shapes);
-    
+
 protected:
     ShapeType _shapeType; //shape type
-    
+
 #if (CC_ENABLE_BULLET_INTEGRATION)
     btCollisionShape*  _btShape;
     unsigned char *_heightfieldData;
@@ -168,3 +168,4 @@ NS_CC_END
 #endif //CC_USE_3D_PHYSICS
 
 #endif // __PHYSICS_3D_SHAPE_H__
+

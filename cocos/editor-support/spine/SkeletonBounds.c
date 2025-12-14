@@ -203,3 +203,4 @@ spPolygon* spSkeletonBounds_getPolygon (spSkeletonBounds* self, spBoundingBoxAtt
 		if (self->boundingBoxes[i] == boundingBox) return self->polygons[i];
 	return 0;
 }
+

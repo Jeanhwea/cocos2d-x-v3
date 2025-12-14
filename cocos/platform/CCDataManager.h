@@ -57,3 +57,4 @@ public:
 NS_CC_END
 
 #endif    // __CC_DataManager_H__
+

@@ -51,10 +51,10 @@ public:
 
     /** @deprecated Use destroyInstance() instead */
     CC_DEPRECATED_ATTRIBUTE static void purge() { ArmatureDataManager::destroyInstance(); };
-    
+
     static ArmatureDataManager *getInstance();
     static void destroyInstance();
-    
+
 private:
     /**
      * @js ctor
@@ -207,3 +207,4 @@ private:
 }
 
 #endif/*__CCARMATUREDATAMANAGER_H__*/
+

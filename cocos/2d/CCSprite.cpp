@@ -940,7 +940,7 @@ void Sprite::populateTriangle(int quadIndex, const V3F_C4B_T2F_Quad& quad)
         const int index_br = index_bl + 1;
         const int index_tl = index_bl + 4;
         const int index_tr = index_bl + 5;
-        
+
 
         _trianglesVertex[index_tr] = quad.tr;
         _trianglesVertex[index_br] = quad.br;
@@ -1729,3 +1729,4 @@ void Sprite::setPolygonInfo(const PolygonInfo& info)
 }
 
 NS_CC_END
+

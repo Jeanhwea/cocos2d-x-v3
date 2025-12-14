@@ -125,12 +125,12 @@ ConsoleUploadFile::ConsoleUploadFile()
 void ConsoleUploadFile::onEnter()
 {
     BaseTestConsole::onEnter();
-    
+
 }
 
 ConsoleUploadFile::~ConsoleUploadFile()
 {
-    
+
 }
 
 void ConsoleUploadFile::uploadFile()
@@ -167,7 +167,7 @@ void ConsoleUploadFile::uploadFile()
         nodeName = "localhost";
 
     s = getaddrinfo(nodeName.c_str(), "5678", &hints, &result);
-    if (s != 0) 
+    if (s != 0)
     {
         CCLOG("ConsoleUploadFile: getaddrinfo error");
         return;
@@ -271,7 +271,7 @@ std::string ConsoleUploadFile::title() const
 std::string ConsoleUploadFile::subtitle() const
 {
     auto sharedFileUtils = FileUtils::getInstance();
-    
+
     std::string writablePath = sharedFileUtils->getWritablePath();
 
     return "file uploaded to:" + writablePath + _targetFileName;

@@ -5305,3 +5305,4 @@ int register_glnode_manual(lua_State* tolua_S)
 
     return 1;
 }
+

@@ -190,7 +190,7 @@ LanguageType Application::getCurrentLanguage()
     {
         return LanguageType::ENGLISH;
     }
-    
+
     return utils::getLanguageTypeByISO2(pLanguageName);
 }
 

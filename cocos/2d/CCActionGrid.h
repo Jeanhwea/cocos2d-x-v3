@@ -40,7 +40,7 @@ class NodeGrid;
  * @{
  */
 
-/** 
+/**
 @class GridAction
 @brief Base class for Grid actions.
 @details Grid actions are the actions take effect on GridBase.
@@ -49,7 +49,7 @@ class CC_DLL GridAction : public ActionInterval
 {
 public:
 
-    /** 
+    /**
     @brief Get the pointer of GridBase.
     @return The pointer of GridBase.
     */
@@ -67,7 +67,7 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     GridAction() {}
     virtual ~GridAction() {}
-    /** 
+    /**
      * @brief Initializes the action with size and duration.
      * @param duration The duration of the GridAction. It's a value in seconds.
      * @param gridSize The size of the GridAction should be.
@@ -77,16 +77,16 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
     Size _gridSize;
-    
+
     NodeGrid* _gridNodeTarget;
-    
+
     void cacheTargetAsGridNode();
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(GridAction);
 };
 
-/** 
+/**
  @brief Base class for Grid3D actions.
  @details Grid3D actions can modify a non-tiled grid.
  */
@@ -105,13 +105,13 @@ public:
      */
     Vec3 getVertex(const Vec2& position) const;
 
-    /** @deprecated Use getVertex() instead 
+    /** @deprecated Use getVertex() instead
      * @js NA
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Vec3 vertex(const Vec2& position) { return getVertex(position); }
 
-    /** 
+    /**
      * @brief Get the non-transformed vertex that belongs to certain position in the grid.
      * @param position The position of the grid.
      * @return Return a pointer of vertex.
@@ -120,13 +120,13 @@ public:
      */
     Vec3 getOriginalVertex(const Vec2& position) const;
 
-    /** @deprecated Use getOriginalVertex() instead 
+    /** @deprecated Use getOriginalVertex() instead
      * @js NA
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Vec3 originalVertex(const Vec2& position) { return getOriginalVertex(position); }
 
-    /** 
+    /**
      * @brief Set a new vertex to a certain position of the grid.
      * @param position The position of the grid.
      * @param vertex The vertex will be used on the certain position of grid.
@@ -141,7 +141,7 @@ public:
         CC_ASSERT(0);
         return nullptr;
     }
-    
+
     /**
      * @brief Get the effect grid rect.
      * @return Return the effect grid rect.
@@ -155,7 +155,7 @@ public:
 class CC_DLL TiledGrid3DAction : public GridAction
 {
 public:
-    /** 
+    /**
      * @brief Create the action with size and duration.
      * @param duration The duration of the action. It's a value in seconds.
      * @param gridSize Specify the grid size of the action.
@@ -164,25 +164,25 @@ public:
      */
     static TiledGrid3DAction* create(float duration, const Size& gridSize);
 
-    /** 
+    /**
      * @brief Get the tile that belongs to a certain position of the grid.
      * @param position The position of the tile want to get.
-     * @return A quadrilateral of the tile. 
+     * @return A quadrilateral of the tile.
      * @js tile
      * @lua NA
      */
     Quad3 getTile(const Vec2& position) const;
 
-    /** @deprecated Use getTile() instead 
+    /** @deprecated Use getTile() instead
      * @js NA
      * @lua NA
      */
     CC_DEPRECATED_ATTRIBUTE Quad3 tile(const Vec2& position) { return getTile(position); }
 
-    /** 
+    /**
      * @brief Get the non-transformed tile that belongs to a certain position of the grid.
      * @param position The position of the tile want to get.
-     * @return A quadrilateral of the tile. 
+     * @return A quadrilateral of the tile.
      * @js originalTile
      * @lua NA
      */
@@ -194,7 +194,7 @@ public:
      */
     CC_DEPRECATED_ATTRIBUTE Quad3 originalTile(const Vec2& position) { return getOriginalTile(position); }
 
-    /** 
+    /**
      * @brief Set a new tile to a certain position of the grid.
      * @param position The position of the tile.
      * @param coords The quadrilateral of the new tile.
@@ -228,7 +228,7 @@ public:
     */
     static AccelDeccelAmplitude* create(Action *action, float duration);
 
-    /** 
+    /**
     @brief Get the value of amplitude rate.
     @return the value of amplitude rate.
     */
@@ -244,12 +244,12 @@ public:
     virtual void update(float time) override;
     virtual AccelDeccelAmplitude* clone() const override;
     virtual AccelDeccelAmplitude* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     AccelDeccelAmplitude() {}
     virtual ~AccelDeccelAmplitude();
-    
-    /** 
+
+    /**
     @brief Initializes the action with an inner action that has the amplitude property, and a duration time.
     @param action A pointer of the inner action.
     @param duration Specify the duration of the AccelDeccelAmplitude action.
@@ -272,7 +272,7 @@ private:
 class CC_DLL AccelAmplitude : public ActionInterval
 {
 public:
-    /** 
+    /**
     @brief Create the action with an inner action that has the amplitude property, and a duration time.
     @param action A pointer of the inner action.
     @param duration Specify the duration of the AccelAmplitude action.
@@ -280,7 +280,7 @@ public:
      */
     static AccelAmplitude* create(Action *action, float duration);
 
-    /** 
+    /**
     @brief Get the value of amplitude rate.
     @return The value of amplitude rate.
     */
@@ -296,7 +296,7 @@ public:
     virtual void update(float time) override;
     virtual AccelAmplitude* clone() const override;
     virtual AccelAmplitude* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     AccelAmplitude() {}
     virtual ~AccelAmplitude();
@@ -318,7 +318,7 @@ private:
 class CC_DLL DeccelAmplitude : public ActionInterval
 {
 public:
-    /** 
+    /**
     @brief Creates the action with an inner action that has the amplitude property, and a duration time.
     @param action A pointer of the inner action.
     @param duration Specify the duration of the DeccelAmplitude action.
@@ -326,7 +326,7 @@ public:
     */
     static DeccelAmplitude* create(Action *action, float duration);
 
-    /** 
+    /**
     @brief Get the value of amplitude rate.
     @return The value of amplitude rate.
     */
@@ -342,12 +342,12 @@ public:
     virtual void update(float time) override;
     virtual DeccelAmplitude* clone() const override;
     virtual DeccelAmplitude* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     DeccelAmplitude() {}
     virtual ~DeccelAmplitude();
 
-    /** 
+    /**
     @brief Initializes the action with an inner action that has the amplitude property, and a duration time.
     @param action The pointer of inner action.
     @param duration The duration of the DeccelAmplitude action.
@@ -374,7 +374,7 @@ private:
 class CC_DLL StopGrid : public ActionInstant
 {
 public:
-    /** 
+    /**
     @brief Create a StopGrid Action.
     @return Return a pointer of StopGrid. When the creation failed, return nil.
     */
@@ -388,23 +388,23 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     StopGrid() {}
     virtual ~StopGrid() {}
-    
+
 protected:
     NodeGrid* _gridNodeTarget;
-    
+
     void cacheTargetAsGridNode();
 
 private:
     CC_DISALLOW_COPY_AND_ASSIGN(StopGrid);
 };
 
-/** 
+/**
 @brief ReuseGrid action.
 */
 class CC_DLL ReuseGrid : public ActionInstant
 {
 public:
-    /** 
+    /**
     @brief Create an action with the number of times that the current grid will be reused.
     @param times Specify times the grid will be reused.
     @return Return a pointer of ReuseGrid. When the creation failed, return nil.
@@ -415,12 +415,12 @@ public:
     virtual void startWithTarget(Node *target) override;
     virtual ReuseGrid* clone() const override;
     virtual ReuseGrid* reverse() const override;
-    
+
 CC_CONSTRUCTOR_ACCESS:
     ReuseGrid() {}
     virtual ~ReuseGrid() {}
-    
-    /** 
+
+    /**
     @brief Initializes an action with the number of times that the current grid will be reused.
     @param times Specify times the grid will be reused.
     @return If the initialization success, return true; otherwise, return false.
@@ -429,9 +429,9 @@ CC_CONSTRUCTOR_ACCESS:
 
 protected:
     NodeGrid* _gridNodeTarget;
-    
+
     void cacheTargetAsGridNode();
-    
+
     int _times;
 
 private:
@@ -444,3 +444,4 @@ private:
 NS_CC_END
 
 #endif // __ACTION_CCGRID_ACTION_H__
+

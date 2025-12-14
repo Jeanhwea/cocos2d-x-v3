@@ -35,7 +35,7 @@ namespace cocostudio {
 class CC_STUDIO_DLL ComRender : public cocos2d::Component
 {
     DECLARE_CLASS_COMPONENT_INFO
- 
+
 public:
     const static std::string COMPONENT_NAME;
 
@@ -86,3 +86,4 @@ private:
 
 }
 #endif  // __CC_EXTENTIONS_CCCOMRENDER_H__
+

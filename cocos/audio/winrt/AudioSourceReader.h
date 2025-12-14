@@ -70,7 +70,7 @@ public:
     bool isStreamingSource() { return _isStreaming; }
     std::string getFilePath() { return _filePath; }
     virtual size_t getTotalAudioBytes() { return _audioSize; }
-    
+
     virtual bool initialize(const std::string& filePath) = 0;
     virtual FileFormat getFileFormat() = 0;
     virtual  bool consumeChunk(AudioDataChunk& chunk) = 0;

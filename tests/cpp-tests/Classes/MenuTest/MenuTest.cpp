@@ -31,7 +31,7 @@ USING_NS_CC;
 
 enum {
     kTagMenu = 1,
-    kTagMenu0 = 0,                       
+    kTagMenu0 = 0,
     kTagMenu1 = 1,
 };
 
@@ -64,14 +64,14 @@ MenuLayerMainMenu::MenuLayerMainMenu()
     _touchListener->onTouchEnded = CC_CALLBACK_2(MenuLayerMainMenu::touchEnded, this);
     _touchListener->onTouchCancelled = CC_CALLBACK_2(MenuLayerMainMenu::touchCancelled, this);
     _eventDispatcher->addEventListenerWithFixedPriority(_touchListener, 1);
-    
-    // Font Item    
+
+    // Font Item
     auto spriteNormal = Sprite::create(s_MenuItem, Rect(0,23*2,115,23));
     auto spriteSelected = Sprite::create(s_MenuItem, Rect(0,23*1,115,23));
     auto spriteDisabled = Sprite::create(s_MenuItem, Rect(0,23*0,115,23));
 
     auto item1 = MenuItemSprite::create(spriteNormal, spriteSelected, spriteDisabled, CC_CALLBACK_1(MenuLayerMainMenu::menuCallback, this) );
-    
+
     // Image Item
     auto item2 = MenuItemImage::create(s_SendScore, s_PressSendScore, CC_CALLBACK_1(MenuLayerMainMenu::menuCallback2, this) );
 
@@ -88,7 +88,7 @@ MenuLayerMainMenu::MenuLayerMainMenu()
 
     item4->setFontSizeObj(20);
     item4->setFontName("fonts/Marker Felt.ttf");
-    
+
     // Label Item (LabelBMFont)
     auto label = Label::createWithBMFont("fonts/bitmapFontTest3.fnt", "configuration");
     auto item5 = MenuItemLabel::create(label, CC_CALLBACK_1(MenuLayerMainMenu::menuCallbackConfig, this));
@@ -103,9 +103,9 @@ MenuLayerMainMenu::MenuLayerMainMenu()
 
     // Font Item
     auto item7= MenuItemFont::create("Quit", CC_CALLBACK_1(MenuLayerMainMenu::onQuit, this));
-    
+
     auto item8 = MenuItemFont::create("Remove menu item when moving", CC_CALLBACK_1(MenuLayerMainMenu::menuMovingCallback, this));
-    
+
     auto color_action = TintBy::create(0.5f, 0, -255, -255);
     auto color_back = color_action->reverse();
     auto seq = Sequence::create(color_action, color_back, nullptr);
@@ -113,18 +113,18 @@ MenuLayerMainMenu::MenuLayerMainMenu()
 
     auto menu = Menu::create( item1, item2, item3, item4, item5, item6, item7, item8,  nullptr);
     menu->alignItemsVertically();
-    
-    
+
+
     // elastic effect
     auto s = Director::getInstance()->getWinSize();
-    
+
     int i=0;
     for(const auto &child : menu->getChildren()) {
         auto dstPoint = child->getPosition();
         int offset = (int) (s.width/2 + 50);
         if( i % 2 == 0)
             offset = -offset;
-        
+
         child->setPosition( Vec2( dstPoint.x + offset, dstPoint.y) );
         child->runAction(
                          EaseElasticOut::create(MoveBy::create(2, Vec2(dstPoint.x - offset,0)), 0.35f)
@@ -182,7 +182,7 @@ void MenuLayerMainMenu::allowTouches(float dt)
     log("TOUCHES ALLOWED AGAIN");
 }
 
-void MenuLayerMainMenu::menuCallbackDisabled(Ref* sender) 
+void MenuLayerMainMenu::menuCallbackDisabled(Ref* sender)
 {
     // hijack all touch events for 5 seconds
     _eventDispatcher->setPriority(_touchListener, -1);
@@ -218,23 +218,23 @@ void MenuLayerMainMenu::menuMovingCallback(Ref *pSender)
 //------------------------------------------------------------------
 MenuLayer2::MenuLayer2()
 {
-    for( int i=0;i < 2;i++ ) 
+    for( int i=0;i < 2;i++ )
     {
         auto item1 = MenuItemImage::create(s_PlayNormal, s_PlaySelect, CC_CALLBACK_1(MenuLayer2::menuCallback, this));
         auto item2 = MenuItemImage::create(s_HighNormal, s_HighSelect, CC_CALLBACK_1(MenuLayer2::menuCallbackOpacity, this));
         auto item3 = MenuItemImage::create(s_AboutNormal, s_AboutSelect, CC_CALLBACK_1(MenuLayer2::menuCallbackAlign, this));
-        
+
         item1->setScaleX( 1.5f );
         item2->setScaleX( 0.5f );
         item3->setScaleX( 0.5f );
-        
+
         auto menu = Menu::create(item1, item2, item3, nullptr);
-        
+
         auto s = Director::getInstance()->getWinSize();
         menu->setPosition(Vec2(s.width/2, s.height/2));
 
         menu->setTag( kTagMenu );
-        
+
         addChild(menu, 0, 100+i);
 
         _centeredMenu = menu->getPosition();
@@ -250,48 +250,48 @@ MenuLayer2::~MenuLayer2()
 
 void MenuLayer2::alignMenusH()
 {
-    for(int i=0;i<2;i++) 
+    for(int i=0;i<2;i++)
     {
         auto menu = static_cast<Menu*>( getChildByTag(100+i) );
         menu->setPosition( _centeredMenu );
-        if(i==0) 
+        if(i==0)
         {
             // TIP: if no padding, padding = 5
-            menu->alignItemsHorizontally();            
+            menu->alignItemsHorizontally();
             auto p = menu->getPosition();
             menu->setPosition(p + Vec2(0,30));
-            
-        } 
-        else 
+
+        }
+        else
         {
             // TIP: but padding is configurable
             menu->alignItemsHorizontallyWithPadding(40);
             auto p = menu->getPosition();
             menu->setPosition(p - Vec2(0,30));
-        }        
+        }
     }
 }
 
 void MenuLayer2::alignMenusV()
 {
-    for(int i=0;i<2;i++) 
+    for(int i=0;i<2;i++)
     {
         auto menu = static_cast<Menu*>( getChildByTag(100+i) );
         menu->setPosition( _centeredMenu );
-        if(i==0) 
+        if(i==0)
         {
             // TIP: if no padding, padding = 5
-            menu->alignItemsVertically();            
+            menu->alignItemsVertically();
             auto p = menu->getPosition();
             menu->setPosition(p + Vec2(100,0));
-        } 
-        else 
+        }
+        else
         {
             // TIP: but padding is configurable
-            menu->alignItemsVerticallyWithPadding(40);    
+            menu->alignItemsVerticallyWithPadding(40);
             auto p = menu->getPosition();
             menu->setPosition(p - Vec2(100,0));
-        }        
+        }
     }
 }
 
@@ -307,17 +307,17 @@ void MenuLayer2::menuCallbackOpacity(Ref* sender)
     if( opacity == 128 )
         menu->setOpacity(255);
     else
-        menu->setOpacity(128);     
+        menu->setOpacity(128);
 }
 
 void MenuLayer2::menuCallbackAlign(Ref* sender)
 {
     _alignedH = ! _alignedH;
-    
+
     if( _alignedH )
         alignMenusH();
     else
-        alignMenusV(); 
+        alignMenusV();
 }
 
 //------------------------------------------------------------------
@@ -343,35 +343,35 @@ MenuLayer3::MenuLayer3()
     auto spriteNormal   = Sprite::create(s_MenuItem,  Rect(0,23*2,115,23));
     auto spriteSelected = Sprite::create(s_MenuItem,  Rect(0,23*1,115,23));
     auto spriteDisabled = Sprite::create(s_MenuItem,  Rect(0,23*0,115,23));
-    
-    
+
+
     auto item3 = MenuItemSprite::create(spriteNormal, spriteSelected, spriteDisabled, [](Ref *sender) {
 		log("sprite clicked!");
 	});
     _disabledItem = item3;  item3->retain();
     _disabledItem->setEnabled( false );
-    
-    auto menu = Menu::create( item1, item2, item3, nullptr);    
+
+    auto menu = Menu::create( item1, item2, item3, nullptr);
     menu->setPosition( Vec2(0,0) );
 
     auto s = Director::getInstance()->getWinSize();
-    
+
     item1->setPosition( Vec2(s.width/2 - 150, s.height/2) );
     item2->setPosition( Vec2(s.width/2 - 200, s.height/2) );
     item3->setPosition( Vec2(s.width/2, s.height/2 - 100) );
-    
+
     auto jump = JumpBy::create(3, Vec2(400,0), 50, 4);
     item2->runAction( RepeatForever::create(Sequence::create( jump, jump->reverse(), nullptr)));
 
     auto spin1 = RotateBy::create(3, 360);
     auto spin2 = spin1->clone();
     auto spin3 = spin1->clone();
-    
+
     item1->runAction( RepeatForever::create(spin1) );
     item2->runAction( RepeatForever::create(spin2) );
     item3->runAction( RepeatForever::create(spin3) );
-    
-    addChild( menu ); 
+
+    addChild( menu );
 
     menu->setPosition(Vec2(0,0));
 }
@@ -398,7 +398,7 @@ MenuLayer4::MenuLayer4()
                                                                 MenuItemFont::create( "On" ),
                                                                 MenuItemFont::create( "Off"),
                                                                 nullptr );
-    
+
     MenuItemFont::setFontName( "American Typewriter" );
     MenuItemFont::setFontSize(18);
     auto title2 = MenuItemFont::create( "Music" );
@@ -409,7 +409,7 @@ MenuLayer4::MenuLayer4()
                                                                 MenuItemFont::create( "On" ),
                                                                 MenuItemFont::create( "Off"),
                                                                 nullptr );
-    
+
     MenuItemFont::setFontName( "American Typewriter" );
     MenuItemFont::setFontSize(18);
     auto title3 = MenuItemFont::create( "Quality" );
@@ -420,7 +420,7 @@ MenuLayer4::MenuLayer4()
                                                                 MenuItemFont::create( "High" ),
                                                                 MenuItemFont::create( "Low" ),
                                                                 nullptr );
-    
+
     MenuItemFont::setFontName( "American Typewriter" );
     MenuItemFont::setFontSize(18);
     auto title4 = MenuItemFont::create( "Orientation" );
@@ -428,32 +428,32 @@ MenuLayer4::MenuLayer4()
     MenuItemFont::setFontName( "fonts/Marker Felt.ttf" );
     MenuItemFont::setFontSize(34);
     auto item4 = MenuItemToggle::createWithCallback(CC_CALLBACK_1(MenuLayer4::menuCallback, this),
-                                                                MenuItemFont::create( "Off" ), 
+                                                                MenuItemFont::create( "Off" ),
                                                                 nullptr );
-    
+
     // TIP: you can manipulate the items like any other MutableArray
     item4->getSubItems().pushBack( MenuItemFont::create( "33%" ) );
     item4->getSubItems().pushBack( MenuItemFont::create( "66%" ) );
     item4->getSubItems().pushBack( MenuItemFont::create( "100%" ) );
-    
+
     // you can change the one of the items by doing this
     item4->setSelectedIndex( 2 );
-    
+
     MenuItemFont::setFontName( "fonts/Marker Felt.ttf" );
     MenuItemFont::setFontSize( 34 );
-    
+
     auto label = Label::createWithBMFont("fonts/bitmapFontTest3.fnt",  "go back");
     auto back = MenuItemLabel::create(label, CC_CALLBACK_1(MenuLayer4::backCallback, this) );
-    
+
     auto menu = Menu::create(
                   title1, title2,
                   item1, item2,
                   title3, title4,
                   item3, item4,
                   back, nullptr ); // 9 items.
-    
+
     menu->alignItemsInColumns(2, 2, 2, 2, 1, NULL);
-    
+
     addChild( menu );
 
     auto s = Director::getInstance()->getWinSize();
@@ -466,7 +466,7 @@ MenuLayer4::~MenuLayer4()
 
 void MenuLayer4::menuCallback(Ref* sender)
 {
-    //CCLOG("selected item: %x index:%d", dynamic_cast<MenuItemToggle*>(sender)->selectedItem(), dynamic_cast<MenuItemToggle*>(sender)->selectedIndex() ); 
+    //CCLOG("selected item: %x index:%d", dynamic_cast<MenuItemToggle*>(sender)->selectedItem(), dynamic_cast<MenuItemToggle*>(sender)->selectedIndex() );
 }
 
 void MenuLayer4::backCallback(Ref* sender)
@@ -480,11 +480,11 @@ BugsTest::BugsTest()
     auto issue1410 = MenuItemFont::create("Issue 1410", CC_CALLBACK_1(BugsTest::issue1410MenuCallback, this));
     auto issue1410_2 = MenuItemFont::create("Issue 1410 #2", CC_CALLBACK_1(BugsTest::issue1410v2MenuCallback, this));
     auto back = MenuItemFont::create("Back", CC_CALLBACK_1(BugsTest::backMenuCallback, this));
-    
+
     auto menu = Menu::create(issue1410, issue1410_2, back, nullptr);
     addChild(menu);
     menu->alignItemsVertically();
-    
+
     auto s = Director::getInstance()->getWinSize();
     menu->setPosition(Vec2(s.width/2, s.height/2));
 }
@@ -494,7 +494,7 @@ void BugsTest::issue1410MenuCallback(Ref *sender)
     auto menu = static_cast<Menu*>( static_cast<Node*>(sender)->getParent() );
     menu->setEnabled(false);
     menu->setEnabled(true);
-    
+
     log("NO CRASHES");
 }
 
@@ -503,7 +503,7 @@ void BugsTest::issue1410v2MenuCallback(cocos2d::Ref *pSender)
     auto menu = static_cast<Menu*>( static_cast<MenuItem*>(pSender)->getParent() );
     menu->setEnabled(true);
     menu->setEnabled(false);
-    
+
     log("NO CRASHES. AND MENU SHOULD STOP WORKING");
 }
 
@@ -515,31 +515,31 @@ void BugsTest::backMenuCallback(cocos2d::Ref *pSender)
 RemoveMenuItemWhenMove::RemoveMenuItemWhenMove()
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto label = Label::createWithTTF("click item and move, should not crash", "fonts/arial.ttf", 20);
     label->setPosition(Vec2(s.width/2, s.height - 30));
     addChild(label);
-    
+
     item = MenuItemFont::create("item 1");
     item->retain();
-    
+
     auto back = MenuItemFont::create("go back", CC_CALLBACK_1(RemoveMenuItemWhenMove::goBack, this));
-    
+
     auto menu = Menu::create(item, back, nullptr);
     addChild(menu);
     menu->alignItemsVertically();
-    
+
     menu->setPosition(Vec2(s.width/2, s.height/2));
-    
+
     // Register Touch Event
     _touchListener = EventListenerTouchOneByOne::create();
     _touchListener->setSwallowTouches(false);
-    
+
     _touchListener->onTouchBegan = CC_CALLBACK_2(RemoveMenuItemWhenMove::onTouchBegan, this);
     _touchListener->onTouchMoved = CC_CALLBACK_2(RemoveMenuItemWhenMove::onTouchMoved, this);
-    
+
     _eventDispatcher->addEventListenerWithFixedPriority(_touchListener, -129);
-    
+
 }
 
 void RemoveMenuItemWhenMove::goBack(Ref *pSender)
@@ -596,3 +596,4 @@ bool MenuTest::init()
 
     return false;
 }
+

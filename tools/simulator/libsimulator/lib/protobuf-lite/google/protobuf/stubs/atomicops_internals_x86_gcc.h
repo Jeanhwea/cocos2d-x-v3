@@ -291,3 +291,4 @@ inline Atomic64 Release_CompareAndSwap(volatile Atomic64* ptr,
 #undef ATOMICOPS_COMPILER_BARRIER
 
 #endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_X86_GCC_H_
+

@@ -46,3 +46,4 @@ void LuaLog(const char * format)
 NS_CC_END
 
 #endif //  CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
+

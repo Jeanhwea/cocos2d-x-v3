@@ -128,3 +128,4 @@ const Vector<Pass*>& Technique::getPasses() const
 }
 
 NS_CC_END
+

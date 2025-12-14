@@ -145,3 +145,4 @@ JSAutoCompartment ac(cx, obj)
 #endif // JSB_MAX_STACK_QUOTA
 
 #endif // __JS_BINDINGS_CONFIG_H
+

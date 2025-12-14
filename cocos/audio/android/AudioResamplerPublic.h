@@ -172,3 +172,4 @@ static inline bool isMusicRate(uint32_t sampleRate) {
 }} // namespace cocos2d { namespace experimental {
 
 // ---------------------------------------------------------------------------
+

@@ -52,7 +52,7 @@ AutoreleasePool::~AutoreleasePool()
 {
     CCLOGINFO("deallocing AutoreleasePool: %p", this);
     clear();
-    
+
     PoolManager::getInstance()->pop();
 }
 
@@ -131,11 +131,11 @@ PoolManager::PoolManager()
 PoolManager::~PoolManager()
 {
     CCLOGINFO("deallocing PoolManager: %p", this);
-    
+
     while (!_releasePoolStack.empty())
     {
         AutoreleasePool* pool = _releasePoolStack.back();
-        
+
         delete pool;
     }
 }
@@ -168,3 +168,4 @@ void PoolManager::pop()
 }
 
 NS_CC_END
+

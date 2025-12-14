@@ -469,7 +469,7 @@ public:
         }
 
         _data.resize(LWS_PRE + len);
-        
+
         if (len > 0)
         {
             std::copy(buf, buf + len, _data.begin() + LWS_PRE);
@@ -533,7 +533,7 @@ WebSocket::WebSocket()
     }
 
     __websocketInstances->push_back(this);
-    
+
     std::shared_ptr<std::atomic<bool>> isDestroyed = _isDestroyed;
     _resetDirectorListener = Director::getInstance()->getEventDispatcher()->addCustomEventListener(Director::EVENT_RESET, [this, isDestroyed](EventCustom*){
         if (*isDestroyed)
@@ -545,7 +545,7 @@ WebSocket::WebSocket()
 WebSocket::~WebSocket()
 {
     LOGD("In the destructor of WebSocket (%p)\n", this);
-    
+
     std::lock_guard<std::mutex> lk(__instanceMutex);
 
     if (__websocketInstances != nullptr)
@@ -575,9 +575,9 @@ WebSocket::~WebSocket()
         free(name);
     }
     free(_lwsProtocols);
-    
+
     Director::getInstance()->getEventDispatcher()->removeEventListener(_resetDirectorListener);
-    
+
     *_isDestroyed = true;
 }
 
@@ -1352,3 +1352,4 @@ int WebSocket::onSocketCallback(struct lws *wsi,
 }
 
 NS_NETWORK_END
+

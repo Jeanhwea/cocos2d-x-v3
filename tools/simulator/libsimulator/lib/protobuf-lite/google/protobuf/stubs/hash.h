@@ -230,3 +230,4 @@ struct streq {
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_STUBS_HASH_H__
+

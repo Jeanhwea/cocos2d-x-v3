@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -37,7 +37,7 @@ struct PUParticle3D;
 class  CC_DLL PUBaseCollider : public PUAffector
 {
 public:
-    /** Determines how a particle collision should be determined. IT_POINT means that the position of 
+    /** Determines how a particle collision should be determined. IT_POINT means that the position of
         the particle will be validated against the Colliders' shape. IT_BOX means that the dimensions
         (width, height and depth) are used to determine whether the particle collides.
     */
@@ -49,9 +49,9 @@ public:
 
     /** Determines how a particle behaves after collision with this collider. The behaviour of the
         particle is solved in the collider and only behaviour that needs the colliders?data is taken
-        into account. The fact that a particle expires for example, can be achieved by using an 
+        into account. The fact that a particle expires for example, can be achieved by using an
         Observer in combination with an EventHandler (DoExpireEventHandler).
-        CT_NONE means that the particle doesn't do anything. This value should be set if the behaviour 
+        CT_NONE means that the particle doesn't do anything. This value should be set if the behaviour
         of the particle is determined outside the collider (for example, expiring the particle).
         CT_BOUNCE means that the particle bounces off the collider.
         CT_FLOW means that the particle flows around the contours of the collider.
@@ -106,13 +106,13 @@ public:
     /** Fill the AxisAlignedBox with data derived from the other arguments.
     */
     void populateAlignedBox(AABB& box,
-        const Vec3& position, 
+        const Vec3& position,
         const float width,
         const float height,
         const float depth);
 
     /** Recalculates the rotation speed after collision.
-        This function must be explicitly called in the updatePUAffector(float deltaTime) function of the class that inherits from 
+        This function must be explicitly called in the updatePUAffector(float deltaTime) function of the class that inherits from
         BaseCollider.
     */
     void calculateRotationSpeedAfterCollision(PUParticle3D* particle);
@@ -135,3 +135,4 @@ protected:
 NS_CC_END
 
 #endif
+

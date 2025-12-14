@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -88,8 +88,8 @@ public:
     /** Remove this as a listener from the technique.
     @remarks
         If a new force-emitter name has been set, the removeAsListener must be called, to remove the DoPlacementParticleEventHandler
-        from the old technique (to which the force-emitter belongs. Only then the new force-emitter is used. 
-        The reason why it is not called automatically in the setForceEmitterName() function is to offer some flexibility on 
+        from the old technique (to which the force-emitter belongs. Only then the new force-emitter is used.
+        The reason why it is not called automatically in the setForceEmitterName() function is to offer some flexibility on
         the moment the removeAsListener() is called.
     */
     void removeAsListener();
@@ -102,19 +102,19 @@ public:
     */
     void setNumberOfParticles(unsigned int numberOfParticles){_numberOfParticles = numberOfParticles;};
 
-    /** Boolean that determines whether always the position of the particle that is handled must be used for emission of 
+    /** Boolean that determines whether always the position of the particle that is handled must be used for emission of
         the new particle.
     */
     bool alwaysUsePosition() const {return _alwaysUsePosition;};
 
-    /** Set the boolean to indicate whether the position of the particle that is handled must be used for emission of 
+    /** Set the boolean to indicate whether the position of the particle that is handled must be used for emission of
         the new particle or whether the contact point of the physics actor must be used. This only applies if a physics engine
         is used, otherwise the default is used.
     */
     void setAlwaysUsePosition(bool alwaysUsePosition) {_alwaysUsePosition = alwaysUsePosition;};
 
-    /** If the _handle() function of this class is invoked (by an Observer), it searches the 
-        ParticleEmitter defined by the mForceEmitterName. This ParticleEmitter is either part of 
+    /** If the _handle() function of this class is invoked (by an Observer), it searches the
+        ParticleEmitter defined by the mForceEmitterName. This ParticleEmitter is either part of
         the ParticleTechnique in which the DoPlacementParticleEventHandler is defined, and if the ParticleEmitter
         is not found, other ParticleTechniques are searched. The ParticleEmitter is 'forced' to emit the
         requested number of particles.
@@ -160,8 +160,8 @@ protected:
     */
     bool _found;
 
-    /** By default the place where to put a new particle is on the position of the particle in the _handle function. If 
-        mAlwaysUsePosition is set to false, it tries the contact point of the physics actor that is associated with the 
+    /** By default the place where to put a new particle is on the position of the particle in the _handle function. If
+        mAlwaysUsePosition is set to false, it tries the contact point of the physics actor that is associated with the
         particle.
     */
     bool _alwaysUsePosition;
@@ -188,3 +188,4 @@ protected:
 NS_CC_END
 
 #endif
+

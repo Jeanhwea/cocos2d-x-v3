@@ -130,3 +130,4 @@ class Cocos2dxAudioFocusManager {
 
     private static native void nativeOnAudioFocusChange(int focusChange);
 }
+

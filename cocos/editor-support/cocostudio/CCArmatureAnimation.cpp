@@ -67,7 +67,7 @@ ArmatureAnimation::ArmatureAnimation()
     , _frameEventCallFunc(nullptr)
     , _movementEventTarget(nullptr)
     , _frameEventTarget(nullptr)
-    
+
     , _movementEventListener(nullptr)
     , _frameEventListener(nullptr)
 {
@@ -324,7 +324,7 @@ void ArmatureAnimation::gotoAndPlay(int frameIndex)
     _currentPercent = (float)_curFrameIndex / ((float)_movementData->duration-1);
     _currentFrame = _nextFrameIndex * _currentPercent;
 
-    
+
     for (const auto &tween : _tweenList)
     {
         tween->gotoAndPlay(frameIndex);
@@ -349,7 +349,7 @@ ssize_t ArmatureAnimation::getMovementCount() const
 void ArmatureAnimation::update(float dt)
 {
     ProcessBase::update(dt);
-    
+
     for (const auto &tween : _tweenList)
     {
         tween->update(dt);
@@ -367,18 +367,18 @@ void ArmatureAnimation::update(float dt)
         _frameEventQueue.pop();
 
         _ignoreFrameEvent = true;
-        
+
         if(_frameEventTarget)
         {
             (_frameEventTarget->*_frameEventCallFunc)(event->bone, event->frameEventName, event->originFrameIndex, event->currentFrameIndex);
         }
-        
+
         if (_frameEventListener)
         {
             _frameEventListener(event->bone, event->frameEventName, event->originFrameIndex, event->currentFrameIndex);
         }
-        
-        
+
+
         _ignoreFrameEvent = false;
 
         CC_SAFE_DELETE(event);
@@ -388,17 +388,17 @@ void ArmatureAnimation::update(float dt)
     {
         MovementEvent *event = _movementEventQueue.front();
         _movementEventQueue.pop();
-        
+
         if(_movementEventTarget)
         {
             (_movementEventTarget->*_movementEventCallFunc)(event->armature, event->movementType, event->movementID);
         }
-        
+
         if (_movementEventListener)
         {
             _movementEventListener(event->armature, event->movementType, event->movementID);
         }
-        
+
         CC_SAFE_DELETE(event);
     }
 }
@@ -560,3 +560,4 @@ void ArmatureAnimation::updateMovementList()
 }
 
 }
+

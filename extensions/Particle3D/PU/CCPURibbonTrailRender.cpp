@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -91,7 +91,7 @@ void PURibbonTrailRender::render( Renderer* renderer, const Mat4 &transform, Par
         _trail->render(renderer, transform, particleSystem);
 }
 
-PURibbonTrailRender::PURibbonTrailRender() : 
+PURibbonTrailRender::PURibbonTrailRender() :
     _quota(0),
     _trail(0),
     _useVertexColours(DEFAULT_USE_VERTEX_COLOURS),
@@ -105,7 +105,7 @@ PURibbonTrailRender::PURibbonTrailRender() :
     _colorChange(DEFAULT_COLOUR_CHANGE),
     _childNode(0)
 {
-    std::stringstream ss; 
+    std::stringstream ss;
     ss << this;
     _ribbonTrailName = "RibbonTrail" + ss.str();
     autoRotate = false;
@@ -137,74 +137,74 @@ void PURibbonTrailRender::particleExpired( PUParticleSystem3D* /*particleSystem*
 bool PURibbonTrailRender::isUseVertexColors() const
 {
     return _useVertexColours;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setUseVertexColors(bool useVertexColours)
 {
     _useVertexColours = useVertexColours;
-} 
+}
 //-----------------------------------------------------------------------
 size_t PURibbonTrailRender::getMaxChainElements() const
 {
     return _maxChainElements;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setMaxChainElements(size_t maxChainElements)
 {
     _maxChainElements = maxChainElements;
-} 
+}
 //-----------------------------------------------------------------------
 float PURibbonTrailRender::getTrailLength() const
 {
     return _trailLength;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setTrailLength(float trailLength)
 {
     _trailLength = trailLength;
     _setLength = true;
-} 
+}
 //-----------------------------------------------------------------------
 float PURibbonTrailRender::getTrailWidth() const
 {
     return _trailWidth;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setTrailWidth(float trailWidth)
 {
     _trailWidth = trailWidth;
     _setWidth = true;
-} 
+}
 //-----------------------------------------------------------------------
 bool PURibbonTrailRender::isRandomInitialColor() const
 {
     return _randomInitialColor;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setRandomInitialColor(bool randomInitialColour)
 {
     _randomInitialColor = randomInitialColour;
-} 
+}
 //-----------------------------------------------------------------------
 const Vec4& PURibbonTrailRender::getInitialColor() const
 {
     return _initialColor;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setInitialColor(const Vec4& initialColour)
 {
     _initialColor = initialColour;
-} 
+}
 //-----------------------------------------------------------------------
 const Vec4& PURibbonTrailRender::getColorChange() const
 {
     return _colorChange;
-} 
+}
 //-----------------------------------------------------------------------
 void PURibbonTrailRender::setColorChange(const Vec4& colourChange)
 {
     _colorChange = colourChange;
-} 
+}
 //-----------------------------------------------------------------------
 
 void PURibbonTrailRender::prepare()
@@ -224,7 +224,7 @@ void PURibbonTrailRender::prepare()
     if (!_childNode)
     {
         // Create a childnode if not created earlier
-        std::stringstream ss; 
+        std::stringstream ss;
         ss << this;
         std::string childNodeNodeName = "ParticleUniverse" + ss.str();
         //_childNode = mParentTechnique->getParentSystem()->getParentSceneNode()->createChildSceneNode(childNodeNodeName);
@@ -256,12 +256,12 @@ void PURibbonTrailRender::prepare()
 
         // Create number of VisualData objects
         std::string sceneNodeName;
-        std::stringstream ss; 
+        std::stringstream ss;
         ss << this;
         for (size_t i = 0; i < _quota; i++)
         {
             //sceneNodeName = "ParticleUniverse" + ss.str() + StringConverter::toString(i);
-            //RibbonTrailRendererVisualData* visualData = 
+            //RibbonTrailRendererVisualData* visualData =
             //	PU_NEW_T(RibbonTrailRendererVisualData, MEMCATEGORY_SCENE_OBJECTS)(_childNode->createChildSceneNode(sceneNodeName), _trail);
             //visualData->node->setInheritOrientation(false);
             auto node = Node::create();
@@ -414,3 +414,4 @@ void PURibbonTrailRender::updateParticles( const ParticlePool &pool )
 }
 
 NS_CC_END
+

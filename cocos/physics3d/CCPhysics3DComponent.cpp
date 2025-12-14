@@ -1,19 +1,19 @@
  /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -75,7 +75,7 @@ Physics3DComponent::Physics3DComponent()
 : _physics3DObj(nullptr)
 , _syncFlag(Physics3DComponent::PhysicsSyncFlag::NODE_AND_NODE)
 {
-    
+
 }
 
 void Physics3DComponent::setEnabled(bool b)
@@ -111,7 +111,7 @@ void Physics3DComponent::addToPhysicsWorld(Physics3DWorld* world)
                 }
                 parent = parent->getParent();
             }
-            
+
             components.insert(components.begin(), this);
         }
     }
@@ -120,7 +120,7 @@ void Physics3DComponent::addToPhysicsWorld(Physics3DWorld* world)
 void Physics3DComponent::onEnter()
 {
     Component::onEnter();
-    
+
     if (_physics3DObj->getPhysicsWorld() == nullptr && _owner)
     {
         auto scene = _owner->getScene();
@@ -133,7 +133,7 @@ void Physics3DComponent::onExit()
 {
     Component::onExit();
     setEnabled(false);
-    
+
     //remove component from physics world
     if (_physics3DObj)
     {
@@ -166,7 +166,7 @@ void Physics3DComponent::setTransformInPhysics(const cocos2d::Vec3& translateInP
     _transformInPhysics.m[12] = translateInPhysics.x;
     _transformInPhysics.m[13] = translateInPhysics.y;
     _transformInPhysics.m[14] = translateInPhysics.z;
-    
+
     _invTransformInPhysics = _transformInPhysics.getInversed();
 }
 
@@ -183,7 +183,7 @@ void Physics3DComponent::syncPhysicsToNode()
         Mat4 parentMat;
         if (_owner->getParent())
             parentMat = _owner->getParent()->getNodeToWorldTransform();
-        
+
         auto mat = parentMat.getInversed() * _physics3DObj->getWorldTransform();
         //remove scale, no scale support for physics
         float oneOverLen = 1.f / sqrtf(mat.m[0] * mat.m[0] + mat.m[1] * mat.m[1] + mat.m[2] * mat.m[2]);
@@ -198,7 +198,7 @@ void Physics3DComponent::syncPhysicsToNode()
         mat.m[8] *= oneOverLen;
         mat.m[9] *= oneOverLen;
         mat.m[10] *= oneOverLen;
-        
+
         mat *= _transformInPhysics;
         static Vec3 scale, translation;
         static Quaternion quat;
@@ -228,7 +228,7 @@ void Physics3DComponent::syncNodeToPhysics()
         mat.m[8] *= oneOverLen;
         mat.m[9] *= oneOverLen;
         mat.m[10] *= oneOverLen;
-        
+
         mat *=  _invTransformInPhysics;
         if (_physics3DObj->getObjType() == Physics3DObject::PhysicsObjType::RIGID_BODY)
         {
@@ -250,3 +250,4 @@ NS_CC_END
 #endif // CC_ENABLE_BULLET_INTEGRATION
 
 #endif //CC_USE_3D_PHYSICS
+

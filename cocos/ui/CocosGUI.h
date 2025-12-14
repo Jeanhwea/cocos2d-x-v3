@@ -82,3 +82,4 @@ NS_CC_END
 /// @}
 
 #endif /* defined(__CocosGUITest__Cocos__) */
+

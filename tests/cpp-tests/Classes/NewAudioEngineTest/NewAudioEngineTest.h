@@ -39,7 +39,7 @@ class AudioEngineTestDemo : public TestCase
 {
 public:
     AudioEngineTestDemo();
-    
+
     virtual std::string title() const override;
     virtual void onExit() override;
 
@@ -53,22 +53,22 @@ class AudioControlTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioControlTest);
-    
+
     virtual ~AudioControlTest();
-    
+
     virtual bool init() override;
-    
+
     virtual void update(float dt) override;
-    
+
     virtual std::string title() const override;
-    
+
 private:
     int _audioID;
     bool _loopEnabled;
     float _volume;
     float _duration;
     float _timeRatio;
-    
+
     void* _playItem;
     void* _timeSlider;
     bool _updateTimeSlider;
@@ -80,16 +80,16 @@ class PlaySimultaneouslyTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(PlaySimultaneouslyTest);
-    
+
     virtual ~PlaySimultaneouslyTest();
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
 private:
     static const int TEST_COUNT = 10;
     std::string _files[TEST_COUNT];
-    
+
     void* _playItem;
     int _playingcount;
 };
@@ -98,21 +98,21 @@ class AudioProfileTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioProfileTest);
-    
+
     virtual ~AudioProfileTest();
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    
+
     virtual void update(float dt) override;
-    
+
 private:
     static const int FILE_COUNT = 2;
     std::string _files[FILE_COUNT];
     cocos2d::experimental::AudioProfile _audioProfile;
-    
+
     int _audioCount;
     cocos2d::Label* _showLabel;
     float _time;
@@ -124,31 +124,31 @@ class InvalidAudioFileTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(InvalidAudioFileTest);
-    
+
     virtual ~InvalidAudioFileTest();
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    
+
 private:
-   
+
 };
 
 class LargeAudioFileTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(LargeAudioFileTest);
-    
+
     virtual ~LargeAudioFileTest();
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
-    
+
 private:
-    
+
 };
 
 class AudioLoadTest : public AudioEngineTestDemo
@@ -189,9 +189,9 @@ class AudioPerformanceTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioPerformanceTest);
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
@@ -200,9 +200,9 @@ class AudioSwitchStateTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioSwitchStateTest);
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
@@ -211,9 +211,9 @@ class AudioSmallFileTest : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioSmallFileTest);
-    
+
     virtual bool init() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
@@ -244,9 +244,9 @@ class AudioPauseResumeAfterPlay : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioPauseResumeAfterPlay);
-    
+
     virtual void onEnter() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
@@ -266,9 +266,9 @@ class AudioPreloadSameFileMultipleTimes : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioPreloadSameFileMultipleTimes);
-    
+
     virtual void onEnter() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
@@ -277,13 +277,13 @@ class AudioPlayFileInWritablePath : public AudioEngineTestDemo
 {
 public:
     CREATE_FUNC(AudioPlayFileInWritablePath);
-    
+
     virtual void onEnter() override;
     virtual void onExit() override;
-    
+
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    
+
 private:
     std::vector<std::string> _oldSearchPaths;
 };
@@ -320,3 +320,4 @@ private:
 };
 
 #endif /* defined(__NEWAUDIOENGINE_TEST_H_) */
+

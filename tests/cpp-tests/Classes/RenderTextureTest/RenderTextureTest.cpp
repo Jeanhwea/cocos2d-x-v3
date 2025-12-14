@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,11 +55,11 @@ RenderTextureSave::RenderTextureSave()
     // note that the render texture is a Node, and contains a sprite of its texture for convenience,
     // so we can just parent it to the scene like any other Node
     this->addChild(_target, -1);
-    
+
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesMoved = CC_CALLBACK_2(RenderTextureSave::onTouchesMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     // Save Image menu
     MenuItemFont::setFontSize(16);
     auto item1 = MenuItemFont::create("Save Image PMA", CC_CALLBACK_1(RenderTextureSave::saveImageWithPremultipliedAlpha, this));
@@ -123,7 +123,7 @@ void RenderTextureSave::saveImageWithNonPremultipliedAlpha(cocos2d::Ref *sender)
 
     char png[20];
     sprintf(png, "image-no-pma-%d.png", counter);
-    
+
     auto callback = [&](RenderTexture* rt, const std::string& path)
     {
         auto sprite = Sprite::create(path);
@@ -132,7 +132,7 @@ void RenderTextureSave::saveImageWithNonPremultipliedAlpha(cocos2d::Ref *sender)
         sprite->setPosition(Vec2(40, 40));
         sprite->setRotation(counter * 3);
     };
-    
+
     _target->saveToFileAsNonPMA(png, Image::Format::PNG, true, callback);
     //Add this function to avoid crash if we switch to a new scene.
     Director::getInstance()->getRenderer()->render();
@@ -233,7 +233,7 @@ RenderTextureIssue937::RenderTextureIssue937()
 
     auto spr_nonpremulti = Sprite::create("Images/fire.png");
     spr_nonpremulti->setPosition(Vec2(s.width/2-16, s.height/2-16));
-    
+
     /* A2 & B2 setup */
     auto rend = RenderTexture::create(32, 64, Texture2D::PixelFormat::RGBA8888);
 
@@ -282,7 +282,7 @@ RenderTextureZbuffer::RenderTextureZbuffer()
     listener->onTouchesMoved = CC_CALLBACK_2(RenderTextureZbuffer::onTouchesMoved, this);
     listener->onTouchesEnded = CC_CALLBACK_2(RenderTextureZbuffer::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     auto size = Director::getInstance()->getWinSize();
     auto label = Label::createWithTTF("vertexZ = 50", "fonts/Marker Felt.ttf", 64);
     label->setPosition(Vec2(size.width / 2, size.height * 0.25f));
@@ -398,7 +398,7 @@ void RenderTextureZbuffer::renderScreenShot()
     {
         return;
     }
-    
+
     texture->begin();
 
     this->visit();
@@ -428,28 +428,28 @@ RenderTexturePartTest::RenderTexturePartTest()
     Size sprite1Size = sprite1->getContentSize();
     sprite1->setPosition((size.width-sprite1Size.width)/2 - 20, (size.height - sprite1Size.height)/2 - 20);
     sprite11->setPosition(size.width/2 + 20, (size.height - sprite1Size.height)/2 - 20);
-    
+
     sprite2->setPosition((size.width-sprite1Size.width)/2 - 20, size.height/2 + 20);
     sprite22->setPosition(size.width/2 + 20, size.height/2 + 20);
-    
+
     addChild(sprite1);
     addChild(sprite11);
     addChild(sprite2);
     addChild(sprite22);
-    
+
     _rend = RenderTexture::create(200, 200, Texture2D::PixelFormat::RGBA8888);
     _rend->retain();
     _rend->setKeepMatrix(true);
     Size pixelSize = Director::getInstance()->getWinSizeInPixels();
     _rend->setVirtualViewport(Vec2(size.width/2-150, size.height/2-150),Rect(0,0,size.width,size.height),Rect(0,0,pixelSize.width,pixelSize.height));
-    
+
     _rend->beginWithClear(1, 0, 0, 1);
     sprite1->visit();
     sprite11->visit();
     sprite2->visit();
     sprite22->visit();
     _rend->end();
-    
+
     _spriteDraw = Sprite::createWithTexture(_rend->getSprite()->getTexture());
     FiniteTimeAction* baseAction = MoveBy::create(1, Vec2(size.width,0));
     _spriteDraw->setPosition(0,size.height/2);
@@ -484,14 +484,14 @@ RenderTextureTestDepthStencil::RenderTextureTestDepthStencil()
     _spriteDS->retain();
     _spriteDS->setPosition(Vec2(s.width * 0.25f, 0));
     _spriteDS->setScale(10);
-    
+
     _spriteDraw = Sprite::create("Images/fire.png");
     _spriteDraw->retain();
     _spriteDraw->setPosition(Vec2(s.width * 0.25f, 0));
     _spriteDraw->setScale(10);
     //! move sprite half width and height, and draw only where not marked
     _spriteDraw->setPosition(_spriteDraw->getPosition() + Vec2(_spriteDraw->getContentSize().width * _spriteDraw->getScale() * 0.5, _spriteDraw->getContentSize().height * _spriteDraw->getScale() * 0.5));
-    
+
     _rend = RenderTexture::create(s.width, s.height, Texture2D::PixelFormat::RGBA4444, GL_DEPTH24_STENCIL8);
 
     _rend->setPosition(Vec2(s.width * 0.5f, s.height * 0.5f));
@@ -512,21 +512,21 @@ void RenderTextureTestDepthStencil::draw(Renderer *renderer, const Mat4 &transfo
     renderer->addCommand(&_renderCmds[0]);
 
     _rend->beginWithClear(0, 0, 0, 0, 0, 0);
-    
+
     _renderCmds[1].init(_globalZOrder, transform, flags);
     _renderCmds[1].func = CC_CALLBACK_0(RenderTextureTestDepthStencil::onBeforeStencil, this);
     renderer->addCommand(&_renderCmds[1]);
 
     _spriteDS->visit();
-    
+
     _renderCmds[2].init(_globalZOrder, transform, flags);
     _renderCmds[2].func = CC_CALLBACK_0(RenderTextureTestDepthStencil::onBeforeDraw, this);
     renderer->addCommand(&_renderCmds[2]);
 
     _spriteDraw->visit();
-    
+
     _rend->end();
-    
+
     _renderCmds[3].init(_globalZOrder, transform, flags);
     _renderCmds[3].func = CC_CALLBACK_0(RenderTextureTestDepthStencil::onAfterDraw, this);
     renderer->addCommand(&_renderCmds[3]);
@@ -600,35 +600,35 @@ RenderTextureTargetNode::RenderTextureTargetNode()
 	 */
     auto background = LayerColor::create(Color4B(40,40,40,255));
     addChild(background);
-    
+
     // sprite 1
     sprite1 = Sprite::create("Images/fire.png");
-    
+
     // sprite 2
     sprite2 = Sprite::create("Images/fire_rgba8888.pvr");
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     /* Create the render texture */
     auto renderTexture = RenderTexture::create(s.width, s.height, Texture2D::PixelFormat::RGBA4444);
     this->renderTexture = renderTexture;
-    
+
     renderTexture->setPosition(Vec2(s.width/2, s.height/2));
     // renderTexture->setScale(2.0f);
-    
+
     /* add the sprites to the render texture */
     renderTexture->addChild(sprite1);
     renderTexture->addChild(sprite2);
     renderTexture->setClearColor(Color4F(0, 0, 0, 0));
     renderTexture->setClearFlags(GL_COLOR_BUFFER_BIT);
-    
+
     /* add the render texture to the scene */
     addChild(renderTexture);
-    
+
     renderTexture->setAutoDraw(true);
-    
+
     scheduleUpdate();
-    
+
     // Toggle clear on / off
     auto item = MenuItemFont::create("Clear On/Off", CC_CALLBACK_1(RenderTextureTargetNode::touched, this));
     auto menu = Menu::create(item, nullptr);
@@ -656,7 +656,7 @@ void RenderTextureTargetNode::update(float dt)
     float r = 80;
     sprite1->setPosition(Vec2(cosf(time * 2) * r, sinf(time * 2) * r));
     sprite2->setPosition(Vec2(sinf(time * 2) * r, cosf(time * 2) * r));
-    
+
     time += dt;
 }
 
@@ -689,7 +689,7 @@ SpriteRenderTextureBug::SimpleSprite* SpriteRenderTextureBug::SimpleSprite::crea
     {
         CC_SAFE_DELETE(sprite);
     }
-    
+
     return sprite;
 }
 
@@ -705,7 +705,7 @@ void SpriteRenderTextureBug::SimpleSprite::draw(Renderer *renderer, const Mat4 &
 	_rt->end();
 
     Sprite::draw(renderer, transform, flags);
-    
+
 }
 
 SpriteRenderTextureBug::SpriteRenderTextureBug()
@@ -713,7 +713,7 @@ SpriteRenderTextureBug::SpriteRenderTextureBug()
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesEnded = CC_CALLBACK_2(SpriteRenderTextureBug::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     auto s = Director::getInstance()->getWinSize();
     addNewSpriteWithCoords(Vec2(s.width/2, s.height/2));
 }
@@ -723,16 +723,16 @@ SpriteRenderTextureBug::SimpleSprite* SpriteRenderTextureBug::addNewSpriteWithCo
     int idx = CCRANDOM_0_1() * 1400 / 100;
 	int x = (idx%5) * 85;
 	int y = (idx/5) * 121;
-    
+
     auto sprite = SpriteRenderTextureBug::SimpleSprite::create("Images/grossini_dance_atlas.png",
                                                                                                 Rect(x,y,85,121));
     addChild(sprite);
-    
+
     sprite->setPosition(p);
-    
+
 	FiniteTimeAction *action = nullptr;
 	float rd = CCRANDOM_0_1();
-    
+
 	if (rd < 0.20)
         action = ScaleBy::create(3, 2);
 	else if (rd < 0.40)
@@ -743,12 +743,12 @@ SpriteRenderTextureBug::SimpleSprite* SpriteRenderTextureBug::addNewSpriteWithCo
 		action = TintBy::create(2, 0, -255, -255);
 	else
 		action = FadeOut::create(2);
-    
+
     auto action_back = action->reverse();
     auto seq = Sequence::create(action, action_back, nullptr);
-    
+
     sprite->runAction(RepeatForever::create(seq));
-    
+
     //return sprite;
     return nullptr;
 }
@@ -897,3 +897,4 @@ std::string RenderTextureWithSprite3DIssue16894::subtitle() const
 {
     return "3 ships, 1st & 3rd are the same";
 }
+

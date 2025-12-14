@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -106,30 +106,30 @@ void Particle3DMainScene::initScene()
     _quantityParticles = 1;
     updateQuantityLabel();
     createParticleSystem(_quantityParticles - 1);
-    
+
     schedule(CC_SCHEDULE_SELECTOR(Particle3DMainScene::step));
 }
 
 void Particle3DMainScene::onExitTransitionDidStart()
 {
     Scene::onExitTransitionDidStart();
-    
+
     auto director = Director::getInstance();
     auto sched = director->getScheduler();
-    
+
     sched->unscheduleAllForTarget(this);
 }
 
 void Particle3DMainScene::onEnterTransitionDidFinish()
 {
     Scene::onEnterTransitionDidFinish();
-    
+
     if (this->isAutoTesting()) {
         Profile::getInstance()->testCaseBegin("Particle3DTest",
                                               genStrVector("ParticleSystemCount", nullptr),
                                               genStrVector("Avg", "Min", "Max", nullptr));
         autoTestIndex = 0;
-        
+
         doAutoTest();
     }
 }
@@ -149,14 +149,14 @@ void Particle3DMainScene::doAutoTest()
     totalStatTime = 0.0f;
     minFrameRate = -1.0f;
     maxFrameRate = -1.0f;
-    
+
     removeAllParticles();
     _quantityParticles = autoTestParticleCounts[autoTestIndex];
     updateQuantityLabel();
     for (int i = 0; i < _quantityParticles; i++) {
         createParticleSystem(i);
     }
-    
+
     schedule(CC_SCHEDULE_SELECTOR(Particle3DMainScene::beginStat), DELAY_TIME);
     schedule(CC_SCHEDULE_SELECTOR(Particle3DMainScene::endStat), DELAY_TIME + STAT_TIME);
 }
@@ -207,22 +207,22 @@ void Particle3DMainScene::step(float dt)
                     count += child->getAliveParticleCount();
                 }
             }
-            
+
             char str[128];
             sprintf(str, "Particle Count: %d", count);
             _particleLab->setString(str);
         }
     }
-    
+
     if (isStating)
     {
         totalStatTime += dt;
         statCount++;
-        
+
         auto curFrameRate = Director::getInstance()->getFrameRate();
         if (maxFrameRate < 0 || curFrameRate > maxFrameRate)
             maxFrameRate = curFrameRate;
-        
+
         if (minFrameRate < 0 || curFrameRate < minFrameRate)
             minFrameRate = curFrameRate;
     }
@@ -270,3 +270,4 @@ bool Particle3DPerformTest::init()
 
     return false;
 }
+

@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -44,7 +44,7 @@ Physics3DWorld::Physics3DWorld()
 , _ghostCallback(nullptr)
 , _debugDrawer(nullptr)
 {
-    
+
 }
 Physics3DWorld::~Physics3DWorld()
 {
@@ -86,19 +86,19 @@ bool Physics3DWorld::init(Physics3DWorldDes* info)
     ///collision configuration contains default setup for memory, collision setup
     _collisionConfiguration = new (std::nothrow) btDefaultCollisionConfiguration();
     //_collisionConfiguration->setConvexConvexMultipointIterations();
-    
+
     ///use the default collision dispatcher. For parallel processing you can use a different dispatcher (see Extras/BulletMultiThreaded)
     _dispatcher = new (std::nothrow) btCollisionDispatcher(_collisionConfiguration);
-    
+
     _broadphase = new (std::nothrow) btDbvtBroadphase();
-    
+
     ///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
     btSequentialImpulseConstraintSolver* sol = new btSequentialImpulseConstraintSolver();
     _solver = sol;
 
     btGhostPairCallback *ghostCallback = new btGhostPairCallback();
     _ghostCallback = ghostCallback;
-    
+
     _btPhyiscsWorld = new btDiscreteDynamicsWorld(_dispatcher,_broadphase,_solver,_collisionConfiguration);
     _btPhyiscsWorld->setGravity(convertVec3TobtVector3(info->gravity));
     if (info->isDebugDrawEnabled)
@@ -106,7 +106,7 @@ bool Physics3DWorld::init(Physics3DWorldDes* info)
         _debugDrawer = new (std::nothrow) Physics3DDebugDrawer();
         _btPhyiscsWorld->setDebugDrawer(_debugDrawer);
     }
-    
+
     return true;
 }
 
@@ -187,7 +187,7 @@ void Physics3DWorld::addPhysics3DConstraint(Physics3DConstraint* constraint, boo
     auto body = constraint->getBodyA();
     if (body)
         body->addConstraint(constraint);
-    
+
     body = constraint->getBodyB();
     if (body)
     {
@@ -199,7 +199,7 @@ void Physics3DWorld::addPhysics3DConstraint(Physics3DConstraint* constraint, boo
 void Physics3DWorld::removePhysics3DConstraint(Physics3DConstraint* constraint)
 {
     _btPhyiscsWorld->removeConstraint(constraint->getbtContraint());
-    
+
     auto bodyA = constraint->getBodyA();
     auto bodyB = constraint->getBodyB();
     if (bodyA)
@@ -223,7 +223,7 @@ void Physics3DWorld::removeAllPhysics3DConstraints()
             constraints.clear();
         }
     }
-    
+
 }
 
 void Physics3DWorld::stepSimulate(float dt)
@@ -383,3 +383,4 @@ NS_CC_END
 #endif // CC_ENABLE_BULLET_INTEGRATION
 
 #endif //CC_USE_3D_PHYSICS
+

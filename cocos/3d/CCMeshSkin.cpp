@@ -36,7 +36,7 @@ MeshSkin::MeshSkin()
 , _skeleton(nullptr)
 , _matrixPalette(nullptr)
 {
-    
+
 }
 
 MeshSkin::~MeshSkin()
@@ -50,7 +50,7 @@ MeshSkin* MeshSkin::create(Skeleton3D* skeleton, const std::vector<std::string>&
     auto skin = new (std::nothrow) MeshSkin();
     skin->_skeleton = skeleton;
     skeleton->retain();
-    
+
     CCASSERT(boneNames.size() == invBindPose.size(), "bone names' num should equals to invBindPose's num");
     for (const auto& it : boneNames) {
         auto bone = skeleton->getBoneByName(it);
@@ -61,7 +61,7 @@ MeshSkin* MeshSkin::create(Skeleton3D* skeleton, const std::vector<std::string>&
     }
     skin->_invBindPoses = invBindPose;
     skin->autorelease();
-    
+
     return skin;
 }
 
@@ -75,7 +75,7 @@ Bone3D* MeshSkin::getBoneByIndex(unsigned int index) const
 {
     if (static_cast<int>(index) < _skinBones.size())
         return _skinBones.at(index);
-    
+
     return nullptr;
 }
 Bone3D* MeshSkin::getBoneByName(const std::string& id) const
@@ -114,7 +114,7 @@ Vec4* MeshSkin::getMatrixPalette()
         _matrixPalette[paletteIndex++].set(t.m[1], t.m[5], t.m[9], t.m[13]);
         _matrixPalette[paletteIndex++].set(t.m[2], t.m[6], t.m[10], t.m[14]);
     }
-    
+
     return _matrixPalette;
 }
 
@@ -160,3 +160,4 @@ const Mat4& MeshSkin::getInvBindPose(const Bone3D* bone)
 }
 
 NS_CC_END
+

@@ -731,3 +731,4 @@ void register_Effect3D_bindings(JSContext *cx, JS::HandleObject global)
     js_register_cocos2dx_Effect3DOutline(cx, ccobj);
     js_register_cocos2dx_EffectSprite3D(cx, ccobj);
 }
+

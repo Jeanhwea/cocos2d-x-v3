@@ -136,3 +136,4 @@ struct or_ : public integral_constant<bool, (A::value || B::value)> {
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_TEMPLATE_UTIL_H_
+

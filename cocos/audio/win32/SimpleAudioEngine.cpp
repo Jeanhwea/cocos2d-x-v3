@@ -298,3 +298,4 @@ unsigned int _Hash(const char *key)
 }
 
 } // end of namespace CocosDenshion
+

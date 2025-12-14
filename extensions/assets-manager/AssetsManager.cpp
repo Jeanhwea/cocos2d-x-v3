@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2013 cocos2d-x.org
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -72,7 +72,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
                                       const std::string& /*errorStr*/)
     {
         _isDownloading = false;
-        
+
         if (nullptr == _delegate)
         {
             return;
@@ -80,7 +80,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
         auto err = (DownloadTask::ERROR_FILE_OP_FAILED == errorCode) ? ErrorCode::CREATE_FILE : ErrorCode::NETWORK;
         _delegate->onError(err);
     };
-    
+
     // progress callback
     _downloader->onTaskProgress = [this](const DownloadTask& task,
                                          int64_t /*bytesReceived*/,
@@ -92,17 +92,17 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
             // get version progress don't report
             return;
         }
-        
+
         if (nullptr == _delegate)
         {
             return;
         }
-        
+
         int percent = totalBytesExpected ? int(totalBytesReceived * 100 / totalBytesExpected) : 0;
         _delegate->onProgress(percent);
         CCLOG("downloading... %d%%", percent);
     };
-    
+
     // get version from version file when get data success
     _downloader->onDataTaskSuccess = [this](const DownloadTask& /*task*/,
                                             std::vector<unsigned char>& data)
@@ -110,7 +110,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
         // store version info to member _version
         const char *p = (char *)data.data();
         _version.insert(_version.end(), p, p + data.size());
-        
+
         if (getVersion() == _version)
         {
             if (_delegate)
@@ -136,7 +136,7 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
             _isDownloading = false;
             return;
         }
-        
+
         // Is package already downloaded?
         _downloadedVersion = UserDefault::getInstance()->getStringForKey(keyOfDownloadedVersion().c_str());
         if (_downloadedVersion == _version)
@@ -144,12 +144,12 @@ AssetsManager::AssetsManager(const char* packageUrl/* =nullptr */, const char* v
             downloadAndUncompress();
             return;
         }
-        
+
         // start download;
         const string outFileName = _storagePath + TEMP_PACKAGE_FILE_NAME;
         _downloader->createDownloadFileTask(_packageUrl, outFileName);
     };
-    
+
     // after download package, do uncompress operation
     _downloader->onFileTaskSuccess = [this](const DownloadTask& /*task*/)
     {
@@ -197,7 +197,7 @@ std::string AssetsManager::keyOfDownloadedVersion() const
 bool AssetsManager::checkUpdate()
 {
     if (_versionFileUrl.empty() || _isDownloading) return false;
-    
+
     // Clear _version before assign new value.
     _version.clear();
     _isDownloading = true;
@@ -222,31 +222,31 @@ void AssetsManager::downloadAndUncompress()
                 });
                 break;
             }
-            
+
             Director::getInstance()->getScheduler()->performFunctionInCocosThread([&, this] {
-                
+
                 // Record new version code.
                 UserDefault::getInstance()->setStringForKey(this->keyOfVersion().c_str(), this->_version);
-                
+
                 // Unrecord downloaded version code.
                 UserDefault::getInstance()->setStringForKey(this->keyOfDownloadedVersion().c_str(), "");
                 UserDefault::getInstance()->flush();
-                
+
                 // Set resource search path.
                 this->setSearchPath();
-                
+
                 // Delete unloaded zip file.
                 string zipfileName = this->_storagePath + TEMP_PACKAGE_FILE_NAME;
                 if (remove(zipfileName.c_str()) != 0)
                 {
                     CCLOG("can not remove downloaded zip file %s", zipfileName.c_str());
                 }
-                
+
                 if (this->_delegate) this->_delegate->onSuccess();
             });
-            
+
         } while (0);
-        
+
         _isDownloading = false;
 
     }).detach();
@@ -268,7 +268,7 @@ bool AssetsManager::uncompress()
         CCLOG("can not open downloaded zip file %s", outFileName.c_str());
         return false;
     }
-    
+
     // Get info about the zip file
     unz_global_info global_info;
     if (unzGetGlobalInfo(zipfile, &global_info) != UNZ_OK)
@@ -277,12 +277,12 @@ bool AssetsManager::uncompress()
         unzClose(zipfile);
         return false;
     }
-    
+
     // Buffer to hold data read from the zip file
     char readBuffer[BUFFER_SIZE];
-    
+
     CCLOG("start uncompressing");
-    
+
     // Loop to extract all files.
     uLong i;
     for (i = 0; i < global_info.number_entry; ++i)
@@ -303,9 +303,9 @@ bool AssetsManager::uncompress()
             unzClose(zipfile);
             return false;
         }
-        
+
         const string fullPath = _storagePath + fileName;
-        
+
         // Check if this entry is a directory or a file.
         const size_t filenameLength = strlen(fileName);
         if (fileName[filenameLength-1] == '/')
@@ -325,17 +325,17 @@ bool AssetsManager::uncompress()
             //So we need to test whether the file directory exists when uncompressing file entry
             //, if does not exist then create directory
             const string fileNameStr(fileName);
-            
+
             size_t startIndex=0;
-            
+
             size_t index=fileNameStr.find('/',startIndex);
-            
+
             while(index != std::string::npos)
             {
                 const string dir=_storagePath+fileNameStr.substr(0,index);
-                
+
                 FILE *out = fopen(FileUtils::getInstance()->getSuitableFOpen(dir).c_str(), "r");
-                
+
                 if(!out)
                 {
                     if (!FileUtils::getInstance()->createDirectory(dir))
@@ -353,15 +353,15 @@ bool AssetsManager::uncompress()
                 {
                     fclose(out);
                 }
-                
+
                 startIndex=index+1;
-                
+
                 index=fileNameStr.find('/',startIndex);
-                
+
             }
 
             // Entry is a file, so extract it.
-            
+
             // Open current file.
             if (unzOpenCurrentFile(zipfile) != UNZ_OK)
             {
@@ -369,7 +369,7 @@ bool AssetsManager::uncompress()
                 unzClose(zipfile);
                 return false;
             }
-            
+
             // Create a file to store current file.
             FILE *out = fopen(FileUtils::getInstance()->getSuitableFOpen(fullPath).c_str(), "wb");
             if (! out)
@@ -379,7 +379,7 @@ bool AssetsManager::uncompress()
                 unzClose(zipfile);
                 return false;
             }
-            
+
             // Write current file content to destinate file.
             int error = UNZ_OK;
             do
@@ -392,18 +392,18 @@ bool AssetsManager::uncompress()
                     unzClose(zipfile);
                     return false;
                 }
-                
+
                 if (error > 0)
                 {
                     fwrite(readBuffer, error, 1, out);
                 }
             } while(error > 0);
-            
+
             fclose(out);
         }
-        
+
         unzCloseCurrentFile(zipfile);
-        
+
         // Goto next entry listed in the zip file.
         if ((i+1) < global_info.number_entry)
         {
@@ -415,10 +415,10 @@ bool AssetsManager::uncompress()
             }
         }
     }
-    
+
     CCLOG("end uncompressing");
     unzClose(zipfile);
-    
+
     return true;
 }
 
@@ -488,7 +488,7 @@ unsigned int AssetsManager::getConnectionTimeout()
 
 AssetsManager* AssetsManager::create(const char* packageUrl, const char* versionFileUrl, const char* storagePath, ErrorCallback errorCallback, ProgressCallback progressCallback, SuccessCallback successCallback )
 {
-    class DelegateProtocolImpl : public AssetsManagerDelegateProtocol 
+    class DelegateProtocolImpl : public AssetsManagerDelegateProtocol
     {
     public :
         DelegateProtocolImpl(ErrorCallback& aErrorCallback, ProgressCallback& aProgressCallback, SuccessCallback& aSuccessCallback)
@@ -514,3 +514,4 @@ AssetsManager* AssetsManager::create(const char* packageUrl, const char* version
 }
 
 NS_CC_EXT_END
+

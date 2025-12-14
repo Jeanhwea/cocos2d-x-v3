@@ -152,7 +152,7 @@ public final class Cocos2dxBitmap {
     public static boolean createTextBitmapShadowStroke(byte[] bytes,  final String fontName, int fontSize,
                                                     int fontTintR, int fontTintG, int fontTintB, int fontTintA,
                                                     int alignment, int width, int height, float lineSpacing,
-                                                    boolean shadow, float shadowDX, float shadowDY, float shadowBlur, float shadowOpacity, 
+                                                    boolean shadow, float shadowDX, float shadowDY, float shadowBlur, float shadowOpacity,
                                                     boolean stroke, int strokeR, int strokeG, int strokeB, int strokeA, float strokeSize, boolean enableWrap, int overflow) {
         String string;
         if (bytes == null || bytes.length == 0) {
@@ -345,3 +345,4 @@ public final class Cocos2dxBitmap {
                 TextUtils.TruncateAt.END).toString();
     }
 }
+

@@ -33,7 +33,7 @@ THE SOFTWARE.
 #include <assert.h>
 
 #ifdef _USRDLL
-#define CC_DLL __attribute__ ((visibility("default"))) 
+#define CC_DLL __attribute__ ((visibility("default")))
 #else
 #define CC_DLL
 #endif
@@ -58,3 +58,4 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 #endif /* __CCPLATFORMDEFINE_H__*/
+

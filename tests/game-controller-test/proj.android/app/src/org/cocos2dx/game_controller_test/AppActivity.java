@@ -30,7 +30,7 @@ import org.cocos2dx.lib.GameControllerActivity;
 import android.os.Bundle;
 
 public class AppActivity extends GameControllerActivity {
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,9 +43,9 @@ public class AppActivity extends GameControllerActivity {
             return;
         }
         // DO OTHER INITIALIZATION BELOW
-        
+
         //The standard controller,without doing anything special. e.g: Amazon Fire TV
-        
+
         //Manually specify an adapter.
         this.connectController(DRIVERTYPE_NIBIRU);
         //Nibiru SDK have already integrated with MOGA service.
@@ -53,3 +53,4 @@ public class AppActivity extends GameControllerActivity {
         this.connectController(DRIVERTYPE_OUYA);
     }
 }
+

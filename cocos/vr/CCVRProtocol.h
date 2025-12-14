@@ -63,3 +63,4 @@ public:
 NS_CC_END
 
 #endif // __CC_VR_PROTOCOL_H__
+

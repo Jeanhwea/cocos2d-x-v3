@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -122,14 +122,14 @@ NS_CC_BEGIN
 //	if (sys)
 //	{
 //		particle->position = getDerivedPosition() +
-//			sys->getDerivedOrientation() * 
+//			sys->getDerivedOrientation() *
 //			(_mEmitterScale * *mSpawnPositionList.begin());
 //	}
 //	else
 //	{
 //		particle->position = getDerivedPosition() + _mEmitterScale * *mSpawnPositionList.begin();
 //	}
-//			
+//
 //	mSpawnPositionList.pop_front();
 //	particle->originalPosition = particle->position;
 //}
@@ -157,7 +157,7 @@ NS_CC_BEGIN
 ////-----------------------------------------------------------------------
 //void Particle3DVertexEmitter::_setDefaults()
 //{
-//	// Set the default values except the name of the mesh, which may only be changed by the 
+//	// Set the default values except the name of the mesh, which may only be changed by the
 //	// setMeshName() function
 //	mSpawnPositionList.clear();
 //	mPositionElement = 0;
@@ -186,7 +186,7 @@ NS_CC_BEGIN
 //	Ogre::MeshPtr mesh = Ogre::MeshManager::getSingleton().load(mMeshName, Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME);
 //	mMesh = mesh.getPointer();
 //	mMeshProcessed = false;
-//			
+//
 //	if (mMesh->getNumSubMeshes() > 0)
 //	{
 //		mSubMesh = mMesh->getSubMesh(0);
@@ -277,7 +277,7 @@ NS_CC_BEGIN
 //	}
 //
 //	_generatePointsFromVertexBuffer();
-//}	
+//}
 ////-----------------------------------------------------------------------
 //void Particle3DVertexEmitter::_fillVertexBuffer()
 //{
@@ -331,7 +331,7 @@ NS_CC_BEGIN
 //		mSegments = (unsigned short)(((endVector - startVector).length()) / lengthIncrement - 1);
 //	}
 //    Vec3 increment = (endVector - startVector) / mSegments;
-//		
+//
 //	for (unsigned short i = 0; i <= mSegments; i++)
 //	{
 //		mSpawnPositionList.insert (iterator, start);
@@ -342,3 +342,4 @@ NS_CC_BEGIN
 //	}
 //}
 NS_CC_END
+

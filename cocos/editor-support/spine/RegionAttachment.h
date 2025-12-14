@@ -73,3 +73,4 @@ typedef spRegionAttachment RegionAttachment;
 #endif
 
 #endif /* SPINE_REGIONATTACHMENT_H_ */
+

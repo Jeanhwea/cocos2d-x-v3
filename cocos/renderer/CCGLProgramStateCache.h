@@ -1,9 +1,9 @@
 /****************************************************************************
 Copyright (c) 2014-2016 Chukong Technologies Inc.
 Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
 http://www.cocos2d-x.org
- 
+
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
@@ -55,7 +55,7 @@ public:
     static GLProgramStateCache* getInstance();
     /**Destroy the GLProgramStateCache singleton.*/
     static void destroyInstance();
-    
+
     /**Get the shared GLProgramState by the owner GLProgram.*/
     GLProgramState* getGLProgramState(GLProgram* program);
     /**Remove all the cached GLProgramState.*/
@@ -66,7 +66,7 @@ public:
 protected:
     GLProgramStateCache();
     ~GLProgramStateCache();
-    
+
     Map<GLProgram*, GLProgramState*> _glProgramStates;
     static GLProgramStateCache* s_instance;
 };
@@ -77,3 +77,4 @@ NS_CC_END
  @}
  */
 #endif /* __CCGLPROGRAMSTATECACHE_H__ */
+

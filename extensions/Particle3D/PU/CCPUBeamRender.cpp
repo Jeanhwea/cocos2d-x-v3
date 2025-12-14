@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -109,7 +109,7 @@ void PUBeamRender::render( Renderer* renderer, const Mat4 &transform, ParticleSy
     _billboardChain->render(renderer, transform, particleSystem);
 }
 
-PUBeamRender::PUBeamRender() : 
+PUBeamRender::PUBeamRender() :
     _billboardChain(0),
     _quota(0),
     _useVertexColours(DEFAULT_USE_VERTEX_COLOURS),
@@ -157,7 +157,7 @@ void PUBeamRender::particleExpired( PUParticleSystem3D* /*particleSystem*/, PUPa
 bool PUBeamRender::isUseVertexColours() const
 {
     return _useVertexColours;
-} 
+}
 //-----------------------------------------------------------------------
 void PUBeamRender::setUseVertexColours(bool useVertexColours)
 {
@@ -167,17 +167,17 @@ void PUBeamRender::setUseVertexColours(bool useVertexColours)
 
     _billboardChain->setUseVertexColours(_useVertexColours);
     _billboardChain->setUseTextureCoords(!_useVertexColours);
-} 
+}
 //-----------------------------------------------------------------------
 size_t PUBeamRender::getMaxChainElements() const
 {
     return _maxChainElements;
-} 
+}
 //-----------------------------------------------------------------------
 void PUBeamRender::setMaxChainElements(size_t maxChainElements)
 {
     _maxChainElements = maxChainElements;
-} 
+}
 //-----------------------------------------------------------------------
 float PUBeamRender::getUpdateInterval() const
 {
@@ -246,7 +246,7 @@ void PUBeamRender::prepare()
     _quota = _particleSystem->getParticleQuota();
 
     // Create BillboardChain
-    std::stringstream ss; 
+    std::stringstream ss;
     ss << this;
     _billboardChainName = "Beam" + ss.str();
     _billboardChain = new (std::nothrow) PUBillboardChain(_billboardChainName, _texFile);
@@ -371,3 +371,4 @@ void PUBeamRender::copyAttributesTo(PUBeamRender *beamRender)
 }
 
 NS_CC_END
+

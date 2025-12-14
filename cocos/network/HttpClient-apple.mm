@@ -50,9 +50,9 @@ static int processTask(HttpClient* client, HttpRequest *request, NSString *reque
 void HttpClient::networkThread()
 {
     increaseThreadCount();
-    
+
     while (true) @autoreleasepool {
-        
+
         HttpRequest *request;
 
         // step 1: send http request if the requestQueue isn't empty
@@ -68,17 +68,17 @@ void HttpClient::networkThread()
         if (request == _requestSentinel) {
             break;
         }
-        
+
         // Create a HttpResponse object, the default setting is http access failed
         HttpResponse *response = new (std::nothrow) HttpResponse(request);
-        
+
         processResponse(response, _responseMessage);
-        
+
         // add response packet into queue
         _responseQueueMutex.lock();
         _responseQueue.pushBack(response);
         _responseQueueMutex.unlock();
-        
+
         _schedulerMutex.lock();
         if (nullptr != _scheduler)
         {
@@ -86,16 +86,16 @@ void HttpClient::networkThread()
         }
         _schedulerMutex.unlock();
     }
-    
+
     // cleanup: if worker thread received quit signal, clean up un-completed request queue
     _requestQueueMutex.lock();
     _requestQueue.clear();
     _requestQueueMutex.unlock();
-    
+
     _responseQueueMutex.lock();
     _responseQueue.clear();
     _responseQueueMutex.unlock();
-    
+
     decreaseThreadCountAndMayDeleteThis();
 }
 
@@ -103,10 +103,10 @@ void HttpClient::networkThread()
 void HttpClient::networkThreadAlone(HttpRequest* request, HttpResponse* response)
 {
     increaseThreadCount();
-    
+
     char responseMessage[RESPONSE_BUFFER_SIZE] = { 0 };
     processResponse(response, responseMessage);
-    
+
     _schedulerMutex.lock();
     if (nullptr != _scheduler)
     {
@@ -114,7 +114,7 @@ void HttpClient::networkThreadAlone(HttpRequest* request, HttpResponse* response
             const ccHttpRequestCallback& callback = request->getCallback();
             Ref* pTarget = request->getTarget();
             SEL_HttpResponse pSelector = request->getSelector();
-            
+
             if (callback != nullptr)
             {
                 callback(this, response);
@@ -140,7 +140,7 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
         strcpy(errorBuffer, "client object is invalid");
         return 0;
     }
-    
+
     //create request with url
     NSString* urlstring = [NSString stringWithUTF8String:request->getUrl()];
     NSURL *url = [NSURL URLWithString:urlstring];
@@ -148,7 +148,7 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
     NSMutableURLRequest *nsrequest = [NSMutableURLRequest requestWithURL:url
                                                cachePolicy:NSURLRequestReloadIgnoringLocalAndRemoteCacheData
                                            timeoutInterval:HttpClient::getInstance()->getTimeoutForConnect()];
-    
+
     //set request type
     [nsrequest setHTTPMethod:requestType];
 
@@ -171,7 +171,7 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
 
     //if request type is post or put,set header and data
     if([requestType  isEqual: @"POST"] || [requestType isEqual: @"PUT"])
-    {   
+    {
         char* requestDataBuffer = request->getRequestData();
         if (nullptr !=  requestDataBuffer && 0 != request->getRequestDataSize())
         {
@@ -197,34 +197,34 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
             value, NSHTTPCookieValue, path, NSHTTPCookiePath,
             domain, NSHTTPCookieDomain,
             nil];
-            
+
             // create the cookie from the properties
             NSHTTPCookie *cookie = [NSHTTPCookie cookieWithProperties:properties];
-            
+
             // add the cookie to the cookie storage
             [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:cookie];
         }
     }
-    
+
     HttpAsynConnection *httpAsynConn = [[HttpAsynConnection new] autorelease];
     httpAsynConn.srcURL = urlstring;
     httpAsynConn.sslFile = nil;
-    
+
     std::string sslCaFileName = client->getSSLVerification();
     if(!sslCaFileName.empty())
     {
         long len = sslCaFileName.length();
         long pos = sslCaFileName.rfind('.', len-1);
-        
+
         httpAsynConn.sslFile = [NSString stringWithUTF8String:sslCaFileName.substr(0, pos).c_str()];
     }
     [httpAsynConn startRequest:nsrequest];
-    
+
     while( httpAsynConn.finish != true)
     {
         [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
     }
-    
+
     //if http connection return error
     if (httpAsynConn.connError != nil)
     {
@@ -239,9 +239,9 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
         NSString* errorString = [httpAsynConn.responseError localizedDescription];
         strcpy(errorBuffer, [errorString UTF8String]);
     }
-    
+
     *responseCode = httpAsynConn.responseCode;
-    
+
     //add cookie to cookies vector
     if(!cookieFilename.empty())
     {
@@ -256,7 +256,7 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
             NSDate *date = cookie.expiresDate;
             NSString *name = cookie.name;
             NSString *value = cookie.value;
-            
+
             CookiesInfo cookieInfo;
             cookieInfo.domain = [domain cStringUsingEncoding: NSUTF8StringEncoding];
             cookieInfo.path = [path cStringUsingEncoding: NSUTF8StringEncoding];
@@ -265,11 +265,11 @@ static int processTask(HttpClient* client, HttpRequest* request, NSString* reque
             cookieInfo.name = [name cStringUsingEncoding: NSUTF8StringEncoding];
             cookieInfo.value = [value cStringUsingEncoding: NSUTF8StringEncoding];
             cookieInfo.tailmatch = true;
-            
+
             client->getCookie()->updateOrAddCookie(&cookieInfo);
         }
     }
-    
+
     //handle response header
     NSMutableString *header = [NSMutableString string];
     [header appendFormat:@"HTTP/1.1 %ld %@\n", (long)httpAsynConn.responseCode, httpAsynConn.statusString];
@@ -320,12 +320,12 @@ void HttpClient::destroyInstance()
 
     auto thiz = _httpClient;
     _httpClient = nullptr;
-    
+
     thiz->_scheduler->unscheduleAllForTarget(thiz);
     thiz->_schedulerMutex.lock();
     thiz->_scheduler = nullptr;
     thiz->_schedulerMutex.unlock();
-    
+
     thiz->_requestQueueMutex.lock();
     thiz->_requestQueue.pushBack(thiz->_requestSentinel);
     thiz->_requestQueueMutex.unlock();
@@ -536,7 +536,7 @@ void HttpClient::processResponse(HttpResponse* response, char* responseMessage)
         response->setErrorBuffer(responseMessage);
     }
 }
-    
+
 void HttpClient::clearResponseAndRequestQueue()
 {
     _requestQueueMutex.lock();
@@ -557,7 +557,7 @@ void HttpClient::clearResponseAndRequestQueue()
         }
     }
     _requestQueueMutex.unlock();
-    
+
     _responseQueueMutex.lock();
     if (_clearResponsePredicate)
     {

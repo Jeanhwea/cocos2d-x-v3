@@ -72,7 +72,7 @@ static bool jsb_cocos2dx_navmesh_NavMeshAgent_move(JSContext *cx, uint32_t argc,
 		});
 		return true;
 	}
-    
+
     JS_ReportError(cx, "jsb_cocos2dx_navmesh_NavMeshAgent_move : wrong number of arguments: %d, was expecting %d or %d", argc, 1, 2);
     return false;
 }
@@ -85,3 +85,4 @@ void register_all_cocos2dx_navmesh_manual(JSContext *cx, JS::HandleObject global
 	JS_DefineFunction(cx, proto, "move", jsb_cocos2dx_navmesh_NavMeshAgent_move, 2, JSPROP_ENUMERATE | JSPROP_PERMANENT);
 }
 #endif //#if CC_USE_NAVMESH
+

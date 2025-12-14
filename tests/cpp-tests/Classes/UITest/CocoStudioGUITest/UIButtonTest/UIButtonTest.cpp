@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -1134,23 +1134,23 @@ bool UIButtonCloneTest::init()
         buttonCopy->setPosition(Vec2(widgetSize.width / 2.0f + 80,
                                      widgetSize.height / 2.0f + 40));
         this->addChild(buttonCopy);
-        
-        
-        
+
+
+
         auto buttonScale9Copy = (Button*)button->clone();
         buttonScale9Copy->setPosition(button->getPosition() + Vec2(0, -60));
         buttonScale9Copy->setScale9Enabled(true);
         buttonScale9Copy->setContentSize(button->getContentSize() * 1.5);
         this->addChild(buttonScale9Copy);
-        
-        
+
+
         auto buttonScale9Copy2 = (Button*)buttonScale9Copy->clone();
         buttonScale9Copy2->setPosition(buttonCopy->getPosition() + Vec2(0, -60));
         buttonScale9Copy2->setScale9Enabled(true);
         buttonScale9Copy2->setContentSize(buttonCopy->getContentSize() * 1.5);
         this->addChild(buttonScale9Copy2);
-        
-        
+
+
         CCASSERT(button->getTitleRenderer() == nullptr,
                  "Original Button title render must be nullptr ");
 
@@ -1166,7 +1166,7 @@ bool UIButtonCloneTest::init()
 Issue12249::Issue12249()
 : _displayValueLabel(nullptr)
 {
-    
+
 }
 
 bool Issue12249::init()
@@ -1174,25 +1174,25 @@ bool Issue12249::init()
     if (UIScene::init())
     {
         Size widgetSize = _widget->getContentSize();
-        
+
         // Add a label in which the button events will be displayed
         _displayValueLabel = Text::create("Test Issue 12249", "fonts/Marker Felt.ttf",32);
         _displayValueLabel->setAnchorPoint(Vec2(0.5f, -1.0f));
         _displayValueLabel->setPosition(Vec2(widgetSize.width / 2.0f,
                                              widgetSize.height / 2.0f));
         _uiLayer->addChild(_displayValueLabel);
-        
+
         // Add the alert
         Text* alert = Text::create("This test case two buttons should seem to be same!",
                                    "fonts/Marker Felt.ttf",20);
         alert->setColor(Color3B(159, 168, 176));
-        
+
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f
                                 - alert->getContentSize().height * 2.0f));
-        
+
         _uiLayer->addChild(alert);
-        
+
         // Create the button 1
         Button* button = nullptr, *button2 = nullptr;
         float btnWidth = 100;
@@ -1211,7 +1211,7 @@ bool Issue12249::init()
         button2->setTitleText("Scale9 Button 2");
         button2->setPosition(Vec2(widgetSize.width / 2.0f + btnWidth, widgetSize.height / 2.0f));
         _uiLayer->addChild(button2);
-        
+
         return true;
     }
     return false;
@@ -1248,7 +1248,7 @@ bool UIButtonWithPolygonInfo::init()
     if (UIScene::init())
     {
         auto visibleSize = Director::getInstance()->getVisibleSize();
-        
+
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/poly_test_textures.plist");
         auto button = ui::Button::create();
         button->loadTextureNormal("poly_test/wheel_disc_back.png", ui::Widget::TextureResType::PLIST);
@@ -1256,11 +1256,11 @@ bool UIButtonWithPolygonInfo::init()
         button->setScale(0.5);
         button->setScale9Enabled(true);
         addChild(button);
-        
+
         auto buttonCopy = button->clone();
         button->setPosition(Vec2(visibleSize.width/2 + 100, visibleSize.height/2));
         addChild(buttonCopy);
-        
+
         return true;
     }
     return false;
@@ -1280,19 +1280,19 @@ bool UIButtonScale9ChangeSpriteFrame::init()
         sprite->setContentSize(Size(96 * 1.5, 96));
         sprite->setNormalizedPosition(Vec2(0.2, 0.5));
         this->addChild(sprite);
-        
+
         auto button = Button::create("cocosui/button.png", "cocosui/buttonHighlighted.png");
         button->setScale9Enabled(true);
         button->setContentSize(Size(100, 50));
         button->setNormalizedPosition(Vec2(0.6, 0.5));
         button->setTitleText("Press me");
         addChild(button);
-        
+
         button->addClickEventListener([sprite](Ref* button){
             sprite->loadTexture("Images/blocks9.png");
         });
 
-        
+
         return true;
     }
     return false;

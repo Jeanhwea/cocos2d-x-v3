@@ -93,3 +93,4 @@ char* _spUtil_readFile (const char* path, int* length) {
     return bytes;
 #endif
 }
+

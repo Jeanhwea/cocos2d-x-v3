@@ -349,3 +349,4 @@ bool AudioMixerController::hasPlayingTacks()
 }
 
 }} // namespace cocos2d { namespace experimental {
+

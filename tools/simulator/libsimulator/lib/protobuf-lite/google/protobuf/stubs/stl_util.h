@@ -119,3 +119,4 @@ void STLDeleteValues(T *v) {
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_STUBS_STL_UTIL_H__
+

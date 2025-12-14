@@ -120,3 +120,4 @@ inline AtomicWord Release_Load(volatile const AtomicWord* ptr) {
 #endif  // !defined(GOOGLE_PROTOBUF_ARCH_64_BIT)
 
 #endif  // GOOGLE_PROTOBUF_ATOMICOPS_INTERNALS_ATOMICWORD_COMPAT_H_
+

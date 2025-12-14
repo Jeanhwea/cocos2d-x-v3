@@ -46,3 +46,4 @@ Cocos2dAttachmentLoader* Cocos2dAttachmentLoader_create (spAtlas* atlas);
 }
 
 #endif /* SPINE_COCOS2DATTACHMENTLOADER_H_ */
+

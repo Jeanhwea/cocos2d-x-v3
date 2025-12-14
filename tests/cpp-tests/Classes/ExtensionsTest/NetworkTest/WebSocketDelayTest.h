@@ -17,12 +17,12 @@ public:
     virtual ~WebSocketDelayTest();
 
     virtual void onExit() override;
-    
+
     virtual void onOpen(cocos2d::network::WebSocket* ws)override;
     virtual void onMessage(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::Data& data)override;
     virtual void onClose(cocos2d::network::WebSocket* ws)override;
     virtual void onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error)override;
-    
+
     // Menu Callbacks
     void onMenuSendTextClicked(cocos2d::Ref *sender);
 
@@ -40,11 +40,11 @@ public:
 
 private:
     cocos2d::network::WebSocket* _wsiSendText;
-    
+
     cocos2d::Label* _sendTextStatus;
     cocos2d::Label* _progressStatus;
     cocos2d::Menu* _startTestMenu;
-   
+
     int64_t _totalDelayMircoSec = 0;
     int64_t _sendTimeMircoSec = 0;
     int64_t _receiveTimeMircoSec = 0;

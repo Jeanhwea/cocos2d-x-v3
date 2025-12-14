@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -63,9 +63,9 @@ public:
     /** Notify that the Particle System is rescaled.
     */
     virtual void notifyRescaled(const Vec3& scale);
-    
+
     void setVisible(bool isVisible) { _isVisible = isVisible; }
-    
+
     bool isVisible() const { return _isVisible; }
 
     void setDepthTest(bool isDepthTest);
@@ -79,7 +79,7 @@ public:
 CC_CONSTRUCTOR_ACCESS:
     Particle3DRender();
     virtual ~Particle3DRender();
-    
+
 protected:
     ParticleSystem3D *_particleSystem;
     RenderState::StateBlock* _stateBlock;
@@ -94,7 +94,7 @@ class CC_DLL Particle3DQuadRender : public Particle3DRender
 {
 public:
     static Particle3DQuadRender* create(const std::string& texFile = "");
-    
+
     virtual void render(Renderer* renderer, const Mat4 &transform, ParticleSystem3D* particleSystem) override;
 
     virtual void reset()override;
@@ -105,14 +105,14 @@ CC_CONSTRUCTOR_ACCESS:
 protected:
 
     bool initQuadRender(const std::string& texFile);
-    
+
 protected:
     MeshCommand*           _meshCommand;
     Texture2D*             _texture;
     GLProgramState*        _glProgramState;
     IndexBuffer*           _indexBuffer; //index buffer
     VertexBuffer*          _vertexBuffer; // vertex buffer
-    
+
     struct posuvcolor
     {
         Vec3 position;
@@ -132,12 +132,12 @@ public:
     static Particle3DModelRender* create(const std::string& modelFile, const std::string &texFile = "");
 
     virtual void render(Renderer* renderer, const Mat4 &transform, ParticleSystem3D* particleSystem) override;
-    
+
     virtual void reset()override;
 CC_CONSTRUCTOR_ACCESS:
     Particle3DModelRender();
     virtual ~Particle3DModelRender();
-    
+
 protected:
     std::vector<Sprite3D *> _spriteList;
     std::string _modelFile;
@@ -148,3 +148,4 @@ protected:
 NS_CC_END
 
 #endif
+

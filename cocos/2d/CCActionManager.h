@@ -51,9 +51,9 @@ struct _hashElement;
  which uses this singleton.
  But there are some cases where you might need to use this singleton.
  Examples:
-    - When you want to run an action where the target is different from a Node. 
+    - When you want to run an action where the target is different from a Node.
     - When you want to pause / resume the actions.
- 
+
  @since v0.8
  */
 class CC_DLL ActionManager : public Ref
@@ -71,8 +71,8 @@ public:
     virtual ~ActionManager();
 
     // actions
-    
-    /** Adds an action with a target. 
+
+    /** Adds an action with a target.
      If the target is already present, then the action will be added to the existing target.
      If the target is not present, a new instance of this target will be created either paused or not, and the action will be added to the newly created target.
      When the target is paused, the queued actions won't be 'ticked'.
@@ -106,7 +106,7 @@ public:
      * @param target    A certain target.
      */
     virtual void removeActionByTag(int tag, Node *target);
-    
+
     /** Removes all actions given its tag and the target.
      *
      * @param tag       The actions' tag.
@@ -131,7 +131,7 @@ public:
      */
     virtual Action* getActionByTag(int tag, const Node *target) const;
 
-    /** Returns the numbers of actions that are running in a certain target. 
+    /** Returns the numbers of actions that are running in a certain target.
      * Composable actions are counted as 1 action. Example:
      * - If you are running 1 Sequence of 7 actions, it will return 1.
      * - If you are running 7 Sequences of 2 actions, it will return 7.
@@ -141,7 +141,7 @@ public:
      * @js NA
      */
     virtual ssize_t getNumberOfRunningActionsInTarget(const Node *target) const;
-    
+
     /** Returns the numbers of actions that are running in all targets.
      * @return  The numbers of actions that are running in all target.
      * @js NA
@@ -181,24 +181,24 @@ public:
      * @param target    A certain target.
      */
     virtual void resumeTarget(Node *target);
-    
+
     /** Pauses all running actions, returning a list of targets whose actions were paused.
      *
      * @return  A list of targets whose actions were paused.
      */
     virtual Vector<Node*> pauseAllRunningActions();
-    
+
     /** Resume a set of targets (convenience function to reverse a pauseAllRunningActions call).
      *
      * @param targetsToResume   A set of targets need to be resumed.
      */
     virtual void resumeTargets(const Vector<Node*>& targetsToResume);
-    
+
     /** Main loop of ActionManager.
      * @param dt    In seconds.
      */
     virtual void update(float dt);
-    
+
 protected:
     // declared in ActionManager.m
 
@@ -218,3 +218,4 @@ protected:
 NS_CC_END
 
 #endif // __ACTION_CCACTION_MANAGER_H__
+

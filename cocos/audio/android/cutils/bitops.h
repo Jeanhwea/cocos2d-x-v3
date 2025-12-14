@@ -42,3 +42,4 @@ static inline int popcountll(unsigned long long x)
 __END_DECLS
 
 #endif /* COCOS_CUTILS_BITOPS_H */
+

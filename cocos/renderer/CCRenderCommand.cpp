@@ -51,7 +51,7 @@ void RenderCommand::init(float globalZOrder, const cocos2d::Mat4 &transform, uin
     {
         if (Camera::getVisitingCamera())
             _depth = Camera::getVisitingCamera()->getDepthInView(transform);
-        
+
         set3D(true);
     }
     else
@@ -67,3 +67,4 @@ void RenderCommand::printID()
 }
 
 NS_CC_END
+

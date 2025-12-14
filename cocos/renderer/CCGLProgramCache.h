@@ -82,7 +82,7 @@ public:
     void reloadDefaultGLPrograms();
     CC_DEPRECATED_ATTRIBUTE void reloadDefaultShaders() { reloadDefaultGLPrograms(); }
 
-    /** returns a GL program for a given key 
+    /** returns a GL program for a given key
      */
     GLProgram * getGLProgram(const std::string &key);
     CC_DEPRECATED_ATTRIBUTE GLProgram * getProgram(const std::string &key) { return getGLProgram(key); }
@@ -91,7 +91,7 @@ public:
     /** adds a GLProgram to the cache for a given name */
     void addGLProgram(GLProgram* program, const std::string &key);
     CC_DEPRECATED_ATTRIBUTE void addProgram(GLProgram* program, const std::string &key) { addGLProgram(program, key); }
-    
+
     /** reload default programs these are relative to light */
     void reloadDefaultGLProgramsRelativeToLights();
 
@@ -118,3 +118,4 @@ NS_CC_END
 /// @}
 
 #endif /* __CCGLPROGRAMCACHE_H__ */
+

@@ -53,16 +53,16 @@ static const char* sNameList[sListSize] =
 struct DownloaderTest : public TestCase
 {
     CREATE_FUNC(DownloaderTest);
-    
+
     virtual std::string title() const override { return "Downloader Test"; }
-    
+
     std::unique_ptr<network::Downloader> downloader;
-    
+
     DownloaderTest()
     {
         downloader.reset(new network::Downloader());
     }
-    
+
     enum {
         TAG_TITLE = 1,
         TAG_BUTTON,
@@ -70,23 +70,23 @@ struct DownloaderTest : public TestCase
         TAG_STATUS,
         TAG_SPRITE,
     };
-    
+
     Node* createDownloadView(const char *name, const cocos2d::ui::Button::ccWidgetClickCallback &callback)
     {
         Size viewSize(220, 120);
         float margin = 5;
-        
+
         // create background
         auto bg = ui::Scale9Sprite::createWithSpriteFrameName("button_actived.png");
         bg->setContentSize(viewSize);
-        
+
         // add a title on the top
         auto title = Label::createWithTTF(name,"fonts/arial.ttf",16);
         title->setTag(TAG_TITLE);
         title->setAnchorPoint(Vec2(0.5, 1));
         title->setPosition(viewSize.width / 2, viewSize.height - margin);
         bg->addChild(title, 10);
-        
+
         // add a button on the bottom
         auto btn = ui::Button::create("cocosui/animationbuttonnormal.png",
                                       "cocosui/animationbuttonpressed.png");
@@ -96,7 +96,7 @@ struct DownloaderTest : public TestCase
         btn->setPosition(Vec2(viewSize.width / 2, margin));
         btn->addClickEventListener(callback);
         bg->addChild(btn, 10);
-        
+
         // add a progress bar
         auto bar = ui::LoadingBar::create("ccs-res/cocosui/sliderProgress.png");
         bar->setTag(TAG_PROGRESS_BAR);
@@ -116,15 +116,15 @@ struct DownloaderTest : public TestCase
         label->setAlignment(TextHAlignment::CENTER, TextVAlignment::CENTER);
         label->setDimensions(viewSize.width, viewSize.height);
         bg->addChild(label, 20);
-        
+
         return bg;
     }
-    
+
     virtual void onEnter() override
     {
         TestCase::onEnter();
         _restartTestItem->setVisible(true);
-        
+
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile(s_s9s_ui_plist);
 
         // add four download view in test case
@@ -227,7 +227,7 @@ struct DownloaderTest : public TestCase
             auto status = (Label*)view->getChildByTag(TAG_STATUS);
             status->setString(buf);
         };
-        
+
         // define success callback
         downloader->onDataTaskSuccess = [this](const cocos2d::network::DownloadTask& task,
                                                std::vector<unsigned char>& data)
@@ -241,7 +241,7 @@ struct DownloaderTest : public TestCase
                 {
                     break;
                 }
-                
+
                 texture = new Texture2D();
                 if (false == texture->initWithImage(&img))
                 {
@@ -255,7 +255,7 @@ struct DownloaderTest : public TestCase
                 float scale = MIN((viewSize.height - 20) / spriteSize.height, (viewSize.width - 20) / spriteSize.width);
                 sprite->setScale(scale);
                 view->addChild(sprite, 5, TAG_SPRITE);
-                
+
                 auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
                 btn->setEnabled(true);
                 btn->setVisible(true);
@@ -264,7 +264,7 @@ struct DownloaderTest : public TestCase
             } while (0);
             CC_SAFE_RELEASE(texture);
         };
-        
+
         downloader->onFileTaskSuccess = [this](const cocos2d::network::DownloadTask& task)
         {
             Texture2D* texture = nullptr;
@@ -288,7 +288,7 @@ struct DownloaderTest : public TestCase
                 float scale = MIN((viewSize.height - 20) / spriteSize.height, (viewSize.width - 20) / spriteSize.width);
                 sprite->setScale(scale);
                 view->addChild(sprite, 5, TAG_SPRITE);
-                
+
                 auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
                 btn->setEnabled(true);
                 btn->setVisible(true);
@@ -297,7 +297,7 @@ struct DownloaderTest : public TestCase
             } while (0);
             CC_SAFE_RELEASE(texture);
         };
-        
+
         // define failed callback
         downloader->onTaskError = [this](const cocos2d::network::DownloadTask& task,
                                          int errorCode,
@@ -313,7 +313,7 @@ struct DownloaderTest : public TestCase
             auto view = this->getChildByName(task.identifier);
             auto status = (Label*)view->getChildByTag(TAG_STATUS);
             status->setString(errorStr.length() ? errorStr : "Download failed.");
-            
+
             auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
             btn->setEnabled(true);
             btn->setVisible(true);
@@ -370,3 +370,4 @@ DownloaderTests::DownloaderTests()
     ADD_TEST_CASE(DownloaderTest);
     ADD_TEST_CASE(DownloaderMultiTask);
 }
+

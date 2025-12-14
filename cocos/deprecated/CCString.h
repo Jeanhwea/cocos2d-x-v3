@@ -218,3 +218,4 @@ NS_CC_END
 
 /// @endcond
 #endif //__CCSTRING_H__
+

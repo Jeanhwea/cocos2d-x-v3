@@ -1,19 +1,19 @@
 /****************************************************************************
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -47,7 +47,7 @@ bool Frustum::isOutOfFrustum(const AABB& aabb) const
             point.x = normal.x < 0 ? aabb._max.x : aabb._min.x;
             point.y = normal.y < 0 ? aabb._max.y : aabb._min.y;
             point.z = normal.z < 0 ? aabb._max.z : aabb._min.z;
-            
+
             if (_plane[i].getSide(point) == PointSide::FRONT_PLANE )
                 return true;
         }
@@ -64,7 +64,7 @@ bool Frustum::isOutOfFrustum(const OBB& obb) const
         Vec3 obbExtentX = obb._xAxis * obb._extents.x;
         Vec3 obbExtentY = obb._yAxis * obb._extents.y;
         Vec3 obbExtentZ = obb._zAxis * obb._extents.z;
-        
+
         for (int i = 0; i < plane; i++)
         {
             const Vec3& normal = _plane[i].getNormal();
@@ -94,3 +94,4 @@ void Frustum::createPlane(const Camera* camera)
 }
 
 NS_CC_END
+

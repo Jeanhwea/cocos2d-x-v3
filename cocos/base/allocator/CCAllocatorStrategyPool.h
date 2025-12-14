@@ -2,19 +2,19 @@
  Copyright (c) 2014-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
  Author: Justin Graham (https://github.com/mannewalis)
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -55,26 +55,26 @@ template <typename T, size_t _alignment = sizeof(uint32_t)>
 class ObjectTraits
 {
 public:
-    
+
     typedef T value_type;
-    
+
     static const size_t alignment = _alignment;
-    
+
     virtual ~ObjectTraits()
     {}
-    
+
     /** Constructor implementation for type T.*/
     void construct(T* address)
     {
         ::new(address) T();
     }
-    
+
     /** Destructor implementation for type T.*/
     void destroy(T* address)
     {
         address->~T();
     }
-    
+
     /** Returns the name of this object type T.*/
     const char* name() const
     {
@@ -99,20 +99,20 @@ class AllocatorStrategyPool
     , public O
 {
 public:
-    
+
     typedef T value_type;
     typedef value_type* pointer;
-    
+
     /** Ugh wish I knew a way that I could declare this just once.*/
     typedef AllocatorStrategyFixedBlock<sizeof(T), O::alignment, locking_traits> tParentStrategy;
-    
+
     AllocatorStrategyPool(const char* tag = nullptr, size_t poolSize = 100)
         : tParentStrategy(tag)
     {
         poolSize = Configuration::getInstance()->getValue(tag, Value((int)poolSize)).asInt();
         tParentStrategy::_pageSize = poolSize;
     }
-    
+
     /**
      * Allocate block of size T.
      *
@@ -133,7 +133,7 @@ public:
         O::construct(object);
         return object;
     }
-    
+
     /**
      * Deallocate block of size T.
      *
@@ -155,14 +155,14 @@ public:
             }
         }
     }
-    
+
 #if CC_ENABLE_ALLOCATOR_DIAGNOSTICS
     std::string diagnostics() const
     {
         std::stringstream s;
         s << AllocatorBase::tag() << " initial:" << tParentStrategy::_pageSize << " count:" << tParentStrategy::_allocated << " highest:" << tParentStrategy::_highestCount << "\n";
         return s.str();
-    }    
+    }
 #endif
 };
 
@@ -171,3 +171,4 @@ NS_CC_END
 
 /// @endcond
 #endif//CC_ALLOCATOR_STRATEGY_POOL_H
+

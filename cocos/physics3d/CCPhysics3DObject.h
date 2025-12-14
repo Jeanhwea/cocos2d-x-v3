@@ -1,19 +1,19 @@
 ﻿/****************************************************************************
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -83,22 +83,22 @@ public:
         RIGID_BODY,
         COLLIDER,
     };
-    
+
     /** Get the Physics3DObject Type. */
     virtual PhysicsObjType getObjType() const { return _type; }
-    
+
     /** Set the user data. */
     void setUserData(void* userData)  { _userData = userData; }
-    
+
     /** Get the user data. */
     void* getUserData() const { return _userData; }
-    
+
     /** Internal method. Set the pointer of Physics3DWorld. */
     void setPhysicsWorld(Physics3DWorld* world) { _physicsWorld = world; };
-    
+
     /** Get the pointer of Physics3DWorld. */
     Physics3DWorld* getPhysicsWorld() const { return _physicsWorld; }
-    
+
     /** Get the world matrix of Physics3DObject. */
     virtual cocos2d::Mat4 getWorldTransform() const = 0;
 
@@ -116,7 +116,7 @@ public:
 
     /** Get the mask of Physics3DObject. */
     unsigned int getMask() const { return _mask; };
-    
+
 CC_CONSTRUCTOR_ACCESS:
     Physics3DObject()
     : _isEnabled(true)
@@ -125,10 +125,10 @@ CC_CONSTRUCTOR_ACCESS:
     , _physicsWorld(nullptr)
     , _mask(-1)
     {
-        
+
     }
     virtual ~Physics3DObject(){}
-    
+
 
 protected:
     bool           _isEnabled;
@@ -149,14 +149,14 @@ struct CC_DLL Physics3DRigidBodyDes
     Physics3DShape* shape;
     cocos2d::Mat4 originalTransform;
     bool          disableSleep; //it is always active if disabled
-    
+
     Physics3DRigidBodyDes()
     : mass(0.f)
     , localInertia(0.f, 0.f, 0.f)
     , shape(nullptr)
     , disableSleep(false)
     {
-        
+
     }
 };
 
@@ -167,17 +167,17 @@ class CC_DLL Physics3DRigidBody : public Physics3DObject
 {
     friend class Physics3DWorld;
 public:
-    
+
     /**
-     * Creates a Physics3DRigidBody with Physics3DRigidBody. 
+     * Creates a Physics3DRigidBody with Physics3DRigidBody.
      *
      * @return An autoreleased Physics3DRigidBody object.
      */
     static Physics3DRigidBody* create(Physics3DRigidBodyDes* info);
-    
+
     /** Get the pointer of btRigidBody. */
     btRigidBody* getRigidBody() const { return _btRigidBody; }
-    
+
     /**
      * Apply a force.
      *
@@ -268,7 +268,7 @@ public:
     float getAngularDamping() const;
 
     /** Set the acceleration. */
-    void setGravity(const cocos2d::Vec3& acceleration); 
+    void setGravity(const cocos2d::Vec3& acceleration);
 
     /** Get the acceleration. */
     cocos2d::Vec3 getGravity() const;
@@ -326,35 +326,35 @@ public:
 
     /** Get swept sphere radius. */
     float getCcdSweptSphereRadius() const;
-    
+
     /** Set kinematic object. */
     void setKinematic(bool kinematic);
-    
+
     /** Check rigid body is kinematic object. */
     bool isKinematic() const;
-    
+
     /** override. */
     virtual cocos2d::Mat4 getWorldTransform() const override;
-    
+
     /** Get constraint by index. */
     Physics3DConstraint* getConstraint(unsigned int idx) const;
 
     /** Get the total number of constraints. */
     unsigned int getConstraintCount() const;
-    
+
     /** Active or inactive. */
     void setActive(bool active);
 
 CC_CONSTRUCTOR_ACCESS:
     Physics3DRigidBody();
     virtual ~Physics3DRigidBody();
-    
+
     bool init(Physics3DRigidBodyDes* info);
-    
+
     void addConstraint(Physics3DConstraint *constraint);
     void removeConstraint(Physics3DConstraint *constraint);
     void removeConstraint(unsigned int idx);
-    
+
 protected:
     btRigidBody* _btRigidBody;
     Physics3DShape *_physics3DShape;
@@ -384,7 +384,7 @@ struct CC_DLL Physics3DColliderDes
     float ccdSweptSphereRadius;
     /**the motion threshold*/
     float ccdMotionThreshold;
-    
+
     Physics3DColliderDes()
     : shape(nullptr)
     , isTrigger(false)
@@ -395,7 +395,7 @@ struct CC_DLL Physics3DColliderDes
     , ccdSweptSphereRadius(0.0f)
     , ccdMotionThreshold(0.0f)
     {
-        
+
     }
 };
 
@@ -413,57 +413,57 @@ public:
     */
     static Physics3DCollider* create(Physics3DColliderDes *info);
 
-    /** Get the pointer of btGhostObject. 
+    /** Get the pointer of btGhostObject.
      *  @return The pointer of btGhostObject.
     */
     btGhostObject* getGhostObject() const { return _btGhostObject; }
 
-    /** Set trigger. 
+    /** Set trigger.
      *  @param isTrigger Is a trigger.
     */
     void setTrigger(bool isTrigger);
 
-    /** Check is a trigger. 
+    /** Check is a trigger.
      *  @return Is a trigger.
     */
     bool isTrigger() const;
 
-    /** Set restitution. 
+    /** Set restitution.
      *  @param rest The restitution.
     */
     void setRestitution(float rest);
 
-    /** Get restitution. 
+    /** Get restitution.
      *  @return The restitution.
     */
     float getRestitution() const;
 
-    /** Set friction. 
+    /** Set friction.
      *  @param frict The friction.
     */
     void setFriction(float frict);
 
-    /** Get friction. 
+    /** Get friction.
      *  @return The friction.
     */
     float getFriction() const;
 
-    /** Set rolling friction. 
+    /** Set rolling friction.
      *  @param frict The rolling friction.
     */
     void setRollingFriction(float frict);
 
-    /** Get rolling friction. 
+    /** Get rolling friction.
      *  @return The rolling friction.
     */
     float getRollingFriction() const;
 
-    /** Set hit friction. 
+    /** Set hit friction.
      *  @param hitFraction The hit friction.
     */
     void setHitFraction(float hitFraction);
 
-    /** Get hit friction. 
+    /** Get hit friction.
      *  @return The hit friction.
     */
     float getHitFraction() const;
@@ -473,17 +473,17 @@ public:
     */
     void setCcdMotionThreshold(float ccdMotionThreshold);
 
-    /** Get motion threshold. 
+    /** Get motion threshold.
      *  @return The motion threshold.
     */
     float getCcdMotionThreshold() const;
 
-    /** Set swept sphere radius. 
+    /** Set swept sphere radius.
      *  @param radius The swept sphere radius.
     */
     void setCcdSweptSphereRadius(float radius);
 
-    /** Get swept sphere radius. 
+    /** Get swept sphere radius.
      *  @return The swept sphere radius.
     */
     float getCcdSweptSphereRadius() const;
@@ -519,3 +519,4 @@ NS_CC_END
 #endif //CC_USE_3D_PHYSICS
 
 #endif // __PHYSICS_3D_OBJECT_H__
+

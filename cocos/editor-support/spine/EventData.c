@@ -42,3 +42,4 @@ void spEventData_dispose (spEventData* self) {
 	FREE(self->name);
 	FREE(self);
 }
+

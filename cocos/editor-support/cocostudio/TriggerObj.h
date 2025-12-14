@@ -67,7 +67,7 @@ public:
     virtual ~TriggerObj();
     virtual bool init();
     static TriggerObj* create();
-    
+
     virtual bool detect();
     virtual void done();
     virtual void removeAll();
@@ -75,7 +75,7 @@ public:
     virtual void serialize(cocostudio::CocoLoader *cocoLoader, cocostudio::stExpCocoNode *cocoNode);
     unsigned int getId();
     void setEnabled(bool enabled);
-  
+
 private:
     cocos2d::Vector<BaseTriggerCondition*> _cons;
     cocos2d::Vector<BaseTriggerAction*> _acts;
@@ -87,5 +87,4 @@ private:
 }
 
 #endif
-
 

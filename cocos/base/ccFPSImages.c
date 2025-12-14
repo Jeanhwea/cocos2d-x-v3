@@ -2381,3 +2381,4 @@ unsigned int cc_fps_images_len()
 }
 
 #endif // #if !CC_STRIP_FPS
+

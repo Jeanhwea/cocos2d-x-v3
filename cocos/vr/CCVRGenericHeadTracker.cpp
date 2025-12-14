@@ -270,3 +270,4 @@ Mat4 VRGenericHeadTracker::getLocalRotation()
 }
 
 NS_CC_END
+

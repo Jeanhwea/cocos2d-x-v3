@@ -74,3 +74,4 @@ typedef spIkConstraintData IkConstraintData;
 #endif
 
 #endif /* SPINE_IKCONSTRAINTDATA_H_ */
+

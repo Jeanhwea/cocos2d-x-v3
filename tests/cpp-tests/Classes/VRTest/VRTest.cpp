@@ -78,5 +78,3 @@ std::string VRTest1::subtitle() const
     return "Enable / Disable it with the button";
 }
 
-
-

@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -38,7 +38,7 @@
 
 NS_CC_BEGIN
 
-PURibbonTrail::PURibbonTrail(const std::string& name, const std::string &texFile, size_t maxElements, 
+PURibbonTrail::PURibbonTrail(const std::string& name, const std::string &texFile, size_t maxElements,
     size_t numberOfChains, bool useTextureCoords, bool useColours)
     :PUBillboardChain(name, texFile, maxElements, 0, useTextureCoords, useColours, true),
     _parentNode(nullptr),
@@ -64,7 +64,7 @@ void PURibbonTrail::addNode(Node* n)
 
     //if (n->getListener())
     //{
-    //	OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS, 
+    //	OGRE_EXCEPT(Exception::ERR_INVALIDPARAMS,
     //		mName + " cannot monitor node " + n->getName() + " since it already has a listener.",
     //		"RibbonTrail::addNode");
     //}
@@ -209,7 +209,7 @@ float PURibbonTrail::getInitialWidth(size_t chainIndex) const
 //-----------------------------------------------------------------------
 void PURibbonTrail::setColourChange(size_t chainIndex, const Vec4& valuePerSecond)
 {
-    setColourChange(chainIndex, 
+    setColourChange(chainIndex,
         valuePerSecond.x, valuePerSecond.y, valuePerSecond.z, valuePerSecond.w);
 }
 //-----------------------------------------------------------------------
@@ -305,7 +305,7 @@ void PURibbonTrail::updateTrail(size_t index, const Node* node)
             // alter diff to represent new head size
             diff = newPos - headElem.position;
             // check whether another step is needed or not
-            if (diff.lengthSquared() <= _squaredElemLength)   
+            if (diff.lengthSquared() <= _squaredElemLength)
                 done = true;
 
         }
@@ -342,8 +342,8 @@ void PURibbonTrail::updateTrail(size_t index, const Node* node)
     } // end while
 
     _vertexContentDirty = true;
-    // Need to dirty the parent node, but can't do it using needUpdate() here 
-    // since we're in the middle of the scene graph update (node listener), 
+    // Need to dirty the parent node, but can't do it using needUpdate() here
+    // since we're in the middle of the scene graph update (node listener),
     // so re-entrant calls don't work. Queue.
     //if (mParentNode)
     //{
@@ -429,3 +429,4 @@ void PURibbonTrail::update( float deltaTime )
 }
 
 NS_CC_END
+

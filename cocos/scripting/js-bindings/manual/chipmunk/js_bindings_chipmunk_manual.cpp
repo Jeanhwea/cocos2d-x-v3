@@ -847,7 +847,7 @@ struct collision_handler {
 
     unsigned int        is_oo; // Objected oriented API ?
     UT_hash_handle  hh;
-    
+
     bool                is_default;
 
     collision_handler ()
@@ -859,7 +859,7 @@ struct collision_handler {
         jsthis = nullptr;
         is_default = false;
     }
-    
+
     ~collision_handler ()
     {
         JS::RootedValue jsspace(cx, OBJECT_TO_JSVAL(jsthis));
@@ -939,7 +939,7 @@ static cpBool myCollisionBegin(cpArbiter *arb, cpSpace *space, void *data)
         return cpTrue;
     }
     struct collision_handler *handler = (struct collision_handler*) data;
-    
+
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 
     jsval args[2];
@@ -972,7 +972,7 @@ static cpBool myCollisionPre(cpArbiter *arb, cpSpace *space, void *data)
         return cpTrue;
     }
     struct collision_handler *handler = (struct collision_handler*) data;
-    
+
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 
     jsval args[2];
@@ -1005,7 +1005,7 @@ static void myCollisionPost(cpArbiter *arb, cpSpace *space, void *data)
         return;
     }
     struct collision_handler *handler = (struct collision_handler*) data;
-    
+
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 
     jsval args[2];
@@ -1032,15 +1032,15 @@ static void myCollisionSeparate(cpArbiter *arb, cpSpace *space, void *data)
     struct collision_handler *handler = (struct collision_handler*) data;
     if (handler == nullptr || !handler->cx || !handler->space)
         return;
-    
+
     JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
-    
+
     JS::RootedValue jssep(handler->cx, OBJECT_TO_JSVAL(handler->separate));
     if (!jssep.isObject())
     {
         return;
     }
-    
+
     jsval args[2];
     if (handler->is_oo)
     {
@@ -1093,7 +1093,7 @@ void JSB_cpSpace_finalize(JSFreeOp *fop, JSObject *jsthis)
                 delete current;            /* optional- if you want to free  */
             }
         }
-        
+
         // Free Space Children
         freeSpaceChildren(space);
 
@@ -1909,7 +1909,7 @@ void JSB_cpBody_each_func(cpBody *body, T* cpObject, void *data)
         jsval argv = OBJECT_TO_JSVAL(jsCpObject);
 
         JS_CallFunctionValue(cx, JS::NullPtr(), func, JS::HandleValueArray::fromMarkedLocation(1, &argv), &rval);
-        
+
     }
 }
 
@@ -2679,9 +2679,10 @@ bool JSB_cpMomentForSegment(JSContext *cx, uint32_t argc, jsval *vp) {
     ret_val = cpMomentForSegment((int)arg0 , (cpVect)arg1 , (cpVect)arg2 , arg3  );
 
     args.rval().set(DOUBLE_TO_JSVAL(ret_val));
-    
+
     return true;
 }
 
 
 #endif // JSB_INCLUDE_CHIPMUNK
+

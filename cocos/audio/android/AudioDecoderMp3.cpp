@@ -58,7 +58,7 @@ bool AudioDecoderMp3::decodeToPcm()
     int numChannels = 0;
     int sampleRate = 0;
     int numFrames = 0;
-    
+
     if (EXIT_SUCCESS == decodeMP3(&callbacks, this, *_result.pcmBuffer, &numChannels, &sampleRate, &numFrames)
         && numChannels > 0 && sampleRate > 0 && numFrames > 0)
     {
@@ -81,3 +81,4 @@ bool AudioDecoderMp3::decodeToPcm()
 }
 
 }} // namespace cocos2d { namespace experimental {
+

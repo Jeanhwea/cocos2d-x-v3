@@ -213,7 +213,7 @@ void SocketIOTest::onMenuSIOClientClicked(cocos2d::Ref *sender)
 void SocketIOTest::onMenuSIOEndpointClicked(cocos2d::Ref *sender)
 {
 	//repeat the same connection steps for the namespace "testpoint"
-	_sioEndpoint = SocketIO::connect("ws://tools.itharbors.com:4000/testpoint", *this); 
+	_sioEndpoint = SocketIO::connect("ws://tools.itharbors.com:4000/testpoint", *this);
 	//a tag to differentiate in shared callbacks
 	_sioEndpoint->setTag("Test Endpoint");
 
@@ -314,3 +314,4 @@ void SocketIOTest::onError(network::SIOClient* client, const std::string& data)
 	s << client->getTag() << " received error with content: " << data.c_str();
 	_sioClientStatus->setString(s.str());
 }
+

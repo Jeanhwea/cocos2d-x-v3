@@ -254,11 +254,11 @@ class Issue12249 : public UIScene
 {
 public:
     CREATE_FUNC(Issue12249);
-    
+
     Issue12249();
-    
+
     virtual bool init() override;
-    
+
 protected:
     cocos2d::ui::Text* _displayValueLabel;
 };
@@ -277,9 +277,9 @@ class UIButtonWithPolygonInfo: public UIScene
 {
 public:
     CREATE_FUNC(UIButtonWithPolygonInfo);
-    
+
     UIButtonWithPolygonInfo();
-    
+
     virtual bool init() override;
 };
 
@@ -287,10 +287,11 @@ class UIButtonScale9ChangeSpriteFrame: public UIScene
 {
 public:
     CREATE_FUNC(UIButtonScale9ChangeSpriteFrame);
-    
+
     UIButtonScale9ChangeSpriteFrame();
-    
+
     virtual bool init() override;
 };
 
 #endif /* defined(__TestCpp__UIButtonTest__) */
+

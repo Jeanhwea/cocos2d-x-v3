@@ -4854,3 +4854,4 @@ int register_all_cocos2dx_manual_deprecated(lua_State* tolua_S)
     extendLayerMultiplexDeprecated(tolua_S);
     return 0;
 }
+

@@ -437,3 +437,4 @@ void Label::recordPlaceholderInfo(int letterIndex, char32_t utf32Char)
 }
 
 NS_CC_END
+

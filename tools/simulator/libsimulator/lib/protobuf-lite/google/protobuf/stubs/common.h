@@ -1221,3 +1221,4 @@ using namespace std;  // Don't do this at home, kids.
 }  // namespace google
 
 #endif  // GOOGLE_PROTOBUF_COMMON_H__
+

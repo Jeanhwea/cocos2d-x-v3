@@ -80,3 +80,4 @@ private:
 };
 
 #endif // _CONSOLE_TEST_H_
+

@@ -2,7 +2,7 @@
  Copyright (c) 2013      Zynga Inc.
  Copyright (c) 2013-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
 
  Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -52,9 +52,9 @@ FontCharMap * FontCharMap::create(const std::string& plistFile)
     {
         return nullptr;
     }
-    
+
     FontCharMap *tempFont =  new FontCharMap(tempTexture,width,height,startChar);
-    
+
     if (!tempFont)
     {
         return nullptr;
@@ -109,7 +109,7 @@ FontAtlas * FontCharMap::createFontAtlas()
     FontAtlas *tempAtlas = new (std::nothrow) FontAtlas(*this);
     if (!tempAtlas)
         return nullptr;
-    
+
     Size s = _texture->getContentSizeInPixels();
     int itemsPerColumn = (int)(s.height / _itemHeight);
     int itemsPerRow = (int)(s.width / _itemWidth);
@@ -140,10 +140,11 @@ FontAtlas * FontCharMap::createFontAtlas()
             charId++;
         }
     }
-    
+
     tempAtlas->addTexture(_texture,0);
 
     return tempAtlas;
 }
 
 NS_CC_END
+

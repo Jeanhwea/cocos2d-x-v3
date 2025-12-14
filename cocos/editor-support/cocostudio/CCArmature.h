@@ -164,7 +164,7 @@ public:
     virtual void update(float dt) override;
 
     virtual void onEnter() override;
-    virtual void onExit() override; 
+    virtual void onExit() override;
 
     virtual const cocos2d::Mat4& getNodeToParentTransform() const override;
     /**
@@ -177,7 +177,7 @@ public:
      *  @lua NA
      */
     inline const cocos2d::BlendFunc &getBlendFunc() const override{ return _blendFunc; }
-    
+
 
     /**
      * Set contentsize and Calculate anchor point.
@@ -189,7 +189,7 @@ public:
 
     virtual void setAnimation(ArmatureAnimation *animation);
     virtual ArmatureAnimation *getAnimation() const;
-    
+
     virtual bool getArmatureTransformDirty() const;
 
 
@@ -283,3 +283,4 @@ protected:
 }
 
 #endif /*__CCARMATURE_H__*/
+

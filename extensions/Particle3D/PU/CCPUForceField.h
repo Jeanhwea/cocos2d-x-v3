@@ -2,19 +2,19 @@
  Copyright (C) 2013 Henry van Merode. All rights reserved.
  Copyright (c) 2015-2016 Chukong Technologies Inc.
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -53,21 +53,21 @@ public:
 
     /** Generates the force field
     @remarks
-        This function takes several arguments. 
-        - forceFieldSize defines the internal dimensions of the force field. 
+        This function takes several arguments.
+        - forceFieldSize defines the internal dimensions of the force field.
         - octaves, frequency, amplitude and persistence define the noise that is being generated.
         - worldSize defines the dimensions in the real world (scene).
     */
-    virtual void generate(unsigned int forceFieldSize, 
-        unsigned short octaves, 
-        double frequency, 
-        double amplitude, 
-        double persistence, 
+    virtual void generate(unsigned int forceFieldSize,
+        unsigned short octaves,
+        double frequency,
+        double amplitude,
+        double persistence,
         const Vec3& worldSize) = 0;
 
     /** Determine force, based on the position of a particle.
     #remarks
-        The position is the position of a particle. The argument 'delta' defines the radius around the position that contributes to the 
+        The position is the position of a particle. The argument 'delta' defines the radius around the position that contributes to the
         calculation of the force.
     */
     virtual void determineForce(const Vec3& position, Vec3& force, float delta) = 0;
@@ -111,11 +111,11 @@ public:
 
     /** Override from ForceFieldCalculationFactory
     */
-    virtual void generate(unsigned int forceFieldSize, 
-        unsigned short octaves, 
-        double frequency, 
-        double amplitude, 
-        double persistence, 
+    virtual void generate(unsigned int forceFieldSize,
+        unsigned short octaves,
+        double frequency,
+        double amplitude,
+        double persistence,
         const Vec3& worldSize);
 
     /** Override from ForceFieldCalculationFactory
@@ -147,20 +147,20 @@ class PUForceField
         /** Initialises a ForceField */
         virtual void initialise(ForceFieldType type,
             const Vec3& position,
-            unsigned int forceFieldSize, 
-            unsigned short octaves, 
-            double frequency, 
-            double amplitude, 
-            double persistence, 
+            unsigned int forceFieldSize,
+            unsigned short octaves,
+            double frequency,
+            double amplitude,
+            double persistence,
             const Vec3& worldSize);
 
         /** Initialises a ForceField */
         virtual void initialise(ForceFieldType type,
-            unsigned int forceFieldSize, 
-            unsigned short octaves, 
-            double frequency, 
-            double amplitude, 
-            double persistence, 
+            unsigned int forceFieldSize,
+            unsigned short octaves,
+            double frequency,
+            double amplitude,
+            double persistence,
             const Vec3& worldSize);
 
         /** Get/Set the base position of the force field */
@@ -184,7 +184,7 @@ class PUForceField
         virtual void setForceFieldSize(unsigned int forceFieldSize);
         virtual Vec3 getWorldSize() const;
         virtual void setWorldSize(const Vec3& worldSize);
-            
+
         /** Get/Set the Forcefield type
         */
         ForceFieldType getForceFieldType() const;
@@ -213,3 +213,4 @@ class PUForceField
 NS_CC_END
 
 #endif
+

@@ -44,7 +44,7 @@ public:
         /** For testing whether test case not crash.*/
         ROBUSTNESS,
         /**
-         * For check the correctness of regular test cases. 
+         * For check the correctness of regular test cases.
          * A test case passes only if the actual output equal to the expected output.
          */
         UNIT,
@@ -153,7 +153,7 @@ class TestController;
 
 /**
 * TestSuite correspond to a group of test cases.
-* @note Each test case should add to a TestSuite object. 
+* @note Each test case should add to a TestSuite object.
 */
 class TestSuite : public TestBase
 {
@@ -215,7 +215,7 @@ private:
 
 /**
  * BaseTest is retained for compatibility with older versions.
- * @warning It should soon be removed. 
+ * @warning It should soon be removed.
  */
 class BaseTest : public cocos2d::Layer
 {
@@ -232,3 +232,4 @@ public:
 };
 
 #endif /* defined(_CPPTESTS_BASETEST_H__) */
+

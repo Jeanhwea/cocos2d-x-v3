@@ -131,3 +131,4 @@ _SP_ARRAY_DECLARE_TYPE(spArrayShortArray, spShortArray*)
 #endif
 
 #endif /* SPINE_ARRAY_H */
+

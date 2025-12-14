@@ -144,3 +144,4 @@ void Application::applicationScreenSizeChanged(int newWidth, int newHeight) {
 NS_CC_END
 
 #endif // CC_PLATFORM_IOS
+

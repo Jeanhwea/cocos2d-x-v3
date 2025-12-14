@@ -57,13 +57,13 @@ Scene::Scene()
 {
     _ignoreAnchorPointForPosition = true;
     setAnchorPoint(Vec2(0.5f, 0.5f));
-    
+
     //create default camera
 
     addChild(_defaultCamera);
-    
+
     _event->retain();
-    
+
     Camera::_visitingCamera = nullptr;
 
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
@@ -74,7 +74,7 @@ Scene::Scene()
 void Scene::onEnter()
 {
     Node::onEnter();
-    
+
 #if CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID
     DataManager::onSceneLoaderEnd();
 #endif
@@ -91,11 +91,11 @@ Scene::~Scene()
 #endif
     Director::getInstance()->getEventDispatcher()->removeEventListener(_event);
     CC_SAFE_RELEASE(_event);
-    
+
 #if CC_USE_PHYSICS
     delete _physicsWorld;
 #endif
-    
+
 #if CC_ENABLE_GC_FOR_NATIVE_OBJECTS
     auto sEngine = ScriptEngineManager::getInstance()->getScriptEngine();
     if (sEngine)
@@ -252,7 +252,7 @@ void Scene::render(Renderer* renderer, const Mat4* eyeTransforms, const Mat4* ey
     if (_physics3DWorld && _physics3DWorld->isDebugDrawEnabled())
     {
         Camera *physics3dDebugCamera = _physics3dDebugCamera != nullptr ? _physics3dDebugCamera: defaultCamera;
-        
+
         for (unsigned int i = 0; i < multiViewCount; ++i) {
             if (eyeProjections)
                 physics3dDebugCamera->setAdditionalProjection(eyeProjections[i] * physics3dDebugCamera->getProjectionMatrix().getInversed());
@@ -261,13 +261,13 @@ void Scene::render(Renderer* renderer, const Mat4* eyeTransforms, const Mat4* ey
             director->pushProjectionMatrix(i);
             director->loadProjectionMatrix(physics3dDebugCamera->getViewProjectionMatrix(), i);
         }
-        
+
         physics3dDebugCamera->apply();
         physics3dDebugCamera->clearBackground();
 
         _physics3DWorld->debugDraw(renderer);
         renderer->render();
-        
+
         physics3dDebugCamera->restore();
 
         for (unsigned int i = 0; i < multiViewCount; ++i)
@@ -381,3 +381,4 @@ void Scene::stepPhysicsAndNavigation(float deltaTime)
 #endif
 
 NS_CC_END
+

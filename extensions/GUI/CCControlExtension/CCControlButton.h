@@ -4,19 +4,19 @@
  *
  * Copyright 2011 Yannick Loriot. All rights reserved.
  * http://yannickloriot.com
- * 
+ *
  * Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- * 
+ *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
- * 
+ *
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
- * 
+ *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -54,7 +54,7 @@ NS_CC_EXT_BEGIN
 
 /** @class ControlButton Button control for Cocos2D. */
 class CC_EX_DLL ControlButton : public Control
-{        
+{
 public:
     static ControlButton* create();
     static ControlButton* create(cocos2d::ui::Scale9Sprite* sprite);
@@ -192,7 +192,7 @@ public:
 
     const std::string& getCurrentTitle() const { return _currentTitle; };
     std::string getCurrentTitle() { return _currentTitle; };
-    
+
 CC_CONSTRUCTOR_ACCESS:
     /**
      * @js ctor
@@ -203,12 +203,12 @@ CC_CONSTRUCTOR_ACCESS:
      * @lua NA
      */
     virtual ~ControlButton();
-    
+
     virtual bool init() override;
     virtual bool initWithLabelAndBackgroundSprite(Node* label, cocos2d::ui::Scale9Sprite* backgroundSprite, bool adjustBackGroundSize);
     virtual bool initWithBackgroundSprite(cocos2d::ui::Scale9Sprite* sprite);
     virtual bool initWithTitleAndFontNameAndFontSize(const std::string& title, const std::string& fontName, float fontSize);
-    
+
 protected:
     bool _isPushed;
     bool _parentInited;
@@ -258,3 +258,4 @@ private:
 NS_CC_EXT_END
 
 #endif
+

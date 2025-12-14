@@ -110,7 +110,7 @@ void ActionsDemo::onEnter()
     _grossini = Sprite::create(s_pathGrossini);
     _grossini->retain();
 
-    _tamara = Sprite::create(s_pathSister1); 
+    _tamara = Sprite::create(s_pathSister1);
     _tamara->retain();
 
     _kathia = Sprite::create(s_pathSister2);
@@ -143,20 +143,20 @@ void ActionsDemo::centerSprites(unsigned int numberOfSprites)
         _tamara->setVisible(false);
         _kathia->setVisible(false);
         _grossini->setVisible(false);
-    } 
-    else if ( numberOfSprites == 1 ) 
+    }
+    else if ( numberOfSprites == 1 )
     {
         _tamara->setVisible(false);
         _kathia->setVisible(false);
         _grossini->setPosition(s.width/2, s.height/2);
     }
-    else if( numberOfSprites == 2 ) 
-    {        
+    else if( numberOfSprites == 2 )
+    {
         _kathia->setPosition(s.width/3, s.height/2);
         _tamara->setPosition(2*s.width/3, s.height/2);
         _grossini->setVisible(false);
-    } 
-    else if( numberOfSprites == 3 ) 
+    }
+    else if( numberOfSprites == 3 )
     {
         _grossini->setPosition(s.width/2, s.height/2);
         _tamara->setPosition(s.width/4, s.height/2);
@@ -168,19 +168,19 @@ void ActionsDemo::alignSpritesLeft(unsigned int numberOfSprites)
 {
     auto s = Director::getInstance()->getWinSize();
 
-    if( numberOfSprites == 1 ) 
+    if( numberOfSprites == 1 )
     {
         _tamara->setVisible(false);
         _kathia->setVisible(false);
         _grossini->setPosition(60, s.height/2);
-    } 
-    else if( numberOfSprites == 2 ) 
-    {        
+    }
+    else if( numberOfSprites == 2 )
+    {
         _kathia->setPosition(60, s.height/3);
         _tamara->setPosition(60, 2*s.height/3);
         _grossini->setVisible( false );
-    } 
-    else if( numberOfSprites == 3 ) 
+    }
+    else if( numberOfSprites == 3 )
     {
         _grossini->setPosition(60, s.height/2);
         _tamara->setPosition(60, 2*s.height/3);
@@ -223,18 +223,18 @@ std::string ActionMove::subtitle() const
 void ActionMove3D::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     centerSprites(3);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     _tamara->setPosition3D(Vec3(s.width-40, s.height-40, 0));
     _kathia->setPosition3D(Vec3(40, 40, 0));
-    
+
     auto actionTo = MoveTo::create(2, Vec3(s.width-40, s.height-40, -100));
     auto actionBy = MoveBy::create(2, Vec3(80, 80, -100));
     auto actionByBack = actionBy->reverse();
-    
+
     _tamara->runAction(actionTo);
     _grossini->runAction(Sequence::create(actionBy, actionByBack, nullptr));
     _kathia->runAction(MoveTo::create(1, Vec3(40, 40, -100)));
@@ -535,7 +535,7 @@ void ActionBezier::onEnter()
     bezier2.controlPoint_2 = Vec2(200, -s.height/2);
     bezier2.endPosition = Vec2(240,160);
 
-    auto bezierTo1 = BezierTo::create(2, bezier2);    
+    auto bezierTo1 = BezierTo::create(2, bezier2);
 
     // sprite 3
     _kathia->setPosition(400,160);
@@ -658,7 +658,7 @@ void ActionAnimate::onEnter()
 
     auto action = Animate::create(animation);
     _grossini->runAction(Sequence::create(action, action->reverse(), nullptr));
-    
+
     //
     // File animation
     //
@@ -672,7 +672,7 @@ void ActionAnimate::onEnter()
 
     _frameDisplayedListener = EventListenerCustom::create(AnimationFrameDisplayedNotification, [](EventCustom * event){
         auto userData = static_cast<AnimationFrame::DisplayedEventInfo*>(event->getUserData());
-        
+
          log("target %p with data %s", userData->target, Value(userData->userInfo).getDescription().c_str());
     });
 
@@ -1198,8 +1198,8 @@ void ActionRepeat::onEnter()
 
     auto a1 = MoveBy::create(1, Vec2(150,0));
     auto action1 = Repeat::create(
-        Sequence::create( Place::create(Vec2(60,60)), a1, nullptr) , 
-        3); 
+        Sequence::create( Place::create(Vec2(60,60)), a1, nullptr) ,
+        3);
     auto  action2 = RepeatForever::create(
         Sequence::create(a1->clone(), a1->reverse(), nullptr)
         );
@@ -1259,7 +1259,7 @@ void ActionOrbit::onEnter()
 void ActionOrbit::onExit()
 {
     ActionsDemo::onExit();
-    
+
     Director::getInstance()->setProjection(Director::Projection::DEFAULT);
 }
 
@@ -1283,10 +1283,10 @@ void ActionFollow::onEnter()
     DrawNode* drawNode = DrawNode::create();
     float x = s.width*2 - 100;
     float y = s.height;
-    
+
     Vec2 vertices[] = { Vec2(5,5), Vec2(x-5,5), Vec2(x-5,y-5), Vec2(5,y-5) };
     drawNode->drawPoly(vertices, 4, true,  Color4F(CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), 1));
-    
+
     this->addChild(drawNode);
 
     _grossini->setPosition(-200, s.height / 2);
@@ -1313,27 +1313,27 @@ std::string ActionFollow::subtitle() const
 void ActionFollowWithOffset::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     centerSprites(1);
     auto s = Director::getInstance()->getWinSize();
-    
+
     DrawNode* drawNode = DrawNode::create();
     float x = s.width*2 - 100;
     float y = s.height;
-    
+
     Vec2 vertices[] = { Vec2(5,5), Vec2(x-5,5), Vec2(x-5,y-5), Vec2(5,y-5) };
     drawNode->drawPoly(vertices, 4, true,  Color4F(CCRANDOM_0_1(), CCRANDOM_0_1(), CCRANDOM_0_1(), 1));
-    
+
     this->addChild(drawNode);
-    
+
     _grossini->setPosition(-200, s.height / 2);
     auto move = MoveBy::create(2, Vec2(s.width * 3, 1));
     auto move_back = move->reverse();
     auto seq = Sequence::create(move, move_back, nullptr);
     auto rep = RepeatForever::create(seq);
-    
+
     _grossini->runAction(rep);
-    
+
     //sample offset values set
     float verticalOffset = -900;
     float horizontalOffset = 200;
@@ -1381,19 +1381,19 @@ void ActionTargetedReverse::onEnter()
 {
     ActionsDemo::onEnter();
     centerSprites(2);
-    
-    
+
+
     auto jump1 = JumpBy::create(2,Vec2::ZERO,100,3);
     auto jump2 = jump1->clone();
     auto rot1 = RotateBy::create(1, 360);
     auto rot2 = rot1->clone();
-    
+
     auto t1 = TargetedAction::create(_kathia, jump2);
     auto t2 = TargetedAction::create(_kathia, rot2);
-    
+
     auto seq = Sequence::create(jump1, t1->reverse(), rot1, t2->reverse(), nullptr);
     auto always = RepeatForever::create(seq);
-    
+
     _tamara->runAction(always);
 }
 
@@ -1412,13 +1412,13 @@ std::string ActionTargetedReverse::subtitle() const
 void ActionStacked::onEnter()
 {
     ActionsDemo::onEnter();
-        
+
     this->centerSprites(0);
-    
+
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesEnded = CC_CALLBACK_2(ActionStacked::onTouchesEnded, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-    
+
     auto s = Director::getInstance()->getWinSize();
     this->addNewSpriteWithCoords(Vec2(s.width/2, s.height/2));
 }
@@ -1428,13 +1428,13 @@ void ActionStacked::addNewSpriteWithCoords(Vec2 p)
     int idx = CCRANDOM_0_1() * 1400 / 100;
     int x = (idx%5) * 85;
     int y = (idx/5) * 121;
-    
-    
+
+
     auto sprite = Sprite::create("Images/grossini_dance_atlas.png", Rect(x,y,85,121));
-    
+
     sprite->setPosition(p);
     this->addChild(sprite);
-    
+
     this->runActionsInSprite(sprite);
 }
 
@@ -1472,10 +1472,10 @@ void ActionMoveStacked::runActionsInSprite(Sprite *sprite)
                 MoveBy::create(0.05f, Vec2(10,10)),
                 MoveBy::create(0.05f, Vec2(-10,-10)),
        nullptr)));
-    
+
     auto action = MoveBy::create(2.0f, Vec2(400,0));
     auto action_back = action->reverse();
-    
+
     sprite->runAction(
       RepeatForever::create(
         Sequence::create(action, action_back, nullptr)
@@ -1498,10 +1498,10 @@ void ActionMoveJumpStacked::runActionsInSprite(Sprite *sprite)
              MoveBy::create(0.05f, Vec2(10,2)),
              MoveBy::create(0.05f, Vec2(-10,-2)),
              nullptr)));
-    
+
     auto jump = JumpBy::create(2.0f, Vec2(400,0), 100, 5);
     auto jump_back = jump->reverse();
-    
+
     sprite->runAction(
       RepeatForever::create(
           Sequence::create(jump, jump_back, nullptr)
@@ -1518,19 +1518,19 @@ std::string ActionMoveJumpStacked::title() const
 void ActionMoveBezierStacked::runActionsInSprite(Sprite *sprite)
 {
     auto s = Director::getInstance()->getWinSize();
-    
+
     // sprite 1
     ccBezierConfig bezier;
     bezier.controlPoint_1 = Vec2(0, s.height/2);
     bezier.controlPoint_2 = Vec2(300, -s.height/2);
     bezier.endPosition = Vec2(300,100);
-    
+
     auto bezierForward = BezierBy::create(3, bezier);
     auto bezierBack = bezierForward->reverse();
     auto seq = Sequence::create(bezierForward, bezierBack, nullptr);
     auto rep = RepeatForever::create(seq);
     sprite->runAction(rep);
-    
+
     sprite->runAction(
      RepeatForever::create(
       Sequence::create(
@@ -1550,22 +1550,22 @@ std::string ActionMoveBezierStacked::title() const
 void ActionCatmullRomStacked::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     this->centerSprites(2);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     //
     // sprite 1 (By)
     //
     // startPosition can be any coordinate, but since the movement
     // is relative to the Catmull Rom curve, it is better to start with (0,0).
     //
-    
+
     _tamara->setPosition(50,50);
-    
+
     auto array = PointArray::create(20);
-    
+
     array->addControlPoint(Vec2(0,0));
     array->addControlPoint(Vec2(80,80));
     array->addControlPoint(Vec2(s.width-80,80));
@@ -1573,55 +1573,55 @@ void ActionCatmullRomStacked::onEnter()
     array->addControlPoint(Vec2(80,s.height-80));
     array->addControlPoint(Vec2(80,80));
     array->addControlPoint(Vec2(s.width/2, s.height/2));
-    
+
     auto action = CatmullRomBy::create(3, array);
     auto reverse = action->reverse();
-    
+
     auto seq = Sequence::create(action, reverse, nullptr);
-    
+
     _tamara->runAction(seq);
-    
+
     _tamara->runAction(
         RepeatForever::create(
             Sequence::create(
                 MoveBy::create(0.05f, Vec2(10,0)),
                 MoveBy::create(0.05f, Vec2(-10,0)),
                 nullptr)));
-    
+
     auto drawNode1 = DrawNode::create();
     drawNode1->setPosition(Vec2(50,50));
     drawNode1->drawCatmullRom(array, 50, Color4F(1.0, 1.0, 0.0, 0.5));
     this->addChild(drawNode1);
-    
+
     //
     // sprite 2 (To)
     //
     // The startPosition is not important here, because it uses a "To" action.
     // The initial position will be the 1st point of the Catmull Rom path
     //
-    
+
     auto array2 = PointArray::create(20);
-    
+
     array2->addControlPoint(Vec2(s.width/2, 30));
     array2->addControlPoint(Vec2(s.width-80,30));
     array2->addControlPoint(Vec2(s.width-80,s.height-80));
     array2->addControlPoint(Vec2(s.width/2,s.height-80));
     array2->addControlPoint(Vec2(s.width/2, 30));
-    
+
     auto action2 = CatmullRomTo::create(3, array2);
     auto reverse2 = action2->reverse();
-    
+
     auto seq2 = Sequence::create(action2, reverse2, nullptr);
-    
+
     _kathia->runAction(seq2);
-    
+
     _kathia->runAction(
         RepeatForever::create(
             Sequence::create(
                 MoveBy::create(0.05f, Vec2(10,0)),
                 MoveBy::create(0.05f, Vec2(-10,0)),
                 nullptr)));
-    
+
     auto drawNode2 = DrawNode::create();
     drawNode2->drawCatmullRom(array2, 50, Color4F(1.0, 0.0, 0.0, 0.5));
     this->addChild(drawNode2);
@@ -1647,20 +1647,20 @@ std::string ActionCatmullRomStacked::subtitle() const
 void ActionCardinalSplineStacked::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     this->centerSprites(2);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto array = PointArray::create(20);
-    
+
     array->addControlPoint(Vec2(0, 0));
     array->addControlPoint(Vec2(s.width/2-30,0));
     array->addControlPoint(Vec2(s.width/2-30,s.height-80));
     array->addControlPoint(Vec2(0, s.height-80));
     array->addControlPoint(Vec2(0, 0));
-    
-    
+
+
     //
     // sprite 1 (By)
     //
@@ -1669,46 +1669,46 @@ void ActionCardinalSplineStacked::onEnter()
 
     auto action = CardinalSplineBy::create(3, array, 0);
     auto reverse = action->reverse();
-    
+
     auto seq = Sequence::create(action, reverse, nullptr);
-    
+
     _tamara->setPosition(50,50);
     _tamara->runAction(seq);
-    
+
     _tamara->runAction(
         RepeatForever::create(
             Sequence::create(
                 MoveBy::create(0.05f, Vec2(10,0)),
                 MoveBy::create(0.05f, Vec2(-10,0)),
                 nullptr)));
-    
+
     auto drawNode1 = DrawNode::create();
     drawNode1->setPosition(Vec2(50,50));
     drawNode1->drawCardinalSpline(array, 0, 100, Color4F(1.0, 0.0, 1.0, 1.0));
     this->addChild(drawNode1);
-    
+
     //
     // sprite 2 (By)
     //
     // Spline with high tension (tension==1)
     //
-    
+
     auto *action2 = CardinalSplineBy::create(3, array, 1);
     auto reverse2 = action2->reverse();
-    
+
     auto seq2 = Sequence::create(action2, reverse2, nullptr);
-    
+
     _kathia->setPosition(s.width/2,50);
-    
+
     _kathia->runAction(seq2);
-    
+
     _kathia->runAction(
         RepeatForever::create(
             Sequence::create(
                 MoveBy::create(0.05f, Vec2(10,0)),
                 MoveBy::create(0.05f, Vec2(-10,0)),
                 nullptr)));
-    
+
     auto drawNode2 = DrawNode::create();
     drawNode2->setPosition(Vec2(s.width/2,50));
     drawNode2->drawCardinalSpline(array, 1, 100, Color4F(0.0, 0.0, 1.0, 1.0));
@@ -1978,10 +1978,10 @@ void Issue2599::onEnter()
 {
     ActionsDemo::onEnter();
     this->centerSprites(0);
-    
+
     _count = 0;
     log("before: count = %d", _count);
-    
+
     log("start count up 50 times using Repeat action");
     auto delay = 1.0f / 50;
     auto repeatAction = Repeat::create(
@@ -2011,22 +2011,22 @@ std::string Issue2599::title() const
 void ActionCatmullRom::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     this->centerSprites(2);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     //
     // sprite 1 (By)
     //
     // startPosition can be any coordinate, but since the movement
     // is relative to the Catmull Rom curve, it is better to start with (0,0).
     //
-    
+
     _tamara->setPosition(50, 50);
-    
+
     auto array = PointArray::create(20);
-    
+
     array->addControlPoint(Vec2(0, 0));
     array->addControlPoint(Vec2(80, 80));
     array->addControlPoint(Vec2(s.width - 80, 80));
@@ -2034,41 +2034,41 @@ void ActionCatmullRom::onEnter()
     array->addControlPoint(Vec2(80, s.height - 80));
     array->addControlPoint(Vec2(80, 80));
     array->addControlPoint(Vec2(s.width / 2, s.height / 2));
-    
+
     auto action = CatmullRomBy::create(3, array);
     auto reverse = action->reverse();
-    
+
     auto seq = Sequence::create(action, reverse, nullptr);
-    
+
     _tamara->runAction(seq);
-    
+
     auto drawNode1 = DrawNode::create();
     drawNode1->setPosition(Vec2(50,50));
     drawNode1->drawCatmullRom(array, 50, Color4F(1.0, 0.0, 1.0, 1.0));
     this->addChild(drawNode1);
-    
+
     //
     // sprite 2 (To)
     //
     // The startPosition is not important here, because it uses a "To" action.
     // The initial position will be the 1st point of the Catmull Rom path
-    //    
-    
+    //
+
     auto array2 = PointArray::create(20);
-    
+
     array2->addControlPoint(Vec2(s.width / 2, 30));
     array2->addControlPoint(Vec2(s.width  -80, 30));
     array2->addControlPoint(Vec2(s.width - 80, s.height - 80));
     array2->addControlPoint(Vec2(s.width / 2, s.height - 80));
     array2->addControlPoint(Vec2(s.width / 2, 30));
-    
+
     auto action2 = CatmullRomTo::create(3, array2);
     auto reverse2 = action2->reverse();
-    
+
     auto seq2 = Sequence::create(action2, reverse2, nullptr);
-    
+
     _kathia->runAction(seq2);
-    
+
     auto drawNode2 = DrawNode::create();
     drawNode2->drawCatmullRom(array2, 50, Color4F(0.0, 1.0, 1.0, 1.0));
     this->addChild(drawNode2);
@@ -2093,52 +2093,52 @@ std::string ActionCatmullRom::subtitle() const
 void ActionCardinalSpline::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     this->centerSprites(2);
-    
+
     auto s = Director::getInstance()->getWinSize();
-    
+
     auto array = PointArray::create(20);
-    
+
     array->addControlPoint(Vec2(0, 0));
     array->addControlPoint(Vec2(s.width/2-30, 0));
     array->addControlPoint(Vec2(s.width/2-30, s.height-80));
     array->addControlPoint(Vec2(0, s.height-80));
     array->addControlPoint(Vec2(0, 0));
-    
+
     //
     // sprite 1 (By)
     //
     // Spline with no tension (tension==0)
     //
-    
+
     auto action = CardinalSplineBy::create(3, array, 0);
     auto reverse = action->reverse();
-    
+
     auto seq = Sequence::create(action, reverse, nullptr);
-    
+
     _tamara->setPosition(50, 50);
     _tamara->runAction(seq);
-    
+
     auto drawNode1 = DrawNode::create();
     drawNode1->setPosition(Vec2(50,50));
     drawNode1->drawCardinalSpline(array, 0, 100, Color4F(1.0, 0.0, 1.0, 1.0));
     this->addChild(drawNode1);
-    
+
     //
     // sprite 2 (By)
     //
     // Spline with high tension (tension==1)
     //
-    
+
     auto action2 = CardinalSplineBy::create(3, array, 1);
     auto reverse2 = action2->reverse();
-    
+
     auto seq2 = Sequence::create(action2, reverse2, nullptr);
-    
+
     _kathia->setPosition(s.width/2, 50);
     _kathia->runAction(seq2);
-    
+
     auto drawNode2 = DrawNode::create();
     drawNode2->setPosition(Vec2(s.width/2, 50));
     drawNode2->drawCardinalSpline(array, 1, 100, Color4F(1.0, 0.0, 1.0, 1.0));
@@ -2175,13 +2175,13 @@ PauseResumeActions::~PauseResumeActions()
 void PauseResumeActions::onEnter()
 {
     ActionsDemo::onEnter();
-    
+
     this->centerSprites(3);
-    
+
     _tamara->runAction(RepeatForever::create(RotateBy::create(3, 360)));
     _grossini->runAction(RepeatForever::create(RotateBy::create(3, -360)));
     _kathia->runAction(RepeatForever::create(RotateBy::create(3, 360)));
-    
+
     this->schedule([&](float dt){
         log("Pausing");
         auto director = Director::getInstance();
@@ -2212,11 +2212,11 @@ std::string PauseResumeActions::subtitle() const
 //------------------------------------------------------------------
 //
 //    ActionResize
-//    Works on all nodes where setContentSize is effective. 
+//    Works on all nodes where setContentSize is effective.
 //    But it's mostly useful for nodes where 9-slice is enabled
 //
 //------------------------------------------------------------------
-void ActionResize::onEnter() 
+void ActionResize::onEnter()
 {
     ActionsDemo::onEnter();
 
@@ -2267,7 +2267,7 @@ void ActionResize::onEnter()
     imageViewScale->runAction(rep2);
 }
 
-std::string ActionResize::subtitle() const 
+std::string ActionResize::subtitle() const
 {
     return "ResizeTo / ResizeBy";
 }
@@ -2409,7 +2409,7 @@ void SequenceWithFinalInstant::onEnter()
     TestCase::onEnter();
 
     _manager = new cocos2d::ActionManager();
-    
+
     _target = cocos2d::Node::create();
     _target->setActionManager( _manager );
     _target->retain();
@@ -2422,7 +2422,7 @@ void SequenceWithFinalInstant::onEnter()
           cocos2d::log("Callback called.");
           called = true;
         } );
-    
+
     const auto action =
       cocos2d::Sequence::create
       (cocos2d::DelayTime::create(0.05),
@@ -2435,7 +2435,7 @@ void SequenceWithFinalInstant::onEnter()
 
     if ( action->isDone() && !called )
         assert(false);
-    
+
     _manager->update(FLT_EPSILON);
 
     if ( action->isDone() && !called )
@@ -2464,34 +2464,34 @@ std::string SequenceWithFinalInstant::subtitle() const
 void Issue18003::onEnter()
 {
     TestCase::onEnter();
-    
+
     _manager = new ActionManager();
-    
+
     _target = Node::create();
     _target->setActionManager(_manager);
     _target->retain();
     _target->onEnter();
-    
+
     // instant action + interval action
-    
+
     const auto f
     ( []() -> void
      {
          // do nothing
      });
-    
+
     auto action = Sequence::create(CallFunc::create(f),
                                    DelayTime::create(1),
                                    nullptr);
-    
+
     _target->runAction(action);
     _manager->update(0);
     _manager->update(2);
-    
+
     assert(action->isDone());
-    
+
     _target->stopAction(action);
-    
+
     // instant action + instant action
     action = Sequence::create(CallFunc::create(f),
                               CallFunc::create(f),
@@ -2501,7 +2501,7 @@ void Issue18003::onEnter()
     _manager->update(1);
     assert(action->isDone());
     _target->stopAction(action);
-    
+
     // interval action + instant action
     action = Sequence::create(DelayTime::create(1),
                               CallFunc::create(f),
@@ -2511,7 +2511,7 @@ void Issue18003::onEnter()
     _manager->update(2);
     assert(action->isDone());
     _target->stopAction(action);
-    
+
     // interval action + interval action
     action = Sequence::create(DelayTime::create(1), DelayTime::create(1), nullptr);
     _target->runAction(action);
@@ -2533,3 +2533,4 @@ std::string Issue18003::subtitle() const
 {
     return "issue18003: should not crash";
 }
+

@@ -212,7 +212,7 @@ namespace cocos2d {
 
 		_setTexVerticalAlignment(_textBox);
 		_setPadding(_textBox);
-	
+
         // Finally, insert it into the XAML scene hierarchy and make the containing canvas visible
         canvas->Children->InsertAt(0, _textBox);
         canvas->Background = ref new Media::SolidColorBrush();
@@ -508,3 +508,4 @@ namespace cocos2d {
 } // namespace cocos2d
 
 #endif // (CC_TARGET_PLATFORM == CC_PLATFORM_WP8 || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
+

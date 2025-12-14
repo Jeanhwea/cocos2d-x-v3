@@ -1,18 +1,18 @@
 /****************************************************************************
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  http://www.cocos2d-x.org
- 
+
  Permission is hereby granted, free of charge, to any person obtaining a copy
  of this software and associated documentation files (the "Software"), to deal
  in the Software without restriction, including without limitation the rights
  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  copies of the Software, and to permit persons to whom the Software is
  furnished to do so, subject to the following conditions:
- 
+
  The above copyright notice and this permission notice shall be included in
  all copies or substantial portions of the Software.
- 
+
  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -39,9 +39,9 @@
 #include "3d/CCObjLoader.h"
 
 namespace tinyobj {
-    
+
 #define TINYOBJ_SSCANF_BUFFER_SIZE  (4096)
-    
+
     struct vertex_index {
         int v_idx, vt_idx, vn_idx;
         vertex_index(){};
@@ -57,29 +57,29 @@ namespace tinyobj {
             return (a.vn_idx < b.vn_idx);
         if (a.vt_idx != b.vt_idx)
             return (a.vt_idx < b.vt_idx);
-        
+
         return false;
     }
-    
+
     struct obj_shape {
         std::vector<float> v;
         std::vector<float> vn;
         std::vector<float> vt;
     };
-    
+
     static inline bool isSpace(const char c) { return (c == ' ') || (c == '\t'); }
-    
+
     static inline bool isNewLine(const char c) {
         return (c == '\r') || (c == '\n') || (c == '\0');
     }
-    
+
     // Make index zero-base, and also support relative index.
     static inline int fixIndex(int idx, int n) {
         if (idx > 0) return idx - 1;
         if (idx == 0) return 0;
         return n + idx; // negative value = relative
     }
-    
+
     static inline std::string parseString(const char *&token) {
         std::string s;
         token += strspn(token, " \t");
@@ -88,15 +88,15 @@ namespace tinyobj {
         token += e;
         return s;
     }
-    
+
     static inline int parseInt(const char *&token) {
         token += strspn(token, " \t");
         int i = atoi(token);
         token += strcspn(token, " \t\r");
         return i;
     }
-    
-    
+
+
     // Tries to parse a floating point number located at s.
     //
     // s_end should be a location in the string where reading should absolutely
@@ -130,7 +130,7 @@ namespace tinyobj {
         {
             return false;
         }
-        
+
         double mantissa = 0.0;
         // This exponent is base 2 rather than 10.
         // However the exponent we parse is supposed to be one of ten,
@@ -140,22 +140,22 @@ namespace tinyobj {
         // To get the final double we will use ldexp, it requires the
         // exponent to be in base 2.
         int exponent = 0;
-        
+
         // NOTE: THESE MUST BE DECLARED HERE SINCE WE ARE NOT ALLOWED
         // TO JUMP OVER DEFINITIONS.
         char sign = '+';
         char exp_sign = '+';
         char const *curr = s;
-        
+
         // How many characters were read in a loop.
         int read = 0;
         // Tells whether a loop terminated due to reaching s_end.
         bool end_not_reached = false;
-        
+
         /*
          BEGIN PARSING.
          */
-        
+
         // Find out what sign we've got.
         if (*curr == '+' || *curr == '-')
         {
@@ -167,7 +167,7 @@ namespace tinyobj {
         {
             goto fail;
         }
-        
+
         // Read the integer part.
         while ((end_not_reached = (curr != s_end)) && isdigit(*curr))
         {
@@ -175,14 +175,14 @@ namespace tinyobj {
             mantissa += static_cast<int>(*curr - 0x30);
             curr++;	read++;
         }
-        
+
         // We must make sure we actually got something.
         if (read == 0)
             goto fail;
         // We allow numbers of form "#", "###" etc.
         if (!end_not_reached)
             goto assemble;
-        
+
         // Read the decimal part.
         if (*curr == '.')
         {
@@ -200,10 +200,10 @@ namespace tinyobj {
         {
             goto assemble;
         }
-        
+
         if (!end_not_reached)
             goto assemble;
-        
+
         // Read the exponent part.
         if (*curr == 'e' || *curr == 'E')
         {
@@ -220,7 +220,7 @@ namespace tinyobj {
                 // Empty E is not allowed.
                 goto fail;
             }
-            
+
             read = 0;
             while ((end_not_reached = (curr != s_end)) && isdigit(*curr))
             {
@@ -232,7 +232,7 @@ namespace tinyobj {
             if (read == 0)
                 goto fail;
         }
-        
+
     assemble:
         *result = (sign == '+'? 1 : -1) * ldexp(mantissa * pow(5.0, exponent), exponent);
         return true;
@@ -253,32 +253,32 @@ namespace tinyobj {
 #endif
         return f;
     }
-    
-    
+
+
     static inline void parseFloat2(float &x, float &y, const char *&token) {
         x = parseFloat(token);
         y = parseFloat(token);
     }
-    
+
     static inline void parseFloat3(float &x, float &y, float &z,
                                    const char *&token) {
         x = parseFloat(token);
         y = parseFloat(token);
         z = parseFloat(token);
     }
-    
+
     // Parse triples: i, i/j/k, i//k, i/j
     static vertex_index parseTriple(const char *&token, int vsize, int vnsize,
                                     int vtsize) {
         vertex_index vi(-1);
-        
+
         vi.v_idx = fixIndex(atoi(token), vsize);
         token += strcspn(token, "/ \t\r");
         if (token[0] != '/') {
             return vi;
         }
         token++;
-        
+
         // i//k
         if (token[0] == '/') {
             token++;
@@ -286,21 +286,21 @@ namespace tinyobj {
             token += strcspn(token, "/ \t\r");
             return vi;
         }
-        
+
         // i/j/k or i/j
         vi.vt_idx = fixIndex(atoi(token), vtsize);
         token += strcspn(token, "/ \t\r");
         if (token[0] != '/') {
             return vi;
         }
-        
+
         // i/j/k
         token++; // skip '/'
         vi.vn_idx = fixIndex(atoi(token), vnsize);
         token += strcspn(token, "/ \t\r");
         return vi;
     }
-    
+
     static unsigned int
     updateVertex(std::map<vertex_index, unsigned int> &vertexCache,
                  std::vector<float> &positions, std::vector<float> &normals,
@@ -309,35 +309,35 @@ namespace tinyobj {
                  const std::vector<float> &in_normals,
                  const std::vector<float> &in_texcoords, const vertex_index &i) {
         const std::map<vertex_index, unsigned int>::iterator it = vertexCache.find(i);
-        
+
         if (it != vertexCache.end()) {
             // found cache
             return it->second;
         }
-        
+
         assert(in_positions.size() > (unsigned int)(3 * i.v_idx + 2));
-        
+
         positions.push_back(in_positions[3 * i.v_idx + 0]);
         positions.push_back(in_positions[3 * i.v_idx + 1]);
         positions.push_back(in_positions[3 * i.v_idx + 2]);
-        
+
         if (i.vn_idx >= 0) {
             normals.push_back(in_normals[3 * i.vn_idx + 0]);
             normals.push_back(in_normals[3 * i.vn_idx + 1]);
             normals.push_back(in_normals[3 * i.vn_idx + 2]);
         }
-        
+
         if (i.vt_idx >= 0) {
             texcoords.push_back(in_texcoords[2 * i.vt_idx + 0]);
             texcoords.push_back(in_texcoords[2 * i.vt_idx + 1]);
         }
-        
+
         unsigned int idx = static_cast<unsigned int>(positions.size() / 3 - 1);
         vertexCache[i] = idx;
-        
+
         return idx;
     }
-    
+
     void InitMaterial(material_t &material) {
         material.name = "";
         material.ambient_texname = "";
@@ -357,7 +357,7 @@ namespace tinyobj {
         material.ior = 1.f;
         material.unknown_parameter.clear();
     }
-    
+
     static bool exportFaceGroupToShape(
                                        shape_t &shape, std::map<vertex_index, unsigned int> vertexCache,
                                        const std::vector<float> &in_positions,
@@ -368,22 +368,22 @@ namespace tinyobj {
         if (faceGroup.empty()) {
             return false;
         }
-        
+
         // Flatten vertices and indices
         for (size_t i = 0, size = faceGroup.size(); i < size; ++i) {
             const std::vector<vertex_index> &face = faceGroup[i];
-            
+
             vertex_index i0 = face[0];
             vertex_index i1(-1);
             vertex_index i2 = face[1];
-            
+
             size_t npolys = face.size();
-            
+
             // Polygon -> triangle fan conversion
             for (size_t k = 2; k < npolys; k++) {
                 i1 = i2;
                 i2 = face[k];
-                
+
                 unsigned int v0 = updateVertex(
                                                vertexCache, shape.mesh.positions, shape.mesh.normals,
                                                shape.mesh.texcoords, in_positions, in_normals, in_texcoords, i0);
@@ -393,23 +393,23 @@ namespace tinyobj {
                 unsigned int v2 = updateVertex(
                                                vertexCache, shape.mesh.positions, shape.mesh.normals,
                                                shape.mesh.texcoords, in_positions, in_normals, in_texcoords, i2);
-                
+
                 shape.mesh.indices.push_back(v0);
                 shape.mesh.indices.push_back(v1);
                 shape.mesh.indices.push_back(v2);
-                
+
                 shape.mesh.material_ids.push_back(material_id);
             }
         }
-        
+
         shape.name = name;
-        
+
         if (clearCache)
             vertexCache.clear();
-        
+
         return true;
     }
-    
+
     static std::string& replacePathSeperator(std::string& path)
     {
         for (std::string::size_type i = 0, size = path.size(); i < size; ++i) {
@@ -418,23 +418,23 @@ namespace tinyobj {
         }
         return path;
     }
-    
+
     std::string LoadMtl(std::map<std::string, int> &material_map,
                         std::vector<material_t> &materials,
                         std::istream &inStream) {
         std::stringstream err;
-        
+
         // Create a default material anyway.
         material_t material;
         InitMaterial(material);
-        
+
         int maxchars = 8192;             // Alloc enough size.
         std::vector<char> buf(maxchars); // Alloc enough size.
         while (inStream.peek() != -1) {
             inStream.getline(&buf[0], maxchars);
-            
+
             std::string linebuf(&buf[0]);
-            
+
             // Trim newline '\r\n' or '\n'
             if (!linebuf.empty()) {
                 if (linebuf[linebuf.size() - 1] == '\n')
@@ -444,23 +444,23 @@ namespace tinyobj {
                 if (linebuf[linebuf.size() - 1] == '\r')
                     linebuf.erase(linebuf.size() - 1);
             }
-            
+
             // Skip if empty line.
             if (linebuf.empty()) {
                 continue;
             }
-            
+
             // Skip leading space.
             const char *token = linebuf.c_str();
             token += strspn(token, " \t");
-            
+
             assert(token);
             if (token[0] == '\0')
                 continue; // empty line
-            
+
             if (token[0] == '#')
                 continue; // comment line
-            
+
             // new mtl
             if ((0 == strncmp(token, "newmtl", 6)) && isSpace((token[6]))) {
                 // flush previous material.
@@ -469,10 +469,10 @@ namespace tinyobj {
                                         std::pair<std::string, int>(material.name, static_cast<int>(materials.size())));
                     materials.push_back(material);
                 }
-                
+
                 // initial temporary material
                 InitMaterial(material);
-                
+
                 // set new mtl name
                 char namebuf[TINYOBJ_SSCANF_BUFFER_SIZE];
                 token += 7;
@@ -484,7 +484,7 @@ namespace tinyobj {
                 material.name = namebuf;
                 continue;
             }
-            
+
             // ambient
             if (token[0] == 'K' && token[1] == 'a' && isSpace((token[2]))) {
                 token += 2;
@@ -495,7 +495,7 @@ namespace tinyobj {
                 material.ambient[2] = b;
                 continue;
             }
-            
+
             // diffuse
             if (token[0] == 'K' && token[1] == 'd' && isSpace((token[2]))) {
                 token += 2;
@@ -506,7 +506,7 @@ namespace tinyobj {
                 material.diffuse[2] = b;
                 continue;
             }
-            
+
             // specular
             if (token[0] == 'K' && token[1] == 's' && isSpace((token[2]))) {
                 token += 2;
@@ -517,7 +517,7 @@ namespace tinyobj {
                 material.specular[2] = b;
                 continue;
             }
-            
+
             // transmittance
             if (token[0] == 'K' && token[1] == 't' && isSpace((token[2]))) {
                 token += 2;
@@ -528,14 +528,14 @@ namespace tinyobj {
                 material.transmittance[2] = b;
                 continue;
             }
-            
+
             // ior(index of refraction)
             if (token[0] == 'N' && token[1] == 'i' && isSpace((token[2]))) {
                 token += 2;
                 material.ior = parseFloat(token);
                 continue;
             }
-            
+
             // emission
             if (token[0] == 'K' && token[1] == 'e' && isSpace(token[2])) {
                 token += 2;
@@ -546,21 +546,21 @@ namespace tinyobj {
                 material.emission[2] = b;
                 continue;
             }
-            
+
             // shininess
             if (token[0] == 'N' && token[1] == 's' && isSpace(token[2])) {
                 token += 2;
                 material.shininess = parseFloat(token);
                 continue;
             }
-            
+
             // illum model
             if (0 == strncmp(token, "illum", 5) && isSpace(token[5])) {
                 token += 6;
                 material.illum = parseInt(token);
                 continue;
             }
-            
+
             // dissolve
             if ((token[0] == 'd' && isSpace(token[1]))) {
                 token += 1;
@@ -573,7 +573,7 @@ namespace tinyobj {
                 material.dissolve = 1.0f - parseFloat(token);
                 continue;
             }
-            
+
             // ambient texture
             if ((0 == strncmp(token, "map_Ka", 6)) && isSpace(token[6])) {
                 token += 7;
@@ -581,7 +581,7 @@ namespace tinyobj {
                 replacePathSeperator(material.ambient_texname);
                 continue;
             }
-            
+
             // diffuse texture
             if ((0 == strncmp(token, "map_Kd", 6)) && isSpace(token[6])) {
                 token += 7;
@@ -589,7 +589,7 @@ namespace tinyobj {
                 replacePathSeperator(material.diffuse_texname);
                 continue;
             }
-            
+
             // specular texture
             if ((0 == strncmp(token, "map_Ks", 6)) && isSpace(token[6])) {
                 token += 7;
@@ -597,7 +597,7 @@ namespace tinyobj {
                 replacePathSeperator(material.specular_texname);
                 continue;
             }
-            
+
             // normal texture
             if ((0 == strncmp(token, "map_Ns", 6)) && isSpace(token[6])) {
                 token += 7;
@@ -605,7 +605,7 @@ namespace tinyobj {
                 replacePathSeperator(material.normal_texname);
                 continue;
             }
-            
+
             // unknown parameter
             const char *_space = strchr(token, ' ');
             if (!_space) {
@@ -623,23 +623,23 @@ namespace tinyobj {
         material_map.insert(
                             std::pair<std::string, int>(material.name, static_cast<int>(materials.size())));
         materials.push_back(material);
-        
+
         return err.str();
     }
-    
+
     std::string MaterialFileReader::operator()(const std::string &matId,
                                                std::vector<material_t> &materials,
                                                std::map<std::string, int> &matMap) {
         std::string filepath;
-        
+
         if (!m_mtlBasePath.empty()) {
             filepath = std::string(m_mtlBasePath) + matId;
         } else {
             filepath = matId;
         }
-        
+
         std::string err = "";
-        
+
         std::istringstream matIStream(cocos2d::FileUtils::getInstance()->getStringFromFile(filepath));
         if (!matIStream) {
             std::stringstream ss;
@@ -650,55 +650,55 @@ namespace tinyobj {
 
         return err;
     }
-    
+
     std::string LoadObj(std::vector<shape_t> &shapes,
                         std::vector<material_t> &materials, // [output]
                         const char *filename, const char *mtl_basepath) {
-        
+
         shapes.clear();
-        
+
         std::stringstream err;
-        
+
         std::istringstream ifs(cocos2d::FileUtils::getInstance()->getStringFromFile(filename));
         if (!ifs) {
             err << "Cannot open file [" << filename << "]" << std::endl;
             return err.str();
         }
-        
+
         std::string basePath;
         if (mtl_basepath) {
             basePath = mtl_basepath;
         }
         MaterialFileReader matFileReader(basePath);
-        
+
         return LoadObj(shapes, materials, ifs, matFileReader);
     }
-    
+
     std::string LoadObj(std::vector<shape_t> &shapes,
                         std::vector<material_t> &materials, // [output]
                         std::istream &inStream, MaterialReader &readMatFn) {
         std::stringstream err;
-        
+
         std::vector<float> v;
         std::vector<float> vn;
         std::vector<float> vt;
         std::vector<std::vector<vertex_index> > faceGroup;
         std::string name;
-        
+
         // material
         std::map<std::string, int> material_map;
         std::map<vertex_index, unsigned int> vertexCache;
         int material = -1;
-        
+
         shape_t shape;
-        
+
         int maxchars = 8192;             // Alloc enough size.
         std::vector<char> buf(maxchars); // Alloc enough size.
         while (inStream.peek() != -1) {
             inStream.getline(&buf[0], maxchars);
-            
+
             std::string linebuf(&buf[0]);
-            
+
             // Trim newline '\r\n' or '\n'
             if (!linebuf.empty()) {
                 if (linebuf[linebuf.size() - 1] == '\n')
@@ -708,23 +708,23 @@ namespace tinyobj {
                 if (linebuf[linebuf.size() - 1] == '\r')
                     linebuf.erase(linebuf.size() - 1);
             }
-            
+
             // Skip if empty line.
             if (linebuf.empty()) {
                 continue;
             }
-            
+
             // Skip leading space.
             const char *token = linebuf.c_str();
             token += strspn(token, " \t");
-            
+
             assert(token);
             if (token[0] == '\0')
                 continue; // empty line
-            
+
             if (token[0] == '#')
                 continue; // comment line
-            
+
             // vertex
             if (token[0] == 'v' && isSpace((token[1]))) {
                 token += 2;
@@ -735,7 +735,7 @@ namespace tinyobj {
                 v.push_back(z);
                 continue;
             }
-            
+
             // normal
             if (token[0] == 'v' && token[1] == 'n' && isSpace((token[2]))) {
                 token += 3;
@@ -746,7 +746,7 @@ namespace tinyobj {
                 vn.push_back(z);
                 continue;
             }
-            
+
             // texcoord
             if (token[0] == 'v' && token[1] == 't' && isSpace((token[2]))) {
                 token += 3;
@@ -756,12 +756,12 @@ namespace tinyobj {
                 vt.push_back(y);
                 continue;
             }
-            
+
             // face
             if (token[0] == 'f' && isSpace((token[1]))) {
                 token += 2;
                 token += strspn(token, " \t");
-                
+
                 std::vector<vertex_index> face;
                 auto first = static_cast<int>(v.size() / 3);
                 auto second = static_cast<int>(vn.size() / 3);
@@ -773,15 +773,15 @@ namespace tinyobj {
                     size_t n = strspn(token, " \t\r");
                     token += n;
                 }
-                
+
                 faceGroup.push_back(face);
-                
+
                 continue;
             }
-            
+
             // use mtl
             if ((0 == strncmp(token, "usemtl", 6)) && isSpace((token[6]))) {
-                
+
                 char namebuf[TINYOBJ_SSCANF_BUFFER_SIZE];
                 token += 7;
 #ifdef _MSC_VER
@@ -789,7 +789,7 @@ namespace tinyobj {
 #else
                 sscanf(token, "%s", namebuf);
 #endif
-                
+
                 // Create face group per material.
                 bool ret = exportFaceGroupToShape(shape, vertexCache, v, vn, vt,
                                                   faceGroup, material, name, true);
@@ -798,17 +798,17 @@ namespace tinyobj {
                 }
                 shape = shape_t();
                 faceGroup.clear();
-                
+
                 if (material_map.find(namebuf) != material_map.end()) {
                     material = material_map[namebuf];
                 } else {
                     // { error!! material not found }
                     material = -1;
                 }
-                
+
                 continue;
             }
-            
+
             // load mtl
             if ((0 == strncmp(token, "mtllib", 6)) && isSpace((token[6]))) {
                 char namebuf[TINYOBJ_SSCANF_BUFFER_SIZE];
@@ -818,64 +818,64 @@ namespace tinyobj {
 #else
                 sscanf(token, "%s", namebuf);
 #endif
-                
+
                 std::string err_mtl = readMatFn(namebuf, materials, material_map);
                 if (!err_mtl.empty()) {
                     faceGroup.clear(); // for safety
                     return err_mtl;
                 }
-                
+
                 continue;
             }
-            
+
             // group name
             if (token[0] == 'g' && isSpace((token[1]))) {
-                
+
                 // flush previous face group.
                 bool ret = exportFaceGroupToShape(shape, vertexCache, v, vn, vt,
                                                   faceGroup, material, name, true);
                 if (ret) {
                     shapes.push_back(shape);
                 }
-                
+
                 shape = shape_t();
-                
+
                 // material = -1;
                 faceGroup.clear();
-                
+
                 std::vector<std::string> names;
                 while (!isNewLine(token[0])) {
                     std::string str = parseString(token);
                     names.push_back(str);
                     token += strspn(token, " \t\r"); // skip tag
                 }
-                
+
                 assert(!names.empty());
-                
+
                 // names[0] must be 'g', so skip the 0th element.
                 if (names.size() > 1) {
                     name = names[1];
                 } else {
                     name = "";
                 }
-                
+
                 continue;
             }
-            
+
             // object name
             if (token[0] == 'o' && isSpace((token[1]))) {
-                
+
                 // flush previous face group.
                 bool ret = exportFaceGroupToShape(shape, vertexCache, v, vn, vt,
                                                   faceGroup, material, name, true);
                 if (ret) {
                     shapes.push_back(shape);
                 }
-                
+
                 // material = -1;
                 faceGroup.clear();
                 shape = shape_t();
-                
+
                 // @todo { multiple object name? }
                 char namebuf[TINYOBJ_SSCANF_BUFFER_SIZE];
                 token += 2;
@@ -885,20 +885,21 @@ namespace tinyobj {
                 sscanf(token, "%s", namebuf);
 #endif
                 name = std::string(namebuf);
-                
+
                 continue;
             }
-            
+
             // Ignore unknown command.
         }
-        
+
         bool ret = exportFaceGroupToShape(shape, vertexCache, v, vn, vt, faceGroup,
                                           material, name, true);
         if (ret) {
             shapes.push_back(shape);
         }
         faceGroup.clear(); // for safety
-        
+
         return err.str();
     }
 }
+

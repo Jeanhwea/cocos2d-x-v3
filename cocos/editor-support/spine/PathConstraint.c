@@ -465,3 +465,4 @@ float* spPathConstraint_computeWorldPositions(spPathConstraint* self, spPathAtta
 	}
 	return out;
 }
+

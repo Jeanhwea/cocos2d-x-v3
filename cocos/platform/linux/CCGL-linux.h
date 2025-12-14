@@ -36,3 +36,4 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_LINUX
 
 #endif // __CCGL_H__
+

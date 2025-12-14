@@ -2,7 +2,7 @@
  Copyright 2013 BlackBerry Inc.
  Copyright (c) 2014-2017 Chukong Technologies
  Copyright (c) 2017-2018 Xiamen Yaji Software Co., Ltd.
- 
+
  Licensed under the Apache License, Version 2.0 (the "License");
  you may not use this file except in compliance with the License.
  You may obtain a copy of the License at
@@ -148,7 +148,7 @@ public:
      *
      * @param v1 The first vector.
      * @param v2 The second vector.
-     * 
+     *
      * @return The angle between the two vectors (in radians).
      */
     static float angle(const Vec4& v1, const Vec4& v2);
@@ -191,9 +191,9 @@ public:
      * Returns the distance between this vector and v.
      *
      * @param v The other vector.
-     * 
+     *
      * @return The distance between this vector and v.
-     * 
+     *
      * @see distanceSquared
      */
     float distance(const Vec4& v) const;
@@ -207,9 +207,9 @@ public:
      * this method instead of distance.
      *
      * @param v The other vector.
-     * 
+     *
      * @return The squared distance between this vector and v.
-     * 
+     *
      * @see distance
      */
     float distanceSquared(const Vec4& v) const;
@@ -218,7 +218,7 @@ public:
      * Returns the dot product of this vector and the specified vector.
      *
      * @param v The vector to compute the dot product with.
-     * 
+     *
      * @return The dot product.
      */
     float dot(const Vec4& v) const;
@@ -228,7 +228,7 @@ public:
      *
      * @param v1 The first vector.
      * @param v2 The second vector.
-     * 
+     *
      * @return The dot product between the vectors.
      */
     static float dot(const Vec4& v1, const Vec4& v2);
@@ -237,7 +237,7 @@ public:
      * Computes the length of this vector.
      *
      * @return The length of the vector.
-     * 
+     *
      * @see lengthSquared
      */
     float length() const;
@@ -251,7 +251,7 @@ public:
      * instead of length.
      *
      * @return The squared length of the vector.
-     * 
+     *
      * @see length
      */
     float lengthSquared() const;
@@ -269,7 +269,7 @@ public:
      * after calling this method will be 1.0f). If the vector
      * already has unit length or if the length of the vector
      * is zero, this method does nothing.
-     * 
+     *
      * @return This vector, after the normalization occurs.
      */
     void normalize();
@@ -312,7 +312,7 @@ public:
 
     /**
      * Sets this vector to the directional vector between the specified points.
-     * 
+     *
      * @param p1 The first point.
      * @param p2 The second point.
      */
@@ -338,9 +338,9 @@ public:
 
     /**
      * Calculates the sum of this vector with the given vector.
-     * 
+     *
      * Note: this does not modify this vector.
-     * 
+     *
      * @param v The vector to add.
      * @return The vector sum.
      */
@@ -348,7 +348,7 @@ public:
 
     /**
      * Adds the given vector to this vector.
-     * 
+     *
      * @param v The vector to add.
      * @return This vector, after the addition occurs.
      */
@@ -356,9 +356,9 @@ public:
 
     /**
      * Calculates the sum of this vector with the given vector.
-     * 
+     *
      * Note: this does not modify this vector.
-     * 
+     *
      * @param v The vector to add.
      * @return The vector sum.
      */
@@ -366,7 +366,7 @@ public:
 
     /**
      * Subtracts the given vector from this vector.
-     * 
+     *
      * @param v The vector to subtract.
      * @return This vector, after the subtraction occurs.
      */
@@ -374,18 +374,18 @@ public:
 
     /**
      * Calculates the negation of this vector.
-     * 
+     *
      * Note: this does not modify this vector.
-     * 
+     *
      * @return The negation of this vector.
      */
     inline Vec4 operator-() const;
 
     /**
      * Calculates the scalar product of this vector with the given value.
-     * 
+     *
      * Note: this does not modify this vector.
-     * 
+     *
      * @param s The value to scale by.
      * @return The scaled vector.
      */
@@ -393,12 +393,12 @@ public:
 
     /**
      * Scales this vector by the given value.
-     * 
+     *
      * @param s The value to scale by.
      * @return This vector, after the scale occurs.
      */
     inline Vec4& operator*=(float s);
-    
+
     /**
      * Returns the components of this vector divided by the given constant
      *
@@ -411,31 +411,31 @@ public:
 
     /**
      * Determines if this vector is less than the given vector.
-     * 
+     *
      * @param v The vector to compare against.
-     * 
+     *
      * @return True if this vector is less than the given vector, false otherwise.
      */
     inline bool operator<(const Vec4& v) const;
 
     /**
      * Determines if this vector is equal to the given vector.
-     * 
+     *
      * @param v The vector to compare against.
-     * 
+     *
      * @return True if this vector is equal to the given vector, false otherwise.
      */
     inline bool operator==(const Vec4& v) const;
 
     /**
      * Determines if this vector is not equal to the given vector.
-     * 
+     *
      * @param v The vector to compare against.
-     * 
+     *
      * @return True if this vector is not equal to the given vector, false otherwise.
      */
     inline bool operator!=(const Vec4& v) const;
-    
+
     /** equals to Vec4(0,0,0,0) */
     static const Vec4 ZERO;
     /** equals to Vec4(1,1,1,1) */
@@ -452,7 +452,7 @@ public:
 
 /**
  * Calculates the scalar product of the given vector with the given value.
- * 
+ *
  * @param x The value to scale by.
  * @param v The vector to scale.
  * @return The scaled vector.
@@ -467,3 +467,4 @@ NS_CC_MATH_END
 #include "math/Vec4.inl"
 
 #endif // MATH_VEC4_H
+

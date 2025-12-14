@@ -129,7 +129,7 @@ public:
 			m_debugDraw.DrawString(5, m_textLine, "toi calls = %d, ave [max] toi iters = %3.1f [%d]",
 								b2_toiCalls, b2_toiIters / float32(b2_toiCalls), b2_toiMaxRootIters);
 			m_textLine += DRAW_STRING_NEW_LINE;
-			
+
 			m_debugDraw.DrawString(5, m_textLine, "ave [max] toi root iters = %3.1f [%d]",
 				b2_toiRootIters / float32(b2_toiCalls), b2_toiMaxRootIters);
 			m_textLine += DRAW_STRING_NEW_LINE;
@@ -155,3 +155,4 @@ public:
 };
 
 #endif
+
