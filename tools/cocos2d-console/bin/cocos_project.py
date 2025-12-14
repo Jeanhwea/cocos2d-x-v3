@@ -295,7 +295,7 @@ class Platforms(object):
 
             if proj_dir is not None:
                 cfg_obj.proj_path = os.path.join(root_path, proj_dir)
-                
+
             if cfg_obj._is_available():
                 self._available_platforms[p] = cfg_obj
 
