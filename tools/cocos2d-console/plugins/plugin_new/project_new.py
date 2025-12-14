@@ -149,7 +149,7 @@ class CCPluginNew(cocos.CCPlugin):
             args.name = CCPluginNew.DEFAULT_PROJ_NAME[args.language]
 
         if not args.package:
-            args.package = "io.github.jeanhwea.cocos2dx.%s" % args.name
+            args.package = "io.github.jeanhwea.cocos2dx.%s" % to_kebab_case(args.name)
 
         if not args.ios_bundleid:
             args.ios_bundleid = args.package
@@ -293,6 +293,22 @@ def replace_string(filepath, src_string, dst_string):
     f2.close()
 # end of replace_string
 
+def to_kebab_case(s):
+    if not s:
+        return ""
+
+    result = [s[0].lower()]
+
+    for char in s[1:]:
+        if (char.isupper() and result[-1] != '-' and not result[-1].isupper()) or \
+           (char.isdigit() and result[-1].isalpha()) or \
+           (char.isalpha() and result[-1].isdigit()):
+            result.append('-')
+        result.append(char.lower())
+
+    kebab = ''.join(result)
+    kebab = re.sub(r'-+', '-', kebab)
+    return kebab.strip('-')
 
 class Templates(object):
 
