@@ -13,9 +13,21 @@ set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
 include(CocosBuildSet)
 add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos ${ENGINE_BINARY_PATH}/cocos/core)
 
-# record sources, headers, resources...
+# Record sources, headers, resources...
 set(GAME_SOURCE)
 set(GAME_HEADER)
+
+# Generate version header file from CMake project version
+configure_file(
+    Classes/Version.h.in
+    Classes/Version.h
+    @ONLY
+)
+
+# Add generated Version.h to headers list
+list(APPEND GAME_HEADER
+    Classes/Version.h
+)
 
 set(GAME_RES_FOLDER
   "${CMAKE_CURRENT_SOURCE_DIR}/Resources"
@@ -24,7 +36,7 @@ if(APPLE OR WINDOWS)
   cocos_mark_multi_resources(common_res_files RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
 endif()
 
-# add cross-platforms source files and header files
+# Add cross-platforms source files and header files
 list(APPEND GAME_SOURCE
   Classes/AppDelegate.cpp
   Classes/HelloWorldScene.cpp
@@ -35,7 +47,7 @@ list(APPEND GAME_HEADER
 )
 
 if(ANDROID)
-  # change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
+  # Change APP_NAME to the share library name for Android, it's value depend on AndroidManifest.xml
   set(APP_NAME MyGame)
   list(APPEND GAME_SOURCE
     proj.android/app/jni/hellocpp/main.cpp
@@ -86,7 +98,7 @@ elseif(APPLE)
   list(APPEND GAME_SOURCE ${common_res_files})
 endif()
 
-# mark app complie info and libs info
+# Mark app complie info and libs info
 set(all_code_files
   ${GAME_HEADER}
   ${GAME_SOURCE}
@@ -105,7 +117,7 @@ target_include_directories(${APP_NAME}
   PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
 )
 
-# mark app resources
+# Mark app resources
 setup_cocos_app_config(${APP_NAME})
 if(APPLE)
   set_target_properties(${APP_NAME} PROPERTIES RESOURCE "${APP_UI_RES}")

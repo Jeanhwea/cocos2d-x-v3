@@ -19,6 +19,7 @@
             "files":[
                "readme.org",
                "Classes/AppDelegate.cpp",
+               "Classes/Version.h.in",
                "proj.win32/PROJECT_NAME.vcxproj",
                "proj.win32/PROJECT_NAME.vcxproj.filters",
                "proj.win32/PROJECT_NAME.vcxproj.user",

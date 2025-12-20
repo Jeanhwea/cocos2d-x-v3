@@ -1,6 +1,7 @@
 #include "AppDelegate.h"
 
 #include "HelloWorldScene.h"
+#include "Version.h"
 
 // #define USE_AUDIO_ENGINE 1
 // #define USE_SIMPLE_AUDIO_ENGINE 1
@@ -92,6 +93,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
   register_all_packages();
 
+  // Log application version
+  CCLOG("Application version: %s", VERSION_STRING);
+  CCLOG("Version components: %d.%d.%d", VERSION_MAJOR, VERSION_MINOR, VERSION_PATCH);
+
   // create a scene. it's an autorelease object
   auto scene = HelloWorld::createScene();
 
@@ -124,4 +129,3 @@ void AppDelegate::applicationWillEnterForeground() {
   SimpleAudioEngine::getInstance()->resumeAllEffects();
 #endif
 }
-

@@ -1,0 +1,10 @@
+#ifndef _VERSION_H_
+#define _VERSION_H_
+
+#define VERSION_MAJOR @HelloCpp_VERSION_MAJOR@
+#define VERSION_MINOR @HelloCpp_VERSION_MINOR@
+#define VERSION_PATCH @HelloCpp_VERSION_PATCH@
+
+#define VERSION_STRING "@HelloCpp_VERSION@"
+
+#endif // _VERSION_H_
