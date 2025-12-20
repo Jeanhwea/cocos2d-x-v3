@@ -2,7 +2,10 @@ cmake_minimum_required(VERSION 3.10)
 
 set(APP_NAME HelloCpp)
 
-project(${APP_NAME})
+project(${APP_NAME}
+  VERSION 0.0.1
+  LANGUAGES CXX
+)
 
 set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d)
 set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
