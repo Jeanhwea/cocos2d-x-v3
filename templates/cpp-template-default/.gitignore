@@ -1,4 +1,6 @@
-# by jhh
+# ignore cache files
+.vscode/
+.vs/
 build/
 [Dd]ebug.win32/
 [Rr]elease.win32/
