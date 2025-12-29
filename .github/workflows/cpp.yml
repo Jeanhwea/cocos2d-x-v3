@@ -38,3 +38,34 @@ jobs:
           cd aaa
           cmake -B build -G"Xcode" --log-level=STATUS
           cmake --build build
+
+  test-windows:
+    strategy:
+      matrix:
+        os: [ windows-2022 ]
+        arch: [ x64 ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python 2.7
+        run: |
+          choco install python2 -version 2.7.18
+          $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
+
+      - name: Run Main
+        run: |
+          $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
+          yes "" | python setup.py
+
+      - name: Initialize Project
+        run: |
+          $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
+          yes "N" | cocos new -l cpp aaa
+
+      - name: Build Project
+        run: |
+          cd aaa
+          cmake -B build -G"Xcode" --log-level=STATUS
+          cmake --build build
