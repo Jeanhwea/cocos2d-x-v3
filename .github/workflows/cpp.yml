@@ -31,10 +31,10 @@ jobs:
       - name: Initialize Project
         run: |
           source /Users/runner/.bash_profile
-          cocos new -l cpp HelloGame
+          cocos new -l cpp aaa
 
       - name: Build Project
         run: |
-          cd HelloGame
+          cd aaa
           cmake -B build -G"Xcode" --log-level=STATUS
           cmake --build build
