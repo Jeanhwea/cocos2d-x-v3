@@ -16,13 +16,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '2.x'
+      - name: Set up Python 2.7
+        run: |
+          brew install pyenv
+          pyenv install 2.7.18
+          pyenv global 2.7.18
+          echo "$(pyenv root)/shims" >> $GITHUB_PATH
 
       - name: Check Python Version
         run: |
           python --version
+          python setup.py
 
       - name: Initial Project
         run: |
