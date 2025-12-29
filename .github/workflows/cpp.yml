@@ -30,6 +30,7 @@ jobs:
 
       - name: Initialize Project
         run: |
+          source /Users/runner/.bash_profile
           cocos new -l cpp HelloGame
 
       - name: Build Project
