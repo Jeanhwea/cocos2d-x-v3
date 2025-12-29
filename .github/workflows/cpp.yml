@@ -16,11 +16,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: install Python 2
+      - name: Check Python Version
         run: |
-          brew install python@2
           python --version
-          python setup.py
+          python2 --version
+          python2 setup.py
 
       - name: Initial Project
         run: |
