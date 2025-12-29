@@ -1,4 +1,4 @@
-name: Test Create New CPP Project
+name: New CPP Project
 
 on:
   push:
@@ -37,7 +37,7 @@ jobs:
         run: |
           cd aaa
           cmake -B build -G"Xcode" --log-level=STATUS
-      
+
       - name: Build Project
         run: |
           cd aaa

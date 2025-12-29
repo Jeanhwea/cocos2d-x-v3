@@ -1,4 +1,4 @@
-name: Test cocos2d-x-v3 Source Code
+name: Unit Test
 
 on:
   push:
