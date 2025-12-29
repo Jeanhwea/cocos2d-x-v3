@@ -1,0 +1,33 @@
+name: Test Create New CPP Project
+
+on:
+  push:
+    branches: [ master ]
+  workflow_dispatch:
+
+jobs:
+  test-macos:
+    strategy:
+      matrix:
+        os: [ macos-15-intel ]
+        arch: [ x64 ]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: install Python 2
+        run: |
+          brew install python@2
+          python --version
+          python setup.py
+
+      - name: Initial Project
+        run: |
+          cocos new -l cpp HelloGame
+
+      - name: Build tests
+        run: |
+          cd HelloGame
+          cmake -B build -G"Xcode" --log-level=STATUS
+          cmake --build build
