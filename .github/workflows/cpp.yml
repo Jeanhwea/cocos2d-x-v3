@@ -23,7 +23,7 @@ jobs:
           pyenv global 2.7.18
           echo "$(pyenv root)/shims" >> $GITHUB_PATH
 
-      - name: Check Python Version
+      - name: Setup cocos2d-x Environment
         run: |
           python --version
           yes "" | python setup.py
