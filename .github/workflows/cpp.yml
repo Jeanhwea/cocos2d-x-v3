@@ -79,7 +79,7 @@ jobs:
       - name: Setup Project
         run: |
           cd aaa
-          cmake -B build -G"Visual Studio 17 2022" -A x64 --log-level=STATUS
+          cmake -B build -G"Visual Studio 17 2022" -A win32 --log-level=STATUS
 
       - name: Build Project
         run: |
