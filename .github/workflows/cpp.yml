@@ -33,10 +33,14 @@ jobs:
           source /Users/runner/.bash_profile
           echo "N" | cocos new -l cpp aaa
 
-      - name: Build Project
+      - name: Setup Project
         run: |
           cd aaa
           cmake -B build -G"Xcode" --log-level=STATUS
+      
+      - name: Build Project
+        run: |
+          cd aaa
           cmake --build build --config Release
 
   test-windows:
@@ -64,8 +68,12 @@ jobs:
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
           echo "N" | cocos new -l cpp aaa
 
-      - name: Build Project
+      - name: Setup Project
         run: |
           cd aaa
           cmake -B build -G"Visual Studio 17 2022" -A x64 --log-level=STATUS
+
+      - name: Build Project
+        run: |
+          cd aaa
           cmake --build build --config Release
