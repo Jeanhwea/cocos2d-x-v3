@@ -9,7 +9,7 @@ jobs:
   test-macos:
     strategy:
       matrix:
-        os: [ macos-15-intel ]
+        os: [ macos-15 macos-15-intel ]
         arch: [ x64 ]
     runs-on: ${{ matrix.os }}
 
