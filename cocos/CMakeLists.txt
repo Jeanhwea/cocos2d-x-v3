@@ -57,63 +57,63 @@ option(BUILD_EDITOR_SPINE "Build editor support for spine" ON)
 option(BUILD_EXTENSIONS "Build extension library" ON)
 
 if(BUILD_EDITOR_COCOSBUILDER)
-    include(editor-support/cocosbuilder/CMakeLists.txt)
-    set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_CCB_SRC} ${COCOS_CCB_HEADER})
+  include(editor-support/cocosbuilder/CMakeLists.txt)
+  set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_CCB_SRC} ${COCOS_CCB_HEADER})
 endif(BUILD_EDITOR_COCOSBUILDER)
 
 if(BUILD_EDITOR_COCOSTUDIO)
-    include(editor-support/cocostudio/CMakeLists.txt)
-    set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_CS_SRC} ${COCOS_CS_HEADER})
+  include(editor-support/cocostudio/CMakeLists.txt)
+  set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_CS_SRC} ${COCOS_CS_HEADER})
 endif(BUILD_EDITOR_COCOSTUDIO)
 
 if(BUILD_EDITOR_SPINE)
-    include(editor-support/spine/CMakeLists.txt)
-    set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_SPINE_SRC} ${COCOS_SPINE_HEADER})
+  include(editor-support/spine/CMakeLists.txt)
+  set(COCOS_EDITOR_SUPPORT_SRC ${COCOS_EDITOR_SUPPORT_SRC} ${COCOS_SPINE_SRC} ${COCOS_SPINE_HEADER})
 endif(BUILD_EDITOR_SPINE)
 
 if(BUILD_EXTENSIONS)
-    include(../extensions/CMakeLists.txt)
+  include(../extensions/CMakeLists.txt)
 endif(BUILD_EXTENSIONS)
 
 set(COCOS_HEADER cocos2d.h
-    ${COCOS_2D_HEADER}
-    ${COCOS_3D_HEADER}
-    ${COCOS_PLATFORM_HEADER}
-    ${COCOS_PHYSICS_HEADER}
-    ${COCOS_PHYSICS3D_HEADER}
-    ${COCOS_MATH_HEADER}
-    ${COCOS_NAVMESH_HEADER}
-    ${COCOS_RENDERER_HEADER}
-    ${COCOS_VR_HEADER}
-    ${COCOS_BASE_HEADER}
-    ${COCOS_AUDIO_HEADER}
-    ${COCOS_UI_HEADER}
-    ${COCOS_DEPRECATED_HEADER}
-    ${COCOS_NETWORK_HEADER}
-    ${COCOS_EDITOR_SUPPORT_HEADER}
-    ${COCOS_EXTENSIONS_HEADER}
-    ${COCOS_STORAGE_HEADER}
-    )
+  ${COCOS_2D_HEADER}
+  ${COCOS_3D_HEADER}
+  ${COCOS_PLATFORM_HEADER}
+  ${COCOS_PHYSICS_HEADER}
+  ${COCOS_PHYSICS3D_HEADER}
+  ${COCOS_MATH_HEADER}
+  ${COCOS_NAVMESH_HEADER}
+  ${COCOS_RENDERER_HEADER}
+  ${COCOS_VR_HEADER}
+  ${COCOS_BASE_HEADER}
+  ${COCOS_AUDIO_HEADER}
+  ${COCOS_UI_HEADER}
+  ${COCOS_DEPRECATED_HEADER}
+  ${COCOS_NETWORK_HEADER}
+  ${COCOS_EDITOR_SUPPORT_HEADER}
+  ${COCOS_EXTENSIONS_HEADER}
+  ${COCOS_STORAGE_HEADER}
+)
 
 set(COCOS_SRC cocos2d.cpp
-    ${COCOS_2D_SRC}
-    ${COCOS_3D_SRC}
-    ${COCOS_PLATFORM_SRC}
-    ${COCOS_PHYSICS_SRC}
-    ${COCOS_PHYSICS3D_SRC}
-    ${COCOS_MATH_SRC}
-    ${COCOS_NAVMESH_SRC}
-    ${COCOS_RENDERER_SRC}
-    ${COCOS_VR_SRC}
-    ${COCOS_BASE_SRC}
-    ${COCOS_AUDIO_SRC}
-    ${COCOS_UI_SRC}
-    ${COCOS_DEPRECATED_SRC}
-    ${COCOS_NETWORK_SRC}
-    ${COCOS_EDITOR_SUPPORT_SRC}
-    ${COCOS_EXTENSIONS_SRC}
-    ${COCOS_STORAGE_SRC}
-    )
+  ${COCOS_2D_SRC}
+  ${COCOS_3D_SRC}
+  ${COCOS_PLATFORM_SRC}
+  ${COCOS_PHYSICS_SRC}
+  ${COCOS_PHYSICS3D_SRC}
+  ${COCOS_MATH_SRC}
+  ${COCOS_NAVMESH_SRC}
+  ${COCOS_RENDERER_SRC}
+  ${COCOS_VR_SRC}
+  ${COCOS_BASE_SRC}
+  ${COCOS_AUDIO_SRC}
+  ${COCOS_UI_SRC}
+  ${COCOS_DEPRECATED_SRC}
+  ${COCOS_NETWORK_SRC}
+  ${COCOS_EDITOR_SUPPORT_SRC}
+  ${COCOS_EXTENSIONS_SRC}
+  ${COCOS_STORAGE_SRC}
+)
 
 list(APPEND COCOS_SRC ${COCOS_HEADER})
 
@@ -131,40 +131,40 @@ use_cocos2dx_compile_options(cocos2d)
 use_cocos2dx_libs_depend(cocos2d)
 
 target_include_directories(cocos2d
-    PUBLIC ${COCOS2DX_ROOT_PATH}
-    PUBLIC ${COCOS2DX_ROOT_PATH}/cocos
-    PUBLIC ${COCOS2DX_ROOT_PATH}/extensions
-    PUBLIC ${COCOS2DX_ROOT_PATH}/cocos/platform
-    INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/base
-    INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/editor-support
-    INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/audio/include
-    INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/platform/${PLATFORM_FOLDER}
+  PUBLIC ${COCOS2DX_ROOT_PATH}
+  PUBLIC ${COCOS2DX_ROOT_PATH}/cocos
+  PUBLIC ${COCOS2DX_ROOT_PATH}/extensions
+  PUBLIC ${COCOS2DX_ROOT_PATH}/cocos/platform
+  INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/base
+  INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/editor-support
+  INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/audio/include
+  INTERFACE ${COCOS2DX_ROOT_PATH}/cocos/platform/${PLATFORM_FOLDER}
 )
 
 set_target_properties(cocos2d
-                      PROPERTIES
-                      ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-                      LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
-                      VERSION "${COCOS2D_X_VERSION}"
-                      FOLDER "Internal"
-                      )
+  PROPERTIES
+  ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+  LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
+  VERSION "${COCOS2D_X_VERSION}"
+  FOLDER "Internal"
+)
 
 ## Lua bindings lib
 if(BUILD_LUA_LIBS)
-    add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/scripting/lua-bindings ${ENGINE_BINARY_PATH}/cocos/lua-bindings)
+  add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/scripting/lua-bindings ${ENGINE_BINARY_PATH}/cocos/lua-bindings)
 endif()
 ## JS bindings lib
 if(BUILD_JS_LIBS)
-    add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/scripting/js-bindings ${ENGINE_BINARY_PATH}/cocos/js-bindings)
+  add_subdirectory(${COCOS2DX_ROOT_PATH}/cocos/scripting/js-bindings ${ENGINE_BINARY_PATH}/cocos/js-bindings)
 endif()
 
 if(XCODE OR VS)
-    cocos_mark_code_files("cocos2d")
+  cocos_mark_code_files("cocos2d")
 endif()
 
 if(!APPLE)
   if(${CMAKE_VERSION} VERSION_GREATER "3.16.0")
-      message("CMake 3.16 target_precompile_headers")
-      target_precompile_headers(cocos2d PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:cocos2d.h>")
+    message("CMake 3.16 target_precompile_headers")
+    target_precompile_headers(cocos2d PRIVATE "$<$<COMPILE_LANGUAGE:CXX>:cocos2d.h>")
   endif()
 endif()
