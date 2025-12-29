@@ -26,12 +26,12 @@ jobs:
       - name: Setup cocos2d-x Environment
         run: |
           python --version
-          yes "" | python setup.py
+          echo "" | python setup.py
 
       - name: Initialize Project
         run: |
           source /Users/runner/.bash_profile
-          yes "N" | cocos new -l cpp aaa
+          echo "N" | cocos new -l cpp aaa
 
       - name: Build Project
         run: |
