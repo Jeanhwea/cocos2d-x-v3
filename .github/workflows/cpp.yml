@@ -37,7 +37,7 @@ jobs:
         run: |
           cd aaa
           cmake -B build -G"Xcode" --log-level=STATUS
-          cmake --build build
+          cmake --build build --config Release
 
   test-windows:
     strategy:
@@ -57,15 +57,15 @@ jobs:
       - name: Run Main
         run: |
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
-          yes "" | python setup.py
+          echo "" | python setup.py
 
       - name: Initialize Project
         run: |
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
-          yes "N" | cocos new -l cpp aaa
+          echo "N" | cocos new -l cpp aaa
 
       - name: Build Project
         run: |
           cd aaa
-          cmake -B build -G"Xcode" --log-level=STATUS
-          cmake --build build
+          cmake -B build -G"Visual Studio 17 2022" -A x64 --log-level=STATUS
+          cmake --build build --config Release
