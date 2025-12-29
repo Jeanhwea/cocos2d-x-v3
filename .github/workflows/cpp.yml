@@ -16,7 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python 2.7
+      - name: Setup Python 2.7
         run: |
           brew install pyenv
           pyenv install 2.7.18
@@ -28,11 +28,11 @@ jobs:
           python --version
           python setup.py
 
-      - name: Initial Project
+      - name: Initialize Project
         run: |
           cocos new -l cpp HelloGame
 
-      - name: Build tests
+      - name: Build Project
         run: |
           cd HelloGame
           cmake -B build -G"Xcode" --log-level=STATUS
