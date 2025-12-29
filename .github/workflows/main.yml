@@ -9,8 +9,10 @@ jobs:
   test-macos:
     strategy:
       matrix:
-        os: [ macos-15-intel ]
-        arch: [ x64 ]
+        os:
+          - macos-15-intel
+        arch: 
+          - x64
     runs-on: ${{ matrix.os }}
 
     steps:
@@ -27,8 +29,10 @@ jobs:
   test-windows:
     strategy:
       matrix:
-        os: [ windows-2022 ]
-        arch: [ x64 ]
+        os:
+          - windows-2022
+        arch: 
+          - x64
     runs-on: ${{ matrix.os }}
 
     steps:
