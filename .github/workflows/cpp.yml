@@ -65,10 +65,15 @@ jobs:
 
       - name: Initialize Project
         run: |
+          # Add Python 2.7 to PATH
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
+
+          # Add cocos2d-x Environments
+          $env:PATH = "D:\a\cocos2d-x-v3\cocos2d-x-v3\tools\cocos2d-console\bin;$env:PATH"
           $env:COCOS_CONSOLE_ROOT = "D:\a\cocos2d-x-v3\cocos2d-x-v3\tools\cocos2d-console\bin"
           $env:COCOS_X_ROOT = "D:\a\cocos2d-x-v3"
           $env:COCOS_TEMPLATES_ROOT = "D:\a\cocos2d-x-v3\cocos2d-x-v3\templates"
+
           echo "N" | cocos new -l cpp aaa
 
       - name: Setup Project
