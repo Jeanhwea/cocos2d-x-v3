@@ -15,12 +15,13 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '2.7'
 
       - name: Check Python Version
         run: |
           python --version
-          python2 --version
-          python2 setup.py
 
       - name: Initial Project
         run: |
