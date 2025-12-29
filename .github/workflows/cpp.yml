@@ -66,6 +66,9 @@ jobs:
       - name: Initialize Project
         run: |
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
+          $env:COCOS_CONSOLE_ROOT = "D:\a\cocos2d-x-v3\cocos2d-x-v3\tools\cocos2d-console\bin"
+          $env:COCOS_X_ROOT = "D:\a\cocos2d-x-v3"
+          $env:COCOS_TEMPLATES_ROOT = "D:\a\cocos2d-x-v3\cocos2d-x-v3\templates"
           echo "N" | cocos new -l cpp aaa
 
       - name: Setup Project
