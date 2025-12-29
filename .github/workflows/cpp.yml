@@ -58,7 +58,7 @@ jobs:
           choco install python2 -version 2.7.18
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
 
-      - name: Run Main
+      - name: Setup cocos2d-x Environment
         run: |
           $env:PATH = "C:\Python27;C:\Python27\Scripts;$env:PATH"
           echo "" | python setup.py
