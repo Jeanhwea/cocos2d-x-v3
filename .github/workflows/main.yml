@@ -2,8 +2,8 @@ name: Unit Test
 
 on:
   push:
-    tags: [ 'v*' ]
-  workflow_dispatch:
+    tags: 
+      - 'v[0-9]+.[0-9]+.[0-9]+'
 
 jobs:
   test-macos:
