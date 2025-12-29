@@ -21,14 +21,14 @@ set(GAME_HEADER)
 
 # Generate version header file from CMake project version
 configure_file(
-    ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h.in
-    ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h
-    @ONLY
+  ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h.in
+  ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h
+  @ONLY
 )
 
 # Add generated Version.h to headers list
 list(APPEND GAME_HEADER
-    ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/Classes/Version.h
 )
 
 set(GAME_RES_FOLDER
