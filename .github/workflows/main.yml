@@ -18,11 +18,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Initial Project
+      - name: Setup Project
         run: |
           cmake -B b -S . -GXcode
 
-      - name: Build tests
+      - name: Build Unit Tests
         run: |
           cmake --build b --target cpp-tests
 
@@ -38,10 +38,10 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Initial Project
+      - name: Setup Project
         run: |
           cmake -B b -S . -G "Visual Studio 17 2022" -A win32
 
-      - name: Build tests
+      - name: Build Unit Tests
         run: |
           cmake --build b --target cpp-tests
