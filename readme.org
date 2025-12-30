@@ -9,9 +9,7 @@
 | CI Test Topic       | Status                                                                                      |
 |---------------------+---------------------------------------------------------------------------------------------|
 | unit test on master | [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/main.yml/badge.svg?branch=master]] |
-| create cpp project  | [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-cpp.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-cpp.yml/badge.svg]]            |
-| create js project   | [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-js.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-js.yml/badge.svg]]             |
-| create lua project  | [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-lua.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-lua.yml/badge.svg]]            |
+| create project  | [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-cpp.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-cpp.yml/badge.svg]]             [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-js.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-js.yml/badge.svg]] [[https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-lua.yml][https://github.com/Jeanhwea/cocos2d-x-v3/actions/workflows/new-lua.yml/badge.svg]]            |
 
 * 项目介绍
 1. 本项目是 [[https://github.com/cocos2d/cocos2d-x/tree/v3][cocos2d-x]] 的 v3 分支的克隆 | [[README.old.md]] | [[https://docs.cocos.com/cocos2d-x/manual/zh/][man]]
