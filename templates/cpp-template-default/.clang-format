@@ -1,9 +1,17 @@
-BasedOnStyle: LLVM
-
-IncludeBlocks: Regroup
+# -*- mode: yaml; -*-
+#
+# 选项设置参考 https://tqfx.org/clang-format/BasedOnStyle/
+#
+#
+BasedOnStyle: Google
 ColumnLimit: 108
-MacroBlockBegin: "^NS_CC.*BEGIN$"
-MacroBlockEnd: "^NS_CC.*END$"
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never
+# SortIncludes: false
+IncludeBlocks: Regroup
+SeparateDefinitionBlocks: Always
+BreakBeforeBraces: Linux
 StatementMacros:
   - Q_OBJECT
   - USING_NS_CC
