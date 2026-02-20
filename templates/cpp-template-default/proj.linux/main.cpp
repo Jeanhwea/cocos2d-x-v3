@@ -1,9 +1,10 @@
-#include "../Classes/AppDelegate.h"
-
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <unistd.h>
+
 #include <string>
+
+#include "../Classes/AppDelegate.h"
 
 USING_NS_CC;
 

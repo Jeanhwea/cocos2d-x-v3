@@ -5,9 +5,9 @@ then
     exit
 fi
 
-# for src_file in $(find $PWD/Classes -iname "*.cpp" -or -iname "*.h"); do
-#     echo "Format $src_file"
-#     clang-format -i $src_file
-# done
+for src_file in $(find $PWD/Classes -iname "*.cpp" -or -iname "*.h"); do
+    echo "Format $src_file"
+    clang-format -i $src_file
+done
 
-find "./Classes" \( -iname "*.cpp" -o -iname "*.h" \) -exec clang-format -i {} \;
+# find "./Classes" \( -iname "*.cpp" -o -iname "*.h" \) -exec clang-format -i {} \;
