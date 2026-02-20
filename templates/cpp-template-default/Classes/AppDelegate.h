@@ -10,7 +10,7 @@
  */
 class AppDelegate : private cocos2d::Application
 {
-   public:
+public:
     AppDelegate();
     virtual ~AppDelegate();
 
