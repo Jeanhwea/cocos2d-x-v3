@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "TextureAtlasEncryptionTest.h"
+
 #include "../testResource.h"
 
 USING_NS_CC;
@@ -44,7 +45,8 @@ void TextureAtlasEncryptionDemo::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     // Load the non-encrypted atlas
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/nonencryptedAtlas.plist", "Images/nonencryptedAtlas.pvr.ccz");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/nonencryptedAtlas.plist",
+                                                             "Images/nonencryptedAtlas.pvr.ccz");
 
     // Create a sprite from the non-encrypted atlas
     auto nonencryptedSprite = Sprite::createWithSpriteFrameName("Icon.png");
@@ -52,7 +54,9 @@ void TextureAtlasEncryptionDemo::onEnter()
     this->addChild(nonencryptedSprite);
 
     auto nonencryptedSpriteLabel = Label::createWithTTF("non-encrypted", "fonts/arial.ttf", 28);
-    nonencryptedSpriteLabel->setPosition(Vec2(s.width * 0.25f, nonencryptedSprite->getBoundingBox().getMinY() - nonencryptedSprite->getContentSize().height/2));
+    nonencryptedSpriteLabel->setPosition(Vec2(
+        s.width * 0.25f,
+        nonencryptedSprite->getBoundingBox().getMinY() - nonencryptedSprite->getContentSize().height / 2));
     this->addChild(nonencryptedSpriteLabel, 1);
 
     // Load the encrypted atlas
@@ -71,7 +75,8 @@ void TextureAtlasEncryptionDemo::onEnter()
     // ZipUtils::ccSetPvrEncryptionKey(0xaaaaaaaa, 0xbbbbbbbb, 0xcccccccc, 0xdddddddd);
 
     // 2) Load the encrypted atlas
-    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/encryptedAtlas.plist", "Images/encryptedAtlas.pvr.ccz");
+    SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/encryptedAtlas.plist",
+                                                             "Images/encryptedAtlas.pvr.ccz");
 
     // 3) Create a sprite from the encrypted atlas
     auto encryptedSprite = Sprite::createWithSpriteFrameName("powered.png");
@@ -79,7 +84,8 @@ void TextureAtlasEncryptionDemo::onEnter()
     this->addChild(encryptedSprite);
 
     auto encryptedSpriteLabel = Label::createWithTTF("encrypted", "fonts/arial.ttf", 28);
-    encryptedSpriteLabel->setPosition(Vec2(s.width * 0.75f, encryptedSprite->getBoundingBox().getMinY() - encryptedSpriteLabel->getContentSize().height/2));
+    encryptedSpriteLabel->setPosition(Vec2(
+        s.width * 0.75f,
+        encryptedSprite->getBoundingBox().getMinY() - encryptedSpriteLabel->getContentSize().height / 2));
     this->addChild(encryptedSpriteLabel, 1);
 }
-

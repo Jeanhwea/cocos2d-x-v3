@@ -25,8 +25,8 @@
 
 #pragma once
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(SpriteFrameCacheTests);
 
@@ -36,6 +36,7 @@ public:
     CREATE_FUNC(SpriteFrameCachePixelFormatTest);
 
     virtual std::string title() const override { return "Pixel formats test"; }
+
     virtual std::string subtitle() const override { return "It shouldn't crash"; }
 
     SpriteFrameCachePixelFormatTest();
@@ -53,28 +54,26 @@ public:
     CREATE_FUNC(SpriteFrameCacheLoadMultipleTimes);
 
     virtual std::string title() const override { return "Load same plist multiple times"; }
+
     virtual std::string subtitle() const override { return "It shouldn't crash"; }
 
     SpriteFrameCacheLoadMultipleTimes();
 
 private:
     void loadSpriteFrames(const std::string &file, cocos2d::Texture2D::PixelFormat expectedFormat);
-
 };
 
-
-class SpriteFrameCacheFullCheck: public TestCase
+class SpriteFrameCacheFullCheck : public TestCase
 {
 public:
     CREATE_FUNC(SpriteFrameCacheFullCheck);
 
     virtual std::string title() const override { return "Test isSpriteFramesWithFileLoaded"; }
+
     virtual std::string subtitle() const override { return "It shouldn't crash"; }
 
     SpriteFrameCacheFullCheck();
 
 private:
     void loadSpriteFrames(const std::string &file, cocos2d::Texture2D::PixelFormat expectedFormat);
-
 };
-

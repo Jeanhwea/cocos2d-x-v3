@@ -34,14 +34,14 @@ public:
 
     virtual bool init() override;
 
-    virtual std::string title() const override { return "12874";}
+    virtual std::string title() const override { return "12874"; }
+
 protected:
     virtual void update(float dt) override;
     virtual void onEnter() override;
     virtual void onExit() override;
 
 private:
-
     cocos2d::Sprite* sprite1;
     cocos2d::Sprite* sprite2;
     cocos2d::Sprite* sprite3;
@@ -49,4 +49,3 @@ private:
 };
 
 #endif /* defined(__cocos2d_tests__Bug_12847__) */
-

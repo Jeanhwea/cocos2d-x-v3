@@ -23,13 +23,12 @@
  ****************************************************************************/
 
 #include "TileMapTest.h"
-#include "../testResource.h"
 
+#include "../testResource.h"
 
 USING_NS_CC;
 
-enum
-{
+enum {
     kTagTileMap = 1,
 };
 
@@ -38,7 +37,6 @@ enum
 // TileDemo
 //
 //------------------------------------------------------------------
-
 
 TileMapTests::TileMapTests()
 {
@@ -95,9 +93,7 @@ TileDemo::TileDemo()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-TileDemo::~TileDemo()
-{
-}
+TileDemo::~TileDemo() {}
 
 std::string TileDemo::title() const
 {
@@ -115,7 +111,7 @@ void TileDemo::onExit()
     Director::getInstance()->setDepthTest(false);
 }
 
-void TileDemo::onTouchesMoved(const std::vector<Touch*>& touches, Event  *event)
+void TileDemo::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     auto touch = touches[0];
 
@@ -132,12 +128,12 @@ void TileDemo::onTouchesMoved(const std::vector<Touch*>& touches, Event  *event)
 //------------------------------------------------------------------
 TileMapTest::TileMapTest()
 {
-    auto map = TileMapAtlas::create(s_TilesPng,  s_LevelMapTga, 16, 16);
+    auto map = TileMapAtlas::create(s_TilesPng, s_LevelMapTga, 16, 16);
     // Convert it to "alias" (GL_LINEAR filtering)
     map->getTexture()->setAntiAliasTexParameters();
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // If you are not going to use the Map, you can free it now
     // NEW since v0.7
@@ -145,7 +141,7 @@ TileMapTest::TileMapTest()
 
     addChild(map, 0, kTagTileMap);
 
-    map->setAnchorPoint( Vec2(0, 0.5f) );
+    map->setAnchorPoint(Vec2(0, 0.5f));
 
     auto scale = ScaleBy::create(4, 0.8f);
     auto scaleBack = scale->reverse();
@@ -172,7 +168,7 @@ TileMapEditTest::TileMapEditTest()
     map->getTexture()->setAliasTexParameters();
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // If you are not going to use the Map, you can free it now
     // [tilemap releaseMap);
@@ -181,8 +177,8 @@ TileMapEditTest::TileMapEditTest()
 
     addChild(map, 0, kTagTileMap);
 
-    map->setAnchorPoint( Vec2(0, 0) );
-    map->setPosition( Vec2(-20,-200) );
+    map->setAnchorPoint(Vec2(0, 0));
+    map->setPosition(Vec2(-20, -200));
 }
 
 void TileMapEditTest::updateMap(float dt)
@@ -191,7 +187,7 @@ void TileMapEditTest::updateMap(float dt)
     //   The only limitation is that you cannot change an empty, or assign an empty tile to a tile
     //   The value 0 not rendered so don't assign or change a tile with value 0
 
-    auto tilemap = (TileMapAtlas*) getChildByTag(kTagTileMap);
+    auto tilemap = (TileMapAtlas*)getChildByTag(kTagTileMap);
 
     //
     // For example you can iterate over all the tiles
@@ -207,14 +203,13 @@ void TileMapEditTest::updateMap(float dt)
     //    }
 
     // NEW since v0.7
-    Color3B c = tilemap->getTileAt(Vec2(13,21));
+    Color3B c = tilemap->getTileAt(Vec2(13, 21));
     c.r++;
     c.r %= 50;
-    if( c.r==0)
-        c.r=1;
+    if (c.r == 0) c.r = 1;
 
     // NEW since v0.7
-    tilemap->setTile(c, Vec2(13,21) );
+    tilemap->setTile(c, Vec2(13, 21));
 }
 
 std::string TileMapEditTest::title() const
@@ -234,15 +229,15 @@ TMXOrthoTest::TMXOrthoTest()
     //
     // it should not flicker. No artifacts should appear
     //
-    //auto color = LayerColor::create( Color4B(64,64,64,255) );
-    //addChild(color, -1);
+    // auto color = LayerColor::create( Color4B(64,64,64,255) );
+    // addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/orthogonal-test2.tmx");
 
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto scale = ScaleBy::create(10, 0.1f);
     auto back = scale->reverse();
@@ -250,9 +245,9 @@ TMXOrthoTest::TMXOrthoTest()
     auto repeat = RepeatForever::create(seq);
     map->runAction(repeat);
 
-//    float x, y, z;
-//    map->getCamera()->getEye(&x, &y, &z);
-//    map->getCamera()->setEye(x-200, y, z+300);
+    //    float x, y, z;
+    //    map->getCamera()->getEye(&x, &y, &z);
+    //    map->getCamera()->setEye(x-200, y, z+300);
 }
 
 void TMXOrthoTest::onEnter()
@@ -275,11 +270,9 @@ std::string TMXOrthoTest::title() const
 
 TMXStaggeredTest::TMXStaggeredTest()
 {
-
     auto map = TMXTiledMap::create("TileMaps/test-staggered.tmx");
 
     addChild(map, 0, kTagTileMap);
-
 }
 
 void TMXStaggeredTest::onEnter()
@@ -311,17 +304,17 @@ TMXOrthoTest2::TMXOrthoTest2()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
     SpriteBatchNode* child = nullptr;
 
-    for(const auto &obj : children) {
+    for (const auto& obj : children) {
         child = static_cast<SpriteBatchNode*>(obj);
         child->getTexture()->setAntiAliasTexParameters();
     }
 
-    map->runAction( ScaleBy::create(2, 0.5f) ) ;
+    map->runAction(ScaleBy::create(2, 0.5f));
 }
 
 std::string TMXOrthoTest2::title() const
@@ -340,18 +333,18 @@ TMXOrthoTest3::TMXOrthoTest3()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
     SpriteBatchNode* child = nullptr;
 
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
 
     map->setScale(0.2f);
-    map->setAnchorPoint( Vec2(0.5f, 0.5f) );
+    map->setAnchorPoint(Vec2(0.5f, 0.5f));
 }
 
 std::string TMXOrthoTest3::title() const
@@ -370,13 +363,13 @@ TMXOrthoTest4::TMXOrthoTest4()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s1 = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s1.width,s1.height);
+    CCLOG("ContentSize: %f, %f", s1.width, s1.height);
 
     SpriteBatchNode* child = nullptr;
 
     auto& children = map->getChildren();
 
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
@@ -389,31 +382,30 @@ TMXOrthoTest4::TMXOrthoTest4()
     layer->setOpacity(128);
 
     Sprite* sprite;
-    sprite = layer->getTileAt(Vec2(0,0));
+    sprite = layer->getTileAt(Vec2(0, 0));
     sprite->setScale(2);
-    sprite = layer->getTileAt(Vec2(s.width-1,0));
+    sprite = layer->getTileAt(Vec2(s.width - 1, 0));
     sprite->setScale(2);
-    sprite = layer->getTileAt(Vec2(0,s.height-1));
+    sprite = layer->getTileAt(Vec2(0, s.height - 1));
     sprite->setScale(2);
-    sprite = layer->getTileAt(Vec2(s.width-1,s.height-1));
+    sprite = layer->getTileAt(Vec2(s.width - 1, s.height - 1));
     sprite->setScale(2);
 
-    schedule( CC_SCHEDULE_SELECTOR(TMXOrthoTest4::removeSprite), 2 );
-
+    schedule(CC_SCHEDULE_SELECTOR(TMXOrthoTest4::removeSprite), 2);
 }
 
 void TMXOrthoTest4::removeSprite(float dt)
 {
     unschedule(CC_SCHEDULE_SELECTOR(TMXOrthoTest4::removeSprite));
 
-    auto map = static_cast<TMXTiledMap*>( getChildByTag(kTagTileMap) );
+    auto map = static_cast<TMXTiledMap*>(getChildByTag(kTagTileMap));
     auto layer = map->getLayer("Layer 0");
     auto s = layer->getLayerSize();
 
-    auto sprite = layer->getTileAt( Vec2(s.width-1,0) );
-    auto sprite2 = layer->getTileAt(Vec2(s.width-1, s.height-1));
+    auto sprite = layer->getTileAt(Vec2(s.width - 1, 0));
+    auto sprite2 = layer->getTileAt(Vec2(s.width - 1, s.height - 1));
     layer->removeChild(sprite, true);
-    auto sprite3 = layer->getTileAt(Vec2(2, s.height-1));
+    auto sprite3 = layer->getTileAt(Vec2(2, s.height - 1));
     layer->removeChild(sprite3, true);
     layer->removeChild(sprite2, true);
 }
@@ -428,12 +420,7 @@ std::string TMXOrthoTest4::title() const
 // TMXReadWriteTest
 //
 //------------------------------------------------------------------
-enum
-{
-    SID_UPDATECOL = 100,
-    SID_REPAINTWITHGID,
-    SID_REMOVETILES
-};
+enum { SID_UPDATECOL = 100, SID_REPAINTWITHGID, SID_REMOVETILES };
 
 TMXReadWriteTest::TMXReadWriteTest()
 {
@@ -443,24 +430,23 @@ TMXReadWriteTest::TMXReadWriteTest()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
-
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto layer = map->getLayer("Layer 0");
     layer->getTexture()->setAntiAliasTexParameters();
 
-    map->setScale( 1 );
+    map->setScale(1);
 
-    auto tile0 = layer->getTileAt(Vec2(1,63));
-    auto tile1 = layer->getTileAt(Vec2(2,63));
-    auto tile2 = layer->getTileAt(Vec2(3,62));//Vec2(1,62));
-    auto tile3 = layer->getTileAt(Vec2(2,62));
-    tile0->setAnchorPoint( Vec2(0.5f, 0.5f) );
-    tile1->setAnchorPoint( Vec2(0.5f, 0.5f) );
-    tile2->setAnchorPoint( Vec2(0.5f, 0.5f) );
-    tile3->setAnchorPoint( Vec2(0.5f, 0.5f) );
+    auto tile0 = layer->getTileAt(Vec2(1, 63));
+    auto tile1 = layer->getTileAt(Vec2(2, 63));
+    auto tile2 = layer->getTileAt(Vec2(3, 62));  // Vec2(1,62));
+    auto tile3 = layer->getTileAt(Vec2(2, 62));
+    tile0->setAnchorPoint(Vec2(0.5f, 0.5f));
+    tile1->setAnchorPoint(Vec2(0.5f, 0.5f));
+    tile2->setAnchorPoint(Vec2(0.5f, 0.5f));
+    tile3->setAnchorPoint(Vec2(0.5f, 0.5f));
 
-    auto move = MoveBy::create(0.5f, Vec2(0,160));
+    auto move = MoveBy::create(0.5f, Vec2(0, 160));
     auto rotate = RotateBy::create(2, 360);
     auto scale = ScaleBy::create(2, 5);
     auto opacity = FadeOut::create(2);
@@ -477,8 +463,7 @@ TMXReadWriteTest::TMXReadWriteTest()
     tile2->runAction(seq2);
     tile3->runAction(seq3);
 
-
-    _gid = layer->getTileGIDAt(Vec2(0,63));
+    _gid = layer->getTileGIDAt(Vec2(0, 63));
     ////----CCLOG("Tile GID at:(0,63) is: %d", _gid);
 
     schedule(CC_SCHEDULE_SELECTOR(TMXReadWriteTest::updateCol), 2.0f);
@@ -496,8 +481,7 @@ void TMXReadWriteTest::removeSprite(Node* sender)
     ////----CCLOG("removing tile: %x", sender);
     auto p = ((Node*)sender)->getParent();
 
-    if (p)
-    {
+    if (p) {
         p->removeChild((Node*)sender, true);
     }
 
@@ -512,11 +496,9 @@ void TMXReadWriteTest::updateCol(float dt)
     ////----CCLOG("++++atlas quantity: %d", layer->textureAtlas()->getTotalQuads());
     ////----CCLOG("++++children: %d", layer->getChildren()->count() );
 
-
     auto s = layer->getLayerSize();
 
-    for( int y=0; y< s.height; y++ )
-    {
+    for (int y = 0; y < s.height; y++) {
         layer->setTileGID(_gid2, Vec2((float)3, (float)y));
     }
 
@@ -525,17 +507,16 @@ void TMXReadWriteTest::updateCol(float dt)
 
 void TMXReadWriteTest::repaintWithGID(float dt)
 {
-//    unschedule:_cmd);
+    //    unschedule:_cmd);
 
     auto map = (TMXTiledMap*)getChildByTag(kTagTileMap);
     auto layer = (TMXLayer*)map->getChildByTag(0);
 
     auto s = layer->getLayerSize();
-    for( int x=0; x<s.width;x++)
-    {
-        int y = (int)s.height-1;
-        unsigned int tmpgid = layer->getTileGIDAt( Vec2((float)x, (float)y) );
-        layer->setTileGID(tmpgid+1, Vec2((float)x, (float)y));
+    for (int x = 0; x < s.width; x++) {
+        int y = (int)s.height - 1;
+        unsigned int tmpgid = layer->getTileGIDAt(Vec2((float)x, (float)y));
+        layer->setTileGID(tmpgid + 1, Vec2((float)x, (float)y));
     }
 }
 
@@ -547,13 +528,10 @@ void TMXReadWriteTest::removeTiles(float dt)
     auto layer = (TMXLayer*)map->getChildByTag(0);
     auto s = layer->getLayerSize();
 
-    for( int y=0; y< s.height; y++ )
-    {
-        layer->removeTileAt( Vec2(5.0, (float)y) );
+    for (int y = 0; y < s.height; y++) {
+        layer->removeTileAt(Vec2(5.0, (float)y));
     }
 }
-
-
 
 std::string TMXReadWriteTest::title() const
 {
@@ -567,14 +545,14 @@ std::string TMXReadWriteTest::title() const
 //------------------------------------------------------------------
 TMXHexTest::TMXHexTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexa-test.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 }
 
 std::string TMXHexTest::title() const
@@ -589,7 +567,7 @@ std::string TMXHexTest::title() const
 //------------------------------------------------------------------
 TMXIsoTest::TMXIsoTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/iso-test.tmx");
@@ -598,7 +576,7 @@ TMXIsoTest::TMXIsoTest()
     // move map to the center of the screen
     auto ms = map->getMapSize();
     auto ts = map->getTileSize();
-    map->runAction( MoveTo::create(1.0f, Vec2( -ms.width * ts.width/2, -ms.height * ts.height/2 )) );
+    map->runAction(MoveTo::create(1.0f, Vec2(-ms.width * ts.width / 2, -ms.height * ts.height / 2)));
 }
 
 std::string TMXIsoTest::title() const
@@ -613,14 +591,14 @@ std::string TMXIsoTest::title() const
 //------------------------------------------------------------------
 TMXIsoTest1::TMXIsoTest1()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/iso-test1.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     map->setAnchorPoint(Vec2(0.5f, 0.5f));
 }
@@ -637,19 +615,19 @@ std::string TMXIsoTest1::title() const
 //------------------------------------------------------------------
 TMXIsoTest2::TMXIsoTest2()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/iso-test2.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // move map to the center of the screen
     auto ms = map->getMapSize();
     auto ts = map->getTileSize();
-    map->runAction( MoveTo::create(1.0f, Vec2( -ms.width * ts.width/2, -ms.height * ts.height/2 ) ));
+    map->runAction(MoveTo::create(1.0f, Vec2(-ms.width * ts.width / 2, -ms.height * ts.height / 2)));
 }
 
 std::string TMXIsoTest2::title() const
@@ -664,29 +642,28 @@ std::string TMXIsoTest2::title() const
 //------------------------------------------------------------------
 TMXUncompressedTest::TMXUncompressedTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/iso-test2-uncompressed.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // move map to the center of the screen
     auto ms = map->getMapSize();
     auto ts = map->getTileSize();
-    map->runAction(MoveTo::create(1.0f, Vec2( -ms.width * ts.width/2, -ms.height * ts.height/2 ) ));
+    map->runAction(MoveTo::create(1.0f, Vec2(-ms.width * ts.width / 2, -ms.height * ts.height / 2)));
 
     // testing release map
     TMXLayer* layer;
 
     auto& children = map->getChildren();
-    for(const auto &node : children) {
-        layer= static_cast<TMXLayer*>(node);
+    for (const auto& node : children) {
+        layer = static_cast<TMXLayer*>(node);
         layer->releaseMap();
     }
-
 }
 
 std::string TMXUncompressedTest::title() const
@@ -705,7 +682,7 @@ TMXTilesetTest::TMXTilesetTest()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     TMXLayer* layer;
     layer = map->getLayer("Layer 0");
@@ -736,7 +713,7 @@ TMXCvsFormatTest::TMXCvsFormatTest()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     TMXLayer* layer;
     layer = map->getLayer("Layer 0");
@@ -765,7 +742,7 @@ TMXOrthoObjectsTest::TMXOrthoObjectsTest()
     addChild(map, -1, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto group = map->getObjectGroup("Object Group 1");
     auto& objects = group->getObjects();
@@ -775,8 +752,7 @@ TMXOrthoObjectsTest::TMXOrthoObjectsTest()
 
     auto drawNode = DrawNode::create();
 
-    for (auto& obj : objects)
-    {
+    for (auto& obj : objects) {
         ValueMap& dict = obj.asValueMap();
 
         float x = dict["x"].asFloat();
@@ -786,10 +762,10 @@ TMXOrthoObjectsTest::TMXOrthoObjectsTest()
 
         Color4F color(1.0, 1.0, 1.0, 1.0);
 
-        drawNode->drawLine( Vec2(x, y), Vec2((x+width), y), color );
-        drawNode->drawLine( Vec2((x+width), y), Vec2((x+width), (y+height)), color );
-        drawNode->drawLine( Vec2((x+width), (y+height)), Vec2(x, (y+height)), color );
-        drawNode->drawLine( Vec2(x, (y+height)), Vec2(x, y), color );
+        drawNode->drawLine(Vec2(x, y), Vec2((x + width), y), color);
+        drawNode->drawLine(Vec2((x + width), y), Vec2((x + width), (y + height)), color);
+        drawNode->drawLine(Vec2((x + width), (y + height)), Vec2(x, (y + height)), color);
+        drawNode->drawLine(Vec2(x, (y + height)), Vec2(x, y), color);
     }
     map->addChild(drawNode);
 }
@@ -804,7 +780,6 @@ std::string TMXOrthoObjectsTest::subtitle() const
     return "You should see a white box around the 3 platforms";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXIsoObjectsTest
@@ -817,7 +792,7 @@ TMXIsoObjectsTest::TMXIsoObjectsTest()
     addChild(map, -1, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto group = map->getObjectGroup("Object Group 1");
 
@@ -828,8 +803,7 @@ TMXIsoObjectsTest::TMXIsoObjectsTest()
 
     auto drawNode = DrawNode::create();
 
-    for (auto& obj : objects)
-    {
+    for (auto& obj : objects) {
         ValueMap& dict = obj.asValueMap();
 
         float x = dict["x"].asFloat();
@@ -839,10 +813,10 @@ TMXIsoObjectsTest::TMXIsoObjectsTest()
 
         Color4F color(1.0, 1.0, 1.0, 1.0);
 
-        drawNode->drawLine( Vec2(x, y), Vec2((x+width), y), color );
-        drawNode->drawLine( Vec2((x+width), y), Vec2((x+width), (y+height)), color );
-        drawNode->drawLine( Vec2((x+width), (y+height)), Vec2(x, (y+height)), color );
-        drawNode->drawLine( Vec2(x, (y+height)), Vec2(x, y), color );
+        drawNode->drawLine(Vec2(x, y), Vec2((x + width), y), color);
+        drawNode->drawLine(Vec2((x + width), y), Vec2((x + width), (y + height)), color);
+        drawNode->drawLine(Vec2((x + width), (y + height)), Vec2(x, (y + height)), color);
+        drawNode->drawLine(Vec2(x, (y + height)), Vec2(x, y), color);
     }
     map->addChild(drawNode, 10);
 }
@@ -857,7 +831,6 @@ std::string TMXIsoObjectsTest::subtitle() const
     return "You need to parse them manually. See bug #810";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXResizeTest
@@ -870,17 +843,15 @@ TMXResizeTest::TMXResizeTest()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     TMXLayer* layer;
     layer = map->getLayer("Layer 0");
 
     auto ls = layer->getLayerSize();
-    for (unsigned int y = 0; y < ls.height; y++)
-    {
-        for (unsigned int x = 0; x < ls.width; x++)
-        {
-            layer->setTileGID(1, Vec2( x, y ) );
+    for (unsigned int y = 0; y < ls.height; y++) {
+        for (unsigned int x = 0; x < ls.width; x++) {
+            layer->setTileGID(1, Vec2(x, y));
         }
     }
 }
@@ -895,7 +866,6 @@ std::string TMXResizeTest::subtitle() const
     return "Should not crash. Testing issue #740";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXIsoZorder
@@ -907,25 +877,24 @@ TMXIsoZorder::TMXIsoZorder()
     addChild(map, 0, kTagTileMap);
 
     auto s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
-    map->setPosition(Vec2(-s.width/2,0));
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
+    map->setPosition(Vec2(-s.width / 2, 0));
 
     _tamara = Sprite::create(s_pathSister1);
-    map->addChild(_tamara, (int)map->getChildren().size() );
+    map->addChild(_tamara, (int)map->getChildren().size());
 
     _tamara->retain();
     int mapWidth = map->getMapSize().width * map->getTileSize().width;
-    _tamara->setPosition(CC_POINT_PIXELS_TO_POINTS(Vec2( mapWidth/2,0)));
+    _tamara->setPosition(CC_POINT_PIXELS_TO_POINTS(Vec2(mapWidth / 2, 0)));
     _tamara->setScale(0.5);
-    _tamara->setAnchorPoint(Vec2(0.5f,0));
+    _tamara->setAnchorPoint(Vec2(0.5f, 0));
 
-
-    auto move = MoveBy::create(10, Vec2(300,250));
+    auto move = MoveBy::create(10, Vec2(300, 250));
     auto back = move->reverse();
-    auto seq = Sequence::create(move, back,nullptr);
-    _tamara->runAction( RepeatForever::create(seq) );
+    auto seq = Sequence::create(move, back, nullptr);
+    _tamara->runAction(RepeatForever::create(seq));
 
-    schedule( CC_SCHEDULE_SELECTOR(TMXIsoZorder::repositionSprite) );
+    schedule(CC_SCHEDULE_SELECTOR(TMXIsoZorder::repositionSprite));
 }
 
 TMXIsoZorder::~TMXIsoZorder()
@@ -951,7 +920,7 @@ void TMXIsoZorder::repositionSprite(float dt)
     // if tamara < 90,z=2
 
     int newZ = 4 - (static_cast<int>(p.y) / 30);
-    newZ = std::max(newZ,0);
+    newZ = std::max(newZ, 0);
 
     map->reorderChild(_tamara, newZ);
 }
@@ -966,7 +935,6 @@ std::string TMXIsoZorder::subtitle() const
     return "Sprite should hide behind the trees";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXOrthoZorder
@@ -978,20 +946,19 @@ TMXOrthoZorder::TMXOrthoZorder()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     _tamara = Sprite::create(s_pathSister1);
-    map->addChild(_tamara,  (int)map->getChildren().size());
+    map->addChild(_tamara, (int)map->getChildren().size());
     _tamara->retain();
-    _tamara->setAnchorPoint(Vec2(0.5f,0));
+    _tamara->setAnchorPoint(Vec2(0.5f, 0));
 
-
-    auto move = MoveBy::create(10, Vec2(400,450));
+    auto move = MoveBy::create(10, Vec2(400, 450));
     auto back = move->reverse();
-    auto seq = Sequence::create(move, back,nullptr);
-    _tamara->runAction( RepeatForever::create(seq));
+    auto seq = Sequence::create(move, back, nullptr);
+    _tamara->runAction(RepeatForever::create(seq));
 
-    schedule( CC_SCHEDULE_SELECTOR(TMXOrthoZorder::repositionSprite));
+    schedule(CC_SCHEDULE_SELECTOR(TMXOrthoZorder::repositionSprite));
 }
 
 TMXOrthoZorder::~TMXOrthoZorder()
@@ -1011,8 +978,8 @@ void TMXOrthoZorder::repositionSprite(float dt)
     // if tamara < 243,z=2
 
     // -10: customization for this particular sample
-    int newZ = 4 - ( (p.y-10) / 81);
-    newZ = std::max(newZ,0);
+    int newZ = 4 - ((p.y - 10) / 81);
+    newZ = std::max(newZ, 0);
 
     map->reorderChild(_tamara, newZ);
 }
@@ -1027,7 +994,6 @@ std::string TMXOrthoZorder::subtitle() const
     return "Sprite should hide behind the trees";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXIsoVertexZ
@@ -1039,22 +1005,21 @@ TMXIsoVertexZ::TMXIsoVertexZ()
     addChild(map, 0, kTagTileMap);
 
     auto s = map->getContentSize();
-    map->setPosition( Vec2(-s.width/2,0) );
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    map->setPosition(Vec2(-s.width / 2, 0));
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // because I'm lazy, I'm reusing a tile as an sprite, but since this method uses vertexZ, you
     // can use any Sprite and it will work OK.
     auto layer = map->getLayer("Trees");
-    _tamara = layer->getTileAt( Vec2(29,29) );
+    _tamara = layer->getTileAt(Vec2(29, 29));
     _tamara->retain();
 
-    auto move = MoveBy::create(10, Vec2(300,250) * (1/CC_CONTENT_SCALE_FACTOR()));
+    auto move = MoveBy::create(10, Vec2(300, 250) * (1 / CC_CONTENT_SCALE_FACTOR()));
     auto back = move->reverse();
-    auto seq = Sequence::create(move, back,nullptr);
-    _tamara->runAction( RepeatForever::create(seq) );
+    auto seq = Sequence::create(move, back, nullptr);
+    _tamara->runAction(RepeatForever::create(seq));
 
-    schedule( CC_SCHEDULE_SELECTOR(TMXIsoVertexZ::repositionSprite));
-
+    schedule(CC_SCHEDULE_SELECTOR(TMXIsoVertexZ::repositionSprite));
 }
 
 TMXIsoVertexZ::~TMXIsoVertexZ()
@@ -1068,8 +1033,8 @@ void TMXIsoVertexZ::repositionSprite(float dt)
     // map size: 30x30
     auto p = _tamara->getPosition();
     p = CC_POINT_POINTS_TO_PIXELS(p);
-    float newZ = -(p.y+32) /16;
-    _tamara->setPositionZ( newZ );
+    float newZ = -(p.y + 32) / 16;
+    _tamara->setPositionZ(newZ);
 }
 
 void TMXIsoVertexZ::onEnter()
@@ -1099,7 +1064,6 @@ std::string TMXIsoVertexZ::subtitle() const
     return "Sprite should hide behind the trees";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXOrthoVertexZ
@@ -1111,22 +1075,21 @@ TMXOrthoVertexZ::TMXOrthoVertexZ()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // because I'm lazy, I'm reusing a tile as an sprite, but since this method uses vertexZ, you
     // can use any Sprite and it will work OK.
     auto layer = map->getLayer("trees");
-    _tamara = layer->getTileAt(Vec2(0,11));
+    _tamara = layer->getTileAt(Vec2(0, 11));
     CCLOG("%p vertexZ: %f", _tamara, _tamara->getPositionZ());
     _tamara->retain();
 
-    auto move = MoveBy::create(10, Vec2(400,450) * (1/CC_CONTENT_SCALE_FACTOR()));
+    auto move = MoveBy::create(10, Vec2(400, 450) * (1 / CC_CONTENT_SCALE_FACTOR()));
     auto back = move->reverse();
-    auto seq = Sequence::create(move, back,nullptr);
-    _tamara->runAction( RepeatForever::create(seq));
+    auto seq = Sequence::create(move, back, nullptr);
+    _tamara->runAction(RepeatForever::create(seq));
 
     schedule(CC_SCHEDULE_SELECTOR(TMXOrthoVertexZ::repositionSprite));
-
 }
 
 TMXOrthoVertexZ::~TMXOrthoVertexZ()
@@ -1140,7 +1103,7 @@ void TMXOrthoVertexZ::repositionSprite(float dt)
     // map size: 12x12
     auto p = _tamara->getPosition();
     p = CC_POINT_POINTS_TO_PIXELS(p);
-    _tamara->setPositionZ( -( (p.y+81) /81) );
+    _tamara->setPositionZ(-((p.y + 81) / 81));
 }
 
 void TMXOrthoVertexZ::onEnter()
@@ -1170,7 +1133,6 @@ std::string TMXOrthoVertexZ::subtitle() const
     return "Sprite should hide behind the trees";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXIsoMoveLayer
@@ -1181,10 +1143,10 @@ TMXIsoMoveLayer::TMXIsoMoveLayer()
     auto map = TMXTiledMap::create("TileMaps/iso-test-movelayer.tmx");
     addChild(map, 0, kTagTileMap);
 
-    map->setPosition(Vec2(-700,-50));
+    map->setPosition(Vec2(-700, -50));
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 }
 
 std::string TMXIsoMoveLayer::title() const
@@ -1197,7 +1159,6 @@ std::string TMXIsoMoveLayer::subtitle() const
     return "Trees should be horizontally aligned";
 }
 
-
 //------------------------------------------------------------------
 //
 // TMXOrthoMoveLayer
@@ -1209,7 +1170,7 @@ TMXOrthoMoveLayer::TMXOrthoMoveLayer()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 }
 
 std::string TMXOrthoMoveLayer::title() const
@@ -1231,11 +1192,10 @@ std::string TMXOrthoMoveLayer::subtitle() const
 TMXTilePropertyTest::TMXTilePropertyTest()
 {
     auto map = TMXTiledMap::create("TileMaps/ortho-tile-property.tmx");
-    addChild(map ,0 ,kTagTileMap);
+    addChild(map, 0, kTagTileMap);
 
-    for(int i=1;i<=20;i++){
-        for(const auto& value : map->getPropertiesForGID(i).asValueMap())
-        {
+    for (int i = 1; i <= 20; i++) {
+        for (const auto& value : map->getPropertiesForGID(i).asValueMap()) {
             log("GID:%i, Properties:%s, %s", i, value.first.c_str(), value.second.asString().c_str());
         }
     }
@@ -1263,10 +1223,10 @@ TMXOrthoFlipTest::TMXOrthoFlipTest()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    log("ContentSize: %f, %f", s.width,s.height);
+    log("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         auto child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
@@ -1292,10 +1252,10 @@ TMXOrthoFlipRunTimeTest::TMXOrthoFlipRunTimeTest()
     addChild(map, 0, kTagTileMap);
 
     auto s = map->getContentSize();
-    log("ContentSize: %f, %f", s.width,s.height);
+    log("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         auto child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
@@ -1318,40 +1278,39 @@ std::string TMXOrthoFlipRunTimeTest::subtitle() const
 
 void TMXOrthoFlipRunTimeTest::flipIt(float dt)
 {
-    auto map = (TMXTiledMap*) getChildByTag(kTagTileMap);
+    auto map = (TMXTiledMap*)getChildByTag(kTagTileMap);
     auto layer = map->getLayer("Layer 0");
 
-    //blue diamond
-    auto tileCoord = Vec2(1,10);
+    // blue diamond
+    auto tileCoord = Vec2(1, 10);
     int flags;
     unsigned int GID = layer->getTileGIDAt(tileCoord, (TMXTileFlags*)&flags);
     // Vertical
-    if( flags & kTMXTileVerticalFlag )
+    if (flags & kTMXTileVerticalFlag)
         flags &= ~kTMXTileVerticalFlag;
     else
         flags |= kTMXTileVerticalFlag;
-    layer->setTileGID(GID ,tileCoord, (TMXTileFlags)flags);
+    layer->setTileGID(GID, tileCoord, (TMXTileFlags)flags);
 
-
-    tileCoord = Vec2(1,8);
+    tileCoord = Vec2(1, 8);
     GID = layer->getTileGIDAt(tileCoord, (TMXTileFlags*)&flags);
     // Vertical
-    if( flags & kTMXTileVerticalFlag )
+    if (flags & kTMXTileVerticalFlag)
         flags &= ~kTMXTileVerticalFlag;
     else
         flags |= kTMXTileVerticalFlag;
-    layer->setTileGID(GID ,tileCoord, (TMXTileFlags)flags);
+    layer->setTileGID(GID, tileCoord, (TMXTileFlags)flags);
 
-
-    tileCoord = Vec2(2,8);
+    tileCoord = Vec2(2, 8);
     GID = layer->getTileGIDAt(tileCoord, (TMXTileFlags*)&flags);
     // Horizontal
-    if( flags & kTMXTileHorizontalFlag )
+    if (flags & kTMXTileHorizontalFlag)
         flags &= ~kTMXTileHorizontalFlag;
     else
         flags |= kTMXTileHorizontalFlag;
     layer->setTileGID(GID, tileCoord, (TMXTileFlags)flags);
 }
+
 //------------------------------------------------------------------
 //
 // TMXOrthoFromXMLTest
@@ -1360,20 +1319,20 @@ void TMXOrthoFlipRunTimeTest::flipIt(float dt)
 
 TMXOrthoFromXMLTest::TMXOrthoFromXMLTest()
 {
-    std::string resources = "TileMaps";        // partial paths are OK as resource paths.
+    std::string resources = "TileMaps";  // partial paths are OK as resource paths.
     std::string file = resources + "/orthogonal-test1.tmx";
 
     auto str = __String::createWithContentsOfFile(FileUtils::getInstance()->fullPathForFilename(file));
     CCASSERT(str != nullptr, "Unable to open file");
 
-    auto map = TMXTiledMap::createWithXML(str->getCString() ,resources);
+    auto map = TMXTiledMap::createWithXML(str->getCString(), resources);
     addChild(map, 0, kTagTileMap);
 
     auto s = map->getContentSize();
-    log("ContentSize: %f, %f", s.width,s.height);
+    log("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         auto child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
@@ -1386,6 +1345,7 @@ std::string TMXOrthoFromXMLTest::title() const
 {
     return "TMX created from XML test";
 }
+
 //------------------------------------------------------------------
 //
 // TMXOrthoXMLFormatTest
@@ -1402,16 +1362,17 @@ TMXOrthoXMLFormatTest::TMXOrthoXMLFormatTest()
     addChild(map, 0, kTagTileMap);
 
     auto s = map->getContentSize();
-    log("ContentSize: %f, %f", s.width,s.height);
+    log("ContentSize: %f, %f", s.width, s.height);
 
     auto& children = map->getChildren();
-    for(const auto &node : children) {
+    for (const auto& node : children) {
         auto child = static_cast<SpriteBatchNode*>(node);
         child->getTexture()->setAntiAliasTexParameters();
     }
 
-    for(int i=24;i<=26;i++){
-        log("GID:%i, Properties:%s", i, map->getPropertiesForGID(i).asValueMap()["name"].asString().c_str());
+    for (int i = 24; i <= 26; i++) {
+        log("GID:%i, Properties:%s", i,
+            map->getPropertiesForGID(i).asValueMap()["name"].asString().c_str());
     }
 
     auto action = ScaleBy::create(2, 0.5f);
@@ -1434,17 +1395,17 @@ TMXBug987::TMXBug987()
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s1 = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s1.width,s1.height);
+    CCLOG("ContentSize: %f, %f", s1.width, s1.height);
 
     auto& children = map->getChildren();
-    for(const auto &child : children) {
+    for (const auto& child : children) {
         auto node = static_cast<TMXLayer*>(child);
         node->getTexture()->setAntiAliasTexParameters();
     }
 
     map->setAnchorPoint(Vec2(0, 0));
     auto layer = map->getLayer("Tile Layer 1");
-    layer->setTileGID(3, Vec2(2,2));
+    layer->setTileGID(3, Vec2(2, 2));
 }
 
 std::string TMXBug987::title() const
@@ -1499,8 +1460,7 @@ TMXGIDObjectsTest::TMXGIDObjectsTest()
     Color4F color(1.0, 1.0, 1.0, 1.0);
     auto group = map->getObjectGroup("Object Layer 1");
     auto& objects = group->getObjects();
-    for (auto& obj : objects)
-    {
+    for (auto& obj : objects) {
         ValueMap& dict = obj.asValueMap();
 
         float x = dict["x"].asFloat();
@@ -1510,8 +1470,8 @@ TMXGIDObjectsTest::TMXGIDObjectsTest()
 
         drawNode->drawLine(Vec2(x, y), Vec2(x + width, y), color);
         drawNode->drawLine(Vec2(x + width, y), Vec2(x + width, y + height), color);
-        drawNode->drawLine(Vec2(x + width,y + height), Vec2(x,y + height), color);
-        drawNode->drawLine(Vec2(x,y + height), Vec2(x,y), color);
+        drawNode->drawLine(Vec2(x + width, y + height), Vec2(x, y + height), color);
+        drawNode->drawLine(Vec2(x, y + height), Vec2(x, y), color);
     }
     map->addChild(drawNode);
 }
@@ -1533,14 +1493,14 @@ std::string TMXGIDObjectsTest::subtitle() const
 //------------------------------------------------------------------
 TMXHexOddXTest::TMXHexOddXTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexagonal-mini-odd-x.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // Testing issue 16512 as well. Should not crash
     auto floor = map->getLayer("Ground");
@@ -1564,14 +1524,14 @@ std::string TMXHexOddXTest::title() const
 //------------------------------------------------------------------
 TMXHexOddYTest::TMXHexOddYTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexagonal-mini-odd-y.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // Testing issue 16512 as well. Should not crash
     auto floor = map->getLayer("Ground");
@@ -1595,14 +1555,14 @@ std::string TMXHexOddYTest::title() const
 //------------------------------------------------------------------
 TMXHexEvenXTest::TMXHexEvenXTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexagonal-mini-even-x.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // Testing issue 16512 as well. Should not crash
     auto floor = map->getLayer("Ground");
@@ -1626,14 +1586,14 @@ std::string TMXHexEvenXTest::title() const
 //------------------------------------------------------------------
 TMXHexEvenYTest::TMXHexEvenYTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexagonal-mini-even-y.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     // Testing issue 16512 as well. Should not crash
     auto floor = map->getLayer("Ground");
@@ -1657,14 +1617,14 @@ std::string TMXHexEvenYTest::title() const
 //------------------------------------------------------------------
 TMXHexAxisXTest::TMXHexAxisXTest()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/hexa-axis-x.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 }
 
 std::string TMXHexAxisXTest::title() const
@@ -1679,14 +1639,14 @@ std::string TMXHexAxisXTest::title() const
 //------------------------------------------------------------------
 Issue16105Test::Issue16105Test()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/issue16105.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 }
 
 std::string Issue16105Test::title() const
@@ -1701,14 +1661,14 @@ std::string Issue16105Test::title() const
 //------------------------------------------------------------------
 Issue16512Test::Issue16512Test()
 {
-    auto color = LayerColor::create( Color4B(64,64,64,255) );
+    auto color = LayerColor::create(Color4B(64, 64, 64, 255));
     addChild(color, -1);
 
     auto map = TMXTiledMap::create("TileMaps/issue_16512.tmx");
     addChild(map, 0, kTagTileMap);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     auto floor = map->getLayer("Floor");
     for (auto x = 0; x < map->getMapSize().width; x++) {
@@ -1731,16 +1691,15 @@ std::string Issue16512Test::title() const
 //------------------------------------------------------------------
 TileAnimTest::TileAnimTest()
 {
-
     map = TMXTiledMap::create("TileMaps/tile_animation_test.tmx");
     addChild(map, 0, kTagTileMap);
 
     auto listener = EventListenerTouchAllAtOnce::create();
-    listener->onTouchesBegan= CC_CALLBACK_2(TileAnimTest::onTouchBegan, this);
+    listener->onTouchesBegan = CC_CALLBACK_2(TileAnimTest::onTouchBegan, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     Size CC_UNUSED s = map->getContentSize();
-    CCLOG("ContentSize: %f, %f", s.width,s.height);
+    CCLOG("ContentSize: %f, %f", s.width, s.height);
 
     map->setTileAnimEnabled(_animStarted);
 }
@@ -1755,4 +1714,3 @@ void TileAnimTest::onTouchBegan(const std::vector<cocos2d::Touch*>& touches, coc
     _animStarted = !_animStarted;
     map->setTileAnimEnabled(_animStarted);
 }
-

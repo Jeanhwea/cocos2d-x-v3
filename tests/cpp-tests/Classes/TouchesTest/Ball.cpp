@@ -23,18 +23,15 @@
  ****************************************************************************/
 
 #include "Ball.h"
-#include "Paddle.h"
+
 #include "../VisibleRect.h"
+#include "Paddle.h"
 
 USING_NS_CC;
 
-Ball::Ball()
-{
-}
+Ball::Ball() {}
 
-Ball::~Ball()
-{
-}
+Ball::~Ball() {}
 
 float Ball::radius()
 {
@@ -54,13 +51,10 @@ void Ball::move(float delta)
 {
     this->setPosition(getPosition() + _velocity * delta);
 
-    if (getPosition().x > VisibleRect::right().x - radius())
-    {
+    if (getPosition().x > VisibleRect::right().x - radius()) {
         setPosition(VisibleRect::right().x - radius(), getPosition().y);
         _velocity.x *= -1;
-    }
-    else if (getPosition().x < VisibleRect::left().x + radius())
-    {
+    } else if (getPosition().x < VisibleRect::left().x + radius()) {
         setPosition(VisibleRect::left().x + radius(), getPosition().y);
         _velocity.x *= -1;
     }
@@ -72,33 +66,28 @@ void Ball::collideWithPaddle(Paddle* paddle)
     paddleRect.origin.x += paddle->getPosition().x;
     paddleRect.origin.y += paddle->getPosition().y;
 
-    float lowY  = paddleRect.getMinY();
-    float midY  = paddleRect.getMidY();
+    float lowY = paddleRect.getMinY();
+    float midY = paddleRect.getMidY();
     float highY = paddleRect.getMaxY();
 
-    float leftX  = paddleRect.getMinX();
+    float leftX = paddleRect.getMinX();
     float rightX = paddleRect.getMaxX();
 
     if (getPosition().x > leftX && getPosition().x < rightX) {
-
         bool hit = false;
         float angleOffset = 0.0f;
 
-        if (getPosition().y > midY && getPosition().y <= highY + radius())
-        {
+        if (getPosition().y > midY && getPosition().y <= highY + radius()) {
             setPosition(getPosition().x, highY + radius());
             hit = true;
             angleOffset = (float)M_PI / 2;
-        }
-        else if (getPosition().y < midY && getPosition().y >= lowY - radius())
-        {
+        } else if (getPosition().y < midY && getPosition().y >= lowY - radius()) {
             setPosition(getPosition().x, lowY - radius());
             hit = true;
             angleOffset = -(float)M_PI / 2;
         }
 
-        if (hit)
-        {
+        if (hit) {
             float hitAngle = (paddle->getPosition() - getPosition()).getAngle() + angleOffset;
 
             float scalarVelocity = _velocity.getLength() * 1.05f;
@@ -108,4 +97,3 @@ void Ball::collideWithPaddle(Paddle* paddle)
         }
     }
 }
-

@@ -1,14 +1,13 @@
 #pragma once
 
+#include <chrono>
+
+#include "BaseTest.h"
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "network/WebSocket.h"
-#include "BaseTest.h"
 
-#include <chrono>
-
-class WebSocketDelayTest : public TestCase
-, public cocos2d::network::WebSocket::Delegate
+class WebSocketDelayTest : public TestCase, public cocos2d::network::WebSocket::Delegate
 {
 public:
     CREATE_FUNC(WebSocketDelayTest);
@@ -18,15 +17,18 @@ public:
 
     virtual void onExit() override;
 
-    virtual void onOpen(cocos2d::network::WebSocket* ws)override;
-    virtual void onMessage(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::Data& data)override;
-    virtual void onClose(cocos2d::network::WebSocket* ws)override;
-    virtual void onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error)override;
+    virtual void onOpen(cocos2d::network::WebSocket* ws) override;
+    virtual void onMessage(cocos2d::network::WebSocket* ws,
+                           const cocos2d::network::WebSocket::Data& data) override;
+    virtual void onClose(cocos2d::network::WebSocket* ws) override;
+    virtual void onError(cocos2d::network::WebSocket* ws,
+                         const cocos2d::network::WebSocket::ErrorCode& error) override;
 
     // Menu Callbacks
-    void onMenuSendTextClicked(cocos2d::Ref *sender);
+    void onMenuSendTextClicked(cocos2d::Ref* sender);
 
     virtual std::string title() const override { return "WebSocket Delay Test"; }
+
     void startTestCallback(cocos2d::Ref* sender);
 
     int64_t getNowMircroSeconds()
@@ -52,4 +54,3 @@ private:
     int _sendTextTimes = 0;
     int _receiveTextTimes = 0;
 };
-

@@ -26,8 +26,8 @@
 #ifndef _SPINETEST_H_
 #define _SPINETEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 #include "spine/spine-cocos2dx.h"
 
 DEFINE_TEST_SUITE(SpineTests);
@@ -38,16 +38,18 @@ public:
     SpineTestLayer();
 
     virtual std::string title() const;
+
 protected:
-    std::string    _title;
+    std::string _title;
 };
 
-class BatchingExample: public SpineTestLayer {
+class BatchingExample : public SpineTestLayer
+{
 public:
     CREATE_FUNC(BatchingExample);
-    ~BatchingExample ();
+    ~BatchingExample();
 
-    virtual bool init ();
+    virtual bool init();
 
 protected:
     spAtlas* _atlas;
@@ -56,7 +58,7 @@ protected:
     spAnimationStateData* _stateData;
 };
 
-class CoinExample: public SpineTestLayer
+class CoinExample : public SpineTestLayer
 {
 public:
     CREATE_FUNC(CoinExample);
@@ -67,47 +69,50 @@ private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
-class GoblinsExample : public SpineTestLayer {
+class GoblinsExample : public SpineTestLayer
+{
 public:
     CREATE_FUNC(GoblinsExample);
 
-    virtual bool init ();
+    virtual bool init();
 
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
-class RaptorExample : public SpineTestLayer {
+class RaptorExample : public SpineTestLayer
+{
 public:
     CREATE_FUNC(RaptorExample);
 
-    virtual bool init ();
+    virtual bool init();
 
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
-class SpineboyExample : public SpineTestLayer {
+class SpineboyExample : public SpineTestLayer
+{
 public:
-    CREATE_FUNC (SpineboyExample);
+    CREATE_FUNC(SpineboyExample);
 
-    virtual bool init ();
+    virtual bool init();
 
-    virtual void update (float deltaTime);
+    virtual void update(float deltaTime);
 
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
-class TankExample : public SpineTestLayer {
+class TankExample : public SpineTestLayer
+{
 public:
     CREATE_FUNC(TankExample);
 
-    virtual bool init ();
+    virtual bool init();
 
 private:
     spine::SkeletonAnimation* skeletonNode;
 };
 
-#endif // _EXAMPLELAYER_H_
-
+#endif  // _EXAMPLELAYER_H_

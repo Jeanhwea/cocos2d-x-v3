@@ -70,6 +70,7 @@ public:
     CREATE_FUNC(UILayoutTest_BackGroundImage);
 
     void printWidgetResources(cocos2d::Ref* sender);
+
 protected:
     cocos2d::ui::Layout* _layout;
 };
@@ -141,9 +142,9 @@ public:
 
     virtual bool init() override;
     void touchEvent(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
+
 protected:
     cocos2d::LayerColor* _baseLayer;
-
 };
 
 class UILayoutComponent_Berth_Test : public UILayoutComponentTest
@@ -171,4 +172,3 @@ public:
 };
 
 #endif /* defined(__TestCpp__UILayoutTest__) */
-

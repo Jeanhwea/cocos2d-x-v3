@@ -27,7 +27,6 @@
 
 #include "../BaseTest.h"
 
-
 DEFINE_TEST_SUITE(FileUtilsTests);
 
 class FileUtilsDemo : public TestCase
@@ -44,6 +43,7 @@ public:
     virtual void onExit() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     std::vector<std::string> _defaultSearchPathArray;
     std::vector<std::string> _defaultResolutionsOrderArray;
@@ -58,6 +58,7 @@ public:
     virtual void onExit() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     std::vector<std::string> _defaultSearchPathArray;
     std::vector<std::string> _defaultResolutionsOrderArray;
@@ -146,6 +147,7 @@ public:
     virtual void onExit() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     std::string _generatedFile;
 };
@@ -281,4 +283,3 @@ public:
 };
 
 #endif /* __FILEUTILSTEST_H__ */
-

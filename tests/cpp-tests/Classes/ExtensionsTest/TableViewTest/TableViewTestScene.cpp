@@ -23,8 +23,9 @@
  ****************************************************************************/
 
 #include "TableViewTestScene.h"
-#include "CustomTableViewCell.h"
+
 #include "../ExtensionsTest.h"
+#include "CustomTableViewCell.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -37,16 +38,15 @@ TableViewTests::TableViewTests()
 // on "init" you need to initialize your instance
 bool TableViewTest::init()
 {
-    if ( !TestCase::init() )
-    {
+    if (!TestCase::init()) {
         return false;
     }
 
-	Size winSize = Director::getInstance()->getWinSize();
+    Size winSize = Director::getInstance()->getWinSize();
 
     TableView* tableView = TableView::create(this, Size(250, 60));
     tableView->setDirection(ScrollView::Direction::HORIZONTAL);
-    tableView->setPosition(Vec2(20,winSize.height/2-30));
+    tableView->setPosition(Vec2(20, winSize.height / 2 - 30));
     tableView->setDelegate(this);
     this->addChild(tableView);
     tableView->reloadData();
@@ -57,14 +57,13 @@ bool TableViewTest::init()
     tableView->removeChild(testNode, true);
     CCAssert(nullptr == tableView->getChildByName("testNode"), "The added child has been removed!");
 
-
-	tableView = TableView::create(this, Size(60, 250));
-	tableView->setDirection(ScrollView::Direction::VERTICAL);
-	tableView->setPosition(Vec2(winSize.width-150,winSize.height/2-120));
-	tableView->setDelegate(this);
-	tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
-	this->addChild(tableView);
-	tableView->reloadData();
+    tableView = TableView::create(this, Size(60, 250));
+    tableView->setDirection(ScrollView::Direction::VERTICAL);
+    tableView->setPosition(Vec2(winSize.width - 150, winSize.height / 2 - 120));
+    tableView->setDelegate(this);
+    tableView->setVerticalFillOrder(TableView::VerticalFillOrder::TOP_DOWN);
+    this->addChild(tableView);
+    tableView->reloadData();
 
     return true;
 }
@@ -74,7 +73,7 @@ void TableViewTest::tableCellTouched(TableView* table, TableViewCell* cell)
     CCLOG("cell touched at index: %ld", static_cast<long>(cell->getIdx()));
 }
 
-Size TableViewTest::tableCellSizeForIndex(TableView *table, ssize_t idx)
+Size TableViewTest::tableCellSizeForIndex(TableView* table, ssize_t idx)
 {
     if (idx == 2) {
         return Size(100, 100);
@@ -82,10 +81,10 @@ Size TableViewTest::tableCellSizeForIndex(TableView *table, ssize_t idx)
     return Size(60, 60);
 }
 
-TableViewCell* TableViewTest::tableCellAtIndex(TableView *table, ssize_t idx)
+TableViewCell* TableViewTest::tableCellAtIndex(TableView* table, ssize_t idx)
 {
     auto string = StringUtils::format("%ld", static_cast<long>(idx));
-    TableViewCell *cell = table->dequeueCell();
+    TableViewCell* cell = table->dequeueCell();
     if (!cell) {
         cell = new (std::nothrow) CustomTableViewCell();
         cell->autorelease();
@@ -96,22 +95,18 @@ TableViewCell* TableViewTest::tableCellAtIndex(TableView *table, ssize_t idx)
 
         auto label = Label::createWithSystemFont(string, "Helvetica", 20.0);
         label->setPosition(Vec2::ZERO);
-		label->setAnchorPoint(Vec2::ZERO);
+        label->setAnchorPoint(Vec2::ZERO);
         label->setTag(123);
         cell->addChild(label);
-    }
-    else
-    {
+    } else {
         auto label = (Label*)cell->getChildByTag(123);
         label->setString(string);
     }
 
-
     return cell;
 }
 
-ssize_t TableViewTest::numberOfCellsInTableView(TableView *table)
+ssize_t TableViewTest::numberOfCellsInTableView(TableView* table)
 {
     return 20;
 }
-

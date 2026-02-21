@@ -41,4 +41,3 @@ public:
 
     virtual std::string title() const override;
 };
-

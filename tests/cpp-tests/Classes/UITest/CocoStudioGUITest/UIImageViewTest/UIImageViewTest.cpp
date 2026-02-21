@@ -41,21 +41,19 @@ UIImageViewTests::UIImageViewTests()
 
 bool UIImageViewTest::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         Text* alert = Text::create("ImageView", "fonts/Marker Felt.ttf", 30);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
-                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
+                                widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
 
         _uiLayer->addChild(alert);
 
         // Create the imageview
         ImageView* imageView = ImageView::create("cocosui/ccicon.png");
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f,
-                                     widgetSize.height / 2.0f));
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(imageView);
 
@@ -63,8 +61,10 @@ bool UIImageViewTest::init()
 
         TTFConfig ttfConfig("fonts/arial.ttf", 15);
         auto label1 = Label::createWithTTF(ttfConfig, "Print Resources");
-        auto item1 = MenuItemLabel::create(label1, CC_CALLBACK_1(UIImageViewTest::printWidgetResources, this));
-        item1->setPosition(Vec2(VisibleRect::left().x + 60, VisibleRect::bottom().y + item1->getContentSize().height * 3));
+        auto item1 =
+            MenuItemLabel::create(label1, CC_CALLBACK_1(UIImageViewTest::printWidgetResources, this));
+        item1->setPosition(
+            Vec2(VisibleRect::left().x + 60, VisibleRect::bottom().y + item1->getContentSize().height * 3));
         auto pMenu1 = Menu::create(item1, nullptr);
         pMenu1->setPosition(Vec2(0, 0));
         this->addChild(pMenu1, 10);
@@ -84,14 +84,13 @@ void UIImageViewTest::printWidgetResources(cocos2d::Ref* sender)
 
 bool UIImageViewTest_Scale9::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         Text* alert = Text::create("ImageView scale9 render", "fonts/Marker Felt.ttf", 26);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
-                                 widgetSize.height / 2.0f - alert->getContentSize().height * 2.125f));
+                                widgetSize.height / 2.0f - alert->getContentSize().height * 2.125f));
 
         _uiLayer->addChild(alert);
 
@@ -99,14 +98,12 @@ bool UIImageViewTest_Scale9::init()
         ImageView* imageView = ImageView::create("cocosui/buttonHighlighted.png");
         imageView->setScale9Enabled(true);
         imageView->setContentSize(Size(200, 115));
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f - 100,
-                                     widgetSize.height / 2.0f));
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f - 100, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(imageView);
 
         auto imageCopy = imageView->clone();
-        imageCopy->setPosition(Vec2(widgetSize.width / 2.0f + 100,
-                                    widgetSize.height / 2.0f));
+        imageCopy->setPosition(Vec2(widgetSize.width / 2.0f + 100, widgetSize.height / 2.0f));
         _uiLayer->addChild(imageCopy);
 
         return true;
@@ -118,14 +115,13 @@ bool UIImageViewTest_Scale9::init()
 
 bool UIImageViewTest_Scale9_State_Change::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         Text* alert = Text::create("Click The Image", "fonts/Marker Felt.ttf", 26);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
-            widgetSize.height / 2.0f - alert->getContentSize().height * 2.125f));
+                                widgetSize.height / 2.0f - alert->getContentSize().height * 2.125f));
 
         _uiLayer->addChild(alert);
 
@@ -134,18 +130,15 @@ bool UIImageViewTest_Scale9_State_Change::init()
         imageView->ignoreContentAdaptWithSize(false);
         imageView->setScale9Enabled(true);
         imageView->setContentSize(Size(100, 100));
-        imageView->setCapInsets(Rect(20,20,20,20));
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f,
-            widgetSize.height / 2.0f));
+        imageView->setCapInsets(Rect(20, 20, 20, 20));
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         imageView->setTouchEnabled(true);
-        imageView->addTouchEventListener([=](Ref* sender, Widget::TouchEventType type){
+        imageView->addTouchEventListener([=](Ref* sender, Widget::TouchEventType type) {
             if (type == Widget::TouchEventType::ENDED) {
-                if (imageView->isScale9Enabled())
-                {
+                if (imageView->isScale9Enabled()) {
                     imageView->setScale9Enabled(false);
-                }
-                else
+                } else
                     imageView->setScale9Enabled(true);
             }
         });
@@ -157,13 +150,11 @@ bool UIImageViewTest_Scale9_State_Change::init()
     return false;
 }
 
-
 // UIImageViewTest_ContentSize
 
 bool UIImageViewTest_ContentSize::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         Text* alert = Text::create("ImageView ContentSize Change", "fonts/Marker Felt.ttf", 26);
@@ -173,18 +164,16 @@ bool UIImageViewTest_ContentSize::init()
 
         _uiLayer->addChild(alert);
 
-        Text *status = Text::create("child ImageView position percent", "fonts/Marker Felt.ttf", 16);
+        Text* status = Text::create("child ImageView position percent", "fonts/Marker Felt.ttf", 16);
         status->setColor(Color3B::RED);
-        status->setPosition(Vec2(widgetSize.width/2, widgetSize.height/2 + 80));
-        _uiLayer->addChild(status,20);
+        status->setPosition(Vec2(widgetSize.width / 2, widgetSize.height / 2 + 80));
+        _uiLayer->addChild(status, 20);
 
         // Create the imageview
         ImageView* imageView = ImageView::create("cocosui/buttonHighlighted.png");
         imageView->setScale9Enabled(true);
         imageView->setContentSize(Size(200, 80));
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f,
-                                    widgetSize.height / 2.0f ));
-
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         ImageView* imageViewChild = ImageView::create("cocosui/buttonHighlighted.png");
         imageViewChild->setScale9Enabled(true);
@@ -192,8 +181,7 @@ bool UIImageViewTest_ContentSize::init()
         imageViewChild->setPositionType(Widget::PositionType::PERCENT);
         imageViewChild->setSizePercent(Vec2::ANCHOR_MIDDLE);
         imageViewChild->setPositionPercent(Vec2::ANCHOR_MIDDLE);
-        imageViewChild->setPosition(Vec2(widgetSize.width / 2.0f,
-                                    widgetSize.height / 2.0f));
+        imageViewChild->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         ImageView* imageViewChild2 = ImageView::create("cocosui/buttonHighlighted.png");
         imageViewChild2->setScale9Enabled(true);
@@ -203,11 +191,10 @@ bool UIImageViewTest_ContentSize::init()
         imageViewChild2->setPositionPercent(Vec2::ANCHOR_MIDDLE);
         imageViewChild->addChild(imageViewChild2);
 
-
         imageView->addChild(imageViewChild);
 
         imageView->setTouchEnabled(true);
-        imageView->addTouchEventListener([=](Ref* sender, Widget::TouchEventType type){
+        imageView->addTouchEventListener([=](Ref* sender, Widget::TouchEventType type) {
             if (type == Widget::TouchEventType::ENDED) {
                 float width = CCRANDOM_0_1() * 200 + 50;
                 float height = CCRANDOM_0_1() * 80 + 30;
@@ -215,7 +202,8 @@ bool UIImageViewTest_ContentSize::init()
 
                 imageViewChild->setPositionPercent(Vec2(CCRANDOM_0_1(), CCRANDOM_0_1()));
                 status->setString(StringUtils::format("child ImageView position percent: %f, %f",
-                                                      imageViewChild->getPositionPercent().x, imageViewChild->getPositionPercent().y));
+                                                      imageViewChild->getPositionPercent().x,
+                                                      imageViewChild->getPositionPercent().y));
             }
         });
 
@@ -226,13 +214,11 @@ bool UIImageViewTest_ContentSize::init()
     return false;
 }
 
-
 // UIImageViewFlipTest
 
 bool UIImageViewFlipTest::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/blocks9ss.plist");
         Size widgetSize = _widget->getContentSize();
 
@@ -250,27 +236,27 @@ bool UIImageViewFlipTest::init()
         imageView->setFlippedX(true);
         imageView->setScale(0.5);
         imageView->ignoreContentAdaptWithSize(false);
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f,
-                                    widgetSize.height / 2.0f));
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(imageView);
 
         auto toggleButton = Button::create();
         toggleButton->setTitleText("Toggle FlipX");
-        toggleButton->setPosition(imageView->getPosition() + Vec2(-50, - imageView->getContentSize().height/2 - 20));
+        toggleButton->setPosition(imageView->getPosition() +
+                                  Vec2(-50, -imageView->getContentSize().height / 2 - 20));
         this->addChild(toggleButton);
-        toggleButton->addClickEventListener([=](Ref*){
-            imageView->setFlippedX(!imageView->isFlippedX());
-        });
+        toggleButton->addClickEventListener(
+            [=](Ref*) { imageView->setFlippedX(!imageView->isFlippedX()); });
 
         auto toggleScale9 = Button::create();
         toggleScale9->setTitleText("Toggle Scale9");
-        toggleScale9->setPosition(imageView->getPosition() + Vec2(+50, - imageView->getContentSize().height/2- 20));
+        toggleScale9->setPosition(imageView->getPosition() +
+                                  Vec2(+50, -imageView->getContentSize().height / 2 - 20));
         this->addChild(toggleScale9);
-        toggleScale9->addClickEventListener([=](Ref*){
+        toggleScale9->addClickEventListener([=](Ref*) {
             imageView->setScale9Enabled(!imageView->isScale9Enabled());
-            //after switching scale9, you must call setContentSize to keep the size not change
-             imageView->setContentSize(Size(250, 115));
+            // after switching scale9, you must call setContentSize to keep the size not change
+            imageView->setContentSize(Size(250, 115));
         });
 
         return true;
@@ -278,13 +264,11 @@ bool UIImageViewFlipTest::init()
     return false;
 }
 
-
 // UIImageViewIssue12249Test
 
 bool UIImageViewIssue12249Test::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/blocks9ss.plist");
         Size widgetSize = _widget->getContentSize();
 
@@ -301,8 +285,7 @@ bool UIImageViewIssue12249Test::init()
         imageView->setContentSize(Size(250, imageView->getContentSize().height * 2));
         imageView->setFlippedX(true);
         imageView->setScale(0.5);
-        imageView->setPosition(Vec2(widgetSize.width / 2.0f - 80,
-                                    widgetSize.height / 2.0f));
+        imageView->setPosition(Vec2(widgetSize.width / 2.0f - 80, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(imageView);
 
@@ -312,14 +295,11 @@ bool UIImageViewIssue12249Test::init()
         imageView2->setContentSize(Size(250, imageView2->getContentSize().height * 2));
         imageView2->setFlippedX(true);
         imageView2->setScale(0.5);
-        imageView2->setPosition(Vec2(widgetSize.width / 2.0f + 80,
-                                    widgetSize.height / 2.0f));
+        imageView2->setPosition(Vec2(widgetSize.width / 2.0f + 80, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(imageView2);
-
 
         return true;
     }
     return false;
 }
-

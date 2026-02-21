@@ -32,9 +32,9 @@ class BugDrawNodeLayer : public BugsTestBase
 public:
     CREATE_FUNC(BugDrawNodeLayer);
 
-    virtual std::string title() const override { return "BugDrawNode";}
+    virtual std::string title() const override { return "BugDrawNode"; }
+
     virtual bool init() override;
 };
 
 #endif
-

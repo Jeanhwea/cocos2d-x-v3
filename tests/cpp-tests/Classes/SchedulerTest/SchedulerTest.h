@@ -25,10 +25,9 @@
 #ifndef _SCHEDULER_TEST_H_
 #define _SCHEDULER_TEST_H_
 
+#include "../BaseTest.h"
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
-#include "../BaseTest.h"
-
 
 DEFINE_TEST_SUITE(SchedulerTests);
 
@@ -48,6 +47,7 @@ public:
 
     void autoremove(float dt);
     void tick(float dt);
+
 private:
     float accum;
 };
@@ -86,6 +86,7 @@ public:
     void pause(float dt);
     using SchedulerTestLayer::resume;
     void resume(float dt);
+
 private:
     std::set<void*> _pausedTargets;
 };
@@ -108,6 +109,7 @@ public:
     void pause(float dt);
     using SchedulerTestLayer::resume;
     void resume(float dt);
+
 private:
     std::set<void*> _pausedTargets;
 };
@@ -143,6 +145,7 @@ public:
     void tick3(float dt);
     void tick4(float dt);
     void unscheduleAll(float dt);
+
 private:
     bool _actionManagerActive;
 };
@@ -228,6 +231,7 @@ public:
 
     void initWithString(const std::string& str, int priority);
     virtual void update(float dt) override;
+
 private:
     std::string _string;
 };
@@ -242,9 +246,10 @@ public:
     virtual std::string subtitle() const override;
 
     void schedUpdate(float dt);
+
 private:
     float _interval;
-    int   _ticks;
+    int _ticks;
 };
 
 class SchedulerDelayAndRepeat : public SchedulerTestLayer
@@ -271,7 +276,6 @@ public:
     void sliderAction(cocos2d::Ref* sender, cocos2d::extension::Control::EventType controlEvent);
     cocos2d::extension::ControlSlider* _sliderCtl;
 };
-
 
 class TwoSchedulers : public SchedulerTestLayer
 {
@@ -372,10 +376,10 @@ public:
     void update(float dt) override;
 
 private:
-    cocos2d::Sprite *_sprite;
+    cocos2d::Sprite* _sprite;
 };
 
-class SchedulerIssue17149: public SchedulerTestLayer
+class SchedulerIssue17149 : public SchedulerTestLayer
 {
 public:
     CREATE_FUNC(SchedulerIssue17149);
@@ -411,10 +415,10 @@ private:
         int _member3;
     };
 
-    void *_memoryPool;
+    void* _memoryPool;
 };
 
-class SchedulerRemoveEntryWhileUpdate: public SchedulerTestLayer
+class SchedulerRemoveEntryWhileUpdate : public SchedulerTestLayer
 {
 public:
     CREATE_FUNC(SchedulerRemoveEntryWhileUpdate);
@@ -428,18 +432,20 @@ private:
     class TestClass
     {
     public:
-        TestClass(int index, TestClass *nextObj, cocos2d::Scheduler* scheduler);
+        TestClass(int index, TestClass* nextObj, cocos2d::Scheduler* scheduler);
         void update(float dt);
+
     private:
-        TestClass *_nextObj;
+        TestClass* _nextObj;
         int _index;
-        cocos2d::Scheduler *_scheduler;
+        cocos2d::Scheduler* _scheduler;
         bool _cleanedUp;
     };
-    std::vector<TestClass *> _testvector;
+
+    std::vector<TestClass*> _testvector;
 };
 
-class SchedulerRemoveSelectorDuringCall: public SchedulerTestLayer
+class SchedulerRemoveSelectorDuringCall : public SchedulerTestLayer
 {
 public:
     CREATE_FUNC(SchedulerRemoveSelectorDuringCall);
@@ -450,11 +456,10 @@ public:
     virtual void onExit() override;
 
 private:
-    void callback( float );
+    void callback(float);
 
 private:
     bool _scheduled;
 };
 
 #endif
-

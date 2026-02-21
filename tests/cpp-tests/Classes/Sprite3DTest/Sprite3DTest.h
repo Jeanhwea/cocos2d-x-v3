@@ -26,18 +26,20 @@
 #ifndef _SPRITE3D_TEST_H_
 #define _SPRITE3D_TEST_H_
 
-#include "BaseTest.h"
 #include <string>
 
-namespace cocos2d {
-    class Animate3D;
-    class Sprite3D;
-    class Delay;
-    class Ray;
-    class DrawNode3D;
-    class GLProgramState;
-    class MotionStreak3D;
-}
+#include "BaseTest.h"
+
+namespace cocos2d
+{
+class Animate3D;
+class Sprite3D;
+class Delay;
+class Ray;
+class DrawNode3D;
+class GLProgramState;
+class MotionStreak3D;
+}  // namespace cocos2d
 
 DEFINE_TEST_SUITE(Sprite3DTests);
 
@@ -94,7 +96,7 @@ protected:
 
     float _cylinder_texture_offset;
     float _shining_duration;
-    cocos2d::GLProgramState * _state;
+    cocos2d::GLProgramState* _state;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     cocos2d::EventListenerCustom* _backToForegroundListener;
@@ -104,33 +106,29 @@ protected:
 class Sprite3DFakeShadowTest : public Sprite3DTestDemo
 {
 public:
-    enum State
-    {
-        State_None = 0,
-        State_Idle = 0x01,
-        State_Move = 0x02,
-        State_Rotate = 0x04
-    };
+    enum State { State_None = 0, State_Idle = 0x01, State_Move = 0x02, State_Rotate = 0x04 };
+
     CREATE_FUNC(Sprite3DFakeShadowTest);
     Sprite3DFakeShadowTest();
     virtual ~Sprite3DFakeShadowTest();
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    void Move(cocos2d::Ref* sender,int value);
+    void Move(cocos2d::Ref* sender, int value);
     void updateCamera(float fDelta);
     void move3D(float elapsedTime);
     void updateState(float elapsedTime);
-    bool isState(unsigned int state,unsigned int bit) const;
-    void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
-    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
-    void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
+    bool isState(unsigned int state, unsigned int bit) const;
+    void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+    void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+
 private:
-    cocos2d::Camera * _camera;
+    cocos2d::Camera* _camera;
     cocos2d::Vec3 _targetPos;
-    unsigned int   _curState;
-    cocos2d::Sprite3D * _plane;
-    cocos2d::Sprite3D * _orc;
-    cocos2d::GLProgramState * _state;
+    unsigned int _curState;
+    cocos2d::Sprite3D* _plane;
+    cocos2d::Sprite3D* _orc;
+    cocos2d::GLProgramState* _state;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     cocos2d::EventListenerCustom* _backToForegroundListener;
@@ -146,8 +144,9 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+
 private:
-    cocos2d::Camera * _camera;
+    cocos2d::Camera* _camera;
 };
 
 class Sprite3DBasicToonShaderTest : public Sprite3DTestDemo
@@ -160,12 +159,11 @@ public:
     virtual std::string subtitle() const override;
 
 protected:
-    cocos2d::GLProgramState * _state;
+    cocos2d::GLProgramState* _state;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     cocos2d::EventListenerCustom* _backToForegroundListener;
 #endif
-
 };
 
 class Sprite3DHitTest : public Sprite3DTestDemo
@@ -212,7 +210,7 @@ public:
     void asyncLoad_Callback(cocos2d::Sprite3D* sprite, void* param);
 
 protected:
-    std::vector<std::string> _paths; //model paths to be loaded
+    std::vector<std::string> _paths;  // model paths to be loaded
 };
 
 class Sprite3DWithSkinTest : public Sprite3DTestDemo
@@ -229,6 +227,7 @@ public:
     void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
 
     std::string getAnimationQualityMessage() const;
+
 private:
     std::vector<cocos2d::Sprite3D*> _sprits;
     int _animateQuality;
@@ -272,8 +271,7 @@ public:
 protected:
     void addSprite3D();
 
-    enum class State
-    {
+    enum class State {
         SWIMMING,
         SWIMMING_TO_HURT,
         HURT,
@@ -291,7 +289,7 @@ protected:
 
     float _elapseTransTime;
 
-    State   _state;
+    State _state;
 
     cocos2d::MoveTo* _moveAction;
 };
@@ -324,11 +322,11 @@ public:
     void addNewSpriteWithCoords(cocos2d::Vec2 p);
 
     void menuCallback_reSkin(cocos2d::Ref* sender);
+
 protected:
     void applyCurSkin();
 
-    enum class SkinType
-    {
+    enum class SkinType {
         UPPER_BODY = 0,
         PANTS,
         SHOES,
@@ -339,10 +337,11 @@ protected:
         MAX_TYPE,
     };
 
-    std::vector<std::string> _skins[(int)SkinType::MAX_TYPE]; //all skins
-    int                      _curSkin[(int)SkinType::MAX_TYPE]; //current skin index
+    std::vector<std::string> _skins[(int)SkinType::MAX_TYPE];  // all skins
+    int _curSkin[(int)SkinType::MAX_TYPE];                     // current skin index
     cocos2d::Sprite3D* _sprite;
 };
+
 class Sprite3DWithOBBPerformanceTest : public Sprite3DTestDemo
 {
 public:
@@ -360,21 +359,23 @@ public:
     void delOBBCallback(cocos2d::Ref* sender);
     void addOBBWithCount(float value);
     void delOBBWithCount(float value);
+
 protected:
-    cocos2d::Sprite3D*        _sprite;
-    std::vector<cocos2d::OBB>          _obb;
-    cocos2d::DrawNode3D*               _drawOBB;
-    cocos2d::Label*                    _labelCubeCount;
-    cocos2d::MoveTo*                   _moveAction;
-    cocos2d::OBB                       _obbt;
-    cocos2d::OBB                       _obbtOri; //tortoise origin obb
-    cocos2d::DrawNode3D*               _drawDebug;
-    bool                      _hasCollider;
-    std::set<int>             _intersetList;
+    cocos2d::Sprite3D* _sprite;
+    std::vector<cocos2d::OBB> _obb;
+    cocos2d::DrawNode3D* _drawOBB;
+    cocos2d::Label* _labelCubeCount;
+    cocos2d::MoveTo* _moveAction;
+    cocos2d::OBB _obbt;
+    cocos2d::OBB _obbtOri;  // tortoise origin obb
+    cocos2d::DrawNode3D* _drawDebug;
+    bool _hasCollider;
+    std::set<int> _intersetList;
     void initDrawBox();
     void reachEndCallBack();
 
-    void unproject(const cocos2d::Mat4& viewProjection, const cocos2d::Size* viewport, cocos2d::Vec3* src, cocos2d::Vec3* dst);
+    void unproject(const cocos2d::Mat4& viewProjection, const cocos2d::Size* viewport, cocos2d::Vec3* src,
+                   cocos2d::Vec3* dst);
     void calculateRayByLocationInView(cocos2d::Ray* ray, const cocos2d::Vec2& location);
 };
 
@@ -407,9 +408,9 @@ public:
 
 protected:
     cocos2d::Sprite3D* _sprite;
-    float              _arcSpeed;
-    float              _radius;
-    float              _accAngle;
+    float _arcSpeed;
+    float _radius;
+    float _accAngle;
 };
 
 // 3d + 2d use case
@@ -426,17 +427,16 @@ public:
     void menuCallback_Message(cocos2d::Ref* sender);
 
 protected:
-
     void switchCase();
 
-    enum class USECASE{
+    enum class USECASE {
         _3D_WITH_2D,
         _UI_3D_UI,
         MAX_CASE_NUM,
     };
-    cocos2d::Label*      _label;
-    int                  _caseIdx; // use case index
-    std::string          _useCaseTitles[(int)USECASE::MAX_CASE_NUM];
+    cocos2d::Label* _label;
+    int _caseIdx;  // use case index
+    std::string _useCaseTitles[(int)USECASE::MAX_CASE_NUM];
 };
 
 // node animation test, cocos2d-x supports both skeletal animation and node animation
@@ -449,6 +449,7 @@ public:
     virtual std::string subtitle() const override;
 
     void addNewSpriteWithCoords(cocos2d::Vec2 p);
+
 protected:
     std::vector<cocos2d::Sprite3D*> _sprites;
     int _vectorIndex;
@@ -458,7 +459,8 @@ namespace cocos2d
 {
 class TextureCube;
 class Skybox;
-}
+}  // namespace cocos2d
+
 class Sprite3DCubeMapTest : public Sprite3DTestDemo
 {
 public:
@@ -470,13 +472,13 @@ public:
 
     void addNewSpriteWithCoords(cocos2d::Vec2);
 
-    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
+    void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
 
 protected:
     cocos2d::TextureCube* _textureCube;
     cocos2d::Skybox* _skyBox;
     cocos2d::Sprite3D* _teapot;
-    cocos2d::Camera *_camera;
+    cocos2d::Camera* _camera;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
     cocos2d::EventListenerCustom* _backToForegroundListener;
@@ -486,11 +488,11 @@ protected:
 /// issue 9767 setGLProgram
 class Issue9767 : public Sprite3DTestDemo
 {
-    enum class ShaderType
-    {
+    enum class ShaderType {
         SHADER_TEX,
         SHADER_COLOR,
     };
+
 public:
     CREATE_FUNC(Issue9767);
     Issue9767();
@@ -501,8 +503,8 @@ public:
     void menuCallback_SwitchShader(cocos2d::Ref* sender);
 
 protected:
-    ShaderType          _shaderType;
-    cocos2d::Sprite3D*  _sprite;
+    ShaderType _shaderType;
+    cocos2d::Sprite3D* _sprite;
 };
 
 /// Clipping Sprite3D
@@ -527,7 +529,7 @@ public:
 
 protected:
     cocos2d::Sprite3D* _sprite3d;
-    cocos2d::EventListenerCustom *_customEventListener = nullptr;
+    cocos2d::EventListenerCustom* _customEventListener = nullptr;
 };
 
 class Sprite3DTestMeshLight : public Sprite3DTestDemo
@@ -551,6 +553,7 @@ public:
     virtual std::string subtitle() const override;
 
     void switch_CameraClearMode(cocos2d::Ref* sender);
+
 protected:
     cocos2d::Camera* _camera;
     cocos2d::Label* _label;
@@ -565,6 +568,7 @@ public:
     virtual std::string subtitle() const override;
 
     virtual ~Sprite3DVertexColorTest();
+
 protected:
     cocos2d::Sprite3D* _sprite;
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID || CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
@@ -612,6 +616,7 @@ public:
     void resetTexture(cocos2d::Ref* sender);
 
     void refreshSpriteRender();
+
 protected:
     cocos2d::Sprite3D* _sprite;
     cocos2d::Texture2D* _meshTex;
@@ -628,4 +633,3 @@ public:
 };
 
 #endif
-

@@ -28,8 +28,7 @@ USING_NS_CC;
 
 bool Bug1159Layer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto s = Director::getInstance()->getWinSize();
 
         auto background = LayerColor::create(Color4B(255, 0, 255, 255));
@@ -38,21 +37,21 @@ bool Bug1159Layer::init()
         auto sprite_a = LayerColor::create(Color4B(255, 0, 0, 255), 700, 700);
         sprite_a->setAnchorPoint(Vec2(0.5f, 0.5f));
         sprite_a->setIgnoreAnchorPointForPosition(false);
-        sprite_a->setPosition(0.0f, s.height/2);
+        sprite_a->setPosition(0.0f, s.height / 2);
         addChild(sprite_a);
 
-        sprite_a->runAction(RepeatForever::create(Sequence::create(
-                                                        MoveTo::create(1.0f, Vec2(1024.0f, 384.0f)),
-                                                        MoveTo::create(1.0f, Vec2(0.0f, 384.0f)),
-                                                        nullptr)));
+        sprite_a->runAction(
+            RepeatForever::create(Sequence::create(MoveTo::create(1.0f, Vec2(1024.0f, 384.0f)),
+                                                   MoveTo::create(1.0f, Vec2(0.0f, 384.0f)), nullptr)));
 
         auto sprite_b = LayerColor::create(Color4B(0, 0, 255, 255), 400, 400);
         sprite_b->setAnchorPoint(Vec2(0.5f, 0.5f));
         sprite_b->setIgnoreAnchorPointForPosition(false);
-        sprite_b->setPosition(s.width/2, s.height/2);
+        sprite_b->setPosition(s.width / 2, s.height / 2);
         addChild(sprite_b);
 
-        auto label = MenuItemLabel::create(Label::createWithSystemFont("Flip Me", "Helvetica", 24), CC_CALLBACK_1(Bug1159Layer::callBack, this) );
+        auto label = MenuItemLabel::create(Label::createWithSystemFont("Flip Me", "Helvetica", 24),
+                                           CC_CALLBACK_1(Bug1159Layer::callBack, this));
         auto menu = Menu::create(label, nullptr);
         menu->setPosition(s.width - 200.0f, 50.0f);
         addChild(menu);
@@ -72,4 +71,3 @@ void Bug1159Layer::onExit()
 {
     BugsTestBase::onExit();
 }
-

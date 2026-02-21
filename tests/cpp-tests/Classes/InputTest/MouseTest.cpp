@@ -26,7 +26,13 @@
 
 USING_NS_CC;
 
-template <typename T> std::string tostr(const T& t) { std::ostringstream os; os<<t; return os.str(); }
+template <typename T>
+std::string tostr(const T& t)
+{
+    std::ostringstream os;
+    os << t;
+    return os.str();
+}
 
 MouseTests::MouseTests()
 {
@@ -44,16 +50,15 @@ MouseEventTest::MouseEventTest()
 {
     auto s = Director::getInstance()->getWinSize();
 
-    //Create a label to display the mouse action
+    // Create a label to display the mouse action
     _labelAction = Label::createWithTTF("Click mouse button and see this change", "fonts/arial.ttf", 22);
-    _labelAction->setPosition(Vec2(s.width/2, s.height*2/3));
+    _labelAction->setPosition(Vec2(s.width / 2, s.height * 2 / 3));
     addChild(_labelAction, 0);
 
-    //Create a label to display the mouse position
+    // Create a label to display the mouse position
     _labelPosition = Label::createWithTTF("Mouse not supported on this device", "fonts/arial.ttf", 22);
-    _labelPosition->setPosition(Vec2(s.width/2, s.height/3));
+    _labelPosition->setPosition(Vec2(s.width / 2, s.height / 3));
     addChild(_labelPosition);
-
 
     _mouseListener = EventListenerMouse::create();
     _mouseListener->onMouseMove = CC_CALLBACK_1(MouseEventTest::onMouseMove, this);
@@ -69,7 +74,7 @@ MouseEventTest::~MouseEventTest()
     _eventDispatcher->removeEventListener(_mouseListener);
 }
 
-void MouseEventTest::onMouseDown(Event *event)
+void MouseEventTest::onMouseDown(Event* event)
 {
     EventMouse* e = (EventMouse*)event;
     std::string str = "Mouse Down detected, Key: ";
@@ -77,7 +82,7 @@ void MouseEventTest::onMouseDown(Event *event)
     _labelAction->setString(str);
 }
 
-void MouseEventTest::onMouseUp(Event *event)
+void MouseEventTest::onMouseUp(Event* event)
 {
     EventMouse* e = (EventMouse*)event;
     std::string str = "Mouse Up detected, Key: ";
@@ -85,7 +90,7 @@ void MouseEventTest::onMouseUp(Event *event)
     _labelAction->setString(str);
 }
 
-void MouseEventTest::onMouseMove(Event *event)
+void MouseEventTest::onMouseMove(Event* event)
 {
     EventMouse* e = (EventMouse*)event;
     std::string str = "MousePosition X:";
@@ -93,7 +98,7 @@ void MouseEventTest::onMouseMove(Event *event)
     _labelPosition->setString(str);
 }
 
-void MouseEventTest::onMouseScroll(Event *event)
+void MouseEventTest::onMouseScroll(Event* event)
 {
     EventMouse* e = (EventMouse*)event;
     std::string str = "Mouse Scroll detected, X: ";
@@ -119,15 +124,10 @@ std::string MouseEventTest::subtitle() const
 
 HideMouseTest::HideMouseTest()
 {
-
     _lis = EventListenerMouse::create();
-    _lis->onMouseDown = [](Event* e){
-        Director::getInstance()->getOpenGLView()->setCursorVisible(false);
-    };
+    _lis->onMouseDown = [](Event* e) { Director::getInstance()->getOpenGLView()->setCursorVisible(false); };
 
-    _lis->onMouseUp = [](Event* e){
-        Director::getInstance()->getOpenGLView()->setCursorVisible(true);
-    };
+    _lis->onMouseUp = [](Event* e) { Director::getInstance()->getOpenGLView()->setCursorVisible(true); };
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(_lis, this);
 }
@@ -157,14 +157,15 @@ CursorTest::CursorTest()
 {
     _cursor = 0;
     _lis = EventListenerMouse::create();
-    _lis->onMouseDown = [this](Event* e){
+    _lis->onMouseDown = [this](Event* e) {
         _cursor = (_cursor + 1) % 3;
         switch (_cursor) {
             case 1:
                 Director::getInstance()->getOpenGLView()->setCursor("InputTest/cursor1.png");
                 break;
             case 2:
-                Director::getInstance()->getOpenGLView()->setCursor("InputTest/cursor2.png", Point::ANCHOR_MIDDLE);
+                Director::getInstance()->getOpenGLView()->setCursor("InputTest/cursor2.png",
+                                                                    Point::ANCHOR_MIDDLE);
                 break;
             default:
                 Director::getInstance()->getOpenGLView()->setDefaultCursor();
@@ -189,4 +190,3 @@ std::string CursorTest::subtitle() const
 {
     return "Click to change cursor";
 }
-

@@ -49,10 +49,9 @@ public:
     virtual std::string subtitle() const override;
 
 protected:
-    cocos2d::Sprite*  sprite1;
-    cocos2d::Sprite*  sprite2;
+    cocos2d::Sprite* sprite1;
+    cocos2d::Sprite* sprite2;
     int counter;
 };
 
-#endif // __ZWOPTEX_TEST_H__
-
+#endif  // __ZWOPTEX_TEST_H__

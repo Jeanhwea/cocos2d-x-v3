@@ -26,10 +26,10 @@ THE SOFTWARE.
 #ifndef _CPPTESTS_CONTROLLER_H__
 #define _CPPTESTS_CONTROLLER_H__
 
+#include <atomic>
 #include <condition_variable>
 #include <string>
 #include <thread>
-#include <atomic>
 
 class TestList;
 class TestSuite;
@@ -37,11 +37,11 @@ class TestCase;
 
 namespace cocos2d
 {
-    class Director;
-    class Touch;
-    class Event;
-    class EventListenerTouchOneByOne;
-}
+class Director;
+class Touch;
+class Event;
+class EventListenerTouchOneByOne;
+}  // namespace cocos2d
 
 class TestController
 {
@@ -62,8 +62,11 @@ public:
     bool blockTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 
     void setCurrTestSuite(TestSuite* testSuite) { _testSuite = testSuite; }
+
     TestSuite* getCurrTestSuite() { return _testSuite; }
+
     bool isAutoTestRunning() const { return !_stopAutoTest; }
+
 private:
     TestController();
 
@@ -73,7 +76,7 @@ private:
     void traverseTestSuite(TestSuite* testSuite);
     bool checkTest(TestCase* testCase);
 
-    void logEx(const char * format, ...);
+    void logEx(const char* format, ...);
 
     std::atomic<bool> _stopAutoTest;
     bool _isRunInBackground;
@@ -93,4 +96,3 @@ private:
 };
 
 #endif
-

@@ -23,8 +23,9 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#include "ui/UITabControl.h"
 #include "UITabControlTest.h"
+
+#include "ui/UITabControl.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -34,21 +35,13 @@ UITabControlTests::UITabControlTests()
     ADD_TEST_CASE(UITabControlTest);
 }
 
+UITabControlTest::UITabControlTest() {}
 
-UITabControlTest::UITabControlTest()
-{
-}
-
-UITabControlTest::~UITabControlTest()
-{
-
-}
+UITabControlTest::~UITabControlTest() {}
 
 bool UITabControlTest::init()
 {
-
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         auto displayText = Text::create();
@@ -65,11 +58,11 @@ bool UITabControlTest::init()
         auto header1 = TabHeader::create();
         header1->setTitleText("background");
         header1->loadTextureBackGround("cocosui/check_box_normal_disable.png");
-        auto header2 = TabHeader::create("cross", "cocosui/check_box_normal_disable.png", "cocosui/check_box_active.png");
-        auto header3 = TabHeader::create("press&cross", "cocosui/check_box_normal.png",
-            "cocosui/check_box_normal_press.png",
-            "cocosui/check_box_active.png",
-            "cocosui/check_box_normal_disable.png",
+        auto header2 = TabHeader::create("cross", "cocosui/check_box_normal_disable.png",
+                                         "cocosui/check_box_active.png");
+        auto header3 = TabHeader::create(
+            "press&cross", "cocosui/check_box_normal.png", "cocosui/check_box_normal_press.png",
+            "cocosui/check_box_active.png", "cocosui/check_box_normal_disable.png",
             "cocosui/check_box_active_disable.png");
 
         auto container1 = Layout::create();
@@ -97,19 +90,15 @@ bool UITabControlTest::init()
         _uiLayer->addChild(tab);
         tab->setPosition(Vec2(widgetSize.width * .5f, widgetSize.height * .5f));
 
-        tab->setTabChangedEventListener(
-            [displayText](int index, TabControl::EventType evtType)
-        {
+        tab->setTabChangedEventListener([displayText](int index, TabControl::EventType evtType) {
             displayText->retain();
             char display[20];
             sprintf(display, "tab %d selected", index);
             displayText->setString(display);
             displayText->release();
-        }
-            );
+        });
 
         return true;
     }
     return false;
 }
-

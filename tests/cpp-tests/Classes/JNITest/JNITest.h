@@ -27,8 +27,8 @@
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(JNITests);
 
@@ -40,5 +40,4 @@ public:
     JNITest();
 };
 #endif
-#endif // _JNI_TEST_H_
-
+#endif  // _JNI_TEST_H_

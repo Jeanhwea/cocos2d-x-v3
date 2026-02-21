@@ -38,6 +38,7 @@ public:
     virtual bool init() override;
 
     void printWidgetResources(cocos2d::Ref* sender);
+
 protected:
     cocos2d::ui::ImageView* _image;
 };
@@ -83,4 +84,3 @@ public:
 };
 
 #endif /* defined(__TestCpp__UIImageViewTest__) */
-

@@ -30,4 +30,3 @@
 DEFINE_TEST_LIST(ExtensionsTests);
 
 #endif /* __EXTENSIONS_TEST_H__ */
-

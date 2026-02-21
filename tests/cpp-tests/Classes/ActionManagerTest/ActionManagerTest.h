@@ -34,7 +34,7 @@ class ActionManagerTest : public TestCase
 protected:
     cocos2d::TextureAtlas* _atlas;
 
-    std::string    _title;
+    std::string _title;
 
 public:
     ActionManagerTest();
@@ -112,11 +112,14 @@ public:
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
     void stopAction(float time);
+
 protected:
     const unsigned int kMoveFlag = 0x01;
     const unsigned int kScaleFlag = 0x02;
     const unsigned int kRotateFlag = 0x04;
-    const unsigned int kRepeatForeverFlag = 0x08; // You don't need this for the test, but it's for demonstration how to activate several flags on an action.
+    const unsigned int kRepeatForeverFlag =
+        0x08;  // You don't need this for the test, but it's for demonstration how to activate several flags
+               // on an action.
 };
 
 class Issue14050Test : public ActionManagerTest
@@ -126,8 +129,8 @@ public:
 
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
+
 protected:
 };
 
 #endif
-

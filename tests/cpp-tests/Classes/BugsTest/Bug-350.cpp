@@ -33,15 +33,13 @@ USING_NS_CC;
 
 bool Bug350Layer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto size = Director::getInstance()->getWinSize();
         auto background = Sprite::create("Hello.png");
-        background->setPosition(size.width/2, size.height/2);
+        background->setPosition(size.width / 2, size.height / 2);
         addChild(background);
         return true;
     }
 
     return false;
 }
-

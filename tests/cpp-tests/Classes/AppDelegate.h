@@ -24,18 +24,19 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-#ifndef  _APP_DELEGATE_H_
-#define  _APP_DELEGATE_H_
+#ifndef _APP_DELEGATE_H_
+#define _APP_DELEGATE_H_
 
 #include "cocos2d.h"
 
 class TestController;
+
 /**
 @brief    The cocos2d Application.
 
 Private inheritance here hides part of interface from Director.
 */
-class  AppDelegate : private cocos2d::Application
+class AppDelegate : private cocos2d::Application
 {
 public:
     AppDelegate();
@@ -66,5 +67,4 @@ private:
     TestController* _testController;
 };
 
-#endif // _APP_DELEGATE_H_
-
+#endif  // _APP_DELEGATE_H_

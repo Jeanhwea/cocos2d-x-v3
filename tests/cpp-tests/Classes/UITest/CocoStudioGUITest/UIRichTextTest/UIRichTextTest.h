@@ -22,8 +22,6 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-
-
 #ifndef __TestCpp__UIRichTextTest__
 #define __TestCpp__UIRichTextTest__
 
@@ -281,4 +279,3 @@ protected:
 };
 
 #endif /* defined(__TestCpp__UIRichTextTest__) */
-

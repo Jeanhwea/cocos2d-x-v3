@@ -47,7 +47,8 @@
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
 #include "JNITest/JNITest.h"
 #endif
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC || CC_TARGET_PLATFORM == CC_PLATFORM_WIN32 || \
+     CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
 #include "WindowTest/WindowTest.h"
 #endif
 
@@ -103,6 +104,7 @@
 #include "ShaderTest/ShaderTest2.h"
 #include "SpineTest/SpineTest.h"
 #include "Sprite3DTest/Sprite3DTest.h"
+#include "SpriteFrameCacheTest/SpriteFrameCacheTest.h"
 #include "SpritePolygonTest/SpritePolygonTest.h"
 #include "SpriteTest/SpriteTest.h"
 #include "TerrainTest/TerrainTest.h"
@@ -117,10 +119,8 @@
 #include "UITest/UITest.h"
 #include "UnitTest/UnitTest.h"
 #include "UserDefaultTest/UserDefaultTest.h"
-#include "VibrateTest/VibrateTest.h"
 #include "VRTest/VRTest.h"
+#include "VibrateTest/VibrateTest.h"
 #include "ZwoptexTest/ZwoptexTest.h"
-#include "SpriteFrameCacheTest/SpriteFrameCacheTest.h"
 
 #endif
-

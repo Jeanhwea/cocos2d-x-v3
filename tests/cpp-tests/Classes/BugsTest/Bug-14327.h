@@ -35,7 +35,8 @@ public:
     CREATE_FUNC(Bug14327Layer);
 
     virtual bool init() override;
-    virtual std::string title() const override { return "Bug14327";}
+
+    virtual std::string title() const override { return "Bug14327"; }
 
     virtual void editBoxEditingDidBegin(cocos2d::ui::EditBox* editBox) override;
     virtual void editBoxEditingDidEnd(cocos2d::ui::EditBox* editBox) override;
@@ -47,11 +48,10 @@ protected:
 
 private:
     time_t _removeTime;
-    cocos2d::Label *_TTFShowTime;
+    cocos2d::Label* _TTFShowTime;
     cocos2d::ui::EditBox* _edit;
 };
 
 #endif
 
 #endif /* defined(__cocos2d_tests__Bug_14327__) */
-

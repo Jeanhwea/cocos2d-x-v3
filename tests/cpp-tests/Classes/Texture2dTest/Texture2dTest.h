@@ -46,7 +46,6 @@ public:
     virtual void onEnter() override;
 };
 
-
 class TextureTGA : public TextureDemo
 {
 public:
@@ -416,11 +415,13 @@ public:
     virtual ~TextureAsync();
 
     virtual float getDuration() const override { return 5.0f; }
+
     void loadImages(float dt);
     void imageLoaded(cocos2d::Texture2D* texture);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
+
 private:
     int _imageOffset;
 };
@@ -472,11 +473,12 @@ public:
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
+
 protected:
     void onDraw(const cocos2d::Mat4& transform, uint32_t flags);
 
     cocos2d::CustomCommand _renderCmd;
-    cocos2d::Texture2D* _tex1, *_Tex2F;
+    cocos2d::Texture2D *_tex1, *_Tex2F;
 };
 
 class TextureDrawInRect : public TextureDemo
@@ -488,11 +490,12 @@ public:
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
+
 protected:
     void onDraw(const cocos2d::Mat4& transform, uint32_t flags);
 
     cocos2d::CustomCommand _renderCmd;
-    cocos2d::Texture2D* _tex1, *_Tex2F;
+    cocos2d::Texture2D *_tex1, *_Tex2F;
 };
 
 class TextureMemoryAlloc : public TextureDemo
@@ -504,6 +507,7 @@ public:
     virtual std::string subtitle() const override;
     void updateImage(cocos2d::Ref* sender);
     void changeBackgroundVisible(cocos2d::Ref* sender);
+
 private:
     cocos2d::Sprite* _background;
 };
@@ -517,7 +521,7 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 
-    void transformSprite(cocos2d::Sprite *sprite);
+    void transformSprite(cocos2d::Sprite* sprite);
 };
 
 // ETC1 texture format test
@@ -564,7 +568,6 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 // S3TC texture with no mipmaps test
 class TextureS3TCWithNoMipmaps : public TextureDemo
 {
@@ -586,7 +589,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-//ATITC RGBA Explicit texture format test
+// ATITC RGBA Explicit texture format test
 class TextureATITCExplicit : public TextureDemo
 {
 public:
@@ -597,7 +600,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-//ATITC RGBA Interpolated texture format test
+// ATITC RGBA Interpolated texture format test
 class TextureATITCInterpolated : public TextureDemo
 {
 public:
@@ -607,7 +610,6 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
-
 
 // RGB888 texture convert test
 class TextureConvertRGB888 : public TextureDemo
@@ -649,5 +651,4 @@ public:
     virtual std::string subtitle() const override;
 };
 
-#endif // __TEXTURE2D_TEST_H__
-
+#endif  // __TEXTURE2D_TEST_H__

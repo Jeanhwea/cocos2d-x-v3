@@ -35,9 +35,8 @@ USING_NS_CC;
 
 bool Bug899Layer::init()
 {
-//    Director::getInstance()->enableRetinaDisplay(true);
-    if (BugsTestBase::init())
-    {
+    //    Director::getInstance()->enableRetinaDisplay(true);
+    if (BugsTestBase::init()) {
         auto bg = Sprite::create("Images/bugs/RetinaDisplay.jpg");
         addChild(bg, 0);
         bg->setAnchorPoint(Vec2::ZERO);
@@ -46,4 +45,3 @@ bool Bug899Layer::init()
     }
     return false;
 }
-

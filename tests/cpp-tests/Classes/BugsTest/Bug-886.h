@@ -32,9 +32,9 @@ class Bug886Layer : public BugsTestBase
 public:
     CREATE_FUNC(Bug886Layer);
 
-    virtual std::string title() const override { return "Bug886";}
+    virtual std::string title() const override { return "Bug886"; }
+
     virtual bool init() override;
 };
 
-#endif // __BUG_886_H__
-
+#endif  // __BUG_886_H__

@@ -27,38 +27,35 @@
 
 USING_NS_CC;
 
-
-class DurationRecorder {
+class DurationRecorder
+{
 public:
-    void startTick(const std::string &key) {
-        _durations[key] = - now();
-    }
+    void startTick(const std::string& key) { _durations[key] = -now(); }
 
-    int endTick(const std::string &key) {
+    int endTick(const std::string& key)
+    {
         auto n = now();
         auto itr = _durations.find(key);
-        if(_durations.find(key) == _durations.end())
-        {
+        if (_durations.find(key) == _durations.end()) {
             return -1;
-        }
-        else if(itr->second < 0) {
+        } else if (itr->second < 0) {
             itr->second = n + itr->second;
         }
         return itr->second;
     }
 
-    inline int64_t now() const{
-        return std::chrono::duration_cast<std::chrono::nanoseconds>(std::chrono::steady_clock::now().time_since_epoch()).count();
+    inline int64_t now() const
+    {
+        return std::chrono::duration_cast<std::chrono::nanoseconds>(
+                   std::chrono::steady_clock::now().time_since_epoch())
+            .count();
     }
 
-    void reset() {
-        _durations.clear();
-    }
+    void reset() { _durations.clear(); }
 
 private:
-    std::map<std::string, int64_t > _durations;
+    std::map<std::string, int64_t> _durations;
 };
-
 
 NewRendererTests::NewRendererTests()
 {
@@ -97,17 +94,14 @@ NewSpriteTest::NewSpriteTest()
     createNewSpriteTest();
 }
 
-NewSpriteTest::~NewSpriteTest()
-{
-
-}
+NewSpriteTest::~NewSpriteTest() {}
 
 void NewSpriteTest::createSpriteTest()
 {
     Size winSize = Director::getInstance()->getWinSize();
 
     Sprite* parent = Sprite::create("Images/grossini.png");
-    parent->setPosition(winSize.width/4, winSize.height/2);
+    parent->setPosition(winSize.width / 4, winSize.height / 2);
     Sprite* child1 = Sprite::create("Images/grossinis_sister1.png");
     child1->setPosition(0.0f, -20.0f);
     Sprite* child2 = Sprite::create("Images/grossinis_sister2.png");
@@ -138,7 +132,7 @@ void NewSpriteTest::createNewSpriteTest()
     Size winSize = Director::getInstance()->getWinSize();
 
     Sprite* parent = Sprite::create("Images/grossini.png");
-    parent->setPosition(winSize.width*2/3, winSize.height/2);
+    parent->setPosition(winSize.width * 2 / 3, winSize.height / 2);
     Sprite* child1 = Sprite::create("Images/grossinis_sister1.png");
     child1->setPosition(0.0f, -20.0f);
     Sprite* child2 = Sprite::create("Images/grossinis_sister2.png");
@@ -164,10 +158,7 @@ void NewSpriteTest::createNewSpriteTest()
     addChild(parent);
 }
 
-void NewSpriteTest::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
-{
-
-}
+void NewSpriteTest::onTouchesEnded(const std::vector<Touch*>& touches, Event* event) {}
 
 std::string NewSpriteTest::title() const
 {
@@ -183,13 +174,14 @@ class SpriteInGroupCommand : public Sprite
 {
 protected:
     GroupCommand _spriteWrapperCommand;
+
 public:
     static SpriteInGroupCommand* create(const std::string& filename);
 
-    virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
+    virtual void draw(Renderer* renderer, const Mat4& transform, uint32_t flags) override;
 };
 
-SpriteInGroupCommand* SpriteInGroupCommand::create(const std::string &filename)
+SpriteInGroupCommand* SpriteInGroupCommand::create(const std::string& filename)
 {
     SpriteInGroupCommand* sprite = new (std::nothrow) SpriteInGroupCommand();
     sprite->initWithFile(filename);
@@ -197,7 +189,7 @@ SpriteInGroupCommand* SpriteInGroupCommand::create(const std::string &filename)
     return sprite;
 }
 
-void SpriteInGroupCommand::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
+void SpriteInGroupCommand::draw(Renderer* renderer, const Mat4& transform, uint32_t flags)
 {
     CCASSERT(renderer, "Render is null");
     _spriteWrapperCommand.init(_globalZOrder);
@@ -211,13 +203,11 @@ GroupCommandTest::GroupCommandTest()
 {
     auto sprite = SpriteInGroupCommand::create("Images/grossini.png");
     Size winSize = Director::getInstance()->getWinSize();
-    sprite->setPosition(winSize.width/2,winSize.height/2);
+    sprite->setPosition(winSize.width / 2, winSize.height / 2);
     addChild(sprite);
 }
 
-GroupCommandTest::~GroupCommandTest()
-{
-}
+GroupCommandTest::~GroupCommandTest() {}
 
 std::string GroupCommandTest::title() const
 {
@@ -234,36 +224,36 @@ NewClippingNodeTest::NewClippingNodeTest()
     auto s = Director::getInstance()->getWinSize();
 
     auto clipper = ClippingNode::create();
-    clipper->setTag( kTagClipperNode );
-    clipper->setContentSize(  Size(200, 200) );
-    clipper->setAnchorPoint(  Vec2(0.5, 0.5) );
-    clipper->setPosition( Vec2(s.width / 2, s.height / 2) );
+    clipper->setTag(kTagClipperNode);
+    clipper->setContentSize(Size(200, 200));
+    clipper->setAnchorPoint(Vec2(0.5, 0.5));
+    clipper->setPosition(Vec2(s.width / 2, s.height / 2));
 
     clipper->runAction(RepeatForever::create(RotateBy::create(1, 45)));
     this->addChild(clipper);
 
     // TODO: Fix draw node as clip node
-//    auto stencil = NewDrawNode::create();
-//    Vec2 rectangle[4];
-//    rectangle[0] = Vec2(0, 0);
-//    rectangle[1] = Vec2(clipper->getContentSize().width, 0);
-//    rectangle[2] = Vec2(clipper->getContentSize().width, clipper->getContentSize().height);
-//    rectangle[3] = Vec2(0, clipper->getContentSize().height);
-//
-//    Color4F white(1, 1, 1, 1);
-//    stencil->drawPolygon(rectangle, 4, white, 1, white);
-//    clipper->setStencil(stencil);
+    //    auto stencil = NewDrawNode::create();
+    //    Vec2 rectangle[4];
+    //    rectangle[0] = Vec2(0, 0);
+    //    rectangle[1] = Vec2(clipper->getContentSize().width, 0);
+    //    rectangle[2] = Vec2(clipper->getContentSize().width, clipper->getContentSize().height);
+    //    rectangle[3] = Vec2(0, clipper->getContentSize().height);
+    //
+    //    Color4F white(1, 1, 1, 1);
+    //    stencil->drawPolygon(rectangle, 4, white, 1, white);
+    //    clipper->setStencil(stencil);
 
-    //Test with alpha Test
+    // Test with alpha Test
     clipper->setAlphaThreshold(0.05f);
     auto stencil = Sprite::create("Images/grossini.png");
-    stencil->setPosition(s.width/2, s.height/2);
+    stencil->setPosition(s.width / 2, s.height / 2);
     clipper->setStencil(stencil);
 
     auto content = Sprite::create("Images/background2.png");
-    content->setTag( kTagContentNode );
-    content->setAnchorPoint(  Vec2(0.5, 0.5) );
-    content->setPosition( Vec2(clipper->getContentSize().width / 2, clipper->getContentSize().height / 2) );
+    content->setTag(kTagContentNode);
+    content->setAnchorPoint(Vec2(0.5, 0.5));
+    content->setPosition(Vec2(clipper->getContentSize().width / 2, clipper->getContentSize().height / 2));
     clipper->addChild(content);
 
     _scrolling = false;
@@ -275,10 +265,7 @@ NewClippingNodeTest::NewClippingNodeTest()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 }
 
-NewClippingNodeTest::~NewClippingNodeTest()
-{
-
-}
+NewClippingNodeTest::~NewClippingNodeTest() {}
 
 std::string NewClippingNodeTest::title() const
 {
@@ -290,43 +277,45 @@ std::string NewClippingNodeTest::subtitle() const
     return "ClipNode";
 }
 
-void NewClippingNodeTest::onTouchesBegan(const std::vector<Touch *> &touches, Event *event)
+void NewClippingNodeTest::onTouchesBegan(const std::vector<Touch*>& touches, Event* event)
 {
-    Touch *touch = touches[0];
+    Touch* touch = touches[0];
     auto clipper = this->getChildByTag(kTagClipperNode);
-    Vec2 point = clipper->convertToNodeSpace(Director::getInstance()->convertToGL(touch->getLocationInView()));
+    Vec2 point =
+        clipper->convertToNodeSpace(Director::getInstance()->convertToGL(touch->getLocationInView()));
     auto rect = Rect(0, 0, clipper->getContentSize().width, clipper->getContentSize().height);
     _scrolling = rect.containsPoint(point);
     _lastPoint = point;
 }
 
-void NewClippingNodeTest::onTouchesMoved(const std::vector<Touch *> &touches, Event *event)
+void NewClippingNodeTest::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     if (!_scrolling) return;
-    Touch *touch = touches[0];
+    Touch* touch = touches[0];
     auto clipper = this->getChildByTag(kTagClipperNode);
-    auto point = clipper->convertToNodeSpace(Director::getInstance()->convertToGL(touch->getLocationInView()));
+    auto point =
+        clipper->convertToNodeSpace(Director::getInstance()->convertToGL(touch->getLocationInView()));
     Vec2 diff = point - _lastPoint;
     auto content = clipper->getChildByTag(kTagContentNode);
     content->setPosition(content->getPosition() + diff);
     _lastPoint = point;
 }
 
-void NewClippingNodeTest::onTouchesEnded(const std::vector<Touch *> &touches, Event *event)
+void NewClippingNodeTest::onTouchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     if (!_scrolling) return;
     _scrolling = false;
 }
 
 /**
-* NewDrawNode
-*/
+ * NewDrawNode
+ */
 NewDrawNodeTest::NewDrawNodeTest()
 {
     auto s = Director::getInstance()->getWinSize();
 
     auto parent = Node::create();
-    parent->setPosition(s.width/2, s.height/2);
+    parent->setPosition(s.width / 2, s.height / 2);
     addChild(parent);
 
     auto rectNode = DrawNode::create();
@@ -341,10 +330,7 @@ NewDrawNodeTest::NewDrawNodeTest()
     parent->addChild(rectNode);
 }
 
-NewDrawNodeTest::~NewDrawNodeTest()
-{
-
-}
+NewDrawNodeTest::~NewDrawNodeTest() {}
 
 std::string NewDrawNodeTest::title() const
 {
@@ -361,13 +347,13 @@ NewCullingTest::NewCullingTest()
     Size size = Director::getInstance()->getWinSize();
     auto sprite = Sprite::create("Images/btn-about-normal-vertical.png");
     sprite->setRotation(5);
-    sprite->setPosition(Vec2(size.width/2,size.height/3));
+    sprite->setPosition(Vec2(size.width / 2, size.height / 3));
     sprite->setScale(2);
     addChild(sprite);
 
     auto sprite2 = Sprite::create("Images/btn-about-normal-vertical.png");
     sprite2->setRotation(-85);
-    sprite2->setPosition(Vec2(size.width/2,size.height * 2/3));
+    sprite2->setPosition(Vec2(size.width / 2, size.height * 2 / 3));
     sprite2->setScale(2);
     addChild(sprite2);
 
@@ -378,17 +364,16 @@ NewCullingTest::NewCullingTest()
     listener->onTouchMoved = CC_CALLBACK_2(NewCullingTest::onTouchMoved, this);
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
 }
 
-bool NewCullingTest::onTouchBegan(Touch* touch, Event  *event)
+bool NewCullingTest::onTouchBegan(Touch* touch, Event* event)
 {
     auto pos = touch->getLocation();
     _lastPos = pos;
     return true;
 }
 
-void NewCullingTest::onTouchMoved(Touch* touch, Event  *event)
+void NewCullingTest::onTouchMoved(Touch* touch, Event* event)
 {
     auto pos = touch->getLocation();
 
@@ -401,10 +386,7 @@ void NewCullingTest::onTouchMoved(Touch* touch, Event  *event)
     _lastPos = pos;
 }
 
-NewCullingTest::~NewCullingTest()
-{
-
-}
+NewCullingTest::~NewCullingTest() {}
 
 std::string NewCullingTest::title() const
 {
@@ -420,24 +402,20 @@ VBOFullTest::VBOFullTest()
 {
     Size s = Director::getInstance()->getWinSize();
     Node* parent = Node::create();
-    parent->setPosition(0,0);
+    parent->setPosition(0, 0);
     addChild(parent);
 
-    for (int i=0; i< Renderer::VBO_SIZE / 3.9; ++i)
-    {
+    for (int i = 0; i < Renderer::VBO_SIZE / 3.9; ++i) {
         Sprite* sprite = Sprite::create("Images/grossini_dance_01.png");
         sprite->setScale(0.1f, 0.1f);
-        float x = ((float)std::rand()) /RAND_MAX;
-        float y = ((float)std::rand()) /RAND_MAX;
+        float x = ((float)std::rand()) / RAND_MAX;
+        float y = ((float)std::rand()) / RAND_MAX;
         sprite->setPosition(Vec2(x * s.width, y * s.height));
         parent->addChild(sprite);
     }
 }
 
-VBOFullTest::~VBOFullTest()
-{
-
-}
+VBOFullTest::~VBOFullTest() {}
 
 std::string VBOFullTest::title() const
 {
@@ -457,13 +435,13 @@ CaptureScreenTest::CaptureScreenTest()
 
     auto sp1 = Sprite::create("Images/grossini.png");
     sp1->setPosition(left);
-    auto move1 = MoveBy::create(1, Vec2(s.width/2, 0));
+    auto move1 = MoveBy::create(1, Vec2(s.width / 2, 0));
     auto seq1 = RepeatForever::create(Sequence::create(move1, move1->reverse(), nullptr));
     addChild(sp1);
     sp1->runAction(seq1);
     auto sp2 = Sprite::create("Images/grossinis_sister1.png");
     sp2->setPosition(right);
-    auto move2 = MoveBy::create(1, Vec2(-s.width/2, 0));
+    auto move2 = MoveBy::create(1, Vec2(-s.width / 2, 0));
     auto seq2 = RepeatForever::create(Sequence::create(move2, move2->reverse(), nullptr));
     addChild(sp2);
     sp2->runAction(seq2);
@@ -504,17 +482,14 @@ void CaptureScreenTest::onCaptured(Ref*)
 
 void CaptureScreenTest::afterCaptured(bool succeed, const std::string& outputFile)
 {
-    if (succeed)
-    {
+    if (succeed) {
         auto sp = Sprite::create(outputFile);
         addChild(sp, 0, childTag);
         Size s = Director::getInstance()->getWinSize();
         sp->setPosition(s.width / 2, s.height / 2);
         sp->setScale(0.25);
         _filename = outputFile;
-    }
-    else
-    {
+    } else {
         log("Capture screen failed.");
     }
 
@@ -576,7 +551,8 @@ void CaptureNodeTest::onCaptured(Ref*)
     auto image = utils::captureNode(this, 0.5);
 
     // create a sprite with the captured image directly
-    auto sp = Sprite::createWithTexture(Director::getInstance()->getTextureCache()->addImage(image, _filename));
+    auto sp =
+        Sprite::createWithTexture(Director::getInstance()->getTextureCache()->addImage(image, _filename));
     addChild(sp, 0, childTag);
     Size s = Director::getInstance()->getWinSize();
     sp->setPosition(s.width / 2, s.height / 2);
@@ -595,17 +571,19 @@ BugAutoCulling::BugAutoCulling()
     this->addChild(fastmap);
     for (int i = 0; i < 30; i++) {
         auto sprite = Sprite::create("Images/grossini.png");
-        sprite->setPosition(s.width/2 + s.width/10 * i, s.height/2);
+        sprite->setPosition(s.width / 2 + s.width / 10 * i, s.height / 2);
         this->addChild(sprite);
         auto label = Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "Label");
-        label->setPosition(s.width/2 + s.width/10 * i, s.height/2);
+        label->setPosition(s.width / 2 + s.width / 10 * i, s.height / 2);
         this->addChild(label);
     }
-    this->scheduleOnce([=](float){
-        auto camera = Director::getInstance()->getRunningScene()->getCameras().front();
-        auto move  = MoveBy::create(2.0, Vec2(2 * s.width, 0));
-        camera->runAction(Sequence::create(move, move->reverse(),nullptr));
-    }, 1.0f, "lambda-autoculling-bug");
+    this->scheduleOnce(
+        [=](float) {
+            auto camera = Director::getInstance()->getRunningScene()->getCameras().front();
+            auto move = MoveBy::create(2.0, Vec2(2 * s.width, 0));
+            camera->runAction(Sequence::create(move, move->reverse(), nullptr));
+        },
+        1.0f, "lambda-autoculling-bug");
 }
 
 std::string BugAutoCulling::title() const
@@ -626,19 +604,18 @@ RendererBatchQuadTri::RendererBatchQuadTri()
 {
     Size s = Director::getInstance()->getWinSize();
 
-    for (int i=0; i<250; i++)
-    {
+    for (int i = 0; i < 250; i++) {
         int x = CCRANDOM_0_1() * s.width;
         int y = CCRANDOM_0_1() * s.height;
 
         auto label = LabelAtlas::create("This is a label", "fonts/tuffy_bold_italic-charmap.plist");
         label->setColor(Color3B::RED);
-        label->setPosition(Vec2(x,y));
+        label->setPosition(Vec2(x, y));
         addChild(label);
 
         auto sprite = Sprite::create("fonts/tuffy_bold_italic-charmap.png");
-        sprite->setTextureRect(Rect(0,0,100,100));
-        sprite->setPosition(Vec2(x,y));
+        sprite->setTextureRect(Rect(0, 0, 100, 100));
+        sprite->setPosition(Vec2(x, y));
         sprite->setColor(Color3B::BLUE);
         addChild(sprite);
     }
@@ -653,7 +630,6 @@ std::string RendererBatchQuadTri::subtitle() const
 {
     return "QuadCommand and TriangleCommands are batched together";
 }
-
 
 //
 //
@@ -670,18 +646,16 @@ RendererUniformBatch::RendererUniformBatch()
     auto x_inc = s.width / 20;
     auto y_inc = s.height / 6;
 
-    for (int y=0; y<6; ++y)
-    {
-        for (int x=0; x<20; ++x)
-        {
+    for (int y = 0; y < 6; ++y) {
+        for (int x = 0; x < 20; ++x) {
             auto sprite = Sprite::create("Images/grossini.png");
             sprite->setPosition(Vec2(x * x_inc, y * y_inc));
             sprite->setScale(0.4);
             addChild(sprite);
 
-            if (y>=4) {
+            if (y >= 4) {
                 sprite->setGLProgramState(glSepiaState);
-            } else if(y>=2) {
+            } else if (y >= 2) {
                 sprite->setGLProgramState(glBlurState);
             }
         }
@@ -700,9 +674,10 @@ GLProgramState* RendererUniformBatch::createBlurGLProgramState()
     auto fragmentFullPath = fileUtiles->fullPathForFilename(shaderName);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
     auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
-    auto glprogramstate = (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
+    auto glprogramstate =
+        (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
 
-    glprogramstate->setUniformVec2("resolution", Vec2(85,121));
+    glprogramstate->setUniformVec2("resolution", Vec2(85, 121));
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     glprogramstate->setUniformFloat("blurRadius", 10);
     glprogramstate->setUniformFloat("sampleNum", 5);
@@ -720,7 +695,8 @@ GLProgramState* RendererUniformBatch::createSepiaGLProgramState()
     auto fragmentFullPath = fileUtiles->fullPathForFilename(shaderName);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
     auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
-    auto glprogramstate = (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
+    auto glprogramstate =
+        (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
 
     return glprogramstate;
 }
@@ -734,7 +710,6 @@ std::string RendererUniformBatch::subtitle() const
 {
     return "Only 9 draw calls should appear";
 }
-
 
 //
 // RendererUniformBatch2
@@ -750,10 +725,8 @@ RendererUniformBatch2::RendererUniformBatch2()
     auto x_inc = s.width / 20;
     auto y_inc = s.height / 6;
 
-    for (int y=0; y<6; ++y)
-    {
-        for (int x=0; x<20; ++x)
-        {
+    for (int y = 0; y < 6; ++y) {
+        for (int x = 0; x < 20; ++x) {
             auto sprite = Sprite::create("Images/grossini.png");
             sprite->setPosition(Vec2(x * x_inc, y * y_inc));
             sprite->setScale(0.4);
@@ -780,9 +753,10 @@ GLProgramState* RendererUniformBatch2::createBlurGLProgramState()
     auto fragmentFullPath = fileUtiles->fullPathForFilename(shaderName);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
     auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
-    auto glprogramstate = (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
+    auto glprogramstate =
+        (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
 
-    glprogramstate->setUniformVec2("resolution", Vec2(85,121));
+    glprogramstate->setUniformVec2("resolution", Vec2(85, 121));
 #if (CC_TARGET_PLATFORM != CC_PLATFORM_WINRT)
     glprogramstate->setUniformFloat("blurRadius", 10);
     glprogramstate->setUniformFloat("sampleNum", 5);
@@ -800,7 +774,8 @@ GLProgramState* RendererUniformBatch2::createSepiaGLProgramState()
     auto fragmentFullPath = fileUtiles->fullPathForFilename(shaderName);
     auto fragSource = fileUtiles->getStringFromFile(fragmentFullPath);
     auto glprogram = GLProgram::createWithByteArrays(ccPositionTextureColor_noMVP_vert, fragSource.c_str());
-    auto glprogramstate = (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
+    auto glprogramstate =
+        (glprogram == nullptr ? nullptr : GLProgramState::getOrCreateWithGLProgram(glprogram));
 
     return glprogramstate;
 }
@@ -815,7 +790,6 @@ std::string RendererUniformBatch2::subtitle() const
     return "Mixing different shader states should work ok";
 }
 
-
 NonBatchSprites::NonBatchSprites()
 {
     Size s = Director::getInstance()->getWinSize();
@@ -823,11 +797,10 @@ NonBatchSprites::NonBatchSprites()
     _spritesAnchor->setPosition(0, 0);
     addChild(_spritesAnchor);
 
-
     _totalSprites = Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "sprites");
     _totalSprites->setColor(Color3B::YELLOW);
     _totalSprites->enableOutline(Color4B::RED, 2);
-    _totalSprites->setPosition(s.width/2, s.height/2);
+    _totalSprites->setPosition(s.width / 2, s.height / 2);
 
     addChild(_totalSprites);
 
@@ -836,15 +809,11 @@ NonBatchSprites::NonBatchSprites()
 
 void NonBatchSprites::createSprite()
 {
-
     Size s = Director::getInstance()->getWinSize();
     Sprite* sprite = nullptr;
-    if (_spriteIndex % 2 == 0)
-    {
+    if (_spriteIndex % 2 == 0) {
         sprite = Sprite::create("Images/grossini_dance_05.png");
-    }
-    else
-    {
+    } else {
         sprite = Sprite::create("Images/grossini_dance_01.png");
     }
 
@@ -866,36 +835,31 @@ void NonBatchSprites::createSprite()
 
 void NonBatchSprites::update(float dt)
 {
-
-    if( dt <= 1.0f / 28.0f && dt >= 1.0f/ 31.0f)
-    {
+    if (dt <= 1.0f / 28.0f && dt >= 1.0f / 31.0f) {
         _around30fps.hit();
-    }
-    else
-    {
+    } else {
         _around30fps.cancel();
     }
 
-    _maDt = 0.7f * _maDt  + 0.3f * dt;
-    _rmaDt = 0.5f * _rmaDt  + 0.5f * dt;
-    if(_maDt <= DEST_DT_30FPS) {
+    _maDt = 0.7f * _maDt + 0.3f * dt;
+    _rmaDt = 0.5f * _rmaDt + 0.5f * dt;
+    if (_maDt <= DEST_DT_30FPS) {
         _contSlow.cancel();
         _contFast.hit();
-        if(_contFast.ok()){
+        if (_contFast.ok()) {
             auto t2 = DEST_DT_30FPS - _rmaDt;
             auto delta = (int)(t2 / _rmaDt * _spriteIndex * 0.1);
-            delta =std::min(20, std::max(1, delta));
-            for(int i =0 ;i< delta; i++) {
+            delta = std::min(20, std::max(1, delta));
+            for (int i = 0; i < delta; i++) {
                 createSprite();
             }
         }
-    }else{
+    } else {
         _contSlow.hit();
         _contFast.cancel();
     }
 
-    if(_contSlow.ok() || _around30fps.ok())
-    {
+    if (_contSlow.ok() || _around30fps.ok()) {
         unscheduleUpdate();
         std::stringstream ss;
         ss << _spriteIndex << " sprites, DONE!";
@@ -904,10 +868,7 @@ void NonBatchSprites::update(float dt)
     }
 }
 
-NonBatchSprites::~NonBatchSprites()
-{
-
-}
+NonBatchSprites::~NonBatchSprites() {}
 
 std::string NonBatchSprites::title() const
 {
@@ -923,22 +884,18 @@ std::string NonBatchSprites::subtitle() const
 #endif
 }
 
-
-
 SpriteCreation::SpriteCreation()
 {
-
     Size s = Director::getInstance()->getWinSize();
     Node* parent = Node::create();
-    parent->setPosition(s.width / 2,s.height / 2);
+    parent->setPosition(s.width / 2, s.height / 2);
     addChild(parent);
-
 
 #define KEY_CREATION "11"
 #define KEY_DESTROYATION "22"
 
     labelCreate = Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "Sprite Creation: ..");
-    labelDestory= Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "Destroy Sprites: ..");
+    labelDestory = Label::createWithTTF(TTFConfig("fonts/arial.ttf"), "Destroy Sprites: ..");
 
     MenuItemFont::setFontName("fonts/arial.ttf");
     MenuItemFont::setFontSize(65);
@@ -979,44 +936,37 @@ void SpriteCreation::updateSpriteCountLabel(int x)
 
 void SpriteCreation::doTest()
 {
-
     DurationRecorder perf;
-    std::vector<std::string> predefineTextures = {
-            "Images/concave.png",
-            "Images/atlastest.png",
-            "Images/grossini_dance_atlas-mono.png",
-            "Images/HelloWorld.png",
-            "Images/background1.png",
-            "Images/background2.png",
-            "Images/stone.png",
-            "Images/issue_17116.png",
-            "Images/sprite_polygon_crash.png",
-            "Images/bitmapFontTest3.png",
-            "Images/cocos-html5.png",
-            "Images/Fog.png",
-            "Images/poly_test_textures.png",
-            "Images/powered.png",
-            "Images/bug14017.png",
-            "Images/test-rgba1.png",
-            "Images/grossinis_heads.png",
-            "Images/cocos2dbanner.png"
-    };
-
+    std::vector<std::string> predefineTextures = {"Images/concave.png",
+                                                  "Images/atlastest.png",
+                                                  "Images/grossini_dance_atlas-mono.png",
+                                                  "Images/HelloWorld.png",
+                                                  "Images/background1.png",
+                                                  "Images/background2.png",
+                                                  "Images/stone.png",
+                                                  "Images/issue_17116.png",
+                                                  "Images/sprite_polygon_crash.png",
+                                                  "Images/bitmapFontTest3.png",
+                                                  "Images/cocos-html5.png",
+                                                  "Images/Fog.png",
+                                                  "Images/poly_test_textures.png",
+                                                  "Images/powered.png",
+                                                  "Images/bug14017.png",
+                                                  "Images/test-rgba1.png",
+                                                  "Images/grossinis_heads.png",
+                                                  "Images/cocos2dbanner.png"};
 
     std::vector<Sprite*> spriteCache;
     spriteCache.reserve(totalSprites);
 
     perf.startTick(KEY_CREATION);
 
-    for (int i=0; i< totalSprites; ++i)
-    {
+    for (int i = 0; i < totalSprites; ++i) {
         auto* sprite = new Sprite();
-        if(sprite == nullptr )
-        {
+        if (sprite == nullptr) {
             break;
         }
-        if(!sprite->initWithFile(predefineTextures[i % predefineTextures.size()]))
-        {
+        if (!sprite->initWithFile(predefineTextures[i % predefineTextures.size()])) {
             delete sprite;
             break;
         }
@@ -1026,50 +976,48 @@ void SpriteCreation::doTest()
     auto creationDuration = perf.endTick(KEY_CREATION);
     perf.startTick(KEY_DESTROYATION);
 
-    for (int i=0; i< totalSprites; ++i)
-    {
+    for (int i = 0; i < totalSprites; ++i) {
         spriteCache[i]->release();
     }
     auto destroyDuration = perf.endTick(KEY_DESTROYATION);
     std::stringstream ss;
     auto t1_ms = creationDuration * 1.0 / 1000000;
-    ss << "Create "<< spriteCache.size()  << " sprites takes " << t1_ms<< " ms, " << (int64_t)(spriteCache.size() * 1000 / t1_ms) << " sprites per second!";
+    ss << "Create " << spriteCache.size() << " sprites takes " << t1_ms << " ms, "
+       << (int64_t)(spriteCache.size() * 1000 / t1_ms) << " sprites per second!";
     labelCreate->setString(ss.str());
 
-    if(t1_ms < 100) {
-        suggestDelta =(int) (0.5 * totalSprites);
+    if (t1_ms < 100) {
+        suggestDelta = (int)(0.5 * totalSprites);
     } else if (t1_ms < 1000) {
-        suggestDelta =(int) (0.2 * totalSprites);
-    } else if(t1_ms) {
-        suggestDelta =(int) (0.1 * totalSprites);
+        suggestDelta = (int)(0.2 * totalSprites);
+    } else if (t1_ms) {
+        suggestDelta = (int)(0.1 * totalSprites);
     }
 
     suggestDelta = suggestDelta < 1000 ? 1000 : suggestDelta - suggestDelta % 1000;
 
     ss.str("");
     auto t2_ms = destroyDuration * 1.0 / 1000000;
-    ss << "Destroy "<< spriteCache.size() << " sprites takes " <<  t2_ms<< " ms, " << (int64_t)(spriteCache.size() * 1000 / t2_ms) << " sprites per second!" ;
+    ss << "Destroy " << spriteCache.size() << " sprites takes " << t2_ms << " ms, "
+       << (int64_t)(spriteCache.size() * 1000 / t2_ms) << " sprites per second!";
     labelDestory->setString(ss.str());
 
     spriteCache.clear();
 }
 
-void SpriteCreation::addSpritesCallback(cocos2d::Ref *)
+void SpriteCreation::addSpritesCallback(cocos2d::Ref*)
 {
     updateSpriteCountLabel(totalSprites + suggestDelta);
     doTest();
 }
 
-void SpriteCreation::delSpritesCallback(cocos2d::Ref *)
+void SpriteCreation::delSpritesCallback(cocos2d::Ref*)
 {
     updateSpriteCountLabel(totalSprites - suggestDelta);
     doTest();
 }
 
-SpriteCreation::~SpriteCreation()
-{
-
-}
+SpriteCreation::~SpriteCreation() {}
 
 std::string SpriteCreation::title() const
 {
@@ -1084,4 +1032,3 @@ std::string SpriteCreation::subtitle() const
     return "In release mode";
 #endif
 }
-

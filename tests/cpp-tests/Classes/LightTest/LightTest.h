@@ -44,12 +44,10 @@ public:
     void SwitchLight(cocos2d::Ref* sender, cocos2d::LightType lightType);
 
 private:
-
     void addSprite();
     void addLights();
 
 private:
-
     cocos2d::AmbientLight* _ambientLight;
     cocos2d::DirectionLight* _directionalLight;
     cocos2d::PointLight* _pointLight;
@@ -62,4 +60,3 @@ private:
 };
 
 #endif
-

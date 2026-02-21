@@ -29,9 +29,9 @@
 
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#elif _MSC_VER >= 1400 //vs 2005 or higher
-#pragma warning (push)
-#pragma warning (disable: 4996)
+#elif _MSC_VER >= 1400  // vs 2005 or higher
+#pragma warning(push)
+#pragma warning(disable : 4996)
 #endif
 
 DEFINE_TEST_SUITE(LabelTests);
@@ -41,10 +41,10 @@ class AtlasDemo : public TestCase
 public:
 };
 
-
 class Atlas1 : public AtlasDemo
 {
-    cocos2d::TextureAtlas*        _textureAtlas;
+    cocos2d::TextureAtlas* _textureAtlas;
+
 public:
     CREATE_FUNC(Atlas1);
 
@@ -53,15 +53,18 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
+
 protected:
     void onDraw(const cocos2d::Mat4& transform, uint32_t flags);
+
 protected:
     cocos2d::CustomCommand _customCommand;
 };
 
 class LabelAtlasTest : public AtlasDemo
 {
-    float        _time;
+    float _time;
+
 public:
     CREATE_FUNC(LabelAtlasTest);
 
@@ -75,7 +78,8 @@ public:
 
 class LabelAtlasColorTest : public AtlasDemo
 {
-    float        _time;
+    float _time;
+
 public:
     CREATE_FUNC(LabelAtlasColorTest);
 
@@ -96,10 +100,10 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 class Atlas3 : public AtlasDemo
 {
-    float        _time;
+    float _time;
+
 public:
     CREATE_FUNC(Atlas3);
 
@@ -113,7 +117,8 @@ public:
 
 class Atlas4 : public AtlasDemo
 {
-    float        _time;
+    float _time;
+
 public:
     CREATE_FUNC(Atlas4);
 
@@ -133,7 +138,6 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 };
-
 
 class Atlas6 : public AtlasDemo
 {
@@ -229,15 +233,17 @@ public:
     virtual ~LabelTTFTest();
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
-    void  setAlignmentLeft(cocos2d::Ref* sender);
-    void  setAlignmentCenter(cocos2d::Ref* sender);
-    void  setAlignmentRight(cocos2d::Ref* sender);
-    void  setAlignmentTop(cocos2d::Ref* sender);
-    void  setAlignmentMiddle(cocos2d::Ref* sender);
-    void  setAlignmentBottom(cocos2d::Ref* sender);
-    void  updateAlignment();
+    void setAlignmentLeft(cocos2d::Ref* sender);
+    void setAlignmentCenter(cocos2d::Ref* sender);
+    void setAlignmentRight(cocos2d::Ref* sender);
+    void setAlignmentTop(cocos2d::Ref* sender);
+    void setAlignmentMiddle(cocos2d::Ref* sender);
+    void setAlignmentBottom(cocos2d::Ref* sender);
+    void updateAlignment();
     const char* getCurrentAlignment();
+
 private:
     cocos2d::TextHAlignment _horizAlign;
     cocos2d::LabelTTF* _label;
@@ -362,7 +368,6 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 class Issue1343 : public AtlasDemo
 {
 public:
@@ -445,11 +450,10 @@ public:
 
 #if defined(__GNUC__) && ((__GNUC__ >= 4) || ((__GNUC__ == 3) && (__GNUC_MINOR__ >= 1)))
 #pragma GCC diagnostic warning "-Wdeprecated-declarations"
-#elif _MSC_VER >= 1400 //vs 2005 or higher
-#pragma warning (pop)
+#elif _MSC_VER >= 1400  // vs 2005 or higher
+#pragma warning(pop)
 #endif
 
 // we don't support linebreak mode
 
 #endif
-

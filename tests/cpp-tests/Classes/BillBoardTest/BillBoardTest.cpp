@@ -25,16 +25,16 @@
  ****************************************************************************/
 
 #include "BillBoardTest.h"
-#include "3d/CCBillBoard.h"
 
 #include <algorithm>
 #include <cmath>
+
 #include "../testResource.h"
+#include "3d/CCBillBoard.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
 using namespace cocos2d::ui;
-
 
 BillBoardTests::BillBoardTests()
 {
@@ -50,12 +50,12 @@ BillBoardTests::BillBoardTests()
 BillBoardRotationTest::BillBoardRotationTest()
 {
     auto root = Sprite3D::create();
-    root->setPositionNormalized(Vec2(.5,.25));
+    root->setPositionNormalized(Vec2(.5, .25));
     addChild(root);
 
     auto model = Sprite3D::create("Sprite3DTest/orc.c3b");
     model->setScale(5);
-    model->setRotation3D(Vec3(0,180,0));
+    model->setRotation3D(Vec3(0, 180, 0));
     root->addChild(model);
 
     auto bill = BillBoard::create();
@@ -71,16 +71,16 @@ BillBoardRotationTest::BillBoardRotationTest()
     lbl->setString("+100");
     bill->addChild(lbl);
 
-    auto r = RotateBy::create(10, Vec3(0,360,0));
+    auto r = RotateBy::create(10, Vec3(0, 360, 0));
     auto rp = RepeatForever::create(r);
     root->runAction(rp);
 
     auto jump = JumpBy::create(1, Vec2(0, 0), 30, 1);
     auto scale = ScaleBy::create(2.f, 2.f, 2.f, 0.1f);
-    auto seq = Sequence::create(jump,scale, NULL);
+    auto seq = Sequence::create(jump, scale, NULL);
 
     auto rot = RotateBy::create(2, Vec3(-90, 0, 0));
-    auto act = Spawn::create(seq, rot,NULL);
+    auto act = Spawn::create(seq, rot, NULL);
 
     auto scale2 = scale->reverse();
     auto rot2 = rot->reverse();
@@ -91,10 +91,7 @@ BillBoardRotationTest::BillBoardRotationTest()
     model->runAction(repeat);
 }
 
-BillBoardRotationTest::~BillBoardRotationTest()
-{
-
-}
+BillBoardRotationTest::~BillBoardRotationTest() {}
 
 std::string BillBoardRotationTest::title() const
 {
@@ -111,38 +108,36 @@ std::string BillBoardRotationTest::subtitle() const
 // Billboard Rendering Test
 //
 //------------------------------------------------------------------
-BillBoardTest::BillBoardTest()
-:  _camera(nullptr)
+BillBoardTest::BillBoardTest() : _camera(nullptr)
 {
-    //Create touch listener
+    // Create touch listener
     auto listener = EventListenerTouchAllAtOnce::create();
     listener->onTouchesMoved = CC_CALLBACK_2(BillBoardTest::onTouchesMoved, this);
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
-    auto layer3D=Layer::create();
-    addChild(layer3D,0);
+    auto layer3D = Layer::create();
+    addChild(layer3D, 0);
     _layerBillBoard = layer3D;
     auto s = Director::getInstance()->getWinSize();
-    if (_camera == nullptr)
-    {
-        _camera=Camera::createPerspective(60, (GLfloat)s.width/s.height, 1, 500);
+    if (_camera == nullptr) {
+        _camera = Camera::createPerspective(60, (GLfloat)s.width / s.height, 1, 500);
         _camera->setCameraFlag(CameraFlag::USER1);
         _layerBillBoard->addChild(_camera);
     }
 
-    //Create rotating billboards
+    // Create rotating billboards
     std::string imgs[3] = {"Images/Icon.png", "Images/r2.png"};
-    for (unsigned int i = 0; i < 4; ++i)
-    {
-        Layer *layer = Layer::create();
+    for (unsigned int i = 0; i < 4; ++i) {
+        Layer* layer = Layer::create();
         auto billboard = BillBoard::create(imgs[(unsigned int)(std::lround(CCRANDOM_0_1()))]);
         billboard->setScale(0.5f);
-        billboard->setPosition3D(Vec3(0.0f, 0.0f,  CCRANDOM_MINUS1_1() * 150.0f));
+        billboard->setPosition3D(Vec3(0.0f, 0.0f, CCRANDOM_MINUS1_1() * 150.0f));
         billboard->setOpacity(CCRANDOM_0_1() * 128 + 128);
         _billboards.push_back(billboard);
         layer->addChild(billboard);
         _layerBillBoard->addChild(layer);
-        layer->runAction( RepeatForever::create( RotateBy::create( CCRANDOM_0_1() * 10, Vec3(0.0f, 45.0f, 0.0f) ) ) );
+        layer->runAction(
+            RepeatForever::create(RotateBy::create(CCRANDOM_0_1() * 10, Vec3(0.0f, 45.0f, 0.0f))));
     }
 
     {
@@ -159,46 +154,50 @@ BillBoardTest::BillBoardTest()
         auto sprite3d = Sprite3D::create("Sprite3DTest/orc.c3t");
         sprite3d->setScale(2.0f);
         sprite3d->addChild(billboard);
-        sprite3d->runAction( RepeatForever::create( RotateBy::create( 10.0f, Vec3(0.0f, 360.0f, 0.0f) ) ) );
+        sprite3d->runAction(RepeatForever::create(RotateBy::create(10.0f, Vec3(0.0f, 360.0f, 0.0f))));
         _layerBillBoard->addChild(sprite3d);
     }
 
-    addNewBillBoardWithCoords(Vec3(20,5,0));
-    addNewBillBoardWithCoords(Vec3(60,5,0));
-    addNewBillBoardWithCoords(Vec3(100,5,0));
-    addNewBillBoardWithCoords(Vec3(140,5,0));
-    addNewBillBoardWithCoords(Vec3(180,5,0));
+    addNewBillBoardWithCoords(Vec3(20, 5, 0));
+    addNewBillBoardWithCoords(Vec3(60, 5, 0));
+    addNewBillBoardWithCoords(Vec3(100, 5, 0));
+    addNewBillBoardWithCoords(Vec3(140, 5, 0));
+    addNewBillBoardWithCoords(Vec3(180, 5, 0));
 
-    addNewAniBillBoardWithCoords(Vec3(-20,0,0));
-    addNewAniBillBoardWithCoords(Vec3(-60,0,0));
-    addNewAniBillBoardWithCoords(Vec3(-100,0,0));
-    addNewAniBillBoardWithCoords(Vec3(-140,0,0));
-    addNewAniBillBoardWithCoords(Vec3(-180,0,0));
+    addNewAniBillBoardWithCoords(Vec3(-20, 0, 0));
+    addNewAniBillBoardWithCoords(Vec3(-60, 0, 0));
+    addNewAniBillBoardWithCoords(Vec3(-100, 0, 0));
+    addNewAniBillBoardWithCoords(Vec3(-140, 0, 0));
+    addNewAniBillBoardWithCoords(Vec3(-180, 0, 0));
 
     _camera->setPosition3D(Vec3(0, 100, 230));
-    _camera->lookAt(Vec3(0,0,0), Vec3(0,1,0));
+    _camera->lookAt(Vec3(0, 0, 0), Vec3(0, 1, 0));
 
     TTFConfig ttfConfig("fonts/arial.ttf", 16);
-    auto label1 = Label::createWithTTF(ttfConfig,"rotate+");
-    auto menuItem1 = MenuItemLabel::create(label1, CC_CALLBACK_1(BillBoardTest::rotateCameraCallback,this,10));
-    auto label2 = Label::createWithTTF(ttfConfig,"rotate-");
-    auto menuItem2 = MenuItemLabel::create(label2, CC_CALLBACK_1(BillBoardTest::rotateCameraCallback,this,-10));
+    auto label1 = Label::createWithTTF(ttfConfig, "rotate+");
+    auto menuItem1 =
+        MenuItemLabel::create(label1, CC_CALLBACK_1(BillBoardTest::rotateCameraCallback, this, 10));
+    auto label2 = Label::createWithTTF(ttfConfig, "rotate-");
+    auto menuItem2 =
+        MenuItemLabel::create(label2, CC_CALLBACK_1(BillBoardTest::rotateCameraCallback, this, -10));
     auto menu = Menu::create(menuItem1, menuItem2, nullptr);
     menu->setPosition(Vec2::ZERO);
-    menuItem1->setPosition( Vec2( s.width-80, VisibleRect::top().y-160) );
-    menuItem2->setPosition( Vec2( s.width-80, VisibleRect::top().y-190) );
+    menuItem1->setPosition(Vec2(s.width - 80, VisibleRect::top().y - 160));
+    menuItem2->setPosition(Vec2(s.width - 80, VisibleRect::top().y - 190));
     addChild(menu, 0);
     _layerBillBoard->setCameraMask(2);
 
-    label1 = Label::createWithTTF(ttfConfig,"Point Oriented");
-    menuItem1 = MenuItemLabel::create(label1,CC_CALLBACK_1(BillBoardTest::menuCallback_orientedPoint,this) );
-    label2 = Label::createWithTTF(ttfConfig,"Plane Oriented");
-    menuItem2 = MenuItemLabel::create(label2,CC_CALLBACK_1(BillBoardTest::menuCallback_orientedPlane,this) );
-    menuItem1->setPosition( Vec2( s.width-80, VisibleRect::top().y-100) );
-    menuItem2->setPosition( Vec2( s.width-80, VisibleRect::top().y-130) );
+    label1 = Label::createWithTTF(ttfConfig, "Point Oriented");
+    menuItem1 =
+        MenuItemLabel::create(label1, CC_CALLBACK_1(BillBoardTest::menuCallback_orientedPoint, this));
+    label2 = Label::createWithTTF(ttfConfig, "Plane Oriented");
+    menuItem2 =
+        MenuItemLabel::create(label2, CC_CALLBACK_1(BillBoardTest::menuCallback_orientedPlane, this));
+    menuItem1->setPosition(Vec2(s.width - 80, VisibleRect::top().y - 100));
+    menuItem2->setPosition(Vec2(s.width - 80, VisibleRect::top().y - 130));
 
     menu = Menu::create(menuItem1, menuItem2, nullptr);
-    menu->setPosition(Vec2(0,0));
+    menu->setPosition(Vec2(0, 0));
     this->addChild(menu, 10);
     menuCallback_orientedPoint(nullptr);
 
@@ -221,24 +220,25 @@ void BillBoardTest::menuCallback_orientedPlane(Ref* sender)
 
 BillBoardTest::~BillBoardTest()
 {
-    if (_camera)
-    {
+    if (_camera) {
         _camera = nullptr;
     }
 }
+
 std::string BillBoardTest::title() const
 {
     return "BillBoard Test";
 }
+
 std::string BillBoardTest::subtitle() const
 {
     return "";
 }
+
 void BillBoardTest::addNewBillBoardWithCoords(Vec3 p)
 {
     std::string imgs[3] = {"Images/Icon.png", "Images/r2.png"};
-    for (unsigned int i = 0; i < 10; ++i)
-    {
+    for (unsigned int i = 0; i < 10; ++i) {
         auto billboard = BillBoard::create(imgs[(unsigned int)(std::lround(CCRANDOM_0_1()))]);
         billboard->setScale(0.5f);
         billboard->setPosition3D(Vec3(p.x, p.y, -150.0f + 30 * i));
@@ -248,18 +248,17 @@ void BillBoardTest::addNewBillBoardWithCoords(Vec3 p)
         _billboards.push_back(billboard);
     }
 }
+
 void BillBoardTest::addNewAniBillBoardWithCoords(Vec3 p)
 {
-    for (unsigned int i = 0; i < 10; ++i)
-    {
+    for (unsigned int i = 0; i < 10; ++i) {
         auto billboardAni = BillBoard::create("Images/grossini.png");
         billboardAni->setScale(0.5f);
-        billboardAni->setPosition3D(Vec3(p.x, p.y,  -150.0f + 30 * i));
+        billboardAni->setPosition3D(Vec3(p.x, p.y, -150.0f + 30 * i));
         _layerBillBoard->addChild(billboardAni);
 
         auto animation = Animation::create();
-        for( int i=1;i<15;i++)
-        {
+        for (int i = 1; i < 15; i++) {
             char szName1[100] = {0};
             sprintf(szName1, "Images/grossini_dance_%02d.png", i);
             animation->addSpriteFrameWithFile(szName1);
@@ -274,14 +273,12 @@ void BillBoardTest::addNewAniBillBoardWithCoords(Vec3 p)
         _billboards.push_back(billboardAni);
     }
 }
-void BillBoardTest::update(float dt)
-{
-}
+
+void BillBoardTest::update(float dt) {}
 
 void BillBoardTest::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
-    if(touches.size()==1)
-    {
+    if (touches.size() == 1) {
         auto touch = touches[0];
         auto location = touch->getLocation();
         auto PreviousLocation = touch->getPreviousLocation();
@@ -291,21 +288,20 @@ void BillBoardTest::onTouchesMoved(const std::vector<Touch*>& touches, Event* ev
         Vec3 cameraRightDir;
         _camera->getNodeToWorldTransform().getForwardVector(&cameraDir);
         cameraDir.normalize();
-        cameraDir.y=0;
+        cameraDir.y = 0;
         _camera->getNodeToWorldTransform().getRightVector(&cameraRightDir);
         cameraRightDir.normalize();
-        cameraRightDir.y=0;
-        Vec3 cameraPos=  _camera->getPosition3D();
-        cameraPos+=cameraDir*newPos.y*0.5;
-        cameraPos+=cameraRightDir*newPos.x*0.5;
+        cameraRightDir.y = 0;
+        Vec3 cameraPos = _camera->getPosition3D();
+        cameraPos += cameraDir * newPos.y * 0.5;
+        cameraPos += cameraRightDir * newPos.x * 0.5;
         _camera->setPosition3D(cameraPos);
     }
 }
 
-void BillBoardTest::rotateCameraCallback(Ref* sender,float value)
+void BillBoardTest::rotateCameraCallback(Ref* sender, float value)
 {
-    Vec3  rotation3D= _camera->getRotation3D();
-    rotation3D.y+= value;
+    Vec3 rotation3D = _camera->getRotation3D();
+    rotation3D.y += value;
     _camera->setRotation3D(rotation3D);
 }
-

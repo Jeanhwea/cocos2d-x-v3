@@ -27,7 +27,6 @@
 
 #include "../BaseTest.h"
 
-
 DEFINE_TEST_SUITE(MotionStreakTests);
 
 class MotionStreakTest : public TestCase
@@ -41,6 +40,7 @@ public:
     virtual void onEnter() override;
 
     void modeCallback(cocos2d::Ref* sender);
+
 protected:
     cocos2d::MotionStreak* _streak;
 };
@@ -48,8 +48,8 @@ protected:
 class MotionStreakTest1 : public MotionStreakTest
 {
 protected:
-    cocos2d::Node*        _root;
-    cocos2d::Node*        _target;
+    cocos2d::Node* _root;
+    cocos2d::Node* _target;
 
 public:
     CREATE_FUNC(MotionStreakTest1);
@@ -61,8 +61,8 @@ public:
 class MotionStreakTest2 : public MotionStreakTest
 {
 protected:
-    cocos2d::Node*        _root;
-    cocos2d::Node*        _target;
+    cocos2d::Node* _root;
+    cocos2d::Node* _target;
 
 public:
     CREATE_FUNC(MotionStreakTest2);
@@ -80,6 +80,7 @@ public:
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
     virtual void update(float dt) override;
+
 private:
     cocos2d::Vec2 _center;
     float _radius;
@@ -96,6 +97,4 @@ public:
     virtual void onEnter() override;
 };
 
-
 #endif
-

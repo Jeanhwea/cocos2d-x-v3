@@ -30,7 +30,6 @@
 class RefPtrTest : public UnitTestDemo
 {
 public:
-
     CREATE_FUNC(RefPtrTest);
 
     virtual void onEnter() override;
@@ -39,4 +38,3 @@ public:
 };
 
 #endif /* __REF_PTR_TEST_H__ */
-

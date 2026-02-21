@@ -25,18 +25,17 @@
 #ifndef TERRAIN_TESH_H
 
 #include "../BaseTest.h"
-
+#include "2d/CCAction.h"
+#include "2d/CCCamera.h"
 #include "3d/CCSprite3D.h"
 #include "3d/CCTerrain.h"
-#include "2d/CCCamera.h"
-#include "2d/CCAction.h"
 
 DEFINE_TEST_SUITE(TerrainTests);
 
 class TerrainTestDemo : public TestCase
 {
 protected:
-    std::string    _title;
+    std::string _title;
 };
 
 class TerrainSimple : public TerrainTestDemo
@@ -48,6 +47,7 @@ public:
     virtual std::string subtitle() const override;
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
     cocos2d::Terrain* _terrain;
+
 protected:
     cocos2d::Camera* _camera;
 };
@@ -61,7 +61,7 @@ protected:
 class Player : public cocos2d::Sprite3D
 {
 public:
-    static Player * create(const char * file, cocos2d::Camera*  cam, cocos2d::Terrain* terrain);
+    static Player* create(const char* file, cocos2d::Camera* cam, cocos2d::Terrain* terrain);
     virtual bool isDone() const;
     virtual void update(float dt);
 
@@ -74,12 +74,12 @@ public:
     void updateState();
     float _headingAngle;
     cocos2d::Vec3 _headingAxis;
+
 private:
     cocos2d::Terrain* _terrain;
-    cocos2d::Camera*  _cam;
+    cocos2d::Camera* _cam;
     int _playerState;
 };
-
 
 class TerrainWalkThru : public TerrainTestDemo
 {
@@ -90,10 +90,11 @@ public:
     virtual std::string subtitle() const override;
     void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
     void onTouchesEnd(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
+
 protected:
-    cocos2d::Camera*  _camera;
+    cocos2d::Camera* _camera;
     cocos2d::Terrain* _terrain;
-    Player * _player;
+    Player* _player;
 };
 
 class TerrainWithLightMap : public TerrainTestDemo
@@ -110,5 +111,4 @@ protected:
     cocos2d::Camera* _camera;
 };
 
-#endif // !TERRAIN_TESH_H
-
+#endif  // !TERRAIN_TESH_H

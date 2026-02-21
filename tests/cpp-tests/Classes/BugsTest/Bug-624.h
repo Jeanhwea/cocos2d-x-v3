@@ -35,7 +35,8 @@ public:
     void switchLayer(float dt);
     virtual void onAcceleration(cocos2d::Acceleration* acc, cocos2d::Event* event);
 
-    virtual std::string title() const override { return "Bug624";}
+    virtual std::string title() const override { return "Bug624"; }
+
     CREATE_FUNC(Bug624Layer);
 };
 
@@ -45,12 +46,12 @@ public:
     virtual ~Bug624Layer2();
     virtual bool init() override;
     void switchLayer(float dt);
-    virtual std::string title() const override { return "Bug624-2";}
+
+    virtual std::string title() const override { return "Bug624-2"; }
 
     virtual void onAcceleration(cocos2d::Acceleration* acc, cocos2d::Event* event);
 
     CREATE_FUNC(Bug624Layer2);
 };
 
-#endif // __BUG_624_H__
-
+#endif  // __BUG_624_H__

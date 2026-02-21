@@ -34,9 +34,10 @@ DEFINE_TEST_SUITE(ActionsTests);
 class ActionsDemo : public TestCase
 {
 protected:
-    cocos2d::Sprite*    _grossini;
-    cocos2d::Sprite*    _tamara;
-    cocos2d::Sprite*    _kathia;
+    cocos2d::Sprite* _grossini;
+    cocos2d::Sprite* _tamara;
+    cocos2d::Sprite* _kathia;
+
 public:
     virtual void onEnter() override;
     virtual void onExit() override;
@@ -295,8 +296,8 @@ class ActionRemoveSelf : public ActionsDemo
 public:
     CREATE_FUNC(ActionRemoveSelf);
 
-	virtual void onEnter() override;
-	virtual std::string subtitle() const override;
+    virtual void onEnter() override;
+    virtual std::string subtitle() const override;
 };
 
 class ActionRepeatForever : public ActionsDemo
@@ -354,7 +355,6 @@ public:
     void callback3(Node* pTarget, long data);
 };
 
-
 class ActionFollow : public ActionsDemo
 {
 public:
@@ -366,7 +366,6 @@ public:
 
 class ActionFollowWithOffset : public ActionsDemo
 {
-
 public:
     CREATE_FUNC(ActionFollowWithOffset);
 
@@ -466,6 +465,7 @@ public:
     void log(Node* sender);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::Sprite* _spriteTmp;
 };
@@ -525,6 +525,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     virtual std::string title() const override;
+
 private:
     int _testInteger;
 };
@@ -537,6 +538,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     virtual std::string title() const override;
+
 private:
     int _count;
 };
@@ -575,6 +577,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     virtual std::string title() const override;
+
 private:
     cocos2d::Vector<Node*> _pausedTargets;
 };
@@ -605,6 +608,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     virtual std::string title() const override;
+
 private:
     int _count;
 };
@@ -617,6 +621,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     virtual std::string title() const override;
+
 private:
     int _count;
 };
@@ -633,7 +638,6 @@ public:
 private:
     cocos2d::ActionManager* _manager;
     cocos2d::Node* _target;
-
 };
 
 class Issue18003 : public ActionsDemo
@@ -648,8 +652,6 @@ public:
 private:
     cocos2d::ActionManager* _manager;
     cocos2d::Node* _target;
-
 };
 
 #endif
-

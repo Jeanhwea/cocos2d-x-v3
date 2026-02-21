@@ -112,6 +112,4 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 #endif /* __UNIT_TEST__ */
-

@@ -46,7 +46,6 @@ public:
     virtual bool init() override;
 };
 
-
 class UILabelTest_Effect : public UIScene
 {
 public:
@@ -54,7 +53,6 @@ public:
 
     virtual bool init() override;
 };
-
 
 class UITextTest_TTF : public UIScene
 {
@@ -89,4 +87,3 @@ public:
 };
 
 #endif /* defined(__TestCpp__UITextTest__) */
-

@@ -25,15 +25,14 @@
 #ifndef __MOUSE_TEST_H_
 #define __MOUSE_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(MouseTests);
 
 class BaseMouseTest : public TestCase
 {
 public:
-
 };
 
 class MouseEventTest : public BaseMouseTest
@@ -52,8 +51,8 @@ public:
     virtual std::string subtitle() const override;
 
 private:
-    cocos2d::Label*   _labelAction;
-    cocos2d::Label*   _labelPosition;
+    cocos2d::Label* _labelAction;
+    cocos2d::Label* _labelPosition;
     cocos2d::EventListenerMouse* _mouseListener;
 };
 
@@ -87,4 +86,3 @@ private:
 };
 
 #endif
-

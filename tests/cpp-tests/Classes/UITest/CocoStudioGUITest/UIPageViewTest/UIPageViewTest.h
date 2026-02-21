@@ -42,7 +42,6 @@ public:
     void pageViewEvent(cocos2d::Ref* sender, cocos2d::ui::PageViewEventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -57,8 +56,8 @@ public:
 
     void pageViewEvent(cocos2d::Ref* sender, cocos2d::ui::PageView::EventType type);
     void onButtonClicked(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
-protected:
 
+protected:
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -75,7 +74,6 @@ public:
     void onButtonClicked(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -92,7 +90,6 @@ public:
     void onButtonClicked(cocos2d::Ref* sender, cocos2d::ui::Widget::TouchEventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -106,7 +103,6 @@ public:
     virtual bool init() override;
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -122,7 +118,6 @@ public:
     void pageViewEvent(cocos2d::Ref* sender, cocos2d::ui::PageView::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -136,7 +131,6 @@ public:
     virtual bool init() override;
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -152,7 +146,6 @@ public:
     void pageViewEvent(cocos2d::Ref* sender, cocos2d::ui::PageView::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -166,9 +159,7 @@ public:
     virtual bool init() override;
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
 #endif /* defined(__TestCpp__UIPageViewTest__) */
-

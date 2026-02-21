@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "ZwoptexTest.h"
+
 #include "../testResource.h"
 
 USING_NS_CC;
@@ -47,22 +48,24 @@ void ZwoptexGenericTest::onEnter()
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile("zwoptex/grossini-generic.plist");
 
     auto layer1 = LayerColor::create(Color4B(255, 0, 0, 255), 85, 121);
-    layer1->setPosition(Vec2(s.width/2-80 - (85.0f * 0.5f), s.height/2 - (121.0f * 0.5f)));
+    layer1->setPosition(Vec2(s.width / 2 - 80 - (85.0f * 0.5f), s.height / 2 - (121.0f * 0.5f)));
     addChild(layer1);
 
-    sprite1 = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini_dance_01.png"));
-    sprite1->setPosition(Vec2( s.width/2-80, s.height/2));
+    sprite1 = Sprite::createWithSpriteFrame(
+        SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini_dance_01.png"));
+    sprite1->setPosition(Vec2(s.width / 2 - 80, s.height / 2));
     addChild(sprite1);
 
     sprite1->setFlippedX(false);
     sprite1->setFlippedY(false);
 
     auto layer2 = LayerColor::create(Color4B(255, 0, 0, 255), 85, 121);
-    layer2->setPosition(Vec2(s.width/2+80 - (85.0f * 0.5f), s.height/2 - (121.0f * 0.5f)));
+    layer2->setPosition(Vec2(s.width / 2 + 80 - (85.0f * 0.5f), s.height / 2 - (121.0f * 0.5f)));
     addChild(layer2);
 
-    sprite2 = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini_dance_generic_01.png"));
-    sprite2->setPosition(Vec2( s.width/2 + 80, s.height/2));
+    sprite2 = Sprite::createWithSpriteFrame(
+        SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini_dance_generic_01.png"));
+    sprite2->setPosition(Vec2(s.width / 2 + 80, s.height / 2));
     addChild(sprite2);
 
     sprite2->setFlippedX(false);
@@ -83,6 +86,7 @@ void ZwoptexGenericTest::startIn05Secs(float dt)
 }
 
 static int spriteFrameIndex = 0;
+
 void ZwoptexGenericTest::flipSprites(float dt)
 {
     counter++;
@@ -91,8 +95,7 @@ void ZwoptexGenericTest::flipSprites(float dt)
     bool fy = false;
     int i = counter % 4;
 
-    switch ( i )
-    {
+    switch (i) {
         case 0:
             fx = false;
             fy = false;
@@ -116,8 +119,7 @@ void ZwoptexGenericTest::flipSprites(float dt)
     sprite1->setFlippedY(fy);
     sprite2->setFlippedY(fy);
 
-    if(++spriteFrameIndex > 14)
-    {
+    if (++spriteFrameIndex > 14) {
         spriteFrameIndex = 1;
     }
 
@@ -147,4 +149,3 @@ std::string ZwoptexGenericTest::subtitle() const
 {
     return "Coordinate Formats, Rotation, Trimming, flipX/Y";
 }
-

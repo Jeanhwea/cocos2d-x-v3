@@ -26,13 +26,15 @@
 #ifndef _BILLBOARD_TEST_H_
 #define _BILLBOARD_TEST_H_
 
-#include "../BaseTest.h"
 #include <string>
 
-namespace cocos2d {
-    class BillBoard;
-    class Camera;
-}
+#include "../BaseTest.h"
+
+namespace cocos2d
+{
+class BillBoard;
+class Camera;
+}  // namespace cocos2d
 
 class BillBoardRotationTest : public TestCase
 {
@@ -57,15 +59,15 @@ public:
     virtual void update(float dt) override;
     void addNewBillBoardWithCoords(cocos2d::Vec3 p);
     void addNewAniBillBoardWithCoords(cocos2d::Vec3 p);
-    void rotateCameraCallback(cocos2d::Ref* sender,float value);
+    void rotateCameraCallback(cocos2d::Ref* sender, float value);
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
 
     void menuCallback_orientedPoint(cocos2d::Ref* sender);
     void menuCallback_orientedPlane(cocos2d::Ref* sender);
 
 protected:
-    cocos2d::Camera*           _camera;
-    cocos2d::Layer*            _layerBillBoard;
+    cocos2d::Camera* _camera;
+    cocos2d::Layer* _layerBillBoard;
 
     std::vector<cocos2d::BillBoard*> _billboards;
 };
@@ -73,4 +75,3 @@ protected:
 DEFINE_TEST_SUITE(BillBoardTests);
 
 #endif
-

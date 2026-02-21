@@ -26,16 +26,17 @@
 #ifndef _SPRITE_TEST_H_
 #define _SPRITE_TEST_H_
 
-#include "cocos2d.h"
-#include "../BaseTest.h"
 #include <string>
+
+#include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(SpriteTests);
 
 class SpriteTestDemo : public TestCase
 {
 protected:
-    std::string    _title;
+    std::string _title;
 
 public:
 };
@@ -67,7 +68,7 @@ public:
     cocos2d::Sprite* _background;
 };
 
-class SpriteBatchNode1: public SpriteTestDemo
+class SpriteBatchNode1 : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNode1);
@@ -86,7 +87,6 @@ public:
     void removeAndAddSprite(float dt);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-
 };
 
 class SpriteBatchNodeColorOpacity : public SpriteTestDemo
@@ -114,7 +114,7 @@ protected:
     int _dir;
 };
 
-class SpriteBatchNodeZOrder: public SpriteTestDemo
+class SpriteBatchNodeZOrder : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeZOrder);
@@ -138,7 +138,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteBatchNodeReorderIssue744: public SpriteTestDemo
+class SpriteBatchNodeReorderIssue744 : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeReorderIssue744);
@@ -177,7 +177,7 @@ public:
     void reorderSprites(float dt);
 };
 
-class SpriteZVertex: public SpriteTestDemo
+class SpriteZVertex : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteZVertex);
@@ -193,7 +193,7 @@ protected:
     float _time;
 };
 
-class SpriteBatchNodeZVertex: public SpriteTestDemo
+class SpriteBatchNodeZVertex : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeZVertex);
@@ -321,11 +321,11 @@ public:
     virtual std::string subtitle() const override;
 
 protected:
-    cocos2d::Texture2D*    _texture1;
-    cocos2d::Texture2D*    _texture2;
+    cocos2d::Texture2D* _texture1;
+    cocos2d::Texture2D* _texture2;
 };
 
-class SpriteFrameTest: public SpriteTestDemo
+class SpriteFrameTest : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteFrameTest);
@@ -336,11 +336,11 @@ public:
 
     void startIn05Secs(float dt);
     void flipSprites(float dt);
-private:
 
+private:
     cocos2d::Sprite* _sprite1;
     cocos2d::Sprite* _sprite2;
-    int      _counter;
+    int _counter;
 };
 
 class SpriteFrameAliasNameTest : public SpriteTestDemo
@@ -374,7 +374,7 @@ public:
     virtual std::string sheetName() const override;
 };
 
-class SpriteOffsetAnchorRotation: public SpriteTestDemo
+class SpriteOffsetAnchorRotation : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteOffsetAnchorRotation);
@@ -385,7 +385,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteBatchNodeOffsetAnchorRotation: public SpriteTestDemo
+class SpriteBatchNodeOffsetAnchorRotation : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeOffsetAnchorRotation);
@@ -395,7 +395,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteOffsetAnchorScale: public SpriteTestDemo
+class SpriteOffsetAnchorScale : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteOffsetAnchorScale);
@@ -405,7 +405,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteBatchNodeOffsetAnchorScale: public SpriteTestDemo
+class SpriteBatchNodeOffsetAnchorScale : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeOffsetAnchorScale);
@@ -524,7 +524,7 @@ public:
     virtual std::string title() const override;
 };
 
-class SpriteHybrid: public SpriteTestDemo
+class SpriteHybrid : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteHybrid);
@@ -535,10 +535,10 @@ public:
     virtual void onExit() override;
 
 protected:
-    bool     _usingSpriteBatchNode;
+    bool _usingSpriteBatchNode;
 };
 
-class SpriteBatchNodeChildren: public SpriteTestDemo
+class SpriteBatchNodeChildren : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeChildren);
@@ -556,7 +556,7 @@ public:
     virtual std::string title() const override;
 };
 
-class SpriteChildrenVisibility: public SpriteTestDemo
+class SpriteChildrenVisibility : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteChildrenVisibility);
@@ -575,7 +575,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteChildrenAnchorPoint: public SpriteTestDemo
+class SpriteChildrenAnchorPoint : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteChildrenAnchorPoint);
@@ -585,7 +585,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteBatchNodeChildrenAnchorPoint: public SpriteTestDemo
+class SpriteBatchNodeChildrenAnchorPoint : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeChildrenAnchorPoint);
@@ -595,7 +595,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteBatchNodeChildrenScale: public SpriteTestDemo
+class SpriteBatchNodeChildrenScale : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeChildrenScale);
@@ -604,7 +604,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteChildrenChildren: public SpriteTestDemo
+class SpriteChildrenChildren : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteChildrenChildren);
@@ -613,8 +613,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
-class SpriteBatchNodeChildrenChildren: public SpriteTestDemo
+class SpriteBatchNodeChildrenChildren : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteBatchNodeChildrenChildren);
@@ -623,7 +622,7 @@ public:
     virtual std::string subtitle() const override;
 };
 
-class SpriteNilTexture: public SpriteTestDemo
+class SpriteNilTexture : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteNilTexture);
@@ -696,6 +695,7 @@ public:
     SpriteBatchNodeReorderOneChild();
     void reorderSprite(float dt);
     virtual std::string title() const override;
+
 private:
     cocos2d::SpriteBatchNode* _batchNode;
     cocos2d::Sprite* _reorderSprite;
@@ -793,7 +793,9 @@ class Sprite3DRotationTest : public SpriteTestDemo
 public:
     CREATE_FUNC(Sprite3DRotationTest);
     Sprite3DRotationTest();
+
     virtual std::string title() const override { return "3D Rotation Test"; };
+
     virtual std::string subtitle() const override { return "Rotation should based on the anchor point"; };
 
 protected:
@@ -808,7 +810,9 @@ class SpriteSlice9Test1 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test1);
     SpriteSlice9Test1();
+
     virtual std::string title() const override { return "Slice 9 Test #1"; };
+
     virtual std::string subtitle() const override { return "Testing Sprite::create()"; };
 };
 
@@ -817,7 +821,9 @@ class SpriteSlice9Test2 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test2);
     SpriteSlice9Test2();
+
     virtual std::string title() const override { return "Slice 9 Test #2"; };
+
     virtual std::string subtitle() const override { return "Testing Sprite::createWithSpriteFrameName()"; }
 };
 
@@ -826,7 +832,9 @@ class SpriteSlice9Test3 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test3);
     SpriteSlice9Test3();
+
     virtual std::string title() const override { return "Slice 9 Test #3"; };
+
     virtual std::string subtitle() const override { return "Testing scaling a button"; }
 };
 
@@ -835,7 +843,9 @@ class SpriteSlice9Test4 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test4);
     SpriteSlice9Test4();
+
     virtual std::string title() const override { return "Slice 9 Test #4"; };
+
     virtual std::string subtitle() const override { return "Testing scaling a button"; }
 };
 
@@ -844,7 +854,9 @@ class SpriteSlice9Test5 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test5);
     SpriteSlice9Test5();
+
     virtual std::string title() const override { return "Slice 9 Test #5"; };
+
     virtual std::string subtitle() const override { return "Changing setCenterRect in runtime"; }
 
     virtual void update(float dt) override;
@@ -859,7 +871,9 @@ class SpriteSlice9Test6 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test6);
     SpriteSlice9Test6();
+
     virtual std::string title() const override { return "Slice 9 Test #6"; };
+
     virtual std::string subtitle() const override { return "Changing setCenterRect in runtime #2"; }
 
     virtual void update(float dt) override;
@@ -874,7 +888,9 @@ class SpriteSlice9Test7 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test7);
     SpriteSlice9Test7();
+
     virtual std::string title() const override { return "Slice 9 Test #7"; };
+
     virtual std::string subtitle() const override { return "Offset"; }
 };
 
@@ -883,7 +899,9 @@ class SpriteSlice9Test8 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test8);
     SpriteSlice9Test8();
+
     virtual std::string title() const override { return "Slice 9 Test #8"; };
+
     virtual std::string subtitle() const override { return "Flipped sprites"; }
 };
 
@@ -892,27 +910,31 @@ class SpriteSlice9Test9 : public SpriteTestDemo
 public:
     CREATE_FUNC(SpriteSlice9Test9);
     SpriteSlice9Test9();
+
     virtual std::string title() const override { return "Slice 9 Test #9"; };
+
     virtual std::string subtitle() const override { return "Flipped sprites #2"; }
 };
-
 
 class SpriteSlice9Test10 : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteSlice9Test10);
     SpriteSlice9Test10();
+
     virtual std::string title() const override { return "Slice 10 Test #9"; };
+
     virtual std::string subtitle() const override { return "Rotated Sprites"; }
 };
-
 
 class SpriteGetSpriteFrameTest : public SpriteTestDemo
 {
 public:
     CREATE_FUNC(SpriteGetSpriteFrameTest);
     SpriteGetSpriteFrameTest();
+
     virtual std::string title() const override { return "Sprite::getSpriteFrame(*)"; };
+
     virtual std::string subtitle() const override { return "setting after getting should be the same"; }
 };
 
@@ -921,10 +943,13 @@ class Issue17119 : public SpriteTestDemo
 public:
     CREATE_FUNC(Issue17119);
     Issue17119();
+
     virtual std::string title() const override { return "Issue 17119"; };
+
     virtual std::string subtitle() const override { return "flipping should work ok"; }
 
     virtual void update(float dt) override;
+
 protected:
     float _accum;
     cocos2d::Sprite* _s1;
@@ -934,4 +959,3 @@ protected:
 };
 
 #endif
-

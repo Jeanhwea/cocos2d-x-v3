@@ -24,9 +24,12 @@
  ******************************************************************************/
 
 #include "SpineTest.h"
-#include <iostream>
-#include <fstream>
+
 #include <string.h>
+
+#include <fstream>
+#include <iostream>
+
 #include "spine/spine.h"
 
 using namespace cocos2d;
@@ -49,17 +52,16 @@ SpineTests::SpineTests()
     ADD_TEST_CASE(TankExample);
 }
 
-SpineTestLayer::SpineTestLayer()
-: _title("")
-{}
+SpineTestLayer::SpineTestLayer() : _title("") {}
 
 std::string SpineTestLayer::title() const
- {
-     return _title;
- }
+{
+    return _title;
+}
 
 // BatchingExample
-bool BatchingExample::init () {
+bool BatchingExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "BatchingExample";
@@ -74,7 +76,7 @@ bool BatchingExample::init () {
 
     // Load the skeleton data.
     spSkeletonJson* json = spSkeletonJson_createWithLoader(_attachmentLoader);
-    json->scale = 0.6f; // Resizes skeleton data to 60% of the size it was in Spine.
+    json->scale = 0.6f;  // Resizes skeleton data to 60% of the size it was in Spine.
     _skeletonData = spSkeletonJson_readSkeletonDataFile(json, "spine/spineboy-ess.json");
     CCASSERT(_skeletonData, json->error ? json->error : "Error reading skeleton data file.");
     spSkeletonJson_dispose(json);
@@ -95,10 +97,8 @@ bool BatchingExample::init () {
         skeletonNode->addAnimation(0, "jump", false, 3);
         skeletonNode->addAnimation(0, "run", true);
 
-        skeletonNode->setPosition(Vec2(
-                                       RandomHelper::random_int(xMin, xMax),
-                                       RandomHelper::random_int(yMin, yMax)
-                                       ));
+        skeletonNode->setPosition(
+            Vec2(RandomHelper::random_int(xMin, xMax), RandomHelper::random_int(yMin, yMax)));
         skeletonNode->setScale(0.8);
         addChild(skeletonNode);
     }
@@ -106,9 +106,11 @@ bool BatchingExample::init () {
     return true;
 }
 
-BatchingExample::~BatchingExample () {
-    // SkeletonAnimation instances are cocos2d-x nodes and are disposed of automatically as normal, but the data created
-    // manually to be shared across multiple SkeletonAnimations needs to be disposed of manually.
+BatchingExample::~BatchingExample()
+{
+    // SkeletonAnimation instances are cocos2d-x nodes and are disposed of automatically as normal, but the
+    // data created manually to be shared across multiple SkeletonAnimations needs to be disposed of
+    // manually.
     spSkeletonData_dispose(_skeletonData);
     spAnimationStateData_dispose(_stateData);
     spAttachmentLoader_dispose(_attachmentLoader);
@@ -117,7 +119,8 @@ BatchingExample::~BatchingExample () {
 
 // CoinExample
 
-bool CoinExample::init () {
+bool CoinExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "CoinExample";
@@ -133,12 +136,14 @@ bool CoinExample::init () {
 
 // GoblinsExample
 
-bool GoblinsExample::init () {
+bool GoblinsExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "GoblinsExample";
 
-    skeletonNode = SkeletonAnimation::createWithJsonFile("spine/goblins-pro.json", "spine/goblins.atlas", 1.5f);
+    skeletonNode =
+        SkeletonAnimation::createWithJsonFile("spine/goblins-pro.json", "spine/goblins.atlas", 1.5f);
     skeletonNode->setAnimation(0, "walk", true);
     skeletonNode->setSkin("goblin");
 
@@ -150,11 +155,13 @@ bool GoblinsExample::init () {
 
 // RaptorExample
 
-bool RaptorExample::init () {
+bool RaptorExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "RaptorExample";
-    skeletonNode = SkeletonAnimation::createWithJsonFile("spine/raptor-pro.json", "spine/raptor.atlas", 0.5f);
+    skeletonNode =
+        SkeletonAnimation::createWithJsonFile("spine/raptor-pro.json", "spine/raptor.atlas", 0.5f);
 
     skeletonNode->setAnimation(0, "walk", true);
     skeletonNode->setAnimation(1, "empty", false);
@@ -168,28 +175,22 @@ bool RaptorExample::init () {
 
 // SpineboyExample
 
-bool SpineboyExample::init () {
+bool SpineboyExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "SpineboyExample";
-    skeletonNode = SkeletonAnimation::createWithJsonFile("spine/spineboy-ess.json", "spine/spineboy.atlas", 0.6f);
-    skeletonNode->setStartListener( [] (spTrackEntry* entry) {
-        log("%d start: %s", entry->trackIndex, entry->animation->name);
-    });
-    skeletonNode->setInterruptListener( [] (spTrackEntry* entry) {
-        log("%d interrupt", entry->trackIndex);
-    });
-    skeletonNode->setEndListener( [] (spTrackEntry* entry) {
-        log("%d end", entry->trackIndex);
-    });
-    skeletonNode->setCompleteListener( [] (spTrackEntry* entry) {
-        log("%d complete", entry->trackIndex);
-    });
-    skeletonNode->setDisposeListener( [] (spTrackEntry* entry) {
-        log("%d dispose", entry->trackIndex);
-    });
-    skeletonNode->setEventListener( [] (spTrackEntry* entry, spEvent* event) {
-        log("%d event: %s, %d, %f, %s", entry->trackIndex, event->data->name, event->intValue, event->floatValue, event->stringValue);
+    skeletonNode =
+        SkeletonAnimation::createWithJsonFile("spine/spineboy-ess.json", "spine/spineboy.atlas", 0.6f);
+    skeletonNode->setStartListener(
+        [](spTrackEntry* entry) { log("%d start: %s", entry->trackIndex, entry->animation->name); });
+    skeletonNode->setInterruptListener([](spTrackEntry* entry) { log("%d interrupt", entry->trackIndex); });
+    skeletonNode->setEndListener([](spTrackEntry* entry) { log("%d end", entry->trackIndex); });
+    skeletonNode->setCompleteListener([](spTrackEntry* entry) { log("%d complete", entry->trackIndex); });
+    skeletonNode->setDisposeListener([](spTrackEntry* entry) { log("%d dispose", entry->trackIndex); });
+    skeletonNode->setEventListener([](spTrackEntry* entry, spEvent* event) {
+        log("%d event: %s, %d, %f, %s", entry->trackIndex, event->data->name, event->intValue,
+            event->floatValue, event->stringValue);
     });
 
     skeletonNode->setMix("walk", "jump", 0.4);
@@ -198,12 +199,11 @@ bool SpineboyExample::init () {
     spTrackEntry* jumpEntry = skeletonNode->addAnimation(0, "jump", false, 1);
     skeletonNode->addAnimation(0, "run", true);
 
-    skeletonNode->setTrackStartListener(jumpEntry, [] (spTrackEntry* entry) {
-        log("jumped!");
-    });
+    skeletonNode->setTrackStartListener(jumpEntry, [](spTrackEntry* entry) { log("jumped!"); });
 
     // skeletonNode->addAnimation(1, "test", true);
-    // skeletonNode->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1), DelayTime::create(5), NULL)));
+    // skeletonNode->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1),
+    // DelayTime::create(5), NULL)));
 
     skeletonNode->setPosition(Vec2(_contentSize.width / 2, 20));
     skeletonNode->setScale(0.8);
@@ -214,14 +214,16 @@ bool SpineboyExample::init () {
     return true;
 }
 
-void SpineboyExample::update (float deltaTime) {
+void SpineboyExample::update(float deltaTime)
+{
     // Test releasing memory.
     // Director::getInstance()->replaceScene(SpineboyExample::scene());
 }
 
 // TankExample
 
-bool TankExample::init () {
+bool TankExample::init()
+{
     if (!SpineTestLayer::init()) return false;
 
     _title = "TankExample";
@@ -234,4 +236,3 @@ bool TankExample::init () {
 
     return true;
 }
-

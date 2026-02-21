@@ -27,7 +27,6 @@
 
 #include "../BaseTest.h"
 
-
 DEFINE_TEST_SUITE(TouchesTests);
 
 class PongScene : public TestCase
@@ -40,12 +39,14 @@ public:
 
 class Ball;
 class Paddle;
+
 class PongLayer : public cocos2d::Layer
 {
 private:
-    Ball*       _ball;
-    cocos2d::Vector<Paddle*>    _paddles;
-    cocos2d::Vec2     _ballStartingVelocity;
+    Ball* _ball;
+    cocos2d::Vector<Paddle*> _paddles;
+    cocos2d::Vec2 _ballStartingVelocity;
+
 public:
     CREATE_FUNC(PongLayer);
     PongLayer();
@@ -71,8 +72,7 @@ protected:
     ForceTouchTest();
     virtual ~ForceTouchTest();
 
-    cocos2d::Label * _infoLabel;
+    cocos2d::Label* _infoLabel;
 };
 
 #endif
-

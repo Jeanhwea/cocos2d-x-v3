@@ -35,8 +35,7 @@ USING_NS_CC;
 
 bool BugDrawNodeLayer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto size = Director::getInstance()->getWinSize();
         auto testSprite = Sprite::create("Images/close.png");
         BlendFunc blend;
@@ -64,4 +63,3 @@ bool BugDrawNodeLayer::init()
 
     return false;
 }
-

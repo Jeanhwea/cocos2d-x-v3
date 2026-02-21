@@ -26,10 +26,9 @@
 
 #include "JNITest.h"
 
+#include <string>
 
 #include "platform/android/jni/JniHelper.h"
-
-#include <string>
 
 USING_NS_CC;
 
@@ -90,4 +89,3 @@ JNITest::JNITest()
 }
 
 #endif
-

@@ -25,10 +25,10 @@
 #ifndef _DRAW_PRIMITIVES_TEST_H_
 #define _DRAW_PRIMITIVES_TEST_H_
 
-#include "cocos2d.h"
-#include "../BaseTest.h"
-
 #include <string>
+
+#include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(DrawPrimitivesTests);
 
@@ -93,7 +93,6 @@ public:
 
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-
 };
 
 class Issue19641Test : public DrawPrimitivesBaseTest
@@ -105,8 +104,6 @@ public:
 
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-
 };
 
 #endif
-

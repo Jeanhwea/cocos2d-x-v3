@@ -25,8 +25,8 @@
 #ifndef __AssetsManagerEx_Test_H__
 #define __AssetsManagerEx_Test_H__
 
-#include "extensions/cocos-ext.h"
 #include "../../BaseTest.h"
+#include "extensions/cocos-ext.h"
 
 DEFINE_TEST_SUITE(AssetsManagerExTests);
 
@@ -57,4 +57,3 @@ private:
 };
 
 #endif /* defined(__AssetsManagerEx_Test_H__) */
-

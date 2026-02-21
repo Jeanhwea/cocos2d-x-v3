@@ -36,5 +36,4 @@ public:
     void selectAnswer(cocos2d::Ref* sender);
 };
 
-#endif // __BUG_458_H__
-
+#endif  // __BUG_458_H__

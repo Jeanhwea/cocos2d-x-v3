@@ -25,9 +25,9 @@
 #ifndef _BOX2D_TEST_H_
 #define _BOX2D_TEST_H_
 
-#include "cocos2d.h"
-#include "Box2D/Box2D.h"
 #include "../BaseTest.h"
+#include "Box2D/Box2D.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(Box2DTests);
 
@@ -57,7 +57,6 @@ private:
     cocos2d::Texture2D* _spriteTexture;
     b2World* world;
 #endif
-} ;
+};
 
 #endif
-

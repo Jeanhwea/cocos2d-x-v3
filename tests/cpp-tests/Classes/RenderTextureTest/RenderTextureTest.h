@@ -25,8 +25,8 @@
 #ifndef _RENDERTEXTURE_TEST_H_
 #define _RENDERTEXTURE_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(RenderTextureTests);
 
@@ -79,17 +79,17 @@ public:
     void renderScreenShot();
 
 private:
-    cocos2d::SpriteBatchNode *mgr;
+    cocos2d::SpriteBatchNode* mgr;
 
-    cocos2d::Sprite *sp1;
-    cocos2d::Sprite *sp2;
-    cocos2d::Sprite *sp3;
-    cocos2d::Sprite *sp4;
-    cocos2d::Sprite *sp5;
-    cocos2d::Sprite *sp6;
-    cocos2d::Sprite *sp7;
-    cocos2d::Sprite *sp8;
-    cocos2d::Sprite *sp9;
+    cocos2d::Sprite* sp1;
+    cocos2d::Sprite* sp2;
+    cocos2d::Sprite* sp3;
+    cocos2d::Sprite* sp4;
+    cocos2d::Sprite* sp5;
+    cocos2d::Sprite* sp6;
+    cocos2d::Sprite* sp7;
+    cocos2d::Sprite* sp8;
+    cocos2d::Sprite* sp9;
 };
 
 class RenderTextureTestDepthStencil : public RenderTextureTest
@@ -101,6 +101,7 @@ public:
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
+
 private:
     cocos2d::CustomCommand _renderCmds[4];
     void onBeforeClear();
@@ -118,12 +119,13 @@ class RenderTextureTargetNode : public RenderTextureTest
 {
 private:
     cocos2d::Sprite *sprite1, *sprite2;
-    cocos2d::RenderTexture *renderTexture;
+    cocos2d::RenderTexture* renderTexture;
+
 public:
     CREATE_FUNC(RenderTextureTargetNode);
     RenderTextureTargetNode();
 
-    virtual void update(float t)override;
+    virtual void update(float t) override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
 
@@ -147,14 +149,14 @@ private:
 class SpriteRenderTextureBug : public RenderTextureTest
 {
 public:
-
     class SimpleSprite : public cocos2d::Sprite
     {
     public:
-        static SimpleSprite* create(const char* filename, const cocos2d::Rect &rect);
+        static SimpleSprite* create(const char* filename, const cocos2d::Rect& rect);
         SimpleSprite();
         ~SimpleSprite();
         virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags);
+
     public:
         cocos2d::RenderTexture* _rt;
     };
@@ -190,7 +192,8 @@ public:
     RenderTextureWithSprite3DIssue16894();
     virtual ~RenderTextureWithSprite3DIssue16894();
 
-    virtual void visit(cocos2d::Renderer *renderer, const cocos2d::Mat4& parentTransform, uint32_t parentFlags) override;
+    virtual void visit(cocos2d::Renderer* renderer, const cocos2d::Mat4& parentTransform,
+                       uint32_t parentFlags) override;
 
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
@@ -203,4 +206,3 @@ private:
 };
 
 #endif
-

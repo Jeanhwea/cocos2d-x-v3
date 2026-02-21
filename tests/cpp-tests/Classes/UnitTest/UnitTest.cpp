@@ -23,29 +23,31 @@
  ****************************************************************************/
 
 #include "UnitTest.h"
+
 #include <cmath>
+
 #include "RefPtrTest.h"
-#include "ui/UIHelper.h"
-#include "network/Uri.h"
 #include "base/ccUtils.h"
+#include "network/Uri.h"
+#include "ui/UIHelper.h"
 
 USING_NS_CC;
 using namespace cocos2d::network;
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-#if defined (__arm64__)
+#if defined(__arm64__)
 #define USE_NEON64
 #define INCLUDE_NEON64
-#elif defined (__ARM_NEON__)
+#elif defined(__ARM_NEON__)
 #define USE_NEON32
 #define INCLUDE_NEON32
 #else
 #endif
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-#if defined (__arm64__) || defined (__aarch64__)
+#if defined(__arm64__) || defined(__aarch64__)
 #define USE_NEON64
 #define INCLUDE_NEON64
-#elif defined (__ARM_NEON__)
+#elif defined(__ARM_NEON__)
 #define INCLUDE_NEON32
 #else
 #endif
@@ -53,12 +55,12 @@ using namespace cocos2d::network;
 
 #endif
 
-#if defined (__SSE__)
+#if defined(__SSE__)
 #define USE_SSE
 #define INCLUDE_SSE
 #endif
 
-#if (defined INCLUDE_NEON64) || (defined INCLUDE_NEON32) // FIXME: || (defined INCLUDE_SSE)
+#if (defined INCLUDE_NEON64) || (defined INCLUDE_NEON32)  // FIXME: || (defined INCLUDE_SSE)
 #define UNIT_TEST_FOR_OPTIMIZED_MATH_UTIL
 #endif
 
@@ -124,9 +126,9 @@ void TemplateVectorTest::onEnter()
     Vector<Node*> vec2(vec);
     CCASSERT(vec2.size() == vec.size(), "vec2 and vec should have equal size.");
     ssize_t size = vec.size();
-    for (ssize_t i = 0; i < size; ++i)
-    {
-        CCASSERT(vec2.at(i) == vec.at(i), "The element at the same index in vec2 and vec2 should be equal.");
+    for (ssize_t i = 0; i < size; ++i) {
+        CCASSERT(vec2.at(i) == vec.at(i),
+                 "The element at the same index in vec2 and vec2 should be equal.");
         CCASSERT(vec.at(i)->getReferenceCount() == 3, "The reference count of element in vec is 3. ");
         CCASSERT(vec2.at(i)->getReferenceCount() == 3, "The reference count of element in vec2 is 3. ");
     }
@@ -136,9 +138,9 @@ void TemplateVectorTest::onEnter()
     vec3 = vec2;
     CCASSERT(vec3.size() == vec2.size(), "vec3 and vec2 should have equal size.");
     size = vec3.size();
-    for (ssize_t i = 0; i < size; ++i)
-    {
-        CCASSERT(vec3.at(i) == vec2.at(i), "The element at the same index in vec3 and vec2 should be equal.");
+    for (ssize_t i = 0; i < size; ++i) {
+        CCASSERT(vec3.at(i) == vec2.at(i),
+                 "The element at the same index in vec3 and vec2 should be equal.");
         CCASSERT(vec3.at(i)->getReferenceCount() == 4, "The reference count of element in vec3 is 4. ");
         CCASSERT(vec2.at(i)->getReferenceCount() == 4, "The reference count of element in vec2 is 4. ");
         CCASSERT(vec.at(i)->getReferenceCount() == 4, "The reference count of element in vec is 4. ");
@@ -146,17 +148,15 @@ void TemplateVectorTest::onEnter()
 
     // Test move constructor
 
-    auto createVector = [this](){
+    auto createVector = [this]() {
         Vector<Node*> ret;
 
-        for (int i = 0; i < 20; i++)
-        {
+        for (int i = 0; i < 20; i++) {
             ret.pushBack(Node::create());
         }
 
         int j = 1000;
-        for (auto& child : ret)
-        {
+        for (auto& child : ret) {
             child->setTag(j++);
         }
 
@@ -164,8 +164,7 @@ void TemplateVectorTest::onEnter()
     };
 
     Vector<Node*> vec4(createVector());
-    for (const auto& child : vec4)
-    {
+    for (const auto& child : vec4) {
         CCASSERT(child->getReferenceCount() == 2, "child's reference count should be 2.");
     }
 
@@ -187,14 +186,14 @@ void TemplateVectorTest::onEnter()
     CCASSERT(toRemovedNode->getReferenceCount() == 1, "toRemovedNode's reference count is 1.");
     CCASSERT(vec5.size() == 20, "size should be 20");
 
-    for (const auto& child : vec5)
-    {
+    for (const auto& child : vec5) {
         CCASSERT(child->getReferenceCount() == 2, "child's reference count is 2.");
     }
 
     // Test Vector<T>::find
     CCASSERT(vec.find(node3) == (vec.begin() + 1), "node3 is the 2nd element in vec.");
-    CCASSERT(std::find(std::begin(vec), std::end(vec), node2) == (vec.begin() + 2), "node2 is the 3rd element in vec.");
+    CCASSERT(std::find(std::begin(vec), std::end(vec), node2) == (vec.begin() + 2),
+             "node2 is the 3rd element in vec.");
 
     CCASSERT(vec.front()->getTag() == 1, "vec's front element's tag is 1.");
     CCASSERT(vec.back()->getTag() == 2, "vec's back element's tag is 2.");
@@ -236,7 +235,7 @@ void TemplateVectorTest::onEnter()
     CCASSERT(vec6.at(2)->getTag() == 1013, "vec6's 3rd element's tag is 1013.");
     vec6.clear();
 
-    auto objA = Node::create(); // retain count is 1
+    auto objA = Node::create();  // retain count is 1
     auto objB = Node::create();
     auto objC = Node::create();
     {
@@ -244,11 +243,11 @@ void TemplateVectorTest::onEnter()
         Vector<Node*> array2;
 
         // push back objA 3 times
-        array1.pushBack(objA); // retain count is 2
-        array1.pushBack(objA); // retain count is 3
-        array1.pushBack(objA); // retain count is 4
+        array1.pushBack(objA);  // retain count is 2
+        array1.pushBack(objA);  // retain count is 3
+        array1.pushBack(objA);  // retain count is 4
 
-        array2.pushBack(objA); // retain count is 5
+        array2.pushBack(objA);  // retain count is 5
         array2.pushBack(objB);
         array2.pushBack(objC);
 
@@ -262,43 +261,40 @@ void TemplateVectorTest::onEnter()
     {
         Vector<Node*> array1;
         // push back objA 3 times
-        array1.pushBack(objA); // retain count is 2
-        array1.pushBack(objA); // retain count is 3
-        array1.pushBack(objA); // retain count is 4
+        array1.pushBack(objA);  // retain count is 2
+        array1.pushBack(objA);  // retain count is 3
+        array1.pushBack(objA);  // retain count is 4
         CCASSERT(objA->getReferenceCount() == 4, "objA's reference count is 4.");
-        array1.eraseObject(objA, true); // Remove all occurrences in the Vector.
+        array1.eraseObject(objA, true);  // Remove all occurrences in the Vector.
         CCASSERT(objA->getReferenceCount() == 1, "objA's reference count is 1.");
 
-        array1.pushBack(objA); // retain count is 2
-        array1.pushBack(objA); // retain count is 3
-        array1.pushBack(objA); // retain count is 4
+        array1.pushBack(objA);  // retain count is 2
+        array1.pushBack(objA);  // retain count is 3
+        array1.pushBack(objA);  // retain count is 4
 
         array1.eraseObject(objA, false);
-        CCASSERT(objA->getReferenceCount() == 3, "objA's reference count is 3."); // Only remove the first occurrence in the Vector.
+        CCASSERT(objA->getReferenceCount() == 3,
+                 "objA's reference count is 3.");  // Only remove the first occurrence in the Vector.
     }
 
     // Check the retain count in vec7
     CCASSERT(vec7.size() == 20, "vec7's size is 20.");
-    for (const auto& child : vec7)
-    {
+    for (const auto& child : vec7) {
         CCASSERT(child->getReferenceCount() == 2, "child's reference count is 2.");
     }
 
     // Sort
     Vector<Node*> vecForSort = createVector();
-    std::sort(vecForSort.begin(), vecForSort.end(), [](Node* a, Node* b){
-        return a->getTag() >= b->getTag();
-    });
+    std::sort(vecForSort.begin(), vecForSort.end(),
+              [](Node* a, Node* b) { return a->getTag() >= b->getTag(); });
 
-    for (int i = 0; i < 20; ++i)
-    {
+    for (int i = 0; i < 20; ++i) {
         CCASSERT(vecForSort.at(i)->getTag() - 1000 == (19 - i), "vecForSort's element's tag is invalid.");
     }
 
     // Reverse
     vecForSort.reverse();
-    for (int i = 0; i < 20; ++i)
-    {
+    for (int i = 0; i < 20; ++i) {
         CCASSERT(vecForSort.at(i)->getTag() - 1000 == i, "vecForSort's element's tag is invalid.");
     }
 
@@ -324,8 +320,7 @@ void TemplateVectorTest::onEnter()
     std::srand((unsigned)time(nullptr));
     Vector<Node*> vecForRandom = createVector();
     log("<--- begin ---->");
-    for (int i = 0; i < vecForRandom.size(); ++i)
-    {
+    for (int i = 0; i < vecForRandom.size(); ++i) {
         log("Vector: random object tag = %d", vecForRandom.getRandomObject()->getTag());
     }
     log("<---- end  ---->");
@@ -335,16 +330,14 @@ void TemplateVectorTest::onEnter()
     vecSelfAssign = vecSelfAssign;
     CCASSERT(vecSelfAssign.size() == 20, "vecSelfAssign's size is 20.");
 
-    for (const auto& child : vecSelfAssign)
-    {
+    for (const auto& child : vecSelfAssign) {
         CCASSERT(child->getReferenceCount() == 2, "child's reference count is 2.");
     }
 
     vecSelfAssign = std::move(vecSelfAssign);
     CCASSERT(vecSelfAssign.size() == 20, "vecSelfAssign's size is 20.");
 
-    for (const auto& child : vecSelfAssign)
-    {
+    for (const auto& child : vecSelfAssign) {
         CCASSERT(child->getReferenceCount() == 2, "child's reference count is 2.");
     }
 
@@ -363,17 +356,15 @@ std::string TemplateVectorTest::subtitle() const
     return "Vector<T>, should not crash";
 }
 
-
 //---------------------------------------------------------------
 
 void TemplateMapTest::onEnter()
 {
     UnitTestDemo::onEnter();
 
-    auto createMap = [this](){
+    auto createMap = [this]() {
         Map<std::string, Node*> ret;
-        for (int i = 0; i < 20; ++i)
-        {
+        for (int i = 0; i < 20; ++i) {
             auto node = Node::create();
             node->setTag(1000 + i);
             ret.insert(StringUtils::toString(i), node);
@@ -391,42 +382,37 @@ void TemplateMapTest::onEnter()
 
     // Move constructor
     Map<std::string, Node*> map2 = createMap();
-    for (const auto& e : map2)
-    {
+    for (const auto& e : map2) {
         CCASSERT(e.second->getReferenceCount() == 2, "e.second element's reference count is 2.");
     }
 
     // Copy constructor
     Map<std::string, Node*> map3(map2);
-    for (const auto& e : map3)
-    {
+    for (const auto& e : map3) {
         CCASSERT(e.second->getReferenceCount() == 3, "e.second's reference count is 3.");
     }
 
     // Move assignment operator
     Map<std::string, Node*> map4;
     auto unusedNode = Node::create();
-    map4.insert("unused",unusedNode);
+    map4.insert("unused", unusedNode);
     map4 = createMap();
     CCASSERT(unusedNode->getReferenceCount() == 1, "unusedNode's reference count is 1.");
-    for (const auto& e : map4)
-    {
+    for (const auto& e : map4) {
         CCASSERT(e.second->getReferenceCount() == 2, "e.second's reference count is 2.");
     }
 
     // Copy assignment operator
     Map<std::string, Node*> map5;
     map5 = map4;
-    for (const auto& e : map5)
-    {
+    for (const auto& e : map5) {
         CCASSERT(e.second->getReferenceCount() == 3, "e.second's reference count is 3.");
     }
 
     // Check size
     CCASSERT(map4.size() == map5.size(), "map4's size is equal to map5.size.");
 
-    for (const auto& e : map4)
-    {
+    for (const auto& e : map4) {
         CCASSERT(e.second == map5.find(e.first)->second, "e.second can't be found in map5.");
     }
 
@@ -434,12 +420,10 @@ void TemplateMapTest::onEnter()
     log("--------------");
     log("bucket_count = %d", static_cast<int>(map4.bucketCount()));
     log("size = %d", static_cast<int>(map4.size()));
-    for (int i = 0; i < map4.bucketCount(); ++i)
-    {
+    for (int i = 0; i < map4.bucketCount(); ++i) {
         log("bucket_size(%d) = %d", i, static_cast<int>(map4.bucketSize(i)));
     }
-    for (const auto& e : map4)
-    {
+    for (const auto& e : map4) {
         log("bucket(\"%s\"), bucket index = %d", e.first.c_str(), static_cast<int>(map4.bucket(e.first)));
     }
 
@@ -447,8 +431,7 @@ void TemplateMapTest::onEnter()
 
     // keys and at
     auto keys = map4.keys();
-    for (const auto& key : keys)
-    {
+    for (const auto& key : keys) {
         log("key = %s", key.c_str());
     }
 
@@ -459,8 +442,7 @@ void TemplateMapTest::onEnter()
 
     log("------ keys for object --------");
     auto keysForObject = map4.keys(node10Key);
-    for (const auto& key : keysForObject)
-    {
+    for (const auto& key : keysForObject) {
         log("key = %s", key.c_str());
     }
     log("--------------");
@@ -513,8 +495,7 @@ void TemplateMapTest::onEnter()
     auto mapForClearCopy = mapForClear;
     mapForClear.clear();
 
-    for (const auto& e : mapForClearCopy)
-    {
+    for (const auto& e : mapForClearCopy) {
         CCASSERT(e.second->getReferenceCount() == 2, "e.second's reference count is 2.");
     }
 
@@ -523,8 +504,7 @@ void TemplateMapTest::onEnter()
     std::srand((unsigned)time(nullptr));
     Map<std::string, Node*> mapForRandom = createMap();
     log("<--- begin ---->");
-    for (int i = 0; i < mapForRandom.size(); ++i)
-    {
+    for (int i = 0; i < mapForRandom.size(); ++i) {
         log("Map: random object tag = %d", mapForRandom.getRandomObject()->getTag());
     }
     log("<---- end  ---->");
@@ -534,16 +514,14 @@ void TemplateMapTest::onEnter()
     mapForSelfAssign = mapForSelfAssign;
     CCASSERT(mapForSelfAssign.size() == 20, "mapForSelfAssign's size is 20.");
 
-    for (const auto& e : mapForSelfAssign)
-    {
+    for (const auto& e : mapForSelfAssign) {
         CCASSERT(e.second->getReferenceCount() == 2, "e.second's reference count is 2.");
     }
 
     mapForSelfAssign = std::move(mapForSelfAssign);
     CCASSERT(mapForSelfAssign.size() == 20, "mapForSelfAssign's size is 20.");
 
-    for (const auto& e : mapForSelfAssign)
-    {
+    for (const auto& e : mapForSelfAssign) {
         CCASSERT(e.second->getReferenceCount() == 2, "e.second's reference's count is 2.");
     }
 }
@@ -598,7 +576,7 @@ void ValueTest::onEnter()
     CCASSERT(v8.getType() == Value::Type::STRING, "v8's value type is Value::Type::STRING.");
     CCASSERT(!v8.isNull(), "v8 is not null.");
 
-    auto createValueVector = [&](){
+    auto createValueVector = [&]() {
         ValueVector ret;
         ret.push_back(v1);
         ret.push_back(v2);
@@ -606,12 +584,11 @@ void ValueTest::onEnter()
         return ret;
     };
 
-
     Value v9(createValueVector());
     CCASSERT(v9.getType() == Value::Type::VECTOR, "v9's value type is Value::Type::VECTOR.");
     CCASSERT(!v9.isNull(), "v9 is not null.");
 
-    auto createValueMap = [&](){
+    auto createValueMap = [&]() {
         ValueMap ret;
         ret["aaa"] = v1;
         ret["bbb"] = v2;
@@ -623,7 +600,7 @@ void ValueTest::onEnter()
     CCASSERT(v10.getType() == Value::Type::MAP, "v10's value type is Value::Type::MAP.");
     CCASSERT(!v10.isNull(), "v10 is not null.");
 
-    auto createValueMapIntKey = [&](){
+    auto createValueMapIntKey = [&]() {
         ValueMapIntKey ret;
         ret[111] = v1;
         ret[222] = v2;
@@ -641,78 +618,27 @@ std::string ValueTest::subtitle() const
     return "Value Test, should not crash";
 }
 
-void ValueTest::constFunc(const Value& /*value*/) const
-{
-}
+void ValueTest::constFunc(const Value& /*value*/) const {}
 
 // UTFConversionTest
 
 // FIXME: made as define to prevent compile warnings in release mode. Better is to be a `const static int`
 #define TEST_CODE_NUM 11
 
-static const char16_t __utf16Code[] =
-{
-    0x3042,
-    0x3044,
-    0x3046,
-    0x3048,
-    0x304A,
-    0x3042,
-    0x3044,
-    0x3046,
-    0x3048,
-    0x304A,
-    0x0041,
-    0x0000,
+static const char16_t __utf16Code[] = {
+    0x3042, 0x3044, 0x3046, 0x3048, 0x304A, 0x3042, 0x3044, 0x3046, 0x3048, 0x304A, 0x0041, 0x0000,
 };
 
 // to avoid Xcode error, char => unsigned char
 // If you use this table, please cast manually as (const char *).
-static const unsigned char __utf8Code[] =
-{
-    0xE3,0x81,0x82,
-    0xE3,0x81,0x84,
-    0xE3,0x81,0x86,
-    0xE3,0x81,0x88,
-    0xE3,0x81,0x8A,
-    0xE3,0x81,0x82,
-    0xE3,0x81,0x84,
-    0xE3,0x81,0x86,
-    0xE3,0x81,0x88,
-    0xE3,0x81,0x8A,
-    0x41,
-    0x00,
+static const unsigned char __utf8Code[] = {
+    0xE3, 0x81, 0x82, 0xE3, 0x81, 0x84, 0xE3, 0x81, 0x86, 0xE3, 0x81, 0x88, 0xE3, 0x81, 0x8A, 0xE3,
+    0x81, 0x82, 0xE3, 0x81, 0x84, 0xE3, 0x81, 0x86, 0xE3, 0x81, 0x88, 0xE3, 0x81, 0x8A, 0x41, 0x00,
 };
 
-
-static const char16_t WHITE_SPACE_CODE[] =
-{
-    0x0009,
-    0x000A,
-    0x000B,
-    0x000C,
-    0x000D,
-    0x0020,
-    0x0085,
-    0x00A0,
-    0x1680,
-    0x2000,
-    0x2001,
-    0x2002,
-    0x2003,
-    0x2004,
-    0x2005,
-    0x2006,
-    0x2007,
-    0x2008,
-    0x2009,
-    0x200A,
-    0x2028,
-    0x2029,
-    0x202F,
-    0x205F,
-    0x3000
-};
+static const char16_t WHITE_SPACE_CODE[] = {
+    0x0009, 0x000A, 0x000B, 0x000C, 0x000D, 0x0020, 0x0085, 0x00A0, 0x1680, 0x2000, 0x2001, 0x2002, 0x2003,
+    0x2004, 0x2005, 0x2006, 0x2007, 0x2008, 0x2009, 0x200A, 0x2028, 0x2029, 0x202F, 0x205F, 0x3000};
 
 static void doUTFConversion()
 {
@@ -725,9 +651,8 @@ static void doUTFConversion()
     std::string utf8Str;
     isSuccess = StringUtils::UTF16ToUTF8(originalUTF16, utf8Str);
 
-    if (isSuccess)
-    {
-        isSuccess = memcmp(utf8Str.data(), originalUTF8.data(), originalUTF8.length()+1)==0;
+    if (isSuccess) {
+        isSuccess = memcmp(utf8Str.data(), originalUTF8.data(), originalUTF8.length() + 1) == 0;
     }
 
     CCASSERT(isSuccess, "StringUtils::UTF16ToUTF8 failed");
@@ -736,9 +661,8 @@ static void doUTFConversion()
     std::u16string utf16Str;
     isSuccess = StringUtils::UTF8ToUTF16(originalUTF8, utf16Str);
 
-    if (isSuccess)
-    {
-        isSuccess = memcmp(utf16Str.data(), originalUTF16.data(), originalUTF16.length()+1)==0;
+    if (isSuccess) {
+        isSuccess = memcmp(utf16Str.data(), originalUTF16.data(), originalUTF16.length() + 1) == 0;
     }
 
     CCASSERT(isSuccess && (utf16Str.length() == TEST_CODE_NUM), "StringUtils::UTF8ToUTF16 failed");
@@ -749,49 +673,50 @@ static void doUTFConversion()
     CCASSERT(vec1.size() == originalUTF16.length(), "StringUtils::getChar16VectorFromUTF16String failed");
 
     //---------------------------
-    std::vector<char16_t> vec2( vec1 );
+    std::vector<char16_t> vec2(vec1);
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
     vec2.push_back(0x2009);
 
-    std::vector<char16_t> vec3( vec2 );
+    std::vector<char16_t> vec3(vec2);
     StringUtils::trimUTF16Vector(vec2);
 
     CCASSERT(vec1.size() == vec2.size(), "StringUtils::trimUTF16Vector failed");
 
-    for (size_t i = 0; i < vec2.size(); i++ )
-    {
+    for (size_t i = 0; i < vec2.size(); i++) {
         CCASSERT(vec1.at(i) == vec2.at(i), "StringUtils::trimUTF16Vector failed");
     }
 
     //---------------------------
-    CCASSERT(StringUtils::getCharacterCountInUTF8String(originalUTF8) == TEST_CODE_NUM, "StringUtils::getCharacterCountInUTF8String failed");
+    CCASSERT(StringUtils::getCharacterCountInUTF8String(originalUTF8) == TEST_CODE_NUM,
+             "StringUtils::getCharacterCountInUTF8String failed");
 
     //---------------------------
-    CCASSERT(StringUtils::getIndexOfLastNotChar16(vec3, 0x2009) == (vec1.size()-1), "StringUtils::getIndexOfLastNotChar16 failed");
+    CCASSERT(StringUtils::getIndexOfLastNotChar16(vec3, 0x2009) == (vec1.size() - 1),
+             "StringUtils::getIndexOfLastNotChar16 failed");
 
     //---------------------------
-    CCASSERT(originalUTF16.length() == TEST_CODE_NUM, "The length of the original utf16 string isn't equal to TEST_CODE_NUM");
+    CCASSERT(originalUTF16.length() == TEST_CODE_NUM,
+             "The length of the original utf16 string isn't equal to TEST_CODE_NUM");
 
     //---------------------------
     size_t whiteCodeNum = sizeof(WHITE_SPACE_CODE) / sizeof(WHITE_SPACE_CODE[0]);
-    for( size_t i = 0; i < whiteCodeNum; i++ )
-    {
+    for (size_t i = 0; i < whiteCodeNum; i++) {
         CCASSERT(StringUtils::isUnicodeSpace(WHITE_SPACE_CODE[i]), "StringUtils::isUnicodeSpace failed");
     }
 
     CCASSERT(!StringUtils::isUnicodeSpace(0xFFFF), "StringUtils::isUnicodeSpace failed");
 
-    CCASSERT(!StringUtils::isCJKUnicode(0xFFFF) && StringUtils::isCJKUnicode(0x3100), "StringUtils::isCJKUnicode failed");
+    CCASSERT(!StringUtils::isCJKUnicode(0xFFFF) && StringUtils::isCJKUnicode(0x3100),
+             "StringUtils::isCJKUnicode failed");
 }
 
 void UTFConversionTest::onEnter()
 {
     UnitTestDemo::onEnter();
 
-    for (int i = 0; i < 10000; ++i)
-    {
+    for (int i = 0; i < 10000; ++i) {
         doUTFConversion();
     }
 }
@@ -860,10 +785,16 @@ void UIHelperSubStringTest::onEnter()
         CC_ASSERT(Helper::getSubStringOfUTF8String(source, 8, 0).empty());
         CC_ASSERT(Helper::getSubStringOfUTF8String(source, 8, 1).empty());
         CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 1) == "\xe8\xbf\x99");
-        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 4) == "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad");
-        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 8) == "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95\xe4\xbe\x8b");
-        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 100) == "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95\xe4\xbe\x8b");
-        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 2, 5) == "\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95");
+        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 4) ==
+                  "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad");
+        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 8) ==
+                  "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95\xe4"
+                  "\xbe\x8b");
+        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 0, 100) ==
+                  "\xe8\xbf\x99\xe9\x87\x8c\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95\xe4"
+                  "\xbe\x8b");
+        CC_ASSERT(Helper::getSubStringOfUTF8String(source, 2, 5) ==
+                  "\xe6\x98\xaf\xe4\xb8\xad\xe6\x96\x87\xe6\xb5\x8b\xe8\xaf\x95");
         CC_ASSERT(Helper::getSubStringOfUTF8String(source, 6, 2) == "\xe8\xaf\x95\xe4\xbe\x8b");
         CC_ASSERT(Helper::getSubStringOfUTF8String(source, 6, 100) == "\xe8\xaf\x95\xe4\xbe\x8b");
 
@@ -912,7 +843,8 @@ std::string UIHelperSubStringTest::subtitle() const
 }
 
 // ParseIntegerListTest
-void ParseIntegerListTest::onEnter() {
+void ParseIntegerListTest::onEnter()
+{
     UnitTestDemo::onEnter();
 
     {
@@ -1431,7 +1363,6 @@ void ParseUriTest::onEnter()
         EXPECT_EQ(u6.getPathEtc(), "?&foo=321&bbb=1");
         EXPECT_EQ(u6.getQuery(), "&foo=321&bbb=1");
     }
-
 }
 
 std::string ParseUriTest::subtitle() const
@@ -1441,7 +1372,8 @@ std::string ParseUriTest::subtitle() const
 
 // MathUtilTest
 
-namespace UnitTest {
+namespace UnitTest
+{
 
 #ifdef INCLUDE_NEON32
 #include "math/MathUtilNeon.inl"
@@ -1452,12 +1384,12 @@ namespace UnitTest {
 #endif
 
 #ifdef INCLUDE_SSE
-//FIXME: #include "math/MathUtilSSE.inl"
+// FIXME: #include "math/MathUtilSSE.inl"
 #endif
 
 #include "math/MathUtil.inl"
 
-} // namespace UnitTest {
+}  // namespace UnitTest
 
 // I know the next line looks ugly, but it's a way to test MathUtil. :)
 using namespace UnitTest::cocos2d;
@@ -1466,15 +1398,11 @@ static void __checkMathUtilResult(const char* description, const float* a1, cons
 {
     log("-------------checking %s ----------------------------", description);
     // Check whether the result of the optimized instruction is the same as which is implemented in C
-    for (int i = 0; i < size; ++i)
-    {
-        bool r = std::fabs(a1[i] - a2[i]) < 0.00001f;//FLT_EPSILON;
-        if (r)
-        {
+    for (int i = 0; i < size; ++i) {
+        bool r = std::fabs(a1[i] - a2[i]) < 0.00001f;  // FLT_EPSILON;
+        if (r) {
             log("Correct: a1[%d]=%f, a2[%d]=%f", i, a1[i], i, a2[i]);
-        }
-        else
-        {
+        } else {
             log("Wrong: a1[%d]=%f, a2[%d]=%f", i, a1[i], i, a2[i]);
         }
         CCASSERT(r, "The optimized instruction is implemented in a wrong way, please check it!");
@@ -1489,17 +1417,13 @@ void MathUtilTest::onEnter()
     const int VEC4_SIZE = 4;
 
     const float inMat41[MAT4_SIZE] = {
-        0.234023f, 2.472349f, 1.984244f, 2.23348f,
-        0.634124f, 0.234975f, 6.384572f, 0.82368f,
-        0.738028f, 1.845237f, 1.934721f, 1.62343f,
-        0.339023f, 3.472452f, 1.324714f, 4.23852f,
+        0.234023f, 2.472349f, 1.984244f, 2.23348f, 0.634124f, 0.234975f, 6.384572f, 0.82368f,
+        0.738028f, 1.845237f, 1.934721f, 1.62343f, 0.339023f, 3.472452f, 1.324714f, 4.23852f,
     };
 
     const float inMat42[MAT4_SIZE] = {
-        1.640232f, 4.472349f, 0.983244f, 1.23343f,
-        2.834124f, 8.234975f, 0.082572f, 3.82464f,
-        3.238028f, 2.845237f, 0.331721f, 4.62544f,
-        4.539023f, 9.472452f, 3.520714f, 2.23252f,
+        1.640232f, 4.472349f, 0.983244f, 1.23343f, 2.834124f, 8.234975f, 0.082572f, 3.82464f,
+        3.238028f, 2.845237f, 0.331721f, 4.62544f, 4.539023f, 9.472452f, 3.520714f, 2.23252f,
     };
 
     const float scalar = 1.323298f;
@@ -1531,7 +1455,8 @@ void MathUtilTest::onEnter()
 // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void addMatrix(const float* m, float scalar, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult("inline static void addMatrix(const float* m, float scalar, float* dst);",
+                          outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1551,7 +1476,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void addMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult("inline static void addMatrix(const float* m1, const float* m2, float* dst);",
+                          outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1571,7 +1497,9 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void subtractMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult(
+        "inline static void subtractMatrix(const float* m1, const float* m2, float* dst);", outMat4C,
+        outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1591,7 +1519,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void multiplyMatrix(const float* m, float scalar, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult("inline static void multiplyMatrix(const float* m, float scalar, float* dst);",
+                          outMat4C, outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1611,7 +1540,9 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void multiplyMatrix(const float* m1, const float* m2, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult(
+        "inline static void multiplyMatrix(const float* m1, const float* m2, float* dst);", outMat4C,
+        outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1631,7 +1562,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void negateMatrix(const float* m, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult("inline static void negateMatrix(const float* m, float* dst);", outMat4C,
+                          outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1651,7 +1583,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void transposeMatrix(const float* m, float* dst);", outMat4C, outMat4Opt, MAT4_SIZE);
+    __checkMathUtilResult("inline static void transposeMatrix(const float* m, float* dst);", outMat4C,
+                          outMat4Opt, MAT4_SIZE);
     // Clean
     memset(outMat4C, 0, sizeof(outMat4C));
     memset(outMat4Opt, 0, sizeof(outMat4Opt));
@@ -1671,7 +1604,9 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void transformVec4(const float* m, float x, float y, float z, float w, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
+    __checkMathUtilResult(
+        "inline static void transformVec4(const float* m, float x, float y, float z, float w, float* dst);",
+        outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
     memset(outVec4Opt, 0, sizeof(outVec4Opt));
@@ -1691,7 +1626,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void transformVec4(const float* m, const float* v, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
+    __checkMathUtilResult("inline static void transformVec4(const float* m, const float* v, float* dst);",
+                          outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
     memset(outVec4Opt, 0, sizeof(outVec4Opt));
@@ -1711,7 +1647,8 @@ void MathUtilTest::onEnter()
     // FIXME:
 #endif
 
-    __checkMathUtilResult("inline static void crossVec3(const float* v1, const float* v2, float* dst);", outVec4C, outVec4Opt, VEC4_SIZE);
+    __checkMathUtilResult("inline static void crossVec3(const float* v1, const float* v2, float* dst);",
+                          outVec4C, outVec4Opt, VEC4_SIZE);
     // Clean
     memset(outVec4C, 0, sizeof(outVec4C));
     memset(outVec4Opt, 0, sizeof(outVec4Opt));
@@ -1745,4 +1682,3 @@ std::string ResizableBufferAdapterTest::subtitle() const
 {
     return "ResiziableBufferAdapter<Data> Test";
 }
-

@@ -74,7 +74,6 @@ protected:
     cocos2d::ui::Text* _displayValueLabel;
 };
 
-
 class UISliderNormalDefaultTest : public UIScene
 {
 public:
@@ -128,4 +127,3 @@ protected:
     cocos2d::ui::TextBMFont* _displayValueLabel;
 };
 #endif /* defined(__TestCpp__UISliderTest__) */
-
