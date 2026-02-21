@@ -33,14 +33,11 @@
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate()
-: _testController(nullptr)
-{
-}
+AppDelegate::AppDelegate() : _testController(nullptr) {}
 
 AppDelegate::~AppDelegate()
 {
-    //SimpleAudioEngine::end();
+    // SimpleAudioEngine::end();
     cocostudio::ArmatureDataManager::destroyInstance();
 }
 
@@ -64,7 +61,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if(!glview) {
+    if (!glview) {
         glview = GLViewImpl::create("Cpp Tests");
         director->setOpenGLView(glview);
     }
@@ -78,19 +75,16 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto fileUtils = FileUtils::getInstance();
     std::vector<std::string> searchPaths;
 
-    if (screenSize.height > 320)
-    {
+    if (screenSize.height > 320) {
         auto resourceSize = Size(960, 640);
         searchPaths.emplace_back("hd");
         searchPaths.emplace_back("ccs-res/hd");
         searchPaths.emplace_back("ccs-res");
         searchPaths.emplace_back("Manifests");
-        director->setContentScaleFactor(resourceSize.height/designSize.height);
+        director->setContentScaleFactor(resourceSize.height / designSize.height);
 
         searchPaths.emplace_back("hd/ActionTimeline");
-    }
-    else
-    {
+    } else {
         searchPaths.emplace_back("ccs-res");
 
         searchPaths.emplace_back("ActionTimeline");
@@ -99,7 +93,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     fileUtils->setSearchPaths(searchPaths);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WP8)
-    // a bug in DirectX 11 level9-x on the device prevents ResolutionPolicy::NO_BORDER from working correctly
+    // a bug in DirectX 11 level9-x on the device prevents ResolutionPolicy::NO_BORDER from working
+    // correctly
     glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::SHOW_ALL);
 #else
     glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
@@ -121,8 +116,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 // This function will be called when the app is inactive. Note, when receiving a phone call it is invoked.
 void AppDelegate::applicationDidEnterBackground()
 {
-    if (_testController)
-    {
+    if (_testController) {
         _testController->onEnterBackground();
     }
 
@@ -132,8 +126,7 @@ void AppDelegate::applicationDidEnterBackground()
 // this function will be called when the app is active again
 void AppDelegate::applicationWillEnterForeground()
 {
-    if (_testController)
-    {
+    if (_testController) {
         _testController->onEnterForeground();
     }
 

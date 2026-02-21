@@ -46,9 +46,7 @@ public:
 private:
     cocos2d::ui::RadioButtonGroup* _radioButtonGroup;
     cocos2d::ui::Text* _allowNoSelectionText;
-
 };
-
 
 class UIRadioButtonTwoGroupsTest : public UIScene
 {
@@ -59,11 +57,13 @@ public:
     ~UIRadioButtonTwoGroupsTest();
 
     virtual bool init() override;
-    void onChangedRadioButtonGroup1(cocos2d::ui::RadioButton* radioButton, int index, cocos2d::ui::RadioButtonGroup::EventType type);
-    void onChangedRadioButtonGroup2(cocos2d::ui::RadioButton* radioButton, int index, cocos2d::ui::RadioButtonGroup::EventType type);
-    void onChangedRadioButtonSelect(cocos2d::ui::RadioButton* radioButton,cocos2d::ui::RadioButton::EventType type);
+    void onChangedRadioButtonGroup1(cocos2d::ui::RadioButton* radioButton, int index,
+                                    cocos2d::ui::RadioButtonGroup::EventType type);
+    void onChangedRadioButtonGroup2(cocos2d::ui::RadioButton* radioButton, int index,
+                                    cocos2d::ui::RadioButtonGroup::EventType type);
+    void onChangedRadioButtonSelect(cocos2d::ui::RadioButton* radioButton,
+                                    cocos2d::ui::RadioButton::EventType type);
     void clearRadioButtonGroup(Ref* sender);
-
 
 protected:
     void addLog(const std::string& log);
@@ -83,4 +83,3 @@ public:
 };
 
 #endif /* defined(__TestCpp__UIRadioButtonTest__) */
-

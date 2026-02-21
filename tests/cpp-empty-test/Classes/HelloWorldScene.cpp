@@ -23,14 +23,14 @@
  ****************************************************************************/
 
 #include "HelloWorldScene.h"
+
 #include "AppMacros.h"
 
 USING_NS_CC;
 
-
 Scene* HelloWorld::scene()
 {
-     return HelloWorld::create();
+    return HelloWorld::create();
 }
 
 // on "init" you need to initialize your instance
@@ -38,8 +38,7 @@ bool HelloWorld::init()
 {
     //////////////////////////////
     // 1. super init first
-    if ( !Scene::init() )
-    {
+    if (!Scene::init()) {
         return false;
     }
 
@@ -51,10 +50,8 @@ bool HelloWorld::init()
     //    you may modify it.
 
     // add a "close" icon to exit the progress. it's an autorelease object
-    auto closeItem = MenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        CC_CALLBACK_1(HelloWorld::menuCloseCallback,this));
+    auto closeItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png",
+                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
 
     closeItem->setPosition(origin + Vec2(visibleSize) - Vec2(closeItem->getContentSize() / 2));
 
@@ -72,8 +69,8 @@ bool HelloWorld::init()
     auto label = Label::createWithTTF("Hello World", "fonts/arial.ttf", TITLE_FONT_SIZE);
 
     // position the label on the center of the screen
-    label->setPosition(origin.x + visibleSize.width/2,
-                            origin.y + visibleSize.height - label->getContentSize().height);
+    label->setPosition(origin.x + visibleSize.width / 2,
+                       origin.y + visibleSize.height - label->getContentSize().height);
 
     // add the label as a child to this layer
     this->addChild(label, 1);
@@ -101,4 +98,3 @@ void HelloWorld::menuCloseCallback(Ref* sender)
 {
     Director::getInstance()->end();
 }
-

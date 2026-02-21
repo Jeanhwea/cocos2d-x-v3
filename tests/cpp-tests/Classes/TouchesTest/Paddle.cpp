@@ -26,13 +26,9 @@
 
 USING_NS_CC;
 
-Paddle::Paddle()
-{
-}
+Paddle::Paddle() {}
 
-Paddle::~Paddle()
-{
-}
+Paddle::~Paddle() {}
 
 Rect Paddle::getRect()
 {
@@ -51,8 +47,7 @@ Paddle* Paddle::createWithTexture(Texture2D* aTexture)
 
 bool Paddle::initWithTexture(Texture2D* aTexture)
 {
-    if( Sprite::initWithTexture(aTexture) )
-    {
+    if (Sprite::initWithTexture(aTexture)) {
         _state = kPaddleStateUngrabbed;
     }
 
@@ -76,8 +71,8 @@ void Paddle::onEnter()
 
 void Paddle::onExit()
 {
-//    auto director = Director::getInstance();
-//    director->getTouchDispatcher()->removeDelegate(this);
+    //    auto director = Director::getInstance();
+    //    director->getTouchDispatcher()->removeDelegate(this);
     Sprite::onExit();
 }
 
@@ -88,10 +83,11 @@ bool Paddle::containsTouchLocation(Touch* touch)
 
 bool Paddle::onTouchBegan(Touch* touch, Event* event)
 {
-    CCLOG("Paddle::onTouchBegan id = %d, x = %f, y = %f", touch->getID(), touch->getLocation().x, touch->getLocation().y);
+    CCLOG("Paddle::onTouchBegan id = %d, x = %f, y = %f", touch->getID(), touch->getLocation().x,
+          touch->getLocation().y);
 
     if (_state != kPaddleStateUngrabbed) return false;
-    if ( !containsTouchLocation(touch) ) return false;
+    if (!containsTouchLocation(touch)) return false;
 
     _state = kPaddleStateGrabbed;
     CCLOG("return true");
@@ -107,13 +103,14 @@ void Paddle::onTouchMoved(Touch* touch, Event* event)
     // you get Sets instead of 1 UITouch, so you'd need to loop through the set
     // in each touchXXX method.
 
-    CCLOG("Paddle::onTouchMoved id = %d, x = %f, y = %f", touch->getID(), touch->getLocation().x, touch->getLocation().y);
+    CCLOG("Paddle::onTouchMoved id = %d, x = %f, y = %f", touch->getID(), touch->getLocation().x,
+          touch->getLocation().y);
 
     CCASSERT(_state == kPaddleStateGrabbed, "Paddle - Unexpected state!");
 
     auto touchPoint = touch->getLocation();
 
-    setPosition( Vec2(touchPoint.x, getPosition().y) );
+    setPosition(Vec2(touchPoint.x, getPosition().y));
 }
 
 Paddle* Paddle::clone() const
@@ -131,4 +128,3 @@ void Paddle::onTouchEnded(Touch* touch, Event* event)
 
     _state = kPaddleStateUngrabbed;
 }
-

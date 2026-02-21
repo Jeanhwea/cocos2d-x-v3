@@ -35,20 +35,13 @@ UICheckBoxTests::UICheckBoxTests()
 }
 
 // UICheckBoxTest
-UICheckBoxTest::UICheckBoxTest()
-: _displayValueLabel(nullptr)
-{
+UICheckBoxTest::UICheckBoxTest() : _displayValueLabel(nullptr) {}
 
-}
-
-UICheckBoxTest::~UICheckBoxTest()
-{
-}
+UICheckBoxTest::~UICheckBoxTest() {}
 
 bool UICheckBoxTest::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         // Add a label in which the checkbox events will be displayed
@@ -58,17 +51,16 @@ bool UICheckBoxTest::init()
         _uiLayer->addChild(_displayValueLabel);
 
         // Add the alert
-        Text* alert = Text::create("CheckBox","fonts/Marker Felt.ttf",30 );
+        Text* alert = Text::create("CheckBox", "fonts/Marker Felt.ttf", 30);
         alert->setColor(Color3B(159, 168, 176));
-        alert->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
+        alert->setPosition(Vec2(widgetSize.width / 2.0f,
+                                widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
 
         // Create the checkbox
-        _checkBox = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_normal_press.png",
-                                              "cocosui/check_box_active.png",
-                                              "cocosui/check_box_normal_disable.png",
-                                              "cocosui/check_box_active_disable.png");
+        _checkBox = CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_normal_press.png",
+                                     "cocosui/check_box_active.png", "cocosui/check_box_normal_disable.png",
+                                     "cocosui/check_box_active_disable.png");
         _checkBox->setPosition(Vec2(widgetSize.width / 2.0f, widgetSize.height / 2.0f));
 
         _checkBox->addEventListener(CC_CALLBACK_2(UICheckBoxTest::selectedEvent, this));
@@ -76,8 +68,10 @@ bool UICheckBoxTest::init()
 
         TTFConfig ttfConfig("fonts/arial.ttf", 15);
         auto label1 = Label::createWithTTF(ttfConfig, "Print Resources");
-        auto item1 = MenuItemLabel::create(label1, CC_CALLBACK_1(UICheckBoxTest::printWidgetResources, this));
-        item1->setPosition(Vec2(VisibleRect::left().x + 60, VisibleRect::bottom().y + item1->getContentSize().height * 3));
+        auto item1 =
+            MenuItemLabel::create(label1, CC_CALLBACK_1(UICheckBoxTest::printWidgetResources, this));
+        item1->setPosition(
+            Vec2(VisibleRect::left().x + 60, VisibleRect::bottom().y + item1->getContentSize().height * 3));
         auto pMenu1 = Menu::create(item1, nullptr);
         pMenu1->setPosition(Vec2(0, 0));
         this->addChild(pMenu1, 10);
@@ -87,10 +81,9 @@ bool UICheckBoxTest::init()
     return false;
 }
 
-void UICheckBoxTest::selectedEvent(Ref* pSender,CheckBox::EventType type)
+void UICheckBoxTest::selectedEvent(Ref* pSender, CheckBox::EventType type)
 {
-    switch (type)
-    {
+    switch (type) {
         case CheckBox::EventType::SELECTED:
             _displayValueLabel->setString(StringUtils::format("Selected"));
             break;
@@ -102,39 +95,33 @@ void UICheckBoxTest::selectedEvent(Ref* pSender,CheckBox::EventType type)
         default:
             break;
     }
-
 }
 
 void UICheckBoxTest::printWidgetResources(cocos2d::Ref* sender)
 {
     cocos2d::ResourceData backGroundFileName = _checkBox->getBackNormalFile();
-    CCLOG("backGroundFile  Name : %s, Type: %d", backGroundFileName.file.c_str(),backGroundFileName.type);
+    CCLOG("backGroundFile  Name : %s, Type: %d", backGroundFileName.file.c_str(), backGroundFileName.type);
     cocos2d::ResourceData backGroundSelectedFileName = _checkBox->getBackPressedFile();
-    CCLOG("backGroundSelectedFile  Name : %s, Type: %d", backGroundSelectedFileName.file.c_str(), backGroundSelectedFileName.type);
+    CCLOG("backGroundSelectedFile  Name : %s, Type: %d", backGroundSelectedFileName.file.c_str(),
+          backGroundSelectedFileName.type);
     cocos2d::ResourceData backGroundDisabledFileName = _checkBox->getBackDisabledFile();
-    CCLOG("backGroundDisabledFile  Name : %s, Type: %d", backGroundDisabledFileName.file.c_str(), backGroundDisabledFileName.type);
+    CCLOG("backGroundDisabledFile  Name : %s, Type: %d", backGroundDisabledFileName.file.c_str(),
+          backGroundDisabledFileName.type);
     cocos2d::ResourceData frontCrossFileName = _checkBox->getCrossNormalFile();
     CCLOG("frontCrossFile  Name : %s, Type: %d", frontCrossFileName.file.c_str(), frontCrossFileName.type);
     cocos2d::ResourceData frontCrossDisabledFileName = _checkBox->getCrossDisabledFile();
-    CCLOG("frontCrossDisabledFile  Name : %s, Type: %d", frontCrossDisabledFileName.file.c_str(), frontCrossDisabledFileName.type);
+    CCLOG("frontCrossDisabledFile  Name : %s, Type: %d", frontCrossDisabledFileName.file.c_str(),
+          frontCrossDisabledFileName.type);
 }
-
 
 // UICheckBoxDefaultBehaviorTest
-UICheckBoxDefaultBehaviorTest::UICheckBoxDefaultBehaviorTest()
-: _displayValueLabel(nullptr)
-{
+UICheckBoxDefaultBehaviorTest::UICheckBoxDefaultBehaviorTest() : _displayValueLabel(nullptr) {}
 
-}
-
-UICheckBoxDefaultBehaviorTest::~UICheckBoxDefaultBehaviorTest()
-{
-}
+UICheckBoxDefaultBehaviorTest::~UICheckBoxDefaultBehaviorTest() {}
 
 bool UICheckBoxDefaultBehaviorTest::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         // Add a label in which the checkbox events will be displayed
@@ -144,41 +131,40 @@ bool UICheckBoxDefaultBehaviorTest::init()
         _uiLayer->addChild(_displayValueLabel);
 
         // Add the alert
-        Text* alert = Text::create("Only left two and the last checkbox can be clicked!","fonts/Marker Felt.ttf",20 );
+        Text* alert = Text::create("Only left two and the last checkbox can be clicked!",
+                                   "fonts/Marker Felt.ttf", 20);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
 
         // Create the checkbox
-        CheckBox* checkBox = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_active.png");
+        CheckBox* checkBox =
+            CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_active.png");
         checkBox->setPosition(Vec2(widgetSize.width / 2.0f - 50, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(checkBox);
 
-
         // Create the checkbox
-        CheckBox* checkBox2 = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_active.png");
+        CheckBox* checkBox2 =
+            CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_active.png");
         checkBox2->setPosition(Vec2(widgetSize.width / 2.0f - 150, widgetSize.height / 2.0f));
         checkBox2->ignoreContentAdaptWithSize(false);
         checkBox2->setZoomScale(0.5);
-        checkBox2->setContentSize(Size(80,80));
+        checkBox2->setContentSize(Size(80, 80));
         checkBox2->setName("bigCheckBox");
         _uiLayer->addChild(checkBox2);
 
-
         // Create the checkbox
-        CheckBox* checkBoxDisabled = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_active.png");
+        CheckBox* checkBoxDisabled =
+            CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_active.png");
         checkBoxDisabled->setPosition(Vec2(widgetSize.width / 2.0f + 20, widgetSize.height / 2.0f));
         checkBoxDisabled->setEnabled(false);
         checkBoxDisabled->setBright(false);
         _uiLayer->addChild(checkBoxDisabled);
 
-        CheckBox* checkBoxDisabled2 = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_active.png");
+        CheckBox* checkBoxDisabled2 =
+            CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_active.png");
         checkBoxDisabled2->setPosition(Vec2(widgetSize.width / 2.0f + 70, widgetSize.height / 2.0f));
         checkBoxDisabled2->setBright(false);
         checkBoxDisabled2->setSelected(true);
@@ -188,22 +174,14 @@ bool UICheckBoxDefaultBehaviorTest::init()
     return false;
 }
 
-
 // UICheckBoxCopyTest
-UICheckBoxCopyTest::UICheckBoxCopyTest()
-: _displayValueLabel(nullptr)
-{
+UICheckBoxCopyTest::UICheckBoxCopyTest() : _displayValueLabel(nullptr) {}
 
-}
-
-UICheckBoxCopyTest::~UICheckBoxCopyTest()
-{
-}
+UICheckBoxCopyTest::~UICheckBoxCopyTest() {}
 
 bool UICheckBoxCopyTest::init()
 {
-    if (UIScene::init())
-    {
+    if (UIScene::init()) {
         Size widgetSize = _widget->getContentSize();
 
         // Add a label in which the checkbox events will be displayed
@@ -213,26 +191,24 @@ bool UICheckBoxCopyTest::init()
         _uiLayer->addChild(_displayValueLabel);
 
         // Add the alert
-        Text* alert = Text::create("Two checkbox are identical.","fonts/Marker Felt.ttf",20 );
+        Text* alert = Text::create("Two checkbox are identical.", "fonts/Marker Felt.ttf", 20);
         alert->setColor(Color3B(159, 168, 176));
         alert->setPosition(Vec2(widgetSize.width / 2.0f,
                                 widgetSize.height / 2.0f - alert->getContentSize().height * 1.75f));
         _uiLayer->addChild(alert);
 
         // Create the checkbox
-        CheckBox* checkBox = CheckBox::create("cocosui/check_box_normal.png",
-                                              "cocosui/check_box_active.png");
+        CheckBox* checkBox =
+            CheckBox::create("cocosui/check_box_normal.png", "cocosui/check_box_active.png");
         checkBox->setPosition(Vec2(widgetSize.width / 2.0f - 50, widgetSize.height / 2.0f));
 
         _uiLayer->addChild(checkBox);
 
         auto checkboxCopy = checkBox->clone();
-        checkboxCopy->setPosition(checkBox->getPosition() + Vec2(50,0));
+        checkboxCopy->setPosition(checkBox->getPosition() + Vec2(50, 0));
         _uiLayer->addChild(checkboxCopy);
-
 
         return true;
     }
     return false;
 }
-

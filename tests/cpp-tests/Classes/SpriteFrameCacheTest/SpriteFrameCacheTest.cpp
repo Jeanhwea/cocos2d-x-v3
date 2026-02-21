@@ -63,7 +63,8 @@ SpriteFrameCachePixelFormatTest::SpriteFrameCachePixelFormatTest()
     if (Configuration::getInstance()->supportsPVRTC()) {
         loadSpriteFrames("Images/sprite_frames_test/test_PVRTC2.plist", Texture2D::PixelFormat::PVRTC2A);
         loadSpriteFrames("Images/sprite_frames_test/test_PVRTC4.plist", Texture2D::PixelFormat::PVRTC4A);
-        loadSpriteFrames("Images/sprite_frames_test/test_PVRTC2_NOALPHA.plist", Texture2D::PixelFormat::PVRTC2);
+        loadSpriteFrames("Images/sprite_frames_test/test_PVRTC2_NOALPHA.plist",
+                         Texture2D::PixelFormat::PVRTC2);
     }
 
     // test loading atlases without PixelFormat specified
@@ -74,22 +75,25 @@ SpriteFrameCachePixelFormatTest::SpriteFrameCachePixelFormatTest()
     Texture2D::setDefaultAlphaPixelFormat(Texture2D::PixelFormat::RGBA8888);
 }
 
-void SpriteFrameCachePixelFormatTest::loadSpriteFrames(const std::string &file, cocos2d::Texture2D::PixelFormat expectedFormat)
+void SpriteFrameCachePixelFormatTest::loadSpriteFrames(const std::string &file,
+                                                       cocos2d::Texture2D::PixelFormat expectedFormat)
 {
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(file);
     SpriteFrame *spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini.png");
     Texture2D *texture = spriteFrame->getTexture();
     const ssize_t bitsPerKB = 8 * 1024;
-    const double memorySize = 1.0 * texture->getBitsPerPixelForFormat() * texture->getContentSizeInPixels().width * texture->getContentSizeInPixels().height / bitsPerKB;
+    const double memorySize = 1.0 * texture->getBitsPerPixelForFormat() *
+                              texture->getContentSizeInPixels().width *
+                              texture->getContentSizeInPixels().height / bitsPerKB;
     CC_ASSERT(texture->getPixelFormat() == expectedFormat);
 
-    const std::string textureInfo = StringUtils::format("%s: %.2f KB\r\n", texture->getStringForFormat(), memorySize);
+    const std::string textureInfo =
+        StringUtils::format("%s: %.2f KB\r\n", texture->getStringForFormat(), memorySize);
     infoLabel->setString(infoLabel->getString() + textureInfo);
 
     SpriteFrameCache::getInstance()->removeSpriteFramesFromFile(file);
     Director::getInstance()->getTextureCache()->removeTexture(texture);
 }
-
 
 SpriteFrameCacheLoadMultipleTimes::SpriteFrameCacheLoadMultipleTimes()
 {
@@ -100,10 +104,10 @@ SpriteFrameCacheLoadMultipleTimes::SpriteFrameCacheLoadMultipleTimes()
     loadSpriteFrames("Images/sprite_frames_test/test_RGBA8888.plist", Texture2D::PixelFormat::RGBA8888);
     loadSpriteFrames("Images/sprite_frames_test/test_RGBA8888.plist", Texture2D::PixelFormat::RGBA8888);
     loadSpriteFrames("Images/sprite_frames_test/test_RGBA8888.plist", Texture2D::PixelFormat::RGBA8888);
-
 }
 
-void SpriteFrameCacheLoadMultipleTimes::loadSpriteFrames(const std::string &file, cocos2d::Texture2D::PixelFormat expectedFormat)
+void SpriteFrameCacheLoadMultipleTimes::loadSpriteFrames(const std::string &file,
+                                                         cocos2d::Texture2D::PixelFormat expectedFormat)
 {
     SpriteFrameCache::getInstance()->addSpriteFramesWithFile(file);
     SpriteFrame *spriteFrame = SpriteFrameCache::getInstance()->getSpriteFrameByName("grossini.png");
@@ -114,7 +118,6 @@ void SpriteFrameCacheLoadMultipleTimes::loadSpriteFrames(const std::string &file
     Director::getInstance()->getTextureCache()->removeTexture(texture);
 }
 
-
 SpriteFrameCacheFullCheck::SpriteFrameCacheFullCheck()
 {
     const Size screenSize = Director::getInstance()->getWinSize();
@@ -122,7 +125,8 @@ SpriteFrameCacheFullCheck::SpriteFrameCacheFullCheck()
     loadSpriteFrames("Images/test_polygon.plist", Texture2D::PixelFormat::RGBA8888);
 }
 
-void SpriteFrameCacheFullCheck::loadSpriteFrames(const std::string &file, cocos2d::Texture2D::PixelFormat expectedFormat)
+void SpriteFrameCacheFullCheck::loadSpriteFrames(const std::string &file,
+                                                 cocos2d::Texture2D::PixelFormat expectedFormat)
 {
     auto cache = SpriteFrameCache::getInstance();
 
@@ -135,9 +139,9 @@ void SpriteFrameCacheFullCheck::loadSpriteFrames(const std::string &file, cocos2
     CCASSERT(cache->isSpriteFramesWithFileLoaded(file) == true, "Plist should not be still full");
 
     cache->removeSpriteFrameByName("grossinis_sister1.png");
-    CCASSERT(cache->isSpriteFramesWithFileLoaded(file) == false, "Plist should not be full after remove any sprite");
+    CCASSERT(cache->isSpriteFramesWithFileLoaded(file) == false,
+             "Plist should not be full after remove any sprite");
 
     cache->addSpriteFramesWithFile(file);
     CCASSERT(cache->isSpriteFramesWithFileLoaded(file) == true, "Plist should be full after reloaded");
 }
-

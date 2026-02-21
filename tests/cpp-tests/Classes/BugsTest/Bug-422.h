@@ -34,11 +34,11 @@ public:
 
     virtual bool init() override;
 
-    virtual std::string title() const override { return "Bug422";}
+    virtual std::string title() const override { return "Bug422"; }
+
     void reset();
     void check(Node* target);
     void menuCallback(cocos2d::Ref* sender);
 };
 
-#endif // __BUG_422_H__
-
+#endif  // __BUG_422_H__

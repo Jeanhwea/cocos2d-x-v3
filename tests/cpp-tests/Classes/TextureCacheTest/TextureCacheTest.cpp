@@ -35,9 +35,7 @@ TextureCacheTests::TextureCacheTests()
     ADD_TEST_CASE(TextureCacheUnbindTest);
 }
 
-TextureCacheTest::TextureCacheTest()
-: _numberOfSprites(20)
-, _numberOfLoadedSprites(0)
+TextureCacheTest::TextureCacheTest() : _numberOfSprites(20), _numberOfLoadedSprites(0)
 {
     auto size = Director::getInstance()->getWinSize();
 
@@ -51,37 +49,56 @@ TextureCacheTest::TextureCacheTest()
     this->addChild(_labelPercent);
 
     // load textures
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/HelloWorld.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_01.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_02.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_03.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_04.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_05.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_06.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_07.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_08.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_09.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_10.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_11.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_12.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_13.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/grossini_dance_14.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/background1.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/background2.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/background3.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
-    Director::getInstance()->getTextureCache()->addImageAsync("Images/blocks.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/HelloWorld.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_01.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_02.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_03.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_04.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_05.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_06.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_07.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_08.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_09.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_10.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_11.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_12.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_13.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/grossini_dance_14.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/background1.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/background2.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/background3.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
+    Director::getInstance()->getTextureCache()->addImageAsync(
+        "Images/blocks.png", CC_CALLBACK_1(TextureCacheTest::loadingCallBack, this));
 }
 
-void TextureCacheTest::loadingCallBack(cocos2d::Texture2D *texture)
+void TextureCacheTest::loadingCallBack(cocos2d::Texture2D* texture)
 {
     ++_numberOfLoadedSprites;
     char tmp[10];
-    sprintf(tmp,"%%%d", (int)(((float)_numberOfLoadedSprites / _numberOfSprites) * 100));
+    sprintf(tmp, "%%%d", (int)(((float)_numberOfLoadedSprites / _numberOfSprites) * 100));
     _labelPercent->setString(tmp);
 
-    if (_numberOfLoadedSprites == _numberOfSprites)
-    {
+    if (_numberOfLoadedSprites == _numberOfSprites) {
         this->removeChild(_labelLoading, true);
         this->removeChild(_labelPercent, true);
         addSprite();
@@ -160,15 +177,11 @@ TextureCacheUnbindTest::TextureCacheUnbindTest()
 {
     auto size = Director::getInstance()->getWinSize();
 
-    Label* nothing =
-      Label::createWithTTF
-      ("There should be\nnothing below", "fonts/arial.ttf", 15);
+    Label* nothing = Label::createWithTTF("There should be\nnothing below", "fonts/arial.ttf", 15);
     nothing->setPosition(Vec2(size.width / 4, 5 * size.height / 6));
     this->addChild(nothing);
 
-    Label* something =
-      Label::createWithTTF
-      ("There should be\na white square below", "fonts/arial.ttf", 15);
+    Label* something = Label::createWithTTF("There should be\na white square below", "fonts/arial.ttf", 15);
     something->setPosition(Vec2(3 * size.width / 4, 5 * size.height / 6));
     this->addChild(something);
 
@@ -176,32 +189,27 @@ TextureCacheUnbindTest::TextureCacheUnbindTest()
 
     cache->removeTextureForKey("Images/texture2048x2048.png");
 
-    cache->addImageAsync
-      ("Images/texture2048x2048.png",
-       CC_CALLBACK_1(TextureCacheUnbindTest::textureLoadedA, this),
-       "A");
-    cache->addImageAsync
-      ("Images/texture2048x2048.png",
-       CC_CALLBACK_1(TextureCacheUnbindTest::textureLoadedB, this),
-       "B");
+    cache->addImageAsync("Images/texture2048x2048.png",
+                         CC_CALLBACK_1(TextureCacheUnbindTest::textureLoadedA, this), "A");
+    cache->addImageAsync("Images/texture2048x2048.png",
+                         CC_CALLBACK_1(TextureCacheUnbindTest::textureLoadedB, this), "B");
     cache->unbindImageAsync("A");
 }
 
 void TextureCacheUnbindTest::textureLoadedA(Texture2D* texture)
 {
-  auto size = Director::getInstance()->getWinSize();
-  auto s = Sprite::create("Images/texture2048x2048.png");
-  s->setScale(0.15);
-  s->setPosition(size.width / 4, size.height / 2);
-  this->addChild(s);
+    auto size = Director::getInstance()->getWinSize();
+    auto s = Sprite::create("Images/texture2048x2048.png");
+    s->setScale(0.15);
+    s->setPosition(size.width / 4, size.height / 2);
+    this->addChild(s);
 }
 
 void TextureCacheUnbindTest::textureLoadedB(Texture2D* texture)
 {
-  auto size = Director::getInstance()->getWinSize();
-  auto s = Sprite::create("Images/texture2048x2048.png");
-  s->setScale(0.15);
-  s->setPosition(3 * size.width / 4, size.height / 2);
-  this->addChild(s);
+    auto size = Director::getInstance()->getWinSize();
+    auto s = Sprite::create("Images/texture2048x2048.png");
+    s->setScale(0.15);
+    s->setPosition(3 * size.width / 4, size.height / 2);
+    this->addChild(s);
 }
-

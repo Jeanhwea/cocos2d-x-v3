@@ -27,4 +27,3 @@
 
 #include "../BaseTest.h"
 DEFINE_TEST_SUITE(DownloaderTests);
-

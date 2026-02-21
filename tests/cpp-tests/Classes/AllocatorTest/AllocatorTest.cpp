@@ -25,8 +25,10 @@
  ****************************************************************************/
 
 #include "AllocatorTest.h"
-#include "cocos2d.h"
+
 #include <chrono>
+
+#include "cocos2d.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -38,44 +40,38 @@ AllocatorTests::AllocatorTests()
 }
 
 #define kNumberOfInstances 100000
-#define kObjectSize 952 // sizeof(Sprite)
+#define kObjectSize 952  // sizeof(Sprite)
 
 namespace
 {
-    class Test1;
+class Test1;
 
-    class Test1
-    {
-    public:
+class Test1
+{
+public:
+    Test1() { memset(bytes, 0, sizeof(bytes)); }
 
-        Test1()
-        {
-            memset(bytes, 0, sizeof(bytes));
-        }
-        uint8_t bytes[kObjectSize];
+    uint8_t bytes[kObjectSize];
 
 #if CC_ENABLE_ALLOCATOR
-        typedef cocos2d::allocator::AllocatorStrategyPool<Test1> tAllocator;
-        static tAllocator _allocator;
-#endif // CC_ENABLE_ALLOCATOR
-        CC_USE_ALLOCATOR_POOL(Test1, _allocator);
-    };
+    typedef cocos2d::allocator::AllocatorStrategyPool<Test1> tAllocator;
+    static tAllocator _allocator;
+#endif  // CC_ENABLE_ALLOCATOR
+    CC_USE_ALLOCATOR_POOL(Test1, _allocator);
+};
 
-    class Test2
-    {
-    public:
+class Test2
+{
+public:
+    Test2() { memset(bytes, 0, sizeof(bytes)); }
 
-        Test2()
-        {
-            memset(bytes, 0, sizeof(bytes));
-        }
-        uint8_t bytes[kObjectSize];
-    };
+    uint8_t bytes[kObjectSize];
+};
 
 #if CC_ENABLE_ALLOCATOR
-    Test1::tAllocator Test1::_allocator("Test1", kNumberOfInstances);
-#endif // CC_ENABLE_ALLOCATOR
-}
+Test1::tAllocator Test1::_allocator("Test1", kNumberOfInstances);
+#endif  // CC_ENABLE_ALLOCATOR
+}  // namespace
 
 //
 // AllocatorTest
@@ -92,29 +88,25 @@ AllocatorTest::AllocatorTest()
     tTest2Container test2Container;
     test2Container.reserve(kNumberOfInstances);
 
-    std::chrono::time_point<std::chrono::high_resolution_clock> alloc1Start, alloc1End, alloc2Start, alloc2End;
+    std::chrono::time_point<std::chrono::high_resolution_clock> alloc1Start, alloc1End, alloc2Start,
+        alloc2End;
     std::chrono::time_point<std::chrono::high_resolution_clock> free1Start, free1End, free2Start, free2End;
 
     alloc1Start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < kNumberOfInstances; ++i)
-        test1Container.push_back(new Test1);
+    for (int i = 0; i < kNumberOfInstances; ++i) test1Container.push_back(new Test1);
     alloc1End = std::chrono::high_resolution_clock::now();
 
     free1Start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < kNumberOfInstances; ++i)
-        delete test1Container[i];
+    for (int i = 0; i < kNumberOfInstances; ++i) delete test1Container[i];
     free1End = std::chrono::high_resolution_clock::now();
     test1Container.clear();
 
     alloc2Start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < kNumberOfInstances; ++i)
-        test2Container.push_back(new Test2);
+    for (int i = 0; i < kNumberOfInstances; ++i) test2Container.push_back(new Test2);
     alloc2End = std::chrono::high_resolution_clock::now();
 
-
     free2Start = std::chrono::high_resolution_clock::now();
-    for (int i = 0; i < kNumberOfInstances; ++i)
-        delete test2Container[i];
+    for (int i = 0; i < kNumberOfInstances; ++i) delete test2Container[i];
     free2End = std::chrono::high_resolution_clock::now();
 
     test2Container.clear();
@@ -152,12 +144,9 @@ AllocatorTest::AllocatorTest()
     addChild(free2);
 }
 
-AllocatorTest::~AllocatorTest()
-{
-}
+AllocatorTest::~AllocatorTest() {}
 
 std::string AllocatorTest::title() const
 {
     return "Allocator Test";
 }
-

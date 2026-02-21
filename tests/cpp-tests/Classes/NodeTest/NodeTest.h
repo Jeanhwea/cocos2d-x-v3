@@ -135,7 +135,6 @@ protected:
     SchedulerCallbackTest();
 };
 
-
 class NodeToWorld : public TestCocosNodeDemo
 {
 public:
@@ -180,7 +179,7 @@ public:
 
 protected:
     CameraZoomTest();
-    float    _z;
+    float _z;
 };
 
 class CameraCenterTest : public TestCocosNodeDemo
@@ -354,4 +353,3 @@ public:
 };
 
 #endif
-

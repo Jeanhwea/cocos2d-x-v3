@@ -33,8 +33,8 @@
 #ifndef __samples__NewEventDispatcherTest__
 #define __samples__NewEventDispatcherTest__
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(EventDispatcherTests);
 
@@ -43,7 +43,6 @@ class EventDispatcherTestDemo : public TestCase
 public:
     virtual std::string title() const override;
 };
-
 
 class TouchableSpriteTest : public EventDispatcherTestDemo
 {
@@ -80,6 +79,7 @@ public:
     virtual void onExit() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::EventListenerCustom* _listener;
     cocos2d::EventListenerCustom* _listener2;
@@ -112,6 +112,7 @@ public:
     virtual void onExit() override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::Sprite* _sprite;
     bool _spriteSaved;
@@ -145,8 +146,8 @@ public:
 
 protected:
     int _count1, _count2, _count3, _count4;
-    cocos2d::Label* _label1, *_label2, *_label3, *_label4;
-    cocos2d::EventListenerCustom* _event1, *_event2, *_event3, *_event4;
+    cocos2d::Label *_label1, *_label2, *_label3, *_label4;
+    cocos2d::EventListenerCustom *_event1, *_event2, *_event3, *_event4;
 };
 
 class GlobalZTouchTest : public EventDispatcherTestDemo
@@ -311,4 +312,3 @@ private:
 };
 
 #endif /* defined(__samples__NewEventDispatcherTest__) */
-

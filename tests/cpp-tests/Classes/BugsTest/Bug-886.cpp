@@ -33,8 +33,7 @@ USING_NS_CC;
 
 bool Bug886Layer::init()
 {
-    if(BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         // ask director the the window size
         //        auto size = [[Director sharedDirector] winSize];
 
@@ -55,4 +54,3 @@ bool Bug886Layer::init()
 
     return false;
 }
-

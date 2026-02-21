@@ -36,8 +36,7 @@ USING_NS_CC;
 
 bool BugChild::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto size = Director::getInstance()->getWinSize();
 
         // create and initialize a Label
@@ -46,15 +45,15 @@ bool BugChild::init()
         menu = Menu::create(item1, nullptr);
 
         menu->alignItemsVertically();
-        menu->setPosition(size.width/2, 100);
+        menu->setPosition(size.width / 2, 100);
         addChild(menu);
 
         parent1 = Sprite::create("Images/grossini.png");
-        parent1->setPosition(size.width/4, size.height/2);
+        parent1->setPosition(size.width / 4, size.height / 2);
         addChild(parent1);
 
         parent2 = Sprite::create("Images/grossinis_sister1.png");
-        parent2->setPosition(size.width*3/4, size.height/2);
+        parent2->setPosition(size.width * 3 / 4, size.height / 2);
         addChild(parent2);
 
         child = Sprite::create("Images/grossinis_sister2.png");
@@ -69,14 +68,11 @@ bool BugChild::init()
 
 void BugChild::switchChild(Ref *sender)
 {
-    if(parent1->getChildrenCount() > 0)
-    {
+    if (parent1->getChildrenCount() > 0) {
         parent1->removeChild(child, false);
         parent2->addChild(child);
         CCLOG("Child attached to parent2");
-    }
-    else
-    {
+    } else {
         parent2->removeChild(child, false);
         parent1->addChild(child);
         CCLOG("Child attached to parent1");
@@ -90,11 +86,11 @@ bool BugCameraMask::init()
     auto size = Director::getInstance()->getWinSize();
 
     auto node = Node::create();
-    node->setPosition(size.width/4, size.height/3);
+    node->setPosition(size.width / 4, size.height / 3);
     _sprite = Sprite::create("Images/grossini.png");
     node->addChild(_sprite);
     node->setCameraMask((unsigned short)CameraFlag::USER1);
-    auto move = MoveBy::create(2, Vec2(200,0));
+    auto move = MoveBy::create(2, Vec2(200, 0));
 
     node->runAction(RepeatForever::create(Sequence::createWithTwoActions(move, move->reverse())));
     addChild(node);
@@ -103,22 +99,21 @@ bool BugCameraMask::init()
     camera->setCameraFlag(CameraFlag::USER1);
     addChild(camera);
 
-
     auto item1 = MenuItemFont::create("Switch Child", CC_CALLBACK_1(BugCameraMask::switchSpriteFlag, this));
 
     auto menu = Menu::create(item1, nullptr);
 
     menu->alignItemsVertically();
-    menu->setPosition(size.width/2, 100);
+    menu->setPosition(size.width / 2, 100);
     addChild(menu);
 
     _spriteMaskLabel = Label::create();
-    _spriteMaskLabel->setPosition(size.width/2, 120);
+    _spriteMaskLabel->setPosition(size.width / 2, 120);
     addChild(_spriteMaskLabel);
     updateSpriteMaskLabel();
 
     auto label = Label::create();
-    label->setPosition(size.width/2, size.height * 0.9);
+    label->setPosition(size.width / 2, size.height * 0.9);
     label->setString("Sprite should always run action.");
     addChild(label);
 
@@ -127,12 +122,9 @@ bool BugCameraMask::init()
 
 void BugCameraMask::switchSpriteFlag(Ref *sender)
 {
-    if((unsigned short) CameraFlag::USER1 == _sprite->getCameraMask())
-    {
+    if ((unsigned short)CameraFlag::USER1 == _sprite->getCameraMask()) {
         _sprite->setCameraMask((unsigned short)CameraFlag::DEFAULT);
-    }
-    else
-    {
+    } else {
         _sprite->setCameraMask((unsigned short)CameraFlag::USER1);
     }
 
@@ -142,7 +134,7 @@ void BugCameraMask::switchSpriteFlag(Ref *sender)
 void BugCameraMask::updateSpriteMaskLabel()
 {
     std::stringstream stream;
-    stream << "The camera Mask is " << (_sprite->getCameraMask() == 1 ? "CameraFlag::Default" : "CameraFlag::User1") << std::endl;
+    stream << "The camera Mask is "
+           << (_sprite->getCameraMask() == 1 ? "CameraFlag::Default" : "CameraFlag::User1") << std::endl;
     _spriteMaskLabel->setString(stream.str());
 }
-

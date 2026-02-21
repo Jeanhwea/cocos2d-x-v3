@@ -33,5 +33,4 @@ public:
     virtual bool init() override;
 };
 
-#endif // __QUESTION_CONTAINER_SPRITE_H__
-
+#endif  // __QUESTION_CONTAINER_SPRITE_H__

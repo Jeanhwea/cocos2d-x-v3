@@ -23,9 +23,10 @@
  ****************************************************************************/
 
 #include "SchedulerTest.h"
+
 #include "../testResource.h"
-#include "ui/UIText.h"
 #include "controller.h"
+#include "ui/UIText.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -82,8 +83,7 @@ void SchedulerAutoremove::autoremove(float dt)
     accum += dt;
     CCLOG("autoremove scheduler: Time: %f", accum);
 
-    if( accum > 3 )
-    {
+    if (accum > 3) {
         unschedule(CC_SCHEDULE_SELECTOR(SchedulerAutoremove::autoremove));
         CCLOG("autoremove scheduler: scheduler removed");
     }
@@ -149,15 +149,9 @@ std::string SchedulerPauseResume::subtitle() const
 //
 //------------------------------------------------------------------
 
-SchedulerPauseResumeAll::SchedulerPauseResumeAll()
-{
+SchedulerPauseResumeAll::SchedulerPauseResumeAll() {}
 
-}
-
-SchedulerPauseResumeAll::~SchedulerPauseResumeAll()
-{
-
-}
+SchedulerPauseResumeAll::~SchedulerPauseResumeAll() {}
 
 void SchedulerPauseResumeAll::onEnter()
 {
@@ -181,8 +175,7 @@ void SchedulerPauseResumeAll::update(float /*delta*/)
 
 void SchedulerPauseResumeAll::onExit()
 {
-    if (!_pausedTargets.empty())
-    {
+    if (!_pausedTargets.empty()) {
         Director::getInstance()->getScheduler()->resumeTargets(_pausedTargets);
     }
     SchedulerTestLayer::onExit();
@@ -208,10 +201,7 @@ void SchedulerPauseResumeAll::pause(float /*dt*/)
     CCASSERT(_pausedTargets.size() == 2, "Error: pausedTargets should have only 2 items");
 
     // because target 'this' has been paused above, so use another node(tag:123) as target
-    getChildByTag(123)->scheduleOnce([this](float dt)
-                                     {
-                                         this->resume(dt);
-                                     }, 2.0f, "test resume");
+    getChildByTag(123)->scheduleOnce([this](float dt) { this->resume(dt); }, 2.0f, "test resume");
 }
 
 void SchedulerPauseResumeAll::resume(float /*dt*/)
@@ -238,15 +228,9 @@ std::string SchedulerPauseResumeAll::subtitle() const
 //
 //------------------------------------------------------------------
 
-SchedulerPauseResumeAllUser::SchedulerPauseResumeAllUser()
-{
+SchedulerPauseResumeAllUser::SchedulerPauseResumeAllUser() {}
 
-}
-
-SchedulerPauseResumeAllUser::~SchedulerPauseResumeAllUser()
-{
-
-}
+SchedulerPauseResumeAllUser::~SchedulerPauseResumeAllUser() {}
 
 void SchedulerPauseResumeAllUser::onEnter()
 {
@@ -255,7 +239,7 @@ void SchedulerPauseResumeAllUser::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto sprite = Sprite::create("Images/grossinis_sister1.png");
-    sprite->setPosition(Vec2(s.width/2, s.height/2));
+    sprite->setPosition(Vec2(s.width / 2, s.height / 2));
     sprite->setTag(123);
     this->addChild(sprite);
     sprite->runAction(RepeatForever::create(RotateBy::create(3.0, 360)));
@@ -267,8 +251,7 @@ void SchedulerPauseResumeAllUser::onEnter()
 
 void SchedulerPauseResumeAllUser::onExit()
 {
-    if (!_pausedTargets.empty())
-    {
+    if (!_pausedTargets.empty()) {
         Director::getInstance()->getScheduler()->resumeTargets(_pausedTargets);
     }
     SchedulerTestLayer::onExit();
@@ -288,12 +271,10 @@ void SchedulerPauseResumeAllUser::pause(float /*dt*/)
 {
     log("Pausing, tick1 and tick2 should be called three times");
     auto director = Director::getInstance();
-    _pausedTargets = director->getScheduler()->pauseAllTargetsWithMinPriority(Scheduler::PRIORITY_NON_SYSTEM_MIN);
+    _pausedTargets =
+        director->getScheduler()->pauseAllTargetsWithMinPriority(Scheduler::PRIORITY_NON_SYSTEM_MIN);
     // because target 'this' has been paused above, so use another node(tag:123) as target
-    getChildByTag(123)->scheduleOnce([this](float dt)
-                                     {
-                                         this->resume(dt);
-                                     }, 2.0f, "test resume");
+    getChildByTag(123)->scheduleOnce([this](float dt) { this->resume(dt); }, 2.0f, "test resume");
 }
 
 void SchedulerPauseResumeAllUser::resume(float /*dt*/)
@@ -312,7 +293,6 @@ std::string SchedulerPauseResumeAllUser::subtitle() const
 {
     return "ticks will pause after 3s, then resume at 5s. See console";
 }
-
 
 //------------------------------------------------------------------
 //
@@ -377,7 +357,7 @@ void SchedulerUnscheduleAllHard::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto sprite = Sprite::create("Images/grossinis_sister1.png");
-    sprite->setPosition(Vec2(s.width/2, s.height/2));
+    sprite->setPosition(Vec2(s.width / 2, s.height / 2));
     this->addChild(sprite);
     sprite->runAction(RepeatForever::create(RotateBy::create(3.0, 360)));
 
@@ -392,10 +372,11 @@ void SchedulerUnscheduleAllHard::onEnter()
 
 void SchedulerUnscheduleAllHard::onExit()
 {
-    if(!_actionManagerActive) {
+    if (!_actionManagerActive) {
         // Restore the director's action manager.
         auto director = Director::getInstance();
-        director->getScheduler()->scheduleUpdate(director->getActionManager(), Scheduler::PRIORITY_SYSTEM, false);
+        director->getScheduler()->scheduleUpdate(director->getActionManager(), Scheduler::PRIORITY_SYSTEM,
+                                                 false);
     }
 
     SchedulerTestLayer::onExit();
@@ -449,7 +430,7 @@ void SchedulerUnscheduleAllUserLevel::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto sprite = Sprite::create("Images/grossinis_sister1.png");
-    sprite->setPosition(Vec2(s.width/2, s.height/2));
+    sprite->setPosition(Vec2(s.width / 2, s.height / 2));
     this->addChild(sprite);
     sprite->runAction(RepeatForever::create(RotateBy::create(3.0, 360)));
 
@@ -482,7 +463,8 @@ void SchedulerUnscheduleAllUserLevel::tick4(float /*dt*/)
 
 void SchedulerUnscheduleAllUserLevel::unscheduleAll(float /*dt*/)
 {
-    Director::getInstance()->getScheduler()->unscheduleAllWithMinPriority(Scheduler::PRIORITY_NON_SYSTEM_MIN);
+    Director::getInstance()->getScheduler()->unscheduleAllWithMinPriority(
+        Scheduler::PRIORITY_NON_SYSTEM_MIN);
 }
 
 std::string SchedulerUnscheduleAllUserLevel::title() const
@@ -560,9 +542,7 @@ void TestNode::initWithString(const std::string& str, int priority)
     scheduleUpdateWithPriority(priority);
 }
 
-TestNode::~TestNode()
-{
-}
+TestNode::~TestNode() {}
 
 void TestNode::update(float /*dt*/)
 {
@@ -615,13 +595,11 @@ void SchedulerUpdate::removeUpdates(float /*dt*/)
 {
     auto& children = getChildren();
 
-    for (auto& c : children)
-    {
+    for (auto& c : children) {
         auto obj = static_cast<Ref*>(c);
         auto node = static_cast<Node*>(obj);
 
-        if (! node)
-        {
+        if (!node) {
             break;
         }
         node->unscheduleAllCallbacks();
@@ -659,7 +637,7 @@ void SchedulerUpdateAndCustom::update(float dt)
 
 void SchedulerUpdateAndCustom::tick(float dt)
 {
-    CCLOG("custom selector called:%f",dt);
+    CCLOG("custom selector called:%f", dt);
 }
 
 void SchedulerUpdateAndCustom::stopSelectors(float /*dt*/)
@@ -728,7 +706,7 @@ void RescheduleSelector::onEnter()
     SchedulerTestLayer::onEnter();
 
     _interval = 1.0f;
-    _ticks    = 0;
+    _ticks = 0;
     schedule(CC_SCHEDULE_SELECTOR(RescheduleSelector::schedUpdate), _interval);
 }
 
@@ -747,8 +725,7 @@ void RescheduleSelector::schedUpdate(float dt)
     _ticks++;
 
     CCLOG("schedUpdate: %.4f", dt);
-    if ( _ticks > 3 )
-    {
+    if (_ticks > 3) {
         _interval += 1.0f;
         schedule(CC_SCHEDULE_SELECTOR(RescheduleSelector::schedUpdate), _interval);
         _ticks = 0;
@@ -760,7 +737,7 @@ void RescheduleSelector::schedUpdate(float dt)
 void SchedulerDelayAndRepeat::onEnter()
 {
     SchedulerTestLayer::onEnter();
-    schedule(CC_SCHEDULE_SELECTOR(SchedulerDelayAndRepeat::update), 0, 4 , 3.f);
+    schedule(CC_SCHEDULE_SELECTOR(SchedulerDelayAndRepeat::update), 0, 4, 3.f);
     CCLOG("update is scheduled should begin after 3 seconds");
 }
 
@@ -783,9 +760,11 @@ void SchedulerDelayAndRepeat::update(float dt)
 
 ControlSlider* SchedulerTimeScale::sliderCtl()
 {
-    ControlSlider * slider = ControlSlider::create("extensions/sliderTrack2.png","extensions/sliderProgress2.png" ,"extensions/sliderThumb.png");
+    ControlSlider* slider = ControlSlider::create(
+        "extensions/sliderTrack2.png", "extensions/sliderProgress2.png", "extensions/sliderThumb.png");
 
-    slider->addTargetWithActionForControlEvents(this, cccontrol_selector(SchedulerTimeScale::sliderAction), Control::EventType::VALUE_CHANGED);
+    slider->addTargetWithActionForControlEvents(this, cccontrol_selector(SchedulerTimeScale::sliderAction),
+                                                Control::EventType::VALUE_CHANGED);
 
     slider->setMinimumValue(-3.0f);
     slider->setMaximumValue(3.0f);
@@ -810,9 +789,9 @@ void SchedulerTimeScale::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     // rotate and jump
-    auto jump1 = JumpBy::create(4, Vec2(-s.width+80,0), 100, 4);
+    auto jump1 = JumpBy::create(4, Vec2(-s.width + 80, 0), 100, 4);
     auto jump2 = jump1->reverse();
-    auto rot1 = RotateBy::create(4, 360*2);
+    auto rot1 = RotateBy::create(4, 360 * 2);
     auto rot2 = rot1->reverse();
 
     auto seq3_1 = Sequence::create(jump2, jump1, nullptr);
@@ -827,9 +806,9 @@ void SchedulerTimeScale::onEnter()
     auto tamara = Sprite::create("Images/grossinis_sister1.png");
     auto kathia = Sprite::create("Images/grossinis_sister2.png");
 
-    grossini->setPosition(Vec2(40,80));
-    tamara->setPosition(Vec2(40,80));
-    kathia->setPosition(Vec2(40,80));
+    grossini->setPosition(Vec2(40, 80));
+    tamara->setPosition(Vec2(40, 80));
+    kathia->setPosition(Vec2(40, 80));
 
     addChild(grossini);
     addChild(tamara);
@@ -840,7 +819,7 @@ void SchedulerTimeScale::onEnter()
     kathia->runAction(Speed::create(action3, 1.0f));
 
     auto emitter = ParticleFireworks::create();
-    emitter->setTexture( Director::getInstance()->getTextureCache()->addImage(s_stars1) );
+    emitter->setTexture(Director::getInstance()->getTextureCache()->addImage(s_stars1));
     addChild(emitter);
 
     _sliderCtl = sliderCtl();
@@ -866,21 +845,23 @@ std::string SchedulerTimeScale::subtitle() const
     return "Fast-forward and rewind using scheduler.timeScale";
 }
 
-//TwoSchedulers
+// TwoSchedulers
 
-ControlSlider *TwoSchedulers::sliderCtl()
+ControlSlider* TwoSchedulers::sliderCtl()
 {
-   // auto frame = CGRectMake(12.0f, 12.0f, 120.0f, 7.0f);
-    ControlSlider *slider = ControlSlider::create("extensions/sliderTrack2.png","extensions/sliderProgress2.png" ,"extensions/sliderThumb.png");
-        //[[UISlider alloc] initWithFrame:frame];
-    slider->addTargetWithActionForControlEvents(this, cccontrol_selector(TwoSchedulers::sliderAction), Control::EventType::VALUE_CHANGED);
+    // auto frame = CGRectMake(12.0f, 12.0f, 120.0f, 7.0f);
+    ControlSlider* slider = ControlSlider::create(
+        "extensions/sliderTrack2.png", "extensions/sliderProgress2.png", "extensions/sliderThumb.png");
+    //[[UISlider alloc] initWithFrame:frame];
+    slider->addTargetWithActionForControlEvents(this, cccontrol_selector(TwoSchedulers::sliderAction),
+                                                Control::EventType::VALUE_CHANGED);
 
     // in case the parent view draws with a custom color or gradient, use a transparent color
-    //slider.backgroundColor = [UIColor clearColor];
+    // slider.backgroundColor = [UIColor clearColor];
 
     slider->setMinimumValue(0.0f);
     slider->setMaximumValue(2.0f);
-    //slider.continuous = YES;
+    // slider.continuous = YES;
     slider->setValue(1.0f);
 
     return slider;
@@ -890,10 +871,10 @@ void TwoSchedulers::sliderAction(Ref* sender, Control::EventType /*controlEvent*
 {
     float scale;
 
-    ControlSlider *slider = static_cast<ControlSlider*>(sender);
+    ControlSlider* slider = static_cast<ControlSlider*>(sender);
     scale = slider->getValue();
 
-    if( sender == sliderCtl1 )
+    if (sender == sliderCtl1)
         sched1->setTimeScale(scale);
     else
         sched2->setTimeScale(scale);
@@ -905,19 +886,19 @@ void TwoSchedulers::onEnter()
 
     auto s = Director::getInstance()->getWinSize();
 
-        // rotate and jump
-    auto jump1 = JumpBy::create(4, Vec2(0,0), 100, 4);
+    // rotate and jump
+    auto jump1 = JumpBy::create(4, Vec2(0, 0), 100, 4);
     auto jump2 = jump1->reverse();
 
     auto seq = Sequence::create(jump2, jump1, nullptr);
     auto action = RepeatForever::create(seq);
 
-        //
-        // Center
-        //
+    //
+    // Center
+    //
     auto grossini = Sprite::create("Images/grossini.png");
     addChild(grossini);
-    grossini->setPosition(Vec2(s.width/2,100));
+    grossini->setPosition(Vec2(s.width / 2, 100));
     grossini->runAction(action->clone());
 
     auto defaultScheduler = Director::getInstance()->getScheduler();
@@ -935,19 +916,17 @@ void TwoSchedulers::onEnter()
     actionManager1 = new (std::nothrow) ActionManager();
     sched1->scheduleUpdate(actionManager1, 0, false);
 
-    for( unsigned int i=0; i < 10; i++ )
-    {
+    for (unsigned int i = 0; i < 10; i++) {
         auto sprite = Sprite::create("Images/grossinis_sister1.png");
 
         // IMPORTANT: Set the actionManager running any action
         sprite->setActionManager(actionManager1);
 
         addChild(sprite);
-        sprite->setPosition(Vec2(30+15*i,100));
+        sprite->setPosition(Vec2(30 + 15 * i, 100));
 
         sprite->runAction(action->clone());
     }
-
 
     //
     // Right:
@@ -961,14 +940,14 @@ void TwoSchedulers::onEnter()
     actionManager2 = new (std::nothrow) ActionManager();
     sched2->scheduleUpdate(actionManager2, 0, false);
 
-    for( unsigned int i=0; i < 10; i++ ) {
+    for (unsigned int i = 0; i < 10; i++) {
         auto sprite = Sprite::create("Images/grossinis_sister2.png");
 
         // IMPORTANT: Set the actionManager running any action
         sprite->setActionManager(actionManager2);
 
         addChild(sprite);
-        sprite->setPosition(Vec2(s.width-30-15*i,100));
+        sprite->setPosition(Vec2(s.width - 30 - 15 * i, 100));
 
         sprite->runAction(action->clone());
     }
@@ -981,9 +960,8 @@ void TwoSchedulers::onEnter()
     sliderCtl2 = sliderCtl();
     addChild(sliderCtl2);
     sliderCtl2->retain();
-    sliderCtl2->setPosition(Vec2(s.width / 4.0f*3.0f, VisibleRect::top().y-20));
+    sliderCtl2->setPosition(Vec2(s.width / 4.0f * 3.0f, VisibleRect::top().y - 20));
 }
-
 
 TwoSchedulers::~TwoSchedulers()
 {
@@ -1018,43 +996,42 @@ class TestNode2 : public Node
 public:
     CREATE_FUNC(TestNode2);
 
-	~TestNode2() {
-		cocos2d::log("Delete TestNode (should not crash)");
-		this->unscheduleAllCallbacks();
-	}
+    ~TestNode2()
+    {
+        cocos2d::log("Delete TestNode (should not crash)");
+        this->unscheduleAllCallbacks();
+    }
 
-	void update(float /*dt*/) {
-	}
+    void update(float /*dt*/) {}
 };
 
 void SchedulerIssue2268::onEnter()
 {
-	SchedulerTestLayer::onEnter();
+    SchedulerTestLayer::onEnter();
 
-	testNode = TestNode2::create();
-	testNode->retain();
-	testNode->schedule(SEL_SCHEDULE(&TestNode::update));
-	this->addChild(testNode);
+    testNode = TestNode2::create();
+    testNode->retain();
+    testNode->schedule(SEL_SCHEDULE(&TestNode::update));
+    this->addChild(testNode);
 
-
-	this->scheduleOnce(SEL_SCHEDULE(&SchedulerIssue2268::update), 0.25f);
+    this->scheduleOnce(SEL_SCHEDULE(&SchedulerIssue2268::update), 0.25f);
 }
 
 void SchedulerIssue2268::update(float /*dt*/)
 {
-	if ( testNode != nullptr ) {
-		// do something with testNode
+    if (testNode != nullptr) {
+        // do something with testNode
 
-		// at some point we are done, pause the nodes actions and schedulers
-		testNode->removeFromParentAndCleanup(false);
+        // at some point we are done, pause the nodes actions and schedulers
+        testNode->removeFromParentAndCleanup(false);
 
-		// at some other point we are completely done with the node and want to clear it
-		testNode->unscheduleAllCallbacks();
-		testNode->release();
-		testNode = nullptr;
-
-	}
+        // at some other point we are completely done with the node and want to clear it
+        testNode->unscheduleAllCallbacks();
+        testNode->release();
+        testNode = nullptr;
+    }
 }
+
 SchedulerIssue2268::~SchedulerIssue2268()
 {
     CC_SAFE_RELEASE(testNode);
@@ -1075,7 +1052,7 @@ std::string SchedulerIssue2268::subtitle() const
 
 void SchedulerIssueWithReschedule::onEnter()
 {
-	SchedulerTestLayer::onEnter();
+    SchedulerTestLayer::onEnter();
 
     Size widgetSize = getContentSize();
 
@@ -1088,31 +1065,32 @@ void SchedulerIssueWithReschedule::onEnter()
     auto verified = std::make_shared<bool>();
     *verified = false;
 
-	_scheduler->schedule([this, verified](float dt){
-        log("SchedulerIssueWithReschedule - first timer");
+    _scheduler->schedule(
+        [this, verified](float dt) {
+            log("SchedulerIssueWithReschedule - first timer");
 
-        _scheduler->schedule([this, verified](float dt){
-            log("SchedulerIssueWithReschedule - second timer. OK");
-            *verified = true;
-        }, this, 0.1f, 0, 0, false, "test_timer");
+            _scheduler->schedule(
+                [this, verified](float dt) {
+                    log("SchedulerIssueWithReschedule - second timer. OK");
+                    *verified = true;
+                },
+                this, 0.1f, 0, 0, false, "test_timer");
+        },
+        this, 0.1f, 0, 0, false, "test_timer");
 
-    }, this, 0.1f, 0, 0, false, "test_timer");
-
-    _scheduler->schedule([verified, status_text](float dt){
-        if (*verified)
-        {
-            log("SchedulerIssueWithReschedule - test OK");
-            status_text->setString("OK");
-            status_text->setColor(Color3B(0, 255, 0));
-        }
-        else
-        {
-            log("SchedulerIssueWithReschedule - test failed!");
-            status_text->setString("Failed");
-            status_text->setColor(Color3B(255, 0, 0));
-        }
-
-    }, this, 0.5f, 0, 0, false, "test_verify_timer");
+    _scheduler->schedule(
+        [verified, status_text](float dt) {
+            if (*verified) {
+                log("SchedulerIssueWithReschedule - test OK");
+                status_text->setString("OK");
+                status_text->setColor(Color3B(0, 255, 0));
+            } else {
+                log("SchedulerIssueWithReschedule - test failed!");
+                status_text->setString("Failed");
+                status_text->setColor(Color3B(255, 0, 0));
+            }
+        },
+        this, 0.5f, 0, 0, false, "test_verify_timer");
 }
 
 std::string SchedulerIssueWithReschedule::title() const
@@ -1127,10 +1105,7 @@ std::string SchedulerIssueWithReschedule::subtitle() const
 
 // ScheduleCallbackTest
 
-ScheduleCallbackTest::~ScheduleCallbackTest()
-{
-
-}
+ScheduleCallbackTest::~ScheduleCallbackTest() {}
 
 std::string ScheduleCallbackTest::title() const
 {
@@ -1155,11 +1130,11 @@ void ScheduleCallbackTest::onEnter()
 {
     SchedulerTestLayer::onEnter();
 
-    _scheduler->schedule([](float dt){
-        log("In the callback of schedule(lambda, ...), dt = %f", dt);
-    }, this, 1.0f, false, "lambda");
+    _scheduler->schedule([](float dt) { log("In the callback of schedule(lambda, ...), dt = %f", dt); },
+                         this, 1.0f, false, "lambda");
 
-    _scheduler->schedule(CC_CALLBACK_1(ScheduleCallbackTest::callback, this), this, 1.0f, false, "member_function");
+    _scheduler->schedule(CC_CALLBACK_1(ScheduleCallbackTest::callback, this), this, 1.0f, false,
+                         "member_function");
 
     _scheduler->schedule(ScheduleCallbackTest_global_callback, this, 1.0f, false, "global_function");
 }
@@ -1168,7 +1143,6 @@ void ScheduleCallbackTest::callback(float dt)
 {
     log("In the callback of schedule(CC_CALLBACK_1(XXX::member_function), this), this, ...), dt = %f", dt);
 }
-
 
 // ScheduleUpdatePriority
 
@@ -1207,9 +1181,7 @@ void ScheduleUpdatePriority::onExit()
     unscheduleUpdate();
 }
 
-void ScheduleUpdatePriority::update(float /*dt*/)
-{
-}
+void ScheduleUpdatePriority::update(float /*dt*/) {}
 
 void SchedulerIssue10232::onEnter()
 {
@@ -1217,9 +1189,8 @@ void SchedulerIssue10232::onEnter()
 
     this->scheduleOnce(SEL_SCHEDULE(&SchedulerIssue2268::update), 0.25f);
 
-    this->scheduleOnce([](float /*dt*/){
-        log("SchedulerIssue10232:Schedules a lambda function");
-    }, 0.25f,"SchedulerIssue10232");
+    this->scheduleOnce([](float /*dt*/) { log("SchedulerIssue10232:Schedules a lambda function"); }, 0.25f,
+                       "SchedulerIssue10232");
 }
 
 void SchedulerIssue10232::update(float /*dt*/)
@@ -1253,23 +1224,19 @@ void SchedulerRemoveAllFunctionsToBePerformedInCocosThread::onExit()
     this->unscheduleUpdate();
 }
 
-void SchedulerRemoveAllFunctionsToBePerformedInCocosThread::update(float dt) {
-    Director::getInstance()->getScheduler()->performFunctionInCocosThread([this] () {
-        _sprite->setVisible(false);
-    });
-    Director::getInstance()->getScheduler()->performFunctionInCocosThread([this] () {
-        _sprite->setVisible(false);
-    });
-    Director::getInstance()->getScheduler()->performFunctionInCocosThread([this] () {
-        _sprite->setVisible(false);
-    });
-    Director::getInstance()->getScheduler()->performFunctionInCocosThread([this] () {
-        _sprite->setVisible(false);
-    });
-    Director::getInstance()->getScheduler()->performFunctionInCocosThread([this] () {
-        _sprite->setVisible(false);
-    });
-    if(!TestController::getInstance()->isAutoTestRunning())
+void SchedulerRemoveAllFunctionsToBePerformedInCocosThread::update(float dt)
+{
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread(
+        [this]() { _sprite->setVisible(false); });
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread(
+        [this]() { _sprite->setVisible(false); });
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread(
+        [this]() { _sprite->setVisible(false); });
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread(
+        [this]() { _sprite->setVisible(false); });
+    Director::getInstance()->getScheduler()->performFunctionInCocosThread(
+        [this]() { _sprite->setVisible(false); });
+    if (!TestController::getInstance()->isAutoTestRunning())
         Director::getInstance()->getScheduler()->removeAllFunctionsToBePerformedInCocosThread();
 }
 
@@ -1283,34 +1250,34 @@ std::string SchedulerRemoveAllFunctionsToBePerformedInCocosThread::subtitle() co
     return "Sprite should be visible";
 }
 
-//class SchedulerIssue17149: public SchedulerTestLayer
+// class SchedulerIssue17149: public SchedulerTestLayer
 //{
-//public:
-//    CREATE_FUNC(SchedulerIssue17149);
+// public:
+//     CREATE_FUNC(SchedulerIssue17149);
 //
-//    virtual std::string title() const override;
-//    void onEnter() override;
-//    void update(float dt) override;
+//     virtual std::string title() const override;
+//     void onEnter() override;
+//     void update(float dt) override;
 //
-//private:
-//    class ClassA
-//    {
-//    public:
-//        void update(float dt);
+// private:
+//     class ClassA
+//     {
+//     public:
+//         void update(float dt);
 //
-//        int _member1;
-//        int _member2;
-//        int _member3;
-//    };
+//         int _member1;
+//         int _member2;
+//         int _member3;
+//     };
 //
-//    class ClassB
-//    {
-//        void update(float dt);
-//        int _member1;
-//        int _member2;
-//        int _member3;
-//    };
-//};
+//     class ClassB
+//     {
+//         void update(float dt);
+//         int _member1;
+//         int _member2;
+//         int _member3;
+//     };
+// };
 
 // SchedulerIssue17149: https://github.com/cocos2d/cocos2d-x/issues/17149
 
@@ -1354,22 +1321,14 @@ void SchedulerIssue17149::update(float dt)
     unscheduleUpdate();
 }
 
-SchedulerIssue17149::ClassA::ClassA()
-: _member1(1)
-, _member2(2)
-, _member3(3)
-{}
+SchedulerIssue17149::ClassA::ClassA() : _member1(1), _member2(2), _member3(3) {}
 
 void SchedulerIssue17149::ClassA::update(float dt)
 {
     CCLOG("i'm ClassA: %d%d%d", _member1, _member2, _member3);
 }
 
-SchedulerIssue17149::ClassB::ClassB()
-: _member1(4)
-, _member2(5)
-, _member3(6)
-{}
+SchedulerIssue17149::ClassB::ClassB() : _member1(4), _member2(5), _member3(6) {}
 
 void SchedulerIssue17149::ClassB::update(float dt)
 {
@@ -1397,11 +1356,9 @@ std::string SchedulerRemoveEntryWhileUpdate::subtitle() const
 void SchedulerRemoveEntryWhileUpdate::onEnter()
 {
     SchedulerTestLayer::onEnter();
-    for (auto i = 0; i < 500; ++i)
-    {
-        TestClass *nextObj = nullptr;
-        if (i != 0)
-        {
+    for (auto i = 0; i < 500; ++i) {
+        TestClass* nextObj = nullptr;
+        if (i != 0) {
             nextObj = _testvector[i - 1];
         }
         auto obj = new TestClass(i, nextObj, getScheduler());
@@ -1412,8 +1369,7 @@ void SchedulerRemoveEntryWhileUpdate::onEnter()
 
 void SchedulerRemoveEntryWhileUpdate::onExit()
 {
-    for (auto obj: _testvector)
-    {
+    for (auto obj : _testvector) {
         getScheduler()->unscheduleUpdate(obj);
         delete obj;
     }
@@ -1421,24 +1377,20 @@ void SchedulerRemoveEntryWhileUpdate::onExit()
     SchedulerTestLayer::onExit();
 }
 
-SchedulerRemoveEntryWhileUpdate::TestClass::TestClass(int index, TestClass *nextObj, cocos2d::Scheduler* scheduler)
-: _index(index)
-, _nextObj(nextObj)
-, _scheduler(scheduler)
-, _cleanedUp(false)
+SchedulerRemoveEntryWhileUpdate::TestClass::TestClass(int index, TestClass* nextObj,
+                                                      cocos2d::Scheduler* scheduler)
+    : _index(index), _nextObj(nextObj), _scheduler(scheduler), _cleanedUp(false)
 {
 }
 
 void SchedulerRemoveEntryWhileUpdate::TestClass::update(float dt)
 {
-    if (_cleanedUp)
-    {
+    if (_cleanedUp) {
         CCLOG("Error: cleaned object must not be called.");
         return;
     }
 
-    if (_index % 50 == 1 && _nextObj != nullptr)
-    {
+    if (_index % 50 == 1 && _nextObj != nullptr) {
         _scheduler->unscheduleUpdate(_nextObj);
         _nextObj->_cleanedUp = true;
     }
@@ -1464,40 +1416,35 @@ void SchedulerRemoveSelectorDuringCall::onEnter()
 {
     SchedulerTestLayer::onEnter();
 
-    Scheduler* const scheduler( Director::getInstance()->getScheduler() );
+    Scheduler* const scheduler(Director::getInstance()->getScheduler());
 
-    scheduler->setTimeScale( 10 );
-    scheduler->schedule
-      (SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this,
-       0.01f, CC_REPEAT_FOREVER, 0.0f, !isRunning());
+    scheduler->setTimeScale(10);
+    scheduler->schedule(SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this, 0.01f,
+                        CC_REPEAT_FOREVER, 0.0f, !isRunning());
 
     _scheduled = true;
 }
 
 void SchedulerRemoveSelectorDuringCall::onExit()
 {
-    Scheduler* const scheduler( Director::getInstance()->getScheduler() );
+    Scheduler* const scheduler(Director::getInstance()->getScheduler());
 
-    scheduler->setTimeScale( 1 );
-    scheduler->unschedule
-      (SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this);
+    scheduler->setTimeScale(1);
+    scheduler->unschedule(SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this);
 
     _scheduled = false;
     SchedulerTestLayer::onExit();
 }
 
-void SchedulerRemoveSelectorDuringCall::callback( float )
+void SchedulerRemoveSelectorDuringCall::callback(float)
 {
-    if ( !_scheduled )
-    {
+    if (!_scheduled) {
         cocos2d::log("Error: unscheduled callback must not be called.");
         return;
     }
 
     _scheduled = false;
 
-    Scheduler* const scheduler( Director::getInstance()->getScheduler() );
-    scheduler->unschedule
-      (SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this);
+    Scheduler* const scheduler(Director::getInstance()->getScheduler());
+    scheduler->unschedule(SEL_SCHEDULE(&SchedulerRemoveSelectorDuringCall::callback), this);
 }
-

@@ -31,10 +31,12 @@ class Bug1174Layer : public BugsTestBase
 {
 public:
     CREATE_FUNC(Bug1174Layer);
-    virtual std::string title() const override { return "Bug1174";}
-    virtual std::string subtitle() const override {return "view console output";}
+
+    virtual std::string title() const override { return "Bug1174"; }
+
+    virtual std::string subtitle() const override { return "view console output"; }
+
     virtual bool init() override;
 };
 
-#endif // __BUG_1174_H__
-
+#endif  // __BUG_1174_H__

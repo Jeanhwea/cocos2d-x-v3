@@ -63,6 +63,7 @@ public:
 };
 
 class EffectAutoBindingResolver;
+
 class Material_AutoBindings : public MaterialSystemBaseTest
 {
 public:
@@ -89,7 +90,7 @@ public:
 private:
     void changeMaterial(float dt);
 
-    cocos2d::Sprite3D* _sprite;
+    cocos2d::Sprite3D *_sprite;
     int _techniqueState;
 };
 
@@ -110,6 +111,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
     void parsingTesting(unsigned int count);
+
 protected:
     unsigned int _maxParsingCoumt;
 };
@@ -140,4 +142,3 @@ public:
     cocos2d::RenderState::StateBlock _stateBlock;
     cocos2d::CustomCommand _customCommand;
 };
-

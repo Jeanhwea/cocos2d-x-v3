@@ -25,10 +25,10 @@
 #ifndef __HTTP_CLIENT_H__
 #define __HTTP_CLIENT_H__
 
+#include "BaseTest.h"
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "network/HttpClient.h"
-#include "BaseTest.h"
 
 DEFINE_TEST_SUITE(HttpClientTests);
 
@@ -40,20 +40,21 @@ public:
     HttpClientTest();
     virtual ~HttpClientTest();
 
-    //Menu Callbacks
+    // Menu Callbacks
     void onMenuGetTestClicked(cocos2d::Ref *sender, bool isImmediate);
     void onMenuPostTestClicked(cocos2d::Ref *sender, bool isImmediate);
     void onMenuPostBinaryTestClicked(cocos2d::Ref *sender, bool isImmediate);
     void onMenuPutTestClicked(cocos2d::Ref *sender, bool isImmediate);
     void onMenuDeleteTestClicked(cocos2d::Ref *sender, bool isImmediate);
 
-    //Http Response Callback
-    void onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    // Http Response Callback
+    void onHttpRequestCompleted(cocos2d::network::HttpClient *sender,
+                                cocos2d::network::HttpResponse *response);
 
     virtual std::string title() const override { return "Http Request Test"; }
 
 private:
-    cocos2d::Label* _labelStatusCode;
+    cocos2d::Label *_labelStatusCode;
 };
 
 class HttpClientClearRequestsTest : public TestCase
@@ -64,21 +65,21 @@ public:
     HttpClientClearRequestsTest();
     virtual ~HttpClientClearRequestsTest();
 
-    //Menu Callbacks
+    // Menu Callbacks
     void onMenuCancelAllClicked(cocos2d::Ref *sender);
     void onMenuCancelSomeClicked(cocos2d::Ref *sender);
 
-    //Http Response Callback
-    void onHttpRequestCompleted(cocos2d::network::HttpClient *sender, cocos2d::network::HttpResponse *response);
+    // Http Response Callback
+    void onHttpRequestCompleted(cocos2d::network::HttpClient *sender,
+                                cocos2d::network::HttpResponse *response);
 
     virtual std::string title() const override { return "Http Request Test"; }
 
 private:
     int _totalExpectedRequests;
     int _totalProcessedRequests;
-    cocos2d::Label* _labelTrakingData;
-    cocos2d::Label* _labelStatusCode;
+    cocos2d::Label *_labelTrakingData;
+    cocos2d::Label *_labelStatusCode;
 };
 
-#endif //__HTTPREQUESTHTTP_H
-
+#endif  //__HTTPREQUESTHTTP_H

@@ -70,7 +70,7 @@ public:
 
     virtual bool init() override;
 
-    void toggleFocusLoop(cocos2d::Ref*,cocos2d::ui::Widget::TouchEventType);
+    void toggleFocusLoop(cocos2d::Ref*, cocos2d::ui::Widget::TouchEventType);
 
 protected:
     cocos2d::ui::Layout* _horizontalLayout;
@@ -87,7 +87,8 @@ public:
 
     virtual bool init() override;
 
-    void toggleFocusLoop(cocos2d::Ref*,cocos2d::ui::Widget::TouchEventType);
+    void toggleFocusLoop(cocos2d::Ref*, cocos2d::ui::Widget::TouchEventType);
+
 protected:
     cocos2d::ui::Layout* _verticalLayout;
     cocos2d::ui::Text* _loopText;
@@ -103,7 +104,8 @@ public:
 
     virtual bool init() override;
 
-    void toggleFocusLoop(cocos2d::Ref*,cocos2d::ui::Widget::TouchEventType);
+    void toggleFocusLoop(cocos2d::Ref*, cocos2d::ui::Widget::TouchEventType);
+
 protected:
     cocos2d::ui::Layout* _verticalLayout;
     cocos2d::ui::Text* _loopText;
@@ -119,7 +121,8 @@ public:
 
     virtual bool init() override;
 
-    void toggleFocusLoop(cocos2d::Ref*,cocos2d::ui::Widget::TouchEventType);
+    void toggleFocusLoop(cocos2d::Ref*, cocos2d::ui::Widget::TouchEventType);
+
 protected:
     cocos2d::ui::Layout* _horizontalLayout;
     cocos2d::ui::Text* _loopText;
@@ -135,13 +138,11 @@ public:
 
     virtual bool init() override;
 
-    void toggleFocusLoop(cocos2d::Ref*,cocos2d::ui::Widget::TouchEventType);
+    void toggleFocusLoop(cocos2d::Ref*, cocos2d::ui::Widget::TouchEventType);
+
 protected:
     cocos2d::ui::Layout* _verticalLayout;
     cocos2d::ui::Text* _loopText;
 };
 
-
-
 #endif /* defined(__cocos2d_tests__UIFocusTest__) */
-

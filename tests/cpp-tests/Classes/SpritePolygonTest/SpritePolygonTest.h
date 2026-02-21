@@ -36,12 +36,15 @@ protected:
     std::string _subtitle;
     bool _isDebugDraw;
     bool _isNeedDebugMenu;
-    cocos2d::Vector<cocos2d::DrawNode* > _drawNodes;
-    virtual std::string title() const override {return _title;};
-    virtual std::string subtitle() const override {return _subtitle;};
+    cocos2d::Vector<cocos2d::DrawNode*> _drawNodes;
+
+    virtual std::string title() const override { return _title; };
+
+    virtual std::string subtitle() const override { return _subtitle; };
+
     virtual bool init() override;
-    virtual void onEnter()override;
-    virtual void onExit()override;
+    virtual void onEnter() override;
+    virtual void onExit() override;
     SpritePolygonTestCase();
     ~SpritePolygonTestCase();
     void updateDrawNode();
@@ -53,7 +56,7 @@ protected:
     cocos2d::Sprite* _polygonSprite;
     cocos2d::Sprite* _normalSprite;
     virtual bool init() override;
-    virtual void initSprites(){};
+    virtual void initSprites() {};
     void initTouches();
 };
 
@@ -76,15 +79,15 @@ public:
 class SpritePolygonTestSlider : public SpritePolygonTestCase
 {
 protected:
-    cocos2d::Label *_epsilonLabel;
+    cocos2d::Label* _epsilonLabel;
     int _tagIndex;
     cocos2d::Sprite* makeSprite(const std::string& filename, const cocos2d::Vec2& pos);
     virtual bool init() override;
     void initSliders();
-    virtual void initSprites(){};
+    virtual void initSprites() {};
     void makeSprites(const std::string* list, const int count, const float y);
-    void changeEpsilon(Ref *pSender, cocos2d::ui::Slider::EventType type);
-    void updateLabel(const cocos2d::Sprite* sp, const cocos2d::PolygonInfo &pinfo);
+    void changeEpsilon(Ref* pSender, cocos2d::ui::Slider::EventType type);
+    void updateLabel(const cocos2d::Sprite* sp, const cocos2d::PolygonInfo& pinfo);
 };
 
 class SpritePolygonTest3 : public SpritePolygonTestSlider
@@ -108,12 +111,14 @@ class SpritePolygonTest5 : public SpritePolygonTestCase
 public:
     CREATE_FUNC(SpritePolygonTest5);
     SpritePolygonTest5();
+
 protected:
     virtual bool init() override;
     void initTouch();
     void loadDefaultSprites();
     void addSpritePolygon(const cocos2d::Vec2& pos);
-    void update(float dt)override;
+    void update(float dt) override;
+
 private:
     cocos2d::PolygonInfo _polygonInfo;
     int _tagIndex;
@@ -124,13 +129,14 @@ class SpritePolygonPerformance : public SpritePolygonTestCase
 public:
     CREATE_FUNC(SpritePolygonPerformance);
     SpritePolygonPerformance();
+
 protected:
     int _spriteCount;
     int _vertCount;
     int _triCount;
     int _pixelCount;
     float _elapsedTime;
-    cocos2d::Label * _perfLabel;
+    cocos2d::Label* _perfLabel;
     int _continuousLowDt;
     float _continuousHighDtTime;
     float _waitingTime;
@@ -149,11 +155,11 @@ protected:
     unsigned int _incPix;
 
     void updateLabel();
-    virtual void update(float dt)override;
+    virtual void update(float dt) override;
     virtual bool init() override;
     virtual Node* makeSprite();
     void incrementStats();
-    virtual void initIncrementStats(){};
+    virtual void initIncrementStats() {};
 };
 
 class SpritePolygonPerformanceTestDynamic : public SpritePolygonPerformance
@@ -161,6 +167,7 @@ class SpritePolygonPerformanceTestDynamic : public SpritePolygonPerformance
 public:
     CREATE_FUNC(SpritePolygonPerformanceTestDynamic);
     SpritePolygonPerformanceTestDynamic();
+
 protected:
     cocos2d::Sprite* makeSprite() override;
     cocos2d::PolygonInfo _pinfo;
@@ -172,6 +179,7 @@ class SpritePerformanceTestDynamic : public SpritePolygonPerformance
 public:
     CREATE_FUNC(SpritePerformanceTestDynamic);
     SpritePerformanceTestDynamic();
+
 protected:
     virtual cocos2d::Sprite* makeSprite() override;
     virtual void initIncrementStats() override;
@@ -218,4 +226,3 @@ public:
 };
 
 #endif /* defined(__cocos2d_tests__SpritePolygonTest__) */
-

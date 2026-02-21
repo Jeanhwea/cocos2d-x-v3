@@ -22,8 +22,6 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-
-
 #ifndef __TestCpp__UITextAtlasTest__
 #define __TestCpp__UITextAtlasTest__
 
@@ -38,6 +36,7 @@ public:
 
     virtual bool init() override;
     void printWidgetResources(cocos2d::Ref* sender);
+
 protected:
     cocos2d::ui::TextAtlas* _textAtlas;
 };
@@ -49,9 +48,9 @@ public:
 
     virtual bool init() override;
     void printWidgetResources(cocos2d::Ref* sender);
+
 protected:
     cocos2d::ui::TextAtlas* _textAtlas;
 };
 
 #endif /* defined(__TestCpp__UITextAtlasTest__) */
-

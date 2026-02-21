@@ -25,8 +25,8 @@
 #ifndef _FONT_TEST_H_
 #define _FONT_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(FontTests);
 
@@ -36,13 +36,10 @@ public:
     static FontTest* create(const std::string& fontFile)
     {
         auto ret = new (std::nothrow) FontTest;
-        if (ret && ret->init())
-        {
+        if (ret && ret->init()) {
             ret->showFont(fontFile);
             ret->autorelease();
-        }
-        else
-        {
+        } else {
             delete ret;
             ret = nullptr;
         }
@@ -58,24 +55,25 @@ public:
 class FontNoReplacementTest : public TestCase
 {
 public:
-	static FontNoReplacementTest* create();
-	~FontNoReplacementTest();
-	virtual void onEnter() override;
-	virtual std::string title() const override;
-protected:
-	FontNoReplacementTest();
+    static FontNoReplacementTest* create();
+    ~FontNoReplacementTest();
+    virtual void onEnter() override;
+    virtual std::string title() const override;
 
-	bool _replace;
+protected:
+    FontNoReplacementTest();
+
+    bool _replace;
 };
 
 class FontReplacementTest : public FontNoReplacementTest
 {
 public:
-	static FontReplacementTest* create();
-	virtual std::string title() const override;
+    static FontReplacementTest* create();
+    virtual std::string title() const override;
+
 protected:
-	FontReplacementTest();
+    FontReplacementTest();
 };
 
-#endif // _FONT_TEST_H_
-
+#endif  // _FONT_TEST_H_

@@ -32,9 +32,7 @@
 
 #include "Bug-15776.h"
 
-
 USING_NS_CC;
-
 
 //
 // IMPORTANT:
@@ -44,8 +42,7 @@ USING_NS_CC;
 //
 bool Bug15776Layer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         cocos2d::Image *cocos2dxImage = new cocos2d::Image();
         cocos2dxImage->initWithImageData(nullptr, 0);
         // should not crash. invalid cocos2dImage
@@ -65,4 +62,3 @@ std::string Bug15776Layer::subtitle() const
 {
     return "It should crash on TextureCache::addImage()";
 }
-

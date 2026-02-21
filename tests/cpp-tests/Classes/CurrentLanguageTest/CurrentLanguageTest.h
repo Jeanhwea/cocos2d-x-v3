@@ -25,8 +25,8 @@
 #ifndef _CURRENT_LANGUAGE_TEST_H_
 #define _CURRENT_LANGUAGE_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(CurrentLanguageTests);
 
@@ -38,5 +38,4 @@ public:
     CurrentLanguageTest();
 };
 
-#endif // _CURRENT_LANGUAGE_TEST_H_
-
+#endif  // _CURRENT_LANGUAGE_TEST_H_

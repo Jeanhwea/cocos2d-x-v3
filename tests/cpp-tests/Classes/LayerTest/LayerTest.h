@@ -26,8 +26,8 @@
 #define _LAYER_TEST_H_
 
 #include "../BaseTest.h"
-#include "cocos/ui/UISlider.h"
 #include "../cocos/ui/UIListView.h"
+#include "cocos/ui/UISlider.h"
 
 DEFINE_TEST_SUITE(LayerTests);
 
@@ -35,8 +35,9 @@ class LayerTest : public TestCase
 {
 public:
     virtual std::string title() const override;
+
 protected:
-    std::string    _title;
+    std::string _title;
 };
 
 class LayerTestCascadingOpacityA : public LayerTest
@@ -87,7 +88,6 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 class LayerTest1 : public LayerTest
 {
 public:
@@ -96,7 +96,7 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
 
-    void updateSize(cocos2d::Vec2 &touchLocation);
+    void updateSize(cocos2d::Vec2& touchLocation);
 
     void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
@@ -110,7 +110,6 @@ public:
     virtual void onEnter() override;
     virtual std::string subtitle() const override;
 };
-
 
 class LayerTestBlend : public LayerTest
 {
@@ -130,7 +129,7 @@ public:
     void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event* event);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    void toggleItem(cocos2d::Ref *sender);
+    void toggleItem(cocos2d::Ref* sender);
 };
 
 class LayerGradientTest2 : public LayerTest
@@ -231,6 +230,7 @@ public:
 
     void sliderCallback(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType type);
     void listviewCallback(cocos2d::Ref* sender, cocos2d::ui::ListView::EventType type);
+
 private:
     cocos2d::ui::Slider* createSlider();
     cocos2d::ui::ListView* createListView();
@@ -239,6 +239,4 @@ private:
     int _currentSeletedItemIndex;
 };
 
-
 #endif
-

@@ -25,9 +25,9 @@
 #ifndef _USERDEFAULT_TEST_H_
 #define _USERDEFAULT_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
 #include "2d/CCLabel.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(UserDefaultTests);
 
@@ -44,5 +44,4 @@ private:
     cocos2d::Label* _label;
 };
 
-#endif // _USERDEFAULT_TEST_H_
-
+#endif  // _USERDEFAULT_TEST_H_

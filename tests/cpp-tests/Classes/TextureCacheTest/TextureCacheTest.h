@@ -25,9 +25,8 @@
 #ifndef _TEXTURECACHE_TEST_H_
 #define _TEXTURECACHE_TEST_H_
 
-
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(TextureCacheTests);
 
@@ -42,6 +41,7 @@ public:
     void loadingCallBack(cocos2d::Texture2D *texture);
 
     virtual float getDuration() const override { return 3.5f; }
+
 private:
     cocos2d::Label *_labelLoading;
     cocos2d::Label *_labelPercent;
@@ -57,9 +57,8 @@ public:
     TextureCacheUnbindTest();
 
 private:
-    void textureLoadedA(cocos2d::Texture2D* texture);
-    void textureLoadedB(cocos2d::Texture2D* texture);
+    void textureLoadedA(cocos2d::Texture2D *texture);
+    void textureLoadedB(cocos2d::Texture2D *texture);
 };
 
-#endif // _TEXTURECACHE_TEST_H_
-
+#endif  // _TEXTURECACHE_TEST_H_

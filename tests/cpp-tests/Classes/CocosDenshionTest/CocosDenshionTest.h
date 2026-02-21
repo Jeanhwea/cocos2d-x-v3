@@ -58,5 +58,4 @@ private:
     AudioSlider *_sliderMusicVolume;
 };
 
-#endif //__COCOS_DENSHION_TEST__
-
+#endif  //__COCOS_DENSHION_TEST__

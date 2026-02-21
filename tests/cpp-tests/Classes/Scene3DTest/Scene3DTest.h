@@ -30,4 +30,3 @@
 DEFINE_TEST_SUITE(Scene3DTests);
 
 #endif
-

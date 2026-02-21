@@ -37,16 +37,15 @@ USING_NS_CC;
 
 bool Bug12847Layer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         Director::getInstance()->setProjection(Director::Projection::_2D);
         auto _visibleSize = Director::getInstance()->getVisibleSize();
 
-        //Create with Sprite
+        // Create with Sprite
         {
             sprite1 = Sprite::create("Images/bug12847_sprite.png");
             sprite1->getTexture()->setAliasTexParameters();
-            sprite1->setPosition(Vec2(_visibleSize.width/3, 50));
+            sprite1->setPosition(Vec2(_visibleSize.width / 3, 50));
             this->addChild(sprite1, 1);
 
             sprite2 = Sprite::create("Images/bug12847_sprite.png");
@@ -54,13 +53,13 @@ bool Bug12847Layer::init()
             sprite2->setPosition(sprite1->getPosition() + Vec2(0.0f, sprite1->getContentSize().height));
             this->addChild(sprite2, 1);
         }
-        //Create with SpriteFrame
+        // Create with SpriteFrame
         {
             SpriteFrameCache::getInstance()->addSpriteFramesWithFile("Images/bug12847_spriteframe.plist");
 
             sprite3 = Sprite::createWithSpriteFrameName("bug12847_sprite2.png");
             sprite3->getTexture()->setAliasTexParameters();
-            sprite3->setPosition(Vec2(_visibleSize.width * 2/3, 50));
+            sprite3->setPosition(Vec2(_visibleSize.width * 2 / 3, 50));
             this->addChild(sprite3, 1);
 
             sprite4 = Sprite::createWithSpriteFrameName("bug12847_sprite2.png");
@@ -95,4 +94,3 @@ void Bug12847Layer::onExit()
     Director::getInstance()->setClearColor(Color4F::BLACK);
     BugsTestBase::onExit();
 }
-

@@ -30,10 +30,9 @@
 class BugsTestBase : public TestCase
 {
 public:
-    virtual std::string title() const override {return "No Test Title set";}
+    virtual std::string title() const override { return "No Test Title set"; }
 };
 
 DEFINE_TEST_SUITE(BugsTests);
 
 #endif
-

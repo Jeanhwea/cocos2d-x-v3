@@ -33,8 +33,7 @@ USING_NS_CC;
 
 bool Bug422Layer::init()
 {
-    if (BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         reset();
         return true;
     }
@@ -52,20 +51,20 @@ void Bug422Layer::reset()
     // The menu will be removed, but the instance will be alive
     // and then a new node will be allocated occupying the memory.
     // => CRASH BOOM BANG
-    auto node = getChildByTag(localtag-1);
+    auto node = getChildByTag(localtag - 1);
     log("Menu: %p", node);
     removeChild(node, true);
-//    [self removeChildByTag:localtag-1 cleanup:NO];
+    //    [self removeChildByTag:localtag-1 cleanup:NO];
 
-    auto item1 = MenuItemFont::create("One", CC_CALLBACK_1(Bug422Layer::menuCallback, this) );
+    auto item1 = MenuItemFont::create("One", CC_CALLBACK_1(Bug422Layer::menuCallback, this));
     log("MenuItemFont: %p", item1);
-	MenuItem *item2 = MenuItemFont::create("Two", CC_CALLBACK_1(Bug422Layer::menuCallback, this) );
+    MenuItem* item2 = MenuItemFont::create("Two", CC_CALLBACK_1(Bug422Layer::menuCallback, this));
     auto menu = Menu::create(item1, item2, nullptr);
     menu->alignItemsVertically();
 
     float x = CCRANDOM_0_1() * 50;
     float y = CCRANDOM_0_1() * 50;
-    menu->setPosition(menu->getPosition() + Vec2(x,y));
+    menu->setPosition(menu->getPosition() + Vec2(x, y));
     addChild(menu, 0, localtag);
 
     //[self check:self];
@@ -74,7 +73,7 @@ void Bug422Layer::reset()
 void Bug422Layer::check(Node* t)
 {
     auto& children = t->getChildren();
-    for(const auto &child : children) {
+    for (const auto& child : children) {
         log("%p, rc: %d", child, child->getReferenceCount());
         check(child);
     }
@@ -84,4 +83,3 @@ void Bug422Layer::menuCallback(Ref* sender)
 {
     reset();
 }
-

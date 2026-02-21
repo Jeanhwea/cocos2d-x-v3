@@ -27,41 +27,34 @@
 #include "DownloaderTest.h"
 
 #include "../testResource.h"
-
-#include "ui/UILoadingBar.h"
-#include "ui/UIButton.h"
 #include "network/CCDownloader.h"
+#include "ui/UIButton.h"
+#include "ui/UILoadingBar.h"
 
 USING_NS_CC;
 
-static const char* sURLList[] =
-{
+static const char* sURLList[] = {
     "http://www.cocos2d-x.org/attachments/802/cocos2dx_landscape.png",
     "http://cocos2d-x.org/images/logo.png",
     "http://www.cocos2d-x.org/attachments/1503/no_exist.txt",  // try to download no exist file
     "https://github.com/openssl/openssl/archive/OpenSSL_1_1_1a.zip",
 };
-const static int sListSize = (sizeof(sURLList)/sizeof(sURLList[0]));
-static const char* sNameList[sListSize] =
-{
+const static int sListSize = (sizeof(sURLList) / sizeof(sURLList[0]));
+static const char* sNameList[sListSize] = {
     "cocos2dx_landscape.png",
     "logo.png",
     "inexist file",
     "big file",
 };
 
-struct DownloaderTest : public TestCase
-{
+struct DownloaderTest : public TestCase {
     CREATE_FUNC(DownloaderTest);
 
     virtual std::string title() const override { return "Downloader Test"; }
 
     std::unique_ptr<network::Downloader> downloader;
 
-    DownloaderTest()
-    {
-        downloader.reset(new network::Downloader());
-    }
+    DownloaderTest() { downloader.reset(new network::Downloader()); }
 
     enum {
         TAG_TITLE = 1,
@@ -71,7 +64,7 @@ struct DownloaderTest : public TestCase
         TAG_SPRITE,
     };
 
-    Node* createDownloadView(const char *name, const cocos2d::ui::Button::ccWidgetClickCallback &callback)
+    Node* createDownloadView(const char* name, const cocos2d::ui::Button::ccWidgetClickCallback& callback)
     {
         Size viewSize(220, 120);
         float margin = 5;
@@ -81,15 +74,15 @@ struct DownloaderTest : public TestCase
         bg->setContentSize(viewSize);
 
         // add a title on the top
-        auto title = Label::createWithTTF(name,"fonts/arial.ttf",16);
+        auto title = Label::createWithTTF(name, "fonts/arial.ttf", 16);
         title->setTag(TAG_TITLE);
         title->setAnchorPoint(Vec2(0.5, 1));
         title->setPosition(viewSize.width / 2, viewSize.height - margin);
         bg->addChild(title, 10);
 
         // add a button on the bottom
-        auto btn = ui::Button::create("cocosui/animationbuttonnormal.png",
-                                      "cocosui/animationbuttonpressed.png");
+        auto btn =
+            ui::Button::create("cocosui/animationbuttonnormal.png", "cocosui/animationbuttonpressed.png");
         btn->setTag(TAG_BUTTON);
         btn->setTitleText("Download");
         btn->setAnchorPoint(Vec2(0.5, 0));
@@ -108,7 +101,7 @@ struct DownloaderTest : public TestCase
         bg->addChild(bar, 10);
 
         // add a status label
-        auto label = Label::createWithTTF("","fonts/arial.ttf",14);
+        auto label = Label::createWithTTF("", "fonts/arial.ttf", 14);
         label->setTag(TAG_STATUS);
         label->setAnchorPoint(Vec2(0.5, 0.5));
         label->setPosition(Vec2(viewSize.width / 2, viewSize.height / 2));
@@ -128,12 +121,10 @@ struct DownloaderTest : public TestCase
         SpriteFrameCache::getInstance()->addSpriteFramesWithFile(s_s9s_ui_plist);
 
         // add four download view in test case
-        Node* topRightView = createDownloadView(sNameList[0], [this](Ref*)
-        {
+        Node* topRightView = createDownloadView(sNameList[0], [this](Ref*) {
             auto view = this->getChildByName(sNameList[0]);
             auto sprite = view->getChildByTag(TAG_SPRITE);
-            if (sprite)
-            {
+            if (sprite) {
                 sprite->removeFromParentAndCleanup(true);
             }
             auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
@@ -149,12 +140,10 @@ struct DownloaderTest : public TestCase
         topRightView->setPosition(VisibleRect::center());
         this->addChild(topRightView);
 
-        Node* topLeftView = createDownloadView(sNameList[1], [this](Ref*)
-        {
+        Node* topLeftView = createDownloadView(sNameList[1], [this](Ref*) {
             auto view = this->getChildByName(sNameList[1]);
             auto sprite = view->getChildByTag(TAG_SPRITE);
-            if (sprite)
-            {
+            if (sprite) {
                 sprite->removeFromParentAndCleanup(true);
             }
             auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
@@ -171,12 +160,10 @@ struct DownloaderTest : public TestCase
         topLeftView->setPosition(VisibleRect::center());
         this->addChild(topLeftView);
 
-        Node* bottomLeftView = createDownloadView(sNameList[2], [this](Ref*)
-        {
+        Node* bottomLeftView = createDownloadView(sNameList[2], [this](Ref*) {
             auto view = this->getChildByName(sNameList[2]);
             auto sprite = view->getChildByTag(TAG_SPRITE);
-            if (sprite)
-            {
+            if (sprite) {
                 sprite->removeFromParentAndCleanup(true);
             }
             auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
@@ -186,7 +173,8 @@ struct DownloaderTest : public TestCase
             bar->setPercent(0);
             bar->setVisible(true);
             bar->setEnabled(true);
-            auto path = FileUtils::getInstance()->getWritablePath() + "CppTests/DownloaderTest/" + sNameList[2];
+            auto path =
+                FileUtils::getInstance()->getWritablePath() + "CppTests/DownloaderTest/" + sNameList[2];
             this->downloader->createDownloadFileTask(sURLList[2], path, sNameList[2]);
         });
         bottomLeftView->setName(sNameList[2]);
@@ -194,8 +182,7 @@ struct DownloaderTest : public TestCase
         bottomLeftView->setPosition(VisibleRect::center());
         this->addChild(bottomLeftView);
 
-        Node* bottomRightView = createDownloadView(sNameList[3], [this](Ref*)
-        {
+        Node* bottomRightView = createDownloadView(sNameList[3], [this](Ref*) {
             auto view = this->getChildByName(sNameList[3]);
             auto btn = (ui::Button*)view->getChildByTag(TAG_BUTTON);
             btn->setEnabled(false);
@@ -204,7 +191,8 @@ struct DownloaderTest : public TestCase
             bar->setPercent(0);
             bar->setVisible(true);
             bar->setEnabled(true);
-            auto path = FileUtils::getInstance()->getWritablePath() + "CppTests/DownloaderTest/" + sNameList[3];
+            auto path =
+                FileUtils::getInstance()->getWritablePath() + "CppTests/DownloaderTest/" + sNameList[3];
             this->downloader->createDownloadFileTask(sURLList[3], path, sNameList[3]);
         });
         bottomRightView->setName(sNameList[3]);
@@ -213,38 +201,31 @@ struct DownloaderTest : public TestCase
         this->addChild(bottomRightView);
 
         // define progress callback
-        downloader->onTaskProgress = [this](const network::DownloadTask& task,
-                                          int64_t bytesReceived,
-                                          int64_t totalBytesReceived,
-                                          int64_t totalBytesExpected)
-        {
+        downloader->onTaskProgress = [this](const network::DownloadTask& task, int64_t bytesReceived,
+                                            int64_t totalBytesReceived, int64_t totalBytesExpected) {
             Node* view = this->getChildByName(task.identifier);
             auto bar = (ui::LoadingBar*)view->getChildByTag(TAG_PROGRESS_BAR);
             float percent = float(totalBytesReceived * 100) / totalBytesExpected;
             bar->setPercent(percent);
             char buf[32];
-            sprintf(buf, "%.1f%%[total %d KB]", percent, int(totalBytesExpected/1024));
+            sprintf(buf, "%.1f%%[total %d KB]", percent, int(totalBytesExpected / 1024));
             auto status = (Label*)view->getChildByTag(TAG_STATUS);
             status->setString(buf);
         };
 
         // define success callback
         downloader->onDataTaskSuccess = [this](const cocos2d::network::DownloadTask& task,
-                                               std::vector<unsigned char>& data)
-        {
+                                               std::vector<unsigned char>& data) {
             // create texture from data
             Texture2D* texture = nullptr;
-            do
-            {
+            do {
                 Image img;
-                if (false == img.initWithImageData(data.data(), data.size()))
-                {
+                if (false == img.initWithImageData(data.data(), data.size())) {
                     break;
                 }
 
                 texture = new Texture2D();
-                if (false == texture->initWithImage(&img))
-                {
+                if (false == texture->initWithImage(&img)) {
                     break;
                 }
                 auto sprite = Sprite::createWithTexture(texture);
@@ -252,7 +233,8 @@ struct DownloaderTest : public TestCase
                 auto viewSize = view->getContentSize();
                 sprite->setPosition(viewSize.width / 2, viewSize.height / 2);
                 auto spriteSize = sprite->getContentSize();
-                float scale = MIN((viewSize.height - 20) / spriteSize.height, (viewSize.width - 20) / spriteSize.width);
+                float scale = MIN((viewSize.height - 20) / spriteSize.height,
+                                  (viewSize.width - 20) / spriteSize.width);
                 sprite->setScale(scale);
                 view->addChild(sprite, 5, TAG_SPRITE);
 
@@ -265,14 +247,11 @@ struct DownloaderTest : public TestCase
             CC_SAFE_RELEASE(texture);
         };
 
-        downloader->onFileTaskSuccess = [this](const cocos2d::network::DownloadTask& task)
-        {
+        downloader->onFileTaskSuccess = [this](const cocos2d::network::DownloadTask& task) {
             Texture2D* texture = nullptr;
-            do
-            {
+            do {
                 auto view = this->getChildByName(task.identifier);
-                if (std::string::npos == task.storagePath.find(".png"))
-                {
+                if (std::string::npos == task.storagePath.find(".png")) {
                     // download big file success
                     char buf[32];
                     sprintf(buf, "Download [%s] success.", task.identifier.c_str());
@@ -285,7 +264,8 @@ struct DownloaderTest : public TestCase
                 auto viewSize = view->getContentSize();
                 sprite->setPosition(viewSize.width / 2, viewSize.height / 2);
                 auto spriteSize = sprite->getContentSize();
-                float scale = MIN((viewSize.height - 20) / spriteSize.height, (viewSize.width - 20) / spriteSize.width);
+                float scale = MIN((viewSize.height - 20) / spriteSize.height,
+                                  (viewSize.width - 20) / spriteSize.width);
                 sprite->setScale(scale);
                 view->addChild(sprite, 5, TAG_SPRITE);
 
@@ -299,17 +279,11 @@ struct DownloaderTest : public TestCase
         };
 
         // define failed callback
-        downloader->onTaskError = [this](const cocos2d::network::DownloadTask& task,
-                                         int errorCode,
-                                         int errorCodeInternal,
-                                         const std::string& errorStr)
-        {
-            log("Failed to download : %s, identifier(%s) error code(%d), internal error code(%d) desc(%s)"
-                , task.requestURL.c_str()
-                , task.identifier.c_str()
-                , errorCode
-                , errorCodeInternal
-                , errorStr.c_str());
+        downloader->onTaskError = [this](const cocos2d::network::DownloadTask& task, int errorCode,
+                                         int errorCodeInternal, const std::string& errorStr) {
+            log("Failed to download : %s, identifier(%s) error code(%d), internal error code(%d) desc(%s)",
+                task.requestURL.c_str(), task.identifier.c_str(), errorCode, errorCodeInternal,
+                errorStr.c_str());
             auto view = this->getChildByName(task.identifier);
             auto status = (Label*)view->getChildByTag(TAG_STATUS);
             status->setString(errorStr.length() ? errorStr : "Download failed.");
@@ -321,11 +295,11 @@ struct DownloaderTest : public TestCase
     }
 };
 
-struct DownloaderMultiTask : public TestCase
-{
+struct DownloaderMultiTask : public TestCase {
     CREATE_FUNC(DownloaderMultiTask);
 
     virtual std::string title() const override { return "Downloader Multi Task"; }
+
     virtual std::string subtitle() const override { return "see the console output"; }
 
     std::unique_ptr<network::Downloader> downloader;
@@ -343,24 +317,24 @@ struct DownloaderMultiTask : public TestCase
         char path[256];
         char name[64];
         // add 64 download task at same time.
-        for(int i=0; i< 64;i++){
+        for (int i = 0; i < 64; i++) {
             sprintf(name, "%d_%s", i, sNameList[0]);
-            sprintf(path, "%sCppTests/DownloaderTest/%s", FileUtils::getInstance()->getWritablePath().c_str(), name);
+            sprintf(path, "%sCppTests/DownloaderTest/%s",
+                    FileUtils::getInstance()->getWritablePath().c_str(), name);
             log("downloader task create: %s", name);
             this->downloader->createDownloadFileTask(sURLList[0], path, name);
         }
 
-        downloader->onFileTaskSuccess = ([] (const network::DownloadTask& task) {
+        downloader->onFileTaskSuccess = ([](const network::DownloadTask& task) {
             log("downloader task success: %s", task.identifier.c_str());
         });
 
-        downloader->onTaskError = ([] (const network::DownloadTask& task, int errorCode, int errorCodeInternal, const std::string& errorStr) {
-            log("downloader task failed : %s, identifier(%s) error code(%d), internal error code(%d) desc(%s)"
-                , task.requestURL.c_str()
-                , task.identifier.c_str()
-                , errorCode
-                , errorCodeInternal
-                , errorStr.c_str());
+        downloader->onTaskError = ([](const network::DownloadTask& task, int errorCode,
+                                      int errorCodeInternal, const std::string& errorStr) {
+            log("downloader task failed : %s, identifier(%s) error code(%d), internal error code(%d) "
+                "desc(%s)",
+                task.requestURL.c_str(), task.identifier.c_str(), errorCode, errorCodeInternal,
+                errorStr.c_str());
         });
     }
 };
@@ -370,4 +344,3 @@ DownloaderTests::DownloaderTests()
     ADD_TEST_CASE(DownloaderTest);
     ADD_TEST_CASE(DownloaderMultiTask);
 }
-

@@ -25,17 +25,17 @@
 #ifndef _EFFECT_ADVANCED_TEST_H_
 #define _EFFECT_ADVANCED_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(EffectAdvanceTests);
 
-class EffectAdvanceBaseTest: public TestCase
+class EffectAdvanceBaseTest : public TestCase
 {
 protected:
     cocos2d::TextureAtlas* _atlas;
 
-    std::string    _title;
+    std::string _title;
 
     cocos2d::Node* _bgNode;
     cocos2d::Node* _target1;
@@ -100,4 +100,3 @@ public:
 };
 
 #endif
-

@@ -34,9 +34,6 @@ public:
     ~UITests();
 
 private:
-
 };
 
-
 #endif /* defined(__cocos2d_tests__UITest__) */
-

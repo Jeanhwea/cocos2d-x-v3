@@ -39,7 +39,7 @@ protected:
 public:
     ~ParticleDemo();
 
-    virtual void onEnter()override;
+    virtual void onEnter() override;
 
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
@@ -188,13 +188,10 @@ public:
     static DemoParticleFromFile* create(const std::string& file)
     {
         auto ret = new (std::nothrow) DemoParticleFromFile;
-        if (ret && ret->init())
-        {
+        if (ret && ret->init()) {
             ret->_title = file;
             ret->autorelease();
-        }
-        else
-        {
+        } else {
             delete ret;
             ret = nullptr;
         }
@@ -205,10 +202,8 @@ public:
     std::string _title;
 
     virtual void onEnter() override;
-    virtual std::string subtitle() const override
-    {
-        return _title;
-    }
+
+    virtual std::string subtitle() const override { return _title; }
 };
 
 class RadiusMode1 : public ParticleDemo
@@ -266,6 +261,7 @@ public:
     void switchRender(float dt);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::Node* _parent1;
     cocos2d::Node* _parent2;
@@ -289,6 +285,7 @@ public:
     void reorderParticles(float dt);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     unsigned int _order;
 };
@@ -322,6 +319,7 @@ public:
     void removeSystem(float dt);
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::ParticleBatchNode* _batchNode;
 };
@@ -335,6 +333,7 @@ public:
     virtual void update(float dt) override;
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
+
 private:
     cocos2d::ParticleBatchNode* _batchNode;
 };
@@ -342,6 +341,7 @@ private:
 class PremultipliedAlphaTest : public ParticleDemo
 {
     bool _hasEmitter;
+
 public:
     CREATE_FUNC(PremultipliedAlphaTest);
     virtual void onEnter() override;
@@ -423,4 +423,3 @@ public:
 };
 
 #endif
-

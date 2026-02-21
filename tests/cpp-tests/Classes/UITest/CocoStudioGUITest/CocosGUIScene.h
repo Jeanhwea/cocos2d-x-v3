@@ -31,4 +31,3 @@
 DEFINE_TEST_LIST(GUIDynamicCreateTests);
 
 #endif /* defined(__TestCpp__CocosGUIScene__) */
-

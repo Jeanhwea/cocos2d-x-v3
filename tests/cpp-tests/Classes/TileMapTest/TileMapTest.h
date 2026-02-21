@@ -54,7 +54,7 @@ class TileMapEditTest : public TileDemo
 {
 public:
     CREATE_FUNC(TileMapEditTest);
-    TileMapEditTest ();
+    TileMapEditTest();
     virtual std::string title() const override;
 
     void updateMap(float dt);
@@ -111,6 +111,7 @@ class TMXReadWriteTest : public TileDemo
 {
     unsigned int _gid;
     unsigned int _gid2;
+
 public:
     CREATE_FUNC(TMXReadWriteTest);
     TMXReadWriteTest();
@@ -210,13 +211,14 @@ public:
 
 class TMXIsoZorder : public TileDemo
 {
-    cocos2d::Sprite*    _tamara;
+    cocos2d::Sprite* _tamara;
+
 public:
     CREATE_FUNC(TMXIsoZorder);
     TMXIsoZorder();
     virtual std::string title() const override;
     virtual std::string subtitle() const override;
-    virtual void onExit()override;
+    virtual void onExit() override;
 
     ~TMXIsoZorder();
     void repositionSprite(float dt);
@@ -224,7 +226,8 @@ public:
 
 class TMXOrthoZorder : public TileDemo
 {
-    cocos2d::Sprite*    _tamara;
+    cocos2d::Sprite* _tamara;
+
 public:
     CREATE_FUNC(TMXOrthoZorder);
     TMXOrthoZorder();
@@ -237,7 +240,8 @@ public:
 
 class TMXIsoVertexZ : public TileDemo
 {
-    cocos2d::Sprite*    _tamara;
+    cocos2d::Sprite* _tamara;
+
 public:
     CREATE_FUNC(TMXIsoVertexZ);
     TMXIsoVertexZ();
@@ -252,7 +256,8 @@ public:
 
 class TMXOrthoVertexZ : public TileDemo
 {
-    cocos2d::Sprite*    _tamara;
+    cocos2d::Sprite* _tamara;
+
 public:
     CREATE_FUNC(TMXOrthoVertexZ);
     TMXOrthoVertexZ();
@@ -391,7 +396,6 @@ public:
     CREATE_FUNC(TMXHexAxisXTest);
     TMXHexAxisXTest();
     virtual std::string title() const override;
-
 };
 
 class Issue16105Test : public TileDemo
@@ -400,7 +404,6 @@ public:
     CREATE_FUNC(Issue16105Test);
     Issue16105Test();
     virtual std::string title() const override;
-
 };
 
 class Issue16512Test : public TileDemo
@@ -409,7 +412,6 @@ public:
     CREATE_FUNC(Issue16512Test);
     Issue16512Test();
     virtual std::string title() const override;
-
 };
 
 class TileAnimTest : public TileDemo
@@ -425,4 +427,3 @@ public:
 };
 
 #endif
-

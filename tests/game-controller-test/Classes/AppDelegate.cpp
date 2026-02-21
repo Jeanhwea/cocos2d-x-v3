@@ -24,37 +24,34 @@
 
 #include "AppDelegate.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
-#include "GameControllerTest.h"
 #include "AppMacros.h"
+#include "GameControllerTest.h"
 
 USING_NS_CC;
 using namespace std;
 
-AppDelegate::AppDelegate() {
+AppDelegate::AppDelegate() {}
 
-}
-
-AppDelegate::~AppDelegate()
-{
-}
+AppDelegate::~AppDelegate() {}
 
 bool AppDelegate::applicationDidFinishLaunching()
 {
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if(!glview) {
+    if (!glview) {
         glview = GLViewImpl::create("Game Controller Test");
         director->setOpenGLView(glview);
     }
 
     director->setOpenGLView(glview);
 
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::SHOW_ALL);
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height,
+                                    ResolutionPolicy::SHOW_ALL);
 
-	Size frameSize = glview->getFrameSize();
+    Size frameSize = glview->getFrameSize();
 
     vector<string> searchPath;
 
@@ -64,18 +61,18 @@ bool AppDelegate::applicationDidFinishLaunching()
     // this can make sure that the resource's height could fit for the height of design resolution.
 
     // if the frame's height is larger than the height of medium resource size, select large resource.
-	if (frameSize.height > mediumResource.size.height)
-	{
+    if (frameSize.height > mediumResource.size.height) {
         searchPath.push_back(largeResource.directory);
 
-        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
-	}
+        director->setContentScaleFactor(MIN(largeResource.size.height / designResolutionSize.height,
+                                            largeResource.size.width / designResolutionSize.width));
+    }
     // if the frame's height is larger than the height of small resource size, select medium resource.
-    else
-    {
+    else {
         searchPath.push_back(mediumResource.directory);
 
-        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
+        director->setContentScaleFactor(MIN(mediumResource.size.height / designResolutionSize.height,
+                                            mediumResource.size.width / designResolutionSize.width));
     }
     // set searching path
     FileUtils::getInstance()->setSearchPaths(searchPath);
@@ -96,7 +93,7 @@ void AppDelegate::applicationDidEnterBackground()
 }
 
 // this function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegate::applicationWillEnterForeground()
+{
     Director::getInstance()->startAnimation();
 }
-

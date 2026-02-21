@@ -25,9 +25,9 @@
 #ifndef __DATAVISITOR_TEST_H__
 #define __DATAVISITOR_TEST_H__
 
-#include "../BaseTest.h"
-
 #include <string>
+
+#include "../BaseTest.h"
 
 DEFINE_TEST_SUITE(DataVisitorTests);
 
@@ -39,10 +39,9 @@ public:
     virtual std::string subtitle() const override;
     virtual void onEnter() override;
     void addSprite();
+
 protected:
-    std::string    _title;
+    std::string _title;
 };
 
-
-#endif // __DATAVISITOR_TEST_H__
-
+#endif  // __DATAVISITOR_TEST_H__

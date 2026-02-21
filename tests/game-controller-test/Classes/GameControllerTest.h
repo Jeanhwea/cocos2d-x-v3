@@ -25,8 +25,8 @@
 #ifndef __GAMECONTROLLER_TEST_H__
 #define __GAMECONTROLLER_TEST_H__
 
-#include "cocos2d.h"
 #include "base/CCGameController.h"
+#include "cocos2d.h"
 
 USING_NS_CC;
 
@@ -53,9 +53,8 @@ private:
 
     int _currControllerCount;
 
-    typedef struct controllerHolder
-    {
-        cocos2d::Controller *controller;
+    typedef struct controllerHolder {
+        cocos2d::Controller* controller;
 
         cocos2d::Node* _holderNode;
 
@@ -79,7 +78,7 @@ private:
 
         cocos2d::Label* _deviceLabel;
         cocos2d::Label* _externalKeyLabel;
-    }ControllerHolder;
+    } ControllerHolder;
 
     ControllerHolder _firstHolder;
     ControllerHolder _secondHolder;
@@ -90,7 +89,7 @@ private:
     cocos2d::Vec2 _visibleOrigin;
 
     void registerControllerListener();
-    void showButtonState(cocos2d::Controller *controller, int keyCode, bool isPressed);
+    void showButtonState(cocos2d::Controller* controller, int keyCode, bool isPressed);
 
     void createControllerSprite(ControllerHolder& holder);
 
@@ -100,5 +99,4 @@ private:
     void resetControllerHolderState(ControllerHolder& holder);
 };
 
-#endif // __GAMECONTROLLER_TEST_H__
-
+#endif  // __GAMECONTROLLER_TEST_H__

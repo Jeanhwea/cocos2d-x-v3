@@ -32,12 +32,12 @@ class Bug1159Layer : public BugsTestBase
 public:
     virtual bool init() override;
     virtual void onExit() override;
-    virtual std::string title() const override { return "Bug1159";}
+
+    virtual std::string title() const override { return "Bug1159"; }
 
     void callBack(cocos2d::Ref* sender);
 
     CREATE_FUNC(Bug1159Layer);
 };
 
-#endif // __BUG_1159_H__
-
+#endif  // __BUG_1159_H__

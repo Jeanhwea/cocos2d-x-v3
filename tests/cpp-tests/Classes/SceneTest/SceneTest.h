@@ -45,11 +45,12 @@ public:
     void onPushScene(cocos2d::Ref* sender);
     void onPushSceneTran(cocos2d::Ref* sender);
     void onQuit(cocos2d::Ref* sender);
-} ;
+};
 
 class SceneTestLayer2 : public cocos2d::Layer
 {
-    float    _timeCounter;
+    float _timeCounter;
+
 public:
     CREATE_FUNC(SceneTestLayer2);
 
@@ -59,7 +60,7 @@ public:
     void onGoBack(cocos2d::Ref* sender);
     void onReplaceScene(cocos2d::Ref* sender);
     void onReplaceSceneTran(cocos2d::Ref* sender);
-} ;
+};
 
 class SceneTestLayer3 : public cocos2d::LayerColor
 {
@@ -74,7 +75,7 @@ public:
     void item1Clicked(cocos2d::Ref* sender);
     void item2Clicked(cocos2d::Ref* sender);
     void item3Clicked(cocos2d::Ref* sender);
-} ;
+};
 
 class SceneTestScene : public TestCase
 {
@@ -83,4 +84,3 @@ public:
 };
 
 #endif
-

@@ -43,16 +43,15 @@ Bug624Layer::~Bug624Layer()
 
 bool Bug624Layer::init()
 {
-    if(BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto size = Director::getInstance()->getWinSize();
         auto label = Label::createWithTTF("Layer1", "fonts/Marker Felt.ttf", 36.0f);
 
-        label->setPosition(size.width/2, size.height/2);
+        label->setPosition(size.width / 2, size.height / 2);
         addChild(label);
 
         Device::setAccelerometerEnabled(true);
-        auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer::onAcceleration,  this));
+        auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer::onAcceleration, this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
         schedule(CC_SCHEDULE_SELECTOR(Bug624Layer::switchLayer), 5.0f);
@@ -89,18 +88,17 @@ Bug624Layer2::~Bug624Layer2()
 
 bool Bug624Layer2::init()
 {
-    if(BugsTestBase::init())
-    {
+    if (BugsTestBase::init()) {
         auto size = Director::getInstance()->getWinSize();
         auto label = Label::createWithTTF("Layer2", "fonts/Marker Felt.ttf", 36.0f);
 
-        label->setPosition(size.width/2, size.height/2);
+        label->setPosition(size.width / 2, size.height / 2);
         addChild(label);
 
         Device::setAccelerometerEnabled(true);
-        auto listener = EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer2::onAcceleration, this));
+        auto listener =
+            EventListenerAcceleration::create(CC_CALLBACK_2(Bug624Layer2::onAcceleration, this));
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
 
         schedule(CC_SCHEDULE_SELECTOR(Bug624Layer2::switchLayer), 5.0f);
 
@@ -123,4 +121,3 @@ void Bug624Layer2::onAcceleration(Acceleration* acc, Event* event)
 {
     log("Layer2 accel");
 }
-

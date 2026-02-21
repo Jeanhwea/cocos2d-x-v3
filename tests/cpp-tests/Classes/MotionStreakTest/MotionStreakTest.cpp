@@ -23,14 +23,15 @@
  ****************************************************************************/
 
 #include "MotionStreakTest.h"
+
 #include "../testResource.h"
 
 USING_NS_CC;
 
 enum {
-	kTagLabel = 1,
-	kTagSprite1 = 2,
-	kTagSprite2 = 3,
+    kTagLabel = 1,
+    kTagSprite1 = 2,
+    kTagSprite2 = 3,
 };
 
 MotionStreakTests::MotionStreakTests()
@@ -56,12 +57,12 @@ void MotionStreakTest1::onEnter()
     // the root object just rotates around
     _root = Sprite::create(s_pathR1);
     addChild(_root, 1);
-    _root->setPosition(Vec2(s.width/2, s.height/2));
+    _root->setPosition(Vec2(s.width / 2, s.height / 2));
 
     // the target object is offset from root, and the streak is moved to follow it
     _target = Sprite::create(s_pathR1);
     _root->addChild(_target);
-    _target->setPosition(Vec2(s.width/4, 0));
+    _target->setPosition(Vec2(s.width / 4, 0));
 
     // create the streak object and add it to the scene
     _streak = MotionStreak::create(2, 3, 32, Color3B::GREEN, s_streak);
@@ -72,26 +73,21 @@ void MotionStreakTest1::onEnter()
     auto a1 = RotateBy::create(2, 360);
 
     auto action1 = RepeatForever::create(a1);
-    auto motion = MoveBy::create(2, Vec2(100,0) );
-    _root->runAction( RepeatForever::create(Sequence::create(motion, motion->reverse(), nullptr) ) );
-    _root->runAction( action1 );
+    auto motion = MoveBy::create(2, Vec2(100, 0));
+    _root->runAction(RepeatForever::create(Sequence::create(motion, motion->reverse(), nullptr)));
+    _root->runAction(action1);
 
     auto colorAction = RepeatForever::create(Sequence::create(
-        TintTo::create(0.2f, 255, 0, 0),
-        TintTo::create(0.2f, 0, 255, 0),
-        TintTo::create(0.2f, 0, 0, 255),
-        TintTo::create(0.2f, 0, 255, 255),
-        TintTo::create(0.2f, 255, 255, 0),
-        TintTo::create(0.2f, 255, 0, 255),
-        TintTo::create(0.2f, 255, 255, 255),
-        nullptr));
+        TintTo::create(0.2f, 255, 0, 0), TintTo::create(0.2f, 0, 255, 0), TintTo::create(0.2f, 0, 0, 255),
+        TintTo::create(0.2f, 0, 255, 255), TintTo::create(0.2f, 255, 255, 0),
+        TintTo::create(0.2f, 255, 0, 255), TintTo::create(0.2f, 255, 255, 255), nullptr));
 
     _streak->runAction(colorAction);
 }
 
 void MotionStreakTest1::onUpdate(float delta)
 {
-    _streak->setPosition( _target->convertToWorldSpace(Vec2::ZERO) );
+    _streak->setPosition(_target->convertToWorldSpace(Vec2::ZERO));
 }
 
 std::string MotionStreakTest1::title() const
@@ -116,17 +112,17 @@ void MotionStreakTest2::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     // create the streak object and add it to the scene
-    _streak = MotionStreak::create(3, 3, 64, Color3B::WHITE, s_streak );
+    _streak = MotionStreak::create(3, 3, 64, Color3B::WHITE, s_streak);
     addChild(_streak);
 
-    _streak->setPosition( Vec2(s.width/2, s.height/2) );
+    _streak->setPosition(Vec2(s.width / 2, s.height / 2));
 }
 
 void MotionStreakTest2::onTouchesMoved(const std::vector<Touch*>& touches, Event* event)
 {
     auto touchLocation = touches[0]->getLocation();
 
-    _streak->setPosition( touchLocation );
+    _streak->setPosition(touchLocation);
 }
 
 std::string MotionStreakTest2::title() const
@@ -150,9 +146,8 @@ void Issue1358::onEnter()
     _streak = MotionStreak::create(2.0f, 1.0f, 50.0f, Color3B(255, 255, 0), "Images/Icon.png");
     addChild(_streak);
 
-
-    _center  = Vec2(size.width/2, size.height/2);
-    _radius = size.width/3;
+    _center = Vec2(size.width / 2, size.height / 2);
+    _radius = size.width / 3;
     _angle = 0.0f;
 
     schedule(CC_SCHEDULE_SELECTOR(Issue1358::update), 0);
@@ -161,8 +156,8 @@ void Issue1358::onEnter()
 void Issue1358::update(float dt)
 {
     _angle += 1.0f;
-    _streak->setPosition(Vec2(_center.x + cosf(_angle/180 * M_PI)*_radius,
-                            _center.y + sinf(_angle/ 180 * M_PI)*_radius));
+    _streak->setPosition(Vec2(_center.x + cosf(_angle / 180 * M_PI) * _radius,
+                              _center.y + sinf(_angle / 180 * M_PI) * _radius));
 }
 
 std::string Issue1358::title() const
@@ -188,15 +183,15 @@ void Issue12226::onEnter()
     // ask director the the window size
     auto size = Director::getInstance()->getWinSize();
 
-    auto radius = size.width/3;
+    auto radius = size.width / 3;
 
     auto outer = Sprite::create("Images/grossini.png");
-    outer->setPosition(size/2);
+    outer->setPosition(size / 2);
     addChild(outer);
 
-
-    _streak = MotionStreak::create(1.0f, 3, radius * 1.5f, Color3B(0xA0, 0xA0, 0xA0), "ccb/particle-smoke.png");
-//    motionStreak->setOpacity(0x70);
+    _streak =
+        MotionStreak::create(1.0f, 3, radius * 1.5f, Color3B(0xA0, 0xA0, 0xA0), "ccb/particle-smoke.png");
+    //    motionStreak->setOpacity(0x70);
     _streak->setPosition(outer->getPosition());
 
     this->addChild(_streak, outer->getLocalZOrder() - 1);
@@ -206,9 +201,10 @@ void Issue12226::onEnter()
     const uint32_t length = (radius * 0.95);
 
     std::function<void(float)> updateMotionStreak = [=](float dt) {
-
-        Vec2 position = Vec2(outer->getPositionX() + length * cosf(-1 * CC_DEGREES_TO_RADIANS(outer->getRotation() + 90.0f)),
-                             outer->getPositionY() + length * sinf(-1 * CC_DEGREES_TO_RADIANS(outer->getRotation() + 90.0f)));
+        Vec2 position = Vec2(
+            outer->getPositionX() + length * cosf(-1 * CC_DEGREES_TO_RADIANS(outer->getRotation() + 90.0f)),
+            outer->getPositionY() +
+                length * sinf(-1 * CC_DEGREES_TO_RADIANS(outer->getRotation() + 90.0f)));
 
         _streak->setPosition(position);
     };
@@ -218,7 +214,6 @@ void Issue12226::onEnter()
     auto rot = RotateBy::create(2, 360);
     auto forever = RepeatForever::create(rot);
     outer->runAction(forever);
-
 }
 
 std::string Issue12226::title() const
@@ -237,13 +232,9 @@ std::string Issue12226::subtitle() const
 //
 //------------------------------------------------------------------
 
-MotionStreakTest::MotionStreakTest()
-{
-}
+MotionStreakTest::MotionStreakTest() {}
 
-MotionStreakTest::~MotionStreakTest()
-{
-}
+MotionStreakTest::~MotionStreakTest() {}
 
 std::string MotionStreakTest::title() const
 {
@@ -261,20 +252,18 @@ void MotionStreakTest::onEnter()
 
     auto s = Director::getInstance()->getWinSize();
 
-    auto itemMode = MenuItemToggle::createWithCallback( CC_CALLBACK_1(MotionStreakTest::modeCallback, this),
-        MenuItemFont::create("Use High Quality Mode"),
-        MenuItemFont::create("Use Fast Mode"),
-        nullptr);
+    auto itemMode = MenuItemToggle::createWithCallback(CC_CALLBACK_1(MotionStreakTest::modeCallback, this),
+                                                       MenuItemFont::create("Use High Quality Mode"),
+                                                       MenuItemFont::create("Use Fast Mode"), nullptr);
 
     auto menuMode = Menu::create(itemMode, nullptr);
     addChild(menuMode);
 
-    menuMode->setPosition(Vec2(s.width/2, s.height/4));
+    menuMode->setPosition(Vec2(s.width / 2, s.height / 4));
 }
 
-void MotionStreakTest::modeCallback(Ref *pSender)
+void MotionStreakTest::modeCallback(Ref* pSender)
 {
     bool fastMode = _streak->isFastMode();
-    _streak->setFastMode(! fastMode);
+    _streak->setFastMode(!fastMode);
 }
-

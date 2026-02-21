@@ -23,38 +23,40 @@
  ****************************************************************************/
 
 #include "CocosDenshionTest.h"
+
 #include <cmath>
+
+#include "audio/include/SimpleAudioEngine.h"
 #include "cocos2d.h"
 #include "extensions/GUI/CCControlExtension/CCControlSlider.h"
-#include "audio/include/SimpleAudioEngine.h"
 
 // android effect only support ogg
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_ANDROID)
-    #define EFFECT_FILE        "effect2.ogg"
-#elif( CC_TARGET_PLATFORM == CC_PLATFORM_MARMALADE)
-    #define EFFECT_FILE        "effect1.raw"
+#define EFFECT_FILE "effect2.ogg"
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_MARMALADE)
+#define EFFECT_FILE "effect1.raw"
 #else
-    #define EFFECT_FILE        "effect1.wav"
-#endif // CC_PLATFORM_ANDROID
+#define EFFECT_FILE "effect1.wav"
+#endif  // CC_PLATFORM_ANDROID
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32)
-    #define MUSIC_FILE        "music.mid"
+#define MUSIC_FILE "music.mid"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_WINRT)
-    #define MUSIC_FILE        "background.wav"
-#elif (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX )
-    #define MUSIC_FILE        "background.ogg"
+#define MUSIC_FILE "background.wav"
+#elif (CC_TARGET_PLATFORM == CC_PLATFORM_BLACKBERRY || CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+#define MUSIC_FILE "background.ogg"
 #elif (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-    #define MUSIC_FILE        "background.caf"
+#define MUSIC_FILE "background.caf"
 #else
-    #define MUSIC_FILE        "background.mp3"
-#endif // CC_PLATFORM_WIN32
+#define MUSIC_FILE "background.mp3"
+#endif  // CC_PLATFORM_WIN32
 
 USING_NS_CC;
 using namespace CocosDenshion;
 
-#define LINE_SPACE          40
+#define LINE_SPACE 40
 
-class Button : public Node//, public TargetedTouchDelegate
+class Button : public Node  //, public TargetedTouchDelegate
 {
 public:
     static Button *createWithSprite(const char *filePath)
@@ -81,19 +83,15 @@ public:
 
     ~Button()
     {
-//        Director::getInstance()->getTouchDispatcher()->removeDelegate(this);
+        //        Director::getInstance()->getTouchDispatcher()->removeDelegate(this);
     }
 
-    void onTriggered(const std::function<void(void)> &onTriggered)
-    {
-        _onTriggered = onTriggered;
-    }
+    void onTriggered(const std::function<void(void)> &onTriggered) { _onTriggered = onTriggered; }
 
 private:
-    Button()
-        : _child(nullptr)
+    Button() : _child(nullptr)
     {
-//        Director::getInstance()->getTouchDispatcher()->addTargetedDelegate(this, 100, true);
+        //        Director::getInstance()->getTouchDispatcher()->addTargetedDelegate(this, 100, true);
 
         // Register Touch Event
         auto listener = EventListenerTouchOneByOne::create();
@@ -104,7 +102,6 @@ private:
         listener->onTouchCancelled = CC_CALLBACK_2(Button::onTouchCancelled, this);
 
         _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
-
     }
 
     bool initSpriteButton(const char *filePath)
@@ -121,32 +118,27 @@ private:
         return true;
     }
 
-    bool touchHits(Touch  *touch)
+    bool touchHits(Touch *touch)
     {
         const Rect area(0, 0, _child->getContentSize().width, _child->getContentSize().height);
         return area.containsPoint(_child->convertToNodeSpace(touch->getLocation()));
     }
 
-    bool onTouchBegan(Touch *touch, Event* /*event*/)
+    bool onTouchBegan(Touch *touch, Event * /*event*/)
     {
         const bool hits = touchHits(touch);
-        if (hits)
-            scaleButtonTo(0.9f);
+        if (hits) scaleButtonTo(0.9f);
         return hits;
     }
 
-    void onTouchEnded(Touch *touch, Event* /*event*/)
+    void onTouchEnded(Touch *touch, Event * /*event*/)
     {
         const bool hits = touchHits(touch);
-        if (hits && _onTriggered)
-            _onTriggered();
+        if (hits && _onTriggered) _onTriggered();
         scaleButtonTo(1);
     }
 
-    void onTouchCancelled(Touch* /*touch*/, Event* /*event*/)
-    {
-        scaleButtonTo(1);
-    }
+    void onTouchCancelled(Touch * /*touch*/, Event * /*event*/) { scaleButtonTo(1); }
 
     void scaleButtonTo(float scale)
     {
@@ -163,10 +155,7 @@ private:
 class AudioSlider : public Node
 {
 public:
-    enum Direction {
-        Vertical,
-        Horizontal
-    };
+    enum Direction { Vertical, Horizontal };
 
     static AudioSlider *create(Direction direction)
     {
@@ -179,10 +168,7 @@ public:
         return ret;
     }
 
-    float getValue() const
-    {
-        return _slider->getValue();
-    }
+    float getValue() const { return _slider->getValue(); }
 
     void setValue(float minValue, float maxValue, float value)
     {
@@ -219,19 +205,16 @@ public:
 
 private:
     AudioSlider(Direction direction)
-        : _direction(direction)
-        , _slider(nullptr)
-        , _lblMinValue(nullptr)
-        , _lblMaxValue(nullptr)
+        : _direction(direction), _slider(nullptr), _lblMinValue(nullptr), _lblMaxValue(nullptr)
     {
     }
 
     bool init()
     {
-        _slider = extension::ControlSlider::create("extensions/sliderTrack.png","extensions/sliderProgress.png" ,"extensions/sliderThumb.png");
+        _slider = extension::ControlSlider::create(
+            "extensions/sliderTrack.png", "extensions/sliderProgress.png", "extensions/sliderThumb.png");
         _slider->setScale(0.5);
-        if (_direction == Vertical)
-            _slider->setRotation(-90.0);
+        if (_direction == Vertical) _slider->setRotation(-90.0);
         addChild(_slider);
         return true;
     }
@@ -243,31 +226,29 @@ private:
 };
 
 CocosDenshionTest::CocosDenshionTest()
-: _soundId(0),
-_musicVolume(1),
-_effectsVolume(1),
-_sliderPitch(nullptr),
-_sliderPan(nullptr),
-_sliderGain(nullptr),
-_sliderEffectsVolume(nullptr),
-_sliderMusicVolume(nullptr)
+    : _soundId(0),
+      _musicVolume(1),
+      _effectsVolume(1),
+      _sliderPitch(nullptr),
+      _sliderPan(nullptr),
+      _sliderGain(nullptr),
+      _sliderEffectsVolume(nullptr),
+      _sliderMusicVolume(nullptr)
 {
     addButtons();
     addSliders();
     schedule(CC_SCHEDULE_SELECTOR(CocosDenshionTest::updateVolumes));
 
     // preload background music and effect
-    SimpleAudioEngine::getInstance()->preloadBackgroundMusic( MUSIC_FILE );
-    SimpleAudioEngine::getInstance()->preloadEffect( EFFECT_FILE );
+    SimpleAudioEngine::getInstance()->preloadBackgroundMusic(MUSIC_FILE);
+    SimpleAudioEngine::getInstance()->preloadEffect(EFFECT_FILE);
 
     // set default volume
     SimpleAudioEngine::getInstance()->setEffectsVolume(0.5);
     SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(0.5);
 }
 
-CocosDenshionTest::~CocosDenshionTest()
-{
-}
+CocosDenshionTest::~CocosDenshionTest() {}
 
 void CocosDenshionTest::onExit()
 {
@@ -282,33 +263,23 @@ void CocosDenshionTest::addButtons()
     addChildAt(lblMusic, 0.25f, 0.9f);
 
     Button *btnPlay = Button::createWithText("play");
-    btnPlay->onTriggered([]() {
-        SimpleAudioEngine::getInstance()->playBackgroundMusic(MUSIC_FILE, true);
-    });
+    btnPlay->onTriggered([]() { SimpleAudioEngine::getInstance()->playBackgroundMusic(MUSIC_FILE, true); });
     addChildAt(btnPlay, 0.1f, 0.75f);
 
     Button *btnStop = Button::createWithText("stop");
-    btnStop->onTriggered([]() {
-        SimpleAudioEngine::getInstance()->stopBackgroundMusic();
-    });
+    btnStop->onTriggered([]() { SimpleAudioEngine::getInstance()->stopBackgroundMusic(); });
     addChildAt(btnStop, 0.25f, 0.75f);
 
     Button *btnRewindMusic = Button::createWithText("rewind");
-    btnRewindMusic->onTriggered([]() {
-        SimpleAudioEngine::getInstance()->rewindBackgroundMusic();
-    });
+    btnRewindMusic->onTriggered([]() { SimpleAudioEngine::getInstance()->rewindBackgroundMusic(); });
     addChildAt(btnRewindMusic, 0.4f, 0.75f);
 
     Button *btnPause = Button::createWithText("pause");
-    btnPause->onTriggered([]() {
-        SimpleAudioEngine::getInstance()->pauseBackgroundMusic();
-    });
+    btnPause->onTriggered([]() { SimpleAudioEngine::getInstance()->pauseBackgroundMusic(); });
     addChildAt(btnPause, 0.1f, 0.65f);
 
     Button *btnResumeMusic = Button::createWithText("resume");
-    btnResumeMusic->onTriggered([]() {
-        SimpleAudioEngine::getInstance()->resumeBackgroundMusic();
-    });
+    btnResumeMusic->onTriggered([]() { SimpleAudioEngine::getInstance()->resumeBackgroundMusic(); });
     addChildAt(btnResumeMusic, 0.25f, 0.65f);
 
     Button *btnIsPlayingMusic = Button::createWithText("is playing");
@@ -342,45 +313,31 @@ void CocosDenshionTest::addButtons()
     addChildAt(btnPlayEffectInLoop, 0.75f, 0.8f);
 
     Button *btnStopEffect = Button::createWithText("stop");
-    btnStopEffect->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->stopEffect(_soundId);
-    });
+    btnStopEffect->onTriggered([this]() { SimpleAudioEngine::getInstance()->stopEffect(_soundId); });
     addChildAt(btnStopEffect, 0.9f, 0.8f);
 
     Button *btnUnloadEffect = Button::createWithText("unload");
-    btnUnloadEffect->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->unloadEffect(EFFECT_FILE);
-    });
+    btnUnloadEffect->onTriggered([this]() { SimpleAudioEngine::getInstance()->unloadEffect(EFFECT_FILE); });
     addChildAt(btnUnloadEffect, 0.6f, 0.7f);
 
     Button *btnPauseEffect = Button::createWithText("pause");
-    btnPauseEffect->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->pauseEffect(_soundId);
-    });
+    btnPauseEffect->onTriggered([this]() { SimpleAudioEngine::getInstance()->pauseEffect(_soundId); });
     addChildAt(btnPauseEffect, 0.75f, 0.7f);
 
     Button *btnResumeEffect = Button::createWithText("resume");
-    btnResumeEffect->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->resumeEffect(_soundId);
-    });
+    btnResumeEffect->onTriggered([this]() { SimpleAudioEngine::getInstance()->resumeEffect(_soundId); });
     addChildAt(btnResumeEffect, 0.9f, 0.7f);
 
     Button *btnPauseAll = Button::createWithText("pause all");
-    btnPauseAll->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->pauseAllEffects();
-    });
+    btnPauseAll->onTriggered([this]() { SimpleAudioEngine::getInstance()->pauseAllEffects(); });
     addChildAt(btnPauseAll, 0.6f, 0.6f);
 
     Button *btnResumeAll = Button::createWithText("resume all");
-    btnResumeAll->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->resumeAllEffects();
-    });
+    btnResumeAll->onTriggered([this]() { SimpleAudioEngine::getInstance()->resumeAllEffects(); });
     addChildAt(btnResumeAll, 0.75f, 0.6f);
 
     Button *btnStopAll = Button::createWithText("stop all");
-    btnStopAll->onTriggered([this]() {
-        SimpleAudioEngine::getInstance()->stopAllEffects();
-    });
+    btnStopAll->onTriggered([this]() { SimpleAudioEngine::getInstance()->stopAllEffects(); });
     addChildAt(btnStopAll, 0.9f, 0.6f);
 }
 
@@ -443,4 +400,3 @@ CocosDenshionTests::CocosDenshionTests()
 {
     ADD_TEST_CASE(CocosDenshionTest);
 }
-

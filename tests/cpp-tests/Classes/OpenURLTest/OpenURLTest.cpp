@@ -42,14 +42,15 @@ OpenURLTest::OpenURLTest()
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
 
     // create a label to display the tip string
-    _label = Label::createWithTTF("Touch the screen to open\nthe cocos2d-x home page", "fonts/arial.ttf", 22);
+    _label =
+        Label::createWithTTF("Touch the screen to open\nthe cocos2d-x home page", "fonts/arial.ttf", 22);
     _label->setPosition(VisibleRect::center());
     addChild(_label, 0);
 
     _label->retain();
 }
 
-void OpenURLTest::onTouchesEnded(const std::vector<Touch*>& touches, Event  *event)
+void OpenURLTest::onTouchesEnded(const std::vector<Touch*>& touches, Event* event)
 {
     Application::getInstance()->openURL("http://www.cocos2d-x.org/");
 }
@@ -58,4 +59,3 @@ OpenURLTest::~OpenURLTest()
 {
     _label->release();
 }
-

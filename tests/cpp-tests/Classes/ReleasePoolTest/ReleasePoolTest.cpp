@@ -34,7 +34,7 @@ ReleasePoolTests::ReleasePoolTests()
 class TestObject : public Ref
 {
 public:
-    TestObject() : _name(""){}
+    TestObject() : _name("") {}
 
     TestObject(std::string name) : _name(std::move(name))
     {
@@ -43,8 +43,7 @@ public:
 
     ~TestObject()
     {
-        if (!_name.empty())
-            CCLOG("TestObject:%s is destroyed", _name.c_str());
+        if (!_name.empty()) CCLOG("TestObject:%s is destroyed", _name.c_str());
     }
 
 private:
@@ -53,8 +52,7 @@ private:
 
 bool ReleasePoolTest::init()
 {
-    if (!TestCase::init())
-    {
+    if (!TestCase::init()) {
         return false;
     }
     // title
@@ -99,8 +97,7 @@ bool ReleasePoolTest::init()
     {
         AutoreleasePool pool2;
         char name[20];
-        for (int i = 0; i < 100; ++i)
-        {
+        for (int i = 0; i < 100; ++i) {
             snprintf(name, 20, "object%d", i);
             TestObject *tmpObj = new (std::nothrow) TestObject(name);
             tmpObj->autorelease();
@@ -116,4 +113,3 @@ bool ReleasePoolTest::init()
 
     return true;
 }
-

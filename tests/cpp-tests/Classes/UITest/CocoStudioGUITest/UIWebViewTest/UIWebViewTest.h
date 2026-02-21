@@ -40,11 +40,8 @@ public:
     void onWebViewDidFinishLoading(cocos2d::experimental::ui::WebView *sender, const std::string &url);
     void onWebViewDidFailLoading(cocos2d::experimental::ui::WebView *sender, const std::string &url);
 
-
 private:
     cocos2d::experimental::ui::WebView *_webView;
-
 };
 
 #endif /* defined(__cocos2d_tests__UIWebViewTest__) */
-

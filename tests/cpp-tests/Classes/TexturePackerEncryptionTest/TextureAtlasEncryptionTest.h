@@ -25,9 +25,10 @@
 #ifndef _TextureAtlasEncryption_TEST_H_
 #define _TextureAtlasEncryption_TEST_H_
 
-#include "cocos2d.h"
-#include "../BaseTest.h"
 #include <string>
+
+#include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(TextureAtlasEncryptionTests);
 
@@ -40,8 +41,7 @@ public:
     virtual void onEnter() override;
 
 protected:
-    std::string    _title;
+    std::string _title;
 };
 
 #endif
-

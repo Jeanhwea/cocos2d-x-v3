@@ -26,11 +26,13 @@
 #ifndef _PHYSICS3D_TEST_H_
 #define _PHYSICS3D_TEST_H_
 
-#include "../BaseTest.h"
 #include <string>
 
-namespace cocos2d {
-    class Physics3DConstraint;
+#include "../BaseTest.h"
+
+namespace cocos2d
+{
+class Physics3DConstraint;
 }
 
 DEFINE_TEST_SUITE(Physics3DTests);
@@ -58,16 +60,15 @@ public:
     virtual std::string subtitle() const override;
     virtual void update(float delta) override;
 
-    virtual void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
-    virtual void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
-    virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event);
+    virtual void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    virtual void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
+    virtual void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches, cocos2d::Event *event);
 
 protected:
-
     void shootBox(const cocos2d::Vec3 &des);
 
 protected:
-    std::string    _title;
+    std::string _title;
     cocos2d::Camera *_camera;
     float _angle;
     bool _needShootBox;
@@ -76,10 +77,9 @@ protected:
 class BasicPhysics3DDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(BasicPhysics3DDemo);
-    BasicPhysics3DDemo(){};
-    virtual ~BasicPhysics3DDemo(){};
+    BasicPhysics3DDemo() {};
+    virtual ~BasicPhysics3DDemo() {};
 
     virtual std::string subtitle() const override;
 
@@ -89,31 +89,32 @@ public:
 class Physics3DConstraintDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(Physics3DConstraintDemo);
-    Physics3DConstraintDemo():_constraint(nullptr), _pickingDistance(0.f){};
-    virtual ~Physics3DConstraintDemo(){};
+    Physics3DConstraintDemo() : _constraint(nullptr), _pickingDistance(0.f) {};
+    virtual ~Physics3DConstraintDemo() {};
 
     virtual std::string subtitle() const override;
 
     virtual bool init() override;
 
-    virtual void onTouchesBegan(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
-    virtual void onTouchesMoved(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
-    virtual void onTouchesEnded(const std::vector<cocos2d::Touch*>& touches, cocos2d::Event  *event) override;
+    virtual void onTouchesBegan(const std::vector<cocos2d::Touch *> &touches,
+                                cocos2d::Event *event) override;
+    virtual void onTouchesMoved(const std::vector<cocos2d::Touch *> &touches,
+                                cocos2d::Event *event) override;
+    virtual void onTouchesEnded(const std::vector<cocos2d::Touch *> &touches,
+                                cocos2d::Event *event) override;
 
 protected:
-    cocos2d::Physics3DConstraint*     _constraint; //for picking
-    float                             _pickingDistance; //picking distance
+    cocos2d::Physics3DConstraint *_constraint;  // for picking
+    float _pickingDistance;                     // picking distance
 };
 
 class Physics3DKinematicDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(Physics3DKinematicDemo);
-    Physics3DKinematicDemo(){};
-    virtual ~Physics3DKinematicDemo(){};
+    Physics3DKinematicDemo() {};
+    virtual ~Physics3DKinematicDemo() {};
 
     virtual std::string subtitle() const override;
 
@@ -123,10 +124,9 @@ public:
 class Physics3DCollisionCallbackDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(Physics3DCollisionCallbackDemo);
-    Physics3DCollisionCallbackDemo(){};
-    virtual ~Physics3DCollisionCallbackDemo(){};
+    Physics3DCollisionCallbackDemo() {};
+    virtual ~Physics3DCollisionCallbackDemo() {};
 
     virtual std::string subtitle() const override;
 
@@ -136,10 +136,9 @@ public:
 class Physics3DTerrainDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(Physics3DTerrainDemo);
-    Physics3DTerrainDemo(){};
-    virtual ~Physics3DTerrainDemo(){};
+    Physics3DTerrainDemo() {};
+    virtual ~Physics3DTerrainDemo() {};
 
     virtual std::string subtitle() const override;
 
@@ -151,10 +150,9 @@ private:
 class Physics3DColliderDemo : public Physics3DTestDemo
 {
 public:
-
     CREATE_FUNC(Physics3DColliderDemo);
-    Physics3DColliderDemo(){};
-    virtual ~Physics3DColliderDemo(){};
+    Physics3DColliderDemo() {};
+    virtual ~Physics3DColliderDemo() {};
 
     virtual std::string subtitle() const override;
 
@@ -166,4 +164,3 @@ private:
 #endif
 
 #endif
-

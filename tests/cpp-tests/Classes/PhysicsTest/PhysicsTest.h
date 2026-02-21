@@ -30,7 +30,6 @@
 
 #if CC_USE_PHYSICS
 
-
 DEFINE_TEST_SUITE(PhysicsTests);
 
 class PhysicsDemo : public TestCase
@@ -46,9 +45,13 @@ public:
     void toggleDebugCallback(cocos2d::Ref* sender);
 
     cocos2d::Sprite* addGrossiniAtPosition(cocos2d::Vec2 p, float scale = 1.0);
-    cocos2d::Sprite* makeBall(cocos2d::Vec2 point, float radius, cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
-    cocos2d::Sprite* makeBox(cocos2d::Vec2 point, cocos2d::Size size, int color = 0, cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
-    cocos2d::Sprite* makeTriangle(cocos2d::Vec2 point, cocos2d::Size size, int color = 0, cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
+    cocos2d::Sprite* makeBall(cocos2d::Vec2 point, float radius,
+                              cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
+    cocos2d::Sprite* makeBox(cocos2d::Vec2 point, cocos2d::Size size, int color = 0,
+                             cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
+    cocos2d::Sprite* makeTriangle(
+        cocos2d::Vec2 point, cocos2d::Size size, int color = 0,
+        cocos2d::PhysicsMaterial material = cocos2d::PHYSICSBODY_MATERIAL_DEFAULT);
 
     bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
     void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
@@ -57,7 +60,6 @@ public:
     void toggleDebug();
 
 protected:
-
     cocos2d::Texture2D* _spriteTexture;
     cocos2d::SpriteBatchNode* _ball;
     std::unordered_map<int, cocos2d::Node*> _mouses;
@@ -246,6 +248,7 @@ public:
     virtual std::string subtitle() const override;
 
     void changeBodyCallback(cocos2d::Ref* sender);
+
 private:
     cocos2d::Sprite* _nodeA;
     cocos2d::Sprite* _nodeB;
@@ -301,5 +304,4 @@ public:
     virtual std::string subtitle() const override;
 };
 
-#endif // #if CC_USE_PHYSICS
-
+#endif  // #if CC_USE_PHYSICS

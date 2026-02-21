@@ -22,8 +22,8 @@
  THE SOFTWARE.
  ****************************************************************************/
 
-
 #include "ConfigurationTest.h"
+
 #include "../testResource.h"
 #include "cocos2d.h"
 
@@ -52,7 +52,7 @@ void ConfigurationLoadConfig::onEnter()
 {
     ConfigurationBase::onEnter();
 
-	Configuration::getInstance()->loadConfigFile("configs/config-test-ok.plist");
+    Configuration::getInstance()->loadConfigFile("configs/config-test-ok.plist");
     std::string config = Configuration::getInstance()->getInfo();
     log("%s\n", config.c_str());
 }
@@ -71,8 +71,9 @@ void ConfigurationQuery::onEnter()
 {
     ConfigurationBase::onEnter();
 
-	log("cocos2d version: %s", Configuration::getInstance()->getValue("cocos2d.x.version").asString().c_str() );
-	log("OpenGL version: %s", Configuration::getInstance()->getValue("gl.version").asString().c_str() );
+    log("cocos2d version: %s",
+        Configuration::getInstance()->getValue("cocos2d.x.version").asString().c_str());
+    log("OpenGL version: %s", Configuration::getInstance()->getValue("gl.version").asString().c_str());
 }
 
 std::string ConfigurationQuery::subtitle() const
@@ -89,7 +90,7 @@ void ConfigurationInvalid::onEnter()
 {
     ConfigurationBase::onEnter();
 
-	Configuration::getInstance()->loadConfigFile("configs/config-test-invalid.plist");
+    Configuration::getInstance()->loadConfigFile("configs/config-test-invalid.plist");
 }
 
 std::string ConfigurationInvalid::subtitle() const
@@ -107,23 +108,22 @@ void ConfigurationDefault::onEnter()
     ConfigurationBase::onEnter();
 
     std::string c_value = Configuration::getInstance()->getValue("invalid.key", Value("no key")).asString();
-	if( c_value != "no key" )
-		log("1. Test failed!");
-	else
-		log("1. Test OK!");
+    if (c_value != "no key")
+        log("1. Test failed!");
+    else
+        log("1. Test OK!");
 
-	bool b_value = Configuration::getInstance()->getValue("invalid.key", Value(true)).asBool();
-	if( ! b_value )
-		log("2. Test failed!");
-	else
-		log("2. Test OK!");
+    bool b_value = Configuration::getInstance()->getValue("invalid.key", Value(true)).asBool();
+    if (!b_value)
+        log("2. Test failed!");
+    else
+        log("2. Test OK!");
 
-	double d_value = Configuration::getInstance()->getValue("invalid.key", Value(42.42)).asDouble();
-	if( d_value != 42.42 )
-		log("3. Test failed!");
-	else
-		log("3. Test OK!");
-
+    double d_value = Configuration::getInstance()->getValue("invalid.key", Value(42.42)).asDouble();
+    if (d_value != 42.42)
+        log("3. Test failed!");
+    else
+        log("3. Test OK!");
 }
 
 std::string ConfigurationDefault::subtitle() const
@@ -140,13 +140,13 @@ void ConfigurationSet::onEnter()
 {
     ConfigurationBase::onEnter();
 
-	Configuration *conf = Configuration::getInstance();
+    Configuration *conf = Configuration::getInstance();
 
-	conf->setValue("this.is.an.int.value", Value(10) );
-	conf->setValue("this.is.a.bool.value", Value(true) );
-	conf->setValue("this.is.a.string.value", Value("hello world") );
+    conf->setValue("this.is.an.int.value", Value(10));
+    conf->setValue("this.is.a.bool.value", Value(true));
+    conf->setValue("this.is.a.string.value", Value("hello world"));
 
-	auto str = conf->getInfo();
+    auto str = conf->getInfo();
     log("%s\n", str.c_str());
 }
 
@@ -154,4 +154,3 @@ std::string ConfigurationSet::subtitle() const
 {
     return "Tests setting values manually";
 }
-

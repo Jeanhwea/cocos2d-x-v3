@@ -23,10 +23,10 @@
  ****************************************************************************/
 
 #include "WebSocketTest.h"
-#include "../ExtensionsTest.h"
-#include "testResource.h"
 
+#include "../ExtensionsTest.h"
 #include "WebSocketDelayTest.h"
+#include "testResource.h"
 
 USING_NS_CC;
 USING_NS_CC_EXT;
@@ -39,14 +39,14 @@ WebSocketTests::WebSocketTests()
 }
 
 WebSocketTest::WebSocketTest()
-: _wsiSendText(nullptr)
-, _wsiSendBinary(nullptr)
-, _wsiError(nullptr)
-, _sendTextStatus(nullptr)
-, _sendBinaryStatus(nullptr)
-, _errorStatus(nullptr)
-, _sendTextTimes(0)
-, _sendBinaryTimes(0)
+    : _wsiSendText(nullptr),
+      _wsiSendBinary(nullptr),
+      _wsiError(nullptr),
+      _sendTextStatus(nullptr),
+      _sendBinaryStatus(nullptr),
+      _errorStatus(nullptr),
+      _sendTextTimes(0),
+      _sendBinaryTimes(0)
 {
     auto winSize = Director::getInstance()->getWinSize();
 
@@ -59,67 +59,67 @@ WebSocketTest::WebSocketTest()
 
     // Send Text
     auto labelSendText = Label::createWithTTF("Send Text", "fonts/arial.ttf", 20);
-    auto itemSendText = MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketTest::onMenuSendTextClicked, this));
+    auto itemSendText =
+        MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketTest::onMenuSendTextClicked, this));
     itemSendText->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - SPACE));
     menuRequest->addChild(itemSendText);
 
     labelSendText = Label::createWithTTF("Send Multiple Text", "fonts/arial.ttf", 20);
-    itemSendText = MenuItemLabel::create(labelSendText, CC_CALLBACK_1(WebSocketTest::onMenuSendMultipleTextClicked, this));
+    itemSendText = MenuItemLabel::create(labelSendText,
+                                         CC_CALLBACK_1(WebSocketTest::onMenuSendMultipleTextClicked, this));
     itemSendText->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - 2 * SPACE));
     menuRequest->addChild(itemSendText);
 
     // Send Binary
     auto labelSendBinary = Label::createWithTTF("Send Binary", "fonts/arial.ttf", 20);
-    auto itemSendBinary = MenuItemLabel::create(labelSendBinary, CC_CALLBACK_1(WebSocketTest::onMenuSendBinaryClicked, this));
+    auto itemSendBinary =
+        MenuItemLabel::create(labelSendBinary, CC_CALLBACK_1(WebSocketTest::onMenuSendBinaryClicked, this));
     itemSendBinary->setPosition(Vec2(winSize.width / 2, winSize.height - MARGIN - 3 * SPACE));
     menuRequest->addChild(itemSendBinary);
 
-
     // Send Text Status Label
-    _sendTextStatus = Label::createWithTTF("Send Text WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
+    _sendTextStatus = Label::createWithTTF("Send Text WS is waiting...", "fonts/arial.ttf", 16,
+                                           Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _sendTextStatus->setAnchorPoint(Vec2(0, 0));
     _sendTextStatus->setPosition(Vec2(VisibleRect::left().x, VisibleRect::rightBottom().y + 25));
     this->addChild(_sendTextStatus);
 
     // Send Binary Status Label
-    _sendBinaryStatus = Label::createWithTTF("Send Binary WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
+    _sendBinaryStatus = Label::createWithTTF("Send Binary WS is waiting...", "fonts/arial.ttf", 16,
+                                             Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
     _sendBinaryStatus->setAnchorPoint(Vec2(0, 0));
     _sendBinaryStatus->setPosition(Vec2(VisibleRect::left().x + 160, VisibleRect::rightBottom().y + 25));
     this->addChild(_sendBinaryStatus);
 
     // Error Label
-    _errorStatus = Label::createWithTTF("Error WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100), TextHAlignment::CENTER, TextVAlignment::TOP);
+    _errorStatus = Label::createWithTTF("Error WS is waiting...", "fonts/arial.ttf", 16, Size(160, 100),
+                                        TextHAlignment::CENTER, TextVAlignment::TOP);
     _errorStatus->setAnchorPoint(Vec2(0, 0));
     _errorStatus->setPosition(Vec2(VisibleRect::left().x + 320, VisibleRect::rightBottom().y + 25));
     this->addChild(_errorStatus);
 
     auto startTestLabel = Label::createWithTTF("Start Test WebSocket", "fonts/arial.ttf", 16);
-    auto startTestItem = MenuItemLabel::create(startTestLabel, CC_CALLBACK_1(WebSocketTest::startTestCallback, this));
+    auto startTestItem =
+        MenuItemLabel::create(startTestLabel, CC_CALLBACK_1(WebSocketTest::startTestCallback, this));
     startTestItem->setPosition(Vec2(VisibleRect::center().x - 150, VisibleRect::bottom().y + 150));
     _startTestMenu = Menu::create(startTestItem, nullptr);
     _startTestMenu->setPosition(Vec2::ZERO);
     this->addChild(_startTestMenu, 1);
 }
 
-WebSocketTest::~WebSocketTest()
-{
-
-}
+WebSocketTest::~WebSocketTest() {}
 
 void WebSocketTest::onExit()
 {
-    if (_wsiSendText)
-    {
+    if (_wsiSendText) {
         _wsiSendText->closeAsync();
     }
 
-    if (_wsiSendBinary)
-    {
+    if (_wsiSendBinary) {
         _wsiSendBinary->closeAsync();
     }
 
-    if (_wsiError)
-    {
+    if (_wsiError) {
         _wsiError->closeAsync();
     }
     Node::onExit();
@@ -137,32 +137,26 @@ void WebSocketTest::startTestCallback(Ref* sender)
     std::vector<std::string> protocols;
     protocols.emplace_back("myprotocol_1");
     protocols.emplace_back("myprotocol_2");
-    if (!_wsiSendText->init(*this, "wss://echo.websocket.org", &protocols, "cacert.pem"))
-    {
+    if (!_wsiSendText->init(*this, "wss://echo.websocket.org", &protocols, "cacert.pem")) {
         CC_SAFE_DELETE(_wsiSendText);
-    }
-    else
-    {
-        retain(); // Retain self to avoid WebSocketTest instance be deleted immediately, it will be released in WebSocketTest::onClose.
+    } else {
+        retain();  // Retain self to avoid WebSocketTest instance be deleted immediately, it will be
+                   // released in WebSocketTest::onClose.
     }
 
     protocols.erase(protocols.begin());
-    if (!_wsiSendBinary->init(*this, "wss://echo.websocket.org", &protocols, "cacert.pem"))
-    {
+    if (!_wsiSendBinary->init(*this, "wss://echo.websocket.org", &protocols, "cacert.pem")) {
         CC_SAFE_DELETE(_wsiSendBinary);
-    }
-    else
-    {
-        retain(); // Retain self to avoid WebSocketTest instance be deleted immediately, it will be released in WebSocketTest::onClose.
+    } else {
+        retain();  // Retain self to avoid WebSocketTest instance be deleted immediately, it will be
+                   // released in WebSocketTest::onClose.
     }
 
-    if (!_wsiError->init(*this, "ws://invalid.urlxxxxxxxx.com"))
-    {
+    if (!_wsiError->init(*this, "ws://invalid.urlxxxxxxxx.com")) {
         CC_SAFE_DELETE(_wsiError);
-    }
-    else
-    {
-        retain(); // Retain self to avoid WebSocketTest instance be deleted immediately, it will be released in WebSocketTest::onClose.
+    } else {
+        retain();  // Retain self to avoid WebSocketTest instance be deleted immediately, it will be
+                   // released in WebSocketTest::onClose.
     }
 }
 
@@ -172,35 +166,28 @@ void WebSocketTest::onOpen(network::WebSocket* ws)
     char status[256] = {0};
     sprintf(status, "Opened, url: %s, protocol: %s", ws->getUrl().c_str(), ws->getProtocol().c_str());
 
-    log("Websocket (%p) was opened, url: %s, protocol: %s", ws, ws->getUrl().c_str(), ws->getProtocol().c_str());
-    if (ws == _wsiSendText)
-    {
+    log("Websocket (%p) was opened, url: %s, protocol: %s", ws, ws->getUrl().c_str(),
+        ws->getProtocol().c_str());
+    if (ws == _wsiSendText) {
         _sendTextStatus->setString(status);
-    }
-    else if (ws == _wsiSendBinary)
-    {
+    } else if (ws == _wsiSendBinary) {
         _sendBinaryStatus->setString(status);
-    }
-    else if (ws == _wsiError)
-    {
+    } else if (ws == _wsiError) {
         CCASSERT(0, "error test will never go here.");
     }
 }
 
 void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::Data& data)
 {
-    if (!data.isBinary)
-    {
+    if (!data.isBinary) {
         _sendTextTimes++;
         char times[100] = {0};
         sprintf(times, "%d", _sendTextTimes);
-        std::string textStr = std::string("response text msg: ")+data.bytes+", "+times;
+        std::string textStr = std::string("response text msg: ") + data.bytes + ", " + times;
         log("%s", textStr.c_str());
 
         _sendTextStatus->setString(textStr);
-    }
-    else
-    {
+    } else {
         _sendBinaryTimes++;
         char times[100] = {0};
         sprintf(times, "%d", _sendBinaryTimes);
@@ -208,17 +195,14 @@ void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::
         std::string binaryStr = "response bin msg: ";
 
         for (int i = 0; i < data.len; ++i) {
-            if (data.bytes[i] != '\0')
-            {
+            if (data.bytes[i] != '\0') {
                 binaryStr += data.bytes[i];
-            }
-            else
-            {
+            } else {
                 binaryStr += "\'\\0\'";
             }
         }
 
-        binaryStr += std::string(", ")+times;
+        binaryStr += std::string(", ") + times;
         log("%s", binaryStr.c_str());
         _sendBinaryStatus->setString(binaryStr);
     }
@@ -227,18 +211,13 @@ void WebSocketTest::onMessage(network::WebSocket* ws, const network::WebSocket::
 void WebSocketTest::onClose(network::WebSocket* ws)
 {
     log("onClose: websocket instance (%p) closed.", ws);
-    if (ws == _wsiSendText)
-    {
+    if (ws == _wsiSendText) {
         _wsiSendText = nullptr;
         _sendTextStatus->setString("Send Text WS was closed");
-    }
-    else if (ws == _wsiSendBinary)
-    {
+    } else if (ws == _wsiSendBinary) {
         _wsiSendBinary = nullptr;
         _sendBinaryStatus->setString("Send Binary WS was closed");
-    }
-    else if (ws == _wsiError)
-    {
+    } else if (ws == _wsiError) {
         _wsiError = nullptr;
         _errorStatus->setString("Test invalid URL WS was closed");
     }
@@ -254,106 +233,90 @@ void WebSocketTest::onError(network::WebSocket* ws, const network::WebSocket::Er
     char buf[100] = {0};
     sprintf(buf, "An error was fired, code: %d", static_cast<int>(error));
 
-    if (ws == _wsiSendText)
-    {
+    if (ws == _wsiSendText) {
         _sendTextStatus->setString(buf);
-    }
-    else if (ws == _wsiSendBinary)
-    {
+    } else if (ws == _wsiSendBinary) {
         _sendBinaryStatus->setString(buf);
-    }
-    else if (ws == _wsiError)
-    {
+    } else if (ws == _wsiError) {
         _errorStatus->setString(buf);
     }
 }
 
 // Menu Callbacks
-void WebSocketTest::onMenuSendTextClicked(cocos2d::Ref *sender)
+void WebSocketTest::onMenuSendTextClicked(cocos2d::Ref* sender)
 {
-    if (! _wsiSendText)
-    {
+    if (!_wsiSendText) {
         return;
     }
 
-    if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN)
-    {
+    if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN) {
         _sendTextStatus->setString("Send Text WS is waiting...");
         _wsiSendText->send("Hello WebSocket, I'm a text message.");
-    }
-    else
-    {
+    } else {
         std::string warningStr = "send text websocket instance wasn't ready...";
         log("%s", warningStr.c_str());
         _sendTextStatus->setString(warningStr);
     }
 }
 
-void WebSocketTest::onMenuSendMultipleTextClicked(cocos2d::Ref *sender)
+void WebSocketTest::onMenuSendMultipleTextClicked(cocos2d::Ref* sender)
 {
-    if (! _wsiSendText)
-    {
+    if (!_wsiSendText) {
         return;
     }
 
-    if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN)
-    {
+    if (_wsiSendText->getReadyState() == network::WebSocket::State::OPEN) {
         _sendTextStatus->setString("Send Multiple Text WS is waiting...");
         for (int index = 0; index < 15; ++index) {
             _wsiSendText->send(StringUtils::format("Hello WebSocket, text message index:%d", index));
         }
-    }
-    else
-    {
+    } else {
         std::string warningStr = "send text websocket instance wasn't ready...";
         log("%s", warningStr.c_str());
         _sendTextStatus->setString(warningStr);
     }
 }
 
-void WebSocketTest::onMenuSendBinaryClicked(cocos2d::Ref *sender)
+void WebSocketTest::onMenuSendBinaryClicked(cocos2d::Ref* sender)
 {
-    if (! _wsiSendBinary) {
+    if (!_wsiSendBinary) {
         return;
     }
 
-    if (_wsiSendBinary->getReadyState() == network::WebSocket::State::OPEN)
-    {
+    if (_wsiSendBinary->getReadyState() == network::WebSocket::State::OPEN) {
         _sendBinaryStatus->setString("Send Binary WS is waiting...");
         char buf[] = "Hello WebSocket,\0 I'm\0 a\0 binary\0 message\0.";
         _wsiSendBinary->send((unsigned char*)buf, sizeof(buf));
-    }
-    else
-    {
+    } else {
         std::string warningStr = "send binary websocket instance wasn't ready...";
         log("%s", warningStr.c_str());
         _sendBinaryStatus->setString(warningStr);
     }
 }
 
-WebSocketCloseTest::WebSocketCloseTest()
-: _wsiTest(nullptr)
+WebSocketCloseTest::WebSocketCloseTest() : _wsiTest(nullptr)
 {
     auto winSize = Director::getInstance()->getWinSize();
 
     _wsiTest = new network::WebSocket();
 
-    if (!_wsiTest->init(*this, "ws://echo.websocket.org"))
-    {
+    if (!_wsiTest->init(*this, "ws://echo.websocket.org")) {
         delete _wsiTest;
         _wsiTest = nullptr;
     }
 
-    auto closeItem = MenuItemImage::create(s_pathClose, s_pathClose, [](Ref* sender){
-        Director::getInstance()->end();
-    });
+    auto closeItem = MenuItemImage::create(s_pathClose, s_pathClose,
+                                           [](Ref* sender) { Director::getInstance()->end(); });
     closeItem->setPosition(VisibleRect::right().x / 2, VisibleRect::top().y * 2 / 3);
 
     auto menu = Menu::create(closeItem, nullptr);
     menu->setPosition(Vec2::ZERO);
     addChild(menu, 1);
 
-    auto notifyLabel = Label::createWithTTF("See log window, when enter there's should have\n'Websocket opened' log,\nwhen close there's should have'websocket closed' log", "fonts/arial.ttf", 20);
+    auto notifyLabel = Label::createWithTTF(
+        "See log window, when enter there's should have\n'Websocket opened' log,\nwhen close there's "
+        "should have'websocket closed' log",
+        "fonts/arial.ttf", 20);
     notifyLabel->setPosition(VisibleRect::right().x / 2, VisibleRect::top().y / 3);
     notifyLabel->setAlignment(TextHAlignment::CENTER);
     addChild(notifyLabel, 1);
@@ -361,8 +324,7 @@ WebSocketCloseTest::WebSocketCloseTest()
 
 WebSocketCloseTest::~WebSocketCloseTest()
 {
-    if (_wsiTest != nullptr)
-    {
+    if (_wsiTest != nullptr) {
         _wsiTest->close();
     }
 }
@@ -391,4 +353,3 @@ void WebSocketCloseTest::onError(network::WebSocket* ws, const network::WebSocke
 {
     log("Error was fired, error code: %d", static_cast<int>(error));
 }
-

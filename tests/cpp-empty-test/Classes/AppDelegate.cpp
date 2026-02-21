@@ -24,25 +24,21 @@
 
 #include "AppDelegate.h"
 
-#include <vector>
 #include <string>
+#include <vector>
 
-#include "HelloWorldScene.h"
 #include "AppMacros.h"
+#include "HelloWorldScene.h"
 
-//Uncomment the following line to use localize manager
-//#include "editor-support/cocostudio/LocalizationManager.h"
+// Uncomment the following line to use localize manager
+// #include "editor-support/cocostudio/LocalizationManager.h"
 
 USING_NS_CC;
 using namespace std;
 
-AppDelegate::AppDelegate() {
+AppDelegate::AppDelegate() {}
 
-}
-
-AppDelegate::~AppDelegate()
-{
-}
+AppDelegate::~AppDelegate() {}
 
 void AppDelegate::initGLContextAttrs()
 {
@@ -56,28 +52,29 @@ bool AppDelegate::applicationDidFinishLaunching()
     // Initialize director
     auto director = Director::getInstance();
     auto glview = director->getOpenGLView();
-    if(!glview) {
+    if (!glview) {
         glview = GLViewImpl::create("Cpp Empty Test");
         director->setOpenGLView(glview);
     }
 
-    // Set window icon with best resolution (windows and linux)
-    #if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
+// Set window icon with best resolution (windows and linux)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX)
     // assert error when using listFilesRecursively on Windows 10
     // refer to: https://github.com/cocos2d/cocos2d-x/issues/18835
     // don't use listFiles as workaround (it will return directory itself)
     // refer to: https://github.com/cocos2d/cocos2d-x/issues/18834
     std::vector<std::string> icons;
     FileUtils::getInstance()->listFilesRecursively("icons", &icons);
-    #else
+#else
     std::string icons = "icons/Icon-60@3x.png";
-    #endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) */
+#endif /* (CC_TARGET_PLATFORM == CC_PLATFORM_LINUX) */
     glview->setIcon(icons);
 
     director->setOpenGLView(glview);
 
     // Set the design resolution
-    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
+    glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height,
+                                    ResolutionPolicy::NO_BORDER);
 
     Size frameSize = glview->getFrameSize();
 
@@ -89,25 +86,25 @@ bool AppDelegate::applicationDidFinishLaunching()
     // This can make sure that the resource's height could fit for the height of design resolution.
 
     // If the frame's height is larger than the height of medium resource size, select large resource.
-    if (frameSize.height > mediumResource.size.height)
-    {
+    if (frameSize.height > mediumResource.size.height) {
         searchPath.emplace_back(largeResource.directory);
 
-        director->setContentScaleFactor(MIN(largeResource.size.height/designResolutionSize.height, largeResource.size.width/designResolutionSize.width));
+        director->setContentScaleFactor(MIN(largeResource.size.height / designResolutionSize.height,
+                                            largeResource.size.width / designResolutionSize.width));
     }
     // If the frame's height is larger than the height of small resource size, select medium resource.
-    else if (frameSize.height > smallResource.size.height)
-    {
+    else if (frameSize.height > smallResource.size.height) {
         searchPath.emplace_back(mediumResource.directory);
 
-        director->setContentScaleFactor(MIN(mediumResource.size.height/designResolutionSize.height, mediumResource.size.width/designResolutionSize.width));
+        director->setContentScaleFactor(MIN(mediumResource.size.height / designResolutionSize.height,
+                                            mediumResource.size.width / designResolutionSize.width));
     }
     // If the frame's height is smaller than the height of medium resource size, select small resource.
-    else
-    {
+    else {
         searchPath.emplace_back(smallResource.directory);
 
-        director->setContentScaleFactor(MIN(smallResource.size.height/designResolutionSize.height, smallResource.size.width/designResolutionSize.width));
+        director->setContentScaleFactor(MIN(smallResource.size.height / designResolutionSize.height,
+                                            smallResource.size.width / designResolutionSize.width));
     }
 
     // Set searching path
@@ -130,8 +127,8 @@ bool AppDelegate::applicationDidFinishLaunching()
     */
 
     // to enable VR, uncomment the following lines
-//    auto vrImpl = new VRGenericRenderer;
-//    glview->setVR(vrImpl);
+    //    auto vrImpl = new VRGenericRenderer;
+    //    glview->setVR(vrImpl);
 
     // Turn on display FPS
     director->setDisplayStats(true);
@@ -158,10 +155,10 @@ void AppDelegate::applicationDidEnterBackground()
 }
 
 // This function will be called when the app is active again
-void AppDelegate::applicationWillEnterForeground() {
+void AppDelegate::applicationWillEnterForeground()
+{
     Director::getInstance()->startAnimation();
 
     // If you use SimpleAudioEngine, it must resume here
     // SimpleAudioEngine::sharedEngine()->resumeBackgroundMusic();
 }
-

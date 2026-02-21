@@ -28,8 +28,8 @@
 #ifndef __VIBRATE_TEST_H_
 #define __VIBRATE_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(VibrateTests);
 
@@ -38,7 +38,6 @@ class VibrateTestDemo : public TestCase
 public:
     virtual std::string title() const override;
     virtual void onExit() override;
-
 };
 
 class VibrateControlTest : public VibrateTestDemo
@@ -47,7 +46,7 @@ public:
     CREATE_FUNC(VibrateControlTest);
     virtual ~VibrateControlTest();
 
-    virtual bool init()override;
+    virtual bool init() override;
     virtual std::string title() const override;
 
 private:
@@ -58,6 +57,4 @@ private:
     bool _updateTimeSlider;
 };
 
-
 #endif /* defined(__VIBRATE_TEST_H_) */
-

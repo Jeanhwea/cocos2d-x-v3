@@ -27,16 +27,11 @@
 
 #include "cocos2d.h"
 
-
-typedef enum tagPaddleState
-{
-    kPaddleStateGrabbed,
-    kPaddleStateUngrabbed
-} PaddleState;
+typedef enum tagPaddleState { kPaddleStateGrabbed, kPaddleStateUngrabbed } PaddleState;
 
 class Paddle : public cocos2d::Sprite, public cocos2d::Clonable
 {
-    PaddleState        _state;
+    PaddleState _state;
 
 public:
     Paddle(void);
@@ -56,4 +51,3 @@ public:
 };
 
 #endif
-

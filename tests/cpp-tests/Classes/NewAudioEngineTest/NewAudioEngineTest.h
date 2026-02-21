@@ -28,10 +28,9 @@
 #ifndef __NEWAUDIOENGINE_TEST_H_
 #define __NEWAUDIOENGINE_TEST_H_
 
-#include "cocos2d.h"
 #include "../BaseTest.h"
-
 #include "audio/include/AudioEngine.h"
+#include "cocos2d.h"
 
 DEFINE_TEST_SUITE(AudioEngineTests);
 
@@ -86,6 +85,7 @@ public:
     virtual bool init() override;
 
     virtual std::string title() const override;
+
 private:
     static const int TEST_COUNT = 10;
     std::string _files[TEST_COUNT];
@@ -133,7 +133,6 @@ public:
     virtual std::string subtitle() const override;
 
 private:
-
 };
 
 class LargeAudioFileTest : public AudioEngineTestDemo
@@ -148,7 +147,6 @@ public:
     virtual std::string title() const override;
 
 private:
-
 };
 
 class AudioLoadTest : public AudioEngineTestDemo
@@ -320,4 +318,3 @@ private:
 };
 
 #endif /* defined(__NEWAUDIOENGINE_TEST_H_) */
-

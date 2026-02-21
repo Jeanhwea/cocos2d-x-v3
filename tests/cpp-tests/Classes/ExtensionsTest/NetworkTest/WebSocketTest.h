@@ -33,15 +33,14 @@
 #ifndef __TestCpp__WebSocketTest__
 #define __TestCpp__WebSocketTest__
 
+#include "BaseTest.h"
 #include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 #include "network/WebSocket.h"
-#include "BaseTest.h"
 
 DEFINE_TEST_SUITE(WebSocketTests);
 
-class WebSocketTest : public TestCase
-, public cocos2d::network::WebSocket::Delegate
+class WebSocketTest : public TestCase, public cocos2d::network::WebSocket::Delegate
 {
 public:
     CREATE_FUNC(WebSocketTest);
@@ -51,17 +50,20 @@ public:
 
     virtual void onExit() override;
 
-    virtual void onOpen(cocos2d::network::WebSocket* ws)override;
-    virtual void onMessage(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::Data& data)override;
-    virtual void onClose(cocos2d::network::WebSocket* ws)override;
-    virtual void onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error)override;
+    virtual void onOpen(cocos2d::network::WebSocket* ws) override;
+    virtual void onMessage(cocos2d::network::WebSocket* ws,
+                           const cocos2d::network::WebSocket::Data& data) override;
+    virtual void onClose(cocos2d::network::WebSocket* ws) override;
+    virtual void onError(cocos2d::network::WebSocket* ws,
+                         const cocos2d::network::WebSocket::ErrorCode& error) override;
 
     // Menu Callbacks
-    void onMenuSendTextClicked(cocos2d::Ref *sender);
-    void onMenuSendMultipleTextClicked(cocos2d::Ref *sender);
-    void onMenuSendBinaryClicked(cocos2d::Ref *sender);
+    void onMenuSendTextClicked(cocos2d::Ref* sender);
+    void onMenuSendMultipleTextClicked(cocos2d::Ref* sender);
+    void onMenuSendBinaryClicked(cocos2d::Ref* sender);
 
     virtual std::string title() const override { return "WebSocket Test"; }
+
     void startTestCallback(cocos2d::Ref* sender);
 
 private:
@@ -78,26 +80,30 @@ private:
     int _sendBinaryTimes;
 };
 
-class WebSocketCloseTest : public TestCase
-    , public cocos2d::network::WebSocket::Delegate
+class WebSocketCloseTest : public TestCase, public cocos2d::network::WebSocket::Delegate
 {
 public:
     CREATE_FUNC(WebSocketCloseTest);
 
-    virtual void onOpen(cocos2d::network::WebSocket* ws)override;
-    virtual void onMessage(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::Data& data)override;
-    virtual void onClose(cocos2d::network::WebSocket* ws)override;
-    virtual void onError(cocos2d::network::WebSocket* ws, const cocos2d::network::WebSocket::ErrorCode& error)override;
+    virtual void onOpen(cocos2d::network::WebSocket* ws) override;
+    virtual void onMessage(cocos2d::network::WebSocket* ws,
+                           const cocos2d::network::WebSocket::Data& data) override;
+    virtual void onClose(cocos2d::network::WebSocket* ws) override;
+    virtual void onError(cocos2d::network::WebSocket* ws,
+                         const cocos2d::network::WebSocket::ErrorCode& error) override;
 
     WebSocketCloseTest();
     virtual ~WebSocketCloseTest();
 
     virtual std::string title() const override { return "WebSocket close by resetDirector event Test"; }
-    std::string subtitle() const override { return "Click close button, Program should close without crash."; }
+
+    std::string subtitle() const override
+    {
+        return "Click close button, Program should close without crash.";
+    }
 
 private:
     cocos2d::network::WebSocket* _wsiTest;
 };
 
 #endif /* defined(__TestCpp__WebSocketTest__) */
-

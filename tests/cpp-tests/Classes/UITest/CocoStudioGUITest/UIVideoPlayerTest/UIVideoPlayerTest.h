@@ -51,7 +51,8 @@ public:
 
     void sliderCallback(cocos2d::Ref* sender, cocos2d::ui::Slider::EventType eventType);
 
-    void videoEventCallback(cocos2d::Ref* sender, cocos2d::experimental::ui::VideoPlayer::EventType eventType);
+    void videoEventCallback(cocos2d::Ref* sender,
+                            cocos2d::experimental::ui::VideoPlayer::EventType eventType);
 
 private:
     void createVideo();
@@ -64,9 +65,7 @@ private:
     cocos2d::Rect _visibleRect;
 
     cocos2d::Layer* _rootLayer;
-
 };
-
 
 class SimpleVideoPlayerTest : public UIScene
 {
@@ -87,9 +86,8 @@ private:
     cocos2d::Rect _visibleRect;
     cocos2d::experimental::ui::VideoPlayer* _videoPlayer;
 
-    cocos2d::MenuItemFont*   _switchUserInputEnabled;
-    cocos2d::MenuItemFont*   _switchStyle;
-
+    cocos2d::MenuItemFont* _switchUserInputEnabled;
+    cocos2d::MenuItemFont* _switchStyle;
 
     bool _userInputEnabled;
     cocos2d::experimental::ui::VideoPlayer::StyleType _style;
@@ -97,6 +95,4 @@ private:
     void updateButtonsTexts();
 };
 
-
-#endif // __tests__VideoPlayerTest__
-
+#endif  // __tests__VideoPlayerTest__

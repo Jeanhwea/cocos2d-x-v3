@@ -25,11 +25,9 @@
 #ifndef _SHADER_TEST_H_
 #define _SHADER_TEST_H_
 
-#include "ui/CocosGUI.h"
-
-#include "extensions/cocos-ext.h"
 #include "../BaseTest.h"
-
+#include "extensions/cocos-ext.h"
+#include "ui/CocosGUI.h"
 
 DEFINE_TEST_SUITE(ShaderTests);
 
@@ -105,6 +103,7 @@ public:
 };
 
 class SpriteBlur;
+
 class ShaderBlur : public ShaderTestDemo
 {
 public:
@@ -132,33 +131,34 @@ public:
     virtual std::string subtitle() const override;
     virtual bool init() override;
     virtual void update(float dt) override;
+
 protected:
     cocos2d::Label* _label;
-    float           _accum;
+    float _accum;
 };
 
 class ShaderNode : public cocos2d::Node
 {
 public:
     CREATE_FUNC(ShaderNode);
-    static ShaderNode* shaderNodeWithVertex(const std::string &vert, const std::string &frag);
+    static ShaderNode* shaderNodeWithVertex(const std::string& vert, const std::string& frag);
 
     virtual void update(float dt) override;
-    virtual void setPosition(const cocos2d::Vec2 &newPosition) override;
+    virtual void setPosition(const cocos2d::Vec2& newPosition) override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
 
 protected:
     ShaderNode();
     ~ShaderNode();
 
-    bool initWithVertex(const std::string &vert, const std::string &frag);
-    void loadShaderVertex(const std::string &vert, const std::string &frag);
+    bool initWithVertex(const std::string& vert, const std::string& frag);
+    void loadShaderVertex(const std::string& vert, const std::string& frag);
 
     void onDraw(const cocos2d::Mat4& transform, uint32_t flags);
 
     cocos2d::Vec2 _center;
     cocos2d::Vec2 _resolution;
-    float      _time;
+    float _time;
     std::string _vertFileName;
     std::string _fragFileName;
     cocos2d::CustomCommand _customCommand;
@@ -189,6 +189,7 @@ public:
 class ShaderMultiTexture : public ShaderTestDemo
 {
     static const int rightSpriteTag = 2014;
+
 public:
     CREATE_FUNC(ShaderMultiTexture);
     ShaderMultiTexture();
@@ -203,4 +204,3 @@ public:
 };
 
 #endif
-

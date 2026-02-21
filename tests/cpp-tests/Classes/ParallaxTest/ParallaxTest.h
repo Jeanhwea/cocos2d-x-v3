@@ -38,9 +38,9 @@ protected:
 class Parallax1 : public ParallaxDemo
 {
 protected:
-    cocos2d::Node*        _root;
-    cocos2d::Node*        _target;
-    cocos2d::MotionStreak*        _streak;
+    cocos2d::Node* _root;
+    cocos2d::Node* _target;
+    cocos2d::MotionStreak* _streak;
 
 public:
     CREATE_FUNC(Parallax1);
@@ -51,9 +51,9 @@ public:
 class Parallax2 : public ParallaxDemo
 {
 protected:
-    cocos2d::Node*        _root;
-    cocos2d::Node*        _target;
-    cocos2d::MotionStreak*        _streak;
+    cocos2d::Node* _root;
+    cocos2d::Node* _target;
+    cocos2d::MotionStreak* _streak;
 
 public:
     CREATE_FUNC(Parallax2);
@@ -89,4 +89,3 @@ public:
 };
 
 #endif
-

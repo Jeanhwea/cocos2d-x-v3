@@ -42,4 +42,3 @@ public:
 };
 
 #endif /* defined(__TestCpp__UINodeContainerTest__) */
-

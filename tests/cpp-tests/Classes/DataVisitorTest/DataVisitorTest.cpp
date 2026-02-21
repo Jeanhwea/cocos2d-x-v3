@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "DataVisitorTest.h"
+
 #include "../testResource.h"
 
 USING_NS_CC;
@@ -31,6 +32,7 @@ DataVisitorTests::DataVisitorTests()
 {
     ADD_TEST_CASE(PrettyPrinterDemo);
 }
+
 std::string PrettyPrinterDemo::title() const
 {
     return "PrettyPrinter Test";
@@ -70,14 +72,13 @@ void PrettyPrinterDemo::onEnter()
     auto s = Director::getInstance()->getWinSize();
 
     auto label = Label::createWithTTF(title(), "fonts/arial.ttf", 28);
-    label->setPosition(s.width/2, s.height * 4/5);
+    label->setPosition(s.width / 2, s.height * 4 / 5);
     this->addChild(label, 1);
 
     std::string strSubtitle = subtitle();
-    if(strSubtitle.empty() == false)
-    {
+    if (strSubtitle.empty() == false) {
         auto subLabel = Label::createWithTTF(strSubtitle, "fonts/Thonburi.ttf", 16);
-        subLabel->setPosition(s.width/2, s.height * 3/5);
+        subLabel->setPosition(s.width / 2, s.height * 3 / 5);
         this->addChild(subLabel, 1);
     }
 
@@ -101,8 +102,7 @@ void PrettyPrinterDemo::onEnter()
 
     visitor.clear();
     addSprite();
-//    dict = Director::getInstance()->getTextureCache()->snapshotTextures();
-//    dict->acceptVisitor(visitor);
-//    log("%s", visitor.getResult().c_str());
+    //    dict = Director::getInstance()->getTextureCache()->snapshotTextures();
+    //    dict->acceptVisitor(visitor);
+    //    log("%s", visitor.getResult().c_str());
 }
-

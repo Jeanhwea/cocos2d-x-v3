@@ -41,7 +41,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -56,7 +55,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -71,7 +69,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -86,7 +83,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -101,7 +97,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -116,7 +111,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 
@@ -131,8 +125,6 @@ public:
     void textFieldEvent(cocos2d::Ref* sender, cocos2d::ui::TextField::EventType type);
 
 protected:
-
     cocos2d::ui::Text* _displayValueLabel;
 };
 #endif /* defined(__TestCpp__UITextFieldTest__) */
-

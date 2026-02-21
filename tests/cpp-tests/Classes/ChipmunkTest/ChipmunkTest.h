@@ -28,9 +28,9 @@
 #ifndef __CHIPMUNKTEST_H__
 #define __CHIPMUNKTEST_H__
 
-#include "cocos2d.h"
-#include "chipmunk/chipmunk.h"
 #include "../BaseTest.h"
+#include "chipmunk/chipmunk.h"
+#include "cocos2d.h"
 #include "extensions/cocos-ext.h"
 
 class ChipmunkTest : public TestCase
@@ -52,15 +52,14 @@ public:
     virtual void onAcceleration(cocos2d::Acceleration* acc, cocos2d::Event* event);
 
 private:
-    cocos2d::Texture2D* _spriteTexture; // weak ref
+    cocos2d::Texture2D* _spriteTexture;  // weak ref
 #if CC_ENABLE_CHIPMUNK_INTEGRATION
-    cocos2d::extension::PhysicsDebugNode* _debugLayer; // weak ref
+    cocos2d::extension::PhysicsDebugNode* _debugLayer;  // weak ref
 #endif
-    cpSpace* _space; // strong ref
+    cpSpace* _space;  // strong ref
     cpShape* _walls[4];
 };
 
 DEFINE_TEST_SUITE(ChipmunkTests);
 
 #endif /* __CHIPMUNKACCELTOUCHTEST_H__ */
-

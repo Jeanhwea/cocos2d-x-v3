@@ -32,7 +32,6 @@ DEFINE_TEST_SUITE(ConfigurationTests);
 class ConfigurationBase : public TestCase
 {
 protected:
-
 public:
     virtual std::string title() const override;
 };
@@ -82,6 +81,4 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
-#endif // __CONFIGURATIONTEST_H__
-
+#endif  // __CONFIGURATIONTEST_H__

@@ -45,6 +45,4 @@ public:
     virtual std::string subtitle() const override;
 };
 
-
 #endif /* Bug_15776_hpp */
-
