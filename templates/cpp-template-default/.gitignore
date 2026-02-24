@@ -1,9 +1,14 @@
 # ignore cache files
+.idea/
 .vscode/
 .vs/
-build/
+
+# cocos
 [Dd]ebug.win32/
 [Rr]elease.win32/
 Classes/Version.h
+
+# build folders
+build/
 cmake-*
 build-*
