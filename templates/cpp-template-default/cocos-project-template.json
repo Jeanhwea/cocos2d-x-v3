@@ -18,6 +18,8 @@
             "src_project_name":"HelloCpp",
             "files":[
                "readme.org",
+               "pkg.bat",
+               "pkg.sh",
                "Classes/AppDelegate.cpp",
                "Classes/Version.h.in",
                "proj.win32/PROJECT_NAME.vcxproj",
