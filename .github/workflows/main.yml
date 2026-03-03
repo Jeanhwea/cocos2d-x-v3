@@ -48,3 +48,18 @@ jobs:
       - name: Build Unit Tests
         run: |
           cmake --build b --target cpp-tests
+
+  release:
+    needs: [test-macos, test-windows]
+    if: startsWith(github.ref, 'refs/tags/v')
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          generate_release_notes: true
