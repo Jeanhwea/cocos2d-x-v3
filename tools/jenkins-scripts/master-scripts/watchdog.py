@@ -18,7 +18,7 @@ def send_mail(sub,title,content):
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = " ".join(to_list)
-    print 'to users:', msg['To']
+    print('to users:', msg['To'])
     msg['Content'] = 'test'
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -26,11 +26,11 @@ def send_mail(sub,title,content):
         s.starttls()
         s.login(mail_user,mail_pass)
         s.sendmail(me, to_list, str(msg))
-        print 'info:', me, to_list, str(msg)
+        print('info:', me, to_list, str(msg))
         s.close()
         return True
-    except Exception, e:
-        print str(e)
+    except Exception as e:
+        print(str(e))
         return False
 
 def sendEmail(msg):
@@ -45,7 +45,7 @@ def rebuild_jobs(build):
             job_trigger_url = trigger_urls[i]
             post_data = {'payload': payload}
             requests.post(job_trigger_url, data=post_data)
-            print 'build_job:', rebuild_job, 'rebuild : TRUE'
+            print('build_job:', rebuild_job, 'rebuild : TRUE')
 
 #check & kill dead buid
 def build_time(_job,_threshold):
@@ -53,22 +53,22 @@ def build_time(_job,_threshold):
     #Get last build running
     build = _job.get_last_build()
     running = build.is_running()
-    print 'build_job:',_job,'running:',running
+    print('build_job:',_job,'running:',running)
     if not running:
         return False
     
     #Get numerical ID of the last build.
     buildnu = _job.get_last_buildnumber()
-    print "buildnumber:#",buildnu
+    print("buildnumber:#",buildnu)
     #get nowtime
     nowtime = int(time.time())
-    print 'nowtime:', time.ctime(nowtime)
+    print('nowtime:', time.ctime(nowtime))
     #get build start time
     timestamp = build._poll()['timestamp']
     buildtime = int(timestamp)/1000
-    print 'buildtime:', time.ctime(buildtime)
+    print('buildtime:', time.ctime(buildtime))
     subtime = (nowtime - buildtime)/60
-    print 'subtime:', subtime, _threshold
+    print('subtime:', subtime, _threshold)
     if subtime > _threshold:
         rebuild_jobs(build)
         #print 'subtime',subtime
@@ -81,9 +81,9 @@ def main():
     jenkins_url = os.environ['JENKINS_URL']
     J = Jenkins(jenkins_url,username,password)
     #get all jenkins jobs
-    for key,job in J.iteritems():
+    for key,job in J.items():
         threshold = 0
-        if(os.environ.has_key(key+'-threshold')):
+        if((key+'-threshold') in os.environ):
             threshold = int(os.environ[key+'-threshold'])
         else:
             threshold = int(os.environ['jenkins-job-watchdog-threshold'])
@@ -94,10 +94,10 @@ def main():
     for node_name in node_names:
         node = J.get_node(node_name)
         if node.is_online():
-            print node_name, ' : is online'
+            print(node_name, ' : is online')
         else:
             sendEmail(node_name)
-            print node_name, ' : is offline'
+            print(node_name, ' : is offline')
     return(0)
     
 
@@ -111,4 +111,3 @@ if __name__ == '__main__':
         sys_ret = 1
     finally:
         sys.exit(sys_ret)
-

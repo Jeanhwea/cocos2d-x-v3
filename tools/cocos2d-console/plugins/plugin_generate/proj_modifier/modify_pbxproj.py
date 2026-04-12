@@ -85,7 +85,7 @@ class PBXDict(IterableUserDict):
 
 class PBXList(UserList):
     def __init__(self, l=None):
-        if isinstance(l, basestring):
+        if isinstance(l, str):
             UserList.__init__(self)
             self.add(l)
             return
@@ -497,7 +497,7 @@ class XCBuildConfiguration(PBXType):
         if key not in self[base]:
             self[base][key] = PBXList()
             self[base][key].add("$(inherited)")
-        elif isinstance(self[base][key], basestring):
+        elif isinstance(self[base][key], str):
             self[base][key] = PBXList(self[base][key])
 
         for path in paths:
@@ -619,7 +619,7 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_CFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base not in self:
@@ -628,7 +628,7 @@ class XCBuildConfiguration(PBXType):
         for flag in flags:
             if key not in self[base]:
                 self[base][key] = PBXList()
-            elif isinstance(self[base][key], basestring):
+            elif isinstance(self[base][key], str):
                 self[base][key] = PBXList(self[base][key])
 
             if self[base][key].add(flag):
@@ -643,7 +643,7 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_LDFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base not in self:
@@ -652,7 +652,7 @@ class XCBuildConfiguration(PBXType):
         for flag in flags:
             if key not in self[base]:
                 self[base][key] = PBXList()
-            elif isinstance(self[base][key], basestring):
+            elif isinstance(self[base][key], str):
                 self[base][key] = PBXList(self[base][key])
 
             if self[base][key].add(flag):
@@ -667,14 +667,14 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_LDFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base in self:  # there are flags, so we can "remove" something
             for flag in flags:
                 if key not in self[base]:
                     return False
-                elif isinstance(self[base][key], basestring):
+                elif isinstance(self[base][key], str):
                     self[base][key] = PBXList(self[base][key])
 
                 if self[base][key].remove(flag):

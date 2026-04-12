@@ -17,7 +17,7 @@ def send_mail(sub,title,content):
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = " ".join(to_list)
-    print 'to users:', msg['To']
+    print('to users:', msg['To'])
     msg['Content'] = 'test'
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -25,11 +25,11 @@ def send_mail(sub,title,content):
         s.starttls()
         s.login(mail_user,mail_pass)
         s.sendmail(me, to_list, str(msg))
-        print 'info:', me, to_list, str(msg)
+        print('info:', me, to_list, str(msg))
         s.close()
         return True
-    except Exception, e:
-        print str(e)
+    except Exception as e:
+        print(str(e))
         return False
 
 def sendEmail(pr, html_url, target_url):
@@ -44,7 +44,7 @@ payload_str = payload_str.decode('utf-8','ignore')
 payload = json.loads(payload_str)
 #pr = payload['pull_request']
 url = payload['html_url']
-print "build pr:" + url
+print("build pr:" + url)
 pr_num = payload['number']
 #get statuses url
 statuses_url = payload['statuses_url']
@@ -66,7 +66,7 @@ else:
     data['description'] = "Build failed!"
     sendEmail(pr_num, url, target_url)
 http_proxy = ''
-if(os.environ.has_key('HTTP_PROXY')):
+if('HTTP_PROXY' in os.environ):
     http_proxy = os.environ['HTTP_PROXY']
 proxyDict = {'http':http_proxy,'https':http_proxy}
 requests.post(statuses_url, data=json.dumps(data), headers=Headers, proxies = proxyDict)

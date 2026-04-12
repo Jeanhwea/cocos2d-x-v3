@@ -19,6 +19,8 @@ def check_jdk_version():
 
     jdk_version = None
     for line in child.stderr:
+        if isinstance(line, bytes):
+            line = line.decode('utf-8', errors='replace')
         if 'java version' in line:
             if '1.6' in line:
                 jdk_version = JDK_1_6

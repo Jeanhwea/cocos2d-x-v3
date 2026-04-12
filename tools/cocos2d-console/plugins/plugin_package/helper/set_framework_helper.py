@@ -76,7 +76,7 @@ class SetFrameworkHelper(object):
             print(MultiLanguage.get_string('PACKAGE_ERROR_NOT_FOUND_JSON'))
             return
 
-        f = open(install_json_file, "rb")
+        f = open(install_json_file, "r")
         text = f.read()
         f.close()
 
@@ -84,7 +84,7 @@ class SetFrameworkHelper(object):
 
     def save_install_json(self, text):
         install_json_file = self._package_path + os.sep + "install.json"
-        f = open(install_json_file, "wb")
+        f = open(install_json_file, "w")
         f.write(text)
         f.close()
 
@@ -104,7 +104,7 @@ class SetFrameworkHelper(object):
             print(MultiLanguage.get_string('PACKAGE_ERROR_NO_SLN_IN_WIN32'))
             return
 
-        f = open(proj_file_path, "rb")
+        f = open(proj_file_path, "r")
         text = f.read()
         f.close()
 

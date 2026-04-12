@@ -93,12 +93,12 @@ class LintContext:
     known = {}
     for f in headers:
       name = Path.basename(f)
-      if known.has_key(name):
+      if name in known:
         known[name].append(f)
       else:
         known[name] = [f]
     uniq = {}
-    for k,v in known.iteritems():
+    for k,v in known.items():
       if len(v) == 1:
         uniq[k] = v[0]
     self.uniq = uniq
@@ -107,7 +107,7 @@ class LintContext:
     return Path.exists(Path.join(self.root, filename))
 
   def find_uniq(self, basename):
-    return self.uniq[basename] if self.uniq.has_key(basename) else None
+    return self.uniq[basename] if basename in self.uniq else None
 
   def get_include_path(self, original, directory):
     # 1. try search in uniq cocos header names
@@ -151,7 +151,7 @@ def lint_one(header, ctx):
       print('%s: %d error(s) fixed' % (header, len(fixed)))
     else:
       print('%s:' % (header))
-      for k, v in fixed.iteritems():
+      for k, v in fixed.items():
         print('\t%s should be %s' % (k, v))
 
 

@@ -102,7 +102,7 @@ class GitRetry(object):
     return (self.delay_factor ** (iteration - 1)) * self.delay
   def __call__(self, *args):
     returncode = 0
-    for i in xrange(self.retry_count):
+    for i in range(self.retry_count):
       # If the previous run failed and a delay is configured, delay before the
       # next run.
       delay = self.computeDelay(i)
