@@ -6,7 +6,7 @@
 
 from clang import cindex
 import sys
-import ConfigParser
+import configparser
 import yaml
 import re
 import os
@@ -559,7 +559,7 @@ class NativeType(object):
         return None
 
     def from_native(self, convert_opts):
-        assert(convert_opts.has_key('generator'))
+        assert('generator' in convert_opts)
         generator = convert_opts['generator']
         keys = []
 
@@ -613,7 +613,7 @@ class NativeType(object):
 
     def to_string(self, generator):
         conversions = generator.config['conversions']
-        if conversions.has_key('native_types'):
+        if 'native_types' in conversions:
             native_types_dict = conversions['native_types']
             if NativeType.dict_has_key_re(native_types_dict, [self.namespaced_name]):
                 return NativeType.dict_get_value_re(native_types_dict, [self.namespaced_name])
@@ -650,7 +650,7 @@ class NativeType(object):
             name = self.canonical_type.whole_name
 
         to_replace = None
-        if conversions.has_key('native_types'):
+        if 'native_types' in conversions:
             native_types_dict = conversions['native_types']
             to_replace = NativeType.dict_replace_value_re(native_types_dict, [name])
 
