@@ -42,13 +42,13 @@ def autotest(type):
     print('autotest run:')
     soc.send(b'autotest run\r\n')
 
+    global lastTestInfo
     while True:
         data = soc.recv(1024)
         print(data)
         if data == b'TestEnd':
             lastTestInfo = True
             break
-        global lastTestInfo
         if len(data) > len(b'\n') :
             lastTestInfo = data
         if not data: break
