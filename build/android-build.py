@@ -43,7 +43,7 @@ def do_build(app_android_root, build_mode, app_abi, platform):
     command = 'cocos compile -p android -s %s --ndk-mode %s --app-abi %s' % (app_android_root, build_mode, app_abi)
     if platform:
         command += ' --ap %s' % platform
-    print command
+    print(command)
 
     if os.system(command) != 0:
         raise Exception('Build dynamic library for project [ %s ] failed!' % app_android_root)
@@ -92,7 +92,7 @@ def main():
     try:
         build_targets(args.targets, args.build_mode, args.app_abi, args.api_level)
     except Exception as e:
-        print e
+        print(e)
         sys.exit(1)
 
 
