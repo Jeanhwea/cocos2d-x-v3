@@ -149,7 +149,7 @@ class PackageHelper:
     def download_package_zip(cls, package_data, force):
         download_url = cls.REPO_URL + cls.REPO_PACKAGES_DIR + "/" + package_data["filename"]
         workdir = cls.get_package_path(package_data)
-        print MultiLanguage.get_string('PACKAGE_WORKDIR_FMT', workdir)
+        print(MultiLanguage.get_string('PACKAGE_WORKDIR_FMT', workdir))
         downloader = ZipDownloader(download_url, workdir, package_data, force)
         downloader.run()
 

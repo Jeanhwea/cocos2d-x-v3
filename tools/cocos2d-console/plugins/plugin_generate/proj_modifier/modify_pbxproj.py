@@ -716,7 +716,7 @@ class XcodeProject(PBXDict):
             self.root_object = None
             self.root_group = None
 
-        for k, v in self.objects.iteritems():
+        for k, v in self.objects.items():
             v.id = k
 
     def add_other_cflags(self, flags):
@@ -1717,12 +1717,12 @@ class XcodeProject(PBXDict):
         if obj_isa == "PBXBuildFile":
             fileRef = obj_data.get("fileRef")
             fileRef_info = whole_data.get(fileRef)
-            if fileRef_info.has_key("name"):
+            if "name" in fileRef_info:
                 fileName = fileRef_info.get("name")
-            elif fileRef_info.has_key("path"):
+            elif "path" in fileRef_info:
                 fileName = fileRef_info.get("path")
 
-            if fileRef_info.has_key("fileType"):
+            if "fileType" in fileRef_info:
                 fileType = FILE_TYPE_INFO.get(fileRef_info["fileType"], "PBXResourcesBuildPhase")
             else:
                 fileType = FILE_TYPE_INFO.get(fileRef_info.get("lastKnownFileType"), "PBXResourcesBuildPhase")
@@ -1825,7 +1825,7 @@ class XcodeProject(PBXDict):
                 else:
                     out.write(' ')
 
-            for key in sorted(root.iterkeys()):  # keep the same order as Apple.
+            for key in sorted(root.keys()):  # keep the same order as Apple.
                 if enters:
                     out.write('\t' + deep)
 

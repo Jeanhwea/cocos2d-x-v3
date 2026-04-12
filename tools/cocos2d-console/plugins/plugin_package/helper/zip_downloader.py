@@ -91,7 +91,7 @@ class ZipDownloader(object):
             if self._force or not self.check_file_md5():
                 os.remove(self._filename)
             else:
-                print MultiLanguage.get_string('PACKAGE_EXISTS_FMT', self._filename)
+                print(MultiLanguage.get_string('PACKAGE_EXISTS_FMT', self._filename))
 
         if not os.path.isfile(self._filename):
             self.download_file()

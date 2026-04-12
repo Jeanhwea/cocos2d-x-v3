@@ -30,12 +30,12 @@ def copy_files_with_config(config, src_root, dst_root):
     dst_dir = os.path.join(dst_root, dst_dir)
 
     include_rules = None
-    if config.has_key("include"):
+    if "include" in config:
         include_rules = config["include"]
         include_rules = convert_rules(include_rules)
 
     exclude_rules = None
-    if config.has_key("exclude"):
+    if "exclude" in config:
         exclude_rules = config["exclude"]
         exclude_rules = convert_rules(exclude_rules)
 

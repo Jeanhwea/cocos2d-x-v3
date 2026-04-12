@@ -74,13 +74,13 @@ class AndroidBuilder(object):
         self.cfg_path = os.path.join(self.app_android_root, BUILD_CFIG_FILE)
         try:
             f = open(self.cfg_path)
-            cfg = json.load(f, encoding='utf8')
+            cfg = json.load(f)
             f.close()
         except Exception:
             raise cocos.CCPluginError(MultiLanguage.get_string('COMPILE_ERROR_PARSE_CFG_FAILED_FMT', self.cfg_path),
                                       cocos.CCPluginError.ERROR_PARSE_FILE)
 
-        if cfg.has_key(project_compile.CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES):
+        if project_compile.CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES in cfg:
             if self._no_res:
                 self.res_files = cfg[project_compile.CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES]
             else:
@@ -90,25 +90,25 @@ class AndroidBuilder(object):
 
         move_cfg = {}
         self.key_store = None
-        if cfg.has_key(AndroidBuilder.CFG_KEY_STORE):
+        if AndroidBuilder.CFG_KEY_STORE in cfg:
             self.key_store = cfg[AndroidBuilder.CFG_KEY_STORE]
             move_cfg[self.key_store_str] = self.key_store
             del cfg[AndroidBuilder.CFG_KEY_STORE]
 
         self.key_store_pass = None
-        if cfg.has_key(AndroidBuilder.CFG_KEY_STORE_PASS):
+        if AndroidBuilder.CFG_KEY_STORE_PASS in cfg:
             self.key_store_pass = cfg[AndroidBuilder.CFG_KEY_STORE_PASS]
             move_cfg[self.key_store_pass_str] = self.key_store_pass
             del cfg[AndroidBuilder.CFG_KEY_STORE_PASS]
 
         self.alias = None
-        if cfg.has_key(AndroidBuilder.CFG_KEY_ALIAS):
+        if AndroidBuilder.CFG_KEY_ALIAS in cfg:
             self.alias = cfg[AndroidBuilder.CFG_KEY_ALIAS]
             move_cfg[self.key_alias_str] = self.alias
             del cfg[AndroidBuilder.CFG_KEY_ALIAS]
 
         self.alias_pass = None
-        if cfg.has_key(AndroidBuilder.CFG_KEY_ALIAS_PASS):
+        if AndroidBuilder.CFG_KEY_ALIAS_PASS in cfg:
             self.alias_pass = cfg[AndroidBuilder.CFG_KEY_ALIAS_PASS]
             move_cfg[self.key_alias_pass_str] = self.alias_pass
             del cfg[AndroidBuilder.CFG_KEY_ALIAS_PASS]
@@ -256,8 +256,6 @@ class AndroidBuilder(object):
         toolchain_version = self.get_toolchain_version(ndk_root, compile_obj)
 
         ndk_work_dir = os.path.join(self.app_android_root, 'app')
-        reload(sys)
-        sys.setdefaultencoding('utf8')
         ndk_path = cocos.CMDRunner.convert_path_to_cmd(os.path.join(ndk_root, "ndk-build"))
 
         # delete template static and dynamic files
@@ -457,13 +455,13 @@ class AndroidBuilder(object):
         if build_64bit or build_other_arch:
             if build_64bit:
                 if build_other_arch:
-                    print 'build 64bit and 32bit'
+                    print('build 64bit and 32bit')
                     return self.LuaBuildArch.BUILD_32BIT_AND_64BIT
                 else:
-                    print 'only build 64bit'
+                    print('only build 64bit')
                     return self.LuaBuildArch.ONLY_BUILD_64BIT
             else:
-                print 'only build 32bit'
+                print('only build 32bit')
                 return self.LuaBuildArch.ONLY_BUILD_32BIT
 
         return self.LuaBuildArch.UNKNOWN
@@ -619,7 +617,7 @@ class AndroidBuilder(object):
         cocos.Logging.warning(tip_msg)
         ret = None
         while True:
-            ret = raw_input()
+            ret = input()
             break
 
         return ret

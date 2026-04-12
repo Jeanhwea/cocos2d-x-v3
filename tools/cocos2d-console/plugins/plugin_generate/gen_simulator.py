@@ -350,7 +350,7 @@ class SimulatorCompiler(cocos.CCPlugin):
             # win32
             game_rc_path = os.path.join(self.simulator_abs_path,"frameworks/runtime-src/proj.win32/game.rc")
             game_rc_content = self.get_content_from_file(game_rc_path)
-            match = re.compile('"Version[^\(]*\(.*\)"').findall(game_rc_content)
+            match = re.compile(r'"Version[^\(]*\(.*\)"').findall(game_rc_content)
             if len(match):
                 build_info_str = match[0]
                 target_str = '"Version %s (%s)"' % (self.engine_version, build_date)
