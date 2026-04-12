@@ -3,8 +3,8 @@
 import json
 import os
 import re
-import urllib2
-import urllib
+import urllib.request, urllib.error
+import urllib.parse
 import base64
 import requests
 import sys
@@ -17,26 +17,26 @@ from shutil import copy
 #set Jenkins build description using submitDescription to mock browser behavior
 #TODO: need to set parent build description 
 def set_description(desc, url):
-    req_data = urllib.urlencode({'description': desc})
-    req = urllib2.Request(url + 'submitDescription', req_data)
+    req_data = urllib.parse.urlencode({'description': desc})
+    req = urllib.request.Request(url + 'submitDescription', req_data.encode())
     #print(os.environ['BUILD_URL'])
     req.add_header('Content-Type', 'application/x-www-form-urlencoded') 
-    base64string = base64.encodestring(os.environ['JENKINS_ADMIN']+ ":" + os.environ['JENKINS_ADMIN_PW']).replace('\n', '')
+    base64string = base64.encodebytes((os.environ['JENKINS_ADMIN']+ ":" + os.environ['JENKINS_ADMIN_PW']).encode()).decode().replace('\n', '')
     req.add_header("Authorization", "Basic " + base64string)
     try:
-        urllib2.urlopen(req)
+        urllib.request.urlopen(req)
     except:
         traceback.print_exc()
 
 def make_temp_dir():
     #make temp dir
-    print "current dir is: " + os.environ['WORKSPACE']
+    print("current dir is: " + os.environ['WORKSPACE'])
     os.system("cd " + os.environ['WORKSPACE']);
     os.mkdir("android_build_objs")
     #add symbol link
     PROJECTS=["cpp-empty-test", "cpp-tests"]
 
-    print platform.system()
+    print(platform.system())
     if(platform.system() == 'Darwin'):
         for item in PROJECTS:
           cmd = "ln -s " + os.environ['WORKSPACE']+"/android_build_objs/ " + os.environ['WORKSPACE']+"/tests/"+item+"/proj.android/obj"  
@@ -45,7 +45,7 @@ def make_temp_dir():
         for item in PROJECTS:
           p = item.replace("/", os.sep)
           cmd = "mklink /J "+os.environ['WORKSPACE']+os.sep+"tests"+os.sep +p+os.sep+"proj.android"+os.sep+"obj " + os.environ['WORKSPACE']+os.sep+"android_build_objs"
-          print cmd
+          print(cmd)
           os.system(cmd)
 
 def check_current_3rd_libs(branch):
@@ -81,7 +81,7 @@ def check_current_3rd_libs(branch):
 def main():
     #get tag
     tag = os.environ['tag']
-    print 'tag:' + tag
+    print('tag:' + tag)
 
     pr_desc = '<h3>' + tag + ' is release' + '</h3>'
 
@@ -113,7 +113,7 @@ def main():
     os.system(git_checkout)
 
     # After checkout a new branch, clean workspace again
-    print "After checkout: git clean -xdf -f"    
+    print("After checkout: git clean -xdf -f")    
     os.system("git clean -xdf -f")
     
     #update submodule
@@ -145,7 +145,7 @@ def main():
           if(ret != 0):
             return(1)
           if(node_name == 'android_mac') or (node_name == 'android_win7'):
-            print "Start build android..."
+            print("Start build android...")
             ret = os.system("python build/android-build.py -b " + mode + " -n -j10 all")
             # create and save apk
             if(ret == 0):
@@ -160,7 +160,7 @@ def main():
                 os.system('scp ' + local_apk + ' ' + remote_home + ':' + remote_apk)
 
     #get build result
-    print "build finished and return " + str(ret)
+    print("build finished and return " + str(ret))
     
     exit_code = 1
     if ret == 0:

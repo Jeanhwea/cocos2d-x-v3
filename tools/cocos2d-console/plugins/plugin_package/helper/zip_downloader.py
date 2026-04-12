@@ -22,11 +22,12 @@ class ZipDownloader(object):
 
     def download_file(self):
         print(MultiLanguage.get_string('PACKAGE_READY_DOWNLOAD_FMT', (self._filename, self._url)))
-        import urllib2
+        import urllib.request
+        import urllib.error
 
         try:
-            u = urllib2.urlopen(self._url)
-        except urllib2.HTTPError as e:
+            u = urllib.request.urlopen(self._url)
+        except urllib.error.HTTPError as e:
             if e.code == 404:
                 print(MultiLanguage.get_string('PACKAGE_ERROR_URL_FMT', self._url))
             print(MultiLanguage.get_string('PACKAGE_ERROR_DOWNLOAD_FAILED_FMT',
@@ -77,7 +78,7 @@ class ZipDownloader(object):
 
         block_size = 65536  # 64KB
         md5 = hashlib.md5()
-        f = open(self._filename)
+        f = open(self._filename, 'rb')
         while True:
             data = f.read(block_size)
             if not data:
@@ -91,7 +92,7 @@ class ZipDownloader(object):
             if self._force or not self.check_file_md5():
                 os.remove(self._filename)
             else:
-                print MultiLanguage.get_string('PACKAGE_EXISTS_FMT', self._filename)
+                print(MultiLanguage.get_string('PACKAGE_EXISTS_FMT', self._filename))
 
         if not os.path.isfile(self._filename):
             self.download_file()

@@ -43,8 +43,8 @@ import subprocess
 import uuid
 import sys
 
-from UserDict import IterableUserDict
-from UserList import UserList
+from collections import UserDict as IterableUserDict
+from collections import UserList
 
 regex = '[a-zA-Z0-9\\._/-]*'
 
@@ -85,7 +85,7 @@ class PBXDict(IterableUserDict):
 
 class PBXList(UserList):
     def __init__(self, l=None):
-        if isinstance(l, basestring):
+        if isinstance(l, str):
             UserList.__init__(self)
             self.add(l)
             return
@@ -497,7 +497,7 @@ class XCBuildConfiguration(PBXType):
         if key not in self[base]:
             self[base][key] = PBXList()
             self[base][key].add("$(inherited)")
-        elif isinstance(self[base][key], basestring):
+        elif isinstance(self[base][key], str):
             self[base][key] = PBXList(self[base][key])
 
         for path in paths:
@@ -619,7 +619,7 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_CFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base not in self:
@@ -628,7 +628,7 @@ class XCBuildConfiguration(PBXType):
         for flag in flags:
             if key not in self[base]:
                 self[base][key] = PBXList()
-            elif isinstance(self[base][key], basestring):
+            elif isinstance(self[base][key], str):
                 self[base][key] = PBXList(self[base][key])
 
             if self[base][key].add(flag):
@@ -643,7 +643,7 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_LDFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base not in self:
@@ -652,7 +652,7 @@ class XCBuildConfiguration(PBXType):
         for flag in flags:
             if key not in self[base]:
                 self[base][key] = PBXList()
-            elif isinstance(self[base][key], basestring):
+            elif isinstance(self[base][key], str):
                 self[base][key] = PBXList(self[base][key])
 
             if self[base][key].add(flag):
@@ -667,14 +667,14 @@ class XCBuildConfiguration(PBXType):
         base = 'buildSettings'
         key = 'OTHER_LDFLAGS'
 
-        if isinstance(flags, basestring):
+        if isinstance(flags, str):
             flags = PBXList(flags)
 
         if base in self:  # there are flags, so we can "remove" something
             for flag in flags:
                 if key not in self[base]:
                     return False
-                elif isinstance(self[base][key], basestring):
+                elif isinstance(self[base][key], str):
                     self[base][key] = PBXList(self[base][key])
 
                 if self[base][key].remove(flag):
@@ -716,7 +716,7 @@ class XcodeProject(PBXDict):
             self.root_object = None
             self.root_group = None
 
-        for k, v in self.objects.iteritems():
+        for k, v in self.objects.items():
             v.id = k
 
     def add_other_cflags(self, flags):
@@ -1717,12 +1717,12 @@ class XcodeProject(PBXDict):
         if obj_isa == "PBXBuildFile":
             fileRef = obj_data.get("fileRef")
             fileRef_info = whole_data.get(fileRef)
-            if fileRef_info.has_key("name"):
+            if "name" in fileRef_info:
                 fileName = fileRef_info.get("name")
-            elif fileRef_info.has_key("path"):
+            elif "path" in fileRef_info:
                 fileName = fileRef_info.get("path")
 
-            if fileRef_info.has_key("fileType"):
+            if "fileType" in fileRef_info:
                 fileType = FILE_TYPE_INFO.get(fileRef_info["fileType"], "PBXResourcesBuildPhase")
             else:
                 fileType = FILE_TYPE_INFO.get(fileRef_info.get("lastKnownFileType"), "PBXResourcesBuildPhase")
@@ -1825,14 +1825,14 @@ class XcodeProject(PBXDict):
                 else:
                     out.write(' ')
 
-            for key in sorted(root.iterkeys()):  # keep the same order as Apple.
+            for key in sorted(root.keys()):  # keep the same order as Apple.
                 if enters:
                     out.write('\t' + deep)
 
                 if re.match(regex, key).group(0) == key:
-                    out.write(key.encode("utf-8") + ' = ')
+                    out.write(key + ' = ')
                 else:
-                    out.write('"' + key.encode("utf-8") + '" = ')
+                    out.write('"' + key + '" = ')
 
                 if key == 'objects':
                     out.write('{')  # open the objects section
@@ -1864,8 +1864,8 @@ class XcodeProject(PBXDict):
                         if self.sections.get(section[0]) is None:
                             continue
 
-                        out.write('\n/* Begin %s section */' % section[0].encode("utf-8"))
-                        self.sections.get(section[0]).sort(cmp=lambda x, y: cmp(x[0], y[0]))
+                        out.write('\n/* Begin %s section */' % section[0])
+                        self.sections.get(section[0]).sort(key=lambda x: x[0])
 
                         for pair in self.sections.get(section[0]):
                             key = pair[0]
@@ -1875,16 +1875,16 @@ class XcodeProject(PBXDict):
                             if enters:
                                 out.write('\t\t' + deep)
 
-                            out.write(key.encode("utf-8"))
+                            out.write(key)
 
                             if key in self.uuids and len(self.uuids[key]) > 0:
-                                out.write(" /* " + self.uuids[key].encode("utf-8") + " */")
+                                out.write(" /* " + self.uuids[key] + " */")
 
                             out.write(" = ")
                             self._printNewXCodeFormat(out, value, '\t\t' + deep, enters=section[1])
                             out.write(';')
 
-                        out.write('\n/* End %s section */\n' % section[0].encode("utf-8"))
+                        out.write('\n/* End %s section */\n' % section[0])
 
                     out.write(deep + '\t}')  # close of the objects section
                 else:
@@ -1927,15 +1927,15 @@ class XcodeProject(PBXDict):
 
         else:
             if len(root) > 0 and re.match(regex, root).group(0) == root:
-                if root.encode("utf-8").find("-") >= 0:
-                    out.write('"' + root.encode("utf-8") + '"')
+                if root.find("-") >= 0:
+                    out.write('"' + root + '"')
                 else:
-                    out.write(root.encode("utf-8"))
+                    out.write(root)
             else:
-                out.write('"' + XcodeProject.addslashes(root.encode("utf-8")) + '"')
+                out.write('"' + XcodeProject.addslashes(root) + '"')
 
             if root in self.uuids and len(self.uuids[root]) > 0:
-                out.write(" /* " + self.uuids[root].encode("utf-8") + " */")
+                out.write(" /* " + self.uuids[root] + " */")
 
     @classmethod
     def Load(cls, path):
@@ -2009,4 +2009,4 @@ def _escapeAndEncode(text):
     text = text.replace("&", "&amp;")       # escape '&'
     text = text.replace("<", "&lt;")        # escape '<'
     text = text.replace(">", "&gt;")        # escape '>'
-    return text.encode("ascii", "xmlcharrefreplace")  # encode as ascii with xml character references
+    return text.encode("ascii", "xmlcharrefreplace").decode("ascii")  # encode as ascii with xml character references

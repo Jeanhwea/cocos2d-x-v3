@@ -35,23 +35,29 @@ def _long2str(v, w):
     n = (len(v) - 1) << 2  
     if w:  
         m = v[-1]  
-        if (m < n - 3) or (m > n): return ''  
+        if (m < n - 3) or (m > n): return b''  
         n = m  
     s = struct.pack('<%iL' % len(v), *v)  
     return s[0:n] if w else s  
   
 def _str2long(s, w):  
+    if isinstance(s, str):
+        s = s.encode('latin-1')
     n = len(s)  
     m = (4 - (n & 3) & 3) + n  
-    s = s.ljust(m, "\0")  
+    s = s.ljust(m, b"\x00")  
     v = list(struct.unpack('<%iL' % (m >> 2), s))  
     if w: v.append(n)  
     return v  
   
-def encrypt(str, key):  
-    if str == '': return str  
-    v = _str2long(str, True)  
-    k = _str2long(key.ljust(16, "\0"), False)  
+def encrypt(data, key):  
+    if isinstance(data, str):
+        data = data.encode('latin-1')
+    if isinstance(key, str):
+        key = key.encode('latin-1')
+    if data == b'': return data  
+    v = _str2long(data, True)  
+    k = _str2long(key.ljust(16, b"\x00"), False)  
     n = len(v) - 1  
     z = v[n]  
     y = v[0]  
@@ -60,7 +66,7 @@ def encrypt(str, key):
     while q > 0:  
         sum = (sum + _DELTA) & 0xffffffff  
         e = sum >> 2 & 3  
-        for p in xrange(n):  
+        for p in range(n):  
             y = v[p + 1]  
             v[p] = (v[p] + ((z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z))) & 0xffffffff  
             z = v[p]  
@@ -70,10 +76,14 @@ def encrypt(str, key):
         q -= 1  
     return _long2str(v, False)  
   
-def decrypt(str, key):  
-    if str == '': return str  
-    v = _str2long(str, False)  
-    k = _str2long(key.ljust(16, "\0"), False)  
+def decrypt(data, key):  
+    if isinstance(data, str):
+        data = data.encode('latin-1')
+    if isinstance(key, str):
+        key = key.encode('latin-1')
+    if data == b'': return data  
+    v = _str2long(data, False)  
+    k = _str2long(key.ljust(16, b"\x00"), False)  
     n = len(v) - 1  
     z = v[n]  
     y = v[0]  
@@ -81,7 +91,7 @@ def decrypt(str, key):
     sum = (q * _DELTA) & 0xffffffff  
     while (sum != 0):  
         e = sum >> 2 & 3  
-        for p in xrange(n, 0, -1):  
+        for p in range(n, 0, -1):  
             z = v[p - 1]  
             v[p] = (v[p] - ((z >> 5 ^ y << 2) + (y >> 3 ^ z << 4) ^ (sum ^ y) + (k[p & 3 ^ e] ^ z))) & 0xffffffff  
             y = v[p]  
@@ -241,7 +251,8 @@ class CCPluginLuaCompile(cocos.CCPlugin):
                 if self._isEncrypt == True:
                     bytesFile = open(dst_lua_file, "rb+")
                     encryBytes = encrypt(bytesFile.read(), self._encryptkey)
-                    encryBytes = self._encryptsign + encryBytes
+                    sign = self._encryptsign.encode('latin-1') if isinstance(self._encryptsign, str) else self._encryptsign
+                    encryBytes = sign + encryBytes
                     bytesFile.seek(0)
                     bytesFile.write(encryBytes)
                     bytesFile.close()

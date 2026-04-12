@@ -14,7 +14,7 @@ import os
 import json
 import subprocess
 import excopy
-import ConfigParser
+import configparser
 import sys
 import shutil
 
@@ -164,7 +164,7 @@ class Builder(object):
         path_param = "-p %s" % sep.join(dir_list)
 
         # get the runtime-hook parameter
-        _cp = ConfigParser.ConfigParser(allow_no_value=True)
+        _cp = configparser.ConfigParser(allow_no_value=True)
         _cp.optionxform = str
         _cp.read(os.path.join(self.src_path, "bin/cocos2d.ini"))
 
@@ -172,7 +172,7 @@ class Builder(object):
         hidden_import_param = ""
 
         # add hidden import params for config.json
-        if self.cfg_info.has_key(Builder.KEY_HIDDEN_IMPORT):
+        if Builder.KEY_HIDDEN_IMPORT in self.cfg_info:
             hidden_import_cfg = self.cfg_info[Builder.KEY_HIDDEN_IMPORT]
         else:
             hidden_import_cfg = {}

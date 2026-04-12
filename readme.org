@@ -17,7 +17,7 @@
 
 * 快速开始
 ** 环境配置
-1. 原始脚本依赖 Python2 的环境， *Python3 会报错*
+1. 迁移 Python 脚本支持 python3
 2. 需要安装 cmake 来生成配置项
 3. 开发环境比较随意，根据直接喜好来就行
    - Windows 使用 Visual Studio 2022
@@ -28,9 +28,9 @@
      # 克隆代码仓库
      git clone https://github.com/Jeanhwea/cocos2d-x-v3.git
 
-     # 使用 Python2 设置环境变量
+     # 使用 Python3 设置环境变量
      cd cocos2d-x-v3
-     python setup.py
+     python3 setup.py
    #+END_SRC
 
 ** 创建项目

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # ----------------------------------------------------------------------------
 # cocos-console: command line tool manager for cocos2d-x
 #
@@ -37,8 +37,8 @@ COCOS2D_CONSOLE_VERSION = '2.3'
 
 class Cocos2dIniParser:
     def __init__(self):
-        import ConfigParser
-        self._cp = ConfigParser.ConfigParser(allow_no_value=True)
+        import configparser
+        self._cp = configparser.ConfigParser(allow_no_value=True)
         self._cp.optionxform = str
 
         # read global config file
@@ -212,14 +212,14 @@ class CMDRunner(object):
 
     @staticmethod
     def convert_path_to_cmd(path):
-        """ Escape paths which include spaces to correct style which bash(mac) and cmd(windows) can treat correctly.
+        r""" Escape paths which include spaces to correct style which bash(mac) and cmd(windows) can treat correctly.
 
             eg: on mac: convert '/usr/xxx/apache-ant 1.9.3' to '/usr/xxx/apache-ant\ 1.9.3'
             eg: on windows: convert '"c:\apache-ant 1.9.3"\bin' to '"c:\apache-ant 1.9.3\bin"'
         """
         ret = path
         if os_is_mac():
-            ret = path.replace("\ ", " ").replace(" ", "\ ")
+            ret = path.replace("\\ ", " ").replace(" ", "\\ ")
 
         if os_is_win32():
             ret = "\"%s\"" % (path.replace("\"", ""))
@@ -229,14 +229,14 @@ class CMDRunner(object):
 
     @staticmethod
     def convert_path_to_python(path):
-        """ Escape paths which include spaces to correct style which python can treat correctly.
+        r""" Escape paths which include spaces to correct style which python can treat correctly.
 
             eg: on mac: convert '/usr/xxx/apache-ant\ 1.9.3' to '/usr/xxx/apache-ant 1.9.3'
             eg: on windows: convert '"c:\apache-ant 1.9.3"\bin' to 'c:\apache-ant 1.9.3\bin'
         """
         ret = path
         if os_is_mac():
-            ret = path.replace("\ ", " ")
+            ret = path.replace("\\ ", " ")
 
         if os_is_win32():
             ret = ret.replace("\"", "")
@@ -343,7 +343,7 @@ class DataStatistic(object):
 
         if skip_agree_value is None:
             # show the agreement
-            input_value = raw_input(MultiLanguage.get_string('COCOS_AGREEMENT'))
+            input_value = input(MultiLanguage.get_string('COCOS_AGREEMENT'))
             agreed = (input_value.lower() != 'n' and input_value.lower() != 'no')
         else:
             # --agreement is used to skip the input
@@ -460,7 +460,7 @@ class CCPlugin(object):
         if os.path.isdir(cocos2dx_path):
             return cocos2dx_path
 
-        if cls.get_cocos2d_mode() is not "distro":
+        if cls.get_cocos2d_mode() != "distro":
             # In 'distro' mode this is not a warning since
             # the source code is not expected to be installed
             Logging.warning(MultiLanguage.get_string('COCOS_WARNING_ENGINE_NOT_FOUND'))
@@ -469,7 +469,7 @@ class CCPlugin(object):
     @classmethod
     def get_console_path(cls):
         """returns the path where cocos console is installed"""
-        run_path = unicode(get_current_path(), "utf-8")
+        run_path = get_current_path()
         return run_path
 
     @classmethod
@@ -497,7 +497,7 @@ class CCPlugin(object):
             # Try two: cocos2d-x/../../templates
             possible_paths = [['templates'], ['..', '..', 'templates']]
             for p in possible_paths:
-                p = string.join(p, os.sep)
+                p = os.sep.join(p)
                 template_path = os.path.abspath(os.path.join(path, p))
                 try:
                     if os.path.isdir(template_path):
@@ -521,7 +521,7 @@ class CCPlugin(object):
         # remove duplicates
         from collections import OrderedDict
         ordered = OrderedDict.fromkeys(paths)
-        paths = ordered.keys()
+        paths = list(ordered.keys())
         return paths
 
     @classmethod
@@ -635,7 +635,7 @@ class CCPlugin(object):
 
         if args.listplatforms and self._project is not None:
             platforms = cocos_project.Platforms(self._project, args.platform, args.proj_dir)
-            p = platforms.get_available_platforms().keys()
+            p = list(platforms.get_available_platforms().keys())
             print('{"platforms":' + json.dumps(p) + '}')
             sys.exit(0)
 
@@ -706,8 +706,9 @@ def get_xcode_version():
     xcode = None
     version = None
     for line in child.stdout:
+        line = line.decode('utf-8') if isinstance(line, bytes) else line
         if 'Xcode' in line:
-            xcode, version = str.split(line, ' ')
+            xcode, version = str.split(line.strip(), ' ')
 
     child.wait()
 
@@ -722,6 +723,7 @@ def app_is_installed(adb_cmd, pack_name):
     desired_name = "package:%s" % (pack_name)
     child = subprocess.Popen(list_pack_cmd, stdout=subprocess.PIPE, shell=True)
     for line in child.stdout:
+        line = line.decode('utf-8') if isinstance(line, bytes) else line
         if desired_name == line.strip():
             return True
     return False
@@ -975,9 +977,7 @@ def _check_python_version():
     major_ver = sys.version_info[0]
     minor_ver = sys.version_info[1]
     ret = True
-    if major_ver != 2:
-        ret = False
-    elif minor_ver < 7:
+    if major_ver < 3:
         ret = False
 
     if not ret:

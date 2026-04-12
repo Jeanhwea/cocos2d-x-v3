@@ -24,7 +24,7 @@ os.chdir('../../..')
 
 os.system('git clean -xdf')
 os.system('git reset --hard')
-print ret
+print(ret)
 if(ret > 0):
     ret = 1
 exit(ret)

@@ -9,8 +9,8 @@ import os, re
 
 def scan(*dirs, **kwargs):
   files = []
-  extensions = kwargs['extensions'] if kwargs.has_key('extensions') else None
-  excludes = kwargs['excludes'] if kwargs.has_key('excludes') else []
+  extensions = kwargs['extensions'] if 'extensions' in kwargs else None
+  excludes = kwargs['excludes'] if 'excludes' in kwargs else []
   for top in dirs:
     for root, dirnames, filenames in os.walk(top):
       dirnames = [i for i in dirnames if i in excludes]

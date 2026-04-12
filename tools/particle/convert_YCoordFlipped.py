@@ -14,14 +14,14 @@ yCoordFlippedKey = 'yCoordFlipped'
 
 #check if the particle file has been converted
 def checkFlippedConvertFlag(plistDict):
-    if(not plistDict.has_key(metaDataKey)):
+    if(metaDataKey not in plistDict):
         return False
     else:
         metaDict = plistDict.get(metaDataKey)
-        if(not metaDict.has_key(yCoordFlippedConvertedKey)):
+        if(yCoordFlippedConvertedKey not in metaDict):
             return False
         else:
-            return metaDict.get(yCoordFlippedConvertedKey) is 1
+            return metaDict.get(yCoordFlippedConvertedKey) == 1
 
 #write flag to indicate to file has been converted
 def writeFlippedConvertFlag(plistDict):
@@ -37,10 +37,11 @@ def processConvertFile(filename):
         print(filename + ' dose not exist!')
         return
     print('Begin process particle file: ' + filename)
-    fp = open(filename, 'r')
-    pl = plistlib.readPlist(fp) 
+    fp = open(filename, 'rb')
+    pl = plistlib.load(fp)
+    fp.close()
 
-    if (not pl.has_key(yCoordFlippedKey)):
+    if (yCoordFlippedKey not in pl):
         print('Skip plist file: ' + filename + ' for there is no key for yCoordFlipped,')
     else:
         if(not checkFlippedConvertFlag(pl)):
@@ -52,7 +53,8 @@ def processConvertFile(filename):
             writeFlippedConvertFlag(pl)
             print('converted...')
             print('Write new plist file to ' + filename)
-            plistlib.writePlist(pl,filename)
+            with open(filename, 'wb') as fp_out:
+                plistlib.dump(pl, fp_out)
         else:
             print('Skip a converted file ' + filename)
 

@@ -21,7 +21,7 @@ import re
 import sys
 import shutil
 import json
-import build_web
+from . import build_web
 import utils
 
 class CCPluginCompile(cocos.CCPlugin):
@@ -211,7 +211,7 @@ class CCPluginCompile(cocos.CCPlugin):
         try:
             return multiprocessing.cpu_count()
         except Exception:
-            print MultiLanguage.get_string('COMPILE_DETECT_CPU_FAILED')
+            print(MultiLanguage.get_string('COMPILE_DETECT_CPU_FAILED'))
             return 1
 
     def _get_output_dir(self):
@@ -285,7 +285,7 @@ class CCPluginCompile(cocos.CCPlugin):
             open_file = None
             changed = False
             if key_of_copy is not None:
-                if cfg_info.has_key(key_of_copy):
+                if key_of_copy in cfg_info:
                     src_list = cfg_info[key_of_copy]
                     ret_list = self._convert_cfg_list(src_list, build_cfg_dir)
                     cfg_info[CCPluginCompile.CFG_KEY_COPY_RESOURCES] = ret_list
@@ -293,7 +293,7 @@ class CCPluginCompile(cocos.CCPlugin):
                     changed = True
 
             if key_of_must_copy is not None:
-                if cfg_info.has_key(key_of_must_copy):
+                if key_of_must_copy in cfg_info:
                     src_list = cfg_info[key_of_must_copy]
                     ret_list = self._convert_cfg_list(src_list, build_cfg_dir)
                     cfg_info[CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES] = ret_list
@@ -586,7 +586,7 @@ class CCPluginCompile(cocos.CCPlugin):
             open_file = open(cfg_file)
             cfg_info = json.load(open_file)
             open_file.close()
-            if cfg_info.has_key("remove_res"):
+            if "remove_res" in cfg_info:
                 remove_list = cfg_info["remove_res"]
                 for f in remove_list:
                     res = os.path.join(target_path, f)
@@ -683,7 +683,7 @@ class CCPluginCompile(cocos.CCPlugin):
         projectPath = os.path.join(ios_project_dir, self.xcodeproj_name)
         pbxprojectPath = os.path.join(projectPath, "project.pbxproj")
 
-        f = file(pbxprojectPath)
+        f = open(pbxprojectPath)
         contents = f.read()
 
         section = re.search(r"Begin PBXProject section.*End PBXProject section", contents, re.S)
@@ -705,7 +705,7 @@ class CCPluginCompile(cocos.CCPlugin):
             if cfg_obj.target_name is not None:
                 targetName = cfg_obj.target_name
             else:
-                names = re.split("\*", targets.group())
+                names = re.split(r"\*", targets.group())
                 for name in names:
                     if "iOS" in name or "-mobile" in name:
                         targetName = str.strip(name)
@@ -821,8 +821,8 @@ class CCPluginCompile(cocos.CCPlugin):
                     self._run_cmd(ipa_cmd)
 
             cocos.Logging.info(MultiLanguage.get_string('COMPILE_INFO_BUILD_SUCCEED'))
-        except Exception, e:
-            print str(e)
+        except Exception as e:
+            print(str(e))
             raise cocos.CCPluginError(MultiLanguage.get_string('COMPILE_ERROR_BUILD_FAILED'),
                                       cocos.CCPluginError.ERROR_BUILD_FAILED)
         finally:
@@ -867,7 +867,7 @@ class CCPluginCompile(cocos.CCPlugin):
         projectPath = os.path.join(mac_project_dir, self.xcodeproj_name)
         pbxprojectPath = os.path.join(projectPath, "project.pbxproj")
 
-        f = file(pbxprojectPath)
+        f = open(pbxprojectPath)
         contents = f.read()
 
         section = re.search(
@@ -893,7 +893,7 @@ class CCPluginCompile(cocos.CCPlugin):
             if cfg_obj.target_name is not None:
                 targetName = cfg_obj.target_name
             else:
-                names = re.split("\*", targets.group())
+                names = re.split(r"\*", targets.group())
                 for name in names:
                     if "Mac" in name or "-desktop" in name:
                         targetName = str.strip(name)
@@ -1394,7 +1394,7 @@ class CCPluginCompile(cocos.CCPlugin):
             regexp_set_app_name = re.compile(r'\s*set\s*\(\s*APP_NAME', re.IGNORECASE)
             for line in f.readlines():
                 if regexp_set_app_name.search(line):
-                    self.project_name = re.search('APP_NAME ([^\)]+)\)', line, re.IGNORECASE).group(1)
+                    self.project_name = re.search(r'APP_NAME ([^\)]+)\)', line, re.IGNORECASE).group(1)
                     break
             if hasattr(self, 'project_name') == False:
 	            raise cocos.CCPluginError("Couldn't find APP_NAME in CMakeLists.txt")
@@ -1492,7 +1492,7 @@ class CCPluginCompile(cocos.CCPlugin):
     def _copy_resources(self, dst_path):
         data = self._get_build_cfg()
 
-        if data.has_key(CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES):
+        if CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES in data:
             if self._no_res:
                 fileList = data[CCPluginCompile.CFG_KEY_MUST_COPY_RESOURCES]
             else:

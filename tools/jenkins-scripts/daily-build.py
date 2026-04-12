@@ -47,7 +47,7 @@ def sync_remote_repo():
     os.system("git checkout " + branch)
     os.system("git merge origin/" + branch)
     #clean workspace
-    print "Before checkout: git clean -xdf -f"
+    print("Before checkout: git clean -xdf -f")
     os.system("git clean -xdf -f")
 
     #update submodule
@@ -104,7 +104,7 @@ def do_build_slaves():
         ret = ret + os.system(slave_build_scripts)
 
     #get build result
-    print "build finished and return " + str(ret)
+    print("build finished and return " + str(ret))
     return ret
 
 

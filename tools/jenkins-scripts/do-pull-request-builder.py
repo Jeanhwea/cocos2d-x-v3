@@ -65,7 +65,7 @@ def do_build_slaves():
         ret = os.system(slave_build_scripts)
 
     #get build result
-    print "build finished and return " + str(ret)
+    print("build finished and return " + str(ret))
     return ret
 
 def cleanup_workspace():
@@ -107,7 +107,7 @@ if __name__ == '__main__':
         traceback.print_exc()
         sys_ret = 1
     finally:
-        print "return value is " + str(sys_ret)
+        print("return value is " + str(sys_ret))
         if sys_ret != 0:
             sys.exit(1)
         else:

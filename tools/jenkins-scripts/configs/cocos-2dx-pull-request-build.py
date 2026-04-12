@@ -26,7 +26,7 @@ for i in range(0, 3):
         break
 
 clean_workspace()
-print ret
+print(ret)
 if(ret > 0):
     ret = 1
 exit(ret)

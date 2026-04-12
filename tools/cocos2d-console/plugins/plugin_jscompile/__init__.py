@@ -18,6 +18,7 @@ import os
 import json
 import inspect
 import platform
+import functools
 
 import cocos
 from MultiLanguage import MultiLanguage
@@ -212,8 +213,8 @@ class CCPluginJSCompile(cocos.CCPlugin):
             for need_remove in need_remove_arr:
                 self._js_files[src_dir].remove(need_remove)
 
-            self._js_files[src_dir].sort(cmp=self.js_filename_pre_order_compare)
-            self._js_files[src_dir].sort(cmp=self.js_filename_post_order_compare)
+            self._js_files[src_dir].sort(key=functools.cmp_to_key(self.js_filename_pre_order_compare))
+            self._js_files[src_dir].sort(key=functools.cmp_to_key(self.js_filename_post_order_compare))
 
         # print '-------------------'
         # print "after:" + str(self._js_files)

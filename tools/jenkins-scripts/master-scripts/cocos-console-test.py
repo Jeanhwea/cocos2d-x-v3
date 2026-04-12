@@ -19,13 +19,13 @@ from os.path import join, getsize
 # default console_param.
 console_param = '[console run]'
 # get param from commit.
-if os.environ.has_key('payload'):
+if 'payload' in os.environ:
     payload_str = os.environ['payload']
     payload = json.loads(payload_str)
-    if payload.has_key('console'):
+    if 'console' in payload:
         console_param = payload['console']
 console_param = console_param[1:len(console_param)-1]
-print 'console_param:',console_param
+print('console_param:',console_param)
 
 console_param_arr = console_param.split(' ')
 
@@ -59,7 +59,7 @@ for level in LEVEL_COCOS:
         cocos_param = cocos_param + LEVEL_COCOS[level]
 if cocos_param < LEVEL_COCOS[ENUM_PARAM.new]:
     cocos_param = LEVEL_COCOS[ENUM_PARAM.new]
-print 'cocos_param:', cocos_param
+print('cocos_param:', cocos_param)
 
 # project types
 project_types = ['cpp', 'lua']
@@ -86,11 +86,11 @@ elif curPlat.find('darwin') >= 0:
     curPlat = 'darwin'
 else:
     curPlat = 'win'
-print 'current platform is:', curPlat
+print('current platform is:', curPlat)
 
 # delete project.(will use different system command to delete.just mac now.)
 def clean_project():
-    print 'delete older project.'
+    print('delete older project.')
     for proj in project_types:
         cmd = 'rm -rf '+proj+PROJ_SUFFIX
         os.system(cmd)
@@ -107,7 +107,7 @@ CONSOLE_COMMAND = 'director->getConsole()->listenOnTCP(5678);'
 # add console listenOnTCP to AppDelegate.cpp.
 def addConsoleListenOnTCP(name):
     filePath = name+PROJ_SUFFIX+FILE_DIR[name]+FILE_PATH
-    print 'filePath:',filePath
+    print('filePath:',filePath)
     strCont = ''
     if os.path.isfile(filePath):
         file_object = open(filePath, 'r')
@@ -115,7 +115,7 @@ def addConsoleListenOnTCP(name):
         while strLine:
             strCont = strCont + strLine
             if strLine.find(PARSE_WORD) > -1:
-                print 'add console listenOnTCP command.'
+                print('add console listenOnTCP command.')
                 strCont = strCont+'\n\t' + CONSOLE_COMMAND + '\n'
             strLine = file_object.readline() 
         
@@ -125,7 +125,7 @@ def addConsoleListenOnTCP(name):
         file_object.close()
         time.sleep(2)
     else:
-        print 'file is not exist.'
+        print('file is not exist.')
 
 # console result, for record result
 console_result = 'the result of cocos-console-test is:\n\r'
@@ -151,21 +151,21 @@ IP_PHONE = {
 PORT = 5678
 
 def close_proj(proj, phone):
-    print 'close running project'
+    print('close running project')
     # connect socket
     strClose = 'close ' + proj + ' on ' + phone
-    if IP_PHONE.has_key(phone):
+    if phone in IP_PHONE:
         soc = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
-        print proj, phone, IP_PHONE[phone]
+        print(proj, phone, IP_PHONE[phone])
         try:
             soc.connect((IP_PHONE[phone], PORT))
             cmd = 'director end\r\n'
-            print 'cmd close:', cmd
+            print('cmd close:', cmd)
             soc.send(cmd)
             time.sleep(2) 
             strClose = strClose + ' success.'
-        except Exception, e:
-            print 'socket is not connect.'
+        except Exception as e:
+            print('socket is not connect.')
             strClose = strClose + ' failed.' + ' socket is not connect.'
     else:
         strClose = strClose + ' failed.' + ' no ' +phone+ ' type.'
@@ -184,21 +184,21 @@ class myThread(threading.Thread):
         threading.Thread.__init__(self,name=threadname)
     def run(self):
         run_name = self.getName()
-        print 'run_name:', run_name
+        print('run_name:', run_name)
         if run_name == 'close':
             while True:
                 soc = socket.socket( socket.AF_INET, socket.SOCK_STREAM )
                 try:
                     soc.connect(('localhost', PORT))
                     cmd_close = 'director end\r\n'
-                    print 'cmd close:', cmd_close
+                    print('cmd close:', cmd_close)
                     soc.send(cmd_close)
                     time.sleep(2)
                     global cur_test_name
-                    print 'cur_test_name:', cur_test_name
+                    print('cur_test_name:', cur_test_name)
                     info_of_close_app[cur_test_name] = True
                     break
-                except Exception, e:
+                except Exception as e:
                     time.sleep(5)
 
 # if any error 
@@ -206,37 +206,37 @@ ANY_ERROR_IN_RUN = 0
 # excute cocos command
 def cocos_project(level):
     global ANY_ERROR_IN_RUN
-    print 'will excute cocos_command: ', COCOS_CMD[level], level
+    print('will excute cocos_command: ', COCOS_CMD[level], level)
     appendToResult('will excute ' + COCOS_CMD[level] + ' command:'+"\n\r\t")
     for proj in project_types:
-        print 'proj: ', proj
+        print('proj: ', proj)
         if level == ENUM_PARAM.new:
             cmd = './'+cocos_console_dir+'cocos new -l '+proj+' '+proj+PROJ_SUFFIX
-            print proj,'cmd:',cmd
+            print(proj,'cmd:',cmd)
             info_create = os.system(cmd)    #call cmd on win is diff
             if info_create == 0:
                 time.sleep(12)
                 addConsoleListenOnTCP(proj)
-            print 'create project',proj,' is:', not info_create
+            print('create project',proj,' is:', not info_create)
             ANY_ERROR_IN_RUN = ANY_ERROR_IN_RUN + info_create
             appendToResult('    '+cmd +': ' + str(not info_create) + ".\n\r\t")
         else:
             for phone in phonePlats:
-                print 'platform is: ', phone
+                print('platform is: ', phone)
                 cmd = './'+cocos_console_dir+'cocos '+COCOS_CMD[level]+' -s '+proj+PROJ_SUFFIX+' -p '+phone
-                print 'cmd:',cmd
+                print('cmd:',cmd)
                 info_cmd = ''
                 if level == ENUM_PARAM.compile:
                     if runSupport[curPlat][phone]:
                         info_cmd = os.system(cmd)
-                        print 'info '+COCOS_CMD[level]+':', not info_cmd
+                        print('info '+COCOS_CMD[level]+':', not info_cmd)
                         appendToResult('    '+cmd +': ' + str(not info_cmd) + ".\n\r\t")
                 else:
                     if runSupport[curPlat][phone]:
-                        print 'in desploy or run:', phone, getAndroidDevices()
+                        print('in desploy or run:', phone, getAndroidDevices())
                         if phone == 'android' and getAndroidDevices() == 0:
                             strInfo = 'no android device, please checkout the device is running ok.'
-                            print strInfo
+                            print(strInfo)
                         else:
                             if level == ENUM_PARAM.run:
                                 global cur_test_name
@@ -249,9 +249,9 @@ def cocos_project(level):
 
 # build and run according to params of provided.(lv_ignore: e.g:ignore new)
 def build_run(lv_ignore):
-    print 'will build and run, in function build_run'
+    print('will build and run, in function build_run')
     for level in LEVEL_COCOS:
-        print 'level:', level, cocos_param, LEVEL_COCOS[level]
+        print('level:', level, cocos_param, LEVEL_COCOS[level])
         if cocos_param >= LEVEL_COCOS[level] and level > lv_ignore:
             if level == ENUM_PARAM.new:
                 clean_project()
@@ -261,9 +261,9 @@ def build_run(lv_ignore):
 ANDROID_SIMULATOR_NAME = 'console-test'
 # start android simulator if no android devices connected.
 def start_android_simulator():
-    print 'in function start_android_simulator.'
+    print('in function start_android_simulator.')
     if getAndroidDevices() > 0:
-        print 'already connected android device.'
+        print('already connected android device.')
         return
     if cocos_param >= LEVEL_COCOS[ENUM_PARAM.deploy]:
         cmd_start = [ 'emulator -avd '+ANDROID_SIMULATOR_NAME ]
@@ -282,15 +282,15 @@ EMAIL_KEYS={
 }
 
 OBJ_EMAIL_INFO = {}
-print 'will get env info.'
+print('will get env info.')
 for key in EMAIL_KEYS:
-    if os.environ.has_key(EMAIL_KEYS[key]):
+    if EMAIL_KEYS[key] in os.environ:
         OBJ_EMAIL_INFO[EMAIL_KEYS[key]] = os.environ[EMAIL_KEYS[key]]
         if key == 4:
             # string to list by ' ', for separate users.
             OBJ_EMAIL_INFO[EMAIL_KEYS[4]] = OBJ_EMAIL_INFO[EMAIL_KEYS[4]].split(' ')
 
-print 'will send email.', OBJ_EMAIL_INFO
+print('will send email.', OBJ_EMAIL_INFO)
 def send_mail(to_list,sub,title,content):
     mail_user = OBJ_EMAIL_INFO[ EMAIL_KEYS[1] ]
     mail_postfix = OBJ_EMAIL_INFO[ EMAIL_KEYS[3] ]
@@ -301,20 +301,20 @@ def send_mail(to_list,sub,title,content):
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = " ".join(to_list)
-    print 'to users:', msg['To']
+    print('to users:', msg['To'])
     msg['Content'] = 'test'
     try:
         s = smtplib.SMTP()
         s.connect(mail_host)
         s.login(mail_user,mail_pass)
         s.sendmail(me, to_list, str(msg))
-        print 'info:', me, to_list, str(msg)
+        print('info:', me, to_list, str(msg))
         s.close()
         appendToResult( 'send email true:' + str(msg) )
         return True
-    except Exception, e:
+    except Exception as e:
         appendToResult( 'send email false:' + str(e) )
-        print str(e)
+        print(str(e))
         return False
 
 def sendEmail(msg):
@@ -322,7 +322,7 @@ def sendEmail(msg):
 
 # get package size 
 def getdirsize(dir):  
-    size = 0L  
+    size = 0  
     for root, dirs, files in os.walk(dir):  
         size += sum([getsize(join(root, name)) for name in files])  
     return size
@@ -335,7 +335,7 @@ APP_FILE_SUFFIX = {
     'ios':'.app',
     'android':'-debug-unaligned.apk'
 }
-if os.environ.has_key('APP_FILE_SUFFIX'):
+if 'APP_FILE_SUFFIX' in os.environ:
     str_app_suffix = os.environ['APP_FILE_SUFFIX']
     APP_FILE_SUFFIX = eval(str_app_suffix)
 
@@ -344,26 +344,26 @@ def getPackageSize():
         for phone in phonePlats:
             # if runSupport[curPlat][phone]:
             package_path = './'+proj+PROJ_SUFFIX+'/'+APP_FILE_DIR[proj]+phone+'/'+proj+PROJ_SUFFIX+APP_FILE_SUFFIX[phone]
-            print 'package_path', package_path
+            print('package_path', package_path)
             package_size = 0
             if os.path.isfile(package_path):
                 package_size = os.path.getsize(package_path);
             else:
                 package_size = getdirsize(package_path);
             strSize = 'size of '+proj+PROJ_SUFFIX+' '+phone+' is:'+str(package_size/(1024))+'KB'+'\n\t'
-            print 'strSize:', strSize
+            print('strSize:', strSize)
             appendToResult(strSize)
 
 def main():
-    print 'in main:'
+    print('in main:')
     # start_android_simulator()
-    print 'will build_run:'
+    print('will build_run:')
     build_run(-1)
-    print 'ANY_ERROR_IN_RUN:', ANY_ERROR_IN_RUN
-    print 'end build run. and get package size.'
+    print('ANY_ERROR_IN_RUN:', ANY_ERROR_IN_RUN)
+    print('end build run. and get package size.')
     getPackageSize()
-    print 'will send email:'
-    print 'console_result:', console_result
+    print('will send email:')
+    print('console_result:', console_result)
     if OBJ_EMAIL_INFO[ EMAIL_KEYS[5] ] or ANY_ERROR_IN_RUN:
         sendEmail(console_result)
 

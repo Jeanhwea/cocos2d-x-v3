@@ -18,39 +18,39 @@ import paramiko
 
 payload = {}
 #get payload from os env
-if os.environ.has_key('payload'):
+if 'payload' in os.environ:
     payload_str = os.environ['payload']
     #parse to json obj
     payload = json.loads(payload_str)
-print 'payload:',payload
+print('payload:',payload)
 pr_num = 6326
 #get pull number
-if payload.has_key('number'):
+if 'number' in payload:
     pr_num = payload['number']
-print 'pr_num:' + str(pr_num)
+print('pr_num:' + str(pr_num))
 run_app_time = 5
-if os.environ.has_key('RUN_APP_TIME'):
+if 'RUN_APP_TIME' in os.environ:
     run_app_time = os.environ['RUN_APP_TIME']
-print 'run_app_time:', run_app_time
+print('run_app_time:', run_app_time)
 
 test_name = ['cpp_empty_test']
-if os.environ.has_key('TESTS_NAME'):
+if 'TESTS_NAME' in os.environ:
     temp_var = os.environ['TESTS_NAME']
     test_name = temp_var.split(', ')
 package_name = ['org.cocos2dx.cpp_empty_test']
-if os.environ.has_key('PACKAGE_NAME'):
+if 'PACKAGE_NAME' in os.environ:
     temp_var = os.environ['PACKAGE_NAME']
     package_name = temp_var.split(', ')
 activity_name = ['org.cocos2dx.cpp_empty_test.AppActivity']
-if os.environ.has_key('ACTIVITY_NAME'):
+if 'ACTIVITY_NAME' in os.environ:
     temp_var = os.environ['ACTIVITY_NAME']
     activity_name = temp_var.split(', ')
 gIdx = 0
-if os.environ.has_key('TEST_INDEX'):
+if 'TEST_INDEX' in os.environ:
     gIdx = os.environ('TEST_INDEX')
 
 current_platform = platform.system()
-print 'current platform is:', current_platform
+print('current platform is:', current_platform)
 
 arrDevices = []
 def getDevices():
@@ -62,7 +62,7 @@ def getDevices():
     for device in arr_info:
         if len(device) > 0:
             count += 1
-            print 'device ', count,device
+            print('device ', count,device)
             deviceInfo = device.split(' ')
             global arrDevices
             obj = {}
@@ -92,7 +92,7 @@ def setThreadStatus():
 
 devices_info = {}
 info_list = '{"product":["model","brand","name","cpu.abi","cpu.abi2","manufacturer","locale.language","locale.region"],"build":["id","version.sdk","version.release"]}'
-if os.environ.has_key('DEVICE_INFO_LIST'):
+if 'DEVICE_INFO_LIST' in os.environ:
     info_list = os.environ['DEVICE_INFO_LIST']
 info_list = eval(info_list)
 def getDeviceInfoByName(name):
@@ -136,9 +136,9 @@ apk_name = 'apks/'+test_name[gIdx]+'/'+test_name[gIdx]+'_'+str(pr_num)+'.apk'
 def install_apk_on_device(device):
     name = device['name']
     cmd = 'adb -s '+name+' install '+apk_name
-    print 'install on '+name
+    print('install on '+name)
     info_install = os.popen(cmd).read()
-    print 'infomation of install apk:', info_install
+    print('infomation of install apk:', info_install)
     info_install_arr = info_install.split('\r\n')
     info_install_result = False
     for item in info_install_arr:
@@ -148,7 +148,7 @@ def install_apk_on_device(device):
     return True
 
 def open_apk_on_device(device):
-    print 'will open activity:'
+    print('will open activity:')
     name = device['name']
     cmd = 'adb -s '+name+' shell am start -n '+package_name[gIdx]+'/'+activity_name[gIdx]
     # print 'start activity:', cmd
@@ -158,7 +158,7 @@ def open_apk_on_device(device):
     info_start_result = True
     for info in info_start:
         if info.find('Error:') > -1:
-            print 'infomation of open activity:',info
+            print('infomation of open activity:',info)
             info_start_result = False
     info_empty_test['open'][name] = info_start_result
     return True
@@ -171,26 +171,26 @@ def socket_status_on_device(device):
     status_socket = False
     info_of_socket_result = ''
     try:
-        print 'telnet ', ip, PORT
+        print('telnet ', ip, PORT)
         soc.connect((ip, PORT))
         cmd = 'resolution\r\n'
-        print 'connected successfully.'
-        print 'send console command: resolution'
+        print('connected successfully.')
+        print('send console command: resolution')
         soc.send(cmd)
         while True:
             data = soc.recv(1024)
             if len(data):
-                print data
+                print(data)
                 if data.find('size:') > -1:
                     info_of_socket_result = 'OK'
-                    print 'close', test_name[gIdx]
+                    print('close', test_name[gIdx])
                     soc.send('director end')
                     status_socket = True
                     break
             if not data:
                 info_of_socket_result = test_name[gIdx]+' is crashed!'
                 break
-    except Exception, e:
+    except Exception as e:
         info_of_socket_result = test_name[gIdx]+' is crashed!'
     time.sleep(2)
     soc.close()
@@ -200,7 +200,7 @@ def socket_status_on_device(device):
 
 def uninstall_apk_on_device(device):
     # adb shell pm uninstall -n org.cocos2dx.hellolua
-    print 'uninstall ', test_name[gIdx]
+    print('uninstall ', test_name[gIdx])
     name = device['name']
     cmd = 'adb -s '+name+' shell pm uninstall -n '+package_name[gIdx]
     info_uninstall = os.popen(cmd).read()
@@ -214,21 +214,21 @@ def uninstall_apk_on_device(device):
 
 def excute_test_on_device(device):
     uninstall_apk_on_device(device)
-    print device
+    print(device)
     info_install = install_apk_on_device(device)
-    print 'install:', info_install
+    print('install:', info_install)
     info_open = open_apk_on_device(device)
-    print 'open:', info_open
+    print('open:', info_open)
     time.sleep(3)
     info_socket = socket_status_on_device(device)
-    print 'socket:', info_socket
+    print('socket:', info_socket)
     info_uninstall = uninstall_apk_on_device(device)
-    print 'uninstall:', info_uninstall
+    print('uninstall:', info_uninstall)
     allThreadIsRunning[device['name']] = 0
 
 address_of_result_html = ''
 def send_result_to_master():
-    if not os.environ.has_key('REMOTE_IP'):
+    if 'REMOTE_IP' not in os.environ:
         return false
     remote_ip = os.environ['REMOTE_IP']
     remote_port = os.environ['REMOTE_PORT']
@@ -236,9 +236,9 @@ def send_result_to_master():
     remote_pwd = os.environ['REMOTE_PWD']
     remote_dir = os.environ['REMOTE_DIR']
     remote_dir = remote_dir + str(pr_num)+'/'
-    print remote_dir
+    print(remote_dir)
     ssh = paramiko.SSHClient()
-    print 'ssh:',ssh
+    print('ssh:',ssh)
     ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     ssh.connect(remote_ip, int(remote_port), remote_user, remote_pwd)
     # create dir
@@ -264,12 +264,12 @@ def check_thread_is_running():
         time.sleep(3)
         if not in_running:
             break
-    print 'all cpp emptytest is finished.'
+    print('all cpp emptytest is finished.')
     log_emptytest_result()
-    print 'will send result:'
+    print('will send result:')
     send_result_to_master()
-    print 'end of check thread is running.'
-    print 'address of result is:',address_of_result_html
+    print('end of check thread is running.')
+    print('address of result is:',address_of_result_html)
 
 def generate_html_with_result(result):
     target_path = 'html/cpp_empty_test/cpp_empty_test_'+str(pr_num)+'.html'
@@ -302,7 +302,7 @@ def log_emptytest_result():
         appendToResult('')
     appendToResult('empty test end.</pre>')
     generate_html_with_result(str_result)
-    print 'log empty test end'
+    print('log empty test end')
 
 class myThread(threading.Thread):
     def __init__(self,threadname):
@@ -310,9 +310,9 @@ class myThread(threading.Thread):
     def run(self):
         time.sleep(2)
         device = self.getName()
-        print type(device)
+        print(type(device))
         device = eval(device)
-        print type(device), device
+        print(type(device), device)
         excute_test_on_device(device)
 
 def run_emptytest():
@@ -321,22 +321,22 @@ def run_emptytest():
         th.start()
 
 def main():
-    print 'in main:'
+    print('in main:')
     getDevices()
     if len(arrDevices):
         mapIP()
         setThreadStatus()
-        print 'arrDevices:',arrDevices
+        print('arrDevices:',arrDevices)
         time.sleep(1)
     else:
-        print 'there is no device for emptytest, please check devices!'
+        print('there is no device for emptytest, please check devices!')
         return 1
     if len(arrDevices):
         getDeviceInfomation()
     run_emptytest()
     check_thread_is_running()
-    print 'info_empty_test:', info_empty_test
-    print 'empty test end', empty_test_result
+    print('info_empty_test:', info_empty_test)
+    print('empty test end', empty_test_result)
     if empty_test_result:
         return 0
     else:
