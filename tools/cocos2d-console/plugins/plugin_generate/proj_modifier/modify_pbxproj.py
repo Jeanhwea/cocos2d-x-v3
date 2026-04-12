@@ -43,8 +43,8 @@ import subprocess
 import uuid
 import sys
 
-from UserDict import IterableUserDict
-from UserList import UserList
+from collections import UserDict as IterableUserDict
+from collections import UserList
 
 regex = '[a-zA-Z0-9\\._/-]*'
 
@@ -1830,9 +1830,9 @@ class XcodeProject(PBXDict):
                     out.write('\t' + deep)
 
                 if re.match(regex, key).group(0) == key:
-                    out.write(key.encode("utf-8") + ' = ')
+                    out.write(key + ' = ')
                 else:
-                    out.write('"' + key.encode("utf-8") + '" = ')
+                    out.write('"' + key + '" = ')
 
                 if key == 'objects':
                     out.write('{')  # open the objects section
@@ -1864,8 +1864,8 @@ class XcodeProject(PBXDict):
                         if self.sections.get(section[0]) is None:
                             continue
 
-                        out.write('\n/* Begin %s section */' % section[0].encode("utf-8"))
-                        self.sections.get(section[0]).sort(cmp=lambda x, y: cmp(x[0], y[0]))
+                        out.write('\n/* Begin %s section */' % section[0])
+                        self.sections.get(section[0]).sort(key=lambda x: x[0])
 
                         for pair in self.sections.get(section[0]):
                             key = pair[0]
@@ -1875,16 +1875,16 @@ class XcodeProject(PBXDict):
                             if enters:
                                 out.write('\t\t' + deep)
 
-                            out.write(key.encode("utf-8"))
+                            out.write(key)
 
                             if key in self.uuids and len(self.uuids[key]) > 0:
-                                out.write(" /* " + self.uuids[key].encode("utf-8") + " */")
+                                out.write(" /* " + self.uuids[key] + " */")
 
                             out.write(" = ")
                             self._printNewXCodeFormat(out, value, '\t\t' + deep, enters=section[1])
                             out.write(';')
 
-                        out.write('\n/* End %s section */\n' % section[0].encode("utf-8"))
+                        out.write('\n/* End %s section */\n' % section[0])
 
                     out.write(deep + '\t}')  # close of the objects section
                 else:
@@ -1927,15 +1927,15 @@ class XcodeProject(PBXDict):
 
         else:
             if len(root) > 0 and re.match(regex, root).group(0) == root:
-                if root.encode("utf-8").find("-") >= 0:
-                    out.write('"' + root.encode("utf-8") + '"')
+                if root.find("-") >= 0:
+                    out.write('"' + root + '"')
                 else:
-                    out.write(root.encode("utf-8"))
+                    out.write(root)
             else:
-                out.write('"' + XcodeProject.addslashes(root.encode("utf-8")) + '"')
+                out.write('"' + XcodeProject.addslashes(root) + '"')
 
             if root in self.uuids and len(self.uuids[root]) > 0:
-                out.write(" /* " + self.uuids[root].encode("utf-8") + " */")
+                out.write(" /* " + self.uuids[root] + " */")
 
     @classmethod
     def Load(cls, path):

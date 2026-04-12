@@ -2,7 +2,7 @@
 import cocos
 from MultiLanguage import MultiLanguage
 
-from helper import PackageHelper
+from .helper import PackageHelper
 
 class PackageList(cocos.CCPlugin):
     @staticmethod

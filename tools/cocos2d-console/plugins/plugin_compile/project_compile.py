@@ -21,7 +21,7 @@ import re
 import sys
 import shutil
 import json
-import build_web
+from . import build_web
 import utils
 
 class CCPluginCompile(cocos.CCPlugin):

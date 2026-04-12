@@ -5,13 +5,13 @@ import os.path
 import cocos
 from MultiLanguage import MultiLanguage
 
-from functions import *
-from package_helper import *
-from zip_unpacker import ZipUnpacker
-from add_framework_helper import AddFrameworkHelper
-from remove_framework_helper import RemoveFrameworkHelper
-from create_framework_helper import CreateFrameworkHelper
-from set_framework_helper import SetFrameworkHelper
+from .functions import *
+from .package_helper import *
+from .zip_unpacker import ZipUnpacker
+from .add_framework_helper import AddFrameworkHelper
+from .remove_framework_helper import RemoveFrameworkHelper
+from .create_framework_helper import CreateFrameworkHelper
+from .set_framework_helper import SetFrameworkHelper
 
 def get_engine_of_project(project):
     ver_str = None

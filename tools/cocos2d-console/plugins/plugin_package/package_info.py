@@ -1,7 +1,7 @@
 
 import time
 
-from helper import PackageHelper
+from .helper import PackageHelper
 
 import cocos
 from MultiLanguage import MultiLanguage

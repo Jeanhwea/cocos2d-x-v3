@@ -14,7 +14,7 @@ import json
 import re
 from xml.dom import minidom
 
-import project_compile
+from . import project_compile
 
 BUILD_CFIG_FILE="build-cfg.json"
 
