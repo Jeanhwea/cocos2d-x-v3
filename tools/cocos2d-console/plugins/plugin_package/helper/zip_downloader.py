@@ -22,11 +22,12 @@ class ZipDownloader(object):
 
     def download_file(self):
         print(MultiLanguage.get_string('PACKAGE_READY_DOWNLOAD_FMT', (self._filename, self._url)))
-        import urllib2
+        import urllib.request
+import urllib.error
 
         try:
-            u = urllib2.urlopen(self._url)
-        except urllib2.HTTPError as e:
+            u = urllib.request.urlopen(self._url)
+        except urllib.error.HTTPError as e:
             if e.code == 404:
                 print(MultiLanguage.get_string('PACKAGE_ERROR_URL_FMT', self._url))
             print(MultiLanguage.get_string('PACKAGE_ERROR_DOWNLOAD_FAILED_FMT',

@@ -2009,4 +2009,4 @@ def _escapeAndEncode(text):
     text = text.replace("&", "&amp;")       # escape '&'
     text = text.replace("<", "&lt;")        # escape '<'
     text = text.replace(">", "&gt;")        # escape '>'
-    return text.encode("ascii", "xmlcharrefreplace")  # encode as ascii with xml character references
+    return text.encode("ascii", "xmlcharrefreplace").decode("ascii")  # encode as ascii with xml character references

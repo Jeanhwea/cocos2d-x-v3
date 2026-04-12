@@ -87,6 +87,7 @@ class CocosZipInstaller(object):
     def download_file(self):
         print("==> Ready to download '%s' from '%s'" % (self._filename, self._url))
         import urllib.request
+        import urllib.error
         try:
             u = urllib.request.urlopen(self._url)
         except urllib.error.HTTPError as e:

@@ -334,13 +334,13 @@ class SimulatorCompiler(cocos.CCPlugin):
             info_plist_path = os.path.join(self.simulator_abs_path, "frameworks/runtime-src/proj.ios_mac/mac/Info.plist")
             info_plist_content = self.get_content_from_file(info_plist_path)
 
-            match = re.compile('<key>CFBundleVersion</key>(\s)*<string>(.*?)</string>').findall(info_plist_content)
+            match = re.compile(r'<key>CFBundleVersion</key>(\s)*<string>(.*?)</string>').findall(info_plist_content)
             if len(match):
                 build_date_tag = "<string>%s</string>" % match[0][1]
                 keyword_map = { build_date_tag : "<string>%s</string>" % build_date }
                 self.replace_keyword_with_file(info_plist_path, keyword_map)
 
-            match = re.compile('<key>CFBundleShortVersionString</key>(\s)*<string>(.*?)</string>').findall(info_plist_content)
+            match = re.compile(r'<key>CFBundleShortVersionString</key>(\s)*<string>(.*?)</string>').findall(info_plist_content)
             if len(match):
                 build_date_tag = "<string>%s</string>" % match[0][1]
                 keyword_map = { build_date_tag : "<string>%s</string>" % self.engine_version }

@@ -2,7 +2,7 @@
 import os
 import os.path
 import json
-import urllib2
+import urllib.request
 import re
 
 import cocos
@@ -113,7 +113,7 @@ class PackageHelper:
     def search_keyword(cls, keyword):
         url = cls.QUERY_KEYWORD_URL % keyword
         # print "[PACKAGE] query url: %s" % url
-        response = urllib2.urlopen(url)
+        response = urllib.request.urlopen(url)
         html = response.read()
         packages_data = json.loads(html)
         if packages_data is None or len(packages_data) == 0:
@@ -130,7 +130,7 @@ class PackageHelper:
     def query_package_data(cls, name, version = 'all'):
         url = cls.QUERY_PACKAGE_URL % name + '&version=' + version
         # print "[PACKAGE] query url: %s" % url
-        response = urllib2.urlopen(url)
+        response = urllib.request.urlopen(url)
         html = response.read()
         package_data = json.loads(html)
         # d1 = json.dumps(package_data,indent=4)
