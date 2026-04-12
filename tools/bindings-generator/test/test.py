@@ -7,7 +7,7 @@
 import sys
 import os, os.path
 import shutil
-import ConfigParser
+import configparser
 import subprocess
 import re
 from contextlib import contextmanager
@@ -20,7 +20,7 @@ def _check_ndk_root_env():
     try:
         NDK_ROOT = os.environ['NDK_ROOT']
     except Exception:
-        print "NDK_ROOT not defined. Please define NDK_ROOT in your environment."
+        print("NDK_ROOT not defined. Please define NDK_ROOT in your environment.")
         sys.exit(1)
 
     return NDK_ROOT
@@ -32,7 +32,7 @@ def _check_python_bin_env():
     try:
         PYTHON_BIN = os.environ['PYTHON_BIN']
     except Exception:
-        print "PYTHON_BIN not defined, use current python."
+        print("PYTHON_BIN not defined, use current python.")
         PYTHON_BIN = sys.executable
 
     return PYTHON_BIN
@@ -72,7 +72,7 @@ def main():
     elif 'linux' in platform:
         cur_platform = 'linux'
     else:
-        print 'Your platform is not supported!'
+        print('Your platform is not supported!')
         sys.exit(1)
 
     if platform == 'win32':
@@ -98,8 +98,8 @@ def main():
     elif os.path.isdir(x64_llvm_path):
         llvm_path = x64_llvm_path
     else:
-        print 'llvm toolchain not found!'
-        print 'path: %s or path: %s are not valid! ' % (x86_llvm_path, x64_llvm_path)
+        print('llvm toolchain not found!')
+        print('path: %s or path: %s are not valid! ' % (x86_llvm_path, x64_llvm_path))
         sys.exit(1)
 
     project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', '..'))
@@ -108,7 +108,7 @@ def main():
     cxx_generator_root = os.path.abspath(os.path.join(project_root, 'tools/bindings-generator'))
 
     # save config to file
-    config = ConfigParser.ConfigParser()
+    config = configparser.ConfigParser()
     config.set('DEFAULT', 'androidndkdir', ndk_root)
     config.set('DEFAULT', 'clangllvmdir', llvm_path)
     config.set('DEFAULT', 'cocosdir', cocos_root)
@@ -129,7 +129,7 @@ def main():
 
     conf_ini_file = os.path.abspath(os.path.join(os.path.dirname(__file__), 'userconf.ini'))
 
-    print 'generating userconf.ini...'
+    print('generating userconf.ini...')
     with open(conf_ini_file, 'w') as configfile:
       config.write(configfile)
 
@@ -137,7 +137,7 @@ def main():
     # set proper environment variables
     if 'linux' in platform or platform == 'darwin':
         os.putenv('LD_LIBRARY_PATH', '%s/libclang' % cxx_generator_root)
-        print '%s/libclang' % cxx_generator_root
+        print('%s/libclang' % cxx_generator_root)
     if platform == 'win32':
         path_env = os.environ['PATH']
         os.putenv('PATH', r'%s;%s\libclang;%s\tools\win32;' % (path_env, cxx_generator_root, cxx_generator_root))
@@ -156,19 +156,19 @@ def main():
         for key in cmd_args.keys():
             args = cmd_args[key]
             cfg = '%s/%s' % (tojs_root, key)
-            print 'Generating bindings for %s...' % (key[:-4])
+            print('Generating bindings for %s...' % (key[:-4]))
             command = '%s %s %s -s %s -t %s -o %s -n %s' % (python_bin, generator_py, cfg, args[0], target, output_dir, args[1])
             _run_cmd(command)
 
-        print '----------------------------------------'
-        print 'Generating javascript bindings succeeds.'
-        print '----------------------------------------'
+        print('----------------------------------------')
+        print('Generating javascript bindings succeeds.')
+        print('----------------------------------------')
 
     except Exception as e:
         if e.__class__.__name__ == 'CmdError':
-            print '-------------------------------------'
-            print 'Generating javascript bindings fails.'
-            print '-------------------------------------'
+            print('-------------------------------------')
+            print('Generating javascript bindings fails.')
+            print('-------------------------------------')
             sys.exit(1)
         else:
             raise
