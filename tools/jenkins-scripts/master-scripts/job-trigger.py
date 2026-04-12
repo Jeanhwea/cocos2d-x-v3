@@ -22,7 +22,7 @@ def check_queue_build(action, pr_num, statuses_url):
     jenkins_url = os.environ['JENKINS_URL']
     J = Jenkins(jenkins_url, username, password)
     queues = J.get_queue()
-    for key, queue in queues.iteritems():
+    for key, queue in queues.items():
         q_payload_str = queue.get_parameters()['payload'].decode('utf-8', 'ignore')
         q_payload = json.loads(q_payload_str)
         q_pr_num = q_payload['number']
@@ -46,17 +46,17 @@ def main():
 
     #get pull number
     pr_num = payload['number']
-    print 'pr_num:' + str(pr_num)
+    print('pr_num:' + str(pr_num))
     payload_forword = {"number": pr_num}
 
     #build for pull request action 'open' and 'synchronize', skip 'close'
     action = payload['action']
-    print 'action: ' + action
+    print('action: ' + action)
     payload_forword['action'] = action
 
     pr = payload['pull_request']
     url = pr['html_url']
-    print "url:" + url
+    print("url:" + url)
     payload_forword['html_url'] = url
 
     #get statuses url
@@ -73,12 +73,12 @@ def main():
     try:
         check_queue_build(action, pr_num, statuses_url)
     except:
-        print 'Can not find build in queue'
+        print('Can not find build in queue')
 
     if(action == 'closed' or action == 'labeled' or action == 'unassigned'
        or action == 'assigned' or action == 'unlabeled'
        or branch == 'v2' or branch == 'v3-doc'):
-        print 'pull request #' + str(pr_num) + ' is ' + action + ', no build triggered'
+        print('pull request #' + str(pr_num) + ' is ' + action + ', no build triggered')
         return(0)
 
     r = requests.get(pr['url'] + "/commits", headers=Headers, proxies=proxyDict)
@@ -92,7 +92,7 @@ def main():
     title = pr['title']
     result_pr_title = pattern.search(title)
     if result_commit_title is not None or result_pr_title is not None:
-        print 'skip build for pull request #' + str(pr_num)
+        print('skip build for pull request #' + str(pr_num))
         return(0)
 
     data = {"state": "pending", "target_url": target_url,

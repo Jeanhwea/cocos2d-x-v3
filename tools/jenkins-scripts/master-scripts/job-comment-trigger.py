@@ -4,7 +4,7 @@ import os
 import requests
 import sys
 import traceback
-import urllib2
+import urllib.request, urllib.error
 
 http_proxy = ''
 if('HTTP_PROXY' in os.environ):
@@ -17,18 +17,18 @@ def main():
     #parse to json obj
     payload = json.loads(payload_str)
 
-    print payload
+    print(payload)
 
     issue = payload['issue']
     #get pull number
     pr_num = issue['number']
-    print 'pr_num:' + str(pr_num)
+    print('pr_num:' + str(pr_num))
     payload_forword = {"number": pr_num}
 
     comment = payload['comment']
     #get comment body
     comment_body = comment['body']
-    print comment_body
+    print(comment_body)
     #will check 'ci' comment
     searchCI = re.search("\[ci.*\]", comment_body)
 
@@ -36,24 +36,24 @@ def main():
     searchConsole = re.search('\[console.*\]', comment_body)
 
     if searchCI is None and searchConsole is None:
-        print 'skip build for pull request #' + str(pr_num)
+        print('skip build for pull request #' + str(pr_num))
         return(0)
 
     #build for pull request action 'open' and 'synchronize', skip 'close'
     action = issue['state']
-    print 'action: ' + action
+    print('action: ' + action)
     payload_forword['action'] = action
 
     pr = issue['pull_request']
     url = pr['html_url']
-    print "url:" + url
+    print("url:" + url)
     payload_forword['html_url'] = url
 
     #get pull request info
     req = os.environ['GITHUB_REMOTE'] + str(pr_num)
     pr_payload = ''
     try:
-        pr_payload = urllib2.urlopen(req).read()
+        pr_payload = urllib.request.urlopen(req).read()
     except:
         traceback.print_exc()
 
@@ -61,23 +61,23 @@ def main():
     #get statuses url
     statuses_url = repository['statuses_url']
     payload_forword['statuses_url'] = statuses_url
-    print 'statuses_url: ' + statuses_url
+    print('statuses_url: ' + statuses_url)
     #get comments url
     comments_url = repository['comments_url']
     payload_forword['comments_url'] = comments_url
-    print 'comments_url: ' + comments_url
+    print('comments_url: ' + comments_url)
 
     #get pr target branch
     branch = repository['base']['ref']
     payload_forword['branch'] = branch
-    print 'branch: ' + branch
+    print('branch: ' + branch)
 
     #set commit status to pending
     target_url = os.environ['JOB_PULL_REQUEST_BUILD_URL']
 
     if(action == 'closed' or action == 'assigned'
        or branch == 'v2' or branch == 'v3-doc' or action == 'unassigned'):
-        print 'pull request #' + str(pr_num) + ' is ' + action + ', no build triggered'
+        print('pull request #' + str(pr_num) + ' is ' + action + ', no build triggered')
         return(0)
 
     data = {"state": "pending", "target_url": target_url, "context": "Jenkins CI",
@@ -111,7 +111,7 @@ def main():
         consoleOper = searchConsole.group()
         job_trigger_url = os.environ['JOB_CONSOLE_TEST_TRIGGER_URL']
         payload_forword['console'] = consoleOper
-    print 'job_trigger_url is: ', job_trigger_url
+    print('job_trigger_url is: ', job_trigger_url)
 
     #send trigger and payload
     if('tag' in payload_forword):

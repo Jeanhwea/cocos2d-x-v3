@@ -1,8 +1,8 @@
 import os
 import sys
 import traceback
-import urllib
-import urllib2
+import urllib.parse
+import urllib.request, urllib.error
 import base64
 import json
 import requests
@@ -20,16 +20,16 @@ workspace = "."
 node_name = "ios"
 
 def set_jenkins_job_description(desc, url):
-    req_data = urllib.urlencode({'description': desc})
-    request = urllib2.Request(url + 'submitDescription', req_data)
+    req_data = urllib.parse.urlencode({'description': desc})
+    request = urllib.request.Request(url + 'submitDescription', req_data.encode())
     #print(os.environ['BUILD_URL'])
     request.add_header('Content-Type', 'application/x-www-form-urlencoded')
     user_name = os.environ['JENKINS_ADMIN']
     password = os.environ['JENKINS_ADMIN_PW']
-    base64string = base64.encodestring(user_name + ":" + password).replace('\n', '')
+    base64string = base64.encodebytes((user_name + ":" + password).encode()).decode().replace('\n', '')
     request.add_header("Authorization", "Basic " + base64string)
     try:
-        urllib2.urlopen(request)
+        urllib.request.urlopen(request)
     except:
         traceback.print_exc()
 
@@ -46,16 +46,16 @@ def send_notifies_to_github():
 
     #get pull number
     pr_num = payload['number']
-    print 'pr_num:' + str(pr_num)
+    print('pr_num:' + str(pr_num))
 
     #build for pull request action 'open' and 'synchronize', skip 'close'
     action = payload['action']
-    print 'action: ' + action
+    print('action: ' + action)
 
     #pr = payload['pull_request']
 
     url = payload['html_url']
-    print "url:" + url
+    print("url:" + url)
     pr_desc = '<h3><a href=' + url + '> pr#' + str(pr_num) + ' is ' + action + '</a></h3>'
 
     #get statuses url
@@ -97,7 +97,7 @@ def syntronize_remote_pr():
     os.system("git merge origin/" + branch)
     os.system("git branch -D pull" + str(pr_num))
     #clean workspace
-    print "Before checkout: git clean -xdf -f"
+    print("Before checkout: git clean -xdf -f")
     os.system("git clean -xdf -f")
     #fetch pull request to local repo
     git_fetch_pr = "git fetch origin pull/" + str(pr_num) + "/head"
@@ -120,7 +120,7 @@ def syntronize_remote_pr():
     #     raise Exception('There are conflicts in your PR!')
 
     # After checkout a new branch, clean workspace again
-    print "After checkout: git clean -xdf -f"
+    print("After checkout: git clean -xdf -f")
     os.system("git clean -xdf -f")
 
     #update submodule

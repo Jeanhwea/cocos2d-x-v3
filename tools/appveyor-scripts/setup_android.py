@@ -3,7 +3,7 @@
 aaa
 '''
 import os
-import urllib
+import urllib.request
 import zipfile
 import platform
 import sys
@@ -59,7 +59,7 @@ def download(url, zip_file):
         os.remove(zip_file)
     except OSError:
         pass
-    urllib.urlretrieve(url, zip_file)
+    urllib.request.urlretrieve(url, zip_file)
 
 
 @retry(Exception, tries=5, delay=1, backoff=1)

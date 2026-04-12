@@ -11,7 +11,7 @@ payload_str = payload_str.decode('utf-8','ignore')
 payload = json.loads(payload_str)
 #pr = payload['pull_request']
 url = payload['html_url']
-print "build pr:" + url
+print("build pr:" + url)
 #get comments url
 comments_url = payload['comments_url']
 
