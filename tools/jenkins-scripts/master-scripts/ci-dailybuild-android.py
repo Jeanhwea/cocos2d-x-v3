@@ -37,7 +37,7 @@ def check_current_3rd_libs():
 
 def strip_android_libs():
     strip_cmd = os.environ['ndk_strip']
-    print strip_cmd
+    print(strip_cmd)
     _cmd = strip_cmd + ' ./tests/cpp-tests/proj.android/obj/local/armeabi/*.a'
     os.system(_cmd)
 
@@ -54,7 +54,7 @@ def close_db(db):
 def save_build_stats(db, filename, size):
     cursor = db.cursor()
     sql = "INSERT INTO %s (size, createdTime) VALUES(%d, now())" % (filename, size)
-    print sql
+    print(sql)
     cursor.execute(sql)
     db.commit()
 
@@ -73,7 +73,7 @@ def scan_all_libs(db):
       for _file in files:
         if not _file.endswith(".a"):
           continue
-        print _file
+        print(_file)
         libfile = lib_path + '/' + _file
         _filename = _file.split('.')[0]
         filesize = os.path.getsize(libfile)/1024
@@ -92,7 +92,7 @@ def send_mail(sub,title,content):
     msg['Subject'] = sub
     msg['From'] = me
     msg['To'] = " ".join(to_list)
-    print 'to users:', msg['To']
+    print('to users:', msg['To'])
     msg['Content'] = 'test'
     try:
         s = smtplib.SMTP('smtp.gmail.com', 587)
@@ -100,11 +100,11 @@ def send_mail(sub,title,content):
         s.starttls()
         s.login(mail_user,mail_pass)
         s.sendmail(me, to_list, str(msg))
-        print 'info:', me, to_list, str(msg)
+        print('info:', me, to_list, str(msg))
         s.close()
         return True
-    except Exception, e:
-        print str(e)
+    except Exception as e:
+        print(str(e))
         return False
 
 def sendEmail(stats):
@@ -122,10 +122,10 @@ def sendEmail(stats):
     send_mail(sub, title, content)
 
 def main():
-    print 'Build Config:'
-    print '    Branch:v3'
-    print '    Target:Android'
-    print '    build script:python build/android-build.py -b release all'
+    print('Build Config:')
+    print('    Branch:v3')
+    print('    Target:Android')
+    print('    build script:python build/android-build.py -b release all')
     if(os.path.exists('build/android-build.py') == False):
       node_name = os.environ['NODE_NAME']
       source_dir = '../cocos-2dx-develop-base-repo/node/' + node_name + "/."
@@ -147,8 +147,8 @@ def main():
       close_db(db)
       sendEmail(stats)
     os.system('git clean -xdf -f')
-    print 'build exit'
-    print ret
+    print('build exit')
+    print(ret)
     if ret == 0:
       ret = 0
     else:
@@ -165,4 +165,3 @@ if __name__ == '__main__':
         sys_ret = 1
     finally:
         sys.exit(sys_ret)
-
