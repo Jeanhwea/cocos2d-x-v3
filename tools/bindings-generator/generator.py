@@ -706,7 +706,7 @@ class NativeField(object):
         gen = current_class.generator if current_class else generator
         config = gen.config
 
-        if config['definitions'].has_key('public_field'):
+        if 'public_field' in config['definitions']:
             tpl = Template(config['definitions']['public_field'],
                                     searchList=[current_class, self])
             self.signature_name = str(tpl)
@@ -808,7 +808,7 @@ class NativeFunction(object):
             if not is_override:
                 gen.head_file.write(str(tpl))
         if self.static:
-            if config['definitions'].has_key('sfunction'):
+            if 'sfunction' in config['definitions']:
                 tpl = Template(config['definitions']['sfunction'],
                                     searchList=[current_class, self])
                 self.signature_name = str(tpl)
@@ -816,12 +816,12 @@ class NativeFunction(object):
                             searchList=[current_class, self])
         else:
             if not self.is_constructor:
-                if config['definitions'].has_key('ifunction'):
+                if 'ifunction' in config['definitions']:
                     tpl = Template(config['definitions']['ifunction'],
                                     searchList=[current_class, self])
                     self.signature_name = str(tpl)
             else:
-                if config['definitions'].has_key('constructor'):
+                if 'constructor' in config['definitions']:
                     if not is_ctor:
                         tpl = Template(config['definitions']['constructor'],
                                     searchList=[current_class, self])
@@ -910,7 +910,7 @@ class NativeOverloadedFunction(object):
             if not is_override:
                 gen.head_file.write(str(tpl))
         if static:
-            if config['definitions'].has_key('sfunction'):
+            if 'sfunction' in config['definitions']:
                 tpl = Template(config['definitions']['sfunction'],
                                 searchList=[current_class, self])
                 self.signature_name = str(tpl)
@@ -918,12 +918,12 @@ class NativeOverloadedFunction(object):
                             searchList=[current_class, self])
         else:
             if not self.is_constructor:
-                if config['definitions'].has_key('ifunction'):
+                if 'ifunction' in config['definitions']:
                     tpl = Template(config['definitions']['ifunction'],
                                     searchList=[current_class, self])
                     self.signature_name = str(tpl)
             else:
-                if config['definitions'].has_key('constructor'):
+                if 'constructor' in config['definitions']:
                     if not is_ctor:
                         tpl = Template(config['definitions']['constructor'],
                                         searchList=[current_class, self])
@@ -1128,7 +1128,7 @@ class NativeClass(object):
             if not self.class_name in self.generator.classes_have_no_parents:
                 if parent_name and parent_name not in self.generator.base_classes_to_skip:
                     #if parent and self.generator.in_listed_classes(parent.displayname):
-                    if not self.generator.generated_classes.has_key(parent.displayname):
+                    if parent.displayname not in self.generator.generated_classes:
                         parent = NativeClass(parent, self.generator)
                         self.generator.generated_classes[parent.class_name] = parent
                     else:
@@ -1156,7 +1156,7 @@ class NativeClass(object):
                 if m.is_override:
                     if NativeClass._is_method_in_parents(self, registration_name):
                         if self.generator.script_type == "lua":
-                            if not self.override_methods.has_key(registration_name):
+                            if registration_name not in self.override_methods:
                                 self.override_methods[registration_name] = m
                             else:
                                 previous_m = self.override_methods[registration_name]
@@ -1167,7 +1167,7 @@ class NativeClass(object):
                         return False
 
                 if m.static:
-                    if not self.static_methods.has_key(registration_name):
+                    if registration_name not in self.static_methods:
                         self.static_methods[registration_name] = m
                     else:
                         previous_m = self.static_methods[registration_name]
@@ -1176,7 +1176,7 @@ class NativeClass(object):
                         else:
                             self.static_methods[registration_name] = NativeOverloadedFunction([m, previous_m])
                 else:
-                    if not self.methods.has_key(registration_name):
+                    if registration_name not in self.methods:
                         self.methods[registration_name] = m
                     else:
                         previous_m = self.methods[registration_name]
@@ -1195,7 +1195,7 @@ class NativeClass(object):
             m = NativeFunction(cursor)
             m.is_constructor = True
             self.has_constructor = True
-            if not self.methods.has_key('constructor'):
+            if 'constructor' not in self.methods:
                 self.methods['constructor'] = m
             else:
                 previous_m = self.methods['constructor']
@@ -1307,20 +1307,20 @@ class Generator(object):
 
 
     def should_rename_function(self, class_name, method_name):
-        if self.rename_functions.has_key(class_name) and self.rename_functions[class_name].has_key(method_name):
+        if class_name in self.rename_functions and method_name in self.rename_functions[class_name]:
             # print >> sys.stderr, "will rename %s to %s" % (method_name, self.rename_functions[class_name][method_name])
             return self.rename_functions[class_name][method_name]
         return None
 
     def get_class_or_rename_class(self, class_name):
 
-        if self.rename_classes.has_key(class_name):
+        if class_name in self.rename_classes:
             # print >> sys.stderr, "will rename %s to %s" % (method_name, self.rename_functions[class_name][method_name])
             return self.rename_classes[class_name]
         return class_name
 
     def should_skip(self, class_name, method_name, verbose=False):
-        if class_name == "*" and self.skip_classes.has_key("*"):
+        if class_name == "*" and "*" in self.skip_classes:
             for func in self.skip_classes["*"]:
                 if re.match(func, method_name):
                     return True
@@ -1344,7 +1344,7 @@ class Generator(object):
         return False
 
     def should_bind_field(self, class_name, field_name, verbose=False):
-        if class_name == "*" and self.bind_fields.has_key("*"):
+        if class_name == "*" and "*" in self.bind_fields:
             for func in self.bind_fields["*"]:
                 if re.match(func, method_name):
                     return True
@@ -1508,7 +1508,7 @@ class Generator(object):
                             break
 
                 if is_targeted_class and self.in_listed_classes(cursor.displayname):
-                    if not self.generated_classes.has_key(cursor.displayname):
+                    if cursor.displayname not in self.generated_classes:
                         nclass = NativeClass(cursor, self)
                         nclass.generate_code()
                         self.generated_classes[cursor.displayname] = nclass
