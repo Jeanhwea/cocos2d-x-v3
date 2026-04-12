@@ -23,7 +23,7 @@ class ZipDownloader(object):
     def download_file(self):
         print(MultiLanguage.get_string('PACKAGE_READY_DOWNLOAD_FMT', (self._filename, self._url)))
         import urllib.request
-import urllib.error
+        import urllib.error
 
         try:
             u = urllib.request.urlopen(self._url)
@@ -78,7 +78,7 @@ import urllib.error
 
         block_size = 65536  # 64KB
         md5 = hashlib.md5()
-        f = open(self._filename)
+        f = open(self._filename, 'rb')
         while True:
             data = f.read(block_size)
             if not data:

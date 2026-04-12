@@ -21,7 +21,7 @@ class CCPluginUpdate(cocos2d.CCPlugin):
 
     @staticmethod
     def plugin_name():
-    	return "update"
+        return "update"
 
     @staticmethod
     def brief_description():
@@ -31,7 +31,6 @@ class CCPluginUpdate(cocos2d.CCPlugin):
         latest_version = self._get_latest_version()
         current_version = '2.1.0'
         #FIXME check version numbers with verlib? https://wiki.python.org/moin/Distutils/VersionComparison
-        
 
 
     def _get_latest_version(self):
@@ -50,12 +49,12 @@ class CCPluginUpdate(cocos2d.CCPlugin):
             match = re.search('href="http://cdn.cocos2d-x.org/cocos2d-x-(.*?).zip"', data)
             if match is None:
                 raise cocos2d.CCPluginError("Couldn't extract latest version from site")
-            
+
             return match.group(1)
         finally:
             conn.close()
 
 
     def run(self, argv, dependencies):
-    	self.parse_args(argv)
+        self.parse_args(argv)
         self._check_versions()
