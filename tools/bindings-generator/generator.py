@@ -464,7 +464,7 @@ class NativeType(object):
 
                 # Check whether it's a std::function typedef
                 cdecl = ntype.get_canonical().get_declaration()
-                if None != cdecl.spelling and 0 == cmp(cdecl.spelling, "function"):
+                if None != cdecl.spelling and cdecl.spelling == "function":
                     nt.name = "std::function"
 
                 if nt.name != INVALID_NATIVE_TYPE and nt.name != "std::string" and nt.name != "std::function":
@@ -485,7 +485,7 @@ class NativeType(object):
                     nt.namespaced_name = lambda_display_name
                     r = re.compile('function<([^\s]+).*\((.*)\)>').search(nt.namespaced_name)
                     (ret_type, params) = r.groups()
-                    params = filter(None, params.split(", "))
+                    params = list(filter(None, params.split(", ")))
 
                     nt.is_function = True
                     nt.ret_type = NativeType.from_string(ret_type)
@@ -996,7 +996,7 @@ class NativeClass(object):
         clean list of methods (without the ones that should be skipped)
         '''
         ret = []
-        for name, impl in self.methods.iteritems():
+        for name, impl in self.methods.items():
             should_skip = False
             if name == 'constructor':
                 should_skip = True
@@ -1012,7 +1012,7 @@ class NativeClass(object):
         clean list of static methods (without the ones that should be skipped)
         '''
         ret = []
-        for name, impl in self.static_methods.iteritems():
+        for name, impl in self.static_methods.items():
             should_skip = self.generator.should_skip(self.class_name, name)
             if not should_skip:
                 ret.append({"name": name, "impl": impl})
@@ -1023,7 +1023,7 @@ class NativeClass(object):
         clean list of override methods (without the ones that should be skipped)
         '''
         ret = []
-        for name, impl in self.override_methods.iteritems():
+        for name, impl in self.override_methods.items():
             should_skip = self.generator.should_skip(self.class_name, name)
             if not should_skip:
                 ret.append({"name": name, "impl": impl})
@@ -1325,22 +1325,22 @@ class Generator(object):
                 if re.match(func, method_name):
                     return True
         else:
-            for key in self.skip_classes.iterkeys():
+            for key in self.skip_classes.keys():
                 if key == "*" or re.match("^" + key + "$", class_name):
                     if verbose:
-                        print "%s in skip_classes" % (class_name)
+                        print("%s in skip_classes" % (class_name))
                     if len(self.skip_classes[key]) == 1 and self.skip_classes[key][0] == "*":
                         if verbose:
-                            print "%s will be skipped completely" % (class_name)
+                            print("%s will be skipped completely" % (class_name))
                         return True
                     if method_name != None:
                         for func in self.skip_classes[key]:
                             if re.match(func, method_name):
                                 if verbose:
-                                    print "%s will skip method %s" % (class_name, method_name)
+                                    print("%s will skip method %s" % (class_name, method_name))
                                 return True
         if verbose:
-            print "%s will be accepted (%s, %s)" % (class_name, key, self.skip_classes[key])
+            print("%s will be accepted (%s, %s)" % (class_name, key, self.skip_classes[key]))
         return False
 
     def should_bind_field(self, class_name, field_name, verbose=False):
@@ -1349,19 +1349,19 @@ class Generator(object):
                 if re.match(func, method_name):
                     return True
         else:
-            for key in self.bind_fields.iterkeys():
+            for key in self.bind_fields.keys():
                 if key == "*" or re.match("^" + key + "$", class_name):
                     if verbose:
-                        print "%s in bind_fields" % (class_name)
+                        print("%s in bind_fields" % (class_name))
                     if len(self.bind_fields[key]) == 1 and self.bind_fields[key][0] == "*":
                         if verbose:
-                            print "All public fields of %s will be bound" % (class_name)
+                            print("All public fields of %s will be bound" % (class_name))
                         return True
                     if field_name != None:
                         for field in self.bind_fields[key]:
                             if re.match(field, field_name):
                                 if verbose:
-                                    print "Field %s of %s will be bound" % (field_name, class_name)
+                                    print("Field %s of %s will be bound" % (field_name, class_name))
                                 return True
         return False
 
@@ -1390,7 +1390,7 @@ class Generator(object):
         sorted classes in order of inheritance
         '''
         sorted_list = []
-        for class_name in self.generated_classes.iterkeys():
+        for class_name in self.generated_classes.keys():
             nclass = self.generated_classes[class_name]
             sorted_list += self._sorted_parents(nclass)
         # remove dupes from the list
@@ -1412,7 +1412,7 @@ class Generator(object):
 
     def generate_code(self):
         # must read the yaml file first
-        stream = file(os.path.join(self.target, "conversions.yaml"), "r")
+        stream = open(os.path.join(self.target, "conversions.yaml"), "r")
         data = yaml.load(stream)
         self.config = data
         implfilepath = os.path.join(self.outdir, self.out_file + ".cpp")
@@ -1469,8 +1469,8 @@ class Generator(object):
         print("====\nErrors in parsing headers:")
         severities=['Ignored', 'Note', 'Warning', 'Error', 'Fatal']
         for idx, d in enumerate(errors):
-            print "%s. <severity = %s,\n    location = %r,\n    details = %r>" % (
-                idx+1, severities[d.severity], d.location, d.spelling)
+            print("%s. <severity = %s,\n    location = %r,\n    details = %r>" % (
+                idx+1, severities[d.severity], d.location, d.spelling))
         print("====\n")
 
     def _parse_headers(self):
@@ -1710,14 +1710,14 @@ def main():
     if len(args) == 0:
         parser.error('invalid number of arguments')
 
-    userconfig = ConfigParser.SafeConfigParser()
+    userconfig = configparser.ConfigParser()
     userconfig.read('userconf.ini')
-    print 'Using userconfig \n ', userconfig.items('DEFAULT')
+    print('Using userconfig \n ', userconfig.items('DEFAULT'))
 
     clang_lib_path = os.path.join(userconfig.get('DEFAULT', 'cxxgeneratordir'), 'libclang')
     cindex.Config.set_library_path(clang_lib_path);
 
-    config = ConfigParser.SafeConfigParser()
+    config = configparser.ConfigParser()
     config.read(args[0])
 
     if (0 == len(config.sections())):
@@ -1760,9 +1760,9 @@ def main():
         if t == ".svn" or t == ".cvs" or t == ".git" or t == ".gitignore":
             continue
 
-        print "\n.... Generating bindings for target", t
+        print("\n.... Generating bindings for target", t)
         for s in sections:
-            print "\n.... .... Processing section", s, "\n"
+            print("\n.... .... Processing section", s, "\n")
             gen_opts = {
                 'prefix': config.get(s, 'prefix'),
                 'headers':    (config.get(s, 'headers'        , 0, dict(userconfig.items('DEFAULT')))),
