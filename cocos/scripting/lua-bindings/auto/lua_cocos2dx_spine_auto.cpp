@@ -1130,8 +1130,8 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSkin(lua_State* tolua_S)
             std::string arg0_tmp; ok &= luaval_to_std_string(tolua_S, 2, &arg0_tmp, "sp.SkeletonRenderer:setSkin"); arg0 = arg0_tmp.c_str();
 
             if (!ok) { break; }
-            bool ret = cobj->setSkin(arg0);
-            tolua_pushboolean(tolua_S,(bool)ret);
+            cobj->setSkin(arg0);
+            lua_settop(tolua_S, 1);
             return 1;
         }
     }while(0);
@@ -1142,8 +1142,8 @@ int lua_cocos2dx_spine_SkeletonRenderer_setSkin(lua_State* tolua_S)
             ok &= luaval_to_std_string(tolua_S, 2,&arg0, "sp.SkeletonRenderer:setSkin");
 
             if (!ok) { break; }
-            bool ret = cobj->setSkin(arg0);
-            tolua_pushboolean(tolua_S,(bool)ret);
+            cobj->setSkin(arg0);
+            lua_settop(tolua_S, 1);
             return 1;
         }
     }while(0);
