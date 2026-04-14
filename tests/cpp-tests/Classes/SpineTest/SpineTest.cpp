@@ -183,23 +183,23 @@ bool SpineboyExample::init()
     skeletonNode =
         SkeletonAnimation::createWithJsonFile("spine/spineboy-ess.json", "spine/spineboy.atlas", 0.6f);
     skeletonNode->setStartListener(
-        [](TrackEntry* entry) { log("%d start: %s", entry->getTrackIndex(), entry->getAnimation()->getName().buffer()); });
-    skeletonNode->setInterruptListener([](TrackEntry* entry) { log("%d interrupt", entry->getTrackIndex()); });
-    skeletonNode->setEndListener([](TrackEntry* entry) { log("%d end", entry->getTrackIndex()); });
-    skeletonNode->setCompleteListener([](TrackEntry* entry) { log("%d complete", entry->getTrackIndex()); });
-    skeletonNode->setDisposeListener([](TrackEntry* entry) { log("%d dispose", entry->getTrackIndex()); });
-    skeletonNode->setEventListener([](TrackEntry* entry, Event* event) {
+        [](spine::TrackEntry* entry) { log("%d start: %s", entry->getTrackIndex(), entry->getAnimation()->getName().buffer()); });
+    skeletonNode->setInterruptListener([](spine::TrackEntry* entry) { log("%d interrupt", entry->getTrackIndex()); });
+    skeletonNode->setEndListener([](spine::TrackEntry* entry) { log("%d end", entry->getTrackIndex()); });
+    skeletonNode->setCompleteListener([](spine::TrackEntry* entry) { log("%d complete", entry->getTrackIndex()); });
+    skeletonNode->setDisposeListener([](spine::TrackEntry* entry) { log("%d dispose", entry->getTrackIndex()); });
+    skeletonNode->setEventListener([](spine::TrackEntry* entry, spine::Event* event) {
         log("%d event: %s, %d, %f, %s", entry->getTrackIndex(), event->getData().getName().buffer(), event->getIntValue(),
             event->getFloatValue(), event->getStringValue().buffer());
     });
 
-    skeletonNode->setMix("walk", "jump", 0.4);
-    skeletonNode->setMix("jump", "run", 0.4);
+    skeletonNode->setMix("walk", "jump", 0.4f);
+    skeletonNode->setMix("jump", "run", 0.4f);
     skeletonNode->setAnimation(0, "walk", true);
-    TrackEntry* jumpEntry = skeletonNode->addAnimation(0, "jump", false, 1);
+    spine::TrackEntry* jumpEntry = skeletonNode->addAnimation(0, "jump", false, 1);
     skeletonNode->addAnimation(0, "run", true);
 
-    skeletonNode->setTrackStartListener(jumpEntry, [](TrackEntry* entry) { log("jumped!"); });
+    skeletonNode->setTrackStartListener(jumpEntry, [](spine::TrackEntry* entry) { log("jumped!"); });
 
     // skeletonNode->addAnimation(1, "test", true);
     // skeletonNode->runAction(RepeatForever::create(Sequence::create(FadeOut::create(1), FadeIn::create(1),
