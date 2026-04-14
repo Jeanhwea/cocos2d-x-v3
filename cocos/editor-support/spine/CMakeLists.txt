@@ -1,8 +1,6 @@
 include_directories(editor-support)
 
 set(COCOS_SPINE_HEADER
-  editor-support/spine/spine.h
-  editor-support/spine/spine-cocos2dx.h
   editor-support/spine/Animation.h
   editor-support/spine/AnimationState.h
   editor-support/spine/AnimationStateData.h
@@ -88,10 +86,11 @@ set(COCOS_SPINE_HEADER
   editor-support/spine/VertexEffect.h
   editor-support/spine/Vertices.h
   editor-support/spine/dll.h
+  editor-support/spine/spine-cocos2dx.h
+  editor-support/spine/spine.h
 )
 
 set(COCOS_SPINE_SRC
-  editor-support/spine/spine-cocos2dx.cpp
   editor-support/spine/Animation.cpp
   editor-support/spine/AnimationState.cpp
   editor-support/spine/AnimationStateData.cpp
@@ -158,4 +157,5 @@ set(COCOS_SPINE_SRC
   editor-support/spine/Updatable.cpp
   editor-support/spine/VertexAttachment.cpp
   editor-support/spine/VertexEffect.cpp
+  editor-support/spine/spine-cocos2dx.cpp
 )
