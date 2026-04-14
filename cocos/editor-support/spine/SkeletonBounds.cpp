@@ -31,13 +31,13 @@
 #include "SpinePluginPrivatePCH.h"
 #endif
 
-#include <spine/SkeletonBounds.h>
+#include "spine/SkeletonBounds.h"
 
-#include <spine/Skeleton.h>
-#include <spine/Bone.h>
-#include <spine/BoundingBoxAttachment.h>
+#include "spine/Skeleton.h"
+#include "spine/Bone.h"
+#include "spine/BoundingBoxAttachment.h"
 
-#include <spine/Slot.h>
+#include "spine/Slot.h"
 
 #include <float.h>
 

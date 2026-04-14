@@ -33,7 +33,7 @@
 #include "cocos2d.h"
 #if COCOS2D_VERSION < 0x00040000
 
-#include <spine/spine.h>
+#include "spine/spine.h"
 #include <vector>
 
 namespace spine {

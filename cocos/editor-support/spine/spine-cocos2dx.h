@@ -30,20 +30,17 @@
 #ifndef SPINE_COCOS2DX_H_
 #define SPINE_COCOS2DX_H_
 
-#include <spine/spine.h>
+#include "spine/spine.h"
 #include "cocos2d.h"
 
-#include <spine/SkeletonRenderer.h>
+#include "spine/SkeletonRenderer.h"
 
 #if COCOS2D_VERSION < 0x00040000
-#include <spine/v3/SkeletonBatch.h>
-#include <spine/v3/SkeletonTwoColorBatch.h>
-#else
-#include <spine/v4/SkeletonBatch.h>
-#include <spine/v4/SkeletonTwoColorBatch.h>
+#include "spine/SkeletonBatch.h"
+#include "spine/SkeletonTwoColorBatch.h"
 #endif
 
-#include <spine/SkeletonAnimation.h>
+#include "spine/SkeletonAnimation.h"
 
 namespace spine {
 	class Cocos2dAtlasAttachmentLoader: public AtlasAttachmentLoader {
