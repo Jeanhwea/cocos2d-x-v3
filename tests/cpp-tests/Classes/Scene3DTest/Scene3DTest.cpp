@@ -52,8 +52,7 @@ public:
                                                        const std::string& atlasFile, float scale = 1)
     {
         SkeletonAnimationCullingFix* node = new SkeletonAnimationCullingFix();
-        spAtlas* atlas = spAtlas_createFromFile(atlasFile.c_str(), 0);
-        node->initWithJsonFile(skeletonDataFile, atlas, scale);
+        node->initWithJsonFile(skeletonDataFile, atlasFile, scale);
         node->autorelease();
         return node;
     }
@@ -78,9 +77,9 @@ class Scene3DTestScene : public TestCase
 public:
     CREATE_FUNC(Scene3DTestScene);
 
-    bool onTouchBegan(Touch* touch, Event* event) { return true; }
+    bool onTouchBegan(Touch* touch, cocos2d::Event* event) { return true; }
 
-    void onTouchEnd(Touch*, Event*);
+    void onTouchEnd(Touch*, cocos2d::Event*);
 
 private:
     Scene3DTestScene();
@@ -823,7 +822,7 @@ void Scene3DTestScene::createDescDlg()
     }
 }
 
-void Scene3DTestScene::onTouchEnd(Touch* touch, Event* event)
+void Scene3DTestScene::onTouchEnd(Touch* touch, cocos2d::Event* event)
 {
     auto location = touch->getLocation();
     auto camera = _gameCameras[CAMERA_WORLD_3D_SCENE];
