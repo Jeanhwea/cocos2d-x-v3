@@ -1,67 +1,84 @@
-
-
-
 LOCAL_PATH := $(call my-dir)
 include $(CLEAR_VARS)
 
-LOCAL_MODULE := spine
+LOCAL_MODULE := spine_static
 
 LOCAL_MODULE_FILENAME := libspine
 
 LOCAL_ARM_MODE := arm
 
-LOCAL_SRC_FILES := \
-Animation.c \
-AnimationState.c \
-AnimationStateData.c \
-Array.c \
-Atlas.c \
-AtlasAttachmentLoader.c \
-Attachment.c \
-AttachmentLoader.c \
+LOCAL_SRC_FILES := Animation.cpp \
+AnimationState.cpp \
+AnimationStateData.cpp \
+Atlas.cpp \
+AtlasAttachmentLoader.cpp \
+Attachment.cpp \
+AttachmentLoader.cpp \
+AttachmentTimeline.cpp \
+Bone.cpp \
+BoneData.cpp \
+BoundingBoxAttachment.cpp \
+ClippingAttachment.cpp \
+ColorTimeline.cpp \
+ConstraintData.cpp \
+CurveTimeline.cpp \
+DeformTimeline.cpp \
+DrawOrderTimeline.cpp \
+Event.cpp \
+EventData.cpp \
+EventTimeline.cpp \
+Extension.cpp \
+IkConstraint.cpp \
+IkConstraintData.cpp \
+IkConstraintTimeline.cpp \
+Json.cpp \
+LinkedMesh.cpp \
+MathUtil.cpp \
+MeshAttachment.cpp \
+PathAttachment.cpp \
+PathConstraint.cpp \
+PathConstraintData.cpp \
+PathConstraintMixTimeline.cpp \
+PathConstraintPositionTimeline.cpp \
+PathConstraintSpacingTimeline.cpp \
+PointAttachment.cpp \
+RTTI.cpp \
+RegionAttachment.cpp \
+RotateTimeline.cpp \
+ScaleTimeline.cpp \
+ShearTimeline.cpp \
+Skeleton.cpp \
+SkeletonBinary.cpp \
+SkeletonBounds.cpp \
+SkeletonClipping.cpp \
+SkeletonData.cpp \
+SkeletonJson.cpp \
+Skin.cpp \
+Slot.cpp \
+SlotData.cpp \
+SpineObject.cpp \
+TextureLoader.cpp \
+Timeline.cpp \
+TransformConstraint.cpp \
+TransformConstraintData.cpp \
+TransformConstraintTimeline.cpp \
+TranslateTimeline.cpp \
+Triangulator.cpp \
+TwoColorTimeline.cpp \
+Updatable.cpp \
+VertexAttachment.cpp \
+VertexEffect.cpp \
+spine-cocos2dx.cpp \
 AttachmentVertices.cpp \
-Bone.c \
-BoneData.c \
-BoundingBoxAttachment.c \
-ClippingAttachment.c \
-Cocos2dAttachmentLoader.cpp \
-Color.c \
-Event.c \
-EventData.c \
-IkConstraint.c \
-IkConstraintData.c \
-Json.c \
-MeshAttachment.c \
-PathAttachment.c \
-PathConstraint.c \
-PathConstraintData.c \
-PointAttachment.c \
-RegionAttachment.c \
-Skeleton.c \
+SkeletonRenderer.cpp \
 SkeletonAnimation.cpp \
 SkeletonBatch.cpp \
-SkeletonBinary.c \
-SkeletonBounds.c \
-SkeletonClipping.c \
-SkeletonData.c \
-SkeletonJson.c \
-SkeletonRenderer.cpp \
 SkeletonTwoColorBatch.cpp \
-Skin.c \
-Slot.c \
-SlotData.c \
-TransformConstraint.c \
-TransformConstraintData.c \
-Triangulator.c \
-VertexAttachment.c \
-VertexEffect.c \
-extension.c \
-spine-cocos2dx.cpp
 
-LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/..
+LOCAL_EXPORT_C_INCLUDES := $(LOCAL_PATH)/.. \
 
-LOCAL_C_INCLUDES := $(LOCAL_PATH)/..
+LOCAL_C_INCLUDES := $(LOCAL_PATH)/.. \
 
-LOCAL_STATIC_LIBRARIES := cc_core
+LOCAL_STATIC_LIBRARIES := cocos2dx_internal_static
 
 include $(BUILD_STATIC_LIBRARY)
