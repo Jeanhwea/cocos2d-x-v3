@@ -586,10 +586,8 @@ bool js_cocos2dx_spine_SkeletonRenderer_setSkin(JSContext *cx, uint32_t argc, js
             const char* arg0 = nullptr;
             std::string arg0_tmp; ok &= jsval_to_std_string(cx, args.get(0), &arg0_tmp); arg0 = arg0_tmp.c_str();
             if (!ok) { ok = true; break; }
-            bool ret = cobj->setSkin(arg0);
-            jsval jsret = JSVAL_NULL;
-            jsret = BOOLEAN_TO_JSVAL(ret);
-            args.rval().set(jsret);
+            cobj->setSkin(arg0);
+            args.rval().setUndefined();
             return true;
         }
     } while(0);
@@ -599,10 +597,8 @@ bool js_cocos2dx_spine_SkeletonRenderer_setSkin(JSContext *cx, uint32_t argc, js
             std::string arg0;
             ok &= jsval_to_std_string(cx, args.get(0), &arg0);
             if (!ok) { ok = true; break; }
-            bool ret = cobj->setSkin(arg0);
-            jsval jsret = JSVAL_NULL;
-            jsret = BOOLEAN_TO_JSVAL(ret);
-            args.rval().set(jsret);
+            cobj->setSkin(arg0);
+            args.rval().setUndefined();
             return true;
         }
     } while(0);
@@ -642,38 +638,6 @@ bool js_cocos2dx_spine_SkeletonRenderer_getSkeleton(JSContext *cx, uint32_t argc
     }
 
     JS_ReportError(cx, "js_cocos2dx_spine_SkeletonRenderer_getSkeleton : wrong number of arguments: %d, was expecting %d", argc, 0);
-    return false;
-}
-bool js_cocos2dx_spine_SkeletonRenderer_drawDebug(JSContext *cx, uint32_t argc, jsval *vp)
-{
-    JS::CallArgs args = JS::CallArgsFromVp(argc, vp);
-    bool ok = true;
-    JS::RootedObject obj(cx, args.thisv().toObjectOrNull());
-    js_proxy_t *proxy = jsb_get_js_proxy(obj);
-    spine::SkeletonRenderer* cobj = (spine::SkeletonRenderer *)(proxy ? proxy->ptr : NULL);
-    JSB_PRECONDITION2( cobj, cx, false, "js_cocos2dx_spine_SkeletonRenderer_drawDebug : Invalid Native Object");
-    if (argc == 3) {
-        cocos2d::Renderer* arg0 = nullptr;
-        cocos2d::Mat4 arg1;
-        unsigned int arg2 = 0;
-        do {
-            if (args.get(0).isNull()) { arg0 = nullptr; break; }
-            if (!args.get(0).isObject()) { ok = false; break; }
-            js_proxy_t *jsProxy;
-            JS::RootedObject tmpObj(cx, args.get(0).toObjectOrNull());
-            jsProxy = jsb_get_js_proxy(tmpObj);
-            arg0 = (cocos2d::Renderer*)(jsProxy ? jsProxy->ptr : NULL);
-            JSB_PRECONDITION2( arg0, cx, false, "Invalid Native Object");
-        } while (0);
-        ok &= jsval_to_matrix(cx, args.get(1), &arg1);
-        ok &= jsval_to_uint32(cx, args.get(2), &arg2);
-        JSB_PRECONDITION2(ok, cx, false, "js_cocos2dx_spine_SkeletonRenderer_drawDebug : Error processing arguments");
-        cobj->drawDebug(arg0, arg1, arg2);
-        args.rval().setUndefined();
-        return true;
-    }
-
-    JS_ReportError(cx, "js_cocos2dx_spine_SkeletonRenderer_drawDebug : wrong number of arguments: %d, was expecting %d", argc, 3);
     return false;
 }
 bool js_cocos2dx_spine_SkeletonRenderer_createWithFile(JSContext *cx, uint32_t argc, jsval *vp)
@@ -978,7 +942,6 @@ void js_register_cocos2dx_spine_SkeletonRenderer(JSContext *cx, JS::HandleObject
         JS_FN("setSkin", js_cocos2dx_spine_SkeletonRenderer_setSkin, 1, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("updateWorldTransform", js_cocos2dx_spine_SkeletonRenderer_updateWorldTransform, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FN("getSkeleton", js_cocos2dx_spine_SkeletonRenderer_getSkeleton, 0, JSPROP_PERMANENT | JSPROP_ENUMERATE),
-        JS_FN("drawDebug", js_cocos2dx_spine_SkeletonRenderer_drawDebug, 3, JSPROP_PERMANENT | JSPROP_ENUMERATE),
         JS_FS_END
     };
 
@@ -1459,7 +1422,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_setEventListener(JSContext *cx, uint32_
 		    {
 		        JS::RootedObject jstarget(cx, args.thisv().toObjectOrNull());
 		        std::shared_ptr<JSFunctionWrapper> func(new JSFunctionWrapper(cx, jstarget, args.get(0), args.thisv()));
-		        auto lambda = [=](spine::TrackEntry* larg0, Event* larg1) -> void {
+		        auto lambda = [=](spine::TrackEntry* larg0, spine::Event* larg1) -> void {
 		            JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 		            jsval largv[2];
 		            largv[0] = sptrackentry_to_jsval(cx, *larg0);
@@ -1529,7 +1492,7 @@ bool js_cocos2dx_spine_SkeletonAnimation_setTrackEventListener(JSContext *cx, ui
 		    {
 		        JS::RootedObject jstarget(cx, args.thisv().toObjectOrNull());
 		        std::shared_ptr<JSFunctionWrapper> func(new JSFunctionWrapper(cx, jstarget, args.get(1), args.thisv()));
-		        auto lambda = [=](spine::TrackEntry* larg0, Event* larg1) -> void {
+		        auto lambda = [=](spine::TrackEntry* larg0, spine::Event* larg1) -> void {
 		            JSB_AUTOCOMPARTMENT_WITH_GLOBAL_OBJCET
 		            jsval largv[2];
 		            largv[0] = sptrackentry_to_jsval(cx, *larg0);

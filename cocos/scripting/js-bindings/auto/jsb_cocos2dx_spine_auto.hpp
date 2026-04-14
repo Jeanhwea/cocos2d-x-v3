@@ -36,7 +36,6 @@ bool js_cocos2dx_spine_SkeletonRenderer_setVertexEffect(JSContext *cx, uint32_t 
 bool js_cocos2dx_spine_SkeletonRenderer_setSkin(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_spine_SkeletonRenderer_updateWorldTransform(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_spine_SkeletonRenderer_getSkeleton(JSContext *cx, uint32_t argc, jsval *vp);
-bool js_cocos2dx_spine_SkeletonRenderer_drawDebug(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_spine_SkeletonRenderer_createWithFile(JSContext *cx, uint32_t argc, jsval *vp);
 bool js_cocos2dx_spine_SkeletonRenderer_SkeletonRenderer(JSContext *cx, uint32_t argc, jsval *vp);
 
