@@ -172,7 +172,7 @@ SpritePolygonTest1::SpritePolygonTest1()
 void SpritePolygonTest1::initSprites()
 {
     auto s = Director::getInstance()->getWinSize();
-    auto offset = Vec2(0.15f * s.width, 0);
+    auto offset = Vec2(0.15 * s.width, 0);
     auto filename = s_pathGrossini;
 
     // Sprite
@@ -228,7 +228,7 @@ SpritePolygonTest2::SpritePolygonTest2()
 void SpritePolygonTest2::initSprites()
 {
     auto s = Director::getInstance()->getWinSize();
-    auto offset = Vec2(0.15f * s.width, 0);
+    auto offset = Vec2(0.15 * s.width, 0);
     auto filename = s_pathGrossini;
     Rect head = Rect(30, 25, 25, 25);
 

@@ -294,13 +294,13 @@ void Sprite3DUVAnimationTest::cylinderUpdate(float dt)
 {
     // callback function to update cylinder's texcoord
     static bool fade_in = true;
-    _cylinder_texture_offset += 0.3f * dt;
+    _cylinder_texture_offset += 0.3 * dt;
     _cylinder_texture_offset = (_cylinder_texture_offset > 1) ? 0 : _cylinder_texture_offset;
     if (fade_in) {
-        _shining_duration += 0.5f * dt;
+        _shining_duration += 0.5 * dt;
         if (_shining_duration > 1) fade_in = false;
     } else {
-        _shining_duration -= 0.5f * dt;
+        _shining_duration -= 0.5 * dt;
         if (_shining_duration < 0) fade_in = true;
     }
 

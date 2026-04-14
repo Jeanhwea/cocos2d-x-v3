@@ -604,7 +604,7 @@ void Scene3DTestScene::createPlayerDlg()
     slider->setPosition(Vec2(bgSize.width / 2, margin));
     slider->setContentSize(Size(bgSize.width - margin, slider->getContentSize().height));
     slider->addEventListener([girl, slider](Ref* sender, ui::Slider::EventType type) {
-        girl->setRotation3D(Vec3(0, 360.0f * slider->getPercent() / 100.0f, 0));
+        girl->setRotation3D(Vec3(0, 360 * slider->getPercent() / 100, 0));
     });
     slider->setName("Slider");
     slider->setCameraMask(s_CM[LAYER_TOP]);
