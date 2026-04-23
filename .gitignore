@@ -70,6 +70,7 @@ IDEWorkspaceChecks.plist
 ._.*
 xcuserdata/
 DerivedData/
+.kiro/*
 
 # Ignore files built by AppCode
 .idea/

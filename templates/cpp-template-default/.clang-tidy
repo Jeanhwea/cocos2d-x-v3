@@ -30,6 +30,11 @@ Checks: >
   bugprone-incorrect-roundings,
   modernize-redundant-void-arg,
   modernize-use-emplace,
+  modernize-use-nullptr,
+  modernize-use-override,
+  modernize-use-using,
+  modernize-deprecated-headers,
+  modernize-loop-convert,
 
 WarningsAsErrors: '*'
 HeaderFilterRegex: '/(?!external)/.*'
