@@ -1,6 +1,6 @@
 # -*- mode: yaml; -*-
 #
-# 选项设置参考 https://tqfx.org/clang-format/BasedOnStyle/
+# For option reference see https://tqfx.org/clang-format/BasedOnStyle/
 #
 #
 BasedOnStyle: Google
