@@ -31,10 +31,9 @@
 #define SPINE_SKELETONBATCH_H_
 
 #include "cocos2d.h"
-#if COCOS2D_VERSION >= 0x00040000
+#if COCOS2D_VERSION < 0x00040000
 
-#include "renderer/backend/ProgramState.h"
-#include "spine4/spine.h"
+#include <spine/spine.h>
 #include <vector>
 
 namespace spine {
@@ -51,9 +50,7 @@ namespace spine {
 		void deallocateVertices(uint32_t numVertices);
 		unsigned short *allocateIndices(uint32_t numIndices);
 		void deallocateIndices(uint32_t numVertices);
-		cocos2d::TrianglesCommand *addCommand(cocos2d::Renderer *renderer, float globalOrder, cocos2d::Texture2D *texture, cocos2d::backend::ProgramState *programState, cocos2d::BlendFunc blendType, const cocos2d::TrianglesCommand::Triangles &triangles, const cocos2d::Mat4 &mv, uint32_t flags);
-
-		void updateProgramStateLayout(cocos2d::backend::ProgramState *programState);
+		cocos2d::TrianglesCommand *addCommand(cocos2d::Renderer *renderer, float globalOrder, cocos2d::Texture2D *texture, cocos2d::GLProgramState *glProgramState, cocos2d::BlendFunc blendType, const cocos2d::TrianglesCommand::Triangles &triangles, const cocos2d::Mat4 &mv, uint32_t flags);
 
 	protected:
 		SkeletonBatch();
@@ -62,13 +59,6 @@ namespace spine {
 		void reset();
 
 		cocos2d::TrianglesCommand *nextFreeCommand();
-
-		cocos2d::TrianglesCommand *createNewTrianglesCommand();
-
-		// the default program state for batch draw
-		cocos2d::backend::ProgramState *_programState = nullptr;
-		cocos2d::backend::UniformLocation _locMVP;
-		cocos2d::backend::UniformLocation _locTexture;
 
 		// pool of commands
 		std::vector<cocos2d::TrianglesCommand *> _commandsPool;
