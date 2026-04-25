@@ -197,7 +197,7 @@ void MeshAttachment::setHeight(float inValue) {
 	_height = inValue;
 }
 
-spine::Color &MeshAttachment::getColor() {
+spine4::Color &MeshAttachment::getColor() {
 	return _color;
 }
 

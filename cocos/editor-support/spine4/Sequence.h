@@ -34,7 +34,7 @@
 #include "spine4/SpineString.h"
 #include "spine4/TextureRegion.h"
 
-namespace spine {
+namespace spine4 {
 	class Slot;
 
 	class Attachment;

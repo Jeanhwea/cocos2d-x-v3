@@ -37,7 +37,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/Property.h"
 
-namespace spine {
+namespace spine4 {
 	class Skeleton;
 
 	class Event;

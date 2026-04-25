@@ -102,7 +102,7 @@ GLuint filter(TextureFilter filter) {
 Cocos2dTextureLoader::Cocos2dTextureLoader() : TextureLoader() {}
 Cocos2dTextureLoader::~Cocos2dTextureLoader() {}
 
-void Cocos2dTextureLoader::load(AtlasPage &page, const spine::String &path) {
+void Cocos2dTextureLoader::load(AtlasPage &page, const spine4::String &path) {
 	Texture2D *texture = Director::getInstance()->getTextureCache()->addImage(path.buffer());
 	CCASSERT(texture != nullptr, "Invalid image");
 	if (texture) {
@@ -131,7 +131,7 @@ Cocos2dExtension::Cocos2dExtension() : DefaultSpineExtension() {}
 
 Cocos2dExtension::~Cocos2dExtension() {}
 
-char *Cocos2dExtension::_readFile(const spine::String &path, int *length) {
+char *Cocos2dExtension::_readFile(const spine4::String &path, int *length) {
 	Data data = FileUtils::getInstance()->getDataFromFile(path.buffer());
 	if (data.isNull()) return nullptr;
 
@@ -149,6 +149,6 @@ char *Cocos2dExtension::_readFile(const spine::String &path, int *length) {
 #endif
 }
 
-SpineExtension *spine::getDefaultExtension() {
+SpineExtension *spine4::getDefaultExtension() {
 	return new Cocos2dExtension();
 }

@@ -32,7 +32,7 @@
 #include "spine4/Event.h"
 #include "spine4/Skeleton.h"
 
-namespace spine {
+namespace spine4 {
 	RTTI_IMPL_NOPARENT(Timeline)
 
 	Timeline::Timeline(size_t frameCount, size_t frameEntries)

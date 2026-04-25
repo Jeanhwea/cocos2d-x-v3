@@ -36,7 +36,7 @@
 #include "spine4/spine.h"
 #include <vector>
 
-namespace spine {
+namespace spine4 {
 
 	class SkeletonBatch {
 	public:

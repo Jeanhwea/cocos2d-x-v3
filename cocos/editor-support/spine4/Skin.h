@@ -34,7 +34,7 @@
 #include "spine4/SpineString.h"
 #include "spine4/Color.h"
 
-namespace spine {
+namespace spine4 {
 	class Attachment;
 
 	class Skeleton;

@@ -35,7 +35,7 @@
 #include "spine4/SpineString.h"
 #include "spine4/Color.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API BoneData : public SpineObject {
 		friend class SkeletonBinary;
 

@@ -33,7 +33,7 @@
 
 USING_NS_CC;
 
-namespace spine {
+namespace spine4 {
 
 	namespace {
 		Cocos2dTextureLoader textureLoader;

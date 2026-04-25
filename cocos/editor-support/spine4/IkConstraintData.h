@@ -35,7 +35,7 @@
 #include "spine4/SpineString.h"
 #include "spine4/ConstraintData.h"
 
-namespace spine {
+namespace spine4 {
 	class BoneData;
 
 	class SP_API IkConstraintData : public ConstraintData {

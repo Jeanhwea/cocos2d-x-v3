@@ -33,7 +33,7 @@
 #include "spine4/Vector.h"
 #include "spine4/Pool.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API Triangulator : public SpineObject {
 	public:
 		~Triangulator();

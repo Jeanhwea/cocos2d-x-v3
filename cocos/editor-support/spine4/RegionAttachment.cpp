@@ -252,7 +252,7 @@ Vector<float> &RegionAttachment::getUVs() {
 	return _uvs;
 }
 
-spine::Color &RegionAttachment::getColor() {
+spine4::Color &RegionAttachment::getColor() {
 	return _color;
 }
 

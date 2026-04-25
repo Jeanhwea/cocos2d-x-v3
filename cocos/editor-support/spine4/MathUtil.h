@@ -37,7 +37,7 @@
 #undef min
 #undef max
 
-namespace spine {
+namespace spine4 {
 
 	class SP_API MathUtil : public SpineObject {
 	private:

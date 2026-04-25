@@ -41,7 +41,7 @@
 
 #endif
 
-namespace spine {
+namespace spine4 {
 	template<typename K, typename V>
 	class SP_API HashMap : public SpineObject {
 	private:

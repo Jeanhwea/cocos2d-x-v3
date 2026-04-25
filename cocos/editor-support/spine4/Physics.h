@@ -31,7 +31,7 @@
 #define Spine_Physics_h
 
 /** Determines how physics and other non-deterministic updates are applied. */
-namespace spine {
+namespace spine4 {
     enum Physics {
         /** Physics are not updated or applied. */
         Physics_None,

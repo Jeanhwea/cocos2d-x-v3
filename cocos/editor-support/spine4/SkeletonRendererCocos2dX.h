@@ -33,7 +33,7 @@
 #include "cocos2d.h"
 #include "spine4/spine.h"
 
-namespace spine {
+namespace spine4 {
 
 	class AttachmentVertices;
 
@@ -71,7 +71,7 @@ namespace spine {
 		bool getDebugBoundingRectEnabled() const;
 
 		// --- Convenience methods for common Skeleton_* functions.
-		void updateWorldTransform(spine::Physics physics);
+		void updateWorldTransform(spine4::Physics physics);
 
 		void setToSetupPose();
 		void setBonesToSetupPose();

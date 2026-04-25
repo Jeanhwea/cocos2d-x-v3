@@ -33,7 +33,7 @@
 #include "spine4/VertexAttachment.h"
 #include "spine4/Color.h"
 
-namespace spine {
+namespace spine4 {
 	class SlotData;
 
 	class SP_API ClippingAttachment : public VertexAttachment {

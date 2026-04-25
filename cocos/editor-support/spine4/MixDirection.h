@@ -30,7 +30,7 @@
 #ifndef Spine_MixDirection_h
 #define Spine_MixDirection_h
 
-namespace spine {
+namespace spine4 {
 
 /// Indicates whether a timeline's alpha is mixing out over time toward 0 (the setup or current pose) or mixing in toward 1 (the timeline's pose).
 /// See also Timeline::apply(Skeleton&, float, float, Vector&, float, MixPose, MixDirection)

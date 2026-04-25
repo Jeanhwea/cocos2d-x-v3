@@ -35,7 +35,7 @@
 
 #include "spine4/dll.h"
 
-namespace spine {
+namespace spine4 {
 	class String;
 
 	class SP_API SpineObject {

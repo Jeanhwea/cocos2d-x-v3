@@ -32,7 +32,7 @@
 
 #include "spine4/Timeline.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API EventTimeline : public Timeline {
 		friend class SkeletonBinary;
 

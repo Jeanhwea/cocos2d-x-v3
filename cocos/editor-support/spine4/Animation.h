@@ -38,7 +38,7 @@
 #include "spine4/SpineString.h"
 #include "spine4/Property.h"
 
-namespace spine {
+namespace spine4 {
 	class Timeline;
 
 	class Skeleton;

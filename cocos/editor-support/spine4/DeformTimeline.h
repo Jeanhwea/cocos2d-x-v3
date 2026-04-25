@@ -32,7 +32,7 @@
 
 #include "spine4/CurveTimeline.h"
 
-namespace spine {
+namespace spine4 {
 	class VertexAttachment;
 
 	class SP_API DeformTimeline : public CurveTimeline {

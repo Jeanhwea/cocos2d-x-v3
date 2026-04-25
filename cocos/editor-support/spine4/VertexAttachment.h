@@ -34,7 +34,7 @@
 
 #include "spine4/Vector.h"
 
-namespace spine {
+namespace spine4 {
 	class Slot;
 
 	/// An attachment with vertices that are transformed by one or more bones and can be deformed by a slot's vertices.

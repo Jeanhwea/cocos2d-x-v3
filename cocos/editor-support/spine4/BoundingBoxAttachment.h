@@ -34,7 +34,7 @@
 #include "spine4/Color.h"
 #include "spine4/SpineObject.h"
 
-namespace spine {
+namespace spine4 {
 	/// Attachment that has a polygon for bounds checking.
 	class SP_API BoundingBoxAttachment : public VertexAttachment {
 	RTTI_DECL

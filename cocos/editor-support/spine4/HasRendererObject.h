@@ -32,7 +32,7 @@
 
 #include "spine4/dll.h"
 
-namespace spine {
+namespace spine4 {
 
 	typedef void (*DisposeRendererObject)(void *rendererObject);
 

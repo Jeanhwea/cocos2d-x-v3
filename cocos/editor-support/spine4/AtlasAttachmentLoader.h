@@ -35,7 +35,7 @@
 #include "spine4/SpineString.h"
 
 
-namespace spine {
+namespace spine4 {
 	class Atlas;
 
 	class AtlasRegion;

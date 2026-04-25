@@ -35,7 +35,7 @@
 #include "spine4/ContainerUtil.h"
 #include "spine4/SpineObject.h"
 
-namespace spine {
+namespace spine4 {
 	template<typename T>
 	class SP_API Pool : public SpineObject {
 	public:

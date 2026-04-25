@@ -37,7 +37,7 @@
 #include "spine4/HasRendererObject.h"
 #include "TextureRegion.h"
 
-namespace spine {
+namespace spine4 {
 	enum Format {
 		Format_Alpha,
 		Format_Intensity,

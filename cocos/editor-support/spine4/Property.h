@@ -30,7 +30,7 @@
 #ifndef Spine_Property_h
 #define Spine_Property_h
 
-namespace spine {
+namespace spine4 {
 	typedef long long PropertyId;
 	enum Property {
 		Property_Rotate = 1 << 0,

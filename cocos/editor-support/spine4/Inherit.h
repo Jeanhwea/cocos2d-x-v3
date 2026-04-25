@@ -30,7 +30,7 @@
 #ifndef Spine_TransformMode_h
 #define Spine_TransformMode_h
 
-namespace spine {
+namespace spine4 {
 	enum Inherit {
 		Inherit_Normal = 0,
 		Inherit_OnlyTranslation,

@@ -32,7 +32,7 @@
 
 #include "spine4/PathConstraintPositionTimeline.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API PathConstraintSpacingTimeline : public CurveTimeline1 {
 		friend class SkeletonBinary;
 

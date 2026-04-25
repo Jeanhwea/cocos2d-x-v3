@@ -33,7 +33,7 @@
 #include "spine4/Attachment.h"
 #include "spine4/Color.h"
 
-namespace spine {
+namespace spine4 {
 	class Bone;
 
 	/// An attachment which is a single point and a rotation. This can be used to spawn projectiles, particles, etc. A bone can be

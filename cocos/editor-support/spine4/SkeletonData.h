@@ -33,7 +33,7 @@
 #include "spine4/Vector.h"
 #include "spine4/SpineString.h"
 
-namespace spine {
+namespace spine4 {
 	class BoneData;
 
 	class SlotData;
@@ -77,7 +77,7 @@ namespace spine {
 		Skin *findSkin(const String &skinName);
 
 		/// @return May be NULL.
-		spine::EventData *findEvent(const String &eventDataName);
+		spine4::EventData *findEvent(const String &eventDataName);
 
 		/// @return May be NULL.
 		Animation *findAnimation(const String &animationName);
@@ -113,7 +113,7 @@ namespace spine {
 
 		void setDefaultSkin(Skin *inValue);
 
-		Vector<spine::EventData *> &getEvents();
+		Vector<spine4::EventData *> &getEvents();
 
 		Vector<Animation *> &getAnimations();
 

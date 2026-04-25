@@ -34,7 +34,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/SpineString.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API Attachment : public SpineObject {
 	RTTI_DECL
 

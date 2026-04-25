@@ -30,7 +30,7 @@
 #ifndef Spine_AttachmentType_h
 #define Spine_AttachmentType_h
 
-namespace spine {
+namespace spine4 {
 	enum AttachmentType {
 		AttachmentType_Region,
 		AttachmentType_Boundingbox,

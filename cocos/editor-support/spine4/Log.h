@@ -32,7 +32,7 @@
 
 #include "spine4/spine.h"
 
-namespace spine {
+namespace spine4 {
 	SP_API void spDebug_printSkeletonData(SkeletonData *skeletonData);
 
 	SP_API void spDebug_printAnimation(Animation *animation);

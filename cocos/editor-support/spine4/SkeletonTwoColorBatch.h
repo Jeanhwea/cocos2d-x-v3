@@ -36,7 +36,7 @@
 #include "spine4/spine.h"
 #include <vector>
 
-namespace spine {
+namespace spine4 {
 	struct V3F_C4B_C4B_T2F {
 		cocos2d::Vec3 position;
 		cocos2d::Color4B color;

@@ -34,7 +34,7 @@
 #include "spine4/spine-cocos2dx.h"
 #include "spine4/spine.h"
 
-namespace spine {
+namespace spine4 {
 
 	class SkeletonAnimation;
 

@@ -33,7 +33,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/SpineString.h"
 
-namespace spine {
+namespace spine4 {
 /// Stores the setup pose values for an Event.
 	class SP_API EventData : public SpineObject {
 		friend class SkeletonBinary;

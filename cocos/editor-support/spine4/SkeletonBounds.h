@@ -34,7 +34,7 @@
 #include "spine4/Pool.h"
 #include "spine4/SpineObject.h"
 
-namespace spine {
+namespace spine4 {
 	class Skeleton;
 
 	class BoundingBoxAttachment;

@@ -86,7 +86,7 @@ Skin *SkeletonData::findSkin(const String &skinName) {
 	return ContainerUtil::findWithName(_skins, skinName);
 }
 
-spine::EventData *SkeletonData::findEvent(const String &eventDataName) {
+spine4::EventData *SkeletonData::findEvent(const String &eventDataName) {
 	return ContainerUtil::findWithName(_events, eventDataName);
 }
 
@@ -138,7 +138,7 @@ void SkeletonData::setDefaultSkin(Skin *inValue) {
 	_defaultSkin = inValue;
 }
 
-Vector<spine::EventData *> &SkeletonData::getEvents() {
+Vector<spine4::EventData *> &SkeletonData::getEvents() {
 	return _events;
 }
 

@@ -43,7 +43,7 @@ void SpineExtension::setInstance(SpineExtension *inValue) {
 }
 
 SpineExtension *SpineExtension::getInstance() {
-	if (!_instance) _instance = spine::getDefaultExtension();
+	if (!_instance) _instance = spine4::getDefaultExtension();
 	assert(_instance);
 
 	return _instance;

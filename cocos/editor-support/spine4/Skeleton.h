@@ -37,7 +37,7 @@
 #include "spine4/Color.h"
 #include "spine4/Physics.h"
 
-namespace spine {
+namespace spine4 {
 	class SkeletonData;
 
 	class Bone;

@@ -29,7 +29,7 @@
 
 #include "spine4/TextureLoader.h"
 
-namespace spine {
+namespace spine4 {
 	TextureLoader::TextureLoader() {
 	}
 

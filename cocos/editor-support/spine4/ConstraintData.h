@@ -33,7 +33,7 @@
 #include "spine4/Updatable.h"
 #include "spine4/SpineString.h"
 
-namespace spine {
+namespace spine4 {
 	/// The interface for all constraints.
 	class SP_API ConstraintData : public SpineObject {
 

@@ -33,7 +33,7 @@
 #include "spine4/Timeline.h"
 #include "spine4/Sequence.h"
 
-namespace spine {
+namespace spine4 {
 	class Attachment;
 
 	class SP_API SequenceTimeline : public Timeline {
@@ -44,7 +44,7 @@ namespace spine {
 	RTTI_DECL
 
 	public:
-		explicit SequenceTimeline(size_t frameCount, int slotIndex, spine::Attachment *attachment);
+		explicit SequenceTimeline(size_t frameCount, int slotIndex, spine4::Attachment *attachment);
 
 		virtual ~SequenceTimeline();
 

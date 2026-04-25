@@ -37,7 +37,7 @@
 #include "spine4/Color.h"
 #include "spine4/HasRendererObject.h"
 
-namespace spine {
+namespace spine4 {
 	/// Attachment that displays a texture region using a mesh.
 	class SP_API MeshAttachment : public VertexAttachment {
 		friend class SkeletonBinary;

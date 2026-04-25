@@ -35,7 +35,7 @@
 #include "spine4/Animation.h"
 #include "spine4/Property.h"
 
-namespace spine {
+namespace spine4 {
 
 	class SP_API TranslateTimeline : public CurveTimeline2 {
 		friend class SkeletonBinary;

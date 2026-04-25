@@ -38,7 +38,7 @@
 
 #include "spine4/Atlas.h"
 
-namespace spine {
+namespace spine4 {
 	RTTI_IMPL(AtlasAttachmentLoader, AttachmentLoader)
 
 	AtlasAttachmentLoader::AtlasAttachmentLoader(Atlas *atlas) : AttachmentLoader(), _atlas(atlas) {

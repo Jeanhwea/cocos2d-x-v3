@@ -34,7 +34,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/Physics.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API Updatable : public SpineObject {
 	RTTI_DECL
 

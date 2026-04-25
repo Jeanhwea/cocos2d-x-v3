@@ -36,7 +36,7 @@
 #include "spine4/Property.h"
 #include "spine4/Inherit.h"
 
-namespace spine {
+namespace spine4 {
 
 	class SP_API InheritTimeline : public Timeline {
 		friend class SkeletonBinary;

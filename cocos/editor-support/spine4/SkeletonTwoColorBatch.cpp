@@ -42,7 +42,7 @@ using std::max;
 
 #define STRINGIFY(A) #A
 
-namespace spine {
+namespace spine4 {
 
 	TwoColorTrianglesCommand::TwoColorTrianglesCommand() : _materialID(0), _textureID(0), _glProgramState(nullptr), _glProgram(nullptr), _blendType(BlendFunc::DISABLE), _alphaTextureID(0) {
 		_type = RenderCommand::Type::CUSTOM_COMMAND;

@@ -30,7 +30,7 @@
 #ifndef Spine_RotateMode_h
 #define Spine_RotateMode_h
 
-namespace spine {
+namespace spine4 {
 	enum RotateMode {
 		RotateMode_Tangent = 0,
 		RotateMode_Chain,

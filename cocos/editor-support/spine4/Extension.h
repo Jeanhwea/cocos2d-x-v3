@@ -36,7 +36,7 @@
 
 #define SP_UNUSED(x) (void)(x)
 
-namespace spine {
+namespace spine4 {
 	class String;
 
 	class SP_API SpineExtension {

@@ -34,7 +34,7 @@
 #include "spine4/BlendMode.h"
 #include "spine4/SkeletonClipping.h"
 
-namespace spine {
+namespace spine4 {
     class Skeleton;
 
     struct SP_API RenderCommand {

@@ -38,7 +38,7 @@
 
 #include <assert.h>
 
-namespace spine {
+namespace spine4 {
 	class SP_API ContainerUtil : public SpineObject {
 	public:
 		/// Finds an item by comparing each item's name.

@@ -1402,7 +1402,7 @@ Animation *SkeletonBinary::readAnimation(const String &name, DataInput *input, S
 							float time = readFloat(input);
 							int modeAndIndex = readInt(input);
 							float delay = readFloat(input);
-							timeline->setFrame(frame, time, (spine::SequenceMode)(modeAndIndex & 0xf), modeAndIndex >> 4, delay);
+							timeline->setFrame(frame, time, (spine4::SequenceMode)(modeAndIndex & 0xf), modeAndIndex >> 4, delay);
 						}
 						timelines.add(timeline);
 						break;

@@ -38,7 +38,7 @@
 #include "spine4/SkeletonTwoColorBatch.h"
 #include "spine4/SkeletonAnimation.h"
 
-namespace spine {
+namespace spine4 {
 	class Cocos2dAtlasAttachmentLoader : public AtlasAttachmentLoader {
 	public:
 		Cocos2dAtlasAttachmentLoader(Atlas *atlas);

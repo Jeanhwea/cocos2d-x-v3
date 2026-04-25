@@ -34,7 +34,7 @@
 #include "spine4/PhysicsConstraint.h"
 #include "spine4/PhysicsConstraintData.h"
 
-namespace spine {
+namespace spine4 {
 
 	class SP_API PhysicsConstraintTimeline : public CurveTimeline1 {
 		friend class SkeletonBinary;

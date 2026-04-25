@@ -34,7 +34,7 @@
 
 #include "spine4/Vector.h"
 
-namespace spine {
+namespace spine4 {
 	class TransformConstraintData;
 
 	class Skeleton;

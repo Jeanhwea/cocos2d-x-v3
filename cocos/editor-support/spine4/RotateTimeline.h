@@ -32,7 +32,7 @@
 
 #include "spine4/CurveTimeline.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API RotateTimeline : public CurveTimeline1 {
 		friend class SkeletonBinary;
 

@@ -37,7 +37,7 @@ using std::max;
 using std::min;
 using std::vector;
 
-namespace spine {
+namespace spine4 {
 
 	typedef struct _TrackEntryListeners {
 		StartListener startListener;
@@ -56,7 +56,7 @@ namespace spine {
 		((SkeletonAnimation *) state->getRendererObject())->onTrackEntryEvent(entry, type, event);
 		if (type == EventType_Dispose) {
 			if (entry->getRendererObject()) {
-				delete (spine::_TrackEntryListeners *) entry->getRendererObject();
+				delete (spine4::_TrackEntryListeners *) entry->getRendererObject();
 				entry->setRendererObject(NULL);
 			}
 		}
@@ -64,7 +64,7 @@ namespace spine {
 
 	static _TrackEntryListeners *getListeners(TrackEntry *entry) {
 		if (!entry->getRendererObject()) {
-			entry->setRendererObject(new spine::_TrackEntryListeners());
+			entry->setRendererObject(new spine4::_TrackEntryListeners());
 			entry->setListener(trackEntryCallback);
 		}
 		return (_TrackEntryListeners *) entry->getRendererObject();

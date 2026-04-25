@@ -31,7 +31,7 @@
 
 #include <assert.h>
 
-spine::EventData::EventData(const spine::String &name) : _name(name),
+spine4::EventData::EventData(const spine4::String &name) : _name(name),
 														 _intValue(0),
 														 _floatValue(0),
 														 _stringValue(),
@@ -42,55 +42,55 @@ spine::EventData::EventData(const spine::String &name) : _name(name),
 }
 
 /// The name of the event, which is unique within the skeleton.
-const spine::String &spine::EventData::getName() const {
+const spine4::String &spine4::EventData::getName() const {
 	return _name;
 }
 
-int spine::EventData::getIntValue() const {
+int spine4::EventData::getIntValue() const {
 	return _intValue;
 }
 
-void spine::EventData::setIntValue(int inValue) {
+void spine4::EventData::setIntValue(int inValue) {
 	_intValue = inValue;
 }
 
-float spine::EventData::getFloatValue() const {
+float spine4::EventData::getFloatValue() const {
 	return _floatValue;
 }
 
-void spine::EventData::setFloatValue(float inValue) {
+void spine4::EventData::setFloatValue(float inValue) {
 	_floatValue = inValue;
 }
 
-const spine::String &spine::EventData::getStringValue() const {
+const spine4::String &spine4::EventData::getStringValue() const {
 	return _stringValue;
 }
 
-void spine::EventData::setStringValue(const spine::String &inValue) {
+void spine4::EventData::setStringValue(const spine4::String &inValue) {
 	this->_stringValue = inValue;
 }
 
-const spine::String &spine::EventData::getAudioPath() const {
+const spine4::String &spine4::EventData::getAudioPath() const {
 	return _audioPath;
 }
 
-void spine::EventData::setAudioPath(const spine::String &inValue) {
+void spine4::EventData::setAudioPath(const spine4::String &inValue) {
 	_audioPath = inValue;
 }
 
 
-float spine::EventData::getVolume() const {
+float spine4::EventData::getVolume() const {
 	return _volume;
 }
 
-void spine::EventData::setVolume(float inValue) {
+void spine4::EventData::setVolume(float inValue) {
 	_volume = inValue;
 }
 
-float spine::EventData::getBalance() const {
+float spine4::EventData::getBalance() const {
 	return _balance;
 }
 
-void spine::EventData::setBalance(float inValue) {
+void spine4::EventData::setBalance(float inValue) {
 	_balance = inValue;
 }

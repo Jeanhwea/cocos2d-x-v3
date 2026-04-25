@@ -35,7 +35,7 @@
 #include "spine4/SpineString.h"
 #include <assert.h>
 
-namespace spine {
+namespace spine4 {
 	template<typename T>
 	class SP_API Vector : public SpineObject {
 	public:
@@ -86,7 +86,7 @@ namespace spine {
 					_capacity = (int) (_size * 1.75f);
 				}
 				if (_capacity < 8) _capacity = 8;
-				_buffer = spine::SpineExtension::realloc<T>(_buffer, _capacity, __FILE__, __LINE__);
+				_buffer = spine4::SpineExtension::realloc<T>(_buffer, _capacity, __FILE__, __LINE__);
 			}
 			if (oldSize < _size) {
 				for (size_t i = oldSize; i < _size; i++) {
@@ -114,7 +114,7 @@ namespace spine {
 				T valueCopy = inValue;
 				_capacity = (int) (_size * 1.75f);
 				if (_capacity < 8) _capacity = 8;
-				_buffer = spine::SpineExtension::realloc<T>(_buffer, _capacity, __FILE__, __LINE__);
+				_buffer = spine4::SpineExtension::realloc<T>(_buffer, _capacity, __FILE__, __LINE__);
 				construct(_buffer + _size++, valueCopy);
 			} else {
 				construct(_buffer + _size++, inValue);

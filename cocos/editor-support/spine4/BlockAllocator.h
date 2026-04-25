@@ -36,7 +36,7 @@
 #include "spine4/MathUtil.h"
 #include "spine4/Vector.h"
 
-namespace spine {
+namespace spine4 {
     struct Block {
         int size;
         int allocated;

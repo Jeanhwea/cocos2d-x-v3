@@ -43,7 +43,7 @@
 #include <functional>
 #endif
 
-namespace spine {
+namespace spine4 {
 	enum EventType {
 		EventType_Start = 0,
 		EventType_Interrupt,
@@ -514,7 +514,7 @@ namespace spine {
 
 		void computeHold(TrackEntry *entry);
 
-		void setAttachment(Skeleton &skeleton, spine::Slot &slot, const String &attachmentName, bool attachments);
+		void setAttachment(Skeleton &skeleton, spine4::Slot &slot, const String &attachmentName, bool attachments);
 	};
 }
 

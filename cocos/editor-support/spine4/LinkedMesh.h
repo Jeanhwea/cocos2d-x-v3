@@ -33,7 +33,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/SpineString.h"
 
-namespace spine {
+namespace spine4 {
 	class MeshAttachment;
 
 	class SP_API LinkedMesh : public SpineObject {

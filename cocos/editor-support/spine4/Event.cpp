@@ -31,7 +31,7 @@
 
 #include "spine4/EventData.h"
 
-spine::Event::Event(float time, const spine::EventData &data) : _data(data),
+spine4::Event::Event(float time, const spine4::EventData &data) : _data(data),
 																_time(time),
 																_intValue(0),
 																_floatValue(0),
@@ -40,51 +40,51 @@ spine::Event::Event(float time, const spine::EventData &data) : _data(data),
 																_balance(0) {
 }
 
-const spine::EventData &spine::Event::getData() {
+const spine4::EventData &spine4::Event::getData() {
 	return _data;
 }
 
-float spine::Event::getTime() {
+float spine4::Event::getTime() {
 	return _time;
 }
 
-int spine::Event::getIntValue() {
+int spine4::Event::getIntValue() {
 	return _intValue;
 }
 
-void spine::Event::setIntValue(int inValue) {
+void spine4::Event::setIntValue(int inValue) {
 	_intValue = inValue;
 }
 
-float spine::Event::getFloatValue() {
+float spine4::Event::getFloatValue() {
 	return _floatValue;
 }
 
-void spine::Event::setFloatValue(float inValue) {
+void spine4::Event::setFloatValue(float inValue) {
 	_floatValue = inValue;
 }
 
-const spine::String &spine::Event::getStringValue() {
+const spine4::String &spine4::Event::getStringValue() {
 	return _stringValue;
 }
 
-void spine::Event::setStringValue(const spine::String &inValue) {
+void spine4::Event::setStringValue(const spine4::String &inValue) {
 	_stringValue = inValue;
 }
 
 
-float spine::Event::getVolume() {
+float spine4::Event::getVolume() {
 	return _volume;
 }
 
-void spine::Event::setVolume(float inValue) {
+void spine4::Event::setVolume(float inValue) {
 	_volume = inValue;
 }
 
-float spine::Event::getBalance() {
+float spine4::Event::getBalance() {
 	return _balance;
 }
 
-void spine::Event::setBalance(float inValue) {
+void spine4::Event::setBalance(float inValue) {
 	_balance = inValue;
 }

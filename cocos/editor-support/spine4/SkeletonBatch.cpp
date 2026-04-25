@@ -38,7 +38,7 @@ USING_NS_CC;
 using std::max;
 #define INITIAL_SIZE (10000)
 
-namespace spine {
+namespace spine4 {
 
 	static SkeletonBatch *instance = nullptr;
 

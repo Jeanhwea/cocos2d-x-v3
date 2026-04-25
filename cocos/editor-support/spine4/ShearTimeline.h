@@ -32,7 +32,7 @@
 
 #include "spine4/TranslateTimeline.h"
 
-namespace spine {
+namespace spine4 {
 	class SP_API ShearTimeline : public CurveTimeline2 {
 		friend class SkeletonBinary;
 

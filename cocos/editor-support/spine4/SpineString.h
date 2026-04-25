@@ -36,7 +36,7 @@
 #include <string.h>
 #include <stdio.h>
 
-namespace spine {
+namespace spine4 {
 	class SP_API String : public SpineObject {
 	public:
 		String() : _length(0), _buffer(NULL), _tempowner(true) {
