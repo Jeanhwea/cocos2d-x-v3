@@ -32,7 +32,7 @@
 
 #include <assert.h>
 
-using namespace spine;
+using namespace spine4;
 
 SpineExtension *SpineExtension::_instance = NULL;
 

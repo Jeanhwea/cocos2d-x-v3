@@ -41,7 +41,7 @@ THE SOFTWARE.
 #include <assert.h>
 #include <math.h>
 
-using namespace spine;
+using namespace spine4;
 
 const int Json::JSON_FALSE = 0;
 const int Json::JSON_TRUE = 1;

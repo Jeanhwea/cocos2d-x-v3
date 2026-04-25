@@ -44,7 +44,7 @@
 
 #include <float.h>
 
-using namespace spine;
+using namespace spine4;
 
 void dummyOnAnimationEventFunc(AnimationState *state, spine4::EventType type, TrackEntry *entry, Event *event = NULL) {
 	SP_UNUSED(state);

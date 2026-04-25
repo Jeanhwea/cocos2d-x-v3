@@ -34,7 +34,7 @@
 
 #include <assert.h>
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(PathConstraintData, ConstraintData)
 

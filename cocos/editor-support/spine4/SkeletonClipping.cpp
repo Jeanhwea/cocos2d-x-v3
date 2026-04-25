@@ -32,7 +32,7 @@
 #include "spine4/ClippingAttachment.h"
 #include "spine4/Slot.h"
 
-using namespace spine;
+using namespace spine4;
 
 SkeletonClipping::SkeletonClipping() : _clipAttachment(NULL) {
 	_clipOutput.ensureCapacity(128);

@@ -39,7 +39,7 @@
 #include "spine4/PhysicsConstraint.h"
 #include <cfloat>
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(PhysicsConstraintTimeline, CurveTimeline)
 RTTI_IMPL(PhysicsConstraintInertiaTimeline, PhysicsConstraintTimeline)

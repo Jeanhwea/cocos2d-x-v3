@@ -29,7 +29,7 @@
 
 #include "spine4/MeshAttachment.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(MeshAttachment, VertexAttachment)
 

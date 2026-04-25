@@ -35,7 +35,7 @@
 #include "spine4/SlotData.h"
 #include "spine4/VertexAttachment.h"
 
-using namespace spine;
+using namespace spine4;
 
 Slot::Slot(SlotData &data, Bone &bone) : _data(data),
 										 _bone(bone),

@@ -31,7 +31,7 @@
 
 #include "spine4/MeshAttachment.h"
 
-using namespace spine;
+using namespace spine4;
 
 LinkedMesh::LinkedMesh(MeshAttachment *mesh, const int skinIndex, size_t slotIndex, const String &parent,
 					   bool inheritTimeline) : _mesh(mesh),

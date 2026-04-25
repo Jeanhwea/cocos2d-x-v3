@@ -31,7 +31,7 @@
 
 #include <assert.h>
 
-using namespace spine;
+using namespace spine4;
 
 SlotData::SlotData(int index, const String &name, BoneData &boneData) : _index(index),
 																		_name(name),

@@ -33,7 +33,7 @@
 
 #include <ctype.h>
 
-using namespace spine;
+using namespace spine4;
 
 Atlas::Atlas(const String &path, TextureLoader *textureLoader, bool createTexture) : _textureLoader(textureLoader) {
 	int dirLength;

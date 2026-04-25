@@ -41,7 +41,7 @@
 
 #include "spine4/ContainerUtil.h"
 
-using namespace spine;
+using namespace spine4;
 
 SkeletonData::SkeletonData() : _name(),
 							   _defaultSkin(NULL),

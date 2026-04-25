@@ -31,7 +31,7 @@
 
 #include <stdio.h>
 
-using namespace spine;
+using namespace spine4;
 
 void spine4::spDebug_printSkeletonData(SkeletonData *skeletonData) {
 	int i, n;

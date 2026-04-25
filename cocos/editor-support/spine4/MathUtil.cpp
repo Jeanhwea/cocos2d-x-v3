@@ -37,7 +37,7 @@
 #pragma warning(disable : 4723)
 #endif
 
-using namespace spine;
+using namespace spine4;
 
 const float MathUtil::Pi = 3.1415926535897932385f;
 const float MathUtil::Pi_2 = 3.1415926535897932385f * 2;

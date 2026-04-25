@@ -31,7 +31,7 @@
 
 #include <assert.h>
 
-using namespace spine;
+using namespace spine4;
 
 BoneData::BoneData(int index, const String &name, BoneData *parent) : _index(index),
 																	  _name(name),

@@ -31,7 +31,7 @@
 #include "spine4/spine-cocos2dx.h"
 
 USING_NS_CC;
-using namespace spine;
+using namespace spine4;
 
 Cocos2dAtlasAttachmentLoader::Cocos2dAtlasAttachmentLoader(Atlas *atlas) : AtlasAttachmentLoader(atlas) {
 }

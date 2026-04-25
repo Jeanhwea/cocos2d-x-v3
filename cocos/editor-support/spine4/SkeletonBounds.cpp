@@ -37,7 +37,7 @@
 
 #include <float.h>
 
-using namespace spine;
+using namespace spine4;
 
 SkeletonBounds::SkeletonBounds() : _minX(0), _minY(0), _maxX(0), _maxY(0) {
 }

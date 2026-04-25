@@ -32,7 +32,7 @@
 #include "spine4/BoneData.h"
 #include "spine4/Skeleton.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(Bone, Updatable)
 

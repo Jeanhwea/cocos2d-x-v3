@@ -74,7 +74,7 @@
 #include "spine4/SequenceTimeline.h"
 #include "spine4/Version.h"
 
-using namespace spine;
+using namespace spine4;
 
 static float toColor(const char *value, size_t index) {
 	char digits[3];

@@ -37,7 +37,7 @@
 #include "spine4/RegionAttachment.h"
 #include "spine4/Skin.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL_NOPARENT(AttachmentLoader)
 

@@ -31,7 +31,7 @@
 
 #include "spine4/MathUtil.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(CurveTimeline, Timeline)
 

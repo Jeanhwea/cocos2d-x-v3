@@ -33,7 +33,7 @@
 #include "spine4/RegionAttachment.h"
 #include "spine4/MeshAttachment.h"
 
-using namespace spine;
+using namespace spine4;
 
 Sequence::Sequence(int count) : _id(Sequence::getNextID()),
 								_regions(),

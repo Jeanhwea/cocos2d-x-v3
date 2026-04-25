@@ -29,7 +29,7 @@
 
 #include "spine4/ConstraintData.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL_NOPARENT(ConstraintData)
 

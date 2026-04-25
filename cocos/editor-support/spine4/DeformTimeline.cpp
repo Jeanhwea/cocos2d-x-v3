@@ -40,7 +40,7 @@
 #include "spine4/Slot.h"
 #include "spine4/SlotData.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(DeformTimeline, CurveTimeline)
 

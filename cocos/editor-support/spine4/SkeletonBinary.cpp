@@ -74,7 +74,7 @@
 #include "spine4/SequenceTimeline.h"
 #include "spine4/Version.h"
 
-using namespace spine;
+using namespace spine4;
 
 SkeletonBinary::SkeletonBinary(Atlas *atlasArray) : _attachmentLoader(
 															new (__FILE__, __LINE__) AtlasAttachmentLoader(atlasArray)),

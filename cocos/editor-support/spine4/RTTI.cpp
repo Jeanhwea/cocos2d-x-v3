@@ -30,7 +30,7 @@
 #include "spine4/RTTI.h"
 #include "spine4/SpineString.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI::RTTI(const char *className) : _className(className), _pBaseRTTI(NULL) {
 }

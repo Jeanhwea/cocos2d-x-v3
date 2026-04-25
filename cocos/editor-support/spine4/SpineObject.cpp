@@ -30,7 +30,7 @@
 #include "spine4/SpineObject.h"
 #include "spine4/Extension.h"
 
-using namespace spine;
+using namespace spine4;
 
 void *SpineObject::operator new(size_t sz) {
 	return SpineExtension::getInstance()->_calloc(sz, __FILE__, __LINE__);

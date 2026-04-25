@@ -39,7 +39,7 @@
 #include "spine4/TransformConstraint.h"
 #include "spine4/TransformConstraintData.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(TransformConstraintTimeline, CurveTimeline)
 

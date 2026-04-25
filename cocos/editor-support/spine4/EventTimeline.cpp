@@ -41,7 +41,7 @@
 
 #include <float.h>
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(EventTimeline, Timeline)
 

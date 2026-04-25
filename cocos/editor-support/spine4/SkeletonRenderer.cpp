@@ -36,7 +36,7 @@
 #include "spine4/ClippingAttachment.h"
 #include "spine4/Bone.h"
 
-using namespace spine;
+using namespace spine4;
 
 SkeletonRenderer::SkeletonRenderer() : _allocator(4096), _worldVertices(), _quadIndices(), _clipping(), _renderCommands() {
 	_quadIndices.add(0);

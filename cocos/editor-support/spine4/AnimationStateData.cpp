@@ -31,7 +31,7 @@
 #include "spine4/Animation.h"
 #include "spine4/SkeletonData.h"
 
-using namespace spine;
+using namespace spine4;
 
 AnimationStateData::AnimationStateData(SkeletonData *skeletonData) : _skeletonData(skeletonData), _defaultMix(0) {
 }

@@ -35,7 +35,7 @@
 #include "spine4/SkeletonData.h"
 #include "spine4/BoneData.h"
 
-using namespace spine;
+using namespace spine4;
 
 RTTI_IMPL(PhysicsConstraint, Updatable)
 

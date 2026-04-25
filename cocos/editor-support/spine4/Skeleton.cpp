@@ -55,7 +55,7 @@
 
 #include <float.h>
 
-using namespace spine;
+using namespace spine4;
 
 Skeleton::Skeleton(SkeletonData *skeletonData)
 	: _data(skeletonData), _skin(NULL), _color(1, 1, 1, 1), _scaleX(1),
