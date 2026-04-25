@@ -27,15 +27,15 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/AttachmentLoader.h>
+#include "spine4/AttachmentLoader.h"
 
-#include <spine/BoundingBoxAttachment.h>
-#include <spine/ClippingAttachment.h>
-#include <spine/MeshAttachment.h>
-#include <spine/PathAttachment.h>
-#include <spine/PointAttachment.h>
-#include <spine/RegionAttachment.h>
-#include <spine/Skin.h>
+#include "spine4/BoundingBoxAttachment.h"
+#include "spine4/ClippingAttachment.h"
+#include "spine4/MeshAttachment.h"
+#include "spine4/PathAttachment.h"
+#include "spine4/PointAttachment.h"
+#include "spine4/RegionAttachment.h"
+#include "spine4/Skin.h"
 
 using namespace spine;
 

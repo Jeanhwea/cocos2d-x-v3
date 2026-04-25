@@ -27,10 +27,10 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/RegionAttachment.h>
+#include "spine4/RegionAttachment.h"
 
-#include <spine/Bone.h>
-#include <spine/Slot.h>
+#include "spine4/Bone.h"
+#include "spine4/Slot.h"
 
 #include <assert.h>
 

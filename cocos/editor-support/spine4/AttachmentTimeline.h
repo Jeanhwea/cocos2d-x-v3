@@ -30,12 +30,12 @@
 #ifndef Spine_AttachmentTimeline_h
 #define Spine_AttachmentTimeline_h
 
-#include <spine/Timeline.h>
-#include <spine/SpineObject.h>
-#include <spine/Vector.h>
-#include <spine/MixBlend.h>
-#include <spine/MixDirection.h>
-#include <spine/SpineString.h>
+#include "spine4/Timeline.h"
+#include "spine4/SpineObject.h"
+#include "spine4/Vector.h"
+#include "spine4/MixBlend.h"
+#include "spine4/MixDirection.h"
+#include "spine4/SpineString.h"
 
 namespace spine {
 

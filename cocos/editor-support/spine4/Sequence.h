@@ -30,9 +30,9 @@
 #ifndef Spine_Sequence_h
 #define Spine_Sequence_h
 
-#include <spine/Vector.h>
-#include <spine/SpineString.h>
-#include <spine/TextureRegion.h>
+#include "spine4/Vector.h"
+#include "spine4/SpineString.h"
+#include "spine4/TextureRegion.h"
 
 namespace spine {
 	class Slot;

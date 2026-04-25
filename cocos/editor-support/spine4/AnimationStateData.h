@@ -30,9 +30,9 @@
 #ifndef Spine_AnimationStateData_h
 #define Spine_AnimationStateData_h
 
-#include <spine/HashMap.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
+#include "spine4/HashMap.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
 
 #include <assert.h>
 

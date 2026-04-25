@@ -30,7 +30,7 @@
 #ifndef Spine_RTTI_h
 #define Spine_RTTI_h
 
-#include <spine/dll.h>
+#include "spine4/dll.h"
 
 namespace spine {
 	class SP_API RTTI {

@@ -30,7 +30,7 @@
 #ifndef SPINE_DEBUG_LOG_H
 #define SPINE_DEBUG_LOG_H
 
-#include <spine/spine.h>
+#include "spine4/spine.h"
 
 namespace spine {
 	SP_API void spDebug_printSkeletonData(SkeletonData *skeletonData);

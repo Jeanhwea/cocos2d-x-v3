@@ -30,7 +30,7 @@
 #ifndef Spine_EventTimeline_h
 #define Spine_EventTimeline_h
 
-#include <spine/Timeline.h>
+#include "spine4/Timeline.h"
 
 namespace spine {
 	class SP_API EventTimeline : public Timeline {

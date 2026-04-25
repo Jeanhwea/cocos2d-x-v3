@@ -27,7 +27,7 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/MathUtil.h>
+#include "spine4/MathUtil.h"
 #include <math.h>
 #include <stdlib.h>
 #include <cmath>

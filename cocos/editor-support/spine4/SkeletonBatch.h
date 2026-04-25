@@ -34,7 +34,7 @@
 #if COCOS2D_VERSION >= 0x00040000
 
 #include "renderer/backend/ProgramState.h"
-#include <spine/spine.h>
+#include "spine4/spine.h"
 #include <vector>
 
 namespace spine {

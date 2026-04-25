@@ -30,7 +30,7 @@
 #ifndef Spine_HasRendererObject_h
 #define Spine_HasRendererObject_h
 
-#include <spine/dll.h>
+#include "spine4/dll.h"
 
 namespace spine {
 

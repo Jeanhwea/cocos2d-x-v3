@@ -30,9 +30,9 @@
 #ifndef Spine_BoundingBoxAttachment_h
 #define Spine_BoundingBoxAttachment_h
 
-#include <spine/VertexAttachment.h>
-#include <spine/Color.h>
-#include <spine/SpineObject.h>
+#include "spine4/VertexAttachment.h"
+#include "spine4/Color.h"
+#include "spine4/SpineObject.h"
 
 namespace spine {
 	/// Attachment that has a polygon for bounds checking.

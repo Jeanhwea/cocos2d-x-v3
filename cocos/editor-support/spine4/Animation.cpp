@@ -27,12 +27,12 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Animation.h>
-#include <spine/Event.h>
-#include <spine/Skeleton.h>
-#include <spine/Timeline.h>
+#include "spine4/Animation.h"
+#include "spine4/Event.h"
+#include "spine4/Skeleton.h"
+#include "spine4/Timeline.h"
 
-#include <spine/ContainerUtil.h>
+#include "spine4/ContainerUtil.h"
 
 #include <stdint.h>
 

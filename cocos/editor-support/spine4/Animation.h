@@ -30,13 +30,13 @@
 #ifndef Spine_Animation_h
 #define Spine_Animation_h
 
-#include <spine/Vector.h>
-#include <spine/HashMap.h>
-#include <spine/MixBlend.h>
-#include <spine/MixDirection.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
-#include <spine/Property.h>
+#include "spine4/Vector.h"
+#include "spine4/HashMap.h"
+#include "spine4/MixBlend.h"
+#include "spine4/MixDirection.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
+#include "spine4/Property.h"
 
 namespace spine {
 	class Timeline;

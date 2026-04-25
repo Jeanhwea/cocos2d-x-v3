@@ -30,7 +30,7 @@
 #ifndef Spine_MathUtil_h
 #define Spine_MathUtil_h
 
-#include <spine/SpineObject.h>
+#include "spine4/SpineObject.h"
 
 #include <string.h>
 // Needed for older MSVC versions

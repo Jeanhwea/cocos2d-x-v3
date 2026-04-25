@@ -30,9 +30,9 @@
 #ifndef Spine_PhysicsConstraintTimeline_h
 #define Spine_PhysicsConstraintTimeline_h
 
-#include <spine/CurveTimeline.h>
-#include <spine/PhysicsConstraint.h>
-#include <spine/PhysicsConstraintData.h>
+#include "spine4/CurveTimeline.h"
+#include "spine4/PhysicsConstraint.h"
+#include "spine4/PhysicsConstraintData.h"
 
 namespace spine {
 

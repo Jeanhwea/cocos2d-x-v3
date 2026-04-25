@@ -27,52 +27,52 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/SkeletonJson.h>
+#include "spine4/SkeletonJson.h"
 
-#include <spine/Atlas.h>
-#include <spine/AtlasAttachmentLoader.h>
-#include <spine/CurveTimeline.h>
-#include <spine/Json.h>
-#include <spine/LinkedMesh.h>
-#include <spine/SkeletonData.h>
-#include <spine/VertexAttachment.h>
+#include "spine4/Atlas.h"
+#include "spine4/AtlasAttachmentLoader.h"
+#include "spine4/CurveTimeline.h"
+#include "spine4/Json.h"
+#include "spine4/LinkedMesh.h"
+#include "spine4/SkeletonData.h"
+#include "spine4/VertexAttachment.h"
 
-#include <spine/AttachmentTimeline.h>
-#include <spine/AttachmentType.h>
-#include <spine/BoneData.h>
-#include <spine/BoundingBoxAttachment.h>
-#include <spine/ClippingAttachment.h>
-#include <spine/ColorTimeline.h>
-#include <spine/ContainerUtil.h>
-#include <spine/DeformTimeline.h>
-#include <spine/DrawOrderTimeline.h>
-#include <spine/Event.h>
-#include <spine/EventData.h>
-#include <spine/EventTimeline.h>
-#include <spine/IkConstraintData.h>
-#include <spine/IkConstraintTimeline.h>
-#include <spine/InheritTimeline.h>
-#include <spine/MeshAttachment.h>
-#include <spine/PathAttachment.h>
-#include <spine/PathConstraintData.h>
-#include <spine/PathConstraintMixTimeline.h>
-#include <spine/PathConstraintPositionTimeline.h>
-#include <spine/PathConstraintSpacingTimeline.h>
-#include <spine/PhysicsConstraintData.h>
-#include <spine/PhysicsConstraintTimeline.h>
-#include <spine/PointAttachment.h>
-#include <spine/RegionAttachment.h>
-#include <spine/RotateTimeline.h>
-#include <spine/ScaleTimeline.h>
-#include <spine/ShearTimeline.h>
-#include <spine/Skin.h>
-#include <spine/SlotData.h>
-#include <spine/TransformConstraintData.h>
-#include <spine/TransformConstraintTimeline.h>
-#include <spine/TranslateTimeline.h>
-#include <spine/Vertices.h>
-#include <spine/SequenceTimeline.h>
-#include <spine/Version.h>
+#include "spine4/AttachmentTimeline.h"
+#include "spine4/AttachmentType.h"
+#include "spine4/BoneData.h"
+#include "spine4/BoundingBoxAttachment.h"
+#include "spine4/ClippingAttachment.h"
+#include "spine4/ColorTimeline.h"
+#include "spine4/ContainerUtil.h"
+#include "spine4/DeformTimeline.h"
+#include "spine4/DrawOrderTimeline.h"
+#include "spine4/Event.h"
+#include "spine4/EventData.h"
+#include "spine4/EventTimeline.h"
+#include "spine4/IkConstraintData.h"
+#include "spine4/IkConstraintTimeline.h"
+#include "spine4/InheritTimeline.h"
+#include "spine4/MeshAttachment.h"
+#include "spine4/PathAttachment.h"
+#include "spine4/PathConstraintData.h"
+#include "spine4/PathConstraintMixTimeline.h"
+#include "spine4/PathConstraintPositionTimeline.h"
+#include "spine4/PathConstraintSpacingTimeline.h"
+#include "spine4/PhysicsConstraintData.h"
+#include "spine4/PhysicsConstraintTimeline.h"
+#include "spine4/PointAttachment.h"
+#include "spine4/RegionAttachment.h"
+#include "spine4/RotateTimeline.h"
+#include "spine4/ScaleTimeline.h"
+#include "spine4/ShearTimeline.h"
+#include "spine4/Skin.h"
+#include "spine4/SlotData.h"
+#include "spine4/TransformConstraintData.h"
+#include "spine4/TransformConstraintTimeline.h"
+#include "spine4/TranslateTimeline.h"
+#include "spine4/Vertices.h"
+#include "spine4/SequenceTimeline.h"
+#include "spine4/Version.h"
 
 using namespace spine;
 

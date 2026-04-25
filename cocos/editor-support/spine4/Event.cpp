@@ -27,9 +27,9 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Event.h>
+#include "spine4/Event.h"
 
-#include <spine/EventData.h>
+#include "spine4/EventData.h"
 
 spine::Event::Event(float time, const spine::EventData &data) : _data(data),
 																_time(time),

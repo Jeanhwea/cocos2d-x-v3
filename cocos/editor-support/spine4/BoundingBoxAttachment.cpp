@@ -27,7 +27,7 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/BoundingBoxAttachment.h>
+#include "spine4/BoundingBoxAttachment.h"
 
 using namespace spine;
 

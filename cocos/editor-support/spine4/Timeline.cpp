@@ -27,10 +27,10 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Timeline.h>
+#include "spine4/Timeline.h"
 
-#include <spine/Event.h>
-#include <spine/Skeleton.h>
+#include "spine4/Event.h"
+#include "spine4/Skeleton.h"
 
 namespace spine {
 	RTTI_IMPL_NOPARENT(Timeline)

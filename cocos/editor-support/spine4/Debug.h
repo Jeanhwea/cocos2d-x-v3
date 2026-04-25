@@ -30,8 +30,8 @@
 #ifndef SPINE_LOG_H
 #define SPINE_LOG_H
 
-#include <spine/Extension.h>
-#include <spine/Vector.h>
+#include "spine4/Extension.h"
+#include "spine4/Vector.h"
 
 #include <map>
 

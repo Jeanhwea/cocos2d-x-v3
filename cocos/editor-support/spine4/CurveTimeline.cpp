@@ -27,9 +27,9 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/CurveTimeline.h>
+#include "spine4/CurveTimeline.h"
 
-#include <spine/MathUtil.h>
+#include "spine4/MathUtil.h"
 
 using namespace spine;
 

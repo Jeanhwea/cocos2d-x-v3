@@ -27,10 +27,10 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/SkeletonClipping.h>
+#include "spine4/SkeletonClipping.h"
 
-#include <spine/ClippingAttachment.h>
-#include <spine/Slot.h>
+#include "spine4/ClippingAttachment.h"
+#include "spine4/Slot.h"
 
 using namespace spine;
 

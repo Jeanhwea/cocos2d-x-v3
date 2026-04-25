@@ -27,14 +27,14 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/SkeletonRenderer.h>
-#include <spine/Skeleton.h>
-#include <spine/Slot.h>
-#include <spine/SlotData.h>
-#include <spine/RegionAttachment.h>
-#include <spine/MeshAttachment.h>
-#include <spine/ClippingAttachment.h>
-#include <spine/Bone.h>
+#include "spine4/SkeletonRenderer.h"
+#include "spine4/Skeleton.h"
+#include "spine4/Slot.h"
+#include "spine4/SlotData.h"
+#include "spine4/RegionAttachment.h"
+#include "spine4/MeshAttachment.h"
+#include "spine4/ClippingAttachment.h"
+#include "spine4/Bone.h"
 
 using namespace spine;
 

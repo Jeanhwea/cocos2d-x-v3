@@ -27,12 +27,12 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/VertexAttachment.h>
+#include "spine4/VertexAttachment.h"
 
-#include <spine/Slot.h>
+#include "spine4/Slot.h"
 
-#include <spine/Bone.h>
-#include <spine/Skeleton.h>
+#include "spine4/Bone.h"
+#include "spine4/Skeleton.h"
 
 using namespace spine;
 

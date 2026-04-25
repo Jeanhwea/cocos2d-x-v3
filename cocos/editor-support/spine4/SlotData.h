@@ -30,10 +30,10 @@
 #ifndef Spine_SlotData_h
 #define Spine_SlotData_h
 
-#include <spine/BlendMode.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
-#include <spine/Color.h>
+#include "spine4/BlendMode.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
+#include "spine4/Color.h"
 
 namespace spine {
 	class BoneData;

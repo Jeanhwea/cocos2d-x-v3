@@ -30,11 +30,11 @@
 #ifndef Spine_InheritTimeline_h
 #define Spine_InheritTimeline_h
 
-#include <spine/Timeline.h>
+#include "spine4/Timeline.h"
 
-#include <spine/Animation.h>
-#include <spine/Property.h>
-#include <spine/Inherit.h>
+#include "spine4/Animation.h"
+#include "spine4/Property.h"
+#include "spine4/Inherit.h"
 
 namespace spine {
 

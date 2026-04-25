@@ -27,8 +27,8 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/SpineObject.h>
-#include <spine/Extension.h>
+#include "spine4/SpineObject.h"
+#include "spine4/Extension.h"
 
 using namespace spine;
 

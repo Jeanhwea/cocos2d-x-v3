@@ -31,10 +31,10 @@
 #define Spine_BlockAllocator_h
 
 #include <cstdint>
-#include <spine/SpineObject.h>
-#include <spine/Extension.h>
-#include <spine/MathUtil.h>
-#include <spine/Vector.h>
+#include "spine4/SpineObject.h"
+#include "spine4/Extension.h"
+#include "spine4/MathUtil.h"
+#include "spine4/Vector.h"
 
 namespace spine {
     struct Block {

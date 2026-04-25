@@ -30,10 +30,10 @@
 #ifndef Spine_TranslateTimeline_h
 #define Spine_TranslateTimeline_h
 
-#include <spine/CurveTimeline.h>
+#include "spine4/CurveTimeline.h"
 
-#include <spine/Animation.h>
-#include <spine/Property.h>
+#include "spine4/Animation.h"
+#include "spine4/Property.h"
 
 namespace spine {
 

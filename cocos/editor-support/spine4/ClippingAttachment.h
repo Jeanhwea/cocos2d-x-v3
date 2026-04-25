@@ -30,8 +30,8 @@
 #ifndef Spine_ClippingAttachment_h
 #define Spine_ClippingAttachment_h
 
-#include <spine/VertexAttachment.h>
-#include <spine/Color.h>
+#include "spine4/VertexAttachment.h"
+#include "spine4/Color.h"
 
 namespace spine {
 	class SlotData;

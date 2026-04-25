@@ -27,13 +27,13 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/TransformConstraint.h>
+#include "spine4/TransformConstraint.h"
 
-#include <spine/Bone.h>
-#include <spine/Skeleton.h>
-#include <spine/TransformConstraintData.h>
+#include "spine4/Bone.h"
+#include "spine4/Skeleton.h"
+#include "spine4/TransformConstraintData.h"
 
-#include <spine/BoneData.h>
+#include "spine4/BoneData.h"
 
 using namespace spine;
 

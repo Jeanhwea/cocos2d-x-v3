@@ -30,8 +30,8 @@
 #ifndef Spine_SkeletonData_h
 #define Spine_SkeletonData_h
 
-#include <spine/Vector.h>
-#include <spine/SpineString.h>
+#include "spine4/Vector.h"
+#include "spine4/SpineString.h"
 
 namespace spine {
 	class BoneData;

@@ -32,7 +32,7 @@
 
 
 #include <stdlib.h>
-#include <spine/dll.h>
+#include "spine4/dll.h"
 
 #define SP_UNUSED(x) (void)(x)
 

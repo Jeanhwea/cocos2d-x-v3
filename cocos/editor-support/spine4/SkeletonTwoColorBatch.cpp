@@ -27,13 +27,13 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/spine-cocos2dx.h>
+#include "spine4/spine-cocos2dx.h"
 #if COCOS2D_VERSION >= 0x00040000
 
 #include "base/ccTypes.h"
 #include "base/ccUtils.h"
 #include <algorithm>
-#include <spine/Extension.h>
+#include "spine4/Extension.h"
 #include <stddef.h>// offsetof
 
 #include "renderer/backend/Device.h"

@@ -30,10 +30,10 @@
 #ifndef Spine_Bone_h
 #define Spine_Bone_h
 
-#include <spine/Updatable.h>
-#include <spine/SpineObject.h>
-#include <spine/Vector.h>
-#include <spine/Inherit.h>
+#include "spine4/Updatable.h"
+#include "spine4/SpineObject.h"
+#include "spine4/Vector.h"
+#include "spine4/Inherit.h"
 
 namespace spine {
 	class BoneData;

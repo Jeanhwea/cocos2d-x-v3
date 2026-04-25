@@ -30,9 +30,9 @@
 #ifndef Spine_VertexAttachment_h
 #define Spine_VertexAttachment_h
 
-#include <spine/Attachment.h>
+#include "spine4/Attachment.h"
 
-#include <spine/Vector.h>
+#include "spine4/Vector.h"
 
 namespace spine {
 	class Slot;

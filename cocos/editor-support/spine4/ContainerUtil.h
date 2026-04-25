@@ -30,11 +30,11 @@
 #ifndef Spine_ContainerUtil_h
 #define Spine_ContainerUtil_h
 
-#include <spine/Extension.h>
-#include <spine/Vector.h>
-#include <spine/HashMap.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
+#include "spine4/Extension.h"
+#include "spine4/Vector.h"
+#include "spine4/HashMap.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
 
 #include <assert.h>
 

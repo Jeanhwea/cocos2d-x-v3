@@ -30,8 +30,8 @@
 #ifndef SPINE_STRING_H
 #define SPINE_STRING_H
 
-#include <spine/SpineObject.h>
-#include <spine/Extension.h>
+#include "spine4/SpineObject.h"
+#include "spine4/Extension.h"
 
 #include <string.h>
 #include <stdio.h>

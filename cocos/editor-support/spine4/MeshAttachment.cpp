@@ -27,7 +27,7 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/MeshAttachment.h>
+#include "spine4/MeshAttachment.h"
 
 using namespace spine;
 

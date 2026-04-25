@@ -27,31 +27,31 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Skeleton.h>
+#include "spine4/Skeleton.h"
 
-#include <spine/Attachment.h>
-#include <spine/Bone.h>
-#include <spine/IkConstraint.h>
-#include <spine/PathConstraint.h>
-#include <spine/PhysicsConstraint.h>
-#include <spine/SkeletonData.h>
-#include <spine/Skin.h>
-#include <spine/Slot.h>
-#include <spine/TransformConstraint.h>
+#include "spine4/Attachment.h"
+#include "spine4/Bone.h"
+#include "spine4/IkConstraint.h"
+#include "spine4/PathConstraint.h"
+#include "spine4/PhysicsConstraint.h"
+#include "spine4/SkeletonData.h"
+#include "spine4/Skin.h"
+#include "spine4/Slot.h"
+#include "spine4/TransformConstraint.h"
 
-#include <spine/BoneData.h>
-#include <spine/IkConstraintData.h>
-#include <spine/ClippingAttachment.h>
-#include <spine/MeshAttachment.h>
-#include <spine/PathAttachment.h>
-#include <spine/PathConstraintData.h>
-#include <spine/PhysicsConstraintData.h>
-#include <spine/RegionAttachment.h>
-#include <spine/SlotData.h>
-#include <spine/TransformConstraintData.h>
-#include <spine/SkeletonClipping.h>
+#include "spine4/BoneData.h"
+#include "spine4/IkConstraintData.h"
+#include "spine4/ClippingAttachment.h"
+#include "spine4/MeshAttachment.h"
+#include "spine4/PathAttachment.h"
+#include "spine4/PathConstraintData.h"
+#include "spine4/PhysicsConstraintData.h"
+#include "spine4/RegionAttachment.h"
+#include "spine4/SlotData.h"
+#include "spine4/TransformConstraintData.h"
+#include "spine4/SkeletonClipping.h"
 
-#include <spine/ContainerUtil.h>
+#include "spine4/ContainerUtil.h"
 
 #include <float.h>
 

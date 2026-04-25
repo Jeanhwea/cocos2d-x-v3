@@ -30,13 +30,13 @@
 #ifndef Spine_RegionAttachment_h
 #define Spine_RegionAttachment_h
 
-#include <spine/Attachment.h>
-#include <spine/Vector.h>
-#include <spine/Color.h>
-#include <spine/Sequence.h>
-#include <spine/TextureRegion.h>
+#include "spine4/Attachment.h"
+#include "spine4/Vector.h"
+#include "spine4/Color.h"
+#include "spine4/Sequence.h"
+#include "spine4/TextureRegion.h"
 
-#include <spine/HasRendererObject.h>
+#include "spine4/HasRendererObject.h"
 
 #define NUM_UVS 8
 

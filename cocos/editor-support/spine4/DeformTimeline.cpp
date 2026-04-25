@@ -27,18 +27,18 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/DeformTimeline.h>
+#include "spine4/DeformTimeline.h"
 
-#include <spine/Event.h>
-#include <spine/Skeleton.h>
+#include "spine4/Event.h"
+#include "spine4/Skeleton.h"
 
-#include <spine/VertexAttachment.h>
+#include "spine4/VertexAttachment.h"
 
-#include <spine/Animation.h>
-#include <spine/Bone.h>
-#include <spine/Property.h>
-#include <spine/Slot.h>
-#include <spine/SlotData.h>
+#include "spine4/Animation.h"
+#include "spine4/Bone.h"
+#include "spine4/Property.h"
+#include "spine4/Slot.h"
+#include "spine4/SlotData.h"
 
 using namespace spine;
 

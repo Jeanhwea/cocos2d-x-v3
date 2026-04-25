@@ -30,7 +30,7 @@
 #ifndef Spine_PathConstraintPositionTimeline_h
 #define Spine_PathConstraintPositionTimeline_h
 
-#include <spine/CurveTimeline.h>
+#include "spine4/CurveTimeline.h"
 
 namespace spine {
 

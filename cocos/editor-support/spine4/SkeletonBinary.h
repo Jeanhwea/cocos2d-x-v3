@@ -30,11 +30,11 @@
 #ifndef Spine_SkeletonBinary_h
 #define Spine_SkeletonBinary_h
 
-#include <spine/Inherit.h>
-#include <spine/Vector.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
-#include <spine/Color.h>
+#include "spine4/Inherit.h"
+#include "spine4/Vector.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
+#include "spine4/Color.h"
 
 namespace spine {
 	class SkeletonData;

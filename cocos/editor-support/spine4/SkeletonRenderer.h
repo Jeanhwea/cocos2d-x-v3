@@ -30,9 +30,9 @@
 #ifndef Spine_SkeletonRenderer_h
 #define Spine_SkeletonRenderer_h
 
-#include <spine/BlockAllocator.h>
-#include <spine/BlendMode.h>
-#include <spine/SkeletonClipping.h>
+#include "spine4/BlockAllocator.h"
+#include "spine4/BlendMode.h"
+#include "spine4/SkeletonClipping.h"
 
 namespace spine {
     class Skeleton;

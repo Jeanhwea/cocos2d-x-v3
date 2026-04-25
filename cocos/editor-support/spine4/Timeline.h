@@ -30,12 +30,12 @@
 #ifndef Spine_Timeline_h
 #define Spine_Timeline_h
 
-#include <spine/RTTI.h>
-#include <spine/Vector.h>
-#include <spine/MixBlend.h>
-#include <spine/MixDirection.h>
-#include <spine/SpineObject.h>
-#include <spine/Property.h>
+#include "spine4/RTTI.h"
+#include "spine4/Vector.h"
+#include "spine4/MixBlend.h"
+#include "spine4/MixDirection.h"
+#include "spine4/SpineObject.h"
+#include "spine4/Property.h"
 
 namespace spine {
 	class Skeleton;

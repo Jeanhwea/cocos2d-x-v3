@@ -30,12 +30,12 @@
 #ifndef Spine_MeshAttachment_h
 #define Spine_MeshAttachment_h
 
-#include <spine/VertexAttachment.h>
-#include <spine/TextureRegion.h>
-#include <spine/Sequence.h>
-#include <spine/Vector.h>
-#include <spine/Color.h>
-#include <spine/HasRendererObject.h>
+#include "spine4/VertexAttachment.h"
+#include "spine4/TextureRegion.h"
+#include "spine4/Sequence.h"
+#include "spine4/Vector.h"
+#include "spine4/Color.h"
+#include "spine4/HasRendererObject.h"
 
 namespace spine {
 	/// Attachment that displays a texture region using a mesh.

@@ -27,15 +27,15 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/InheritTimeline.h>
+#include "spine4/InheritTimeline.h"
 
-#include <spine/Event.h>
-#include <spine/Skeleton.h>
+#include "spine4/Event.h"
+#include "spine4/Skeleton.h"
 
-#include <spine/Bone.h>
-#include <spine/BoneData.h>
-#include <spine/Slot.h>
-#include <spine/SlotData.h>
+#include "spine4/Bone.h"
+#include "spine4/BoneData.h"
+#include "spine4/Slot.h"
+#include "spine4/SlotData.h"
 
 using namespace spine;
 

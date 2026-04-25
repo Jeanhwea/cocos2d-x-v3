@@ -30,9 +30,9 @@
 #ifndef Spine_PhysicsConstraint_h
 #define Spine_PhysicsConstraint_h
 
-#include <spine/ConstraintData.h>
+#include "spine4/ConstraintData.h"
 
-#include <spine/Vector.h>
+#include "spine4/Vector.h"
 
 namespace spine {
 	class PhysicsConstraintData;

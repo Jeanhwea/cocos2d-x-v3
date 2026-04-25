@@ -27,9 +27,9 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Triangulator.h>
+#include "spine4/Triangulator.h"
 
-#include <spine/MathUtil.h>
+#include "spine4/MathUtil.h"
 
 using namespace spine;
 

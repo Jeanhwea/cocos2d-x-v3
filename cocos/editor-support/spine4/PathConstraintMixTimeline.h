@@ -30,7 +30,7 @@
 #ifndef Spine_PathConstraintMixTimeline_h
 #define Spine_PathConstraintMixTimeline_h
 
-#include <spine/CurveTimeline.h>
+#include "spine4/CurveTimeline.h"
 
 namespace spine {
 

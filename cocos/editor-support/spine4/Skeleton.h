@@ -30,12 +30,12 @@
 #ifndef Spine_Skeleton_h
 #define Spine_Skeleton_h
 
-#include <spine/Vector.h>
-#include <spine/MathUtil.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
-#include <spine/Color.h>
-#include <spine/Physics.h>
+#include "spine4/Vector.h"
+#include "spine4/MathUtil.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
+#include "spine4/Color.h"
+#include "spine4/Physics.h"
 
 namespace spine {
 	class SkeletonData;

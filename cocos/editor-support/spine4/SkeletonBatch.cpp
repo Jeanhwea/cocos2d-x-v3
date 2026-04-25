@@ -27,11 +27,11 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/spine-cocos2dx.h>
+#include "spine4/spine-cocos2dx.h"
 #if COCOS2D_VERSION >= 0x00040000
 
 #include <algorithm>
-#include <spine/Extension.h>
+#include "spine4/Extension.h"
 
 USING_NS_CC;
 #define EVENT_AFTER_DRAW_RESET_POSITION "director_after_draw"

@@ -34,9 +34,9 @@ THE SOFTWARE.
 #define _BSD_SOURCE
 #endif
 
-#include <spine/Json.h>
-#include <spine/Extension.h>
-#include <spine/SpineString.h>
+#include "spine4/Json.h"
+#include "spine4/Extension.h"
+#include "spine4/SpineString.h"
 
 #include <assert.h>
 #include <math.h>

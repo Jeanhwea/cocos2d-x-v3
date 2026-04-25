@@ -30,9 +30,9 @@
 #ifndef Spine_Skin_h
 #define Spine_Skin_h
 
-#include <spine/Vector.h>
-#include <spine/SpineString.h>
-#include <spine/Color.h>
+#include "spine4/Vector.h"
+#include "spine4/SpineString.h"
+#include "spine4/Color.h"
 
 namespace spine {
 	class Attachment;

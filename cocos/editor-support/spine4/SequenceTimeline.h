@@ -30,8 +30,8 @@
 #ifndef Spine_SequenceTimeline_h
 #define Spine_SequenceTimeline_h
 
-#include <spine/Timeline.h>
-#include <spine/Sequence.h>
+#include "spine4/Timeline.h"
+#include "spine4/Sequence.h"
 
 namespace spine {
 	class Attachment;

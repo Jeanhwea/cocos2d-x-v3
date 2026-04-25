@@ -30,8 +30,8 @@
 #ifndef Spine_PointAttachment_h
 #define Spine_PointAttachment_h
 
-#include <spine/Attachment.h>
-#include <spine/Color.h>
+#include "spine4/Attachment.h"
+#include "spine4/Color.h"
 
 namespace spine {
 	class Bone;

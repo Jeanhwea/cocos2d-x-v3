@@ -27,9 +27,9 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/Atlas.h>
-#include <spine/ContainerUtil.h>
-#include <spine/TextureLoader.h>
+#include "spine4/Atlas.h"
+#include "spine4/ContainerUtil.h"
+#include "spine4/TextureLoader.h"
 
 #include <ctype.h>
 

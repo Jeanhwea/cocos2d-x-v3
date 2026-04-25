@@ -27,7 +27,7 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/ConstraintData.h>
+#include "spine4/ConstraintData.h"
 
 using namespace spine;
 

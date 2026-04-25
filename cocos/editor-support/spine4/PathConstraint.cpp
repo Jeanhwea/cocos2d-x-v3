@@ -27,16 +27,16 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/PathConstraint.h>
+#include "spine4/PathConstraint.h"
 
-#include <spine/Bone.h>
-#include <spine/PathAttachment.h>
-#include <spine/PathConstraintData.h>
-#include <spine/Skeleton.h>
-#include <spine/Slot.h>
+#include "spine4/Bone.h"
+#include "spine4/PathAttachment.h"
+#include "spine4/PathConstraintData.h"
+#include "spine4/Skeleton.h"
+#include "spine4/Slot.h"
 
-#include <spine/BoneData.h>
-#include <spine/SlotData.h>
+#include "spine4/BoneData.h"
+#include "spine4/SlotData.h"
 
 using namespace spine;
 

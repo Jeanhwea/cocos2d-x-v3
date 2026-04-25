@@ -30,11 +30,11 @@
 #ifndef Spine_Atlas_h
 #define Spine_Atlas_h
 
-#include <spine/Vector.h>
-#include <spine/Extension.h>
-#include <spine/SpineObject.h>
-#include <spine/SpineString.h>
-#include <spine/HasRendererObject.h>
+#include "spine4/Vector.h"
+#include "spine4/Extension.h"
+#include "spine4/SpineObject.h"
+#include "spine4/SpineString.h"
+#include "spine4/HasRendererObject.h"
 #include "TextureRegion.h"
 
 namespace spine {

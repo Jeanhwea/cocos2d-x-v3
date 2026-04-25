@@ -27,7 +27,7 @@
  * THE SPINE RUNTIMES, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  *****************************************************************************/
 
-#include <spine/TextureLoader.h>
+#include "spine4/TextureLoader.h"
 
 namespace spine {
 	TextureLoader::TextureLoader() {

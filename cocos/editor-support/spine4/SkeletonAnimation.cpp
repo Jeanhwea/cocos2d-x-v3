@@ -28,9 +28,9 @@
  *****************************************************************************/
 
 #include <algorithm>
-#include <spine/Extension.h>
-#include <spine/SkeletonAnimation.h>
-#include <spine/spine-cocos2dx.h>
+#include "spine4/Extension.h"
+#include "spine4/SkeletonAnimation.h"
+#include "spine4/spine-cocos2dx.h"
 
 USING_NS_CC;
 using std::max;
