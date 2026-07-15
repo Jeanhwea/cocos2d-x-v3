@@ -457,6 +457,10 @@ else()
 endif()
 
 target_link_libraries(${APP_NAME} cocos2d)
+if(LINUX)
+    target_link_libraries(${APP_NAME} m)
+    target_link_options(${APP_NAME} PRIVATE -Wl,--wrap=powf_finite -Wl,--wrap=expf_finite)
+endif()
 target_include_directories(${APP_NAME}
         PRIVATE Classes
 )

@@ -63,6 +63,7 @@ if(ANDROID)
 elseif(LINUX)
   list(APPEND GAME_SOURCE
     proj.linux/main.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/chipmunk_compat.c
   )
 elseif(WINDOWS)
   list(APPEND GAME_HEADER
@@ -120,6 +121,10 @@ else()
 endif()
 
 target_link_libraries(${APP_NAME} cocos2d)
+if(LINUX)
+  target_link_libraries(${APP_NAME} m)
+endif()
+
 
 if(APPLE)
   target_link_libraries(${APP_NAME} iconv)
