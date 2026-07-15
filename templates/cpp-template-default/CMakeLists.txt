@@ -63,7 +63,7 @@ if(ANDROID)
 elseif(LINUX)
   list(APPEND GAME_SOURCE
     proj.linux/main.cpp
-    proj.linux/chipmunk_compat.cpp
+    proj.linux/chipmunk_compat.c
   )
 elseif(WINDOWS)
   list(APPEND GAME_HEADER
