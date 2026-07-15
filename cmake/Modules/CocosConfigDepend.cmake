@@ -6,7 +6,15 @@ macro(cocos2dx_depend)
         list(APPEND PLATFORM_SPECIFIC_LIBS ws2_32 userenv psapi winmm Version Iphlpapi opengl32)
     elseif(LINUX)
         # need review those libs: X11 Xi Xrandr Xxf86vm Xinerama Xcursor rt m
-        list(APPEND PLATFORM_SPECIFIC_LIBS dl X11 Xi Xrandr Xxf86vm Xinerama Xcursor rt m)
+        # prefer find_library over bare -l for Xxf86vm since it may only exist as .so.1
+        find_library(XXF86VM_LIBRARY Xxf86vm)
+        if(XXF86VM_LIBRARY)
+            list(APPEND PLATFORM_SPECIFIC_LIBS "${XXF86VM_LIBRARY}")
+        else()
+            message(STATUS "libXxf86vm not found via find_library, falling back to /usr/lib/x86_64-linux-gnu/libXxf86vm.so.1")
+            list(APPEND PLATFORM_SPECIFIC_LIBS "/usr/lib/x86_64-linux-gnu/libXxf86vm.so.1")
+        endif()
+        list(APPEND PLATFORM_SPECIFIC_LIBS dl X11 Xi Xrandr Xinerama Xcursor rt m)
         # use older cmake style on below linux libs
         cocos_find_package(Fontconfig FONTCONFIG REQUIRED)	
         cocos_find_package(GTK3 GTK3 REQUIRED)
@@ -96,7 +104,6 @@ macro(use_cocos2dx_libs_depend target)
     foreach(platform_lib ${PLATFORM_SPECIFIC_LIBS})
         target_link_libraries(${target} ${platform_lib})
     endforeach()
-
     if(LINUX)
         cocos_use_pkg(${target} FONTCONFIG)
         cocos_use_pkg(${target} GTK3)
@@ -107,6 +114,10 @@ macro(use_cocos2dx_libs_depend target)
         cocos_use_pkg(${target} CURL)
         cocos_use_pkg(${target} THREADS)
         cocos_use_pkg(${target} SQLITE3)
+        # glibc 2.31+ removed __finite variants; prebuilt chipmunk/other static libs need these
+        target_link_options(${target} PRIVATE
+            -Wl,--wrap,__powf_finite,--wrap,__expf_finite,--wrap,__logf_finite
+        )
     endif()
 endmacro()
 
