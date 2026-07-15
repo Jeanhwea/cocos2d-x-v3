@@ -74,6 +74,7 @@ jobs:
       - name: Initialize Project
         run: |
           source ~/.bashrc
+          export PATH=$(PWD)/tools/cocos2d-console/bin:$PATH
           echo "N" | cocos new -l cpp aaa
 
       - name: Setup Project
