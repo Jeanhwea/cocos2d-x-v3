@@ -27,4 +27,4 @@ DEPENDS+=' libgtk-3-dev'
 DEPENDS+=' binutils'
 DEPENDS+=' xorg-dev'
 
-sudo apt-get install --force-yes --yes $DEPENDS > /dev/null
+sudo apt-get install --yes $DEPENDS > /dev/null
