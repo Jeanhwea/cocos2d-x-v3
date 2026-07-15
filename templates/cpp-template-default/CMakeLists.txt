@@ -63,7 +63,7 @@ if(ANDROID)
 elseif(LINUX)
   list(APPEND GAME_SOURCE
     proj.linux/main.cpp
-    ${CMAKE_CURRENT_SOURCE_DIR}/chipmunk_compat.c
+    proj.linux/chipmunk_compat.c
   )
 elseif(WINDOWS)
   list(APPEND GAME_HEADER
