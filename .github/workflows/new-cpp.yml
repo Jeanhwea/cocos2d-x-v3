@@ -46,6 +46,46 @@ jobs:
           cd aaa
           cmake --build build --config Release
 
+  test-linux:
+    strategy:
+      matrix:
+        os:
+          - ubuntu-24.04
+        arch:
+          - x64
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: |
+          echo -e "y" | bash build/install-deps-linux.sh
+
+      - name: Setup cocos2d-x Environment
+        run: |
+          python3 --version
+          echo "" | python3 setup.py
+
+      - name: Initialize Project
+        run: |
+          source ~/.bashrc
+          echo "N" | cocos new -l cpp aaa
+
+      - name: Setup Project
+        run: |
+          cd aaa
+          cmake -B build --log-level=STATUS
+
+      - name: Build Project
+        run: |
+          cd aaa
+          cmake --build build --config Release
+
   test-windows:
     strategy:
       matrix:
