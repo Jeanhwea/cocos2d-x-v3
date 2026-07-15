@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME cpp-tests)
 
-project(${APP_NAME})
+project(${APP_NAME} LANGUAGES C CXX)
 
 if(NOT DEFINED BUILD_ENGINE_DONE)
     set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../..)
