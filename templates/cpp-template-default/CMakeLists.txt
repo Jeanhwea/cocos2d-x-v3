@@ -4,7 +4,7 @@ set(APP_NAME HelloCpp)
 
 project(${APP_NAME}
   VERSION 0.0.1
-  LANGUAGES CXX
+  LANGUAGES C CXX
 )
 
 # set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -63,6 +63,7 @@ if(ANDROID)
 elseif(LINUX)
   list(APPEND GAME_SOURCE
     proj.linux/main.cpp
+    proj.linux/chipmunk_compat.c
   )
 elseif(WINDOWS)
   list(APPEND GAME_HEADER
@@ -120,6 +121,10 @@ else()
 endif()
 
 target_link_libraries(${APP_NAME} cocos2d)
+if(LINUX)
+  target_link_libraries(${APP_NAME} m)
+endif()
+
 
 if(APPLE)
   target_link_libraries(${APP_NAME} iconv)

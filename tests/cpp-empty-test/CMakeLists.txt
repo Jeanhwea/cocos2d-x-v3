@@ -25,7 +25,7 @@ cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME cpp-empty-test)
 
-project(${APP_NAME})
+project(${APP_NAME} LANGUAGES C CXX)
 
 if(NOT DEFINED BUILD_ENGINE_DONE)
     set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../..)
@@ -120,6 +120,10 @@ else()
 endif()
 
 target_link_libraries(${APP_NAME} cocos2d)
+if(LINUX)
+    target_link_libraries(${APP_NAME} m)
+    target_link_options(${APP_NAME} PRIVATE -Wl,--wrap=powf_finite -Wl,--wrap=expf_finite)
+endif()
 
 target_include_directories(${APP_NAME} PRIVATE Classes)
 

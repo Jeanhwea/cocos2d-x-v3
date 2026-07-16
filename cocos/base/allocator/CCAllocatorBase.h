@@ -29,6 +29,7 @@
 /// @cond DO_NOT_SHOW
 
 #include <string>
+#include <cstdint>
 
 #include "platform/CCPlatformMacros.h"
 #include "base/allocator/CCAllocatorMacros.h"
@@ -115,4 +116,3 @@ NS_CC_END
 
 /// @endcond
 #endif//CC_ALLOCATOR_BASE_H
-
