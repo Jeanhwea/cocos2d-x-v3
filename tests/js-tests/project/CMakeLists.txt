@@ -1,6 +1,6 @@
 #/****************************************************************************
 # Copyright (c) 2015-2017 Chukong Technologies Inc.
-#
+# 
 # http://www.cocos2d-x.org
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -25,7 +25,7 @@ cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME js-tests)
 
-project(${APP_NAME} LANGUAGES CXX)
+project(${APP_NAME} LANGUAGES C CXX)
 
 if(NOT DEFINED BUILD_ENGINE_DONE)
     set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../..)
@@ -40,7 +40,7 @@ set(res_main_files
     "${CMAKE_CURRENT_SOURCE_DIR}/../main.js"
     "${CMAKE_CURRENT_SOURCE_DIR}/../project.json"
     )
-# to check, dumplicate copy on macOS sometime. why?
+# to check, dumplicate copy on macOS sometime. why? 
 # "${COCOS2DX_ROOT_PATH}/tests/cpp-tests/Resources"
 set(res_res_folders
     "${CMAKE_CURRENT_SOURCE_DIR}/../resjs"
@@ -169,3 +169,4 @@ if(LINUX OR WINDOWS)
     cocos_copy_target_res(${APP_NAME} COPY_TO ${APP_RES_DIR}/src FOLDERS ${res_src_folders})
     cocos_copy_target_res(${APP_NAME} COPY_TO ${APP_RES_DIR}/script FOLDERS ${res_script_folders})
 endif()
+

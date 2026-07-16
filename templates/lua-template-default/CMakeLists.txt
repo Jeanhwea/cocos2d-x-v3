@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.6)
 
 set(APP_NAME HelloLua)
 
-project(${APP_NAME} LANGUAGES CXX)
+project(${APP_NAME} LANGUAGES C CXX)
 
 set(RUNTIME_SRC_ROOT ${CMAKE_CURRENT_SOURCE_DIR}/frameworks/runtime-src)
 set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/frameworks/cocos2d-x)
