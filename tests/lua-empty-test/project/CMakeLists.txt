@@ -43,7 +43,10 @@ if(ANDROID)
     set(APP_NAME lua_empty_test)
     list(APPEND GAME_SOURCE proj.android/app/jni/main.cpp)
 elseif(LINUX)
-    list(APPEND GAME_SOURCE proj.linux/main.cpp)
+    list(APPEND GAME_SOURCE
+        proj.linux/main.cpp
+        proj.linux/chipmunk_compat.cpp
+        )
 elseif(WINDOWS)
     list(APPEND GAME_HEADER proj.win32/main.h)
     list(APPEND GAME_SOURCE proj.win32/main.cpp ${cc_common_res})
