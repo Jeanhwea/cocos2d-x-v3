@@ -29,7 +29,7 @@
 cmake_minimum_required(VERSION 3.6)
 
 project(Cocos2d-x
-  VERSION 1.2.3
+  VERSION 1.2.4
   LANGUAGES C CXX)
 
 # cocos2dx root path
